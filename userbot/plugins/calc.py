@@ -54,7 +54,7 @@ async def aexec(code, event):
     return await locals()['__aexec'](event)
 
 
-@borg.on(admin_cmd(pattern="calc", allow_sudo = True))
+@borg.on(sudo_cmd(pattern="calc", allow_sudo = True))
 async def _(event):
     if event.fwd_from or event.via_bot_id:
         return
