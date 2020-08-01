@@ -75,7 +75,7 @@ async def formatJSON(outData):
         msg += " __" + re.sub("<br>", '\n', cat) +"__"
         return msg
 
-@borg.on(admin_cmd(pattern="anst ?(.*)"))
+@borg.on(admin_cmd(pattern="anilist ?(.*)"))
 async def anilist(event):
 	if event.fwd_from:
 		return
@@ -84,7 +84,7 @@ async def anilist(event):
 	msg = await formatJSON(result)
 	await event.edit(msg,link_preview=True)
 
-@borg.on(sudo_cmd(pattern="anst ?(.*)", allow_sudo = True))
+@borg.on(sudo_cmd(pattern="anilist ?(.*)", allow_sudo = True))
 async def anilist(event):
 	if event.fwd_from:
 		return
