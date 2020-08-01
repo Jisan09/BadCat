@@ -99,5 +99,5 @@ async def aexec(code, event):
     return await locals()['__aexec'](event)
     
 CMD_HELP.update({"calc": "`.calc` your equation :\
-      \nUSAGE: solves the given maths equation by bodmass rule. "
+      \nUSAGE: Solves the given maths equation by bodmass rule. "
 }) 
