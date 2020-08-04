@@ -83,14 +83,6 @@ async def anilist(event):
     msg = await formatJSON(result)
     await event.edit(msg,link_preview=True)
 
-@borg.on(sudo_cmd(pattern="anilist ?(.*)", allow_sudo = True))
-async def anilist(event):
-    if event.fwd_from:
-        return
-    input_str = event.pattern_match.group(1)
-    result = await callAPI(input_str)
-    msg = await formatJSON(result)
-	await event.reply(msg,link_preview=True)
 	
 CMD_HELP.update({
     "anilist":
