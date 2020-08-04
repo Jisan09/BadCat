@@ -87,6 +87,36 @@ async def deepfry(img: Image) -> Image:
     img = ImageEnhance.Sharpness(img).enhance(randint(5, 300))
     return img
 
+
+@borg.on(sudo_cmd(pattern="frybot ?(.*)", allow_sudo = True))
+async def _(event):
+    if event.fwd_from:
+        return 
+    if not event.reply_to_msg_id:
+       await event.reply("```Reply to any user message.```")
+       return
+    reply_message = await event.get_reply_message() 
+    if not reply_message.media:
+       await event.reply("```reply to media file```")
+       return
+    chat = "@image_deepfrybot"
+    sender = reply_message.sender
+    if reply_message.sender.bot:
+       await event.reply("```Reply to actual users message.```")
+       return
+    async with borg.conversation(chat) as conv:
+          try:     
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=432858024))
+              await borg.forward_messages(chat, reply_message)
+              response = await response 
+          except YouBlockedUserError: 
+              await event.reply("```Please unblock @sangmatainfo_bot and try again```")
+              return
+          if response.text.startswith("Forward"):
+              await event.reply("```can you kindly disable your forward privacy settings for good?```")
+          else: 
+              await borg.send_file(event.chat_id, response.message.media)
+
 @borg.on(admin_cmd(pattern="frybot ?(.*)"))
 async def _(event):
     if event.fwd_from:
@@ -133,3 +163,4 @@ async def check_media(reply_message):
     if not data or data is None:
         return False
     return data
+
