@@ -66,6 +66,7 @@ async def _(event):
         end = datetime.now()
         ms = (end - start).seconds
         if os.path.exists(downloaded_file_name):
+            await event.delete()
             await event.reply(f"__**➥ Downloaded in {ms} seconds.**__\n__**➥Downloaded to :- **__ `{downloaded_file_name}`\n__**➥ Downloaded by :-**__ [{DEFAULTUSER}]({USERNAME})")
         else:
             await event.edit("Error Occurred\n {}".format(input_str))
