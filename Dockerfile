@@ -1,7 +1,7 @@
 FROM sandy1709/catuserbot:latest
 
 #clonning repo 
-RUN git clone -b Jisan09-Fix https://github.com/Jisan09/catuserbot.git /root/userbot
+RUN git clone https://github.com/Jisan09/catuserbot.git /root/userbot
 #working directory 
 WORKDIR /root/userbot
 ENV PATH="/home/userbot/bin:$PATH"
