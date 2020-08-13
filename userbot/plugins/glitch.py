@@ -106,4 +106,3 @@ CMD_HELP.update({
     If nothing is mentioned then by default it is 2\
     "
 })
-© 2020 GitHub, In
