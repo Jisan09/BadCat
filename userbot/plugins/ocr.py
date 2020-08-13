@@ -7,7 +7,7 @@ from telethon import events
 import os
 import requests
 import logging
-from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import bot, CMD_HELP, TMP_DOWNLOAD_DIRECTORY
 from userbot.utils import admin_cmd
 
 OCR_SPACE_API_KEY = Config.OCR_SPACE_API_KEY
@@ -46,11 +46,11 @@ async def ocr_space_file(filename,
 @borg.on(admin_cmd(pattern="ocr(?: |$)(.*)", outgoing=True))
 async def ocr(event):
     await event.edit("`Reading...`")
-    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+    if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TMP_DOWNLOAD_DIRECTORY)
     lang_code = event.pattern_match.group(1)
     downloaded_file_name = await bot.download_media(
-        await event.get_reply_message(), TEMP_DOWNLOAD_DIRECTORY)
+        await event.get_reply_message(), TMP_DOWNLOAD_DIRECTORY)
     test_file = await ocr_space_file(filename=downloaded_file_name,
                                      language=lang_code)
     try:
