@@ -17,7 +17,7 @@ import io
 import glob
 import asyncio
 import pybase64
-from .. import CMD_HELP
+from .. import CMD_HELP , ALIVE_NAME
 from . import catmusic , catmusicvideo
 from ..utils import admin_cmd, sudo_cmd, edit_or_reply
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
