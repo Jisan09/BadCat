@@ -135,7 +135,7 @@ def check_data_base_heal_th():
         is_database_working = True
     return is_database_working, output
 
-CMD_HELP.update({"__**PLUGIN NAME :** Alive__\
+CMD_HELP.update({"alive":"__**PLUGIN NAME :** Alive__\
       \n\n📌** CMD ➥** .alive\
       \n****USAGE   ➥  **To see wether your bot is working or not.\
       \n\n📌** CMD ➥** .live\
