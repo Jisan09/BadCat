@@ -42,5 +42,5 @@ CMD_HELP.update({"carry":"__**PLUGIN NAME :** Carry__\
       \n\n📌** CMD ➥** `.acarry`\
       \n**USAGE   ➥  **Gives animated art of carryminati.\
       \n\n📌** CMD ➥** `.carry` <your text>\
-      \n****USAGE   ➥  **Send your text with carry's art."
+      \n**USAGE   ➥  **Send your text with carry's art."
 })
