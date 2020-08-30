@@ -49,5 +49,3 @@ async def get_adzan(adzan):
                  f"**Akşam :** `{maghrib}`\n" +
                  f"**Yatsı :** `{isya}`\n")
     await edit_or_reply(adzan ,textkirim)
-          
-© 2020 GitHub, Inc
