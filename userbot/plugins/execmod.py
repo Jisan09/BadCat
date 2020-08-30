@@ -399,7 +399,7 @@ CMD_HELP.update({
     \n**USAGE   ➥  **Searches your pip modules\
     \n\n📌** CMD ➥** `.sucide`\
     \n**USAGE   ➥  **Deletes all your folders and files in the bot\
-    \\n\n📌** CMD ➥** `.plugins`\
+    \n\n📌** CMD ➥** `.plugins`\
     \n**USAGE   ➥  **Shows you the list of modules that are in bot\
     \n\n📌** CMD ➥** `.date`\
     \n**USAGE   ➥  **Shows you the date of today\
