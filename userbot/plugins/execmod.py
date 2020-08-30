@@ -395,7 +395,7 @@ async def _(event):
     
 CMD_HELP.update({
     "execmod":"__**PLUGIN NAME :** Execmod__\
-    \n\n📌** CMD ➥** `.pips query`\
+    \n\n📌** CMD ➥** `.pips` <query>\
     \n**USAGE   ➥  **Searches your pip modules\
     \n\n📌** CMD ➥** `.sucide`\
     \n**USAGE   ➥  **Deletes all your folders and files in the bot\
