@@ -99,7 +99,7 @@ async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
-    mone = event = await edit_or_reply(event ,"Processing ...")
+    mone = await edit_or_reply(event ,"Processing ...")
     jisan = "./userbot/plugins/{}.py".format(input_str)
     thumb = None
     if os.path.exists(thumb_image_path):
@@ -131,8 +131,8 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    mone = event = await edit_or_reply(event ,"Processing ...")
     input_str = event.pattern_match.group(1)
+    mone = await edit_or_reply(event ,"Processing ...")
     thumb = None
     if os.path.exists(thumb_image_path):
         thumb = thumb_image_path
@@ -292,6 +292,7 @@ async def uploadas(event):
             await uas_event.edit(str(err))
     else:
         await uas_event.edit("404: File Not Found")
+
 
 CMD_HELP.update({
     "upload":"__**PLUGIN NAME :** Upload__\
