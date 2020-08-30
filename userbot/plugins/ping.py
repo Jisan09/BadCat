@@ -1,9 +1,8 @@
+import asyncio
+from .. import CMD_HELP , ALIVE_NAME
 from telethon import events
 from datetime import datetime
-from userbot.utils import admin_cmd,sudo_cmd
-from userbot import CMD_HELP, ALIVE_NAME
-import asyncio
-from platform import uname
+from ..utils import admin_cmd, sudo_cmd, edit_or_reply
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
