@@ -234,14 +234,14 @@ async def _(event):
             await event.delete()
 
 CMD_HELP.update({
-    "fileconverts":"__**PLUGIN NAME :** File Converts\
+    "fileconverts":"__**PLUGIN NAME :** File Converts__\
     \n\n📌** CMD ➥** `.stoi` reply to sticker\
     \n**USAGE   ➥  **Converts sticker to image\
     \n\n📌** CMD ➥** `.itos` reply to image\
     \n**USAGE   ➥  **Converts image to sticker\
     \n\n📌** CMD ➥** `.ftoi` reply to image file\
     \n**USAGE   ➥  **Converts Given image file to straemable form\
-    \n\n📌** CMD ➥** `.ttf file name` reply to text message\
+    \n\n📌** CMD ➥** `.ttf` <file name> reply to text message\
     \n**USAGE   ➥  **Converts Given text message to required file(given file name)\
     \n\n📌** CMD ➥** `.nfc voice` or `.nfc mp3` reply to required media to extract voice/mp3 :\
     \n**USAGE   ➥  **Converts the required media file to voice or mp3 file.\
