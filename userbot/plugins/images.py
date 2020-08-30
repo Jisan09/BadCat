@@ -1,10 +1,9 @@
-# Adapted from OpenUserBot for Uniborg
-
-"""Download & Upload Images on Telegram\n
+"""
+Download & Upload Images on Telegram\n
 Syntax: `.img <Name>` or `.img (replied message)`
 \n Upgraded and Google Image Error Fixed by @NeoMatrix90 aka @kirito6969
+from oub
 """
-
 import os
 import shutil
 from re import findall
@@ -13,7 +12,7 @@ from ..utils import admin_cmd, sudo_cmd, edit_or_reply
 from userbot.google_image_download import googleimagesdownload
 
 @borg.on(admin_cmd(pattern="img(?: |$)(\d*)? ?(.*)"))
-@borg.on(sudo_cmd(pattern="img(?: |$)(.*)", allow_sudo = True))
+@borg.on(sudo_cmd(pattern="img(?: |$)(\d*)? ?(.*)",allow_sudo = True))
 async def img_sampler(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
@@ -55,5 +54,5 @@ async def img_sampler(event):
 
 CMD_HELP.update({"images":"__**PLUGIN NAME :** Images__\
 \n\n📌** CMD ➥** `.img` <count 1-10><Name> or `.img (replied message)`\
-\n**USAGE   ➥  **Do google image search and sends your desire number of images or default 3 images." 
+\n**USAGE   ➥  **Search in google and sends your desire number of images\n Default number is 3 images." 
 })    
