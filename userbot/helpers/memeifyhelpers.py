@@ -9,7 +9,7 @@ from wand.drawing import Drawing
 from wand.image import Image as catimage
 from wand.color import Color
 
-MARGINS = [50, 130, 200, 270, 340]
+MARGINS = [50, 150, 250, 350, 400]
 
 def get_warp_length(width):
     return int((20.0 / 1024.0) * (width + 0.0))
