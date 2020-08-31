@@ -3,6 +3,7 @@ import requests
 import os
 from userbot.uniborgConfig import Config
 import re 
+from userbot import StartTime
 
 if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
      os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
@@ -41,5 +42,5 @@ def check(cat):
     if hi:
         return True
     return False
-
-statstext = "yet to write"
+uptime = catdef.get_readable_time((time.time() - StartTime))
+statstext = f"**✧ Uptime :** `{uptime}\n`" 
