@@ -56,8 +56,8 @@ async def _(event):
         add_welcome_setting(event.chat_id, input_str[1], True, 0, None)
         await edit_or_reply(event ,"Welcome note saved. ")
 
-@borg.on(admin_cmd(pattern="clearwelcome$")) 
-@borg.on(sudo_cmd(pattern="clearwelcome$",allow_sudo = True))
+@borg.on(admin_cmd(pattern="clearwelcome")) 
+@borg.on(sudo_cmd(pattern="clearwelcome",allow_sudo = True))
 async def _(event):
     if event.fwd_from:
         return
@@ -66,8 +66,8 @@ async def _(event):
     await edit_or_reply(event ,"Welcome note cleared. " + \
         "The previous welcome message was `{}`.".format(cws.custom_welcome_message))
 
-@borg.on(admin_cmd(pattern="listwelcome$"))
-@borg.on(sudo_cmd(pattern="listwelcome$",allow_sudo = True))
+@borg.on(admin_cmd(pattern="listwelcome"))
+@borg.on(sudo_cmd(pattern="listwelcome",allow_sudo = True))
 async def _(event):
     if event.fwd_from:
         return
