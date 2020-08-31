@@ -13,6 +13,7 @@ from pySmartDL import SmartDL
 from .helpers import fonts as fonts ,functions as catdef
 from .helpers import memeshelper as memes
 from .helpers import process as process
+from .helpers import tempmemes
 
 StartTime = time.time()
 catversion = "2.7.0"
@@ -64,11 +65,11 @@ if bool(ENV):
     OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
     # Youtube API key
     YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
+    #username to be displayed in .live 
+    LIVE_USERNAME = os.environ.get("LIVE_USERNAME", None)
     # Default .alive name
     ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
     AUTONAME = os.environ.get("AUTONAME", None)
-    #username to be displayed in .live 
-    LIVE_USERNAME = os.environ.get("LIVE_USERNAME", None)
     UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
     "https://github.com/Jisan09/catuserbot.git")
