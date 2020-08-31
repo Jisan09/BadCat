@@ -12,7 +12,7 @@ from wand.color import Color
 MARGINS = [50, 130, 200, 270, 340]
 
 def get_warp_length(width):
-    return int((33.0 / 1024.0) * (width + 0.0))
+    return int((20.0 / 1024.0) * (width + 0.0))
     
 async def cat_meme(topString, bottomString, filename,endname):
     img = Image.open(filename)
@@ -57,7 +57,7 @@ async def cat_meeme(upper_text, lower_text, picture_name,endname):
     lower_margin = MARGINS[lower_text.count("\n")]
     text_draw = Drawing()
     text_draw.font = join(getcwd(), "userbot/helpers/styles/impact.ttf")
-    text_draw.font_size = 70
+    text_draw.font_size = 100
     text_draw.text_alignment = "center"
     text_draw.stroke_color = Color("black") 
     text_draw.stroke_width = 3
