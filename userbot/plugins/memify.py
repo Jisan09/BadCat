@@ -9,8 +9,8 @@ from .. import LOGS , CMD_HELP
 from . import take_screen_shot ,runcmd, convert_toimage
 from ..utils import admin_cmd, sudo_cmd, edit_or_reply
 
-@borg.on(admin_cmd(outgoing=True, pattern="(mmf|mms) ?(.*)"))
-@borg.on(sudo_cmd(pattern="(mmf|mms) ?(.*)",allow_sudo = True))
+@borg.on(admin_cmd(outgoing=True, pattern="(mmi|mmf) ?(.*)"))
+@borg.on(sudo_cmd(pattern="(mmi|mmf) ?(.*)",allow_sudo = True))
 async def memes(cat):
     cmd = cat.pattern_match.group(1)
     catinput = cat.pattern_match.group(2)
@@ -74,7 +74,7 @@ async def memes(cat):
     except:
         pass
     meme_file = convert_toimage(meme_file)
-    if cmd == "mmf":
+    if cmd == "mmi":
         meme = "catmeme.jpg"
         if max(len(top),len(bottom)) < 21:
             await tempmemes.cat_meme(top,bottom,meme_file,meme)
@@ -85,7 +85,7 @@ async def memes(cat):
             meme,
             reply_to=catid  
         )
-    elif cmd == "mms":
+    elif cmd == "mmf":
         meme = "catmeme.webp"
         if max(len(top),len(bottom)) < 21:
             await tempmemes.cat_meme(top,bottom,meme_file,meme)
@@ -103,11 +103,10 @@ async def memes(cat):
             os.remove(files)
             
 CMD_HELP.update({
-    "memify":
-    "**Plugin : **`memify`\
-    \n\n**Syntax :** `.mmf toptext ; bottomtext`\
-    \n**Usage : **Creates a image meme with give text at specific locations and sends\
-    \n\n**Syntax : **`.mms toptext ; bottomtext`\
-    \n**Usage : **Creates a sticker meme with give text at specific locations and sends\
+    "memify":"__**PLUGIN NAME :** Memify__\
+    \n\n📌** CMD ➥** `.mmi toptext ; bottomtext`\
+    \n**USAGE   ➥  **Creates a image meme with give text at specific locations and sends\
+    \n\n📌** CMD ➥** `.mmf toptext ; bottomtext`\
+    \n**USAGE   ➥  **Creates a sticker meme with give text at specific locations and sends\
     "
 })
