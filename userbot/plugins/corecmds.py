@@ -8,7 +8,7 @@ import os
 DELETE_TIMEOUT = 5
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-
+USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 @borg.on(admin_cmd(pattern="install$"))
 @borg.on(sudo_cmd(pattern="install$", allow_sudo=True))
@@ -62,7 +62,7 @@ async def send(event):
         end = datetime.now()
         ms = (end - start).seconds
         await event.delete()
-        await caat.edit(f"__**➥ Plugin Name:- {input_str} .**__\n__**➥ Uploaded in {ms} seconds.**__\n__**➥ Uploaded by :-**__ {DEFAULTUSER}")
+        await caat.edit(f"__**➥ Plugin Name:- {input_str} .**__\n__**➥ Uploaded in {ms} seconds.**__\n__**➥ Uploaded by :-**__ [{DEFAULTUSER}]({USERNAME})")
     else:
         await edit_or_reply(event, "404: File Not Found")
 
