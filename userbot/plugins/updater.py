@@ -24,6 +24,7 @@ requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
 )
 
+
 async def gen_chlog(repo, diff):
     ch_log = ""
     d_form = "%d/%m/%y"
@@ -33,6 +34,7 @@ async def gen_chlog(repo, diff):
             f"{c.summary} <{c.author}>\n"
         )
     return ch_log
+
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
@@ -53,6 +55,7 @@ async def print_changelogs(event, ac_br, changelog):
         )
     return True
 
+
 async def update_requirements():
     reqs = str(requirements_path)
     try:
@@ -65,6 +68,7 @@ async def update_requirements():
         return process.returncode
     except Exception as e:
         return repr(e)
+
 
 async def deploy(event, repo, ups_rem, ac_br, txt):
     if HEROKU_API_KEY is not None:
@@ -121,6 +125,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         )
     return
 
+
 async def update(event, repo, ups_rem, ac_br):
     try:
         ups_rem.pull(ac_br)
@@ -135,12 +140,13 @@ async def update(event, repo, ups_rem, ac_br):
     execle(sys.executable, *args, environ)
     return
 
+
 @bot.on(admin_cmd(outgoing=True, pattern=r"update($| (now|deploy))"))
-@borg.on(sudo_cmd(pattern="update($| (now|deploy))",allow_sudo = True))
+@borg.on(sudo_cmd(pattern="update($| (now|deploy))", allow_sudo=True))
 async def upstream(event):
     "For .update command, check if the bot is up to date, update if specified"
     conf = event.pattern_match.group(1).strip()
-    event = await edit_or_reply(event ,"`Checking for updates, please wait....`")
+    event = await edit_or_reply(event, "`Checking for updates, please wait....`")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     try:
@@ -211,7 +217,7 @@ async def upstream(event):
     return
 
 CMD_HELP.update({
-        "updater":"__**PLUGIN NAME :** Updater__\
+    "updater": "__**PLUGIN NAME :** Updater__\
         \n\n📌** CMD ➥** `.update`\
         \n**Usage :** Checks if the main userbot repository has any updates\
         \nand shows a changelog if so.\
@@ -221,4 +227,4 @@ CMD_HELP.update({
         \n\n📌** CMD ➥** `.update deploy`\
         \n**USAGE   ➥  **Deploy your userbot.So even you restart it doesnt go back to previous version\
         \nThis will triggered deploy always, even no updates."
-    })
+})
