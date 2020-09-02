@@ -5,7 +5,6 @@ from telethon import events
 import requests
 
 
-
 from userbot.utils import register
 
 
