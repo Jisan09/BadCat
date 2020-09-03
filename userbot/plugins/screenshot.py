@@ -118,11 +118,10 @@ async def _(event):
         await event.edit(response_api.text)
 
 CMD_HELP.update({
-    "screenshot":
-    ".ss <url>\
-    \nUsage: Takes a screenshot of a website and sends the screenshot.\
-    \nExample of a valid URL : `https://www.google.com`\
-    \n\n.scapture <url>\
-    \nUsage: Takes a screenshot of a website and sends the screenshot need to set config var for this.\
-    \nExample of a valid URL : `https://www.google.com`"
+    "screenshot": "__**PLUGIN NAME :** Screenshot__\
+    \n\n📌** CMD ➥** `.ss` <url>\
+    \n**USAGE   ➥  **Takes a screenshot of a website and sends the screenshot.\
+    \n\n📌** CMD ➥** `.scapture` <url>\
+    \n**USAGE   ➥  **Takes a screenshot of a website and sends the screenshot need to set config var for this.\
+    \n\n**Example of a valid URL :** `https://www.google.com`"
 })
