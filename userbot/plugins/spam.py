@@ -232,7 +232,7 @@ async def spammer(e):
 
 
 CMD_HELP.update({
-    "spam":"__**PLUGIN NAME :** Spam__\
+    "spam": "__**PLUGIN NAME :** Spam__\
 \n\n📌** CMD ➥** `.cspam` <text>\
 \n**USAGE   ➥  **Spam the text letter by letter.\
 \n\n📌** CMD ➥** `.spam` <count> <text>\
