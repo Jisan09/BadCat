@@ -213,7 +213,7 @@ async def upstream(event):
     return
 
 CMD_HELP.update({
-    "official": "__**PLUGIN NAME :** Official__\
+    "official": "__**PLUGIN NAME :** Official Repo__\
         \n\n📌** CMD ➥** `.official`\
         \n**Usage :** Checks if the main userbot repository has any updates\
         \nand shows a changelog if so.\
