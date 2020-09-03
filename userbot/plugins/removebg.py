@@ -76,6 +76,7 @@ async def _(event):
     else:
         await event.edit("ReMove.BG API returned Errors. Please report to @catuserbot_support\n`{}".format(output_file_name.content.decode("UTF-8")))
 
+
 @borg.on(admin_cmd(pattern="srmbg ?(.*)"))
 async def _(event):
     HELP_STR = "`.rmbg` as reply to a media, or give a link as an argument to this command"
@@ -85,7 +86,7 @@ async def _(event):
         await event.edit("You need API token from remove.bg to use this plugin.")
         return False
     input_str = event.pattern_match.group(1)
-    start = datetime.now()
+    datetime.now()
     message_id = event.message.id
     if event.reply_to_msg_id:
         message_id = event.reply_to_msg_id
@@ -128,6 +129,8 @@ async def _(event):
 
 # this method will call the API, and return in the appropriate format
 # with the name provided.
+
+
 def ReTrieveFile(input_file_name):
     headers = {
         "X-API-Key": Config.REM_BG_API_KEY,
