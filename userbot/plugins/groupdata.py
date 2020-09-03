@@ -1,4 +1,3 @@
-from os import remove
 from telethon.errors import (
     ChannelInvalidError,
     ChannelPrivateError,
@@ -10,10 +9,9 @@ from datetime import datetime
 from math import sqrt
 from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest, LeaveChannelRequest
 from telethon.utils import get_input_location
-from telethon.errors.rpcerrorlist import MessageTooLongError
-from telethon.errors import ChatAdminRequiredError
 from userbot import CMD_HELP
 from userbot.utils import admin_cmd
+import io
 
 
 @borg.on(admin_cmd(pattern="leave$"))
@@ -39,6 +37,9 @@ async def _(event):
     chat = None
     if not input_str:
         chat = to_write_chat
+        if not event.is_group:
+            await event.edit("Are you sure this is a group?")
+            return
     else:
         mentions_heading = "Admins in {} Group: \n".format(input_str)
         mentions = mentions_heading
@@ -66,18 +67,33 @@ async def _(event):
     if reply_message:
         await reply_message.reply(mentions)
     else:
-        await event.reply(mentions)
+        await borg.send_message(event.chat_id, mentions)
     await event.delete()
 
 
 @borg.on(admin_cmd(pattern=r"users ?(.*)", outgoing=True))
 async def get_users(show):
-    if not show.is_group:
-        await show.edit("Are you sure this is a group?")
+    if show.fwd_from:
         return
-    info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
-    mentions = 'Users in {}: \n'.format(title)
+    mentions = "**Users in this Group**: \n"
+    reply_to_id = None
+    if show.reply_to_msg_id:
+        reply_to_id = show.reply_to_msg_id
+    input_str = show.pattern_match.group(1)
+    await show.get_input_chat()
+    if not input_str:
+        if not show.is_group:
+            await show.edit("Are you sure this is a group?")
+            return
+    else:
+        mentions_heading = "Users in {} Group: \n".format(input_str)
+        mentions = mentions_heading
+        try:
+            chat = await borg.get_entity(input_str)
+        except Exception as e:
+            await event.show(str(e))
+            return None
+    await show.edit("getting users list wait...")
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
@@ -86,28 +102,27 @@ async def get_users(show):
                 else:
                     mentions += f"\nDeleted Account `{user.id}`"
         else:
-            searchq = show.pattern_match.group(1)
-            async for user in show.client.iter_participants(show.chat_id, search=f'{searchq}'):
+            async for user in show.client.iter_participants(chat.id):
                 if not user.deleted:
                     mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                 else:
                     mentions += f"\nDeleted Account `{user.id}`"
-    except ChatAdminRequiredError as err:
-        mentions += " " + str(err) + "\n"
-    try:
+    except Exception as e:
+        mentions += " " + str(e) + "\n"
+    if len(mentions) > Config.MAX_MESSAGE_SIZE_LIMIT:
+        with io.BytesIO(str.encode(mentions)) as out_file:
+            out_file.name = "users.text"
+            await borg.send_file(
+                show.chat_id,
+                out_file,
+                force_document=True,
+                allow_cache=False,
+                caption="Users list",
+                reply_to=reply_to_id
+            )
+            await show.delete()
+    else:
         await show.edit(mentions)
-    except MessageTooLongError:
-        await show.edit("Damn, this is a huge group. Uploading users lists as file.")
-        file = open("userslist.txt", "w+")
-        file.write(mentions)
-        file.close()
-        await show.client.send_file(
-            show.chat_id,
-            "userslist.txt",
-            caption='Users in {}'.format(title),
-            reply_to=show.id,
-        )
-        remove("userslist.txt")
 
 
 @borg.on(admin_cmd(pattern="chatinfo(?: |$)(.*)", outgoing=True))
@@ -312,7 +327,6 @@ async def fetch_info(chat, event):
     if description:
         caption += f"Description: \n<code>{description}</code>\n"
     return caption
-
 
 CMD_HELP.update({
     "groupdata": "__**PLUGIN NAME :** Group Data__\
