@@ -10,7 +10,6 @@ thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
-
 @borg.on(admin_cmd(pattern="install$"))
 @borg.on(sudo_cmd(pattern="install$", allow_sudo=True))
 async def install(event):
