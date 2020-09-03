@@ -1,10 +1,12 @@
+import os
+import pybase64
 import asyncio
 from asyncio import sleep
 from userbot import CMD_HELP
+from telethon import functions, types
 from userbot.utils import admin_cmd, sudo_cmd
-import pybase64
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
-import os
+
 
 if Config.PRIVATE_GROUP_BOT_API_ID is None:
     BOTLOG = False
@@ -53,20 +55,44 @@ async def spammer(e):
         await e.delete()
         if os.path.exists(downloaded_file_name):
             for i in range(counter):
-                await borg.send_file(
+                sandy = await borg.send_file(
                     e.chat_id,
                     downloaded_file_name
                 )
+                await borg(functions.messages.SaveGifRequest(
+                    id=types.InputDocument(
+                        id=sandy.media.document.id,
+                        access_hash=sandy.media.document.access_hash,
+                        file_reference=sandy.media.document.file_reference
+                    ),
+                    unsave=True
+                ))
                 await asyncio.sleep(1)
             if BOTLOG:
                 if e.is_private:
                     await e.client.send_message(BOTLOG_CHATID, "#SPAM\n" + f"Spam was executed successfully in [User](tg://user?id={e.chat_id}) chat with {counter} times with below message")
-                    await borg.send_file(BOTLOG_CHATID, downloaded_file_name)
-                    os.system(f"rm -rf {downloaded_file_name}")
+                    sandy = await borg.send_file(BOTLOG_CHATID, downloaded_file_name)
+                    await borg(functions.messages.SaveGifRequest(
+                        id=types.InputDocument(
+                            id=sandy.media.document.id,
+                            access_hash=sandy.media.document.access_hash,
+                            file_reference=sandy.media.document.file_reference
+                        ),
+                        unsave=True
+                    ))
+                    os.remove(downloaded_file_name)
                 else:
                     await e.client.send_message(BOTLOG_CHATID, "#SPAM\n" + f"Spam was executed successfully in {e.chat.title}(`{e.chat_id}`) with {counter} times with below message")
-                    await borg.send_file(BOTLOG_CHATID, downloaded_file_name)
-                    os.system(f"rm -rf {downloaded_file_name}")
+                    sandy = await borg.send_file(BOTLOG_CHATID, downloaded_file_name)
+                    await borg(functions.messages.SaveGifRequest(
+                        id=types.InputDocument(
+                            id=sandy.media.document.id,
+                            access_hash=sandy.media.document.access_hash,
+                            file_reference=sandy.media.document.file_reference
+                        ),
+                        unsave=True
+                    ))
+                    os.remove(downloaded_file_nam)
     elif reply_to_id.text and e.reply_to_msg_id:
         spam_message = reply_to_id.text
         await e.delete()
@@ -206,16 +232,16 @@ async def spammer(e):
 
 
 CMD_HELP.update({
-    "spam":
-    ".cspam <text>\
-\nUsage: Spam the text letter by letter.\
-\n\n.spam <count> <text>\
-\nUsage: Floods text in the chat !!\
-\n\n.spam <count> replay to media\
-\nUsage: Floods text in the media !!\
-\n\n.wspam <text>\
-\nUsage: Spam the text word by word.\
-\n\n.delayspam <delay> <count> <text>\
-\nUsage: .delayspam but with custom delay.\
+    "spam":"__**PLUGIN NAME :** Spam__\
+\n\n📌** CMD ➥** `.cspam` <text>\
+\n**USAGE   ➥  **Spam the text letter by letter.\
+\n\n📌** CMD ➥** `.spam` <count> <text>\
+\n**USAGE   ➥  **Floods text in the chat !!\
+\n\n📌** CMD ➥** `.spam` <count> replay to media\
+\n**USAGE   ➥  **Floods text in the media !!\
+\n\n📌** CMD ➥** `.wspam` <text>\
+\n**USAGE   ➥  **Spam the text word by word.\
+\n\n📌** CMD ➥** `.delayspam` <delay> <count> <text>\
+\n**USAGE   ➥  **Delayspam with custom delay.\
 \n\n\n**NOTE : Spam at your own risk !!**"
 })
