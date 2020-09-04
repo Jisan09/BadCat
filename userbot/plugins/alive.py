@@ -7,9 +7,7 @@ from userbot import StartTime
 from platform import python_version
 from ..utils import admin_cmd, sudo_cmd
 from userbot import CMD_HELP, ALIVE_NAME, catdef, catversion
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-CAT_IMG = Config.ALIVE_PIC
+from ..uniborgConfig import Config
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 CAT_IMG = Config.ALIVE_PIC
