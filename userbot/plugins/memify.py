@@ -724,7 +724,7 @@ async def memes(cat):
             os.remove(files)
 
 CMD_HELP.update({
-    "memify":"__**PLUGIN NAME :** Memify__\
+    "memify": "__**PLUGIN NAME :** Memify__\
     \n\n📌** CMD ➥** `.mmf toptext ; bottomtext`\
     \n**USAGE   ➥  **Creates a image meme with give text at specific locations and sends\
     \n\n📌** CMD ➥** `.mms toptext ; bottomtext`\
