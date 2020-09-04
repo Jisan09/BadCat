@@ -5,6 +5,7 @@ from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
+
 @borg.on(admin_cmd(pattern="thinking$"))
 async def _(event):
     if event.fwd_from:
@@ -53,7 +54,8 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 36])
-        
+
+
 @borg.on(admin_cmd(pattern=f"loading$", outgoing=True))
 async def _(event):
     if event.fwd_from:
