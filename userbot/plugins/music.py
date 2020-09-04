@@ -104,16 +104,16 @@ async def DeezLoader(Deezlod):
         await Deezlod.delete()
 
 CMD_HELP.update({
-    "music":
-        ".spd`<Artist - Song Title>\
-            \nUsage:For searching songs from Spotify.\
-            \n\n`.netease` <Artist - Song Title>\
-            \nUsage:Download music with @WooMaiBot\
-            \n\n`.dzd` <Spotify/Deezer Link>\
-            \nUsage:Download music from Spotify or Deezer.\
-            \n\n`.deezload` <spotify/deezer link> <Format>\
-            \nUsage: Download music from deezer.\
-            \n\n Well deezer is not available in India so create an deezer account using vpn. Set DEEZER_ARL_TOKEN in vars to make this work.\
-            \n\n *Format= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.\
-            \n\n\n Guide:Video guide of arl token: [here](https://www.youtube.com/watch?v=O6PRT47_yds&feature=youtu.be) or Read [This](https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken)."
+    "music":"__**PLUGIN NAME :** Music__\
+            \n\n📌** CMD ➥** `.spd` <Artist - Song Title>\
+            \n**USAGE   ➥  **For searching songs from Spotify.\
+            \n\n📌** CMD ➥** `.netease` <Artist - Song Title>\
+            \n**USAGE   ➥  **Download music with @WooMaiBot\
+            \n\n📌** CMD ➥** `.dzd` <Spotify/Deezer Link>\
+            \n**USAGE   ➥  **Download music from Spotify or Deezer.\
+            \n\n📌** CMD ➥** `.deezload` <spotify/deezer link> <Format>\
+            \n**USAGE   ➥  **Download music from deezer.\
+            \n\n Well deezer is not available in India so create an deezer account using vpn. Set `DEEZER_ARL_TOKEN` in vars to make this work.\
+            \n\n**Format= **`FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.\
+            \n\n\n Guide:Video guide of arl token: [Here](https://www.youtube.com/watch?v=O6PRT47_yds&feature=youtu.be) or Read [This](https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken)."
 })
