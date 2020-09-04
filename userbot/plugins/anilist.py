@@ -292,11 +292,20 @@ async def anilist(event):
         ms_g = ms_g[:-2]
         image = json.get("bannerImage", False)
         ms_g += f"_{json.get('description', None)}_"
+        ms_g = ms_g.replace(
+            "<br>",
+            "").replace(
+            "</br>",
+            "").replace(
+            "<i>",
+            "").replace(
+                "</i>",
+            "")
         if image:
             try:
                 await borg.send_file(event.chat_id,
                                      image,
-                                     caption=msg,
+                                     caption=ms_ms_g,
                                      parse_mode="md",
                                      reply_to=reply_to_id)
                 await event.delete()
@@ -317,7 +326,14 @@ async def anilist(event):
     await event.edit(msg, link_preview=True)
 
 CMD_HELP.update({
-    "anilist": "__**PLUGIN NAME :** Anilist__\
+    "anilist":"__**PLUGIN NAME :** Anilist__\
     \n\n📌** CMD ➥** `.anilist` <anime name >\
-    \n**USAGE   ➥  **Shows you the details of the anime."
+    \n**USAGE   ➥  **Shows you the details of the anime.\
+    \n\n📌** CMD ➥** `.char` <character name >\
+    \n**USAGE   ➥  **Shows you the details of that character in anime with pic.\
+    \n\n📌** CMD ➥** `.manga` <anime name >\
+    \n**USAGE   ➥  **Shows you the details of the manga.\
+    \n\n📌** CMD ➥** `.airing` <anime name >\
+    \n**USAGE   ➥  **Shows you the time for that current running anime show.\
+    "
 })
