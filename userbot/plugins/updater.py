@@ -264,9 +264,6 @@ CMD_HELP.update({
         \nif there are any updates in your userbot repository.if you restart these goes back to last time when you deployed\
         \n\n📌** CMD ➥** `.update deploy`\
         \n**USAGE   ➥  **Deploy your userbot.So even you restart it doesnt go back to previous version\
-        \n\n📌** CMD ➥** `.official`\
-        \n**Usage :** Checks if the official cat userbot has any updates\
-        \nand shows a changelog if so.\
         \n\n📌** CMD ➥** `.goodcat`\
         \n**USAGE   ➥  **Swich to jisan's unoffical repo to official cat repo.\
         \nThis will triggered deploy always, even no updates."
