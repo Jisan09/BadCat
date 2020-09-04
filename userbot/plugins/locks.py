@@ -236,7 +236,7 @@ async def _(event):
                 )
 
 CMD_HELP.update({
-    "locks":"__**PLUGIN NAME :** Locks__\
+    "locks": "__**PLUGIN NAME :** Locks__\
 \n\n📌** CMD ➥** `lock` <all (or) type(s)> or `.unlock` <all (or) type(s)>\
 \n**USAGE   ➥  **Allows you to lock/unlock some common message types in the chat.\
 \n***NOTE:** Requires proper admin rights in the chat !!]\
