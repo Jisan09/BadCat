@@ -477,7 +477,7 @@ async def carbon_api(e):
 
 
 CMD_HELP.update({
-    "carbon":"__**PLUGIN NAME :** Carbon__\
+    "carbon": "__**PLUGIN NAME :** Carbon__\
     \n\n📌** CMD ➥** `.carbon` <reply to code>\
     \n**USAGE   ➥  **Shows your code in different style\
     \n\n__**Simillary try differnt styles **__\
