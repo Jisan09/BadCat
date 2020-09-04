@@ -95,12 +95,14 @@ async def lyrics(lyric):
         await lyric.edit(f"**Search query**: \n`{artist} - {song}`\n\n```{songs.lyrics}```")
     return
 
-CMD_HELP.update(
-    {"lyrics": "Lyrics Plugin Syntax: `.lyrics` <aritst name - song nane> or `.lyrics` <song_name>\
-    \n**USAGE:** searches a song lyrics and sends you if song name doesnt work try along with artisyt name\
-    \n\n**Usage:** .`glyrics <artist name> - <song name>`\
-    \n__note__: **-** is neccessary when searching the lyrics to divided artist and song\
+CMD_HELP.update({
+    "lyrics": "__**PLUGIN NAME :** Lyrics__\
+    \n\n📌** CMD ➥** `.lyrics` <aritst name - song nane> or `.lyrics` <song_name>\
+    \n**USAGE   ➥  **Searches a song lyrics and sends you if song name doesnt work try along with artisyt name\
+    \n\n📌** CMD ➥** `.glyrics <artist name> - <song name>`\
+    \n**USAGE   ➥  **Searches a song lyrics and sends you.\
+    \n__**Note**__: **-** is neccessary when searching the lyrics to divided artist and song\
     \n\n**Genius lyrics plugin**\
-    \nget this value from `https://genius.com/developers` \
-    \nAdd:-  `GENIUS_API_TOKEN` and token value in heroku app settings \
-    "})
+    \nget this value from [Here](https://genius.com/developers)\
+    \nAdd var `GENIUS_API_TOKEN` and token value in heroku app settings."
+    })
