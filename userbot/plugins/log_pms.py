@@ -100,7 +100,7 @@ async def set_no_log_p_m(event):
                 await event.edit("Won't Log Messages from this chat")
                 await asyncio.sleep(3)
 
-CMD_HELP.update({"log_pms":"__**PLUGIN NAME :** Log Pms__\
+CMD_HELP.update({"log_pms": "__**PLUGIN NAME :** Log Pms__\
       \n\n📌** CMD ➥** `.save` :\
       \n**USAGE   ➥  **Saves taged message in private group .\
       \n\n📌** CMD ➥** `.kickme`:\
