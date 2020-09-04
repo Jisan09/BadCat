@@ -6,6 +6,7 @@ from userbot import ALIVE_NAME
 DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
+
 @borg.on(admin_cmd(pattern="eye$"))
 async def _(event):
     if event.fwd_from:
@@ -33,7 +34,8 @@ async def _(event):
         await event.edit(animation_chars[i % 10])
     await asyncio.sleep(animation_interval)
     await event.delete()
-    
+
+
 @borg.on(admin_cmd(pattern="kilr (.*)"))
 async def _(event):
     name = event.pattern_match.group(1)
