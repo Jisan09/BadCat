@@ -100,12 +100,13 @@ async def set_no_log_p_m(event):
                 await event.edit("Won't Log Messages from this chat")
                 await asyncio.sleep(3)
 
-CMD_HELP.update({"log_pms": "`.save` :\
-      \nUSAGE: saves taged message in private group .\
-      \n\n `.kickme`:\
-      \nUSAGE: kicks you from the chat where you used this\
-      \n\n`.log`:\
-      \nUSAGE:By default will log all private chat messages if you use .nolog and want to log again then you need to use this\
-      \n\n`.nolog`:\
-      \nUSAGE:to stops logging from a private chat "
+CMD_HELP.update({"log_pms":"__**PLUGIN NAME :** Log Pms__\
+      \n\n📌** CMD ➥** `.save` :\
+      \n**USAGE   ➥  **Saves taged message in private group .\
+      \n\n📌** CMD ➥** `.kickme`:\
+      \n**USAGE   ➥  **kicks you from the chat where you used this\
+      \n\n📌** CMD ➥** `.log`:\
+      \n**USAGE   ➥  **By default will log all private chat messages if you use .nolog and want to log again then you need to use this\
+      \n\n📌** CMD ➥** `.nolog`:\
+      \n**USAGE   ➥  **To stops logging from a private chat "
                  })
