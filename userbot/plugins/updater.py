@@ -1,4 +1,3 @@
-
 # Copyright (C) 2019 The Raphielscape Company LLC.
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
@@ -10,6 +9,7 @@ Ported from Kensurbot
 import sys
 import asyncio
 from git import Repo
+from . import runcmd
 from .. import CMD_HELP
 from os import environ, execle, path, remove
 from ..utils import admin_cmd, sudo_cmd, edit_or_reply
@@ -17,7 +17,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 HEROKU_APP_NAME = Var.HEROKU_APP_NAME
 HEROKU_API_KEY = Var.HEROKU_API_KEY
-UPSTREAM_REPO_BRANCH = "Test"
+UPSTREAM_REPO_BRANCH = "test"
 UPSTREAM_REPO_URL = "https://github.com/Jisan09/catuserbot"
 
 requirements_path = path.join(
@@ -133,7 +133,7 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a second!`"
+        "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
     )
     # Spin a new instance of bot
     args = [sys.executable, "-m", "userbot"]
@@ -216,6 +216,44 @@ async def upstream(event):
         await update(event, repo, ups_rem, ac_br)
     return
 
+
+@bot.on(admin_cmd(outgoing=True, pattern=r"goodcat$"))
+@borg.on(sudo_cmd(pattern="goodcat$", allow_sudo=True))
+async def upstream(event):
+    event = await edit_or_reply(event, "`Checking for updates, please wait....`")
+    off_repo = "https://github.com/sandy1709/catuserbot"
+    catcmd = f"rm -rf .git"
+    try:
+        await runcmd(catcmd)
+    except BaseException:
+        pass
+    try:
+        txt = "`Oops.. Updater cannot continue due to "
+        txt += "some problems occured`\n\n**LOGTRACE:**\n"
+        repo = Repo()
+    except NoSuchPathError as error:
+        await event.edit(f"{txt}\n`directory {error} is not found`")
+        return repo.__del__()
+    except GitCommandError as error:
+        await event.edit(f"{txt}\n`Early failure! {error}`")
+        return repo.__del__()
+    except InvalidGitRepositoryError:
+        repo = Repo.init()
+        origin = repo.create_remote("upstream", off_repo)
+        origin.fetch()
+        repo.create_head("master", origin.refs.master)
+        repo.heads.master.set_tracking_branch(origin.refs.master)
+        repo.heads.master.checkout(True)
+    try:
+        repo.create_remote("upstream", off_repo)
+    except BaseException:
+        pass
+    ac_br = repo.active_branch.name
+    ups_rem = repo.remote("upstream")
+    ups_rem.fetch(ac_br)
+    await event.edit("`Deploying userbot, please wait....`")
+    await deploy(event, repo, ups_rem, ac_br, txt)
+
 CMD_HELP.update({
     "updater": "__**PLUGIN NAME :** Updater__\
         \n\n📌** CMD ➥** `.update`\
@@ -226,5 +264,10 @@ CMD_HELP.update({
         \nif there are any updates in your userbot repository.if you restart these goes back to last time when you deployed\
         \n\n📌** CMD ➥** `.update deploy`\
         \n**USAGE   ➥  **Deploy your userbot.So even you restart it doesnt go back to previous version\
+        \n\n📌** CMD ➥** `.official`\
+        \n**Usage :** Checks if the official cat userbot has any updates\
+        \nand shows a changelog if so.\
+        \n\n📌** CMD ➥** `.goodcat`\
+        \n**USAGE   ➥  **Swich to jisan's unoffical repo to official cat repo.\
         \nThis will triggered deploy always, even no updates."
 })
