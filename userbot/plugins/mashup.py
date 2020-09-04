@@ -64,6 +64,7 @@ async def _(event):
             await event.delete()
             await borg.send_file(event.chat_id, response.message, reply_to=reply_to_id)
 
-CMD_HELP.update({"mashup": "`.mash` <text> :\
-      \n**USAGE:** Send you the related video message of given text . "
+CMD_HELP.update({"mashup":"__**PLUGIN NAME :** Mashup__\
+      \n\n📌** CMD ➥** `.mash` <text> :\
+      \n**USAGE   ➥  **Send you the related video message of given text . "
                  })
