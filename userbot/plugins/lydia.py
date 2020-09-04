@@ -116,7 +116,7 @@ async def on_new_message(event):
 
 
 CMD_HELP.update({
-    "lydia":"__**PLUGIN NAME :** Lydia__\
+    "lydia": "__**PLUGIN NAME :** Lydia__\
     \n\n📌** CMD ➥** `.enai` <reply to user>\
     \n**USAGE   ➥  **your bot will auto reply to the tagged user until you stops it by `.remcf`\
     \n\n📌** CMD ➥** `.reai`<replay to user > \
