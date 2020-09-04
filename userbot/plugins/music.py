@@ -104,7 +104,7 @@ async def DeezLoader(Deezlod):
         await Deezlod.delete()
 
 CMD_HELP.update({
-    "music":"__**PLUGIN NAME :** Music__\
+    "music": "__**PLUGIN NAME :** Music__\
             \n\n📌** CMD ➥** `.spd` <Artist - Song Title>\
             \n**USAGE   ➥  **For searching songs from Spotify.\
             \n\n📌** CMD ➥** `.netease` <Artist - Song Title>\
