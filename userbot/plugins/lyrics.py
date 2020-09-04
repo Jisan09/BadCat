@@ -105,4 +105,4 @@ CMD_HELP.update({
     \n\n**Genius lyrics plugin**\
     \nget this value from [Here](https://genius.com/developers)\
     \nAdd var `GENIUS_API_TOKEN` and token value in heroku app settings."
-    })
+})
