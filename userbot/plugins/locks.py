@@ -236,13 +236,13 @@ async def _(event):
                 )
 
 CMD_HELP.update({
-    "locks":
-    ".lock <all (or) type(s)> or .unlock <all (or) type(s)>\
-\nUsage: Allows you to lock/unlock some common message types in the chat.\
-[NOTE: Requires proper admin rights in the chat !!]\
-\n\nAvailable message types to lock/unlock are: \
-\nAPI Options: msg, media, sticker, gif, gamee, ainline, gpoll, adduser, cpin, changeinfo\
-\nDB Options: bots, commands, email, forward, url\
-\n\n.curenabledlocks\
-\nUsage: to see the active locks"
+    "locks":"__**PLUGIN NAME :** Locks__\
+\n\n📌** CMD ➥** `lock` <all (or) type(s)> or `.unlock` <all (or) type(s)>\
+\n**USAGE   ➥  **Allows you to lock/unlock some common message types in the chat.\
+\n***NOTE:** Requires proper admin rights in the chat !!]\
+\n\n__Available message types to lock/unlock are:__ \
+\n**API Options:** msg, media, sticker, gif, gamee, ainline, gpoll, adduser, cpin, changeinfo\
+\n**DB Options:** bots, commands, email, forward, url\
+\n\n📌** CMD ➥** `.curenabledlocks`\
+\n**USAGE   ➥  **To see the active locks"
 })
