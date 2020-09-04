@@ -1,10 +1,11 @@
-#Ascii By @Jisan7509
-#Line credits: @Ramvans
+# Ascii By @Jisan7509
+# Line credits: @Ramvans
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.utils import admin_cmd
 from userbot import CMD_HELP
+
 
 @borg.on(admin_cmd("ascii ?(.*)"))
 async def _(event):
@@ -38,6 +39,7 @@ async def _(event):
             await event.edit("```can you kindly disable your forward privacy settings for good?```")
         else:
             await borg.send_file(event.chat_id, response.message.media)
+
 
 @borg.on(admin_cmd(pattern="line ?(.*)"))
 async def _(event):
@@ -76,5 +78,5 @@ CMD_HELP.update({"ascii": "__**PLUGIN NAME :** Ascii__\
       \n\n📌** CMD ➥** `.ascii` reply to any image file:\
       \n**USAGE   ➥  **Makes an image ascii style, try out your own.\
       \n\n📌** CMD ➥** `.line` reply to any image file:\
-      \n**USAGE   ➥  **Makes an image line style.\"
-})
+ \n**USAGE   ➥  **Makes an image line style.\ "
+                 })
