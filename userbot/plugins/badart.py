@@ -1,3 +1,6 @@
+#Created by @Jisan7509
+#credit @GulfysHalfyyyy
+
 import asyncio
 from userbot.utils import admin_cmd
 
