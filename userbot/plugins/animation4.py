@@ -2,12 +2,7 @@ import asyncio
 from userbot import utils
 from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME
-import re
-import json
-from .. import CMD_HELP
-from requests import get
-from bs4 import BeautifulSoup
-from ..utils import admin_cmd, sudo_cmd, edit_or_reply
+from ..utils import admin_cmd
 
 DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
@@ -52,13 +47,13 @@ async def _(event):
     await event.edit(f"**Ready Commando **__[{DEF}]({USR})....")
     animation_chars = [
         "Ｆｉｉｉｉｉｒｅ",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n<,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - - {name}\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n<,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - - {name}\n _/﹋\_\n",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
