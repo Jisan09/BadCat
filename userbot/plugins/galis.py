@@ -14,7 +14,6 @@ async def _(event):
     animation_interval = 5
     animation_ttl = range(0, 21)
     await event.edit("BSDK tera gf h na ek ...!")
-        await event.edit(input_str)
         animation_chars = [
             "`Ruk jaa , Abhi teri GF ko Fuck karta hu `",
             "`Making your Gf warm 🔥`",
