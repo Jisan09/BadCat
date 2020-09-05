@@ -43,7 +43,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.7
-    animation_ttl = range(0, 12)
+    animation_ttl = range(0, 8)
     await event.edit(f"**Ready Commando **__[{DEF}]({USR})....")
     animation_chars = [
         "Ｆｉｉｉｉｉｒｅ",
@@ -57,7 +57,7 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 12])
+        await event.edit(animation_chars[i % 8])
 
 
 @borg.on(utils.admin_cmd(pattern="g1 ?(.*)"))
