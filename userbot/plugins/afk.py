@@ -156,7 +156,7 @@ async def _(event):
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             logger.warn(str(e))  # pylint:disable=E0602
-            
+
 CMD_HELP.update({
     "afk": "__**PLUGIN NAME :** Afk__\
 \n\n📌** CMD ➥** `.afk` [Optional Reason]\
