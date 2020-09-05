@@ -47,13 +47,13 @@ async def _(event):
     animation_chars = [
 
         "Ｆｉｉｉｉｉｒｅ",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n<,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - - {name}\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n<,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        rf"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - - {name}\n _/﹋\_\n",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
