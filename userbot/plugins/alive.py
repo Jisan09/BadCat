@@ -45,8 +45,8 @@ async def amireallyalive(alive):
                             )
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="live$"))
-@borg.on(sudo_cmd(pattern="live$", allow_sudo=True))
+@borg.on(admin_cmd(outgoing=True, pattern="ialive$"))
+@borg.on(sudo_cmd(pattern="ialive$", allow_sudo=True))
 async def amireallyalive(alive):
     if alive.fwd_from:
         return
@@ -88,7 +88,6 @@ async def _(event):
     img.save("temp.webp", "webp")
     img.seek(0)
     await bot.send_file(event.chat_id, open("temp.webp", "rb"), reply_to=reply_to_id)
-
 
 # UniBorg Telegram UseRBot
 # Copyright (C) 2020 @UniBorg
