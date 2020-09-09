@@ -444,7 +444,7 @@ CMD_HELP.update(
         "memes": "__**PLUGIN NAME :** Memes__\
 \n\n📌** CMD ➥** `.cowsay`\
 \n**USAGE   ➥  **cow which says things.\
-\n\n📌** CMD ➥** `.milksay\
+\n\n📌** CMD ➥** `.milksay`\
 \n**USAGE   ➥  **Weird Milk that can speak\
 \n\n📌** CMD ➥** `:/` or `-_-` or `;_;` \
 \n**USAGE   ➥  **Check yourself ;)\
