@@ -195,19 +195,20 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "profile": ".username <new_username>\
-\nUsage: Changes your Telegram username.\
-\n\n.pname <firstname> or .pname <firstname> <lastname>\
-\nUsage: Changes your Telegram name.(First and last name will get split by the first space)\
-\n\n.setpfp or .ppic\
-\nUsage: Reply with .setpfp or .ppic to an image to change your Telegram profie picture.\
-\n\n.pbio <new_bio>\
-\nUsage: Changes your Telegram bio.\
-\n\n.delpfp or .delpfp <number>/<all>\
-\nUsage: Deletes your Telegram profile picture(s).\
-\n\n.myusernames\
-\nUsage: Shows usernames reserved by you.that is created by you channels or groups\
-\n\n.count\
-\nUsage: Counts your groups, chats, bots etc..."
+        "profile":"__**PLUGIN NAME :** Profile__\
+\n\n📌** CMD ➥** `.username` <new_username>\
+\n**USAGE   ➥  **Changes your Telegram username.\
+\n\n📌** CMD ➥** `.pname` <firstname> or `.pname <firstname> <lastname>`\
+\n**USAGE   ➥  **Changes your Telegram name.(First and last name will get split by the first space)\
+\n\n📌** CMD ➥** `.setpfp` or `.ppic`\
+\n**USAGE   ➥  **Reply with .setpfp or .ppic to an image to change your Telegram profie picture.\
+\n\n📌** CMD ➥** `.pbio` <new_bio>\
+\n**USAGE   ➥  **Changes your Telegram bio.\
+\n\n📌** CMD ➥** `.delpfp` or `.delpfp <number>/<all>`\
+\n**USAGE   ➥  **Deletes your Telegram profile picture(s).\
+\n\n📌** CMD ➥** `.myusernames`\
+\n**USAGE   ➥  **Shows usernames reserved by you.that is created by you channels or groups\
+\n\n📌** CMD ➥** `.count`\
+\n**USAGE   ➥  **Counts your groups, chats, bots etc..."
     }
 )
