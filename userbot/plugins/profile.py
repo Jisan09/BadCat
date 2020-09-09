@@ -195,7 +195,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "profile":"__**PLUGIN NAME :** Profile__\
+        "profile": "__**PLUGIN NAME :** Profile__\
 \n\n📌** CMD ➥** `.username` <new_username>\
 \n**USAGE   ➥  **Changes your Telegram username.\
 \n\n📌** CMD ➥** `.pname` <firstname> or `.pname <firstname> <lastname>`\
