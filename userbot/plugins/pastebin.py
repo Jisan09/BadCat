@@ -356,16 +356,17 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "pastebin": ".paste <text/reply>\
-\nUsage: Create a paste or a shortened url using dogbin (https://del.dog/)\
-\n\n.getpaste\
-\nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)\
-\n\n.neko <reply>\
-\nUsage: Create a paste or a shortened url using nekobin (https://nekobin.com)\
-\n\n.iffuci <text/reply>\
-\nUsage: Create a paste or a shortened url using iffuci (https://www.iffuci.tk)\
-\n\n.paster <text/reply>\
-\nUsage: Create a instant view or a paste it in telegraph file\
+        "pastebin":"__**PLUGIN NAME :** Pastebin__\
+n\n📌** CMD ➥** `.paste` <text/reply>\
+\n**USAGE   ➥  **TCreate a paste or a shortened url using dogbin (https://del.dog/)\
+n\n📌** CMD ➥** `.getpaste`\
+\n**USAGE   ➥  **TGets the content of a paste or shortened url from dogbin (https://del.dog/)\
+n\n📌** CMD ➥** `.neko` <reply>\
+\n**USAGE   ➥  **TCreate a paste or a shortened url using nekobin (https://nekobin.com)\
+n\n📌** CMD ➥** `.iffuci` <text/reply>\
+\n**USAGE   ➥  **TCreate a paste or a shortened url using iffuci (https://www.iffuci.tk)\
+n\n📌** CMD ➥** `.paster` <text/reply>\
+\n**USAGE   ➥  **TCreate a instant view or a paste it in telegraph file\
   "
     }
 )
