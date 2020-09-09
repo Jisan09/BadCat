@@ -116,8 +116,8 @@ async def mega_downloader(megadl):
         estimated_total_time = round(downloader.get_eta())
         progress_str = "`{0}` | [{1}{2}] `{3}%`".format(
             status,
-            "".join(["▰" for i in range(math.floor(percentage / 10))]),
-            "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
+            "".join(["⬤" for i in range(math.floor(percentage / 10))]),
+            "".join(["◯" for i in range(10 - math.floor(percentage / 10))]),
             round(percentage, 2),
         )
         diff = time.time() - start
@@ -184,10 +184,9 @@ async def decrypt_file(megadl, file_path, temp_file_path, hex_key, hex_raw_key):
     return
 
 
-CMD_HELP.update(
-    {
-        "mega": ">`.mega <MEGA.nz link>`"
-        "\nUsage: Reply to a MEGA.nz link or paste your MEGA.nz link to "
-        "download the file into your userbot server."
-    }
-)
+CMD_HELP.update({
+        "mega":"__**PLUGIN NAME :** Alive__\
+        \n\n📌** CMD ➥** `.mega` <MEGA.nz link>\
+        \n**USAGE   ➥  **Reply to a MEGA.nz link or paste your MEGA.nz link\
+        \n\n__ It will download the file into your userbot server.__"
+    })
