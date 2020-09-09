@@ -130,7 +130,7 @@ async def editer(edit):
 
 CMD_HELP.update(
     {
-        "purge":"__**PLUGIN NAME :** Purge__\
+        "purge": "__**PLUGIN NAME :** Purge__\
     \n\n📌** CMD ➥** `.purge`\
     \n**USAGE   ➥  **Purges all messages starting from the reply.\
     \n\n📌** CMD ➥** `.purgeme` <x>\
