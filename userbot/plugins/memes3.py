@@ -108,19 +108,19 @@ async def kakashi(jisan):
             "`\n ██   ██`"
         )
       
-@borg.on(admin_cmd(pattern=r"taco$")
+@borg.on(admin_cmd(pattern=r"taco$"))
 async def kakashi(jisan):
     await jisan.edit("\n{\__/}" "\n(●_●)" "\n( >🌮 Want a taco?"))
       
-@borg.on(admin_cmd(pattern=r"paw$")
+@borg.on(admin_cmd(pattern=r"paw$"))
 async def kakashi(jisan):
     await jisan.edit("`(=ↀωↀ=)")
          
-@borg.on(admin_cmd(pattern=r"tf$")
+@borg.on(admin_cmd(pattern=r"tf$"))
 async def kakashi(jisan):
     await jisan.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
 
-@borg.on(admin_cmd(pattern=r"gay$")
+@borg.on(admin_cmd(pattern=r"gay$"))
 async def kakashi(jisan):
     await jisan.edit(
             "`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
@@ -129,14 +129,14 @@ async def kakashi(jisan):
             "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈"
         )
          
-@borg.on(admin_cmd(pattern=r"bot$")
+@borg.on(admin_cmd(pattern=r"bot$"))
 async def kakashi(jisan):
     await jisan.edit(
             "` \n   ╲╲╭━━━━╮ \n╭╮┃▆┈┈▆┃╭╮ \n┃╰┫▽▽▽┣╯┃ \n╰━┫△△△┣━╯`"
             "`\n╲╲┃┈┈┈┈┃  \n╲╲┃┈┏┓┈┃ `"
         )
 
-@borg.on(admin_cmd(pattern=r"hai$")
+@borg.on(admin_cmd(pattern=r"hai$"))
 async def kakashi(jisan):
     await jisan.edit(
             "\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HELLO!┊😀`"
@@ -144,7 +144,7 @@ async def kakashi(jisan):
             "`\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`"
         )
 
-@borg.on(admin_cmd(pattern=r"nou$")
+@borg.on(admin_cmd(pattern=r"nou$"))
 async def kakashi(jisan):
     await jisan.edit(
             "`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
@@ -153,7 +153,7 @@ async def kakashi(jisan):
             "`\n┗━━┻━┛`"
         )
          
-@borg.on(admin_cmd(pattern=r"sayhi$")
+@borg.on(admin_cmd(pattern=r"sayhi$"))
 async def kakashi(jisan):
     await jisan.edit(
         "\n💛💛💛💛💛💛💛💛💛"
