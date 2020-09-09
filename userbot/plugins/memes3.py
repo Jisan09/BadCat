@@ -1,8 +1,8 @@
 import asyncio
 
 from telethon import events
-from userbot.utils import admin_cmd
-from userbot.utils import register
+
+from userbot.utils import admin_cmd, register
 
 # ================= CONSTANT =================
 
