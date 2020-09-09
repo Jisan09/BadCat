@@ -110,7 +110,7 @@ async def kakashi(jisan):
       
 @borg.on(admin_cmd(pattern=r"taco$")
 async def kakashi(jisan):
-    await jisan.edit("\n{\__/}" "\n(●_●)" "\n( >🌮 Want a taco?")
+    await jisan.edit("\n{\__/}" "\n(●_●)" "\n( >🌮 Want a taco?"))
       
 @borg.on(admin_cmd(pattern=r"paw$")
 async def kakashi(jisan):
@@ -152,6 +152,7 @@ async def kakashi(jisan):
             "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
             "`\n┗━━┻━┛`"
         )
+         
 @borg.on(admin_cmd(pattern=r"sayhi$")
 async def kakashi(jisan):
     await jisan.edit(
