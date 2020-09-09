@@ -69,35 +69,23 @@ C = (
     "\n..............\.............\..."
 )
 
+D = (
+  "`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈`"
+  "`\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈`"
+  "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `"
+)
 
-@register(outgoing=True, pattern="^.lool$")
-async def lool(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
-            "`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈`"
-            "`\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈`"
-            "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `"
-        )
+E = (
+  "`\n(\_/)`"
+  "`\n(•_•)`"
+  "`\n >🌹 *`"
+  "`\n                    `"
+  "`\n(\_/)`"
+  "`\n(•_•)`"
+  "`\n🌹<\ *`"
+)
 
-
-@register(outgoing=True, pattern="^.nih$")
-async def nih(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
-            "`\n(\_/)`"
-            "`\n(•_•)`"
-            "`\n >🌹 *`"
-            "`\n                    `"
-            "`\n(\_/)`"
-            "`\n(•_•)`"
-            "`\n🌹<\ *`"
-        )
-
-
-@register(outgoing=True, pattern="^.hallo$")
-async def gtfo(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
+F = (
             "`\n█████████`"
             "`\n█▄█████▄█`"
             "`\n█▼▼▼▼▼`"
@@ -252,7 +240,7 @@ async def kakashi(fail):
     await fail.edit(A)
 
 
-@borg.on(admin_cmd(pattern=r"lul"))
+@borg.on(admin_cmd(pattern=r"lol"))
 async def kakashi(lol):
     await lol.edit(B)
 
@@ -260,3 +248,15 @@ async def kakashi(lol):
 @borg.on(admin_cmd(pattern=r"mf"))
 async def kakashi(mf):
     await mf.edit(C)
+
+@borg.on(admin_cmd(pattern=r"lool"))
+async def kakashi(loal):
+    await loal.edit(D)
+    
+@borg.on(admin_cmd(pattern=r"nih"))
+async def kakashi(shit):
+    await shit.edit(E)
+    
+@borg.on(admin_cmd(pattern=r"hallo"))
+async def kakashi(hello):
+    await hello.edit(E)
