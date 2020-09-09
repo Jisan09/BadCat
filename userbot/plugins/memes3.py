@@ -98,7 +98,7 @@ F = (
 
 @borg.on(admin_cmd(pattern="ml (.*)"))
 async def kakashi(jisan):
-    message = e.pattern_match.group(1)
+    message = jisan.pattern_match.group(1)
     await jisan.edit(
         "`\n█████████`"
         "`\n█▄█████▄█`"
@@ -222,31 +222,31 @@ async def _(event):
             await event.edit(animation_chars[i % 8])
 
 
-@borg.on(admin_cmd(pattern=r"fail"))
+@borg.on(admin_cmd(pattern=r"fail$"))
 async def kakashi(fail):
     await fail.edit(A)
 
 
-@borg.on(admin_cmd(pattern=r"lol"))
+@borg.on(admin_cmd(pattern=r"lol$"))
 async def kakashi(lol):
     await lol.edit(B)
 
 
-@borg.on(admin_cmd(pattern=r"mf"))
+@borg.on(admin_cmd(pattern=r"mf$"))
 async def kakashi(mf):
     await mf.edit(C)
 
 
-@borg.on(admin_cmd(pattern=r"lool"))
+@borg.on(admin_cmd(pattern=r"lool$"))
 async def kakashi(loal):
     await loal.edit(D)
 
 
-@borg.on(admin_cmd(pattern=r"nih"))
+@borg.on(admin_cmd(pattern=r"nih$"))
 async def kakashi(shit):
     await shit.edit(E)
 
 
-@borg.on(admin_cmd(pattern=r"hallo"))
+@borg.on(admin_cmd(pattern=r"hallo$"))
 async def kakashi(hello):
     await hello.edit(E)
