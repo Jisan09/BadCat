@@ -7,7 +7,7 @@ from .. import CMD_HELP, CMD_LIST, SUDO_LIST
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-
+USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 @borg.on(admin_cmd(pattern="help ?(.*)"))
 async def cmd_list(event):
@@ -48,7 +48,7 @@ async def cmd_list(event):
             else:
                 await event.edit(input_str + " is not a valid plugin!")
         else:
-            help_string = f"Userbot Helper.. Provided by {DEFAULTUSER}\
+            help_string = f"Userbot Helper.. Provided by [{DEFAULTUSER}]({USERNAME})\
                           \nUserbot Helper to reveal all the plugin names\
                           \n__Do__ `.help` __plugin_name for commands, in case popup doesn't appear.__\
                           \nDo `.info` plugin_name for usage"
@@ -70,7 +70,7 @@ async def cmd_list(event):
             else:
                 await event.edit(input_str + " is not a valid plugin!")
         else:
-            string = f"**Userbot Helper.. Provided by {DEFAULTUSER}\nUserbot Helper to reveal all the plugin names\n\n**Do `.help` plugin_name for commands\nDo `.info` plugin_name for usage\n\n"
+            string = f"**Userbot Helper.. Provided by [{DEFAULTUSER}]({USERNAME})\nUserbot Helper to reveal all the plugin names\n\n**Do `.help` plugin_name for commands\nDo `.info` plugin_name for usage\n\n"
             for i in sorted(CMD_LIST):
                 string += "◆`" + str(i)
                 string += "`   "
