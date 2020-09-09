@@ -441,7 +441,7 @@ async def typewriter(typew):
 
 CMD_HELP.update(
     {
-        "memes":"__**PLUGIN NAME :** Memes__\
+        "memes": "__**PLUGIN NAME :** Memes__\
 \n\n📌** CMD ➥** `.cowsay`\
 \n**USAGE   ➥  **cow which says things.\
 \n\n📌** CMD ➥** `.milksay\
