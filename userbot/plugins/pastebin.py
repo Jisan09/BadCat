@@ -356,7 +356,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "pastebin":"__**PLUGIN NAME :** Pastebin__\
+        "pastebin": "__**PLUGIN NAME :** Pastebin__\
 n\n📌** CMD ➥** `.paste` <text/reply>\
 \n**USAGE   ➥  **TCreate a paste or a shortened url using dogbin (https://del.dog/)\
 n\n📌** CMD ➥** `.getpaste`\
