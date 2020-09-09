@@ -193,7 +193,7 @@ async def insult(e):
 @borg.on(admin_cmd(outgoing=True, pattern="repo$"))
 async def source(e):
     await e.edit(
-        "Click [here](https://github.com/sandy1709/catuserbot) to open this lit af repo."
+        "Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo."
     )
 
 
@@ -392,7 +392,7 @@ async def bluetext(bt_e):
         )
 
 
-@borg.on(admin_cmd(pattern="lfy (.*)"))
+@borg.on(admin_cmd(pattern="ggl (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -441,72 +441,53 @@ async def typewriter(typew):
 
 CMD_HELP.update(
     {
-        "memes": ".cowsay\
-\nUsage: cow which says things.\
-\n\n.milksay\
-\nUsage: Weird Milk that can speak\
-\n\n:/\
-\nUsage: Check yourself ;)\
-\n\n-_-\
-\nUsage: Ok...\
-\n\n;_;\
-\nUsage: Like `-_-` but crying.\
-\n\n.10iq\
+        "memes":"__**PLUGIN NAME :** Memes__\
+\n\n📌** CMD ➥** `.cowsay`\
+\n**USAGE   ➥  **cow which says things.\
+\n\n📌** CMD ➥** `.milksay\
+\n**USAGE   ➥  **Weird Milk that can speak\
+\n\n📌** CMD ➥** `:/` or `-_-` or `;_;` \
+\n**USAGE   ➥  **Check yourself ;)\
+\n\n📌** CMD ➥** `.10iq`\
 \nUsage: You retard !!\
-\n\n.oof\
-\nUsage: Ooooof\
-\n\n.moon\
-\nUsage: kensar moon animation.\
-\n\n.clock\
-\nUsage: kensar clock animation.\
-\n\n.earth\
-\nUsage: kensar earth animation.\
-\n\n.hi\
-\nUsage: Greet everyone!\
-\n\n.coinflip <heads/tails>\
-\nUsage: Flip a coin !!\
-\n\n.owo\
-\nUsage: UwU\
-\n\n.react\
-\nUsage: Make your userbot react to everything.\
-\n\n.slap\
-\nUsage: reply to slap them with random objects !!\
-\n\n.cry\
-\nUsage: y u du dis, i cri.\
-\n\n.shg\
-\nUsage: Shrug at it !!\
-\n\n.runs\
-\nUsage: Run, run, RUNNN! [`.disable runs`: disable | `.enable runs`: enable]\
-\n\n.metoo\
-\nUsage: Haha yes\
-\n\n.clap\
-\nUsage: Praise people!\
-\n\n.ftext <emoji/character>\
-\nUsage: Pay Respects.\
-\n\n.bt\
-\nUsage: Believe me, you will find this useful.\
-\n\n.smk <text/reply>\
-\nUsage: A shit module for ツ , who cares.\
-\n\n.type\
-\nUsage: Just a small command to make your keyboard become a typewriter!\
-\n\n.lfy <query>\
-\nUsage: Let me Google that for you real quick !!\
-\n\n.decide\
-\nUsage: Make a quick decision.\
-\n\n.abusehard\
-\nUsage: You already got that! Ain't?.\
-\n\n.chu\
-\nUsage: Incase, the person infront of you is....\
-\n\n.fuk\
-\nUsage: The onlu word that can be used fucking everywhere.\
-\n\n.thanos\
-\nUsage: Try and then Snap.\
-\n\n.noob\
-\nUsage: Whadya want to know? Are you a NOOB?\
-\n\n.pro\
-\nUsage: If you think you're pro, try this.\
-\n\n.abuse\
-\nUsage: Protects you from unwanted peeps.\
+\n\n📌** CMD ➥** `.oof`\
+\n**USAGE   ➥  **Ooooof\
+\n\n📌** CMD ➥** `.hey`\
+\n**USAGE   ➥  **Greet everyone!\
+\n\n📌** CMD ➥** `.coinflip` <heads/tails>\
+\n**USAGE   ➥  **Flip a coin !!\
+\n\n📌** CMD ➥** `.owo` <text> \
+\n**USAGE   ➥  **Make your userbot react to everything.\
+\n\n📌** CMD ➥** `.slap`\
+\n**USAGE   ➥  **reply to slap them with random objects !!\
+\n\n📌** CMD ➥** `.shg`\
+\n**USAGE   ➥  **Shrug at it !!\
+\n\n📌** CMD ➥** `.runs`\
+\n**USAGE   ➥  **Run, run, RUNNN! [`.disable runs`: disable | `.enable runs`: enable]\
+\n\n📌** CMD ➥** `.clap`\
+\n**USAGE   ➥  **Praise people!\
+\n\n📌** CMD ➥** `.ftext` <emoji/character>\
+\n**USAGE   ➥  **Pay Respects.\
+\n\n📌** CMD ➥** `.bt`\
+\n**USAGE   ➥  **Believe me, you will find this useful.\
+\n\n📌** CMD ➥** `.smk` <text/reply>\
+\n**USAGE   ➥  **A shit module for ツ , who cares.\
+\n\n📌** CMD ➥** `.type`\
+\n**USAGE   ➥  **Just a small command to make your keyboard become a typewriter!\
+\n\n📌** CMD ➥** `.ggl` <query>\
+\n**USAGE   ➥  **Let me Google that for you real quick !!\
+\n\n📌** CMD ➥** `.decide`\
+\n**USAGE   ➥  **Make a quick decision.\
+\n\n📌** CMD ➥** `.abusehard`\
+\n**USAGE   ➥  **You already got that! Ain't?.\
+\n\n📌** CMD ➥** `.thanos`\
+\n**USAGE   ➥  **Try and then Snap.\
+\n\n📌** CMD ➥** `.noob`\
+\n**USAGE   ➥  **Whadya want to know? Are you a NOOB?\
+\n\n📌** CMD ➥** `.pro`\
+\n**USAGE   ➥  **If you think you're pro, try this.\
+\n\n📌** CMD ➥** `.abuse`\
+\n**USAGE   ➥  **Protects you from unwanted peeps.\
 "
     }
 )
