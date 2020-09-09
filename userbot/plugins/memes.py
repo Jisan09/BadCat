@@ -507,4 +507,6 @@ CMD_HELP.update(
 \nUsage: If you think you're pro, try this.\
 \n\n.abuse\
 \nUsage: Protects you from unwanted peeps.\
-"})
+"
+    }
+)

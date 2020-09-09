@@ -15,17 +15,21 @@
 """Remove.BG Plugin for @UniBorg
 Syntax: .rmbg https://link.to/image.extension
 Syntax: .rmbg as reply to a media"""
-from datetime import datetime
 import io
 import os
+from datetime import datetime
+
 import requests
-from userbot.utils import admin_cmd
+
 from userbot import CMD_HELP
+from userbot.utils import admin_cmd
 
 
 @borg.on(admin_cmd(pattern="rmbg ?(.*)"))
 async def _(event):
-    HELP_STR = "`.rmbg` as reply to a media, or give a link as an argument to this command"
+    HELP_STR = (
+        "`.rmbg` as reply to a media, or give a link as an argument to this command"
+    )
     if event.fwd_from:
         return
     if Config.REM_BG_API_KEY is None:
@@ -41,8 +45,7 @@ async def _(event):
         await event.edit("Ooh Analysing dis pic...")
         try:
             downloaded_file_name = await borg.download_media(
-                reply_message,
-                Config.TMP_DOWNLOAD_DIRECTORY
+                reply_message, Config.TMP_DOWNLOAD_DIRECTORY
             )
         except Exception as e:
             await event.edit(str(e))
@@ -67,19 +70,27 @@ async def _(event):
                 force_document=True,
                 supports_streaming=False,
                 allow_cache=False,
-                reply_to=message_id
+                reply_to=message_id,
             )
         end = datetime.now()
         ms = (end - start).seconds
         await event.delete()
-        await cat.edit("__**➥ Removed dat annoying Background in {} seconds.**__".format(ms))
+        await cat.edit(
+            "__**➥ Removed dat annoying Background in {} seconds.**__".format(ms)
+        )
     else:
-        await event.edit("ReMove.BG API returned Errors. Please report to @catuserbot_support\n`{}".format(output_file_name.content.decode("UTF-8")))
+        await event.edit(
+            "ReMove.BG API returned Errors. Please report to @catuserbot_support\n`{}".format(
+                output_file_name.content.decode("UTF-8")
+            )
+        )
 
 
 @borg.on(admin_cmd(pattern="srmbg ?(.*)"))
 async def _(event):
-    HELP_STR = "`.rmbg` as reply to a media, or give a link as an argument to this command"
+    HELP_STR = (
+        "`.rmbg` as reply to a media, or give a link as an argument to this command"
+    )
     if event.fwd_from:
         return
     if Config.REM_BG_API_KEY is None:
@@ -95,8 +106,7 @@ async def _(event):
         await event.edit("Ooh Analysing dis pic...")
         try:
             downloaded_file_name = await borg.download_media(
-                reply_message,
-                Config.TMP_DOWNLOAD_DIRECTORY
+                reply_message, Config.TMP_DOWNLOAD_DIRECTORY
             )
         except Exception as e:
             await event.edit(str(e))
@@ -121,11 +131,16 @@ async def _(event):
                 force_document=True,
                 supports_streaming=False,
                 allow_cache=False,
-                reply_to=message_id
+                reply_to=message_id,
             )
             await event.delete()
     else:
-        await event.edit("ReMove.BG API returned Errors. Please report to @catuserbot_support\n`{}".format(output_file_name.content.decode("UTF-8")))
+        await event.edit(
+            "ReMove.BG API returned Errors. Please report to @catuserbot_support\n`{}".format(
+                output_file_name.content.decode("UTF-8")
+            )
+        )
+
 
 # this method will call the API, and return in the appropriate format
 # with the name provided.
@@ -143,7 +158,7 @@ def ReTrieveFile(input_file_name):
         headers=headers,
         files=files,
         allow_redirects=True,
-        stream=True
+        stream=True,
     )
     return r
 
@@ -152,21 +167,20 @@ def ReTrieveURL(input_url):
     headers = {
         "X-API-Key": Config.REM_BG_API_KEY,
     }
-    data = {
-        "image_url": input_url
-    }
+    data = {"image_url": input_url}
     r = requests.post(
         "https://api.remove.bg/v1.0/removebg",
         headers=headers,
         data=data,
         allow_redirects=True,
-        stream=True
+        stream=True,
     )
     return r
 
 
-CMD_HELP.update({
-    "removebg":
-    ".rmbg <Link to Image> or reply to any image (Warning: does not work on stickers.)\
+CMD_HELP.update(
+    {
+        "removebg": ".rmbg <Link to Image> or reply to any image (Warning: does not work on stickers.)\
 \nUsage: Removes the background of images, using remove.bg API"
-})
+    }
+)

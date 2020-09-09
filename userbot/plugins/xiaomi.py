@@ -4,7 +4,8 @@
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP
+
+from userbot import CMD_HELP, bot
 from userbot.events import admin_cmd
 
 
@@ -18,10 +19,9 @@ async def _(event):
     async with bot.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=774181428))
-            await conv.send_message(f'/{firmware} {link}')
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{firmware} {link}")
             response = await response
         except YouBlockedUserError:
             await event.reply("```Unblock @XiaomiGeeksBot plox```")
@@ -42,10 +42,9 @@ async def _(event):
     async with bot.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=774181428))
-            await conv.send_message(f'/{specs} {link}')
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{specs} {link}")
             response = await response
         except YouBlockedUserError:
             await event.reply("```Unblock @xiaomiGeeksBot plox```")
@@ -66,10 +65,9 @@ async def _(event):
     async with bot.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=774181428))
-            await conv.send_message(f'/{fboot} {link}')
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{fboot} {link}")
             response = await response
         except YouBlockedUserError:
             await event.reply("```Unblock @XiaomiGeeksBoot plox```")
@@ -90,10 +88,9 @@ async def _(event):
     async with bot.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=774181428))
-            await conv.send_message(f'/{recovery} {link}')
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{recovery} {link}")
             response = await response
         except YouBlockedUserError:
             await event.reply("```Unblock @XiaomiGeeksBot plox```")
@@ -114,10 +111,9 @@ async def _(event):
     async with bot.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=774181428))
-            await conv.send_message(f'/{pitch} {link}')
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{pitch} {link}")
             response = await response
         except YouBlockedUserError:
             await event.reply("```Unblock @XiaomiGeeksBot plox```")
@@ -138,10 +134,9 @@ async def _(event):
     async with bot.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=774181428))
-            await conv.send_message(f'/{ofox} {link}')
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{ofox} {link}")
             response = await response
         except YouBlockedUserError:
             await event.reply("```Unblock @XiaomiGeeksBot plox```")
@@ -151,9 +146,10 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
         await bot.send_read_acknowledge(conv.chat_id)
 
-CMD_HELP.update({
-    "xiaomi":
-    "For Xiaomeme devices only!\
+
+CMD_HELP.update(
+    {
+        "xiaomi": "For Xiaomeme devices only!\
 \n\n`.firmware` (codename)\
      \nUsage : Get lastest Firmware\
 \n\n`.pb` (codename)\
@@ -165,4 +161,6 @@ CMD_HELP.update({
 \n\n`.recovery` (codename)\
      \nUsage : Get latest recovery MIUI\
 \n\n`.of` (codename)\
-     \nUsage : Get latest ORangeFox Recovery"})
+     \nUsage : Get latest ORangeFox Recovery"
+    }
+)
