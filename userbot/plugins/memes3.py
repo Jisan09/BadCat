@@ -95,12 +95,10 @@ F = (
     "`\n ██   ██`"
 )
 
-
-@register(outgoing=True, pattern="^.ml(?: |$)(.*)")
-async def gtfo(e):
+@borg.on(admin_cmd(pattern="ml (.*)"))
+async def kakashi(jisan):
     message = e.pattern_match.group(1)
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
+    await jisan.edit(
             "`\n█████████`"
             "`\n█▄█████▄█`"
             "`\n█▼▼▼▼▼`"
@@ -109,70 +107,54 @@ async def gtfo(e):
             "`\n█████████`"
             "`\n ██   ██`"
         )
+      
+@borg.on(admin_cmd(pattern=r"taco$")
+async def kakashi(jisan):
+    await jisan.edit("\n{\__/}" "\n(●_●)" "\n( >🌮 Want a taco?")
+      
+@borg.on(admin_cmd(pattern=r"paw$")
+async def kakashi(jisan):
+    await jisan.edit("`(=ↀωↀ=)")
+         
+@borg.on(admin_cmd(pattern=r"tf$")
+async def kakashi(jisan):
+    await jisan.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
 
-
-@register(outgoing=True, pattern="^.taco$")
-async def taco(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("\n{\__/}" "\n(●_●)" "\n( >🌮 Want a taco?")
-
-
-@register(outgoing=True, pattern="^.paw$")
-async def paw(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`(=ↀωↀ=)")
-
-
-@register(outgoing=True, pattern="^.tf$")
-async def tf(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
-
-
-@register(outgoing=True, pattern="^.gay$")
-async def gey(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
+@borg.on(admin_cmd(pattern=r"gay$")
+async def kakashi(jisan):
+    await jisan.edit(
             "`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
             "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
             "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈U GAY`"
             "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈"
         )
-
-
-@register(outgoing=True, pattern="^.bot$")
-async def bot(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
+         
+@borg.on(admin_cmd(pattern=r"bot$")
+async def kakashi(jisan):
+    await jisan.edit(
             "` \n   ╲╲╭━━━━╮ \n╭╮┃▆┈┈▆┃╭╮ \n┃╰┫▽▽▽┣╯┃ \n╰━┫△△△┣━╯`"
             "`\n╲╲┃┈┈┈┈┃  \n╲╲┃┈┏┓┈┃ `"
         )
 
-
-@register(outgoing=True, pattern="^.hai$")
-async def hey(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
+@borg.on(admin_cmd(pattern=r"hai$")
+async def kakashi(jisan):
+    await jisan.edit(
             "\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HELLO!┊😀`"
             "`\n┈┈▕▔▇▔▔┳▔▏╰┳╮HELLO!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈`"
             "`\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`"
         )
 
-
-@register(outgoing=True, pattern="^.nou$")
-async def nou(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
+@borg.on(admin_cmd(pattern=r"nou$")
+async def kakashi(jisan):
+    await jisan.edit(
             "`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
             "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
             "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
             "`\n┗━━┻━┛`"
         )
-
-
-@register(outgoing=True, pattern="^.sayhi$")
-async def shalom(e):
-    await e.edit(
+@borg.on(admin_cmd(pattern=r"sayhi$")
+async def kakashi(jisan):
+    await jisan.edit(
         "\n💛💛💛💛💛💛💛💛💛"
         "\n💛🔷🔷🔷🔷🔷🔷🔷💛"
         "\n💛💛💛💛🔷💛💛💛💛"
@@ -187,8 +169,7 @@ async def shalom(e):
         "\n💛🔷💛💛💛💛️💛🔷💛"
         "\n💛💛💛💛💛💛💛💛💛"
     )
-
-
+         
 @register(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?")
 async def emoji_penis(e):
     emoji = e.pattern_match.group(1)
