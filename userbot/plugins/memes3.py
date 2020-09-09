@@ -252,7 +252,7 @@ async def kakashi(fail):
     await fail.edit(A)
 
 
-@borg.on(admin_cmd(pattern=r"loal"))
+@borg.on(admin_cmd(pattern=r"lul"))
 async def kakashi(lol):
     await lol.edit(B)
 
