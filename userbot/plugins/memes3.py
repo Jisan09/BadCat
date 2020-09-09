@@ -29,115 +29,47 @@ GAMBAR_TITIT = """
 # ===========================================
 
 
-@register(outgoing=True, pattern="^.(yes|no|maybe|decide)$")
-async def decide(event):
-    decision = event.pattern_match.group(1).lower()
-    message_id = event.reply_to_msg_id if event.reply_to_msg_id else None
-    if decision != "decide":
-        r = requests.get(f"https://yesno.wtf/api?force={decision}").json()
-    else:
-        r = requests.get(f"https://yesno.wtf/api").json()
-    await event.delete()
-    await event.client.send_message(
-        event.chat_id, str(r["answer"]).upper(), reply_to=message_id, file=r["image"]
-    )
+A = (
+  "`▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ `\n"
+  "`████▌▄▌▄▐▐▌█████ `\n"
+  "`████▌▄▌▄▐▐▌▀████ `\n"
+  "`▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ `\n"
+)
 
+B = (
+  "`╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ `\n"
+  "`╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `\n"
+  "`╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `\n"
+  "`╱┗━━━┛╰━━━╯┗━━━┛╱ `\n"
+)
 
-@register(outgoing=True, pattern="^.fp$")
-async def facepalm(e):
-    """ Facepalm  🤦‍♂ """
-    await e.edit("🤦‍♂")
-
-
-@register(outgoing=True, pattern="^.corona$")
-async def iqless(e):
-    await e.edit(
-        "Antivirus scan was completed \n⚠️ Warning! This  donkey has Corona Virus"
-    )
-
-
-@register(outgoing=True, pattern="^.ggl (.*)")
-async def let_me_google_that_for_you(lmgtfy_q):
-    textx = await lmgtfy_q.get_reply_message()
-    qry = lmgtfy_q.pattern_match.group(1)
-    if qry:
-        query = str(qry)
-    elif textx:
-        query = textx
-        query = query.message
-    query_encoded = query.replace(" ", "+")
-    lfy_url = f"http://lmgtfy.com/?s=g&iie=1&q={query_encoded}"
-    payload = {"format": "json", "url": lfy_url}
-    r = requests.get("http://is.gd/create.php", params=payload)
-    await lmgtfy_q.edit(
-        f"Tap this blue, help yourself.\
-    \n[{query}]({r.json()['shorturl']})"
-    )
-
-
-@register(pattern=r".scam(?: |$)(.*)", outgoing=True)
-async def scam(event):
-    """ Just a small command to fake chat actions for fun !! """
-    options = [
-        "typing",
-        "contact",
-        "game",
-        "location",
-        "voice",
-        "round",
-        "video",
-        "photo",
-        "document",
-        "cancel",
-    ]
-    input_str = event.pattern_match.group(1)
-    args = input_str.split()
-    if len(args) == 0:  # Let bot decide action and time
-        scam_action = choice(options)
-        scam_time = randint(30, 60)
-    elif len(args) == 1:  # User decides time/action, bot decides the other.
-        try:
-            scam_action = str(args[0]).lower()
-            scam_time = randint(30, 60)
-        except ValueError:
-            scam_action = choice(options)
-            scam_time = int(args[0])
-    elif len(args) == 2:  # User decides both action and time
-        scam_action = str(args[0]).lower()
-        scam_time = int(args[1])
-    else:
-        await event.edit("`Invalid Syntax !!`")
-        return
-    try:
-        if scam_time > 0:
-            await event.delete()
-            async with event.client.action(event.chat_id, scam_action):
-                await sleep(scam_time)
-    except BaseException:
-        return
-
-
-@register(outgoing=True, pattern="^.fail$")
-async def fail(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
-            "`\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ `"
-            "`\n████▌▄▌▄▐▐▌█████ `"
-            "`\n████▌▄▌▄▐▐▌▀████ `"
-            "`\n▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ `"
-        )
-
-
-@register(outgoing=True, pattern="^.loal$")
-async def lol(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
-            "`\n╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ `"
-            "`\n╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `"
-            "`\n╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `"
-            "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `"
-        )
-
+C = (
+  "\n......................................../´¯/) "
+  "\n......................................,/¯../ "
+  "\n...................................../..../ "
+  "\n..................................../´.¯/"
+  "\n..................................../´¯/"
+  "\n..................................,/¯../ "
+  "\n................................../..../ "
+  "\n................................./´¯./"
+  "\n................................/´¯./"
+  "\n..............................,/¯../ "
+  "\n............................./..../ "
+  "\n............................/´¯/"
+  "\n........................../´¯./"
+  "\n........................,/¯../ "
+  "\n......................./..../ "
+  "\n....................../´¯/"
+  "\n....................,/¯../ "
+  "\n.................../..../ "
+  "\n............./´¯/'...'/´¯¯`·¸ "
+  "\n........../'/.../..../......./¨¯\ "
+  "\n........('(...´...´.... ¯~/'...') "
+  "\n.........\.................'...../ "
+  "\n..........''...\.......... _.·´ "
+  "\n............\..............( "
+  "\n..............\.............\..."
+)
 
 @register(outgoing=True, pattern="^.lool$")
 async def lool(e):
@@ -251,37 +183,6 @@ async def nou(e):
         )
 
 
-@register(outgoing=True, pattern="^.mf$")
-async def gtfo(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
-            "\n......................................../´¯/) "
-            "\n......................................,/¯../ "
-            "\n...................................../..../ "
-            "\n..................................../´.¯/"
-            "\n..................................../´¯/"
-            "\n..................................,/¯../ "
-            "\n................................../..../ "
-            "\n................................./´¯./"
-            "\n................................/´¯./"
-            "\n..............................,/¯../ "
-            "\n............................./..../ "
-            "\n............................/´¯/"
-            "\n........................../´¯./"
-            "\n........................,/¯../ "
-            "\n......................./..../ "
-            "\n....................../´¯/"
-            "\n....................,/¯../ "
-            "\n.................../..../ "
-            "\n............./´¯/'...'/´¯¯`·¸ "
-            r"\n........../'/.../..../......./¨¯\ "
-            "\n........('(...´...´.... ¯~/'...') "
-            r"\n.........\.................'...../ "
-            r"\n..........''...\.......... _.·´ "
-            r"\n............\..............( "
-            "\n..............\.............\..."
-        )
-
 
 @register(outgoing=True, pattern="^.sayhi$")
 async def shalom(e):
@@ -346,3 +247,15 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 8])
+  
+@borg.on(admin_cmd(pattern=r"fail"))
+async def kakashi(fail):
+    await fail.edit(A)
+
+@borg.on(admin_cmd(pattern=r"loal"))
+async def kakashi(lol):
+    await lol.edit(B)
+          
+@borg.on(admin_cmd(pattern=r"loal"))
+async def kakashi(mf):
+    await mf.edit(C)
