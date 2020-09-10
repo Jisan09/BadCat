@@ -180,7 +180,7 @@ def ReTrieveURL(input_url):
 
 CMD_HELP.update(
     {
-        "removebg":"__**PLUGIN NAME :** Removebg__\
+        "removebg": "__**PLUGIN NAME :** Removebg__\
 \n\n📌** CMD ➥** `.rmbg <Link to Image> or reply to any image (Warning: does not work on stickers.)\
 \n**USAGE   ➥  **Removes the background of images, using remove.bg API\
 \n\n📌** CMD ➥** `.srmbg <reply to any image>\
