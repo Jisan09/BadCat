@@ -83,7 +83,7 @@ async def _(event):
         await edit_or_reply(event, "Welcome note saved. ")
     else:
         if event.pattern_match.group(1):
-            event.pattern_match.group(1)
+            input_str = event.pattern_match.group(1)
             jisan = f"{input_str}"
         else:
             await edit_or_reply(event, "what should i set for welcome")
