@@ -125,7 +125,7 @@ async def scam(results, lim):
 
 CMD_HELP.update(
     {
-        "reverse":"__**PLUGIN NAME :** Reverse Img__\
+        "reverse": "__**PLUGIN NAME :** Reverse Img__\
         \n\n📌** CMD ➥** `.reverse`\
         \n**USAGE   ➥  **Reply to a pic/sticker to revers-search it on Google Images !!"
     }
