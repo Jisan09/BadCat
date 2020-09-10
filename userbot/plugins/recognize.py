@@ -90,7 +90,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "recognize":"__**PLUGIN NAME :** Recognize__\
+        "recognize": "__**PLUGIN NAME :** Recognize__\
     \n\n📌** CMD ➥** `.recognize` reply this to any media file\
     \n**USAGE   ➥  **Get information about an image using AWS Rekognition.\
     \nFind out information including detected labels, faces. text and moderation tags."
