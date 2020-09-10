@@ -84,7 +84,7 @@ async def _(event):
     else:
         if event.pattern_match.group(1):
             event.pattern_match.group(1)
-            jisan = f"input_str"
+            jisan = f"{input_str}"
         else:
             await edit_or_reply(event, "what should i set for welcome")
         add_welcome_setting(event.chat_id, jisan, True, 0, None)
