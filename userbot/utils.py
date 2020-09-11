@@ -13,6 +13,8 @@ from pathlib import Path
 from time import gmtime, strftime
 
 from telethon import events
+from telethon.tl.functions.channels import GetParticipantRequest
+from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 
 from var import Var
 
@@ -164,7 +166,8 @@ def admin_cmd(pattern=None, **args):
             # special fix for snip.py
             args["pattern"] = re.compile(pattern)
         else:
-            args["pattern"] = re.compile(Config.COMMAND_HAND_LER + pattern)
+            catreg = "^" + Config.COMMAND_HAND_LER
+            args["pattern"] = re.compile(catreg + pattern)
             reg = Config.COMMAND_HAND_LER[1]
             cmd = (reg + pattern).replace("$", "").replace("\\", "").replace("^", "")
             try:
@@ -409,7 +412,8 @@ def sudo_cmd(pattern=None, **args):
             # special fix for snip.py
             args["pattern"] = re.compile(pattern)
         else:
-            args["pattern"] = re.compile(Config.SUDO_COMMAND_HAND_LER + pattern)
+            catreg = "^" + Config.SUDO_COMMAND_HAND_LER
+            args["pattern"] = re.compile(catreg + pattern)
             reg = Config.SUDO_COMMAND_HAND_LER[1]
             cmd = (reg + pattern).replace("$", "").replace("\\", "").replace("^", "")
             try:
@@ -439,9 +443,24 @@ def sudo_cmd(pattern=None, **args):
     return events.NewMessage(**args)
 
 
+# Admin checker by uniborg
+async def is_admin(client, chat_id, user_id):
+    if not str(chat_id).startswith("-100"):
+        return False
+    try:
+        req_jo = await client(GetParticipantRequest(channel=chat_id, user_id=user_id))
+        chat_participant = req_jo.participant
+        if isinstance(
+            chat_participant, (ChannelParticipantCreator, ChannelParticipantAdmin)
+        ):
+            return True
+    except Exception:
+        return False
+    else:
+        return False
+
+
 # https://t.me/c/1220993104/623253
-
-
 async def edit_or_reply(event, text):
     if event.from_id in Config.SUDO_USERS:
         reply_to = await event.get_reply_message()
