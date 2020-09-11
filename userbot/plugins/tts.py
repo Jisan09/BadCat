@@ -84,6 +84,6 @@ CMD_HELP.update(
     {
         "tts":"__**PLUGIN NAME :** TTS__\
 \n\n📌** CMD ➥** `.tts` LanguageCode as reply to a message or\n type `.tts LangaugeCode | text to speak`\
-\n**USAGE   ➥  **Convert your text to speech.\"
+\n**USAGE   ➥  **Convert your text to speech."
     }
 )
