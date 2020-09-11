@@ -160,6 +160,6 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Check whether you have a welcome note in the chat.\
 \n\n📌** CMD ➥** `.clearwelcome`\
 \n**USAGE   ➥  **Deletes the welcome note for the current chat.\
-\n\n***Note: Type text in html format"
+\n\n***Note:** Type text in html format"
     }
 )
