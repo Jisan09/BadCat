@@ -73,4 +73,3 @@ def remove_snip(keyword):
     if note:
         note.delete()
         SESSION.commit()
-        
