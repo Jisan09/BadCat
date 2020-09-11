@@ -180,15 +180,6 @@ async def stylish_generator(event):
             string = string.replace(normalfontcharacter, ancientcharacter)
     await edit_or_reply(event, string)
 
-
-CMD_HELP.update(
-    {
-        "extrafonts": "__**PLUGIN NAME :** Extra Fonts__\
-
-    "
-    }
-)
-
 CMD_HELP.update(
     {
         "fonts": "__**PLUGIN NAME :** Fonts__\
