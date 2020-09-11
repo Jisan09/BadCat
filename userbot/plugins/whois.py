@@ -289,6 +289,7 @@ async def ge(user, event):
         return None
     return user_obj
 
+
 CMD_HELP.update(
     {
         "whois": "__**PLUGIN NAME :** Whois__\
