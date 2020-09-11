@@ -202,11 +202,12 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "time": "**SYNTAX : **.ctime <country name/code> <timezone number> \
-    \n**USAGE : ** Get the time of a country. If a country has multiple timezones, it will list all of them and let you select one.\
-    \n\n**SYNTAX : **.cdate <country name/code> <timezone number> \
-    \n**USAGE : ** Get the date of a country. If a country has multiple timezones, it will list all of them \and let you select one.\
-    \n\n**SYNTAX : **.time \
-    \n**USAGE : ** shows current default time you can change by changing TZ in heroku vars"
+        "time":"__**PLUGIN NAME :** Time__\
+    \n\n📌** CMD ➥** `.ctime` <country name/code> <timezone number> \
+    \n**USAGE   ➥  **Get the time of a country. If a country has multiple timezones, it will list all of them and let you select one.\
+    \n\n📌** CMD ➥** `.cdate` <country name/code> <timezone number> \
+    \n**USAGE   ➥  **Get the date of a country. If a country has multiple timezones, it will list all of them \and let you select one.\
+    \n\n📌** CMD ➥** `.time` \
+    \n**USAGE   ➥  **Shows current default time you can change by changing TZ in heroku vars"
     }
 )
