@@ -3,6 +3,7 @@ Created By @Jisan7509
 GF created by @KshitijGagan
 """
 import asyncio
+
 from telethon.tl.types import ChannelParticipantsAdmins
 from uniborg.util import admin_cmd
 
@@ -161,6 +162,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 30])
 
+
 @borg.on(admin_cmd(pattern="fuk$"))
 async def _(event):
     if event.fwd_from:
@@ -195,7 +197,8 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 4])
-        
+
+
 @borg.on(admin_cmd(pattern=f"nakal$", outgoing=True))
 async def _(event):
     if event.fwd_from:
