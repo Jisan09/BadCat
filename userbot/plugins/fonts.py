@@ -182,11 +182,13 @@ async def stylish_generator(event):
 
 CMD_HELP.update(
     {
-        "fonts": "__**PLUGIN NAME :** Fonts__\
-\n\n📌** CMD ➥** `.vapor` (text) or .vapor reply to message \
-\n**USAGE   ➥  **Vaporize the given text.\
-\n\n📌** CMD ➥** `.fmusical`\
-\n        `.ancient`\
-\n**USAGE   ➥  **Some differnt font styles\"
+        "fonts": "__**\
+        PLUGIN NAME :** Fonts__\
+        \n\n📌** CMD ➥** `.vapor` (text) or .vapor reply to message \
+        \n**USAGE   ➥  **Vaporize the given text.\
+        \n\n📌** CMD ➥** `.fmusical`\
+        \n        `.ancient`\
+        \n**USAGE   ➥  **Some differnt font styles\
+        "
     }
 )
