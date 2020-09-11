@@ -1,6 +1,7 @@
 from .. import CMD_HELP, fonts
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
+
 @borg.on(admin_cmd(pattern="vapor(?: |$)(.*)"))
 async def vapor(vpr):
     """ Vaporize everything! """
@@ -180,13 +181,16 @@ async def stylish_generator(event):
             string = string.replace(normalfontcharacter, ancientcharacter)
     await edit_or_reply(event, string)
 
+
 CMD_HELP.update(
     {
-        "fonts": "__**PLUGIN NAME :** Fonts__\
-\n\n📌** CMD ➥** `.vapor` (text) or .vapor reply to message \
-\n**USAGE   ➥  **Vaporize the given text.\
-\n\n📌** CMD ➥** `.fmusical`\
-\n        `.ancient`\
-\n**USAGE   ➥  **Some differnt font styles\"
+        "fonts": "__**\
+        PLUGIN NAME :** Fonts__\
+        \n\n📌** CMD ➥** `.vapor` (text) or .vapor reply to message \
+        \n**USAGE   ➥  **Vaporize the given text.\
+        \n\n📌** CMD ➥** `.fmusical`\
+        \n        `.ancient`\
+        \n**USAGE   ➥  **Some differnt font styles\
+        "
     }
 )
