@@ -129,7 +129,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "troll": "__**PLUGIN NAME :** Trolls__\
+        "troll": "__**PLUGIN NAME :** Troll__\
 \n\n📌** CMD ➥** `.fox` <your text>\
 \n**USAGE   ➥  **Send sneeky fox troll \
 \n\n📌** CMD ➥** `.talkme` <your text>\
