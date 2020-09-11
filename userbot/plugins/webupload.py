@@ -113,7 +113,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "webupload": "__**PLUGIN NAME :** Alive__\
+        "webupload": "__**PLUGIN NAME :** Web Upload__\
     \n\n📌** CMD ➥** `.webupload` ?(.+?|) (?:--)(`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`megaupload`|`bayfiles`\
     \n**USAGE   ➥  **Upload the file to web according to your choice\
     \nExample: `.webupload --anonfiles` tag this to a file\
