@@ -296,6 +296,8 @@ CMD_HELP.update(
     \n\n📌** CMD ➥** `.whois <username>` or reply to someones text with `.whois`\
     \n**USAGE   ➥  **Gets info of an user.\
     \n\n📌** CMD ➥** `.userinfo <username>` or reply to someones text with `.userinfo`\
-    \n**USAGE   ➥  **Gets info of an user."
+    \n**USAGE   ➥  **Gets info of an user.\
+    \n\n📌** CMD ➥** `.link` <text>\
+    \n**USAGE   ➥  **Generates a link to the user's PM with a custom text."
     }
 )
