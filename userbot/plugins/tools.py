@@ -360,25 +360,26 @@ Year: {}""".format(
 
 CMD_HELP.update(
     {
-        "tools": "`.scan` reply to media or file\
-\n**USEAGE : **it scans the media or file and checks either any virus is in the file or media\
-\n\n`.makeqr` <content>\
-\n**USEAGE : **Make a QR Code from the given content.\
-\nExample: .makeqr www.google.com\
-\n\n`.barcode `<content>\
-\n**USEAGE : **Make a BarCode from the given content.\
-\nExample: `.barcode` www.google.com\
-\n\n`.decode` <reply to barcode/qrcode> \
-\n**USAGE : **to get decoded content of those codes.\
-\n\n`.currency` amount (from currency) (to currency)\
-\n**USAGE : **Currency converter for userbot **Example :** `.currency 10 usd inr`\
-\n\n`.currencies`\
-\n**USAGE : **Shows you the some list of currencies\
-\n\n`.ifsc` <IFSC code>\
-\n**USAGE : ** to get details of the relevant bank or branch **Example :** `.ifsc SBIN0016086`\
-\n\n`.color` <color_code> \
-\n**USEAGE : **sends you a plain image of the color example :`.color #ff0000`\
-\n\n`.xkcd` <query>\
-\n**USEAGE : **Searches for the query for the relevant XKCD comic "
+        "tools": "__**PLUGIN NAME :** Tools__\
+\n\n📌** CMD ➥** `.scan` reply to media or file\
+\n**USAGE   ➥  **It scans the media or file and checks either any virus is in the file or media\
+\n\n📌** CMD ➥** `.makeqr` <content>\
+\n**USAGE   ➥  **Make a QR Code from the given content.\
+\n**Example:** `.makeqr www.google.com`\
+\n\n📌** CMD ➥** `.barcode `<content>\
+\n**USAGE   ➥  **Make a BarCode from the given content.\
+\n**Example:** `.barcode www.google.com`\
+\n\n📌** CMD ➥** `.decode` <reply to barcode/qrcode> \
+\n**USAGE   ➥  **To get decoded content of those codes.\
+\n\n📌** CMD ➥** `.currency` amount (from currency) (to currency)\
+\n**USAGE   ➥  **Currency converter for userbot **Example :** `.currency 10 usd inr`\
+\n\n📌** CMD ➥** `.currencies`\
+\n**USAGE   ➥  **Shows you the some list of currencies\
+\n\n📌** CMD ➥** `.ifsc` <IFSC code>\
+\n**USAGE   ➥  **To get details of the relevant bank or branch **Example :** `.ifsc SBIN0016086`\
+\n\n📌** CMD ➥** `.color` <color_code> \
+\n**USAGE   ➥  **Sends you a plain image of the color example :`.color #ff0000`\
+\n\n📌** CMD ➥** `.xkcd` <query>\
+\n**USAGE   ➥  **Searches for the query for the relevant XKCD comic "
     }
 )
