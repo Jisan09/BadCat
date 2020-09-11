@@ -187,8 +187,8 @@ async def rm_deletedacc(show):
 
 CMD_HELP.update(
     {
-        "zombies": ".zombies\
-\nUsage: Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group.\
-"
+        "zombies":"__**PLUGIN NAME :** Alive__\
+\n\n📌** CMD ➥** `.zombies`\
+\n**USAGE   ➥  **Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group."
     }
 )
