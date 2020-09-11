@@ -3,7 +3,6 @@ Created By @Jisan7509
 GF created by @KshitijGagan
 """
 import asyncio
-
 from telethon.tl.types import ChannelParticipantsAdmins
 from uniborg.util import admin_cmd
 
@@ -162,7 +161,41 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 30])
 
+@borg.on(admin_cmd(pattern="fuk$"))
+async def _(event):
+    if event.fwd_from:
+        return
+    animation_interval = 0.1
+    animation_ttl = range(0, 101)
+    animation_chars = ["👉       ✊️", "👉     ✊️", "👉  ✊️", "👉✊️💦"]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await event.edit(animation_chars[i % 4])
 
+
+@borg.on(admin_cmd(pattern="sex$"))
+async def _(event):
+    if event.fwd_from:
+        return
+    animation_interval = 0.2
+    animation_ttl = range(0, 101)
+    animation_chars = ["🤵       👰", "🤵     👰", "🤵  👰", "🤵👼👰"]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await event.edit(animation_chars[i % 4])
+
+
+@borg.on(admin_cmd(pattern="kiss$"))
+async def _(event):
+    if event.fwd_from:
+        return
+    animation_interval = 0.2
+    animation_ttl = range(0, 101)
+    animation_chars = ["🤵       👰", "🤵     👰", "🤵  👰", "🤵💋👰"]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await event.edit(animation_chars[i % 4])
+        
 @borg.on(admin_cmd(pattern=f"nakal$", outgoing=True))
 async def _(event):
     if event.fwd_from:
