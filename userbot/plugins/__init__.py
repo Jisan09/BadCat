@@ -5,6 +5,7 @@ import time
 
 import heroku3
 import requests
+import spamwatch as spam_watch
 
 from userbot.uniborgConfig import Config
 
@@ -64,6 +65,14 @@ def check_data_base_heal_th():
         output = "Functioning"
         is_database_working = True
     return is_database_working, output
+
+
+# spamwatch support
+if Config.SPAMWATCH_API:
+    token = Config.SPAMWATCH_API
+    spamwatch = spam_watch.Client(token)
+else:
+    spamwatch = None
 
 
 async def catalive():
