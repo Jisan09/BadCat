@@ -128,7 +128,6 @@ async def on_all_snip_delete(event):
     else:
         await edit_or_reply(event, f"There are no filters in this group")
 
-
 CMD_HELP.update(
     {
         "filters": "__**PLUGIN NAME :** Filters__\
