@@ -1,7 +1,6 @@
 from .. import CMD_HELP, fonts
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
-
 @borg.on(admin_cmd(pattern="vapor(?: |$)(.*)"))
 async def vapor(vpr):
     """ Vaporize everything! """
