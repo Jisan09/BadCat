@@ -202,7 +202,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "time":"__**PLUGIN NAME :** Time__\
+        "time": "__**PLUGIN NAME :** Time__\
     \n\n📌** CMD ➥** `.ctime` <country name/code> <timezone number> \
     \n**USAGE   ➥  **Get the time of a country. If a country has multiple timezones, it will list all of them and let you select one.\
     \n\n📌** CMD ➥** `.cdate` <country name/code> <timezone number> \
