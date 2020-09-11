@@ -1,5 +1,4 @@
 # ported from paperplaneExtended by avinashreddy3108 for media support
-
 from telethon import events
 from telethon.tl import types
 
