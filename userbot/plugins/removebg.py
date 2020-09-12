@@ -52,7 +52,7 @@ async def remove_background(event):
             await event.edit(str(e))
             return
         else:
-            await event.edit("`Removing Back ground od this media`")
+            await event.edit("`Removing Back ground of this media`")
             downloaded_file_name = convert_toimage(downloaded_file_name)
             output_file_name = ReTrieveFile(downloaded_file_name)
             os.remove(downloaded_file_name)
@@ -78,11 +78,11 @@ async def remove_background(event):
             await event.delete()
         elif cmd == "srmbg":
             with io.BytesIO(output_file_name.content) as remove_bg_image:
-                remove_bg_image.name = "CATBG_less.webp"
+                remove_bg_image.name = "hi.webp"
                 await borg.send_file(
                     event.chat_id,
                     remove_bg_image,
-                    force_document=False,
+                    force_document=True,
                     reply_to=message_id,
                 )
             await event.delete()
