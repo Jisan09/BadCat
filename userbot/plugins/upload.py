@@ -30,6 +30,7 @@ async def catlst_of_files(path):
 @borg.on(sudo_cmd(pattern="uploadir (.*)", allow_sudo=True))
 async def uploadir(event):
     input_str = event.pattern_match.group(1)
+    hmm = event.message.id
     udir_event = await edit_or_reply(event, "Uploading....")
     if os.path.exists(input_str):
         await udir_event.edit(f"Gathering file details in directory `{input_str}`")
@@ -53,7 +54,7 @@ async def uploadir(event):
                         caption=caption_rts,
                         force_document=False,
                         allow_cache=False,
-                        reply_to=udir_event.message.id,
+                        reply_to=hmm,
                         progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                             progress(d, t, event, c_time, "Uploading...", single_file)
                         ),
@@ -78,7 +79,7 @@ async def uploadir(event):
                         thumb=thumb_image,
                         force_document=False,
                         allow_cache=False,
-                        reply_to=udir_event.message.id,
+                        reply_to=hmm,
                         attributes=[
                             DocumentAttributeVideo(
                                 duration=duration,
@@ -98,6 +99,7 @@ async def uploadir(event):
         await udir_event.edit("Uploaded {} files successfully !!".format(uploaded))
     else:
         await udir_event.edit("404: Directory Not Found")
+
 
 
 @borg.on(admin_cmd(pattern="upload (.*)", outgoing=True))
