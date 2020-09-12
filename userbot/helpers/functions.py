@@ -11,7 +11,7 @@ import PIL.ImageOps
 import requests
 from PIL import Image
 from selenium import webdriver
-from telethon.tl.types import Channel
+from telethon.tl.types import Channel, PollAnswer
 from validators.url import url
 
 from userbot.uniborgConfig import Config
@@ -269,6 +269,18 @@ EMOJI_PATTERN = re.compile(
 def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
     return re.sub(EMOJI_PATTERN, "", inputString)
+
+
+# For polls
+
+
+def Build_Poll(options):
+    i = 0
+    poll = []
+    for option in options:
+        i = i + 1
+        poll.append(PollAnswer(option, bytes(i)))
+    return poll
 
 
 def convert_toimage(image):
