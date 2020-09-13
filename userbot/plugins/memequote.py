@@ -11,12 +11,10 @@ Userbot module for having some fun with people.
 import asyncio
 import random
 from random import choice
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+
+from ..utils import admin_cmd, sudo_cmd
 
 # ================= CONSTANT =================
-
-
-
 
 
 @borg.on(admin_cmd(pattern=r"sing$", outgoing=True))
@@ -156,6 +154,7 @@ async def _(event):
         )
     if x == 33:
         await event.edit("Not in a mood to sing. Sorry!")
+
 
 LOVESTR = [
     "The best and most beautiful things in this world cannot be seen or even heard, but must be felt with the heart.",
