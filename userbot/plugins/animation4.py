@@ -213,9 +213,8 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 103])
 
-
-@borg.on(admin_cmd(pattern=f"idot$", outgoing=True)
-async def kakashi(event):
+@borg.on(admin_cmd(pattern=f"idot$", outgoing=True))
+async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
