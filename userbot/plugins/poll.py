@@ -74,7 +74,7 @@ async def pollcreator(catpoll):
 
 CMD_HELP.update(
     {
-        "poll": "**Plugin :**`poll`\
+        "poll": "__**PLUGIN NAME :** Poll__\
         \n\n📌** CMD ➥** `.poll`\
         \n**USAGE   ➥  **If you doesnt give any input it sends a default poll. if you like customize it then use this syntax :\
         \n\n***Example:-** `.poll question ; option 1; option2 ;`\
