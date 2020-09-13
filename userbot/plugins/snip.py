@@ -170,15 +170,15 @@ async def on_snip_delete(event):
 
 CMD_HELP.update(
     {
-        "snip": "**Plugin :** `snip`\
-\n\n**Syntax :** #<snipname>\
-\n**Usage :** Gets the specified note.\
-\n\n**Syntax :** `.snips: reply to a message with .snips <notename>`\
-\n**Usage :** Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\
-\n\n**Syntax :** `.snipl`\
-\n**Usage :** Gets all saved notes in a chat.\
-\n\n**Syntax :** `.snipd <notename>`\
-\n**Usage :** Deletes the specified note.\
+        "snip": "__**PLUGIN NAME :** Snip__\
+\n\n📌** CMD ➥**  #<snipname>\
+\n**USAGE   ➥  **Gets the specified note.\
+\n\n📌** CMD ➥** `.snips`: reply to a message with `.snips <notename>`\
+\n**USAGE   ➥  **Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\
+\n\n📌** CMD ➥** `.snipl`\
+\n**USAGE   ➥  **Gets all saved notes in a chat.\
+\n\n📌** CMD ➥** `.snipd <notename>`\
+\n**USAGE   ➥  **Deletes the specified note.\
 "
     }
 )
