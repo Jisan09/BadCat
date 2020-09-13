@@ -173,6 +173,7 @@ class Config(object):
     ANTISPAMBOT_BAN = os.environ.get("ANTISPAMBOT_BAN", False)
     # username to be displayed in .live
     LIVE_USERNAME = os.environ.get("LIVE_USERNAME", None)
+    CUSTOM_ALIVE_TEXT = os.environ.get("CUSTOM_ALIVE_TEXT", None)
 
 
 class Production(Config):
