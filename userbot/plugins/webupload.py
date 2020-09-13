@@ -4,13 +4,17 @@
 import asyncio
 import json
 import os
+import re
 import subprocess
-import time
 
 import requests
 
 from userbot import CMD_HELP
 from userbot.utils import admin_cmd
+
+link_regex = re.compile(
+    "((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)", re.DOTALL
+)
 
 
 @borg.on(admin_cmd(pattern="labstack ?(.*)"))
@@ -74,47 +78,76 @@ async def labstack(event):
 
 @borg.on(
     admin_cmd(
-        pattern="webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)"
+        pattern="webupload ?(.+?|) --(fileio|oload|anonfiles|transfer|filebin|anonymousfiles|vshare|bayfiles)"
     )
 )
 async def _(event):
-    if event.fwd_from:
-        return
-    await event.edit("Processing ...")
-    PROCESS_RUN_TIME = 100
+    await event.edit("processing ...")
     input_str = event.pattern_match.group(1)
     selected_transfer = event.pattern_match.group(2)
+    catcheck = None
     if input_str:
         file_name = input_str
     else:
         reply = await event.get_reply_message()
-        file_name = await bot.download_media(reply.media, Var.TEMP_DOWNLOAD_DIRECTORY)
-    event.message.id
+        file_name = await event.client.download_media(
+            reply.media, Config.TMP_DOWNLOAD_DIRECTORY
+        )
+        catcheck = True
+    # a dictionary containing the shell commands
     CMD_WEB = {
-        "anonfiles": 'curl -F "file=@{}" https://anonfiles.com/api/upload',
-        "transfer": 'curl --upload-file "{}" https://transfer.sh/{os.path.basename(file_name)}',
-        "filebin": 'curl -X POST --data-binary "@test.png" -H "filename: {}" "https://filebin.net"',
-        "anonymousfiles": 'curl -F file="@{}" https://api.anonymousfiles.io/',
-        "megaupload": 'curl -F "file=@{}" https://megaupload.is/api/upload',
-        "bayfiles": '.exec curl -F "file=@{}" https://bayfiles.com/api/upload',
+        "fileio": 'curl -F "file=@{full_file_path}" https://file.io',
+        "oload": 'curl -F "file=@{full_file_path}" https://api.openload.cc/upload',
+        "anonfiles": 'curl -F "file=@{full_file_path}" https://anonfiles.com/api/upload',
+        "transfer": 'curl --upload-file "{full_file_path}" https://transfer.sh/'
+        + os.path.basename(file_name),
+        "filebin": 'curl -X POST --data-binary "@{full_file_path}" -H "filename: {bare_local_name}" "https://filebin.net"',
+        "anonymousfiles": 'curl -F file="@{full_file_path}" https://api.anonymousfiles.io/',
+        "vshare": 'curl -F "file=@{full_file_path}" https://api.vshare.is/upload',
+        "bayfiles": 'curl -F "file=@{full_file_path}" https://bayfiles.com/api/upload',
     }
+    filename = os.path.basename(file_name)
     try:
-        selected_one = CMD_WEB[selected_transfer].format(file_name)
+        selected_one = CMD_WEB[selected_transfer].format(
+            full_file_path=file_name, bare_local_name=filename
+        )
     except KeyError:
         await event.edit("Invalid selected Transfer")
+        return
     cmd = selected_one
-    time.time() + PROCESS_RUN_TIME
+    # start the subprocess $SHELL
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
     stdout, stderr = await process.communicate()
-    await event.edit(f"{stdout.decode()}")
+    error = stderr.decode().strip()
+    t_response = stdout.decode().strip()
+    if t_response:
+        try:
+            t_response = json.dumps(json.loads(t_response), sort_keys=True, indent=4)
+        except Exception:
+            # some sites don't return valid JSONs
+            pass
+        urls = links = re.findall(link_regex, t_response)
+        result = ""
+        for i in urls:
+            if result:
+                result += f"\n{i[0]}"
+            else:
+                result = f"**Uploaded File link/links :**"
+                result += f"\n{i[0]}"
+        await event.edit(result)
+    else:
+        await event.edit(error)
+    if catcheck:
+        os.remove(file_name)
 
 
 CMD_HELP.update(
     {
         "webupload": "__**PLUGIN NAME :** Web Upload__\
-    \n\n📌** CMD ➥** `.webupload` ?(.+?|) (?:--)(`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`megaupload`|`bayfiles`\
+    \n\n📌** CMD ➥** `.webupload` --(`fileio`|`oload`|`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`vshare`|`bayfiles`) or \
+    \n         `.webuplod` (path of file) --(`fileio`|`oload`|`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`vshare`|`bayfiles`)\
     \n**USAGE   ➥  **Upload the file to web according to your choice\
     \nExample: `.webupload --anonfiles` tag this to a file\
     \n\n📌** CMD ➥** `.labstack` Reply to a media file or provide a directory\
