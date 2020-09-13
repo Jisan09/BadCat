@@ -115,7 +115,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "sysdetails":"__**PLUGIN NAME :** Sysdetails__\
+        "sysdetails": "__**PLUGIN NAME :** Sysdetails__\
     \n\n📌** CMD ➥** `.sysd`\
     \n**USAGE   ➥  **Shows system information using neofetch.\
     \n\n📌** CMD ➥** `.uptime`\
