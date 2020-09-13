@@ -1,3 +1,6 @@
+#kilr by @Jisan7509
+#idot by @turquoise-giggle
+
 import asyncio
 
 from userbot import ALIVE_NAME, utils
@@ -211,6 +214,26 @@ async def _(event):
         await event.edit(animation_chars[i % 103])
 
 
+@borg.on(admin_cmd(pattern=f"idot$", outgoing=True)
+async def kakashi(event):
+    if event.fwd_from:
+        return
+    animation_interval = 1
+    animation_ttl = range(0,5)
+    await event.edit(" ╭╮╱╱╭╮╱╱╱╱╭╮\n┃╰╮╭╯┃╱╱╱╱┃┃\n╰╮╰╯╭┻━┳━━┫╰━╮\n╱╰╮╭┫┃━┫╭╮┃╭╮┃\n╱╱┃┃┃┃━┫╭╮┃┃┃┃\n╱╱╰╯╰━━┻╯╰┻╯╰╯")
+    animation_chars = [
+        "╭╮╱╱╭╮\n┃╰╮╭╯┃\n╰╮╰╯╭┻━┳╮╭╮\n╱╰╮╭┫╭╮┃┃┃┃\n╱╱┃┃┃╰╯┃╰╯┃\n╱╱╰╯╰━━┻━━╯",
+        "╭━━━╮\n┃╭━╮┃\n┃┃╱┃┣━┳━━╮\n┃╰━╯┃╭┫┃━┫\n┃╭━╮┃┃┃┃━┫\n╰╯╱╰┻╯╰━━╯", 
+        "╭━━━╮╱╭╮╱╱╱╭╮\n┃╭━━╯╱┃┃╱╱╭╯╰╮\n┃╰━━┳━╯┣┳━┻╮╭╯\n┃╭━━┫╭╮┣┫╭╮┃┃\n┃╰━━┫╰╯┃┃╰╯┃╰╮\n╰━━━┻━━┻┻━━┻━╯", 
+        " ╭━╮╱╭╮\n┃┃╰╮┃┃\n┃╭╮╰╯┣━━╮\n┃┃╰╮┃┃╭╮┃\n┃┃╱┃┃┃╰╯┃\n╰╯╱╰━┻━━╯", 
+        "╭━━━╮╱╱╱╱╱╭╮╱╭╮\n╰╮╭╮┃╱╱╱╱╱┃┃╭╯╰╮\n╱┃┃┃┣━━┳╮╭┫╰┻╮╭╯\n╱┃┃┃┃╭╮┃┃┃┃╭╮┃┃\n╭╯╰╯┃╰╯┃╰╯┃╰╯┃╰╮\n╰━━━┻━━┻━━┻━━┻━╯",
+        ]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await event.edit(animation_chars[i % 5]) 
+    await asyncio.sleep(animation_interval)
+    await event.edit("╭╮╱╱╭╮\n┃╰╮╭╯┃\n╰╮╰╯╭┻━┳╮╭╮\n╱╰╮╭┫╭╮┃┃┃┃\n╱╱┃┃┃╰╯┃╰╯┃\n╱╱╰╯╰━━┻━━╯\n\n╭━━━╮\n┃╭━╮┃\n┃┃╱┃┣━┳━━╮\n┃╰━╯┃╭┫┃━┫\n┃╭━╮┃┃┃┃━┫\n╰╯╱╰┻╯╰━━╯\n\n╭━━━╮╱╭╮╱╱╱╭╮\n┃╭━━╯╱┃┃╱╱╭╯╰╮\n┃╰━━┳━╯┣┳━┻╮╭╯\n┃╭━━┫╭╮┣┫╭╮┃┃\n┃╰━━┫╰╯┃┃╰╯┃╰╮\n╰━━━┻━━┻┻━━┻━╯\n\n╭━╮╱╭╮\n┃┃╰╮┃┃\n┃╭╮╰╯┣━━╮\n┃┃╰╮┃┃╭╮┃\n┃┃╱┃┃┃╰╯┃\n╰╯╱╰━┻━━╯\n\n╭━━━╮╱╱╱╱╱╭╮╱╭╮\n╰╮╭╮┃╱╱╱╱╱┃┃╭╯╰╮\n╱┃┃┃┣━━┳╮╭┫╰┻╮╭╯\n╱┃┃┃┃╭╮┃┃┃┃╭╮┃┃\n╭╯╰╯┃╰╯┃╰╯┃╰╯┃╰╮\n╰━━━┻━━┻━━┻━━┻━╯")
+        
 @borg.on(admin_cmd(pattern=f"snake$", outgoing=True))
 async def _(event):
     if event.fwd_from:
