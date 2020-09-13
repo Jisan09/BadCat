@@ -20,7 +20,7 @@ from .helpers import process as process
 from .helpers import tempmemes
 
 StartTime = time.time()
-catversion = "2.7.2"
+catversion = "2.7.3"
 
 if Var.STRING_SESSION:
     session_name = str(Var.STRING_SESSION)
