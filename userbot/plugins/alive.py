@@ -13,6 +13,7 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 CAT_IMG = Config.ALIVE_PIC
+JISAN = Config.CUSTOM_ALIVE_TEXT
 
 
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
@@ -26,7 +27,31 @@ async def amireallyalive(alive):
     hmm = bot.uid
     if alive.reply_to_msg_id:
         reply_to_id = await alive.get_reply_message()
-    if CAT_IMG:
+    if JISAN:
+        if CAT_IMG:
+            cat_caption = f"** {JISAN}**\n\n"
+            cat_caption += f"**✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+            cat_caption += f"**✧ Uptime :** `{uptime}\n`"
+            cat_caption += f"**✧ Python Version :** `{python_version()}\n`"
+            cat_caption += f"**✧ Telethon version :** `{version.__version__}\n`"
+            cat_caption += f"**✧ Catuserbot Version :** `{catversion}`\n"
+            cat_caption += f"**✧ Database :** `{check_sgnirts}`\n"
+            await borg.send_file(
+                alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
+            )
+            await alive.delete()
+        else:
+            await edit_or_reply(
+                alive,
+                f"** {JISAN}**\n\n"
+                f"**✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+                f"**✧ Uptime :** `{uptime}\n`"
+                f"**✧ Python Version :** `{python_version()}\n`"
+                f"**✧ Telethon Version :** `{version.__version__}\n`"
+                f"**✧ Catuserbot Version :** `{catversion}`\n"
+                f"**✧ Database :** `{check_sgnirts}`\n",
+            )
+    elif CAT_IMG:
         cat_caption = f"__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
         cat_caption += f"**✧✧ Database :** `{check_sgnirts}`\n"
         cat_caption += f"**✧✧ Telethon version :** `{version.__version__}\n`"
@@ -115,7 +140,7 @@ def check_data_base_heal_th():
         output = f"❌ {str(e)}"
         is_database_working = False
     else:
-        output = "Functioning Normally"
+        output = "Functioning"
         is_database_working = True
     return is_database_working, output
 
