@@ -288,17 +288,114 @@ async def faces(owo):
     reply_text += " " + random.choice(memes.UWUS)
     await owo.edit(reply_text)
 
-
-@borg.on(admin_cmd(outgoing=True, pattern="react$"))
-async def react_meme(react):
-    await react.edit(random.choice(memes.FACEREACTS))
-
-
+                      
 @borg.on(admin_cmd(outgoing=True, pattern="shg$"))
 async def shrugger(shg):
     await shg.edit(random.choice(memes.SHGS))
 
+@borg.on(admin_cmd(pattern=f"react ?(.*)", outgoing=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    input_str = event.pattern_match.group(1)
+    if input_str in "happy":
+        emoticons = [
+            "( ͡° ͜ʖ ͡°)",
+            "(ʘ‿ʘ)",
+            "(✿´‿`)",
+            "=͟͟͞͞٩(๑☉ᴗ☉)੭ु⁾⁾",
+            "(*⌒▽⌒*)θ～♪",
+            "°˖✧◝(⁰▿⁰)◜✧˖°",
+            "✌(-‿-)✌",
+            "⌒°(❛ᴗ❛)°⌒",
+            "(ﾟ<|＼(･ω･)／|>ﾟ)",
+            "ヾ(o✪‿✪o)ｼ",
+        ]
+    elif input_str in "think":
+        emoticons = [
+            "(҂⌣̀_⌣́)",
+            "（；¬＿¬)",
+            "(-｡-;",
+            "┌[ O ʖ̯ O ]┐",
+            "〳 ͡° Ĺ̯ ͡° 〵",
+        ]
+    elif input_str in "wave":
+        emoticons = [
+            "(ノ^∇^)",
+            "(;-_-)/",
+            "@(o・ェ・)@ノ",
+            "ヾ(＾-＾)ノ",
+            "ヾ(◍’౪`◍)ﾉﾞ♡",
+            "(ό‿ὸ)ﾉ",
+            "(ヾ(´・ω・｀)",
+        ]
+    elif input_str in "wtf":
+        emoticons = [
+            "༎ຶ‿༎ຶ",
+            "(‿ˠ‿)",
+            "╰U╯☜(◉ɷ◉ )",
+            "(;´༎ຶ益༎ຶ`)♡",
+            "╭∩╮(︶ε︶*)chu",
+            "( ＾◡＾)っ (‿|‿)",
+        ]
+    elif input_str in "love":
+        emoticons = [
+            "乂❤‿❤乂",
+            "(｡♥‿♥｡)",
+            "( ͡~ ͜ʖ ͡°)",
+            "໒( ♥ ◡ ♥ )७",
+            "༼♥ل͜♥༽",
+        ]
+    elif input_str in "confused":
+        emoticons = [
+            "(・_・ヾ",
+            "｢(ﾟﾍﾟ)",
+            "﴾͡๏̯͡๏﴿",
+            "(￣■￣;)!?",
+            "▐ ˵ ͠° (oo) °͠ ˵ ▐",
+            "(-_-)ゞ゛",
+        ]
+    elif input_str in "dead":
+        emoticons = [
+            "(✖╭╮✖)",
+            "✖‿✖",
+            "(+_+)",
+            "(✖﹏✖)",
+            "∑(✘Д✘๑)",
+        ]
+    elif input_str in "sad":
+        emoticons = [
+            "(＠´＿｀＠)",
+            "⊙︿⊙",
+            "(▰˘︹˘▰)",
+            "●︿●",
+            "(　´_ﾉ` )",
+            "彡(-_-;)彡",
+        ]
+    elif input_str in "dog":
+        emoticons = [
+            "-ᄒᴥᄒ-",
+            "◖⚆ᴥ⚆◗",
+        ]
+    else:
+        emoticons = [
+            "( ͡° ͜ʖ ͡°)",
+            r"¯\_(ツ)_/¯",
+            "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)",
+            "ʕ•ᴥ•ʔ",
+            "(▀̿Ĺ̯▀̿ ̿)",
+            "(ง ͠° ͟ل͜ ͡°)ง",
+            "༼ つ ◕_◕ ༽つ",
+            "ಠ_ಠ",
+            "(☞ ͡° ͜ʖ ͡°)☞",
+            r"¯\_༼ ି ~ ି ༽_/¯",
+            "c༼ ͡° ͜ʖ ͡° ༽⊃",
+        ]
+    index = random.randint(0, len(emoticons))
+    output_str = emoticons[index]
+    await event.edit(output_str)
 
+                      
 @borg.on(admin_cmd(outgoing=True, pattern="runs$"))
 async def runner_lol(run):
     await run.edit(random.choice(memes.RUNSREACTS))
@@ -457,7 +554,9 @@ CMD_HELP.update(
 \n\n📌** CMD ➥** `.coinflip` <heads/tails>\
 \n**USAGE   ➥  **Flip a coin !!\
 \n\n📌** CMD ➥** `.owo` <text> \
-\n**USAGE   ➥  **Make your userbot react to everything.\
+\n**USAGE   ➥  **UwU\
+\n\n📌** CMD ➥** `.react` <type>\
+\n**USAGE   ➥  **Make your userbot react. types are <happy ,think ,wave ,wtf ,love ,confused,dead, sad,dog>\
 \n\n📌** CMD ➥** `.slap`\
 \n**USAGE   ➥  **reply to slap them with random objects !!\
 \n\n📌** CMD ➥** `.shg`\
