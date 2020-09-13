@@ -208,7 +208,7 @@ async def get_font_file(client, channel_id, search_kw=""):
 
 CMD_HELP.update(
     {
-        "stickerfun":"__**PLUGIN NAME :** Stickerfun__\
+        "stickerfun": "__**PLUGIN NAME :** Stickerfun__\
     \n\n📌** CMD ➥** `.st` <your txt>\
     \n**USAGE   ➥  **Anime that makes your writing fun.\
     \n\n📌** CMD ➥** `.stcr` <your txt>\
