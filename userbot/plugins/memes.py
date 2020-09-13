@@ -10,13 +10,15 @@ import asyncio
 import random
 import re
 import time
+
 import requests
+from cowpy import cow
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
-from cowpy import cow
-from userbot import CMD_HELP, memes, ALIVE_NAME
-from userbot.utils import admin_cmd, register
+
+from userbot import ALIVE_NAME, CMD_HELP, memes
 from userbot.uniborgConfig import Config
+from userbot.utils import admin_cmd, register
 
 BOTLOG = True
 BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
@@ -59,18 +61,23 @@ async def _(event):
         if input_str == "heads":
             await event.edit("The coin landed on: **Heads**. \n You were correct.")
         elif input_str == "tails":
-            await event.edit("The coin landed on: **Heads**. \n You weren't correct, try again ...")
+            await event.edit(
+                "The coin landed on: **Heads**. \n You weren't correct, try again ..."
+            )
         else:
             await event.edit("The coin landed on: **Heads**.")
     elif r % 2 == 0:
         if input_str == "tails":
             await event.edit("The coin landed on: **Tails**. \n You were correct.")
         elif input_str == "heads":
-            await event.edit("The coin landed on: **Tails**. \n You weren't correct, try again ...")
+            await event.edit(
+                "The coin landed on: **Tails**. \n You weren't correct, try again ..."
+            )
         else:
             await event.edit("The coin landed on: **Tails**.")
     else:
         await event.edit(r"¯\_(ツ)_/¯")
+
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
@@ -88,7 +95,9 @@ async def who(event):
     try:
         await event.edit(caption)
     except BaseException:
-        await event.edit("`Can't slap this person, need to fetch some sticks and stones !!`")
+        await event.edit(
+            "`Can't slap this person, need to fetch some sticks and stones !!`"
+        )
 
 
 async def get_user(event):
@@ -108,9 +117,7 @@ async def get_user(event):
         if event.message.entities is not None:
             probable_user_mention_entity = event.message.entities[0]
 
-            if isinstance(
-                    probable_user_mention_entity,
-                    MessageEntityMentionName):
+            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
                 replied_user = await event.client(GetFullUserRequest(user_id))
                 return replied_user
@@ -142,12 +149,14 @@ async def slap(replied_user, event):
     throw = random.choice(memes.THROW)
     where = random.choice(memes.WHERE)
 
-    caption = "..." + temp.format(user1=DEFAULTUSER,
-                                  victim=slapped,
-                                  item=item,
-                                  hits=hit,
-                                  throws=throw,
-                                  where=where)
+    caption = "..." + temp.format(
+        user1=DEFAULTUSER,
+        victim=slapped,
+        item=item,
+        hits=hit,
+        throws=throw,
+        where=where,
+    )
 
     return caption
 
@@ -171,10 +180,9 @@ async def decide(event):
     else:
         r = requests.get(f"https://yesno.wtf/api").json()
     await event.delete()
-    await event.client.send_message(event.chat_id,
-                                    str(r["answer"]).upper(),
-                                    reply_to=message_id,
-                                    file=r["image"])
+    await event.client.send_message(
+        event.chat_id, str(r["answer"]).upper(), reply_to=message_id, file=r["image"]
+    )
 
 
 @register(outgoing=True, pattern="^;_;")
@@ -193,7 +201,9 @@ async def insult(e):
 
 @borg.on(admin_cmd(outgoing=True, pattern="repo$"))
 async def source(e):
-    await e.edit("Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo.")
+    await e.edit(
+        "Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo."
+    )
 
 
 @borg.on(admin_cmd(outgoing=True, pattern="hey$"))
@@ -329,8 +339,8 @@ async def smrk(smk):
     else:
         await smk.edit("ツ")
         return
-    if message == 'dele':
-        await smk.edit(message + 'te the hell' + "ツ")
+    if message == "dele":
+        await smk.edit(message + "te the hell" + "ツ")
         await smk.edit("ツ")
     else:
         smirk = " ツ"
@@ -342,9 +352,19 @@ async def smrk(smk):
 async def payf(event):
     paytext = event.pattern_match.group(1)
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
-        paytext * 8, paytext * 8, paytext * 2, paytext * 2, paytext * 2,
-        paytext * 6, paytext * 6, paytext * 2, paytext * 2, paytext * 2,
-        paytext * 2, paytext * 2)
+        paytext * 8,
+        paytext * 8,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+        paytext * 6,
+        paytext * 6,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+    )
     await event.edit(pay)
 
 
@@ -354,10 +374,16 @@ async def bluetext(bt_e):
     if bt_e.is_group:
         await bt_e.edit(
             "/BLUETEXT /MUST /CLICK.\n"
-            "/ARE /YOU /A /STUPID /ANIMAL /WHICH /IS /ATTRACTED /TO /COLOURS?")
+            "/ARE /YOU /A /STUPID /ANIMAL /WHICH /IS /ATTRACTED /TO /COLOURS?"
+        )
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="lfy (.*)",))
+@borg.on(
+    admin_cmd(
+        outgoing=True,
+        pattern="lfy (.*)",
+    )
+)
 async def let_me_google_that_for_you(lmgtfy_q):
     textx = await lmgtfy_q.get_reply_message()
     query = lmgtfy_q.text
@@ -368,8 +394,8 @@ async def let_me_google_that_for_you(lmgtfy_q):
         query = query.message
     query_encoded = query.replace(" ", "+")
     lfy_url = f"http://lmgtfy.com/?s=g&iie=1&q={query_encoded}"
-    payload = {'format': 'json', 'url': lfy_url}
-    r = requests.get('http://is.gd/create.php', params=payload)
+    payload = {"format": "json", "url": lfy_url}
+    r = requests.get("http://is.gd/create.php", params=payload)
     await lmgtfy_q.edit(f"[{query}]({r.json()['shorturl']})")
     if BOTLOG:
         await bot.send_message(
@@ -391,7 +417,7 @@ async def typewriter(typew):
         return
     sleep_time = 0.03
     typing_symbol = "|"
-    old_text = ''
+    old_text = ""
     await typew.edit(typing_symbol)
     await asyncio.sleep(sleep_time)
     for character in message:
@@ -402,8 +428,10 @@ async def typewriter(typew):
         await typew.edit(old_text)
         await asyncio.sleep(sleep_time)
 
-CMD_HELP.update({
-    "memes": ".cowsay\
+
+CMD_HELP.update(
+    {
+        "memes": ".cowsay\
 \nUsage: cow which says things.\
 \n\n.milksay\
 \nUsage: Weird Milk that can speak\
@@ -472,4 +500,5 @@ CMD_HELP.update({
 \n\n.coin\
 \nUsage: Flip a coin.\
 "
-})
+    }
+)
