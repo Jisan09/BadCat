@@ -288,10 +288,11 @@ async def faces(owo):
     reply_text += " " + random.choice(memes.UWUS)
     await owo.edit(reply_text)
 
-                      
+
 @borg.on(admin_cmd(outgoing=True, pattern="shg$"))
 async def shrugger(shg):
     await shg.edit(random.choice(memes.SHGS))
+
 
 @borg.on(admin_cmd(pattern=f"react ?(.*)", outgoing=True))
 async def _(event):
@@ -395,7 +396,7 @@ async def _(event):
     output_str = emoticons[index]
     await event.edit(output_str)
 
-                      
+
 @borg.on(admin_cmd(outgoing=True, pattern="runs$"))
 async def runner_lol(run):
     await run.edit(random.choice(memes.RUNSREACTS))
