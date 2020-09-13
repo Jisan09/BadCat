@@ -19,7 +19,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "scam":"__**PLUGIN NAME :** Scam__\
+        "scam": "__**PLUGIN NAME :** Scam__\
     \n\n📌** CMD ➥** `.scam` <action> \
     \n**USAGE   ➥  **Type .scam (action name) this shows the fake action in the group  the actions are `typing` ,`contact` ,`game`, `location`,`voice`,`round`, `video`,`photo`,`document`, `cancel`.\
     "
