@@ -1,18 +1,3 @@
-"""Send Chat Actions
-Syntax: .fake <option>
-        fake options: Options for fake
-
-typing
-contact
-game
-location
-voice
-round
-video
-photo
-document
-cancel"""
-
 import asyncio
 
 from userbot import CMD_HELP
@@ -34,8 +19,9 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "scam": ".scam <action> \
-    \nUsage: Type .scam (action name) this shows the fake action in the group  the actions are typing ,contact ,game, location, voice, round, video,photo,document, cancel.\
+        "scam":"__**PLUGIN NAME :** Scam__\
+    \n\n📌** CMD ➥** `.scam` <action> \
+    \n**USAGE   ➥  **Type .scam (action name) this shows the fake action in the group  the actions are `typing` ,`contact` ,`game`, `location`,`voice`,`round`, `video`,`photo`,`document`, `cancel`.\
     "
     }
 )
