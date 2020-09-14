@@ -16,6 +16,7 @@ CAT_IMG = Config.ALIVE_PIC
 JISAN = Config.CUSTOM_ALIVE_TEXT
 EMOJI = str(Config.CUSTOM_ALIVE_EMOJI) if Config.CUSTOM_ALIVE_EMOJI else "✧✧"
 
+
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
 @borg.on(sudo_cmd(pattern="alive$", allow_sudo=True))
 async def amireallyalive(alive):
@@ -63,7 +64,9 @@ async def amireallyalive(alive):
         cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
         cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
         cat_caption += f"**{EMOJI} Uptime :** `{uptime}\n`"
-        cat_caption += f"**{EMOJI} My peru Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+        cat_caption += (
+            f"**{EMOJI} My peru Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+        )
         await borg.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )
