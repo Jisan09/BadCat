@@ -1,4 +1,3 @@
-import time
 from platform import python_version
 
 import nekos
@@ -6,8 +5,8 @@ import requests
 from PIL import Image
 from telethon import version
 
-from userbot import ALIVE_NAME, CMD_HELP, StartTime, catdef, catversion
-from . import catalive
+from userbot import ALIVE_NAME, CMD_HELP, catversion
+
 from ..uniborgConfig import Config
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
@@ -118,6 +117,7 @@ async def _(event):
     img.save("temp.webp", "webp")
     img.seek(0)
     await bot.send_file(event.chat_id, open("temp.webp", "rb"), reply_to=reply_to_id)
+
 
 CMD_HELP.update(
     {
