@@ -14,11 +14,7 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 CAT_IMG = Config.ALIVE_PIC
 JISAN = Config.CUSTOM_ALIVE_TEXT
-# Support = "**[Support]**(https://t.me/catuserbot_support)"
-# GoodCat = "**[GoodCat]**(https://github.com/sandy1709/catuserbot)"
-# BadCat = "**[BadCat]**(https://github.com/Jisan09/catuserbot)"
-# | <a href="https://github.com/sandy1709/catuserbot">GoodCat</a> | <a href="https://github.com/Jisan09/catuserbot">BadCat</a>
-
+EMOJI = str(Config.CUSTOM_ALIVE_EMOJI) if Config.CUSTOM_ALIVE_EMOJI else "✧✧"
 
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
 @borg.on(sudo_cmd(pattern="alive$", allow_sudo=True))
@@ -34,12 +30,12 @@ async def amireallyalive(alive):
     if JISAN:
         if CAT_IMG:
             cat_caption = f"**{JISAN}**\n\n"
-            cat_caption += f"**✧✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
-            cat_caption += f"**✧✧ Uptime :** `{uptime}\n`"
-            cat_caption += f"**✧✧ Python Version :** `{python_version()}\n`"
-            cat_caption += f"**✧✧ Telethon version :** `{version.__version__}\n`"
-            cat_caption += f"**✧✧ Catuserbot Version :** `{catversion}`\n"
-            cat_caption += f"**✧✧ Database :** `{check_sgnirts}`\n\n"
+            cat_caption += f"**{EMOJI} Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+            cat_caption += f"**{EMOJI} Uptime :** `{uptime}\n`"
+            cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
+            cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
+            cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
+            cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n\n"
             cat_caption += "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) "
             await borg.send_file(
                 alive.chat_id,
@@ -52,22 +48,22 @@ async def amireallyalive(alive):
             await edit_or_reply(
                 alive,
                 f"** {JISAN}**\n\n"
-                f"**✧✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
-                f"**✧✧ Uptime :** `{uptime}\n`"
-                f"**✧✧ Python Version :** `{python_version()}\n`"
-                f"**✧✧ Telethon Version :** `{version.__version__}\n`"
-                f"**✧✧ Catuserbot Version :** `{catversion}`\n"
-                f"**✧✧ Database :** `{check_sgnirts}`\n"
+                f"**{EMOJI} Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+                f"**{EMOJI} Uptime :** `{uptime}\n`"
+                f"**{EMOJI} Python Version :** `{python_version()}\n`"
+                f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
+                f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
+                f"**{EMOJI} Database :** `{check_sgnirts}`\n"
                 "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) ",
             )
     elif CAT_IMG:
-        cat_caption = f"__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
-        cat_caption += f"**✧✧ Database :** `{check_sgnirts}`\n"
-        cat_caption += f"**✧✧ Telethon version :** `{version.__version__}\n`"
-        cat_caption += f"**✧✧ Catuserbot Version :** `{catversion}`\n"
-        cat_caption += f"**✧✧ Python Version :** `{python_version()}\n`"
-        cat_caption += f"**✧✧ Uptime :** `{uptime}\n`"
-        cat_caption += f"**✧✧ My peru Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+        cat_caption = "__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
+        cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
+        cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
+        cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
+        cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
+        cat_caption += f"**{EMOJI} Uptime :** `{uptime}\n`"
+        cat_caption += f"**{EMOJI} My peru Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
         await borg.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )
@@ -75,13 +71,13 @@ async def amireallyalive(alive):
     else:
         await edit_or_reply(
             alive,
-            f"__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
-            f"**✧✧ Database :** `{check_sgnirts}`\n"
-            f"**✧✧ Telethon Version :** `{version.__version__}\n`"
-            f"**✧✧ Catuserbot Version :** `{catversion}`\n"
-            f"**✧✧ Python Version :** `{python_version()}\n`"
-            f"**✧✧ Uptime :** `{uptime}\n`"
-            f"**✧✧ My Peru Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n",
+            "__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
+            f"**{EMOJI} Database :** `{check_sgnirts}`\n"
+            f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
+            f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
+            f"**{EMOJI} Python Version :** `{python_version()}\n`"
+            f"**{EMOJI} Uptime :** `{uptime}\n`"
+            f"**{EMOJI} My Peru Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n",
         )
 
 
