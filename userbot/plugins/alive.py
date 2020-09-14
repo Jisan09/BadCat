@@ -30,12 +30,13 @@ async def amireallyalive(alive):
     if JISAN:
         if CAT_IMG:
             cat_caption = f"** {JISAN}**\n\n"
-            cat_caption += f"**✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
-            cat_caption += f"**✧ Uptime :** `{uptime}\n`"
-            cat_caption += f"**✧ Python Version :** `{python_version()}\n`"
-            cat_caption += f"**✧ Telethon version :** `{version.__version__}\n`"
-            cat_caption += f"**✧ Catuserbot Version :** `{catversion}`\n"
-            cat_caption += f"**✧ Database :** `{check_sgnirts}`\n"
+            cat_caption += f"**✧✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+            cat_caption += f"**✧✧ Uptime :** `{uptime}\n`"
+            cat_caption += f"**✧✧ Python Version :** `{python_version()}\n`"
+            cat_caption += f"**✧✧ Telethon version :** `{version.__version__}\n`"
+            cat_caption += f"**✧✧ Catuserbot Version :** `{catversion}`\n"
+            cat_caption += f"**✧✧ Database :** `{check_sgnirts}`\n\n"
+            cat_caption += f"[Support](https://t.me/catuserbot_support) | [GoodCat](https://github.com/sandy1709/catuserbot) | [BadCat](https://github.com/Jisan09/catuserbot)"
             await borg.send_file(
                 alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
             )
@@ -44,12 +45,13 @@ async def amireallyalive(alive):
             await edit_or_reply(
                 alive,
                 f"** {JISAN}**\n\n"
-                f"**✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
-                f"**✧ Uptime :** `{uptime}\n`"
-                f"**✧ Python Version :** `{python_version()}\n`"
-                f"**✧ Telethon Version :** `{version.__version__}\n`"
-                f"**✧ Catuserbot Version :** `{catversion}`\n"
-                f"**✧ Database :** `{check_sgnirts}`\n",
+                f"**✧✧ Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+                f"**✧✧ Uptime :** `{uptime}\n`"
+                f"**✧✧ Python Version :** `{python_version()}\n`"
+                f"**✧✧ Telethon Version :** `{version.__version__}\n`"
+                f"**✧✧ Catuserbot Version :** `{catversion}`\n"
+                f"**✧✧ Database :** `{check_sgnirts}`\n"
+                f"[Support](https://t.me/catuserbot_support) | [GoodCat](https://github.com/sandy1709/catuserbot) | [BadCat](https://github.com/Jisan09/catuserbot)",
             )
     elif CAT_IMG:
         cat_caption = f"__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
