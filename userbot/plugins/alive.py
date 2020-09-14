@@ -18,6 +18,7 @@ Support = "[Support](https://t.me/catuserbot_support)"
 GoodCat = "[GoodCat](https://github.com/sandy1709/catuserbot)"
 Badcat = "[BadCat](https://github.com/Jisan09/catuserbot)"
 
+
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
 @borg.on(sudo_cmd(pattern="alive$", allow_sudo=True))
 async def amireallyalive(alive):
