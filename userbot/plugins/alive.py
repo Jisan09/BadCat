@@ -6,7 +6,7 @@ from PIL import Image
 from telethon import version
 
 from userbot import ALIVE_NAME, CMD_HELP, catversion
-
+from . import catalive
 from ..uniborgConfig import Config
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
