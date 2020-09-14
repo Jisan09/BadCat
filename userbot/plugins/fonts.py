@@ -181,7 +181,7 @@ async def stylish_generator(event):
             ]
             string = string.replace(normaltextcharacter, smothtextcharacter)
     await event.edit(string)
-    
+
 
 CMD_HELP.update(
     {
