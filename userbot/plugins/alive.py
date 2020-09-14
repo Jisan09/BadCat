@@ -17,7 +17,7 @@ JISAN = Config.CUSTOM_ALIVE_TEXT
 # Support = "**[Support]**(https://t.me/catuserbot_support)"
 # GoodCat = "**[GoodCat]**(https://github.com/sandy1709/catuserbot)"
 # BadCat = "**[BadCat]**(https://github.com/Jisan09/catuserbot)"
-
+#| <a href="https://github.com/sandy1709/catuserbot">GoodCat</a> | <a href="https://github.com/Jisan09/catuserbot">BadCat</a>
 
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
 @borg.on(sudo_cmd(pattern="alive$", allow_sudo=True))
@@ -39,7 +39,7 @@ async def amireallyalive(alive):
             cat_caption += f"**✧✧ Telethon version :** `{version.__version__}\n`"
             cat_caption += f"**✧✧ Catuserbot Version :** `{catversion}`\n"
             cat_caption += f"**✧✧ Database :** `{check_sgnirts}`\n\n"
-            cat_caption += f"   <a href="https://t.me/catuserbot_support">Support</a>| <a href="https://github.com/sandy1709/catuserbot">GoodCat</a> | <a href="https://github.com/Jisan09/catuserbot">BadCat</a>"
+            cat_caption += "   <a href="https://t.me/catuserbot_support">Support</a> "
             await borg.send_file(
                 alive.chat_id,
                 CAT_IMG,
