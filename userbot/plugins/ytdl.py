@@ -216,7 +216,7 @@ async def youtube_search(
 
 CMD_HELP.update(
     {
-        "ytdl":"__**PLUGIN NAME :** Ytdl__\
+        "ytdl": "__**PLUGIN NAME :** Ytdl__\
     \n\n📌** CMD ➥** `.yta link`\
     \n**USAGE   ➥  **Downloads th audio from the given link(Suports the all sites which support youtube-dl)\
     \n\n📌** CMD ➥** `.ytv link`\
