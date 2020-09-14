@@ -16,7 +16,7 @@ CAT_IMG = Config.ALIVE_PIC
 JISAN = Config.CUSTOM_ALIVE_TEXT
 Support = "[Support](https://t.me/catuserbot_support)"
 GoodCat = "[GoodCat](https://github.com/sandy1709/catuserbot)"
-Badcat = "[BadCat](https://github.com/Jisan09/catuserbot)"
+BadCat = "[BadCat](https://github.com/Jisan09/catuserbot)"
 
 
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
