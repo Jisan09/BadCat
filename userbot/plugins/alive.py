@@ -51,7 +51,7 @@ async def amireallyalive(alive):
                 f"**✧✧ Telethon Version :** `{version.__version__}\n`"
                 f"**✧✧ Catuserbot Version :** `{catversion}`\n"
                 f"**✧✧ Database :** `{check_sgnirts}`\n"
-                "   **[Support]**(https://t.me/catuserbot_support) | **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot)",
+                "   **[Support]**(https://t.me/catuserbot_support) | **[GoodCat]**(https://github.com/sandy1709/catuserbot) **| **[BadCat]**(https://github.com/Jisan09/catuserbot)**",
             )
     elif CAT_IMG:
         cat_caption = f"__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
