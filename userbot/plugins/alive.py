@@ -14,9 +14,9 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 CAT_IMG = Config.ALIVE_PIC
 JISAN = Config.CUSTOM_ALIVE_TEXT
-Support = "[Support](https://t.me/catuserbot_support)"
-GoodCat = "[GoodCat](https://github.com/sandy1709/catuserbot)"
-BadCat = "[BadCat](https://github.com/Jisan09/catuserbot)"
+Support = "**[Support]**(https://t.me/catuserbot_support)"
+GoodCat = "**[GoodCat]**(https://github.com/sandy1709/catuserbot)"
+BadCat = "**[BadCat]**(https://github.com/Jisan09/catuserbot)"
 
 
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
@@ -39,7 +39,7 @@ async def amireallyalive(alive):
             cat_caption += f"**✧✧ Telethon version :** `{version.__version__}\n`"
             cat_caption += f"**✧✧ Catuserbot Version :** `{catversion}`\n"
             cat_caption += f"**✧✧ Database :** `{check_sgnirts}`\n\n"
-            cat_caption += f"   **{Support} | {GoodCat} | {BadCat}**"
+            cat_caption += f"   {Support} | {GoodCat} | {BadCat}"
             await borg.send_file(
                 alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
             )
