@@ -39,8 +39,8 @@ async def amireallyalive(alive):
             cat_caption += f"**✧✧ Telethon version :** `{version.__version__}\n`"
             cat_caption += f"**✧✧ Catuserbot Version :** `{catversion}`\n"
             cat_caption += f"**✧✧ Database :** `{check_sgnirts}`\n\n"
-            cat_caption += "   __**[Support]**__(https://t.me/catuserbot_support) | __**[GoodCat]**__(https://github.com/sandy1709/catuserbot) |"
-            cat_caption += "__**[BadCat]**__(https://github.com/Jisan09/catuserbot)
+            cat_caption += "   __**[Support]**__(https://t.me/catuserbot_support) | __**[GoodCat]**__(https://github.com/sandy1709/catuserbot) | "
+            cat_caption += "__**[BadCat]**__(https://github.com/Jisan09/catuserbot)"
             await borg.send_file(
                 alive.chat_id,
                 CAT_IMG,
