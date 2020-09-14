@@ -7,7 +7,7 @@ from PIL import Image
 from telethon import version
 
 from userbot import ALIVE_NAME, CMD_HELP, StartTime, catdef, catversion
-
+from . import catalive
 from ..uniborgConfig import Config
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
@@ -23,8 +23,6 @@ async def amireallyalive(alive):
     if alive.fwd_from:
         return
     reply_to_id = alive.message
-    uptime = await catdef.get_readable_time((time.time() - StartTime))
-    _, check_sgnirts = check_data_base_heal_th()
     hmm = bot.uid
     if alive.reply_to_msg_id:
         reply_to_id = await alive.get_reply_message()
@@ -120,38 +118,6 @@ async def _(event):
     img.save("temp.webp", "webp")
     img.seek(0)
     await bot.send_file(event.chat_id, open("temp.webp", "rb"), reply_to=reply_to_id)
-
-
-# UniBorg Telegram UseRBot
-# Copyright (C) 2020 @UniBorg
-# This code is licensed under
-# the "you can't use this for anything - public or private,
-# unless you know the two prime factors to the number below" license
-# 543935563961418342898620676239017231876605452284544942043082635399903451854594062955
-# വിവരണം അടിച്ചുമാറ്റിക്കൊണ്ട് പോകുന്നവർ
-# ക്രെഡിറ്റ് വെച്ചാൽ സന്തോഷമേ ഉള്ളു..!
-# uniborg
-
-
-def check_data_base_heal_th():
-    # https://stackoverflow.com/a/41961968
-    is_database_working = False
-    output = "No Database is set"
-    if not Var.DB_URI:
-        return is_database_working, output
-    from userbot.plugins.sql_helper import SESSION
-
-    try:
-        # to check database we will execute raw query
-        SESSION.execute("SELECT 1")
-    except Exception as e:
-        output = f"❌ {str(e)}"
-        is_database_working = False
-    else:
-        output = "Functioning"
-        is_database_working = True
-    return is_database_working, output
-
 
 CMD_HELP.update(
     {
