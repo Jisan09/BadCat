@@ -17,7 +17,8 @@ JISAN = Config.CUSTOM_ALIVE_TEXT
 # Support = "**[Support]**(https://t.me/catuserbot_support)"
 # GoodCat = "**[GoodCat]**(https://github.com/sandy1709/catuserbot)"
 # BadCat = "**[BadCat]**(https://github.com/Jisan09/catuserbot)"
-#| <a href="https://github.com/sandy1709/catuserbot">GoodCat</a> | <a href="https://github.com/Jisan09/catuserbot">BadCat</a>
+# | <a href="https://github.com/sandy1709/catuserbot">GoodCat</a> | <a href="https://github.com/Jisan09/catuserbot">BadCat</a>
+
 
 @borg.on(admin_cmd(outgoing=True, pattern="alive$"))
 @borg.on(sudo_cmd(pattern="alive$", allow_sudo=True))
