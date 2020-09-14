@@ -174,6 +174,7 @@ class Config(object):
     # username to be displayed in .live
     LIVE_USERNAME = os.environ.get("LIVE_USERNAME", None)
     CUSTOM_ALIVE_TEXT = os.environ.get("CUSTOM_ALIVE_TEXT", None)
+    CUSTOM_ALIVE_EMOJI = os.environ.get("CUSTOM_ALIVE_EMOJI", None)
 
 
 class Production(Config):
