@@ -1,4 +1,3 @@
-  
 # Random RGB Sticklet by @PhycoNinja13b
 # modified by @UniBorg
 # imported from ppe-remix by @heyworld & @DeletedUser420
