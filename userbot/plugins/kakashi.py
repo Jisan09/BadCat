@@ -56,12 +56,18 @@ async def kakashi(event):
         link = "Weather Setup"
     elif link in ("forward", "frwd"):
         link = "Forward"
-    elif link in ("customtext", "cppt"):
+    elif link in ("custompmtext", "cppt"):
         link = "Custom PM Permit Text"
-    elif link == "cat":
+    elif link in ("liveusername", "lu"):
+        link = "Live Username"   
+    elif link in ("customalivetext", "cat"):
+        link = "Custom Alive Text"
+    elif link in ("customaliveemoji", "cae"):
+        link = "Custom Alive Emoji"
+    elif link == "goodcat":
         link = "🐱 Cat UserBot 🐱"
-    elif link == "my":
-        link = "😎 My Fork 😎"
+    elif link == "badcat":
+        link = "My Repo"
     await event.edit("```Sending your note....```")
     async with bot.conversation("@kakashi_robot") as conv:
         try:
