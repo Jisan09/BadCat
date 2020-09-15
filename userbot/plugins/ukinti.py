@@ -205,7 +205,7 @@ async def ban_user(chat_id, i, rights):
 
 CMD_HELP.update(
     {
-        "ukinti":"__**PLUGIN NAME :** Ukinti__\
+        "ukinti": "__**PLUGIN NAME :** Ukinti__\
         \n\n📌** CMD ➥** `.unbanall`\
         \n**USAGE   ➥  **Unbans everyone who are blocked in that group \
         \n\n📌** CMD ➥** `.ikuck`\
