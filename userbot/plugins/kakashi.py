@@ -10,7 +10,7 @@ from userbot.utils import admin_cmd
 
 @borg.on(admin_cmd(outgoing=True, pattern="note_help$"))
 async def kakashi(jisan):
-    await jisan.edit("All commands for note is [HERE](https://nekobin.com/duyupeneje) ")
+    await jisan.edit("All commands for note is [HERE](https://nekobin.com/xihitanafu) ")
 
 
 @register(outgoing=True, pattern="^.note(?: |$)(.*)")
