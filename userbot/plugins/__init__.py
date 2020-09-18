@@ -9,8 +9,7 @@ import spamwatch as spam_watch
 
 from userbot.uniborgConfig import Config
 
-from .. import StartTime
-from ..helpers import *
+from .. import *
 
 Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
@@ -35,6 +34,13 @@ def check(cat):
         return True
     return False
 
+
+if Config.PRIVATE_GROUP_BOT_API_ID is None:
+    BOTLOG = False
+    BOTLOG_CHATID = "me"
+else:
+    BOTLOG = True
+    BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
 
 # UniBorg Telegram UseRBot
 # Copyright (C) 2020 @UniBorg
