@@ -31,7 +31,9 @@ async def amireallyalive(alive):
     if JISAN:
         if CAT_IMG:
             cat_caption = f"<b>{JISAN}</b>\n\n"
-            cat_caption += f"<b>{EMOJI} Master:</b> [{DEFAULTUSER}](tg://user?id={hmm})\n"
+            cat_caption += (
+                f"<b>{EMOJI} Master:</b> [{DEFAULTUSER}](tg://user?id={hmm})\n"
+            )
             cat_caption += f"<b>{EMOJI} Uptime :</b> `{uptime}\n`"
             cat_caption += f"<b>{EMOJI} Python Version :</b> `{python_version()}\n`"
             cat_caption += f"<b>{EMOJI} Telethon version :** `{version.__version__}\n`"
@@ -42,9 +44,9 @@ async def amireallyalive(alive):
                 alive.chat_id,
                 CAT_IMG,
                 caption=cat_caption,
-                prase_mode = "html",
+                prase_mode="html",
                 reply_to=reply_to_id,
-                link_preview = False,
+                link_preview=False,
             )
             await alive.delete()
         else:
