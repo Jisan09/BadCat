@@ -46,7 +46,7 @@ async def amireallyalive(alive):
                 alive.chat_id,
                 CAT_IMG,
                 caption=cat_caption,
-                parse_mode="html"
+                parse_mode="html",
                 reply_to=reply_to_id,
                 link_preview=False,
             )
