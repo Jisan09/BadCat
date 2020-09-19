@@ -30,19 +30,21 @@ async def amireallyalive(alive):
         reply_to_id = await alive.get_reply_message()
     if JISAN:
         if CAT_IMG:
-            cat_caption = f"**{JISAN}**\n\n"
-            cat_caption += f"**{EMOJI} Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
-            cat_caption += f"**{EMOJI} Uptime :** `{uptime}\n`"
-            cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
-            cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
-            cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-            cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n\n"
-            cat_caption += "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) "
+            cat_caption = f"<b>{JISAN}</b>\n\n"
+            cat_caption += f"<b>{EMOJI} Master:</b> [{DEFAULTUSER}](tg://user?id={hmm})\n"
+            cat_caption += f"<b>{EMOJI} Uptime :</b> `{uptime}\n`"
+            cat_caption += f"<b>{EMOJI} Python Version :</b> `{python_version()}\n`"
+            cat_caption += f"<b>{EMOJI} Telethon version :** `{version.__version__}\n`"
+            cat_caption += f"<b>{EMOJI} Catuserbot Version :</b> `{catversion}`\n"
+            cat_caption += f"<b>{EMOJI} Database :</b> `{check_sgnirts}`\n\n"
+            cat_caption += "<a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>"
             await borg.send_file(
                 alive.chat_id,
                 CAT_IMG,
                 caption=cat_caption,
+                prase_mode = "html",
                 reply_to=reply_to_id,
+                link_preview = False,
             )
             await alive.delete()
         else:
