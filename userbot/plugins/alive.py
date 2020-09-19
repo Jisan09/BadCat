@@ -53,8 +53,7 @@ async def amireallyalive(alive):
             await alive.delete()
         else:
             await edit_or_reply(
-                alive,
-                parse_mode="html",
+                alive,     
                 f"<b>{JISAN}</b>\n\n"
                 f"<b>{EMOJI} Master :</b> <a href = tg://user?id={hmm}><b>{DEFAULTUSER}</b></a>\n"
                 f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
