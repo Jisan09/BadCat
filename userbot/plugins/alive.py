@@ -33,9 +33,13 @@ async def amireallyalive(alive):
             cat_caption = f"<b>{JISAN}</b>\n\n"
             cat_caption += f"<b>{EMOJI} Master :</b> <a href = tg://user?id={hmm}><{DEFAULTUSER}</a>\n"
             cat_caption += f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
-            cat_caption += f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
+            cat_caption += (
+                f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
+            )
             cat_caption += f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
-            cat_caption += f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
+            cat_caption += (
+                f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
+            )
             cat_caption += f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
             cat_caption += "<a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>"
             await borg.send_file(
