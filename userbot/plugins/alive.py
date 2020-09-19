@@ -31,7 +31,7 @@ async def amireallyalive(alive):
     if JISAN:
         if CAT_IMG:
             cat_caption = f"<b>{JISAN}</b>\n\n"
-            cat_caption += f"<b>{EMOJI} Master :</b> <a href = tg://user?id={hmm}><[{DEFAULTUSER}]</a>\n"
+            cat_caption += f"<b>{EMOJI} Master :</b> <a href = tg://user?id={hmm}>{DEFAULTUSER}</a>\n"
             cat_caption += f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
             cat_caption += (
                 f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
