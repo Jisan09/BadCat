@@ -36,7 +36,9 @@ async def amireallyalive(alive):
             )
             cat_caption += f"<b>{EMOJI} Uptime :</b> `{uptime}\n`"
             cat_caption += f"<b>{EMOJI} Python Version :</b> `{python_version()}\n`"
-            cat_caption += f"<b>{EMOJI} Telethon version :</b> `{version.__version__}\n`"
+            cat_caption += (
+                f"<b>{EMOJI} Telethon version :</b> `{version.__version__}\n`"
+            )
             cat_caption += f"<b>{EMOJI} Catuserbot Version :</b> `{catversion}`\n"
             cat_caption += f"<b>{EMOJI} Database :</b> `{check_sgnirts}`\n\n"
             cat_caption += "<a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>"
