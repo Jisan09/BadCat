@@ -405,8 +405,9 @@ async def copy_dir(service, file_id, dir_id):
     new_id = None
     for file in files:
         if file["mimeType"] == "application/vnd.google-apps.folder":
-            dir_id = await create_dir(service, file["name"])
-            new_id = await copy_dir(service, file["id"], dir_id)
+            folder = await create_dir(service, file["name"], dir_id)
+            catdir_id = folder.get("id")
+            new_id = await copy_dir(service, file["id"], catdir_id)
         else:
             await copy_file(service, file["id"], dir_id)
             await asyncio.sleep(0.5)
@@ -443,12 +444,12 @@ async def download_gdrive(gdrive, service, uri):
     global parent_Id
     try:
         if parent_Id is not None:
-            parent_Id = parent_Id
+            dir_id = parent_Id
     except NameError:
         if G_DRIVE_FOLDER_ID is not None:
-            parent_Id = G_DRIVE_FOLDER_ID
+            dir_id = G_DRIVE_FOLDER_ID
         else:
-            parent_Id = []
+            dir_id = []
     try:
         file = (
             service.files()
@@ -456,11 +457,12 @@ async def download_gdrive(gdrive, service, uri):
             .execute()
         )
         if file["mimeType"] == "application/vnd.google-apps.folder":
-            await create_dir(service, file["name"])
-            gcopycat = await copy_dir(service, file_Id, parent_Id)
-            ret_id = gcopycat
+            folder = await create_dir(service, file["name"])
+            dir_id = folder.get("id")
+            await copy_dir(service, file_Id, dir_id)
+            ret_id = folder
         else:
-            ret_id = await copy_file(service, file_Id, parent_Id)
+            ret_id = await copy_file(service, file_Id, dir_id)
         reply = f"id = `{ret_id}`"
     except HttpError as e:
         reply = f"**Error : **{str(e)}"
@@ -498,21 +500,24 @@ async def get_information(service, Id):
     return r
 
 
-async def create_dir(service, folder_name):
+async def create_dir(service, folder_name, dir_id=None):
     metadata = {
         "name": folder_name,
         "mimeType": "application/vnd.google-apps.folder",
     }
-    try:
-        if parent_Id is not None:
-            pass
-    except NameError:
-        """ - Fallback to G_DRIVE_FOLDER_ID else root dir - """
-        if G_DRIVE_FOLDER_ID is not None:
-            metadata["parents"] = [G_DRIVE_FOLDER_ID]
+    if not dir_id:
+        try:
+            if parent_Id is not None:
+                pass
+        except NameError:
+            """ - Fallback to G_DRIVE_FOLDER_ID else root dir - """
+            if G_DRIVE_FOLDER_ID is not None:
+                metadata["parents"] = [G_DRIVE_FOLDER_ID]
+        else:
+            """ - Override G_DRIVE_FOLDER_ID because parent_Id not empty - """
+            metadata["parents"] = [parent_Id]
     else:
-        """ - Override G_DRIVE_FOLDER_ID because parent_Id not empty - """
-        metadata["parents"] = [parent_Id]
+        metadata["parents"] = [dir_id]
     folder = (
         service.files()
         .create(body=metadata, fields="id, webViewLink", supportsAllDrives=True)
