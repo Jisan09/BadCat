@@ -318,7 +318,7 @@ async def download(gdrive, service, uri=None):
                 reply += (
                     f"**File Uploaded in **`{ms} seconds`\n\n"
                     f"**➥ Size : **`{humanbytes(result[0])}`\n"
-                    f"**➥ Link :** [{file_name}]({result[1]})\n"
+                    f"**➥ Link :** [{file_name}]({result[1]})\n\n"
                 )
                 return reply
         else:
@@ -572,8 +572,8 @@ async def upload(gdrive, service, file_path, file_name, mimeType):
             speed = round(uploaded / diff, 2)
             eta = round((file_size - uploaded) / speed)
             prog_str = "`Uploading :`\n`[{0}{1}] {2}`".format(
-                "".join(["▰" for i in range(math.floor(percentage / 10))]),
-                "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
+                "".join(["⬤" for i in range(math.floor(percentage / 10))]),
+                "".join(["◯" for i in range(10 - math.floor(percentage / 10))]),
                 round(percentage, 2),
             )
             current_message = (
@@ -1091,7 +1091,7 @@ async def google_drive(gdrive):
         await gdrive.edit(
             f"**File Uploaded in **`{ms} seconds`\n\n"
             f"**➥ Size : **`{humanbytes(result[0])}`\n"
-            f"**➥ Link :** [{file_name}]({result[1]})\n",
+            f"**➥ Link :** [{file_name}]({result[1]})\n\n",
             link_preview=False,
         )
     return
@@ -1200,8 +1200,8 @@ async def check_progress_for_dl(event, gid, previous):
                     percentage = int(file.progress)
                     downloaded = percentage * int(file.total_length) / 100
                     prog_str = "**Downloading : **`[{0}{1}] {2}`".format(
-                        "".join(["▰" for i in range(math.floor(percentage / 10))]),
-                        "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
+                        "".join(["⬤" for i in range(math.floor(percentage / 10))]),
+                        "".join(["◯" for i in range(10 - math.floor(percentage / 10))]),
                         file.progress_string(),
                     )
                     msg = (
