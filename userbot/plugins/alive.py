@@ -64,7 +64,7 @@ async def amireallyalive(alive):
                 "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) ",
             )
     elif CAT_IMG:
-        cat_caption = "__**✮ MY BOT IS RUNNING SUCCESFULLY ✮**__\n\n"
+        cat_caption = "<b><i>✮ MY BOT IS RUNNING SUCCESFULLY ✮</b></i>\n\n"
         cat_caption += f"<b>{EMOJI} Master :</b> <a href = tg://user?id={hmm}><b>{DEFAULTUSER}</b></a>\n"
         cat_caption += f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
         cat_caption += (
