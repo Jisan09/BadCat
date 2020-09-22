@@ -17,14 +17,16 @@ async def itachi(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"`What am I Supposed to do with this nibba/nibbi, Give me a text. `")
+        await edit_or_reply(
+            event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
+        )
         return
     string = "  ".join(args).lower()
     for chutiya in string:
         if chutiya in emojify.kakashitext:
             bsdk = emojify.kakashiemoji[emojify.kakashitext.index(chutiya)]
             string = string.replace(chutiya, bsdk)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="cmoji(?: |$)(.*)"))
@@ -35,7 +37,9 @@ async def itachi(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"`What am I Supposed to do with this nibba/nibbi, Give me a text. `")
+        await edit_or_reply(
+            event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
+        )
         return
     emoji, args = args.split(" ", 1)
     string = "  ".join(args).lower()
@@ -45,7 +49,7 @@ async def itachi(event):
                 cj=emoji
             )
             string = string.replace(chutiya, bsdk)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 CMD_HELP.update(
