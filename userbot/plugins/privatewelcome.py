@@ -143,15 +143,15 @@ async def show_welcome(event):
 
 CMD_HELP.update(
     {
-        "privatewelcome": "**Plugin :** `privatewelcome`\
-\n\n**Syntax :** `.savepwel` <welcome message> or reply to a message with .setwelcome\
-\n**Usage :** Saves the message as a welcome note in the chat.\
+        "privatewelcome": "__**PLUGIN NAME :** Privatewelcome__\
+\n\n📌** CMD ➥** `.savepwel` <welcome message> or reply to a message with .setwelcome\
+\n**USAGE   ➥  **Saves the message as a welcome note in the chat.\
 \n\nAvailable variables for formatting welcome messages :\
-\n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
-\n\n**Syntax :** `.listpwel`\
-\n**Usage :** Check whether you have a welcome note in the chat.\
-\n\n**Syntax :** `.clearpwel`\
-\n**Usage :** Deletes the welcome note for the current chat.\
+\n`{mention}`, `{title}`, `{count}`, `{first}`, `{last}`, `{fullname}`, `{userid}`, `{username}`, `{my_first}`, `{my_fullname}`, `{my_last}`, `{my_mention}`, `{my_username}`\
+\n\n📌** CMD ➥** `.listpwel`\
+\n**USAGE   ➥  **Check whether you have a welcome note in the chat.\
+\n\n📌** CMD ➥** `.clearpwel`\
+\n**USAGE   ➥  **Deletes the welcome note for the current chat.\
 "
     }
 )
