@@ -3,9 +3,8 @@ Created by @Jisan7509
 Peru helper @mrconfused
 Userbot plugin for CatUserbot
 """
-from userbot import CMD_HELP
 from userbot.utils import admin_cmd
-
+from userbot import CMD_HELP
 from . import *
 
 
@@ -44,8 +43,8 @@ async def itachi(event):
             )
             string = string.replace(chutiya, bsdk)
     await event.edit(string)
-
-
+    
+    
 CMD_HELP.update(
     {
         "emojitxt": "__**PLUGIN NAME :** Emojitxt__\
@@ -53,6 +52,7 @@ CMD_HELP.update(
       \n**USAGE   ➥  **Converts your text to big emoji text, with default emoji. \
       \n\n📌** CMD ➥** `.cmoji` <emoji> <text>\
       \n**USAGE   ➥  **Converts your text to big emoji text, with your custom emoji.\
-      \n**EXAMPLE :**  `.cmoji 😋 Noice`"
+      \n\n***NOTE :** For giving sapce between two words use **@**.\
+      \n**EXAMPLE :**  `.emoji Bad@cat` <or> `.cmoji 😋 Good@cat`"
     }
 )
