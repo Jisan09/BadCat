@@ -84,7 +84,10 @@ async def _(event):
         return
     query = event.pattern_match.group(1)
     et = await edit_or_reply(event, "Finding Sites...")
-    streams = get_stream_data(query)
+    try:
+        streams = get_stream_data(query)
+    except Exception as e:
+        return await et.edit(f"**Error :** `{str(e)}`")
     title = streams["title"]
     thumb_link = streams["movie_thumb"]
     release_year = streams["release_year"]
@@ -124,7 +127,6 @@ async def _(event):
         silent=True,
     )
     await et.delete()
-
 
 CMD_HELP.update(
     {
