@@ -48,7 +48,7 @@ async def itachi(event):
 
 CMD_HELP.update(
     {
-        "emojitxt": "__**PLUGIN NAME :** Emojitxt__\
+        "emojify": "__**PLUGIN NAME :** Emojify__\
       \n\n📌** CMD ➥** `.emoji` <text>\
       \n**USAGE   ➥  **Converts your text to big emoji text, with default emoji. \
       \n\n📌** CMD ➥** `.cmoji` <emoji> <text>\
