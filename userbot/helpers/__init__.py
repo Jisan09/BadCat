@@ -1,5 +1,4 @@
-from . import fonts
-from . import emojify
+from . import emojify, fonts
 from .exceptions import CancelProcess
 from .functions import *
 from .memeifyhelpers import *
