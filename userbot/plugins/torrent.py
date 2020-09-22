@@ -230,13 +230,13 @@ async def check_progress_for_dl(gid, event, previous):
 CMD_HELP.update(
     {
         "torrent": "**Plugin : **`torrent`"
-        "\n\n**Syntax : **`.fromurl [URL]` (or) >`.magnet [Magnet Link]` (or) >`.tor [path to torrent file]`"
-        "\n**Usage :** Downloads the file into your userbot server storage."
-        "\n\n**Syntax : **`.apause (or) .aresume`"
-        "\n**Usage : **Pauses/resumes on-going downloads."
-        "\n\n**Syntax :**`.aclear`"
-        "\n**Usage : **Clears the download queue, deleting all on-going downloads."
-        "\n\n**Syntax : **`.ashow`"
-        "\n**Usage : **Shows progress of the on-going downloads."
+        "\n\n📌** CMD ➥** `.fromurl` [URL] (or) >`.magnet` [Magnet Link] (or) >`.tor` [path to torrent file]"
+        "\n**USAGE   ➥  **Downloads the file into your userbot server storage."
+        "\n\n📌** CMD ➥** `.apause` (or) `.aresume`"
+        "\n**USAGE   ➥  **Pauses/resumes on-going downloads."
+        "\n\n📌** CMD ➥** `.aclear`"
+        "\n**USAGE   ➥  **Clears the download queue, deleting all on-going downloads."
+        "\n\n📌** CMD ➥** `.ashow`"
+        "\n**USAGE   ➥  **Shows progress of the on-going downloads."
     }
 )
