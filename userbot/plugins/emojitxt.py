@@ -19,7 +19,7 @@ async def itachi(event):
             string = string.replace(chutiya, bsdk)
     await event.edit(string)
 
-    
+
 @borg.on(admin_cmd(pattern="cemoji(?: |$)(.*)"))
 async def itachi(event):
     args = event.pattern_match.group(1)
@@ -29,10 +29,12 @@ async def itachi(event):
     if not args:
         await event.edit("`What I am Supposed to do nibba `")
         return
-    emoji , args = args.split(" ", 1)
+    emoji, args = args.split(" ", 1)
     string = "  ".join(args).lower()
     for chutiya in string:
         if chutiya in emojify.itachitext:
-            bsdk = emojify.itachiemoji[emojify.itachitext.index(chutiya)].format(cj = emoji)
+            bsdk = emojify.itachiemoji[emojify.itachitext.index(chutiya)].format(
+                cj=emoji
+            )
             string = string.replace(chutiya, bsdk)
     await event.edit(string)
