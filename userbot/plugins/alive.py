@@ -60,7 +60,7 @@ async def amireallyalive(alive):
                 f"**{EMOJI} Python Version :** `{python_version()}\n`"
                 f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
                 f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-                f"**{EMOJI} Database :** `{check_sgnirts}`\n"
+                f"**{EMOJI} Database :** `{check_sgnirts}`\n\n"
                 "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) ",
             )
     elif CAT_IMG:
@@ -96,7 +96,7 @@ async def amireallyalive(alive):
             f"**{EMOJI} Python Version :** `{python_version()}\n`"
             f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
             f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-            f"**{EMOJI} Database :** `{check_sgnirts}`\n"
+            f"**{EMOJI} Database :** `{check_sgnirts}`\n\n"
             "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) ",
         )
 
