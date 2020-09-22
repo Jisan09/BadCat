@@ -1271,7 +1271,7 @@ async def check_progress_for_dl(event, gid, previous):
 
 CMD_HELP.update(
     {
-        "gdrive":"__**PLUGIN NAME :** G-Drive__"
+        "gdrive": "__**PLUGIN NAME :** G-Drive__"
         "\n\n📌** CMD ➥** `.gauth`"
         "\n**USAGE   ➥  **Generate token to enable all cmd google drive service."
         "\nThis only need to run once in life time."
