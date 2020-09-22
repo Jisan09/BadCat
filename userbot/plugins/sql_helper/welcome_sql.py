@@ -6,8 +6,8 @@ except ImportError:
 from sqlalchemy import BigInteger, Column, Numeric, String, UnicodeText
 
 
-class Welcome(BASE):
-    __tablename__ = "catwelcome"
+class JoinWelcome(BASE):
+    __tablename__ = "joinwelcome"
     chat_id = Column(String(14), primary_key=True)
     previous_welcome = Column(BigInteger)
     reply = Column(UnicodeText)
@@ -20,44 +20,46 @@ class Welcome(BASE):
         self.f_mesg_id = f_mesg_id
 
 
-Welcome.__table__.create(checkfirst=True)
+JoinWelcome.__table__.create(checkfirst=True)
 
 
-def get_welcome(chat_id):
+def getwelcome(chat_id):
     try:
-        return SESSION.query(Welcome).get(str(chat_id))
+        return SESSION.query(JoinWelcome).get(str(chat_id))
     finally:
         SESSION.close()
 
 
-def get_current_welcome_settings(chat_id):
+def getcurrent_welcome_settings(chat_id):
     try:
-        return SESSION.query(Welcome).filter(Welcome.chat_id == str(chat_id)).one()
+        return (
+            SESSION.query(JoinWelcome).filter(JoinWelcome.chat_id == str(chat_id)).one()
+        )
     except BaseException:
         return None
     finally:
         SESSION.close()
 
 
-def add_welcome_setting(chat_id, previous_welcome, reply, f_mesg_id):
-    to_check = get_welcome(chat_id)
+def addwelcome_setting(chat_id, previous_welcome, reply, f_mesg_id):
+    to_check = getwelcome(chat_id)
     if not to_check:
-        adder = Welcome(chat_id, previous_welcome, reply, f_mesg_id)
+        adder = JoinWelcome(chat_id, previous_welcome, reply, f_mesg_id)
         SESSION.add(adder)
         SESSION.commit()
         return True
     else:
-        rem = SESSION.query(Welcome).get(str(chat_id))
+        rem = SESSION.query(JoinWelcome).get(str(chat_id))
         SESSION.delete(rem)
         SESSION.commit()
-        adder = Welcome(chat_id, previous_welcome, reply, f_mesg_id)
+        adder = JoinWelcome(chat_id, previous_welcome, reply, f_mesg_id)
         SESSION.commit()
         return False
 
 
-def rm_welcome_setting(chat_id):
+def rmwelcome_setting(chat_id):
     try:
-        rem = SESSION.query(Welcome).get(str(chat_id))
+        rem = SESSION.query(JoinWelcome).get(str(chat_id))
         if rem:
             SESSION.delete(rem)
             SESSION.commit()
@@ -66,7 +68,7 @@ def rm_welcome_setting(chat_id):
         return False
 
 
-def update_previous_welcome(chat_id, previous_welcome):
-    row = SESSION.query(Welcome).get(str(chat_id))
+def updateprevious_welcome(chat_id, previous_welcome):
+    row = SESSION.query(JoinWelcome).get(str(chat_id))
     row.previous_welcome = previous_welcome
     SESSION.commit()
