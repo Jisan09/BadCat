@@ -1,5 +1,10 @@
+"""
+Created by @Jisan7509
+Peru helper @mrconfused
+Userbot plugin for CatUserbot
+"""
 from userbot.utils import admin_cmd
-
+from userbot import CMD_HELP
 from . import *
 
 
@@ -20,7 +25,7 @@ async def itachi(event):
     await event.edit(string)
 
 
-@borg.on(admin_cmd(pattern="cemoji(?: |$)(.*)"))
+@borg.on(admin_cmd(pattern="cmoji(?: |$)(.*)"))
 async def itachi(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -38,3 +43,15 @@ async def itachi(event):
             )
             string = string.replace(chutiya, bsdk)
     await event.edit(string)
+    
+    
+CMD_HELP.update(
+    {
+        "emojitxt": "__**PLUGIN NAME :** Emojitxt__\
+      \n\n📌** CMD ➥** `.emoji` <text>\
+      \n**USAGE   ➥  **Converts your text to big emoji text, with default emoji. \
+      \n\n📌** CMD ➥** `.cmoji` <emoji> <text>\
+      \n**USAGE   ➥  **Converts your text to big emoji text, with your custom emoji.\
+      \n**EXAMPLE :**  `.cmoji 😋 Noice`"
+    }
+)
