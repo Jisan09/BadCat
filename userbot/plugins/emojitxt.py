@@ -53,7 +53,8 @@ CMD_HELP.update(
       \n**USAGE   ➥  **Converts your text to big emoji text, with default emoji. \
       \n\n📌** CMD ➥** `.cmoji` <emoji> <text>\
       \n**USAGE   ➥  **Converts your text to big emoji text, with your custom emoji.\
-      \n\n***NOTE :** For giving sapce between two words use **@**.\
-      \n**EXAMPLE :**  `.emoji Bad@cat` <or> `.cmoji 😋 Good@cat`"
+      \n\n**☞ NOTE :** For giving sapce between two words use **@** symbol.\
+      \n**EXAMPLE :**  `.emoji Bad@cat`\
+      \n         `.cmoji 😋 Good@cat`"
     }
 )
