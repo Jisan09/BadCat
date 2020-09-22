@@ -3,8 +3,9 @@ Created by @Jisan7509
 Peru helper @mrconfused
 Userbot plugin for CatUserbot
 """
-from userbot.utils import admin_cmd
 from userbot import CMD_HELP
+from userbot.utils import admin_cmd
+
 from . import *
 
 
@@ -43,8 +44,8 @@ async def itachi(event):
             )
             string = string.replace(chutiya, bsdk)
     await event.edit(string)
-    
-    
+
+
 CMD_HELP.update(
     {
         "emojitxt": "__**PLUGIN NAME :** Emojitxt__\
