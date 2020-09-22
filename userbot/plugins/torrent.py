@@ -14,7 +14,7 @@ import aria2p
 from requests import get
 
 from ..utils import admin_cmd, humanbytes
-from . import CMD_HELP, LOGS, TMP_DOWNLOAD_DIRECTORY
+from . import CMD_HELP, LOGS, TMP_DOWNLOAD_DIRECTORY, bot
 
 
 def subprocess_run(cmd):
@@ -185,8 +185,8 @@ async def check_progress_for_dl(gid, event, previous):
                 percentage = int(file.progress)
                 downloaded = percentage * int(file.total_length) / 100
                 prog_str = "**Downloading : **`[{0}{1}] {2}`".format(
-                    "".join(["⬤" for i in range(math.floor(percentage / 10))]),
-                    "".join(["◯" for i in range(10 - math.floor(percentage / 10))]),
+                    "".join(["▰" for i in range(math.floor(percentage / 10))]),
+                    "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
                     file.progress_string(),
                 )
                 msg = (
