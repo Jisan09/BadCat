@@ -1290,7 +1290,7 @@ CMD_HELP.update(
         "\n**USAGE   ➥  **Delete files/folders in gdrive."
         "\nCan't be undone, this method skipping file trash, so be caution..."
         "\n\n📌** CMD ➥** `.gdfset`"
-        "\n**USAGE   ➥  ***Change upload directory in gdrive."
+        "\n**USAGE   ➥  **Change upload directory in gdrive."
         "\ninto **G_DRIVE_FOLDER_ID** and if that var empty, then upload will go to root."
         "\n\n📌** CMD ➥** `.gdfclear`"
         "\n**USAGE   ➥  **remove set parentId from cmd\n>`.gdfset` "
