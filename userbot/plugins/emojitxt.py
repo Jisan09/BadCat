@@ -1,8 +1,6 @@
-import random
-import re
-from . import *
-from userbot import CMD_HELP
 from userbot.utils import admin_cmd
+
+from . import *
 
 
 @borg.on(admin_cmd(pattern="jisan(?: |$)(.*)"))
