@@ -229,7 +229,7 @@ async def check_progress_for_dl(gid, event, previous):
 
 CMD_HELP.update(
     {
-        "torrent": "**Plugin : **`torrent`"
+        "torrent": "__**PLUGIN NAME :** Torrent__"
         "\n\n📌** CMD ➥** `.fromurl` [URL] (or) >`.magnet` [Magnet Link] (or) >`.tor` [path to torrent file]"
         "\n**USAGE   ➥  **Downloads the file into your userbot server storage."
         "\n\n📌** CMD ➥** `.apause` (or) `.aresume`"
