@@ -7,8 +7,7 @@ import heroku3
 import requests
 import spamwatch as spam_watch
 
-from userbot.uniborgConfig import Config
-
+from ..Config import Config
 from .. import *
 
 Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
