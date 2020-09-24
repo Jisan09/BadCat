@@ -3,9 +3,11 @@ Created by @Jisan7509
 Peru helper @mrconfused
 Userbot plugin for CatUserbot
 """
+import emoji
+
 from userbot import CMD_HELP
 from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
-import emoji
+
 from . import *
 
 
