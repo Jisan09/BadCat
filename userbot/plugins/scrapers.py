@@ -17,8 +17,9 @@ from selenium.webdriver.chrome.options import Options
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 
-from .. import CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.utils import admin_cmd
+
+from .. import CHROME_DRIVER, GOOGLE_CHROME_BIN
 
 LANG = "en"
 CARBONLANG = "auto"
