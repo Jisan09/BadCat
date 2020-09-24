@@ -3,7 +3,6 @@
 # Create a new config.py file in same dir and import, then extend this class.
 import os
 
-from pymongo import MongoClient
 from telethon.tl.types import ChatBannedRights
 
 
@@ -168,24 +167,9 @@ class Config(object):
     CUSTOM_ALIVE_TEXT = os.environ.get("CUSTOM_ALIVE_TEXT", None)
     CUSTOM_ALIVE_EMOJI = os.environ.get("CUSTOM_ALIVE_EMOJI", None)
 
-
 class Production(Config):
     LOGGER = False
 
 
 class Development(Config):
     LOGGER = True
-
-
-# Init Mongo
-MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
-MONGOCLIENT = MongoClient(MONGO_DB_URI, 27017, serverSelectionTimeoutMS=1)
-MONGO = MONGOCLIENT.userbot
-
-
-def is_mongo_alive():
-    try:
-        MONGOCLIENT.server_info()
-    except BaseException as e:
-        print(e)
-        return Fa
