@@ -17,8 +17,7 @@ from selenium.webdriver.chrome.options import Options
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 
-from userbot import CHROME_DRIVER, GOOGLE_CHROME_BIN
-from userbot.uniborgConfig import Config
+from .. import CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.utils import admin_cmd
 
 LANG = "en"
