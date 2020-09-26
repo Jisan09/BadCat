@@ -168,7 +168,7 @@ class Config(object):
     LIVE_USERNAME = os.environ.get("LIVE_USERNAME", None)
     CUSTOM_ALIVE_TEXT = os.environ.get("CUSTOM_ALIVE_TEXT", None)
     CUSTOM_ALIVE_EMOJI = os.environ.get("CUSTOM_ALIVE_EMOJI", None)
-    
+
 
 class Production(Config):
     LOGGER = False
