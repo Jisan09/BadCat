@@ -80,7 +80,7 @@ async def rm_deletedacc(show):
             \nCHAT: {show.chat.title}(`{show.chat_id}`)",
         )
 
-        
+
 CMD_HELP.update(
     {
         "zombies": "__**PLUGIN NAME :** Zombies__\
