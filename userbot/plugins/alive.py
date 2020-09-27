@@ -34,33 +34,33 @@ async def amireallyalive(alive):
         cat_caption += (
                 f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
             )
-           cat_caption += f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
-           cat_caption += (
+        cat_caption += f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
+        cat_caption += (
                 f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
             )
-           cat_caption += f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
-           cat_caption += "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>"
-           await borg.send_file(
-               alive.chat_id,
-               CAT_IMG,
-               caption=cat_caption,
-               parse_mode="html",
-               reply_to=reply_to_id,
-               link_preview=False,
-           )
-           await alive.delete()
-       else:
-           await edit_or_reply(
-               alive,
-               f"** {JISAN}**\n\n"
-               f"**{EMOJI} Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
-               f"**{EMOJI} Uptime :** `{uptime}\n`"
-               f"**{EMOJI} Python Version :** `{python_version()}\n`"
-               f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
-               f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-               f"**{EMOJI} Database :** `{check_sgnirts}`\n\n"
-               "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) ",
-           )
+        cat_caption += f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
+        cat_caption += "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>"
+        await borg.send_file(
+            alive.chat_id,
+            CAT_IMG,
+            caption=cat_caption,
+            parse_mode="html",
+            reply_to=reply_to_id,
+            link_preview=False,
+        )
+        await alive.delete()
+    else:
+        await edit_or_reply(
+            alive,
+            f"** {JISAN}**\n\n"
+            f"**{EMOJI} Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+            f"**{EMOJI} Uptime :** `{uptime}\n`"
+            f"**{EMOJI} Python Version :** `{python_version()}\n`"
+            f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
+            f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
+            f"**{EMOJI} Database :** `{check_sgnirts}`\n\n"
+            "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) ",
+        )
 
 
 @borg.on(admin_cmd(outgoing=True, pattern="live$"))
