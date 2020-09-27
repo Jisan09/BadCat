@@ -12,7 +12,11 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 CAT_IMG = Config.ALIVE_PIC
-JISAN = str(Config.CUSTOM_ALIVE_TEXT) if Config.CUSTOM_ALIVE_TEXT else "✮ MY BOT IS RUNNING SUCCESFULLY ✮"
+JISAN = (
+    str(Config.CUSTOM_ALIVE_TEXT)
+    if Config.CUSTOM_ALIVE_TEXT
+    else "✮ MY BOT IS RUNNING SUCCESFULLY ✮"
+)
 EMOJI = str(Config.CUSTOM_ALIVE_EMOJI) if Config.CUSTOM_ALIVE_EMOJI else "✧✧"
 
 
@@ -32,12 +36,14 @@ async def amireallyalive(alive):
         cat_caption += f"<b>{EMOJI} Master :</b> <a href = tg://user?id={hmm}><b>{DEFAULTUSER}</b></a>\n"
         cat_caption += f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
         cat_caption += (
-                f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
-            )
-        cat_caption += f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
+            f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
+        )
         cat_caption += (
-                f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
-            )
+            f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
+        )
+        cat_caption += (
+            f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
+        )
         cat_caption += f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
         cat_caption += "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>"
         await borg.send_file(
