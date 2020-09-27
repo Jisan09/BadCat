@@ -189,7 +189,7 @@ async def _(event):
     os.remove(required_file_name)
     await event.delete()
 
-    
+
 CMD_HELP.update(
     {
         "time": "__**PLUGIN NAME :** Time__\
