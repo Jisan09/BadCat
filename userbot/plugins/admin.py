@@ -282,14 +282,14 @@ async def startmute(event):
         chat_id = event.chat_id
         if is_muted(userid, chat_id):
             return await event.edit(
-                "Are bhaiya! ye to pehele se hi mute h ~~lmfao sed rip~~"
+                "This user is already muted in this chat ~~lmfao sed rip~~"
             )
         try:
             mute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Bohot bakbak karli, Ab mute ho jau.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
+            await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -303,10 +303,10 @@ async def startmute(event):
         if not user:
             return
         if user.id == bot.uid:
-            return await edit_or_reply(event, "Matlab!! Kuch bhi??")
+            return await edit_or_reply(event, "Sorry, I can't mute my self")
         if is_muted(user.id, event.chat_id):
             return await edit_or_reply(
-                event, "Are bhaiya! ye to pehele se hi mute h ~~lmfao sed rip~~"
+                event, "This user is already muted in this chat ~~lmfao sed rip~~"
             )
         try:
             await event.client(EditBannedRequest(event.chat_id, user.id, MUTE_RIGHTS))
@@ -315,11 +315,11 @@ async def startmute(event):
                 if chat.admin_rights.delete_messages is not True:
                     return await edit_or_reply(
                         event,
-                        "`Delete permission nhi hai , dikhta nhi kya... ಥ﹏ಥ`",
+                        "`You can't mute a person if you dont have delete messages permission. ಥ﹏ಥ`",
                     )
             elif "creator" not in vars(chat):
                 return await edit_or_reply(
-                    event, "`Admin na ho fir v mute krne chale!! lol niqq.` ಥ﹏ಥ  "
+                    event, "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  "
                 )
             try:
                 mute(user.id, event.chat_id)
@@ -357,16 +357,14 @@ async def endmute(event):
         chat_id = event.chat_id
         if not is_muted(userid, chat_id):
             return await event.edit(
-                "__Nah, Sir-g! Ye banda to mute nhi h__\n（ ^_^）o自自o（^_^ ）"
+                "__This user is not muted in this chat__\n（ ^_^）o自自o（^_^ ）"
             )
         try:
             unmute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit(
-                "Chalo thik h krlo Dil k baat, Krdiya unmute\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍"
-            )
+            await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -387,8 +385,7 @@ async def endmute(event):
             return await edit_or_reply(event, f"**Error : **`{str(e)}`")
         else:
             await edit_or_reply(
-                event,
-                "Chalo thik h krlo Dil k baat, Krdiya unmute\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍",
+                event, "Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍"
             )
         if BOTLOG:
             await event.client.send_message(
@@ -451,9 +448,9 @@ async def kick(usr):
         return
     user, reason = await get_user_from_event(usr)
     if not user:
-        await edit_or_reply(usr, "`Kisko nikalna hai?.`")
+        await edit_or_reply(usr, "`Couldn't fetch user.`")
         return
-    catevent = await edit_or_reply(usr, "`Peheli fursat m nikal...`")
+    catevent = await edit_or_reply(usr, "`Kicking...`")
     try:
         await usr.client.kick_participant(usr.chat_id, user.id)
         await sleep(0.5)
