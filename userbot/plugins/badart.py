@@ -52,7 +52,8 @@ async def kakashi(baby):
         "      |    /                \    |\n"
         "      👞.                  👞"
     )
-    
+
+
 @borg.on(admin_cmd(pattern=r"foff"))
 async def bluedevilfooku(fooku):
     await fooku.edit(
