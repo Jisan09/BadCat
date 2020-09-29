@@ -6,6 +6,7 @@
 
 from asyncio import sleep
 
+from telethon import functions
 from telethon.errors import (
     BadRequestError,
     ImageProcessFailedError,
@@ -309,6 +310,26 @@ async def startmute(event):
                 event, "This user is already muted in this chat ~~lmfao sed rip~~"
             )
         try:
+            admin = chat.admin_rights
+            creator = chat.creator
+            if not admin and not creator:
+                await edit_or_reply(
+                    event, "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  "
+                )
+                return
+            result = await event.client(
+                functions.channels.GetParticipantRequest(
+                    channel=event.chat_id, user_id=user.id
+                )
+            )
+            try:
+                if result.participant.banned_rights.send_messages:
+                    return await edit_or_reply(
+                        event,
+                        "This user is already muted in this chat ~~lmfao sed rip~~",
+                    )
+            except:
+                pass
             await event.client(EditBannedRequest(event.chat_id, user.id, MUTE_RIGHTS))
         except UserAdminInvalidError:
             if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None:
@@ -378,15 +399,29 @@ async def endmute(event):
         if not user:
             return
         try:
-            await event.client(EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
             if is_muted(user.id, event.chat_id):
                 unmute(user.id, event.chat_id)
+            else:
+                result = await event.client(
+                    functions.channels.GetParticipantRequest(
+                        channel=event.chat_id, user_id=user.id
+                    )
+                )
+                try:
+                    if result.participant.banned_rights.send_messages:
+                        await event.client(
+                            EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS)
+                        )
+                except:
+                    return await edit_or_reply(
+                        event,
+                        "This user can already speak freely in this chat ~~lmfao sed rip~~",
+                    )
         except Exception as e:
             return await edit_or_reply(event, f"**Error : **`{str(e)}`")
-        else:
-            await edit_or_reply(
-                event, "Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍"
-            )
+        await edit_or_reply(
+            event, "Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍"
+        )
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
