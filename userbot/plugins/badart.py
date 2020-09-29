@@ -52,3 +52,21 @@ async def kakashi(baby):
         "      |    /                \    |\n"
         "      👞.                  👞"
     )
+    
+@borg.on(admin_cmd(pattern=r"foff"))
+async def bluedevilfooku(fooku):
+    await fooku.edit(
+        ".                       /¯ )\n"
+        "                      /¯  /\n"
+        "                    /    /\n"
+        "              /´¯/'   '/´¯¯`•¸\n"
+        "          /'/   /    /       /¨¯\ \n"
+        "        ('(   (   (   (  ¯~/'  ')\n"
+        "         \                        /\n"
+        "          \                _.•´\n"
+        "            \              (\n"
+        "              \  \n"
+        "Roses are RED\n"
+        "Violets are BLUE\n"
+        "My middle finger for U🖕😂\n"
+    )
