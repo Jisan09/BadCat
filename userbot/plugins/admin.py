@@ -385,7 +385,9 @@ async def endmute(event):
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Chalo thik h krlo Dil k baat, Krdiya unmute\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
+            await event.edit(
+                "Chalo thik h krlo Dil k baat, Krdiya unmute\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍"
+            )
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
