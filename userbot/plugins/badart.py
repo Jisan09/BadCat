@@ -3,8 +3,10 @@ Plugin for CatUSerbot
 #credit @GulfysHalfyyyy
 """
 import asyncio
+
 from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
+
 name = str(ALIVE_NAME) if ALIVE_NAME else "BadCat"
 
 
@@ -172,7 +174,6 @@ async def kakashi(saxy):
         "⣸⣿⣿⣿⣿⣿⣿⣿⣿⠏⠄⠄⠄⠄⠄⠸⣿⣿⣿⣿⡿⢟⣣\n"
         "ɮǟȶǟʊ ȶɦǟʀӄɨօ ӄʏǟ ɦǟǟʟ ,ӄɛֆǟ ʟǟɢǟ\n"
     )
-    
 
 
 @borg.on(admin_cmd(pattern="sdick (.*)"))
