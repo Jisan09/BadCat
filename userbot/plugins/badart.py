@@ -181,7 +181,7 @@ async def kakashi(saxy):
 async def kakashi(dicksay):
     text = dicksay.pattern_match.group(1)
     await dicksay.edit(
-        f"**[{DEFAULTUSER}]({USERNAME})  ➥ {text} .\n**"
+        f"**[{name}]({USERNAME})  ➥ {text} .\n**"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠲⢄\n"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠞⠁⠀⠀⠀⠀⢱\n"
