@@ -1,5 +1,6 @@
-"""##Created by @Jisan7509
-Plugin for CatUSerbot
+"""
+Created by @Jisan7509
+Plugin for CatUserbot
 #credit @GulfysHalfyyyy
 """
 import asyncio
@@ -8,7 +9,7 @@ from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
 
 name = str(ALIVE_NAME) if ALIVE_NAME else "BadCat"
-
+USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 @borg.on(admin_cmd(pattern=r"ohnoo"))
 async def kakashi(bsdk):
@@ -180,7 +181,7 @@ async def kakashi(saxy):
 async def kakashi(dicksay):
     text = dicksay.pattern_match.group(1)
     await dicksay.edit(
-        f"**{name}  ➥ {text} .\n**"
+        f"**[{DEFAULTUSER}]({USERNAME})  ➥ {text} .\n**"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠲⢄\n"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠞⠁⠀⠀⠀⠀⢱\n"
