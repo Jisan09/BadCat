@@ -1,9 +1,8 @@
 import os
 import re
 import time
-import zipfile
 from random import choice
-
+import zipfile
 import PIL.ImageOps
 import requests
 from PIL import Image
@@ -55,7 +54,7 @@ async def admin_groups(cat):
 # for getmusic
 
 
-async def yt_search(cat):
+async def catmusic(cat, QUALITY, hello):
     search = cat
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--ignore-certificate-errors")
@@ -70,10 +69,71 @@ async def yt_search(cat):
     for i in user_data:
         video_link = i.get_attribute("href")
         break
-    return video_link if video_link else "Couldnt fetch results"
+    if not os.path.isdir("./temp/"):
+        os.makedirs("./temp/")
+    if not video_link:
+        await hello.edit(f"Sorry. I can't find that song `{search}`")
+        return
+    try:
+        command = (
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality '
+            + QUALITY
+            + " "
+            + video_link
+        )
+        os.system(command)
+    except Exception as e:
+        return await hello.edit(f"`Error:\n {e}`")
+    try:
+        thumb = (
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download '
+            + video_link
+        )
+        os.system(thumb)
+    except Exception as e:
+        return await hello.edit(f"`Error:\n {e}`")
+
+
+async def catmusicvideo(cat, hello):
+    search = cat
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--ignore-certificate-errors")
+    chrome_options.add_argument("--test-type")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.binary_location = Config.CHROME_BIN
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver.get("https://www.youtube.com/results?search_query=" + search)
+    user_data = driver.find_elements_by_xpath('//*[@id="video-title"]')
+    for i in user_data:
+        video_link = i.get_attribute("href")
+        break
+    if not os.path.isdir("./temp/"):
+        os.makedirs("./temp/")
+    if not video_link:
+        await hello.edit(f"Sorry. I can't find that song `{search}`")
+        return
+    try:
+        command = (
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" -f "[filesize<20M]" ' + video_link
+        )
+        os.system(command)
+    except Exception as e:
+        return await hello.edit(f"`Error:\n {e}`")
+    try:
+        thumb = (
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download '
+            + video_link
+        )
+        os.system(thumb)
+    except Exception as e:
+        return await hello.edit(f"`Error:\n {e}`")
 
 
 # for stickertxt
+
+
 async def waifutxt(text, chat_id, reply_to_id, bot, borg):
     animus = [
         0,
@@ -116,13 +176,12 @@ async def waifutxt(text, chat_id, reply_to_id, bot, borg):
         await cat.delete()
 
 
-# unziping file
+#unziping file
 async def unzip(downloaded_file_name):
     with zipfile.ZipFile(downloaded_file_name, "r") as zip_ref:
         zip_ref.extractall("./temp")
     return f"{downloaded_file_name[:-3]}gif"
-
-
+    
 # https://github.com/pokurt/LyndaRobot/blob/7556ca0efafd357008131fa88401a8bb8057006f/lynda/modules/helper_funcs/string_handling.py#L238
 
 
@@ -153,11 +212,6 @@ async def extract_time(cat, time_val):
     return ""
 
 
-song_dl = f"youtube-dl -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"
-thumb_dl = f"youtube-dl -o './temp/%(title)s.%(ext)s' --write-thumbnail --skip-download {video_link}"
-video_dl = f"youtube-dl -o './temp/%(title)s.%(ext)s' -f '[filesize<20M]' {video_link}"
-name_dl = f"youtube-dl --get-filename -o './temp/%(title)s.%(ext)s' {video_link}"
-
 EMOJI_PATTERN = re.compile(
     "["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
@@ -184,7 +238,10 @@ def deEmojify(inputString: str) -> str:
 
 
 def Build_Poll(options):
-    return [PollAnswer(option, bytes(i)) for i, option in enumerate(options, start=1)]
+    return [
+        PollAnswer(option, bytes(i))
+        for i, option in enumerate(options, start=1)
+    ]
 
 
 def convert_toimage(image):
