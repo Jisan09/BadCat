@@ -6,6 +6,7 @@ Plugin for CatUserbot
 from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
 
+
 @borg.on(admin_cmd(pattern=r"acarry"))
 async def kakashi(event):
     if event.fwd_from:
@@ -50,6 +51,8 @@ G = (
 
 
 n = str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
+
+
 @borg.on(admin_cmd(pattern="sthink (.*)"))
 async def kakashi(think):
     name = think.pattern_match.group(1)
@@ -75,6 +78,8 @@ async def kakashi(think):
 
 
 n = str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
+
+
 @borg.on(admin_cmd(pattern="sfrog (.*)"))
 async def kakashi(frogsay):
     name = frogsay.pattern_match.group(1)
@@ -200,7 +205,7 @@ async def kakashi(ckmkb):
 @borg.on(admin_cmd(pattern=r"sshit"))
 async def kakashi(shit):
     await shit.edit(G)
-    
+
 
 CMD_HELP.update(
     {
