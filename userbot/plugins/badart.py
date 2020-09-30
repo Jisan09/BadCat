@@ -72,7 +72,8 @@ async def bluedevilfooku(fooku):
         "This is my middle finger\n"
         "It just for U🖕😂\n"
     )
-    
+
+
 @borg.on(admin_cmd(pattern=r"sporn"))
 async def kakashi(pornhub):
     await pornhub.edit(
@@ -101,7 +102,8 @@ async def kakashi(pornhub):
         "⣿⣿⣿⣿⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
     )
-    
+
+
 @borg.on(admin_cmd(pattern=r"spika"))
 async def kakashi(pikachu):
     await pikachu.edit(
@@ -124,8 +126,8 @@ async def kakashi(pikachu):
         "⣿⣿⣿⣿⣿⣿🅼🅰️ 🅺🅸 🅲🅷🆄⢸⣿⣿⣿⣿⣿⣿\n"
         "🅿️🅸🅺🅰️ 🅿️🅸🅺🅰️ 🅿️🅸🅺🅰️🅲🅷🆄\n"
     )
-        
-        
+
+
 @borg.on(admin_cmd(pattern=r"sxx"))
 async def kakashi(saxy):
     await saxy.edit(
