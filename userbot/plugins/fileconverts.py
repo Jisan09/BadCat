@@ -60,6 +60,7 @@ async def silently_send_message(conv, text):
     await conv.mark_read(message=response)
     return response
 
+
 @borg.on(admin_cmd(pattern="stoi$"))
 @borg.on(sudo_cmd(pattern="stoi$", allow_sudo=True))
 async def _(cat):
