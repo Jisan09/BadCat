@@ -11,10 +11,11 @@ from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP, name_dl, runcmd, song_dl, thumb_dl, video_dl, yt_search
+from . import name_dl, runcmd, song_dl, thumb_dl, video_dl, yt_search
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
+
 
 @borg.on(admin_cmd(pattern="(song|song320)($| (.*))"))
 @borg.on(sudo_cmd(pattern="(song|song320)($| (.*))", allow_sudo=True))
@@ -161,4 +162,3 @@ async def _(event):
     for files in (catthumb, song_file):
         if files and os.path.exists(files):
             os.remove(files)
-
