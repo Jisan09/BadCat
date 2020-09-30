@@ -11,6 +11,7 @@ from userbot.utils import admin_cmd
 name = str(ALIVE_NAME) if ALIVE_NAME else "BadCat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
+
 @borg.on(admin_cmd(pattern=r"ohnoo"))
 async def kakashi(bsdk):
     if bsdk.fwd_from:
