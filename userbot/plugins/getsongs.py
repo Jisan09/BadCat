@@ -12,8 +12,10 @@ from validators.url import url
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP, name_dl, runcmd, song_dl, thumb_dl, video_dl, yt_search
+
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
+
 
 @borg.on(admin_cmd(pattern="(song|song320)($| (.*))"))
 @borg.on(sudo_cmd(pattern="(song|song320)($| (.*))", allow_sudo=True))
@@ -164,7 +166,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "getsongs":"__**PLUGIN NAME :** Get Songs__\
+        "getsongs": "__**PLUGIN NAME :** Get Songs__\
         \n\n📌** CMD ➥** `.song` <query> or `.song reply to song name`\
         \n**USAGE   ➥  **Searches the song you entered in query and sends it quality of it is 128k\
         \n\n📌** CMD ➥** `.song320` <query> or `.song320 reply to song name`\
