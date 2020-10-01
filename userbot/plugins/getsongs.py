@@ -10,27 +10,16 @@ import pybase64
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 
-from .. import (
-    ALIVE_NAME,
-    CMD_HELP,
-    name_dl,
-    runcmd,
-    song_dl,
-    thumb_dl,
-    video_dl,
-    yt_search,
-)
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
+from . import CMD_HELP, name_dl, runcmd, song_dl, thumb_dl, video_dl, yt_search
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
-
 
 @borg.on(admin_cmd(pattern="(song|song320)($| (.*))"))
 @borg.on(sudo_cmd(pattern="(song|song320)($| (.*))", allow_sudo=True))
 async def _(event):
     reply_to_id = None
-    if not (event.from_id == bot.uid):
+    if event.from_id != bot.uid:
         reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
@@ -104,7 +93,7 @@ async def _(event):
 @borg.on(sudo_cmd(pattern="vsong( (.*)|$)", allow_sudo=True))
 async def _(event):
     reply_to_id = None
-    if not (event.from_id == bot.uid):
+    if event.from_id != bot.uid:
         reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
@@ -175,10 +164,12 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "getsongs": "__**PLUGIN NAME :** Get Songs__\
-    \n\n📌** CMD ➥** `.song` query or `.song` reply to song name :\
-    \n**USAGE   ➥  **Finds the song you entered in query and sends it\
-    \n\n📌** CMD ➥** `.vsong` query or `.vsong` reply to song name :\
-    \n**USAGE   ➥  **Finds the video song you entered in query and sends it"
+        "getsongs":"__**PLUGIN NAME :** Get Songs__\
+        \n\n📌** CMD ➥** `.song` <query> or `.song reply to song name`\
+        \n**USAGE   ➥  **Searches the song you entered in query and sends it quality of it is 128k\
+        \n\n📌** CMD ➥** `.song320` <query> or `.song320 reply to song name`\
+        \n**USAGE   ➥  **Searches the song you entered in query and sends it quality of it is 320k\
+        \n\n📌** CMD ➥** .vsong` <query> or `.vsong reply to song name`\
+        \n**USAGE   ➥  **Searches the video song you entered in query and sends it"
     }
 )
