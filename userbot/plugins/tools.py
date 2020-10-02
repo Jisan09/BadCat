@@ -14,8 +14,8 @@ from PIL import Image, ImageColor
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP
-from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
@@ -67,9 +67,11 @@ async def _(event):
 @borg.on(admin_cmd(pattern=r"decode$", outgoing=True))
 @borg.on(sudo_cmd(pattern=r"decode$", allow_sudo=True))
 async def parseqr(qr_e):
+    if not os.path.isdir(Config.TEMP_DIR):
+        os.makedirs(Config.TEMP_DIR)
     # For .decode command, get QR Code/BarCode content from the replied photo.
     downloaded_file_name = await qr_e.client.download_media(
-        await qr_e.get_reply_message()
+        await qr_e.get_reply_message(), Config.TMP_DIR
     )
     # parse the Official ZXing webpage to decode the QRCode
     command_to_exec = [
@@ -80,12 +82,23 @@ async def parseqr(qr_e):
         "f=@" + downloaded_file_name + "",
         "https://zxing.org/w/decode",
     ]
-    t_response, e_response = (await runcmd(command_to_exec))[:-2]
+    process = await asyncio.create_subprocess_exec(
+        *command_to_exec,
+        # stdout must a pipe to be accessible as process.stdout
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    # Wait for the subprocess to finish
+    stdout, stderr = await process.communicate()
+    e_response = stderr.decode().strip()
+    t_response = stdout.decode().strip()
     if not t_response:
         return await edit_or_reply(qr_e, f"Failed to decode.\n`{e_response}`")
     soup = BeautifulSoup(t_response, "html.parser")
     qr_contents = soup.find_all("pre")[0].text
     await edit_or_reply(qr_e, qr_contents)
+    if os.path.exists(downloaded_file_name):
+        os.remove(downloaded_file_name)
 
 
 @borg.on(admin_cmd(pattern="barcode ?(.*)"))
@@ -97,6 +110,7 @@ async def _(event):
     start = datetime.now()
     input_str = event.pattern_match.group(1)
     message = "SYNTAX: `.barcode <long text to include>`"
+    reply_msg_id = event.message.id
     if input_str:
         message = input_str
     elif event.reply_to_msg_id:
@@ -356,6 +370,8 @@ Year: {}""".format(
         await catevent.edit(output_str, link_preview=True)
     else:
         await catevent.edit("xkcd n.{} not found!".format(xkcd_id))
+
+
 
 
 CMD_HELP.update(
