@@ -10,21 +10,10 @@ import pybase64
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 
-from .. import (
-    ALIVE_NAME,
-    CMD_HELP,
-    name_dl,
-    runcmd,
-    song_dl,
-    thumb_dl,
-    video_dl,
-    yt_search,
-)
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
+from . import ALIVE_NAME, CMD_HELP, name_dl, runcmd, song_dl, thumb_dl, video_dl, yt_search
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
-
 
 @borg.on(admin_cmd(pattern="(song|song320)($| (.*))"))
 @borg.on(sudo_cmd(pattern="(song|song320)($| (.*))", allow_sudo=True))
@@ -117,14 +106,6 @@ async def _(event):
     else:
         event = await edit_or_reply(event, "What I am Supposed to find")
         return
-    event = await edit_or_reply(event, "wi8..! I am finding your videosong....")
-    await catmusicvideo(query, event)
-    try:
-        cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-        cat = Get(cat)
-        await event.client(cat)
-    except BaseException:
-        pass
     cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
     video_link = await yt_search(str(query))
@@ -134,7 +115,7 @@ async def _(event):
         )
     thumb_cmd = thumb_dl.format(video_link=video_link)
     name_cmd = name_dl.format(video_link=video_link)
-    video_cmd = video_dl.formar(video_link=video_link)
+    video_cmd = video_dl.format(video_link=video_link)
     stderr = (await runcmd(video_cmd))[1]
     if stderr:
         return await catevent.edit(f"**Error :** `{stderr}`")
@@ -142,6 +123,11 @@ async def _(event):
     if stderr:
         return await catevent.edit(f"**Error :** `{stderr}`")
     stderr = (await runcmd(thumb_cmd))[1]
+    try:
+        cat = Get(cat)
+        await event.client(cat)
+    except BaseException:
+        pass
     if stderr:
         return await catevent.edit(f"**Error :** `{stderr}`")
     catname = os.path.splitext(catname)[0]
@@ -160,7 +146,7 @@ async def _(event):
         catthumb = None
     await borg.send_file(
         event.chat_id,
-        song_file,
+        vsong_file,
         force_document=False,
         caption=f"➥ __**Song :- {query}**__\n__**➥ Uploaded by :-**__ [{DEFAULTUSER}]({USERNAME})",
         thumb=catthumb,
@@ -168,11 +154,11 @@ async def _(event):
         reply_to=reply_to_id,
     )
     await catevent.delete()
-    for files in (catthumb, song_file):
+    for files in (catthumb, vsong_file):
         if files and os.path.exists(files):
             os.remove(files)
 
-
+            
 CMD_HELP.update(
     {
         "getsongs": "__**PLUGIN NAME :** Get Songs__\
