@@ -14,7 +14,7 @@ from . import *
 async def itachi(event):
     args = event.pattern_match.group(1)
     get = await event.get_reply_message()
-    if not (get and (get.media)):
+    if not (get and (get.text)):
         await edit_or_reply(
             event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
         )
