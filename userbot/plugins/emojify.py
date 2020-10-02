@@ -15,7 +15,7 @@ async def itachi(event):
     args = event.pattern_match.group(1)
     if not args:
         await edit_or_reply(
-            event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
+            event, "`What am I Supposed to do with this , Give me a text. `"
         )
         get = await event.get_reply_message()
         args = get.text
