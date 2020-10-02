@@ -69,8 +69,8 @@ async def amireallyalive(alive):
         )
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="live$"))
-@borg.on(sudo_cmd(pattern="live$", allow_sudo=True))
+@borg.on(admin_cmd(outgoing=True, pattern="ialive$"))
+@borg.on(sudo_cmd(pattern="iaive$", allow_sudo=True))
 async def amireallyalive(alive):
     if alive.fwd_from:
         return
@@ -143,7 +143,7 @@ CMD_HELP.update(
         "alive": "__**PLUGIN NAME :** Alive__\
       \n\n📌** CMD ➥** `.alive`\
       \n**USAGE   ➥  **To see wether your bot is working or not.\
-      \n\n📌** CMD ➥** `.live`\
+      \n\n📌** CMD ➥** `.ialive`\
       \n**USAGE   ➥**  status of bot.\
       \n\n📌** CMD ➥** `.cat`\
       \n**USAGE   ➥**  Random cat stickers"
