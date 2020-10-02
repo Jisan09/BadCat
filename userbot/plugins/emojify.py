@@ -13,8 +13,10 @@ from . import *
 @borg.on(sudo_cmd(pattern="emoji(?: |$)(.*)", allow_sudo=True))
 async def itachi(event):
     args = event.pattern_match.group(1)
-    get = await event.get_reply_message()
-    if not (args and (get.text)):
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
         await edit_or_reply(
             event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
         )
