@@ -372,8 +372,6 @@ Year: {}""".format(
         await catevent.edit("xkcd n.{} not found!".format(xkcd_id))
 
 
-
-
 CMD_HELP.update(
     {
         "tools": "__**PLUGIN NAME :** Tools__\
