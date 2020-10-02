@@ -1,4 +1,3 @@
-
 """Get the info your system. Using .neofetch then .sysd"""
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import ALIVE_NAME, CMD_HELP, runcmd
@@ -29,7 +28,7 @@ async def sysdetails(sysd):
     result = str(a) + str(b)
     await edit_or_reply(sysd, "Neofetch Result: `" + result + "`")
 
-    
+
 CMD_HELP.update(
     {
         "sysdetails": "__**PLUGIN NAME :** Sysdetails__\
