@@ -12,7 +12,6 @@ from . import *
 @borg.on(admin_cmd(pattern="emoji(?: |$)(.*)"))
 @borg.on(sudo_cmd(pattern="emoji(?: |$)(.*)", allow_sudo=True))
 async def itachi(event):
-    -------------
     args = event.pattern_match.group(1)
     get = await event.get_reply_message()
     if not (get and (get.media)):
