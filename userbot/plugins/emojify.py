@@ -19,7 +19,7 @@ async def itachi(event):
         )
         get = await event.get_reply_message()
         args = get.text
-    if not args:
+    elif not args:
         await edit_or_reply(
             event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
         )
