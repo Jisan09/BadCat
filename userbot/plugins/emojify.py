@@ -13,13 +13,14 @@ from . import *
 @borg.on(sudo_cmd(pattern="emoji(?: |$)(.*)", allow_sudo=True))
 async def itachi(event):
     args = event.pattern_match.group(1)
+    catinput = event.pattern_match.group(2)
     get = await event.get_reply_message()
     if not (get and (get.text)):
         await edit_or_reply(
             event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
         )
         return
-    string = "  ".join(args).lower()
+    string = "  ".join(catinput).lower()
     for chutiya in string:
         if chutiya in emojify.kakashitext:
             bsdk = emojify.kakashiemoji[emojify.kakashitext.index(chutiya)]
