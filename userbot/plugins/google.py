@@ -1,34 +1,53 @@
-""" Powered by @Google
-Available Commands:
-.gs <query>
-.grs """
-
+# reverse search and google search  plugin for cat
 import os
 from datetime import datetime
-from re import findall
 
 import requests
 from bs4 import BeautifulSoup
-from search_engine_parser import GoogleSearch
+from googlesearch import search
 
-from userbot.utils import admin_cmd
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import BOTLOG, BOTLOG_CHATID, CMD_HELP
 
 
-def progress(current, total):
-    logger.info(
-        "Downloaded {} of {}\nCompleted {}".format(
-            current, total, (current / total) * 100
+@borg.on(admin_cmd(outgoing=True, pattern=r"gs(?: |$)(\d*)? ?(.*)"))
+@borg.on(sudo_cmd(allow_sudo=True, pattern=r"gs(?: |$)(\d*)? ?(.*)"))
+async def gsearch(event):
+    if event.is_reply and not event.pattern_match.group(2):
+        query = await event.get_reply_message()
+        query = str(query.message)
+    else:
+        query = str(event.pattern_match.group(2))
+    if not query:
+        return await edit_or_reply(
+            event, "Reply to a message or pass a query to search!"
         )
+    catevent = await edit_or_reply(event, "`Processing...`")
+    if event.pattern_match.group(1) != "":
+        lim = int(event.pattern_match.group(1))
+        if lim > 20:
+            lim = int(20)
+        if lim <= 0:
+            lim = int(1)
+    else:
+        lim = int(10)
+    catresult = ""
+    for url in search(query, stop=lim):
+        a = google_scrape(url)
+        catresult += f"👉[{a}]({url})\n\n"
+    await catevent.edit(
+        "**Search Query:**\n`" + query + "`\n\n**Results:**\n" + catresult,
+        link_preview=False,
     )
+    if BOTLOG:
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "Google Search query `" + query + "` was executed successfully",
+        )
 
 
-BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
-BOTLOG = True
-
-
-@borg.on(admin_cmd(outgoing=True, pattern=r"gs (.*)"))
+"""@borg.on(admin_cmd(outgoing=True, pattern=r"gs (.*)"))
 async def gsearch(q_event):
-    """ For .google command, do a Google search. """
     match = q_event.pattern_match.group(1)
     page = findall(r"page=\d+", match)
     try:
@@ -56,20 +75,21 @@ async def gsearch(q_event):
         await q_event.client.send_message(
             BOTLOG_CHATID,
             "Google Search query `" + match + "` was executed successfully",
-        )
+        )"""
 
 
-@borg.on(admin_cmd(pattern="grs"))
+@borg.on(admin_cmd(pattern="grs$"))
+@borg.on(sudo_cmd(pattern="grs$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     start = datetime.now()
-    BASE_URL = "http://www.google.com"
     OUTPUT_STR = "Reply to an image to do Google Reverse Search"
     if event.reply_to_msg_id:
-        await event.edit("Pre Processing Media")
+        catevent = await edit_or_reply(event, "Pre Processing Media")
         previous_message = await event.get_reply_message()
         previous_message_text = previous_message.message
+        BASE_URL = "http://www.google.com"
         if previous_message.media:
             downloaded_file_name = await borg.download_media(
                 previous_message, Config.TMP_DOWNLOAD_DIRECTORY
@@ -94,7 +114,7 @@ async def _(event):
             request_url = SEARCH_URL.format(BASE_URL, previous_message_text)
             google_rs_response = requests.get(request_url, allow_redirects=False)
             the_location = google_rs_response.headers.get("Location")
-        await event.edit("Found Google Result. Pouring some soup on it!")
+        await catevent.edit("Found Google Result. Pouring some soup on it!")
         headers = {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
         }
@@ -111,8 +131,26 @@ async def _(event):
         end = datetime.now()
         ms = (end - start).seconds
         OUTPUT_STR = """{img_size}
-**Possible Related Search**: <a href="{prs_url}">{prs_text}</a>
-More Info: Open this <a href="{the_location}">Link</a> in {ms} seconds""".format(
+<b>Possible Related Search : </b> <a href="{prs_url}">{prs_text}</a>
+<b>More Info : </b> Open this <a href="{the_location}">Link</a> in {ms} seconds""".format(
             **locals()
         )
-    await event.edit(OUTPUT_STR, parse_mode="HTML", link_preview=False)
+    await catevent.edit(OUTPUT_STR, parse_mode="HTML", link_preview=False)
+
+
+def google_scrape(url):
+    thepage = (requests.get(url)).text
+    soup = BeautifulSoup(thepage, "html.parser")
+    return soup.title.text
+
+
+CMD_HELP.update(
+    {
+        "google": "__**PLUGIN NAME :** Google\
+        \n\n📌** CMD ➥** `.gs` <limit> <query>` or `.gs <limit> (replied message)`\
+        \n**USAGE   ➥  **Will google  search and sends you top 10 results links.\
+        \n\n📌** CMD ➥** `.grs` reply to image\
+        \n**USAGE   ➥  **Will google reverse search the image and shows you the result.\
+        "
+    }
+)
