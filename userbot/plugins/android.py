@@ -24,15 +24,15 @@ DEVICES_DATA = (
 async def kakashi(magisk):
     """ magisk latest releases """
     magisk_dict = {
-        "Stable": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
-        "Beta": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
-        "Canary": "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/debug.json",
+        "Stable ":"https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
+        "Beta ":"https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
+        "Canary ":"https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/debug.json",
     }
-    releases = "__**Latest Magisk Releases:**__\n\n"
+    releases = "__**Latest Magisk Releases :**__\n\n"
     for name, release_url in magisk_dict.items():
         data = get(release_url).json()
         releases += (
-            f'**{name}:** [ZIP v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
+            f'**{name} :** [ZIP v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
             f'[APK v{data["app"]["version"]}]({data["app"]["link"]}) | '
             f'[Uninstaller]({data["uninstaller"]["link"]})\n'
         )
