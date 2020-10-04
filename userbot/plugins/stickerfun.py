@@ -18,8 +18,8 @@ from . import deEmojify, waifutxt
 # RegEx by https://t.me/c/1220993104/500653 ( @SnapDragon7410 )
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="sttxt(?: |$)(.*)"))
-@borg.on(sudo_cmd(allow_sudo=True, pattern="sttxt(?: |$)(.*)"))
+@borg.on(admin_cmd(outgoing=True, pattern="st(?: |$)(.*)"))
+@borg.on(sudo_cmd(allow_sudo=True, pattern="st(?: |$)(.*)"))
 async def waifu(animu):
     text = animu.pattern_match.group(1)
     reply_to_id = animu.message
