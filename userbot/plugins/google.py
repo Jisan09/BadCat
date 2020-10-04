@@ -253,8 +253,8 @@ async def gsearch(q_event):
 
 CMD_HELP.update(
     {
-        "google": "__**PLUGIN NAME :** Google\
-        \n\n📌** CMD ➥** `.gs` <limit> <query>` or `.gs <limit> (replied message)`\
+        "google": "__**PLUGIN NAME :** Google__\
+        \n\n📌** CMD ➥** `.gs` <limit> <query> or `.gs <limit> (replied message)`\
         \n**USAGE   ➥  **Will google  search and sends you top 10 results links.\
         \n\n📌** CMD ➥** `.grs` reply to image\
         \n**USAGE   ➥  **Will google reverse search the image and shows you the result.\
