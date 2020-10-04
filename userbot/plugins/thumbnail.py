@@ -96,7 +96,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "thumbnail": "__**PLUGIN NAME :** Thumbnail\
+        "thumbnail": "__**PLUGIN NAME :** Thumbnail__\
     \n\n📌** CMD ➥** `.savethumbnail`\
     \n**USAGE   ➥  **Reply to file or video to save it as temporary thumbimage\
     \n\n📌** CMD ➥** `.clearthumbnail`\
