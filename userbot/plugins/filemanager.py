@@ -34,17 +34,17 @@ async def lst(event):
             catpath = os.path.join(path, contents)
             if not os.path.isdir(catpath):
                 size = os.stat(catpath).st_size
-                if contents.endswith((".mp3", ".flac", ".wav", ".m4a")):
+                if str(contents).endswith((".mp3", ".flac", ".wav", ".m4a")):
                     files += "🎵" + f"`{contents}`\n"
-                if contents.endswith((".opus")):
+                if str(contents).endswith((".opus")):
                     files += "🎙" + f"`{contents}`\n"
-                elif contents.endswith(
+                elif str(contents).endswith(
                     (".mkv", ".mp4", ".webm", ".avi", ".mov", ".flv")
                 ):
                     files += "🎞" + f"`{contents}`\n"
-                elif contents.endswith((".zip", ".tar", ".tar.gz", ".rar")):
+                elif str(contents).endswith((".zip", ".tar", ".tar.gz", ".rar")):
                     files += "🗜" + f"`{contents}`\n"
-                elif contents.endswith(
+                elif str(contents).endswith(
                     (".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico")
                 ):
                     files += "🖼" + f"`{contents}`\n"
@@ -56,22 +56,22 @@ async def lst(event):
     else:
         size = os.stat(path).st_size
         msg = f"The details of given file :\n"
-        if path.endswith((".mp3", ".flac", ".wav", ".m4a")):
+        if str(path).endswith((".mp3", ".flac", ".wav", ".m4a")):
             mode = "🎵"
-        if path.endswith((".opus")):
+        if str(path).endswith((".opus")):
             mode = "🎙"
-        elif path.endswith((".mkv", ".mp4", ".webm", ".avi", ".mov", ".flv")):
+        elif str(path).endswith((".mkv", ".mp4", ".webm", ".avi", ".mov", ".flv")):
             mode = "🎞"
-        elif path.endswith((".zip", ".tar", ".tar.gz", ".rar")):
+        elif str(path).endswith((".zip", ".tar", ".tar.gz", ".rar")):
             mode = "🗜"
-        elif path.endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico")):
+        elif str(path).endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico")):
             mode = "🖼"
         else:
             mode = "📄"
         time.ctime(os.path.getctime(path))
         time2 = time.ctime(os.path.getmtime(path))
         time3 = time.ctime(os.path.getatime(path))
-        msg += f"**Location :** `{path}`\n"
+        msg += f"**Location :** `{str(path)}`\n"
         msg += f"**icon :** `{mode}`\n"
         msg += f"**Size :** `{humanbytes(size)}`\n"
         msg += f"**Last Modified Time:** `{time2}`\n"
@@ -96,7 +96,7 @@ async def lst(event):
 async def lst(event):
     cat = event.pattern_match.group(1)
     if cat:
-        path = cat
+        path = Path(cat)
     else:
         await edit_or_reply(event, "what should i delete")
         return
