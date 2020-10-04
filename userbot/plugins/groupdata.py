@@ -670,7 +670,7 @@ async def fetch_info(chat, event):
 
 CMD_HELP.update(
     {
-        "groupdata": "__**PLUGIN NAME :** Groupdata\
+        "groupdata": "__**PLUGIN NAME :** Groupdata__\
     \n\n📌** CMD ➥** `.kickme`\
     \n**USAGE   ➥  **Throws you away from that chat\
     \n\n📌** CMD ➥** `.get_admins` or .`get_admins <username of group >`\
