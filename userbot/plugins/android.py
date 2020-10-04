@@ -28,11 +28,11 @@ async def kakashi(magisk):
         "Beta": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
         "Canary": "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/debug.json",
     }
-    releases = "Latest Magisk Releases:\n"
+    releases = "__**Latest Magisk Releases:**__\n"
     for name, release_url in magisk_dict.items():
         data = get(release_url).json()
         releases += (
-            f'{name}: [ZIP v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
+            f'**{name}:** [ZIP v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
             f'[APK v{data["app"]["version"]}]({data["app"]["link"]}) | '
             f'[Uninstaller]({data["uninstaller"]["link"]})\n'
         )
