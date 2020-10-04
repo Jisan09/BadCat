@@ -1,4 +1,4 @@
-# pm and tagged messages logger
+# pm and tagged messages logger for catuserbot by @mrconfused (@sandy1709)
 import asyncio
 import logging
 
@@ -69,12 +69,6 @@ async def log(log_text):
         await log_text.edit("`This feature requires Logging to be enabled!`")
     await asyncio.sleep(2)
     await log_text.delete()
-
-
-@borg.on(admin_cmd(outgoing=True, pattern="kickme$"))
-async def kickme(leave):
-    await leave.edit("Nope, no, no, I go away")
-    await leave.client.kick_participant(leave.chat_id, "me")
 
 
 @borg.on(admin_cmd(pattern="log$"))
