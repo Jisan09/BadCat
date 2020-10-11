@@ -303,7 +303,7 @@ if Var.PRIVATE_GROUP_ID is not None:
             await PREV_REPLY_MESSAGE[chat_id].delete()
         PREV_REPLY_MESSAGE[chat_id] = r
 
-        
+
 CMD_HELP.update(
     {
         "pmpermit": "__**PLUGIN NAME :** Pm Permit__\
