@@ -28,9 +28,11 @@ with open(thumb_image_path, "wb") as f:
 def check(cat):
     if "/start" in cat:
         return True
-    hi = re.search(re.escape(f"\\b{cat}\\b"), "a|b|c|d")
+    hi = re.search(cat, "(a|b|c|d)")
     return bool(hi)
 
+
+PM_START = []
 
 if Config.PRIVATE_GROUP_BOT_API_ID is None:
     BOTLOG = False
