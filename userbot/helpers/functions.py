@@ -88,7 +88,6 @@ async def yt_search(cat):
     return video_link if video_link else "Couldnt fetch results"
 
 
-
 # for stickertxt
 async def waifutxt(text, chat_id, reply_to_id, bot, borg):
     animus = [
@@ -168,7 +167,6 @@ async def extract_time(cat, time_val):
         )
     )
     return ""
-
 
 
 song_dl = "youtube-dl --force-ipv4 --write-thumbnail -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"

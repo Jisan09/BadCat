@@ -11,7 +11,6 @@ from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import ALIVE_NAME, CMD_HELP, name_dl, runcmd, song_dl, video_dl, yt_search
 from . import (
     ALIVE_NAME,
     CMD_HELP,
