@@ -28,7 +28,10 @@ with open(thumb_image_path, "wb") as f:
 def check(cat):
     if "/start" in cat:
         return True
-    hi = re.search(cat, "(a|b|c|d)")
+    try:
+        hi = re.search(cat, "(a|b|c|d)")
+    except:
+        hi = False
     return bool(hi)
 
 
