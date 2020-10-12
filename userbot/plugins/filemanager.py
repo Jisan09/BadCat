@@ -14,7 +14,7 @@ from . import CMD_HELP, runcmd
 @borg.on(admin_cmd(pattern="ls ?(.*)"))
 @borg.on(sudo_cmd(pattern="ls ?(.*)", allow_sudo=True))
 async def lst(event):
-    cat = event.pattern_match.group(1)
+    cat = "".join(event.text.split(maxsplit=1)[1:])
     path = Path(cat) if cat else os.getcwd()
     if not os.path.exists(path):
         await edit_or_reply(
