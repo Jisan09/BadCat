@@ -1,17 +1,15 @@
 import os
 import re
 import time
+import urllib.request
 import zipfile
 from random import choice
 
 import PIL.ImageOps
 import requests
 from PIL import Image
-from selenium import webdriver
 from telethon.tl.types import Channel, PollAnswer
 from validators.url import url
-
-from ..Config import Config
 
 
 async def get_readable_time(seconds: int) -> str:
@@ -56,6 +54,23 @@ async def admin_groups(cat):
 
 
 async def yt_search(cat):
+
+    try:
+        cat = urllib.parse.quote(cat)
+        html = urllib.request.urlopen(
+            "https://www.youtube.com/results?search_query=" + cat
+        )
+        user_data = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+        video_link = None
+        if user_data:
+            video_link = "https://www.youtube.com/watch?v=" + user_data[0]
+        if video_link:
+            return video_link
+        else:
+            return "Couldnt fetch results"
+    except:
+        return "Couldnt fetch results"
+
     search = cat
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--ignore-certificate-errors")
@@ -154,6 +169,12 @@ async def extract_time(cat, time_val):
     return ""
 
 
+song_dl = "youtube-dl --force-ipv4 --write-thumbnail -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"
+thumb_dl = "youtube-dl --force-ipv4 -o './temp/%(title)s.%(ext)s' --write-thumbnail --skip-download {video_link}"
+video_dl = "youtube-dl --force-ipv4 --write-thumbnail  -o './temp/%(title)s.%(ext)s' -f '[filesize<20M]' {video_link}"
+name_dl = (
+    "youtube-dl --force-ipv4 --get-filename -o './temp/%(title)s.%(ext)s' {video_link}"
+)
 song_dl = "youtube-dl -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"
 thumb_dl = "youtube-dl -o './temp/%(title)s.%(ext)s' --write-thumbnail --skip-download {video_link}"
 video_dl = "youtube-dl -o './temp/%(title)s.%(ext)s' -f '[filesize<20M]' {video_link}"
@@ -192,9 +213,18 @@ def convert_toimage(image):
     img = Image.open(image)
     if img.mode != "RGB":
         img = img.convert("RGB")
-    img.save("temp.jpg", "jpeg")
+    img.save("./temp/temp.jpg", "jpeg")
     os.remove(image)
-    return "temp.jpg"
+    return "./temp/temp.jpg"
+
+
+async def convert_tosticker(image):
+    img = Image.open(image)
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    img.save("./temp/temp.webp", "webp")
+    os.remove(image)
+    return "./temp/temp.webp"
 
 
 # for nekobot

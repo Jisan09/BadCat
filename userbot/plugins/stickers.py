@@ -2,7 +2,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 """ Userbot module for kanging stickers or making new ones. Thanks @rupansh"""
-
+# modified by @mrconfused
 import io
 import math
 import random
@@ -86,10 +86,7 @@ async def kang(args):
         return
     if photo:
         splat = args.text.split()
-        if emojibypass:
-            emoji = emoji
-        else:
-            emoji = "😂"
+        emoji = emoji if emojibypass else "😂"
         pack = 1
         if len(splat) == 3:
             if char_is_emoji(splat[1]):
@@ -111,14 +108,14 @@ async def kang(args):
         packnick = f"@{user.username}'s_{pack}"
         cmd = "/newpack"
         file = io.BytesIO()
-        if not is_anim:
-            image = await resize_photo(photo)
-            file.name = "sticker.png"
-            image.save(file, "PNG")
-        else:
+        if is_anim:
             packname += "_anim"
             packnick += " (Animated)"
             cmd = "/newanimated"
+        else:
+            image = await resize_photo(photo)
+            file.name = "sticker.png"
+            image.save(file, "PNG")
         response = urllib.request.urlopen(
             urllib.request.Request(f"http://t.me/addstickers/{packname}")
         )
@@ -134,21 +131,18 @@ async def kang(args):
                 await bot.send_read_acknowledge(conv.chat_id)
                 await conv.send_message(packname)
                 x = await conv.get_response()
-                while (
-                    "Whoa! That's probably enough stickers for one pack, give it a break"
-                    in x.text
-                ):
+                while ("50" in x.text) or ("120" in x.text):
                     try:
                         val = int(pack)
                         pack = val + 1
                     except ValueError:
                         pack = 1
-                    if not is_anim:
-                        packname = f"{user.username}_{pack}"
-                        packnick = f"@{user.username}'s_{pack}"
-                    else:
+                    if is_anim:
                         packname = f"{user.username}_{pack}_anim"
                         packnick = f"@{user.username}'s_{pack} (Animated)"
+                    else:
+                        packname = f"{user.username}_{pack}"
+                        packnick = f"@{user.username}'s_{pack}"
                     await args.edit(
                         "`Switching to Pack "
                         + str(pack)
@@ -290,7 +284,6 @@ async def kang(args):
 async def resize_photo(photo):
     """ Resize the given photo to 512x512 """
     image = Image.open(photo)
-    maxsize = (512, 512)
     if (image.width and image.height) < 512:
         size1 = image.width
         size2 = image.height
@@ -307,6 +300,7 @@ async def resize_photo(photo):
         sizenew = (size1new, size2new)
         image = image.resize(sizenew)
     else:
+        maxsize = (512, 512)
         image.thumbnail(maxsize)
     return image
 

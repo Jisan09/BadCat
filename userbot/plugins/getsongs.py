@@ -56,6 +56,7 @@ async def _(event):
     elif cmd == "song320":
         q = "320k"
     song_cmd = song_dl.format(QUALITY=q, video_link=video_link)
+    # thumb_cmd = thumb_dl.format(video_link=video_link)
     thumb_cmd = thumb_dl.format(video_link=video_link)
     name_cmd = name_dl.format(video_link=video_link)
     try:
@@ -69,6 +70,10 @@ async def _(event):
     catname, stderr = (await runcmd(name_cmd))[:2]
     if stderr:
         return await catevent.edit(f"**Error :** `{stderr}`")
+    # stderr = (await runcmd(thumb_cmd))[1]
+    catname = os.path.splitext(catname)[0]
+    # if stderr:
+    #    return await catevent.edit(f"**Error :** `{stderr}`")
     stderr = (await runcmd(thumb_cmd))[1]
     catname = os.path.splitext(catname)[0]
     if stderr:
@@ -124,6 +129,7 @@ async def _(event):
         return await catevent.edit(
             f"Sorry!. I can't find any related video/audio for `{query}`"
         )
+    # thumb_cmd = thumb_dl.format(video_link=video_link)
     thumb_cmd = thumb_dl.format(video_link=video_link)
     name_cmd = name_dl.format(video_link=video_link)
     video_cmd = video_dl.format(video_link=video_link)
@@ -133,12 +139,15 @@ async def _(event):
     catname, stderr = (await runcmd(name_cmd))[:2]
     if stderr:
         return await catevent.edit(f"**Error :** `{stderr}`")
+    # stderr = (await runcmd(thumb_cmd))[1]
     stderr = (await runcmd(thumb_cmd))[1]
     try:
         cat = Get(cat)
         await event.client(cat)
     except BaseException:
         pass
+    # if stderr:
+    #    return await catevent.edit(f"**Error :** `{stderr}`")
     if stderr:
         return await catevent.edit(f"**Error :** `{stderr}`")
     catname = os.path.splitext(catname)[0]
