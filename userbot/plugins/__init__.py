@@ -32,6 +32,7 @@ def check(cat):
         hi = re.search(cat, "(a|b|c|d)")
     except:
         hi = False
+    hi = re.search(re.escape(f"\\b{cat}\\b"), "a|b|c|d")
     return bool(hi)
 
 

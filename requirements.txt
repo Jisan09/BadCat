@@ -50,6 +50,7 @@ pylast
 PyLyrics
 pySmartDL
 python-barcode
+python-magic
 pytuneteller
 pytz
 qrcode

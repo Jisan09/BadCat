@@ -12,6 +12,16 @@ from validators.url import url
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import ALIVE_NAME, CMD_HELP, name_dl, runcmd, song_dl, video_dl, yt_search
+from . import (
+    ALIVE_NAME,
+    CMD_HELP,
+    name_dl,
+    runcmd,
+    song_dl,
+    thumb_dl,
+    video_dl,
+    yt_search,
+)
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
@@ -48,6 +58,7 @@ async def _(event):
         q = "320k"
     song_cmd = song_dl.format(QUALITY=q, video_link=video_link)
     # thumb_cmd = thumb_dl.format(video_link=video_link)
+    thumb_cmd = thumb_dl.format(video_link=video_link)
     name_cmd = name_dl.format(video_link=video_link)
     try:
         cat = Get(cat)
@@ -64,6 +75,10 @@ async def _(event):
     catname = os.path.splitext(catname)[0]
     # if stderr:
     #    return await catevent.edit(f"**Error :** `{stderr}`")
+    stderr = (await runcmd(thumb_cmd))[1]
+    catname = os.path.splitext(catname)[0]
+    if stderr:
+        return await catevent.edit(f"**Error :** `{stderr}`")
     song_file = Path(f"{catname}.mp3")
     if not os.path.exists(song_file):
         return await catevent.edit(
@@ -116,6 +131,7 @@ async def _(event):
             f"Sorry!. I can't find any related video/audio for `{query}`"
         )
     # thumb_cmd = thumb_dl.format(video_link=video_link)
+    thumb_cmd = thumb_dl.format(video_link=video_link)
     name_cmd = name_dl.format(video_link=video_link)
     video_cmd = video_dl.format(video_link=video_link)
     stderr = (await runcmd(video_cmd))[1]
@@ -125,6 +141,7 @@ async def _(event):
     if stderr:
         return await catevent.edit(f"**Error :** `{stderr}`")
     # stderr = (await runcmd(thumb_cmd))[1]
+    stderr = (await runcmd(thumb_cmd))[1]
     try:
         cat = Get(cat)
         await event.client(cat)
@@ -132,6 +149,8 @@ async def _(event):
         pass
     # if stderr:
     #    return await catevent.edit(f"**Error :** `{stderr}`")
+    if stderr:
+        return await catevent.edit(f"**Error :** `{stderr}`")
     catname = os.path.splitext(catname)[0]
     vsong_file = Path(f"{catname}.mp4")
     if not os.path.exists(vsong_file):

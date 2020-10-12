@@ -54,6 +54,7 @@ async def admin_groups(cat):
 
 
 async def yt_search(cat):
+
     try:
         cat = urllib.parse.quote(cat)
         html = urllib.request.urlopen(
@@ -69,6 +70,23 @@ async def yt_search(cat):
             return "Couldnt fetch results"
     except:
         return "Couldnt fetch results"
+
+    search = cat
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--ignore-certificate-errors")
+    chrome_options.add_argument("--test-type")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.binary_location = Config.CHROME_BIN
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver.get("https://www.youtube.com/results?search_query=" + search)
+    user_data = driver.find_elements_by_xpath('//*[@id="video-title"]')
+    for i in user_data:
+        video_link = i.get_attribute("href")
+        break
+    return video_link if video_link else "Couldnt fetch results"
+
 
 
 # for stickertxt
@@ -152,12 +170,17 @@ async def extract_time(cat, time_val):
     return ""
 
 
+
 song_dl = "youtube-dl --force-ipv4 --write-thumbnail -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"
 thumb_dl = "youtube-dl --force-ipv4 -o './temp/%(title)s.%(ext)s' --write-thumbnail --skip-download {video_link}"
 video_dl = "youtube-dl --force-ipv4 --write-thumbnail  -o './temp/%(title)s.%(ext)s' -f '[filesize<20M]' {video_link}"
 name_dl = (
     "youtube-dl --force-ipv4 --get-filename -o './temp/%(title)s.%(ext)s' {video_link}"
 )
+song_dl = "youtube-dl -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"
+thumb_dl = "youtube-dl -o './temp/%(title)s.%(ext)s' --write-thumbnail --skip-download {video_link}"
+video_dl = "youtube-dl -o './temp/%(title)s.%(ext)s' -f '[filesize<20M]' {video_link}"
+name_dl = "youtube-dl --get-filename -o './temp/%(title)s.%(ext)s' {video_link}"
 
 EMOJI_PATTERN = re.compile(
     "["
