@@ -2,14 +2,13 @@
 # baning spmmers plugin for catuserbot by @sandy1709 and @mrconfused
 # included both cas(combot antispam service) and spamwatch (need to add more feaututres)
 
-
 from requests import get
 from telethon import events
 from telethon.errors import ChatAdminRequiredError
 from telethon.tl.types import ChannelParticipantsAdmins
 
-from ..utils import admin_cmd, is_admin, sudo_cmd
-from . import BOTLOG, BOTLOG_CHATID, LOGS, spamwatch
+from ..utils import admin_cmd, edit_or_reply, is_admin, sudo_cmd
+from . import BOTLOG, BOTLOG_CHATID, CMD_HELP, LOGS, spamwatch
 from .sql_helper.gban_sql_helper import get_gbanuser, is_gbanned
 
 if Config.ANTISPAMBOT_BAN:
@@ -97,6 +96,10 @@ if Config.ANTISPAMBOT_BAN:
 @borg.on(admin_cmd(pattern="cascheck$"))
 @borg.on(sudo_cmd(pattern="cascheck$", allow_sudo=True))
 async def caschecker(cas):
+    catevent = await edit_or_reply(
+        cas,
+        "`checking any cas(combot antispam service) banned users here, this may takes minutes too......`",
+    )
     text = ""
     chat = cas.chat_id
     try:
@@ -111,25 +114,23 @@ async def caschecker(cas):
             if banchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"{user.first_name} {user.id}\n"
+                    banned_users += f"{user.first_name}-`{user.id}`\n"
                 else:
-                    banned_users += f"Deleted Account {user.id}\n"
+                    banned_users += f"Deleted Account `{user.id}`\n"
             members_count += 1
-        text = "Warning! `{}` of `{}` users are CAS Banned:\n".format(
+        text = "Warning! Found `{}` of `{}` users are CAS Banned:\n".format(
             cas_count, members_count
         )
         text += banned_users
         if not cas_count:
             text = "No CAS Banned users found!"
     except ChatAdminRequiredError as carerr:
-        await cas.edit("`CAS check failed: Admin privileges are required`")
-        print("ChatAdminRequiredError:", carerr)
+        await catevent.edit("`CAS check failed: Admin privileges are required`")
         return
     except BaseException as be:
-        await cas.edit("`CAS check failed`")
-        print("BaseException:", be)
+        await catevent.edit("`CAS check failed`")
         return
-    await cas.edit(text)
+    await catevent.edit(text)
 
 
 @borg.on(admin_cmd(pattern="spamcheck$"))
@@ -137,6 +138,10 @@ async def caschecker(cas):
 async def caschecker(cas):
     text = ""
     chat = cas.chat_id
+    catevent = await edit_or_reply(
+        cas,
+        "`checking any spamwatch banned users here, this may takes minutes too......`",
+    )
     try:
         info = await cas.client.get_entity(chat)
     except (TypeError, ValueError) as err:
@@ -146,28 +151,26 @@ async def caschecker(cas):
         cas_count, members_count = (0,) * 2
         banned_users = ""
         async for user in cas.client.iter_participants(info.id):
-            if banchecker(user.id):
+            if spamchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"{user.first_name} {user.id}\n"
+                    banned_users += f"{user.first_name}-`{user.id}`\n"
                 else:
-                    banned_users += f"Deleted Account {user.id}\n"
+                    banned_users += f"Deleted Account `{user.id}`\n"
             members_count += 1
-        text = "Warning! `{}` of `{}` users are spamwatch Banned:\n".format(
+        text = "Warning! Found `{}` of `{}` users are spamwatch Banned:\n".format(
             cas_count, members_count
         )
         text += banned_users
         if not cas_count:
             text = "No spamwatch Banned users found!"
     except ChatAdminRequiredError as carerr:
-        await cas.edit("`spamwatch check failed: Admin privileges are required`")
-        print("ChatAdminRequiredError:", carerr)
+        await catevent.edit("`spamwatch check failed: Admin privileges are required`")
         return
     except BaseException as be:
-        await cas.edit("`spamwatch check failed`")
-        print("BaseException:", be)
+        await catevent.edit("`spamwatch check failed`")
         return
-    await cas.edit(text)
+    await catevent.edit(text)
 
 
 def banchecker(id):
@@ -183,5 +186,16 @@ def banchecker(id):
 def spamchecker(id):
     ban = None
     if spamwatch:
-        ban = spamwatch.get_ban(user.id)
+        ban = spamwatch.get_ban(id)
     return bool(ban)
+
+
+CMD_HELP.update(
+    {
+        "antispambot": "__**PLUGIN NAME :** Aantispambot__\
+        \n\n📌** CMD ➥** `.cascheck`\
+        \n**USAGE   ➥  **Searches for cas(combot antispam service) banned users in group and shows you the list\
+        \n\n📌** CMD ➥** `.cascheck`\
+        \n**USAGE   ➥  **Searches for spamwatch banned users in group and shows you the list"
+    }
+)
