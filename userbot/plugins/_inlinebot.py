@@ -145,7 +145,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             # https://t.me/TelethonChat/115200
             await event.edit(buttons=buttons)
         else:
-            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \nNikal, jeke apna bot bana.."
+            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \n\nNikal, jeke apna bot bana.."
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(
@@ -162,7 +162,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             # https://t.me/TelethonChat/115200
             await event.edit(buttons=buttons)
         else:
-            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \nNikal, jeke apna bot bana.."
+            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \n\nNikal, jeke apna bot bana.."
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"secret_(.*)")))
@@ -221,7 +221,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                         caption=plugin_name,
                     )
         else:
-            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \nNikal, jeke apna bot bana.."
+            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \n\nNikal, jeke apna bot bana.."
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"close")))
@@ -229,7 +229,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         if event.query.user_id == bot.uid:
             await event.edit("menu closed")
         else:
-            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \nNikal, jeke apna bot bana.."
+            reply_pop_up_alert = "Yeh mera maal hai !! Haat kese laga diya be tune ise? \n\nNikal, jeke apna bot bana.."
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"stats")))
