@@ -270,6 +270,8 @@ CMD_HELP.update(
         "galis": "__**PLUGIN NAME :** Galis__\
 \n\n📌** CMD ➥** `.abuse`\
 \n**USAGE   ➥  **Protects you from unwanted peeps.\
+\n\n📌** CMD ➥** `.rendi`\
+\n**USAGE   ➥  **You already got that! Ain't?.\
 \n\n📌** CMD ➥** `.abusehard`\
 \n**USAGE   ➥  **You already got that! Ain't?.\
 \n\n📌** CMD ➥** `.thanos`\
