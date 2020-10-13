@@ -340,7 +340,24 @@ async def _(event):
             "LMGTFY query `" + input_str + "` was executed successfully",
         )
 
-
+@bot.on(admin_cmd(pattern=f"shout", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"shout", allow_sudo=True))
+async def shout(args):
+    msg = "```"
+    messagestr = args.text
+    messagestr = messagestr[7:]
+    text = " ".join(messagestr)
+    result = []
+    result.append(" ".join([s for s in text]))
+    for pos, symbol in enumerate(text[1:]):
+        result.append(symbol + " " + "  " * pos + symbol)
+    result = list("\n".join(result))
+    result[0] = text[0]
+    result = "".join(result)
+    msg = "\n" + result
+    await edit_or_reply(args, "`" + msg + "`")
+                        
+                        
 CMD_HELP.update(
     {
         "memes": "__**PLUGIN NAME :** Memes__\
@@ -384,6 +401,8 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Believe me, ur season is expire.\
 \n\n📌** CMD ➥** `.ggl` <query>\
 \n**USAGE   ➥  **Let me Google that for you real quick !!\
+\n\n📌** CMD ➥** `.shout text`\
+\n**USAGE   ➥  **shouts the text in a fun way\
 "
     }
 )
