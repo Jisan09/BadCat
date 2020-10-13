@@ -26,7 +26,7 @@ async def _(event):
         except YouBlockedUserError:
             await catevent.edit("` unblock` @SpotifyMusicDownloaderBot `and try again`")
             return
-        await event.delete()
+        await catevent.delete()
         await event.client.forward_messages(event.chat_id, respond.message)
         await event.client.send_read_acknowledge(conv.chat_id)
 
