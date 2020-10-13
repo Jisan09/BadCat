@@ -79,13 +79,20 @@ async def _(event):
         path = Path(input_str)
         if os.path.exists(path):
             start = datetime.now()
+            if not zipfile.is_zipfile(path):
+                await mone.edit(
+                    f"`the given file {str(path)} is not zip file to unzip`"
+                )
+            destination = os.path.join(
+                Config.TMP_DOWNLOAD_DIRECTORY,
+                os.path.splitext(os.path.basename(path))[0],
+            )
             with zipfile.ZipFile(path, "r") as zip_ref:
-                zip_ref.extractall(Config.TMP_DOWNLOAD_DIRECTORY)
+                zip_ref.extractall(destination)
             end = datetime.now()
             ms = (end - start).seconds
-            downloaded_file_name = os.path.splitext(path)[0]
             await mone.edit(
-                f"unzipped and stored to `{downloaded_file_name}` \n**Time Taken :** `{ms} seconds`"
+                f"unzipped and stored to `{destination}` \n**Time Taken :** `{ms} seconds`"
             )
         else:
             await mone.edit(f"I can't find that path `{input_str}`")
@@ -97,24 +104,32 @@ async def _(event):
             reply_message = await event.get_reply_message()
             try:
                 c_time = time.time()
-                downloaded_file_name = await event.client.download_media(
+                path = await event.client.download_media(
                     reply_message,
                     Config.TMP_DOWNLOAD_DIRECTORY,
                     progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                         progress(d, t, mone, c_time, "trying to download")
                     ),
                 )
-            except Exception as e:  # pylint:disable=C0103,W0703
+            except Exception as e:
                 await mone.edit(str(e))
             await mone.edit("Unzipping now")
-            with zipfile.ZipFile(downloaded_file_name, "r") as zip_ref:
-                zip_ref.extractall(Config.TMP_DOWNLOAD_DIRECTORY)
+            if not zipfile.is_zipfile(path):
+                await mone.edit(
+                    f"`the given file {str(path)} is not zip file to unzip`"
+                )
+            destination = os.path.join(
+                Config.TMP_DOWNLOAD_DIRECTORY,
+                os.path.splitext(os.path.basename(path))[0],
+            )
+            with zipfile.ZipFile(path, "r") as zip_ref:
+                zip_ref.extractall(destination)
             end = datetime.now()
             ms = (end - start).seconds
             await mone.edit(
-                f"unzipped and stored to `{downloaded_file_name[:-4]}` \n**Time Taken :** `{ms} seconds`"
+                f"unzipped and stored to `{destination}` \n**Time Taken :** `{ms} seconds`"
             )
-            os.remove(downloaded_file_name)
+            os.remove(path)
 
 
 def zipdir(dirName):
@@ -148,11 +163,9 @@ async def _(event):
             )
             directory_name = downloaded_file_name
             await mone.edit("creating rar archive, please wait..")
-            # patoolib.create_archive(directory_name + '.7z',directory_name)
             patoolib.create_archive(
                 directory_name + ".rar", (directory_name, Config.TMP_DOWNLOAD_DIRECTORY)
             )
-            # patoolib.create_archive("/content/21.yy Avrupa (1).pdf.zip",("/content/21.yy Avrupa (1).pdf","/content/"))
             await event.client.send_file(
                 event.chat_id,
                 directory_name + ".rar",
@@ -169,7 +182,7 @@ async def _(event):
             await mone.edit("Task Completed")
             await asyncio.sleep(3)
             await mone.delete()
-        except Exception as e:  # pylint:disable=C0103,W0703
+        except Exception as e:
             await mone.edit(str(e))
     elif input_str:
         directory_name = input_str
@@ -221,7 +234,7 @@ async def _(event):
             await mone.edit("Task Completed")
             await asyncio.sleep(3)
             await mone.delete()
-        except Exception as e:  # pylint:disable=C0103,W0703
+        except Exception as e:
             await mone.edit(str(e))
     elif input_str:
         directory_name = input_str
@@ -233,9 +246,6 @@ async def create_archive(input_directory):
     if os.path.exists(input_directory):
         base_dir_name = os.path.basename(input_directory)
         compressed_file_name = f"{base_dir_name}.tar.gz"
-        # suffix_extention_length = 1 + 3 + 1 + 2
-        # if len(base_dir_name) > (64 - suffix_extention_length):
-        #     compressed_file_name = base_dir_name[0:(64 - suffix_extention_length)]
         compressed_file_name += ".tar.gz"
         file_genertor_command = [
             "tar",
@@ -245,11 +255,9 @@ async def create_archive(input_directory):
         ]
         process = await asyncio.create_subprocess_exec(
             *file_genertor_command,
-            # stdout must a pipe to be accessible as process.stdout
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
-        # Wait for the subprocess to finish
         stdout, stderr = await process.communicate()
         stderr.decode().strip()
         stdout.decode().strip()
@@ -282,7 +290,7 @@ async def _(event):
                     progress(d, t, mone, c_time, "trying to download")
                 ),
             )
-        except Exception as e:  # pylint:disable=C0103,W0703
+        except Exception as e:
             await mone.edit(str(e))
         else:
             end = datetime.now()
@@ -292,9 +300,7 @@ async def _(event):
             )
         patoolib.extract_archive(downloaded_file_name, outdir=extracted)
         filename = sorted(get_lst_of_files(extracted, []))
-        # filename = filename + "/"
         await mone.edit("Unraring now")
-        # r=root, d=directories, f = files
         for single_file in filename:
             if os.path.exists(single_file):
                 # https://stackoverflow.com/a/678242/4723940
