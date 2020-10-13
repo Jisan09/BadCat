@@ -25,14 +25,16 @@ async def _(event):
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=752979930)
             )
-            await event.client.send_message(chat, input_str)
+            kakashi = await event.client.send_message(chat, input_str)
             respond = await response
+            await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await catevent.edit("` unblock` @SpotifyMusicDownloaderBot `and try again`")
             return
-        await event.delete()
-        await event.client.forward_messages(event.chat_id, respond.message)
-        await event.client.send_read_acknowledge(conv.chat_id)
+        await catevent.delete()
+        await event.client.send_file(event.chat_id, respond.message)
+    await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
+
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="netease(?: |$)(.*)"))
