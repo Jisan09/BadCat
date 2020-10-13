@@ -178,7 +178,32 @@ async def give(event):
     await asyncio.sleep(sleepValue)
     await event.edit(lp + lp + lp + lp + lp + lp + lp + lp + lp)
 
-
+    
+@bot.on(admin_cmd(pattern=f"sadmin$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"sadmin$", allow_sudo=True))
+async def _(event):
+    animation_ttl = range(13)
+    event = await edit_or_reply(event , "sadmin")
+    animation_chars = [
+        "@aaaaaaaaaaaaadddddddddddddmmmmmmmmmmmmmiiiiiiiiiiiiinnnnnnnnnnnnn",
+        "@aaaaaaaaaaaaddddddddddddmmmmmmmmmmmmiiiiiiiiiiiinnnnnnnnnnnn",
+        "@aaaaaaaaaaadddddddddddmmmmmmmmmmmiiiiiiiiiiinnnnnnnnnnn",
+        "@aaaaaaaaaaddddddddddmmmmmmmmmmiiiiiiiiiinnnnnnnnnn",
+        "@aaaaaaaaadddddddddmmmmmmmmmiiiiiiiiinnnnnnnnn",
+        "@aaaaaaaaddddddddmmmmmmmmiiiiiiiinnnnnnnn",
+        "@aaaaaaadddddddmmmmmmmiiiiiiinnnnnnn",
+        "@aaaaaaddddddmmmmmmiiiiiinnnnnn",
+        "@aaaaadddddmmmmmiiiiinnnnn",
+        "@aaaaddddmmmmiiiinnnn",
+        "@aaadddmmmiiinnn",
+        "@aaddmmiinn",
+        "@admin",
+    ]
+    for i in animation_ttl:
+        await asyncio.sleep(1)
+        await event.edit(animation_chars[i % 13])
+        
+        
 CMD_HELP.update(
     {
         "meme": "__**PLUGIN NAME :** Meme__\
@@ -191,6 +216,8 @@ CMD_HELP.update(
 \n\n📌** CMD ➥** `.meme` \
 \n**USAGE   ➥  **Try yourself ;)\
 \n\n📌** CMD ➥** `.give` \
-\n**USAGE   ➥  **Share lolipop ;)"
+\n**USAGE   ➥  **Share lolipop ;)\
+\n\n📌** CMD ➥** `.sadmin` \
+\n**USAGE   ➥  **Fun animation of @admin!"
     }
 )
