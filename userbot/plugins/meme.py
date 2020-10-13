@@ -203,8 +203,8 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(1)
         await event.edit(animation_chars[i % 13])
-       
-        
+
+
 CMD_HELP.update(
     {
         "meme": "__**PLUGIN NAME :** Meme__\
