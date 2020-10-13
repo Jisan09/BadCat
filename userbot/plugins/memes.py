@@ -347,6 +347,7 @@ async def _(event):
             "LMGTFY query `" + input_str + "` was executed successfully",
         )
 
+
 CMD_HELP.update(
     {
         "memes": "__**PLUGIN NAME :** Memes__\
