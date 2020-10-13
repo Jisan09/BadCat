@@ -55,9 +55,9 @@ async def kakashi(event):
             return
         await catevent.edit("`Sending Your Music...`")
         await asyncio.sleep(3)
+        await catevent.delete()
         await event.client.send_file(event.chat_id, respond)
     await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
-    await event.delete()
 
 
 CMD_HELP.update(
