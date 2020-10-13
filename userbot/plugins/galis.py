@@ -46,13 +46,15 @@ async def thanos(thanos):
     await edit_or_reply(thanos, reply_text)
 
 
-@borg.on(admin_cmd(pattern=f"gf$", outgoing=True))
+
+@bot.on(admin_cmd(outgoing=True, pattern=f"gf$"))
+@bot.on(sudo_cmd(pattern=f"gf$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 5
     animation_ttl = range(0, 21)
-    await event.edit("BSDK tera gf h na ek ...!")
+    kakashi = await edit_or_reply (event,"BSDK tera gf h na ek ...!")
     animation_chars = [
         "`Ruk jaa , Abhi teri GF ko Fuck karta hu `",
         "`Making your Gf warm 🔥`",
@@ -78,7 +80,7 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 21])
+        await kakashi.edit(animation_chars[i % 21])
 
 
 @borg.on(admin_cmd(pattern="fk (.*)"))
