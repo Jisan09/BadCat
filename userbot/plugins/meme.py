@@ -185,6 +185,7 @@ async def give(event):
     await asyncio.sleep(sleepValue)
     await event.edit(lp + lp + lp + lp + lp + lp + lp + lp + lp)
 
+
 @borg.on(admin_cmd(pattern="lcry$"))
 async def _(event):
     if event.fwd_from:
