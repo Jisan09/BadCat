@@ -55,7 +55,7 @@ async def kakashi(event):
         await catevent.edit("`Sending Your Music...`")
         await asyncio.sleep(3)
         await event.delete()
-        await event.client.forward_messages(event.chat_id, respond)
+        await event.client.forward_messages(event.chat_id, respond.message)
         await event.client.send_read_acknowledge(conv.chat_id)
 
 
