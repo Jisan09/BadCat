@@ -61,7 +61,7 @@ async def _(event):
                 jisan = "https://telegra.ph{}".format(media_urls[0])
                 os.remove(downloaded_file_name)
                 await catevent.edit(
-                    f"__**➥ Uploaded to :-**__ [Telegraph]**({jisan})**\
+                    f"**__➥ Uploaded to :-__ [Telegraph]**({jisan})\
                     \n__**➥ Uploaded in {ms + ms_two} seconds .**__\n__**➥ Uploaded by :-**__ [{DEFAULTUSER}]({USERNAME})",
                     link_preview=True,
                 )
