@@ -1,3 +1,8 @@
+"""
+Originally from Bothub
+Port to UserBot by @heyworld
+Modified by @Jisan7509
+"""
 import asyncio
 
 from telethon import events
