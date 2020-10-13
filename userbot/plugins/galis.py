@@ -46,7 +46,6 @@ async def thanos(thanos):
     await edit_or_reply(thanos, reply_text)
 
 
-
 @bot.on(admin_cmd(outgoing=True, pattern=f"gf$"))
 @bot.on(sudo_cmd(pattern=f"gf$", allow_sudo=True))
 async def _(event):
@@ -54,7 +53,7 @@ async def _(event):
         return
     animation_interval = 5
     animation_ttl = range(0, 21)
-    kakashi = await edit_or_reply (event,"BSDK tera gf h na ek ...!")
+    kakashi = await edit_or_reply(event, "BSDK tera gf h na ek ...!")
     animation_chars = [
         "`Ruk jaa , Abhi teri GF ko Fuck karta hu `",
         "`Making your Gf warm 🔥`",
