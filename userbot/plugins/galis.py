@@ -3,9 +3,47 @@ Created By @Jisan7509
 GF created by @KshitijGagan
 """
 import asyncio
+import random
 
 from telethon.tl.types import ChannelParticipantsAdmins
-from uniborg.util import admin_cmd
+
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP, catmemes
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="abuse$"))
+@bot.on(sudo_cmd(pattern="abuse$", allow_sudo=True))
+async def abusing(abused):
+    reply_text = random.choice(catmemes.ABUSE_STRINGS)
+    await edit_or_reply(abused, reply_text)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="abusehard$"))
+@bot.on(sudo_cmd(pattern="abusehard$", allow_sudo=True))
+async def fuckedd(abusehard):
+    reply_text = random.choice(catmemes.ABUSEHARD_STRING)
+    await edit_or_reply(abusehard, reply_text)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="rendi$"))
+@bot.on(sudo_cmd(pattern="rendi$", allow_sudo=True))
+async def metoo(e):
+    txt = random.choice(catmemes.RENDISTR)
+    await edit_or_reply(e, txt)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="fuck$"))
+@bot.on(sudo_cmd(pattern="fuck$", allow_sudo=True))
+async def chutiya(fuks):
+    reply_text = random.choice(catmemes.CHU_STRINGS)
+    await edit_or_reply(fuks, reply_text)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="thanos$"))
+@bot.on(sudo_cmd(pattern="thanos$", allow_sudo=True))
+async def thanos(thanos):
+    reply_text = random.choice(catmemes.THANOS_STRINGS)
+    await edit_or_reply(thanos, reply_text)
 
 
 @borg.on(admin_cmd(pattern=f"gf$", outgoing=True))
@@ -41,31 +79,6 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 21])
-
-
-@borg.on(admin_cmd(pattern=f"gey$", outgoing=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    animation_interval = 3
-    animation_ttl = range(0, 11)
-    await event.edit("👁👁")
-    animation_chars = [
-        "👁👁\n  👄  =====> Abey NOBITA Gay",
-        "👁👁\n  👅  =====> Abey VISHAL Gay",
-        "👁👁\n  💋  =====> Abey GOKU Gay",
-        "👁👁\n  👄  =====> Abey RAHUL Gay",
-        "👁👁\n  👅  =====> Abey SAM GAY",
-        "👁👁\n  💋  =====> Abey SANDEEP GAY",
-        "👁👁\n  👄  =====> Abey DHANISH GAY",
-        "👁👁\n  👅  =====> Abey EDWARD GAY",
-        "👁👁\n  👅  =====> Abey RC GAY",
-        "👁👁\n  💋  =====> Abey Ja Na Chutiye",
-        "👁👁\n  👄  =====> Hi All, How Are You Gays...",
-    ]
-    for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 11])
 
 
 @borg.on(admin_cmd(pattern="fk (.*)"))
@@ -250,3 +263,19 @@ async def cat(event):
     await event.edit(
         "This is for you your a fucking waste of sperm madfaka I   don't know why your parents give birth a worthless shit like you  you faggot ass with a fucking gay bi sextual laurstic slutty minded kid lemaric siliastic  crow  face and ass hahaha your like a pork shit 💩madfaka tell your father to fuck you everynight so that u can have your pussy more effective to everyone  who did fucked you till now  bullshit say to Infront of everyone eyes like I eat bunny's pees at the same time while am sucking his dick bleh 😂 haha 😂😂😂😂 madfaka what u thought maybe u thought like am from India bsdk am not and that's why am fucking isolated from you ya know what your a fucking black ass who is in form of an human you will get fucked again by this bunny wait for it didle doddoy kid with a fucking phony dick 😂😂😂😂😂😂😂😂😂 fuck you🖕i will come again and again  for fucking your black ass shit everytime you  will be in front of my eyes  i will be there for fucking your Lili crow as black face hahaha for you😂😂😂👉👌🖕maderchod who the fuck are u u fucking inferior shitty asshole u know what shit you are the shit who drink my pees instead of drinking water now I will fuck ur mom one-day I went to your house with a condom then literally I went up to your mom shitty asshole and fucked  it like a real hard coocky dicky sumty dick I know like your mom enjoyed it a lot much then your sis caz your mom was a mature shit tho u know what u fucking cow face porky poopypants I also know where do u live and how do u eat let me give a brief description about where do u live you live in a fucking slum where ur mom sell her pussy in a reatil price yo and that the shitty reason how u eat three times hahahaha😂😂😂😂We or I are gonna rape your whole ugly family even tho they are as much as ugly as my shitty poop but so what I will still fuck them and insist them by fucking harder to say it like Bunny Coney  is the best fucker in the  world he  even can defeat the most famous porn star Johnny sins hahaha 😂😂😂Well let me say some stories about your mom actually not your mom's only it's our strory tho Your mother name  is Mrs  Mia khalifa she comes of a fucking pornography hilometic whore family she can suck and lick and you know what she lick she lick my sweet heavy hunktik dick hehe she is so kind I meant  your mom caz she suck my dick too kindly wow  hehe 😍 🙄   your mother Love my coocky dick very much and in back I also  love her sexy sweet pussy  as well mm we love each other  in this way hehe now am gonna tell how I fucked your mom well I used to sleep with her in first place then I slowly used to unfasten your mom bra and 👙 hehe after that I began my part what is too good to go with for me I literally fucked her every night like if I calculate in hours full night huhu I enjoyed those night even tho I still fuck her  lot hmm maybe she also miss those days like I do who knows however   maybe her happiness was know no bounds  and yh in her face I did seen a beams of joy for my hard core fucking hmm  well in profound respect I really wanna fuck her again and again caz I am  indebted to her asshole you know why let me tell you why well I only did fucked her pussy not asshole that's why One-day your sis we're going to her collage and I and some ma friend were waiting for her caz as much as we were concerned about her is she is a fucking bitch who earn money through her pussy postitution  and that's what makes us horny and greedy then that's why we all give her proposal about fucking her  vagina  or u can say pussy in few bucks after that we get Alas!!! And said wait what she is gonna give her fucking Hippocratic pussy in that much money for few bucks then I asked her hey why are u selling your pussy in a retail price then she replied like listen we don't get 3 times food that's why I and my mom's do it at last but not least after that   u know what I said  and what she did  she did fucked me like a fucking horny bitch I swear I enjoyed this part."
     )
+
+
+CMD_HELP.update(
+    {
+        "galis": "__**PLUGIN NAME :** Galis__\
+\n\n📌** CMD ➥** `.abuse`\
+\n**USAGE   ➥  **Protects you from unwanted peeps.\
+\n\n📌** CMD ➥** `.rendi`\
+\n**USAGE   ➥  **You already got that! Ain't?.\
+\n\n📌** CMD ➥** `.abusehard`\
+\n**USAGE   ➥  **You already got that! Ain't?.\
+\n\n📌** CMD ➥** `.thanos`\
+\n**USAGE   ➥  **Try and then Snap.\
+"
+    }
+)
