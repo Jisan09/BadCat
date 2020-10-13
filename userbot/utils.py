@@ -97,21 +97,18 @@ def admin_cmd(pattern=None, **args):
             # special fix for snip.py
             args["pattern"] = re.compile(pattern)
         elif pattern.startswith(r"^"):
-            reg = re.compile("(.*)")
+            args["pattern"] = re.compile(pattern)
+            cmd = (
+                (pattern)
+                .replace("$", "")
+                .replace("^", "")
+                .replace("\\", "")
+                .replace("^", "")
+            )
             try:
-                cmd = re.search(reg, pattern)
-                try:
-                    cmd = (
-                        cmd.group(1).replace("$", "").replace("\\", "").replace("^", "")
-                    )
-                except BaseException:
-                    pass
-                try:
-                    CMD_LIST[file_test].append(cmd)
-                except BaseException:
-                    CMD_LIST.update({file_test: [cmd]})
+                CMD_LIST[file_test].append(cmd)
             except BaseException:
-                pass
+                CMD_LIST.update({file_test: [cmd]})
         else:
             if len(Config.COMMAND_HAND_LER) == 2:
                 catreg = "^" + Config.COMMAND_HAND_LER
@@ -167,22 +164,18 @@ def sudo_cmd(pattern=None, **args):
             # special fix for snip.py
             args["pattern"] = re.compile(pattern)
         elif pattern.startswith(r"^"):
-            reg = re.compile("(.*)")
+            args["pattern"] = re.compile(pattern)
+            cmd = (
+                (pattern)
+                .replace("$", "")
+                .replace("^", "")
+                .replace("\\", "")
+                .replace("^", "")
+            )
             try:
-                cmd = re.search(reg, pattern)
-                try:
-                    cmd = (
-                        cmd.group(1).replace("$", "").replace("\\", "").replace("^", "")
-                    )
-                except BaseException:
-                    pass
-                try:
-                    SUDO_LIST[file_test].append(cmd)
-                except BaseException:
-                    SUDO_LIST.update({file_test: [cmd]})
+                SUDO_LIST[file_test].append(cmd)
             except BaseException:
-                pass
-
+                SUDO_LIST.update({file_test: [cmd]})
         else:
             if len(Config.SUDO_COMMAND_HAND_LER) == 2:
                 catreg = "^" + Config.SUDO_COMMAND_HAND_LER
