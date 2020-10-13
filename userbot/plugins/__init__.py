@@ -21,8 +21,14 @@ if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "thumb_image.jpg"
 
 # thumb image
-with open(thumb_image_path, "wb") as f:
-    f.write(requests.get(Config.THUMB_IMAGE).content)
+if Config.THUMB_IMAGE is not None:
+    with open(thumb_image_path, "wb") as f:
+        f.write(requests.get(Config.THUMB_IMAGE).content)
+
+cat_users = [bot.uid]
+if Config.SUDO_USERS:
+    for user in Config.SUDO_USERS:
+        cat_users.append(user)
 
 
 def check(cat):
