@@ -62,8 +62,7 @@ async def _(event):
                 os.remove(downloaded_file_name)
                 await catevent.edit(
                     f"**__➥ Uploaded to :-__ [Telegraph]**({jisan})\
-                    \n__**➥ Uploaded in {ms + ms_two} seconds .**__\
-                    \n**__➥ Uploaded by :-__ [{DEFAULTUSER}]**({USERNAME})",
+                    \n__**➥ Uploaded in {ms + ms_two} seconds .**__\n__**➥ Uploaded by :-**__ [{DEFAULTUSER}]({USERNAME})",
                     link_preview=True,
                 )
         elif input_str == "text":
