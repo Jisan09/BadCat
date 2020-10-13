@@ -46,8 +46,8 @@ async def kakashi(event):
     catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
     async with event.client.conversation(chat) as conv:
         try:
-            await conv.send_message(link)
-            await conv.get_response()
+            msg = await conv.send_message(link)
+            response = await conv.get_response()
             respond = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
@@ -55,10 +55,9 @@ async def kakashi(event):
             return
         await catevent.edit("`Sending Your Music...`")
         await asyncio.sleep(3)
-        await bot.send_file(event.chat_id, respond)
+        await event.client.send_file(event.chat_id, respond)
     await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
     await event.delete()
-
 
 CMD_HELP.update(
     {
