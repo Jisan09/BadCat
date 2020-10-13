@@ -55,7 +55,7 @@ async def kakashi(event):
         await event.client.send_file(event.chat_id, respond)
     await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
 
-    
+
 @bot.on(admin_cmd(outgoing=True, pattern="dzd(?: |$)(.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="dzd(?: |$)(.*)", allow_sudo=True))
 async def kakashi(event):
@@ -63,7 +63,9 @@ async def kakashi(event):
         return
     link = event.pattern_match.group(1)
     if ".com" not in link:
-        catevent = await event.edit("` I need a link to download something pro.`**(._.)**")
+        catevent = await event.edit(
+            "` I need a link to download something pro.`**(._.)**"
+        )
     else:
         catevent = await event.edit("**Initiating Download!**")
     chat = "@DeezLoadBot"
@@ -86,6 +88,7 @@ async def kakashi(event):
             conv.chat_id, [msg_start.id, response.id, r.id, msg.id, details.id, song.id]
         )
         await event.delete()
+
 
 CMD_HELP.update(
     {
