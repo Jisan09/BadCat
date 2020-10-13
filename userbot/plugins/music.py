@@ -33,8 +33,9 @@ async def _(event):
             return
         await catevent.delete()
         await event.client.send_file(event.chat_id, respond.message)
-    await event.client.delete_messages(conv.chat_id, [kakashi.id, response.id, respond.id])
-
+    await event.client.delete_messages(
+        conv.chat_id, [kakashi.id, response.id, respond.id]
+    )
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="netease(?: |$)(.*)"))
