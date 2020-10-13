@@ -63,11 +63,9 @@ async def kakashi(event):
         return
     link = event.pattern_match.group(1)
     if ".com" not in link:
-        catevent = await event.edit(
-            "` I need a link to download something pro.`**(._.)**"
-        )
+        catevent = await edit_or_reply(event, "` I need a link to download something pro.`**(._.)**")
     else:
-        catevent = await event.edit("**Initiating Download!**")
+        catevent = await edit_or_reply(event, "**Initiating Download!**")
     chat = "@DeezLoadBot"
     async with event.client.conversation(chat) as conv:
         try:
