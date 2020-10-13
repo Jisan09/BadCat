@@ -8,6 +8,7 @@ import os
 import requests
 
 from userbot import CMD_HELP, bot
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 OCR_SPACE_API_KEY = Config.OCR_SPACE_API_KEY
@@ -57,9 +58,13 @@ async def ocr(event):
     try:
         ParsedText = test_file["ParsedResults"][0]["ParsedText"]
     except BaseException:
-        catevent = await edit_or_reply(event, "`Couldn't read it.`\n`I guess I need new glasses.`")
+        catevent = await edit_or_reply(
+            event, "`Couldn't read it.`\n`I guess I need new glasses.`"
+        )
     else:
-        catevent = await edit_or_reply(event, f"`Here's what I could read from it:`\n\n{ParsedText}")
+        catevent = await edit_or_reply(
+            event, f"`Here's what I could read from it:`\n\n{ParsedText}"
+        )
     os.remove(downloaded_file_name)
 
 
