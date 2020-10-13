@@ -56,7 +56,9 @@ async def kakashi(event):
         await asyncio.sleep(3)
         await event.delete()
         await bot.send_file(event.chat_id, respond)
-        await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
+        await event.client.delete_messages(
+            conv.chat_id, [msg.id, response.id, respond.id]
+        )
         await event.client.send_read_acknowledge(conv.chat_id)
 
 
