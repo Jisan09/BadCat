@@ -3,6 +3,7 @@ import asyncio
 from ..utils import admin_cmd, edit_or_reply, register, sudo_cmd
 from . import CMD_HELP
 
+
 @register(outgoing=True, pattern="^:/$")
 async def kek(keks):
     """ Check yourself ;)"""
@@ -177,7 +178,7 @@ async def give(event):
     await asyncio.sleep(sleepValue)
     await event.edit(lp + lp + lp + lp + lp + lp + lp + lp + lp)
 
-    
+
 CMD_HELP.update(
     {
         "meme": "__**PLUGIN NAME :** Meme__\
@@ -191,4 +192,5 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Try yourself ;)\
 \n\n📌** CMD ➥** `.give` \
 \n**USAGE   ➥  **Share lolipop ;)"
-    })
+    }
+)
