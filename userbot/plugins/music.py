@@ -38,9 +38,9 @@ async def _(event):
 @bot.on(admin_cmd(outgoing=True, pattern="netease(?: |$)(.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="netease(?: |$)(.*)", allow_sudo=True))
 async def kakashi(event):
-    if netase.fwd_from:
+    if event.fwd_from:
         return
-    song = netase.pattern_match.group(1)
+    song = event.pattern_match.group(1)
     chat = "@WooMaiBot"
     link = f"/netease {song}"
     catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
