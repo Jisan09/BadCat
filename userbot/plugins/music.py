@@ -59,6 +59,7 @@ async def kakashi(event):
     await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
     await event.delete()
 
+
 CMD_HELP.update(
     {
         "music": "__**PLUGIN NAME :** Music__\
