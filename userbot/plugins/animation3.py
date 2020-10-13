@@ -2,16 +2,16 @@ import asyncio
 from collections import deque
 
 from userbot import ALIVE_NAME
-from userbot.utils import admin_cmd
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
 @borg.on(admin_cmd(pattern=r"star$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"star$", allow_sudo=True))
 async def _(event):
-    if event.fwd_from:
-        return
+    event = await edit_or_reply(event, "star")
     deq = deque(list("🦋✨🦋✨🦋✨🦋✨"))
     for _ in range(48):
         await asyncio.sleep(0.1)
@@ -19,10 +19,10 @@ async def _(event):
         deq.rotate(1)
 
 
-@borg.on(admin_cmd(pattern=r"boxs"))
+@borg.on(admin_cmd(pattern=r"boxs$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"boxs$", allow_sudo=True))
 async def _(event):
-    if event.fwd_from:
-        return
+    event = await edit_or_reply(event, "box")
     deq = deque(list("🟥🟧🟨🟩🟦🟪🟫⬛⬜"))
     for _ in range(999):
         await asyncio.sleep(0.1)
@@ -30,10 +30,10 @@ async def _(event):
         deq.rotate(1)
 
 
-@borg.on(admin_cmd(pattern=f"rain$", outgoing=True))
+@borg.on(admin_cmd(pattern=r"rain$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"rain$", allow_sudo=True))
 async def _(event):
-    if event.fwd_from:
-        return
+    event = await edit_or_reply(event, "Raining")
     deq = deque(list("🌬☁️🌩🌨🌧🌦🌥⛅🌤"))
     for _ in range(48):
         await asyncio.sleep(0.1)
@@ -41,13 +41,14 @@ async def _(event):
         deq.rotate(1)
 
 
-@borg.on(admin_cmd(pattern=r"deploy$"))
+@borg.on(admin_cmd(pattern=r"deploy$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"deploy$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 3
     animation_ttl = range(0, 12)
-    await event.edit("Deploying...")
+    event = await edit_or_reply(event,"Deploying...")
     animation_chars = [
         "**Heroku Connecting To Latest Github Build **",
         f"**Build started by user** [{DEFAULTUSER}]({USERNAME})",
