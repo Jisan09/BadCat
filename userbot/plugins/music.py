@@ -3,12 +3,13 @@
 # Copyright (C) 2020 azrim.
 
 import asyncio
-import os
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+
 from userbot import CMD_HELP, bot
+
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="spd(?: |$)(.*)"))
@@ -45,8 +46,8 @@ async def kakashi(event):
     catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
     async with event.client.conversation(chat) as conv:
         try:
-            msg = await conv.send_message(link)
-            response = await conv.get_response()
+            await conv.send_message(link)
+            await conv.get_response()
             respond = await conv.get_response()
         except YouBlockedUserError:
             await catevent.edit("```Please unblock @WooMaiBot and try again```")
@@ -56,7 +57,6 @@ async def kakashi(event):
         await event.delete()
         await event.client.forward_messages(event.chat_id, respond)
         await event.client.send_read_acknowledge(conv.chat_id)
-
 
 
 CMD_HELP.update(
