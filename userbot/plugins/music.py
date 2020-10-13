@@ -49,17 +49,15 @@ async def kakashi(event):
             await conv.send_message(link)
             await conv.get_response()
             respond = await conv.get_response()
+            await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await catevent.edit("```Please unblock @WooMaiBot and try again```")
             return
         await catevent.edit("`Sending Your Music...`")
         await asyncio.sleep(3)
-        await event.delete()
         await bot.send_file(event.chat_id, respond)
-        await event.client.delete_messages(
-            conv.chat_id, [msg.id, response.id, respond.id]
-        )
-        await event.client.send_read_acknowledge(conv.chat_id)
+    await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
+    await event.delete()
 
 
 CMD_HELP.update(
