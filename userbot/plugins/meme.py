@@ -190,4 +190,5 @@ CMD_HELP.update(
 \n\n📌** CMD ➥** `.meme` \
 \n**USAGE   ➥  **Try yourself ;)\
 \n\n📌** CMD ➥** `.give` \
-\n**USAGE   ➥  **Share lolipop ;)\
+\n**USAGE   ➥  **Share lolipop ;)"
+    })
