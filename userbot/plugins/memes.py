@@ -340,6 +340,7 @@ async def _(event):
             "LMGTFY query `" + input_str + "` was executed successfully",
         )
 
+
 @bot.on(admin_cmd(pattern=f"shout", outgoing=True))
 @bot.on(sudo_cmd(pattern=f"shout", allow_sudo=True))
 async def shout(args):
@@ -356,8 +357,8 @@ async def shout(args):
     result = "".join(result)
     msg = "\n" + result
     await edit_or_reply(args, "`" + msg + "`")
-                        
-                        
+
+
 CMD_HELP.update(
     {
         "memes": "__**PLUGIN NAME :** Memes__\
