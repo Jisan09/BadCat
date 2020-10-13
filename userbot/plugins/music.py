@@ -55,6 +55,37 @@ async def kakashi(event):
         await event.client.send_file(event.chat_id, respond)
     await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
 
+    
+@bot.on(admin_cmd(outgoing=True, pattern="dzd(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="dzd(?: |$)(.*)", allow_sudo=True))
+async def kakashi(event):
+    if event.fwd_from:
+        return
+    link = event.pattern_match.group(1)
+    if ".com" not in link:
+        catevent = await event.edit("` I need a link to download something pro.`**(._.)**")
+    else:
+        catevent = await event.edit("**Initiating Download!**")
+    chat = "@DeezLoadBot"
+    async with event.client.conversation(chat) as conv:
+        try:
+            msg_start = await conv.send_message("/start")
+            response = await conv.get_response()
+            r = await conv.get_response()
+            msg = await conv.send_message(link)
+            details = await conv.get_response()
+            song = await conv.get_response()
+            """ - don't spam notif - """
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit("**Error:** `unblock` @DeezLoadBot `and retry!`")
+            return
+        await catevent.delete()
+        await event.client.send_file(event.chat_id, song, caption=details.text)
+        await event.client.delete_messages(
+            conv.chat_id, [msg_start.id, response.id, r.id, msg.id, details.id, song.id]
+        )
+        await event.delete()
 
 CMD_HELP.update(
     {
