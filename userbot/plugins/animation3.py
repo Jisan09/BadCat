@@ -2,6 +2,7 @@ import asyncio
 from collections import deque
 
 from userbot import ALIVE_NAME
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
@@ -48,7 +49,7 @@ async def _(event):
         return
     animation_interval = 3
     animation_ttl = range(0, 12)
-    event = await edit_or_reply(event,"Deploying...")
+    event = await edit_or_reply(event, "Deploying...")
     animation_chars = [
         "**Heroku Connecting To Latest Github Build **",
         f"**Build started by user** [{DEFAULTUSER}]({USERNAME})",
