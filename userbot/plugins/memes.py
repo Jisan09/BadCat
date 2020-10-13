@@ -228,13 +228,6 @@ async def source(e):
     )
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="rendi$"))
-@bot.on(sudo_cmd(pattern="rendi$", allow_sudo=True))
-async def metoo(e):
-    txt = random.choice(catmemes.RENDISTR)
-    await edit_or_reply(e, txt)
-
-
 @bot.on(admin_cmd(outgoing=True, pattern="shg$"))
 @bot.on(sudo_cmd(pattern="shg$", allow_sudo=True))
 async def shrugger(e):
@@ -371,8 +364,6 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Pay Respects.\
 \n\n📌** CMD ➥** `.repo`\
 \n**USAGE   ➥  **Send the repo.\
-\n\n📌** CMD ➥** `.rendi`\
-\n**USAGE   ➥  **You already got that! Ain't?.\
 \n\n📌** CMD ➥** `.shg`\
 \n**USAGE   ➥  **Shrug at it !!\
 \n\n📌** CMD ➥** `.runs`\
