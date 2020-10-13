@@ -1,39 +1,40 @@
 import asyncio
 
-from ..utils import admin_cmd, edit_or_reply, register, sudo_cmd
-from . import CMD_HELP
+from .. import CMD_HELP
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
-@register(outgoing=True, pattern="^:/$")
+@bot.on(admin_cmd(outgoing=True, pattern="^\:/$"))
+@bot.on(sudo_cmd(pattern="^\:/$", allow_sudo=True))
 async def kek(keks):
-    """ Check yourself ;)"""
-    if not keks.text[0].isalpha() and keks.text[0] not in ("/", "#", "@", "!"):
-        uio = ["/", "\\"]
-        for i in range(1, 15):
-            await asyncio.sleep(0.3)
-            txt = ":" + uio[i % 2]
-            await keks.edit(txt)
+    keks = await edit_or_reply(keks, ":\\")
+    uio = ["/", "\\"]
+    for i in range(15):
+        await asyncio.sleep(0.5)
+        txt = ":" + uio[i % 2]
+        await keks.edit(txt)
 
 
-@register(outgoing=True, pattern="^-_-$")
+@bot.on(admin_cmd(outgoing=True, pattern="^\-_-$"))
+@bot.on(sudo_cmd(pattern="^\-_-$", allow_sudo=True))
 async def lol(lel):
-    """ Ok... """
-    if not lel.text[0].isalpha() and lel.text[0] not in ("/", "#", "@", "!"):
-        okay = "-_-"
-        for _ in range(10):
-            await asyncio.sleep(0.3)
-            okay = okay[:-1] + "_-"
-            await lel.edit(okay)
+    lel = await edit_or_reply(lel, "-__-")
+    okay = "-__-"
+    for _ in range(15):
+        await asyncio.sleep(0.5)
+        okay = okay[:-1] + "_-"
+        await lel.edit(okay)
 
 
-@register(outgoing=True, pattern="^;_;")
+@bot.on(admin_cmd(outgoing=True, pattern="^\;_;$"))
+@bot.on(sudo_cmd(pattern="^\;_;$", allow_sudo=True))
 async def fun(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        t = ";__;"
-        for _ in range(10):
-            await asyncio.sleep(0.3)
-            t = t[:-1] + "_;"
-            await e.edit(t)
+    e = await edit_or_reply(e, ";__;")
+    t = ";__;"
+    for _ in range(15):
+        await asyncio.sleep(0.5)
+        t = t[:-1] + "_;"
+        await e.edit(t)
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="oof$"))
@@ -42,12 +43,12 @@ async def Oof(e):
     t = "Oof"
     catevent = await edit_or_reply(e, t)
     for _ in range(15):
-        await asyncio.sleep(0.3)
+        await asyncio.sleep(0.5)
         t = t[:-1] + "of"
         await catevent.edit(t)
 
 
-@bot.on(admin_cmd(pattern="type (.*)"))
+@bot.on(admin_cmd(outgoing=True, pattern="type (.*)"))
 @bot.on(sudo_cmd(pattern="type (.*)", allow_sudo=True))
 async def typewriter(typew):
     message = typew.pattern_match.group(1)
@@ -202,8 +203,8 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(1)
         await event.edit(animation_chars[i % 13])
-
-
+       
+        
 CMD_HELP.update(
     {
         "meme": "__**PLUGIN NAME :** Meme__\
