@@ -109,7 +109,7 @@ async def _(event):
         return
     animation_interval = 0.3
     animation_ttl = range(20)
-    event = await edit_or_reply(event, "⚫")
+    event = await edit_or_reply(event, "Round...")
     animation_chars = ["⚫", "⬤", "●", "∘", "‎"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -136,7 +136,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(11)
+    animation_ttl = range(22)
     event = await edit_or_reply(event, "😢")
     animation_chars = [
         "😁",
@@ -176,7 +176,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
-    animation_ttl = range(6)
+    animation_ttl = range(12)
     event = await edit_or_reply(event, "Hey There....")
     animation_chars = ["🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**Good to See you friend....**"]
     for i in animation_ttl:
@@ -190,7 +190,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
-    animation_ttl = range(11)
+    animation_ttl = range(10)
     event = await edit_or_reply(event, "Power On......")
     animation_chars = [
         "**===================**\n      **Server Details**  \n**===================**\n\n\n**=>>>   CPU   <<<=**\n\n    **🔹current_freq:** 2500.09MHz\n    **🔹total_usage:** 10%\n\n    ●○○○○○○○○○\n\n    **🔹cpu core**\n\n        **🔹core_usage:** 5.9%\n        **🔹current_freq:** 2500.09MHz\n        |██████████▉  |\n       \n**=>>>   RAM   <<<=**\n\n    **🔹free:** 8.13GB\n    **🔹used:** 33.77GB\n    **🔹total:** 60.0GB\n    \n    ●●●●●●●○○○\n\n\n**=>>>   DISK   <<<=**\n\n   **🔹free:** 224.12GB\n    **🔹used:** 131.84GB\n    **🔹total:** 375.02GB\n    **🔹usage:** 37.0%\n\n    |████▍        |\n\n\n**=>>>   NETWORK   <<<=**\n\n    **🔹sent:** 158.98GB\n    **🔹recv:** 146.27GB\n    **🔹sent_packets:** 84518799\n    **🔹recv_packets:** 159720314\n\n\n**===================**\n",
@@ -206,7 +206,7 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 11])
+        await event.edit(animation_chars[i % 10])
 
 
 @borg.on(admin_cmd(pattern=f"hand$", outgoing=True))
@@ -215,7 +215,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(14)
+    animation_ttl = range(13)
     event = await edit_or_reply(event, "🖐️")
     animation_chars = [
         "👈",
@@ -234,7 +234,7 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 14])
+        await event.edit(animation_chars[i % 13])
 
 
 @borg.on(admin_cmd(pattern=f"gsg$", outgoing=True))
@@ -243,7 +243,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(13)
+    animation_ttl = range(11)
     event = await edit_or_reply(event, "ContDown....")
     animation_chars = [
         "🔟",
@@ -261,7 +261,7 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 13])
+        await event.edit(animation_chars[i % 11])
 
 
 @borg.on(admin_cmd(pattern=r"theart$", outgoing=True))
