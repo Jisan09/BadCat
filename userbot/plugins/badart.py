@@ -6,19 +6,20 @@ Plugin for CatUserbot
 import asyncio
 
 from userbot import ALIVE_NAME
-from userbot.utils import admin_cmd
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 name = str(ALIVE_NAME) if ALIVE_NAME else "BadCat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
-@borg.on(admin_cmd(pattern=r"ohnoo"))
+@borg.on(admin_cmd(pattern=r"ohnoo$"))
+@borg.on(sudo_cmd(pattern="ohnoo$", allow_sudo=True))
 async def kakashi(bsdk):
     if bsdk.fwd_from:
         return
     animation_interval = 1
     animation_ttl = range(0, 11)
-    await bsdk.edit(f"**Ohhh nooooo **💦💦...")
+    bsdk = await edit_or_reply(bsdk,f"**Ohhh nooooo **💦💦...")
     animation_chars = [
         "**Ohhh Baby..**😈",
         "__**Ohh Yeaah..**__\n\n 😈\n  |\  \n  |  \   \n 8=👊-D\n  |   \         \n 👟 👟       😲",
@@ -37,9 +38,40 @@ async def kakashi(bsdk):
         await bsdk.edit(animation_chars[i % 11])
 
 
-@borg.on(admin_cmd(pattern=r"ohyaah"))
+@borg.on(admin_cmd(pattern=r"lovestory$"))
+@borg.on(sudo_cmd(pattern="lovestory$", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    animation_interval = 3
+    animation_ttl = range(14)
+    event = await edit_or_reply(event, "Starting asf")
+    animation_chars = [
+        "1 ❤️ love story",
+        "  😐             😕 \n/👕\         <👗\ \n 👖               /|",
+        "  😉          😳 \n/👕\       /👗\ \n  👖            /|",
+        "  😚            😒 \n/👕\         <👗> \n  👖             /|",
+        "  😍         ☺️ \n/👕\      /👗\ \n  👖          /|",
+        "  😍          😍 \n/👕\       /👗\ \n  👖           /|",
+        "  😘   😊 \n /👕\/👗\ \n   👖   /|",
+        " 😳  😁 \n /|\ /👙\ \n /     / |",
+        "😈    /😰\ \n<|\      👙 \n /🍆    / |",
+        "😅 \n/(),✊😮 \n /\         _/\\/|",
+        "😎 \n/\\_,__😫 \n  //    //       \\",
+        "😖 \n/\\_,💦_😋  \n  //         //        \\",
+        "  😭      ☺️ \n  /|\   /(👶)\ \n  /!\   / \ ",
+        "The End 😂...",
+    ]
+
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await event.edit(animation_chars[i % 14])
+        
+        
+@borg.on(admin_cmd(pattern=r"ohyaah$"))
+@borg.on(sudo_cmd(pattern="ohyaah$", allow_sudo=True))
 async def kakashi(baby):
-    await baby.edit(
+    await edit_or_reply(baby,
         "**💪💪Ohhh Yeeah Baby**...\n\n"
         "／ イ  ..........(((ヽ   \n"
         "(  ﾉ       ￣—--＼    \n"
@@ -60,9 +92,10 @@ async def kakashi(baby):
     )
 
 
-@borg.on(admin_cmd(pattern=r"foff"))
+@borg.on(admin_cmd(pattern=r"foff$"))
+@borg.on(sudo_cmd(pattern="foff$", allow_sudo=True))
 async def bluedevilfooku(fooku):
-    await fooku.edit(
+    await edit_or_reply(fooku,
         ".                       /¯ )\n"
         "                      /¯  /\n"
         "                    /    /\n"
@@ -80,9 +113,10 @@ async def bluedevilfooku(fooku):
     )
 
 
-@borg.on(admin_cmd(pattern=r"sporn"))
+@borg.on(admin_cmd(pattern=r"sporn$"))
+@borg.on(sudo_cmd(pattern="sporn$", allow_sudo=True))
 async def kakashi(pornhub):
-    await pornhub.edit(
+    await edit_or_reply(pornhub,
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿⣧⣤⣤⠀⢠⣤⡄⢸⣿⣿⣿⣿⣿⣿⣿⣿\n"
@@ -110,9 +144,10 @@ async def kakashi(pornhub):
     )
 
 
-@borg.on(admin_cmd(pattern=r"spika"))
+@borg.on(admin_cmd(pattern=r"spika$"))
+@borg.on(sudo_cmd(pattern="spika$", allow_sudo=True))
 async def kakashi(pikachu):
-    await pikachu.edit(
+    await edit_or_reply(pikachu,
         "⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶\n"
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢰⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣀⣀⣾⣿⣿⣿⣿\n"
@@ -134,9 +169,10 @@ async def kakashi(pikachu):
     )
 
 
-@borg.on(admin_cmd(pattern=r"sxx"))
+@borg.on(admin_cmd(pattern=r"sxx$"))
+@borg.on(sudo_cmd(pattern="sxx$", allow_sudo=True))
 async def kakashi(saxy):
-    await saxy.edit(
+    await edit_or_reply(saxy,
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀\n"
         "⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀\n"
@@ -179,9 +215,10 @@ async def kakashi(saxy):
 
 
 @borg.on(admin_cmd(pattern="sdick (.*)"))
+@bot.on(sudo_cmd(pattern="sdick  (.*)", allow_sudo=True))
 async def kakashi(dicksay):
     text = dicksay.pattern_match.group(1)
-    await dicksay.edit(
+    await edit_or_reply(dicksay,
         f"**[{name}]({USERNAME})  ➥ {text} .\n**"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠲⢄\n"
