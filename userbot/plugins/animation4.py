@@ -433,7 +433,7 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"squ$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"squ$" allow_sudo=True))
+@borg.on(sudo_cmd(pattern=f"squ$", allow_sudo=True))
 async def _(event):
     event = await edit_or_reply(event, "squ...")
     await event.edit("╔═══════════════════╗ \n  \n╚═══════════════════╝")
