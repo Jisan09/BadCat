@@ -56,7 +56,7 @@ async def vapor(vpr):
         elif textx:
             message = textx.text
         else:
-            await edit_or_reply(vpr,"`Ｇｉｖｅ ｓｏｍｅ ｔｅｘｔ ｆｏｒ ｖａｐｏｒ！`")
+            await edit_or_reply(vpr, "`Ｇｉｖｅ ｓｏｍｅ ｔｅｘｔ ｆｏｒ ｖａｐｏｒ！`")
             return
 
         for charac in message:
@@ -67,7 +67,7 @@ async def vapor(vpr):
             else:
                 reply_text.append(charac)
 
-        await edit_or_reply(vpr,"".join(reply_text))
+        await edit_or_reply(vpr, "".join(reply_text))
 
 
 @borg.on(admin_cmd(pattern="smallcaps(?: |$)(.*)"))
@@ -78,7 +78,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -87,7 +87,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, smallcapscharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="blackbf(?: |$)(.*)"))
@@ -98,7 +98,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -107,7 +107,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, bubblesblackcharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="bubbles(?: |$)(.*)"))
@@ -118,7 +118,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -127,7 +127,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, bubblescharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="tanf(?: |$)(.*)"))
@@ -138,7 +138,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -147,7 +147,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, tantextcharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="boxf(?: |$)(.*)"))
@@ -158,7 +158,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -167,7 +167,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, littleboxtextcharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="smothtext(?: |$)(.*)"))
@@ -178,7 +178,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -187,7 +187,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, smothtextcharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 CMD_HELP.update(
