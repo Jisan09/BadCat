@@ -11,8 +11,7 @@ import requests
 from cowpy import cow
 from telethon import functions
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import ChannelParticipantsAdmins
-from telethon.tl.types import MessageEntityMentionName
+from telethon.tl.types import ChannelParticipantsAdmins, MessageEntityMentionName
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, catmemes
@@ -359,19 +358,21 @@ async def shout(args):
     msg = "\n" + result
     await edit_or_reply(args, "`" + msg + "`")
 
-                        
-@bot.on(admin_cmd(pattern="gbun",outgoing=True))
-@bot.on(sudo_cmd(pattern="gbun",allow_sudo=True))
+
+@bot.on(admin_cmd(pattern="gbun", outgoing=True))
+@bot.on(sudo_cmd(pattern="gbun", allow_sudo=True))
 async def gbun(event):
     if event.fwd_from:
         return
     gbunVar = event.text
     gbunVar = gbunVar[6:]
     mentions = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\n`"
-    catevent = await edit_or_reply(event , "**Summoning out Hatake Kakashi ❗️⚜️☠️**")
+    catevent = await edit_or_reply(event, "**Summoning out Hatake Kakashi ❗️⚜️☠️**")
     await asyncio.sleep(3.5)
     chat = await event.get_input_chat()
-    async for _ in event.client.iter_participants(chat, filter=ChannelParticipantsAdmins):
+    async for _ in event.client.iter_participants(
+        chat, filter=ChannelParticipantsAdmins
+    ):
         mentions += f""
     reply_message = None
     if event.reply_to_msg_id:
@@ -408,7 +409,6 @@ async def gbun(event):
     else:
         mention = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\nReason: Potential spammer. `"
         await catevent.edit(mention)
-
 
 
 CMD_HELP.update(
