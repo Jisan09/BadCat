@@ -1,12 +1,8 @@
 # https://github.com/Jisan09/catuserbot credits to @Jisan7509
 
 import asyncio
-
-from userbot import ALIVE_NAME
-
+from . import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
 
 @borg.on(admin_cmd(pattern="thinking$"))
@@ -136,7 +132,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(22)
+    animation_ttl = range(20)
     event = await edit_or_reply(event, "😢")
     animation_chars = [
         "😁",
@@ -148,12 +144,11 @@ async def _(event):
         "😧",
         "😡",
         "😢",
-        "[‎](github.com/Jisan09/catuserbot)",
-        "__**Good to See you guys....**__",
+        "__**[Good to See you guys....]**__(github.com/Jisan09/catuserbot)",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 11])
+        await event.edit(animation_chars[i % 10])
 
 
 @borg.on(admin_cmd(pattern=f"fnl$", outgoing=True))
@@ -295,3 +290,12 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 18])
+
+CMD_HELP.update(
+    {
+        "animation3": "__**PLUGIN NAME :** Animation3__\
+\n\n📌** CMD ➥** `.thinking` | `.loading` | `.square` | `.up` | `.round` | `.hart` | `.anim` | `.fnl` | `.monkey` | `.herber` | `.hand` | `.gsg` | `.theart`\
+\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
+"
+    }
+)
