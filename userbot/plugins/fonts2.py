@@ -145,6 +145,7 @@ async def stylish_generator(event):
             string = string.replace(normaltextcharacter, hwslcharacter)
     await edit_or_reply(event, string)
 
+
 CMD_HELP.update(
     {
         "fonts2": "__**PLUGIN NAME :** Fonts2__\
