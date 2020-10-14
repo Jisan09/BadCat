@@ -4,7 +4,7 @@
 import asyncio
 
 from userbot import ALIVE_NAME
-
+from . import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
@@ -479,3 +479,16 @@ async def _(event):
         "╔═══════════════════╗ \n ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ \n╚═══════════════════╝"
     )
     await asyncio.sleep(6)
+    
+CMD_HELP.update(
+    {
+        "animation4": "__**PLUGIN NAME :** Animation4__\
+\n\n📌** CMD ➥** `.eye` | `.uff` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
+\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
+\n\n📌** CMD ➥** `.kilr` <text>\
+\n**USAGE   ➥  **Be a warrior & kill enimes.\
+\n\n📌** CMD ➥** `.g1` <text>\
+\n**USAGE   ➥  **Send Long list of your text.\
+"
+    }
+)
