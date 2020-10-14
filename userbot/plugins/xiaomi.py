@@ -10,26 +10,27 @@ from userbot.events import admin_cmd
 
 
 @borg.on(admin_cmd(pattern="firmware(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="firmware(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
     firmware = f"firmware"
-    await event.edit("```Processing```")
-    async with bot.conversation("@XiaomiGeeksBot") as conv:
+    catevent = await edit_or_reply(event,"```Processing```")
+    async with event.client.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=774181428)
             )
-            await conv.send_message(f"/{firmware} {link}")
-            response = await response
+            msg = await conv.send_message(f"/{firmware} {link}")
+            respond = await response
+            await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.reply("```Unblock @XiaomiGeeksBot plox```")
+            await catevent.edit("```Unblock @XiaomiGeeksBot plox```")
             return
         else:
-            await event.delete()
-            await bot.forward_messages(event.chat_id, response.message)
-        await bot.send_read_acknowledge(conv.chat_id)
+            await catevent.delete()
+            await event.client.forward_messages(event.chat_id, respond.message)
 
 
 @borg.on(admin_cmd(pattern="specs(?: |$)(.*)"))
