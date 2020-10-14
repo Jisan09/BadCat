@@ -58,8 +58,8 @@ if Var.PRIVATE_GROUP_ID is not None:
                 if chat in PREV_REPLY_MESSAGE:
                     await PREV_REPLY_MESSAGE[chat].delete()
                     del PREV_REPLY_MESSAGE[chat]
-                if chat.id in PM_START:
-                    PM_START.remove(chat.id)
+                if chat in PM_START:
+                    PM_START.remove(chat)
                 pmpermit_sql.approve(chat, reason)
                 await event.edit(
                     "Approved to pm [{}](tg://user?id={})".format(firstname, chat)
