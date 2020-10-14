@@ -16,13 +16,13 @@ async def _(event):
         return
     link = event.pattern_match.group(1)
     firmware = f"firmware"
-    catevent = await edit_or_reply(event,"```Processing```")
+    catevent = await edit_or_reply(event, "```Processing```")
     async with event.client.conversation("@XiaomiGeeksBot") as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=774181428)
             )
-            msg = await conv.send_message(f"/{firmware} {link}")
+            await conv.send_message(f"/{firmware} {link}")
             respond = await response
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
