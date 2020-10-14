@@ -11,7 +11,6 @@ DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
-
 @bot.on(admin_cmd(outgoing=True, pattern="kilr (.*)"))
 @bot.on(sudo_cmd(pattern="kilr (.*)", allow_sudo=True))
 async def _(event):
@@ -20,7 +19,7 @@ async def _(event):
         return
     animation_interval = 0.7
     animation_ttl = range(8)
-    event = await edit_or_reply(event,f"**Ready Commando **__[{DEF}]({USR})....")
+    event = await edit_or_reply(event, f"**Ready Commando **__[{DEF}]({USR})....")
     animation_chars = [
         "Ｆｉｉｉｉｉｒｅ",
         f"__**Commando **__[{DEF}]({USR})          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
@@ -171,7 +170,7 @@ async def _(event):
         return
     animation_interval = 3
     animation_ttl = range(10)
-    event = await edit_or_reply(event,"👁👁")
+    event = await edit_or_reply(event, "👁👁")
     animation_chars = [
         "👁👁\n  👄  =====> Hey, How are you?",
         "👁👁\n  👅  =====> Everything okay?",
@@ -198,7 +197,7 @@ async def _(event):
         return
     animation_interval = 0.7
     animation_ttl = range(103)
-    event = await edit_or_reply(event,"Areeeh...")
+    event = await edit_or_reply(event, "Areeeh...")
     animation_chars = [
         "U",
         "Uf",
@@ -226,8 +225,9 @@ async def _(event):
         return
     animation_interval = 1
     animation_ttl = range(5)
-    event = await edit_or_reply(event,
-        " ╭╮╱╱╭╮╱╱╱╱╭╮\n┃╰╮╭╯┃╱╱╱╱┃┃\n╰╮╰╯╭┻━┳━━┫╰━╮\n╱╰╮╭┫┃━┫╭╮┃╭╮┃\n╱╱┃┃┃┃━┫╭╮┃┃┃┃\n╱╱╰╯╰━━┻╯╰┻╯╰╯"
+    event = await edit_or_reply(
+        event,
+        " ╭╮╱╱╭╮╱╱╱╱╭╮\n┃╰╮╭╯┃╱╱╱╱┃┃\n╰╮╰╯╭┻━┳━━┫╰━╮\n╱╰╮╭┫┃━┫╭╮┃╭╮┃\n╱╱┃┃┃┃━┫╭╮┃┃┃┃\n╱╱╰╯╰━━┻╯╰┻╯╰╯",
     )
     animation_chars = [
         "╭╮╱╱╭╮\n┃╰╮╭╯┃\n╰╮╰╯╭┻━┳╮╭╮\n╱╰╮╭┫╭╮┃┃┃┃\n╱╱┃┃┃╰╯┃╰╯┃\n╱╱╰╯╰━━┻━━╯",
@@ -252,7 +252,7 @@ async def _(event):
         return
     animation_interval = 0.3
     animation_ttl = range(27)
-    event = await edit_or_reply(event,"snake..")
+    event = await edit_or_reply(event, "snake..")
     animation_chars = [
         "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
         "◻️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
@@ -294,7 +294,7 @@ async def _(event):
         return
     animation_interval = 0.5
     animation_ttl = range(16)
-    event = await edit_or_reply(event,"human...")
+    event = await edit_or_reply(event, "human...")
     animation_chars = [
         "⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬜⬜⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜⬜⬜\n🔲🔲🔲🔲🔲🔲🔲",
         "⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛🚗\n⬜⬜⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜⬜⬜\n🔲🔲🔲🔲🔲🔲🔲",
@@ -325,7 +325,7 @@ async def _(event):
         return
     animation_interval = 0.3
     animation_ttl = range(28)
-    event = await edit_or_reply(event,"mc..")
+    event = await edit_or_reply(event, "mc..")
     animation_chars = [
         "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
         "◻️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
@@ -368,7 +368,7 @@ async def _(event):
         return
     animation_interval = 1
     animation_ttl = range(30)
-    event = await edit_or_reply(event,"Injecting virus....")
+    event = await edit_or_reply(event, "Injecting virus....")
     animation_chars = [
         "🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
         "◼️🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
@@ -413,7 +413,7 @@ async def _(event):
         return
     animation_interval = 1.5
     animation_ttl = range(11)
-    event = await edit_or_reply(event,"starting player...")
+    event = await edit_or_reply(event, "starting player...")
     animation_chars = [
         "⬤⬤⬤ 81% ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`✖️`\n\n⠀⠀⠀⠀⠀[cee jay Music Player](tg://user?id=916234223)\n\n⠀⠀⠀⠀**Now Playing:shape of u**\n\n**00:00** ▱▱▱▱▱▱▱▱▱▱ **00:10**\n\n⠀⠀⠀⠀⠀`🔂` `⏮️` `⏪️` `▶️` `⏩️` `⏭️`\n\n**⠀Next Song:** __Alan Walker - Alone.__\n\n⠀⠀⠀⠀**⠀Device: Nokia 1100**",
         "⬤⬤⬤ 81% ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`✖️`\n\n⠀⠀⠀⠀⠀[cee jay Music Player](tg://user?id=916234223)\n\n⠀⠀⠀⠀**Now Playing:shape of u**\n\n**00:01** ▰▱▱▱▱▱▱▱▱▱ **00:10**\n\n⠀⠀⠀⠀⠀`🔂` `⏮️` `⏪️` `⏸️` `⏩️` `⏭️`\n\n**⠀Next Song:** __Alan Walker - Alone.__\n\n⠀⠀⠀⠀**⠀Device: Nokia 1100**",
