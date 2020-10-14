@@ -1,8 +1,9 @@
 # https://github.com/Jisan09/catuserbot credits to @Jisan7509
 
 import asyncio
-from . import CMD_HELP
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP
 
 
 @borg.on(admin_cmd(pattern="thinking$"))
@@ -290,6 +291,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 18])
+
 
 CMD_HELP.update(
     {
