@@ -5,8 +5,6 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import bot
-
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
@@ -33,7 +31,7 @@ async def _(event):
             await catevent.delete()
             await event.client.forward_messages(event.chat_id, respond.message)
 
-            
+
 @borg.on(admin_cmd(pattern="specs(?: |$)(.*)"))
 @borg.on(sudo_cmd(outgoing=True, pattern="specs(?: |$)(.*)", allow_sudo=True))
 async def _(event):
