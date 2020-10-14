@@ -194,11 +194,10 @@ CMD_HELP.update(
     {
         "fonts": "__**\
         PLUGIN NAME :** Fonts__\
-        \n\n📌** CMD ➥** `.vapor` (text) or .vapor reply to message \
-        \n**USAGE   ➥  **Vaporize the given text.\
-        \n\n📌** CMD ➥** `.fmusical`\
-        \n        `.ancient`\
         \n**USAGE   ➥  **Some differnt font styles\
+        \n\n📌** CMD ➥** `.fmusical` | `.ancient` | `.vapor` | `.smallcaps` | `.blackbf` | `.bubbles` | `.tanf` | `.boxf` | `.smothtext` \
+        \n\n**USAGE   ➥  **Use cmd <text> , it will change your text to that font.\
+        \n**Example :** `.fmusical hello there`"
         "
     }
 )
