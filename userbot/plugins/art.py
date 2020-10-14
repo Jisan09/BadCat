@@ -2,7 +2,7 @@
 # Elove by @turquoise-giggle
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP,ALIVE_NAME
+from . import ALIVE_NAME, CMD_HELP
 
 DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
@@ -12,7 +12,8 @@ USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 @bot.on(sudo_cmd(pattern="ded (.*)", allow_sudo=True))
 async def kakashi(ded):
     name = ded.pattern_match.group(1)
-    await edit_or_reply(ded,
+    await edit_or_reply(
+        ded,
         f"[{DEF}]({USR}) --- {name}          \n　　　　　|"
         "\n　　　　　| \n"
         "　　　　　| \n"
@@ -26,7 +27,7 @@ async def kakashi(ded):
         "　|　３　 | 丶＼ \n"
         "＜ 、･　　|　　＼ \n"
         "　＼＿＿／∪ _ ∪) \n"
-        "　　　　　 Ｕ Ｕ\n"
+        "　　　　　 Ｕ Ｕ\n",
     )
 
 
@@ -34,20 +35,22 @@ async def kakashi(ded):
 @bot.on(sudo_cmd(pattern="killer (.*)", allow_sudo=True))
 async def kakashi(killer):
     name = killer.pattern_match.group(1)
-    await edit_or_reply(killer,
+    await edit_or_reply(
+        killer,
         f"__**Commando **__[{DEF}]({USR})          \n\n"
         "_/﹋\_\n"
         "(҂`_´)\n"
         f"<,︻╦╤─ ҉ - - - {name}\n"
-        "_/﹋\_\n"
+        "_/﹋\_\n",
     )
 
 
 @bot.on(admin_cmd(pattern=r"elove$"))
 @bot.on(sudo_cmd(pattern="elove$", allow_sudo=True))
 async def kakashi(event):
-    await edit_or_reply(event,
-        "░░▄███▄███▄\n░░█████████\n░░▒▀█████▀░\n░░▒░░▀█▀\n░░▒░░█░\n░░▒░█\n░░░█\n░░█░░░░███████\n░██░░░██▓▓███▓██▒\n██░░░█▓▓▓▓▓▓▓█▓████\n██░░██▓▓▓(◐)▓█▓█▓█\n███▓▓▓█▓▓▓▓▓█▓█▓▓▓▓█\n▀██▓▓█░██▓▓▓▓██▓▓▓▓▓█\n░▀██▀░░█▓▓▓▓▓▓▓▓▓▓▓▓▓█\n░░░░▒░░░█▓▓▓▓▓█▓▓▓▓▓▓█\n░░░░▒░░░█▓▓▓▓█▓█▓▓▓▓▓█\n░▒░░▒░░░█▓▓▓█▓▓▓█▓▓▓▓█\n░▒░░▒░░░█▓▓▓█░░░█▓▓▓█\n░▒░░▒░░██▓██░░░██▓▓██\n██████████████████████\n█─████─▄▄─██─█─██─▄▄─█\n█─██▀█─██─██─█─██─▄█▀█\n█▄▄▄▄▀▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▀"
+    await edit_or_reply(
+        event,
+        "░░▄███▄███▄\n░░█████████\n░░▒▀█████▀░\n░░▒░░▀█▀\n░░▒░░█░\n░░▒░█\n░░░█\n░░█░░░░███████\n░██░░░██▓▓███▓██▒\n██░░░█▓▓▓▓▓▓▓█▓████\n██░░██▓▓▓(◐)▓█▓█▓█\n███▓▓▓█▓▓▓▓▓█▓█▓▓▓▓█\n▀██▓▓█░██▓▓▓▓██▓▓▓▓▓█\n░▀██▀░░█▓▓▓▓▓▓▓▓▓▓▓▓▓█\n░░░░▒░░░█▓▓▓▓▓█▓▓▓▓▓▓█\n░░░░▒░░░█▓▓▓▓█▓█▓▓▓▓▓█\n░▒░░▒░░░█▓▓▓█▓▓▓█▓▓▓▓█\n░▒░░▒░░░█▓▓▓█░░░█▓▓▓█\n░▒░░▒░░██▓██░░░██▓▓██\n██████████████████████\n█─████─▄▄─██─█─██─▄▄─█\n█─██▀█─██─██─█─██─▄█▀█\n█▄▄▄▄▀▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▀",
     )
 
 
@@ -410,8 +413,8 @@ async def bluedevilshitos(shitos):
 @bot.on(sudo_cmd(pattern="dislike$", allow_sudo=True))
 async def bluedevildislike(dislike):
     await edit_or_reply(dislike, R)
-    
-    
+
+
 CMD_HELP.update(
     {
         "art": "__**PLUGIN NAME :** Art__\
