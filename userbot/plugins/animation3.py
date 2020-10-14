@@ -289,7 +289,8 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 8])
-        
+
+
 CMD_HELP.update(
     {
         "animation4": "__**PLUGIN NAME :** Animation4__\
