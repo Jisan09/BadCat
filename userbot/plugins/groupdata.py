@@ -703,6 +703,7 @@ async def fetch_info(chat, event):
         caption += f"Description: \n<code>{description}</code>\n"
     return caption
 
+
 CMD_HELP.update(
     {
         "groupdata": "__**PLUGIN NAME :** Groupdata__\
