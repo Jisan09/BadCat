@@ -10,7 +10,7 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 async def quote_search(event):
     if event.fwd_from:
         return
-    event = await edit_or_reply(event, "Processing...")
+    catevent = await edit_or_reply(event, "Processing...")
     search_string = event.pattern_match.group(1)
     input_url = "https://bots.shrimadhavuk.me/Telegram/GoodReadsQuotesBot/?q={}".format(
         search_string
@@ -27,6 +27,6 @@ async def quote_search(event):
     else:
         result = None
     if result:
-        await event.edit(result.replace("<code>", "`").replace("</code>", "`"))
+        await catevent.edit(result.replace("<code>", "`").replace("</code>", "`"))
     else:
-        await event.edit("Zero results found")
+        await catevent.edit("Zero results found")
