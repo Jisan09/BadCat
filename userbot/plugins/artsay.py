@@ -5,9 +5,12 @@ Plugin for CatUserbot
 import asyncio
 
 from userbot import ALIVE_NAME, CMD_HELP
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
+
 
 @bot.on(admin_cmd(pattern=r"acarry$"))
 @bot.on(sudo_cmd(pattern="acarry$", allow_sudo=True))
@@ -33,8 +36,9 @@ async def kakashi(event):
 @bot.on(sudo_cmd(pattern="carry (.*)", allow_sudo=True))
 async def kakashi(carry):
     name = carry.pattern_match.group(1)
-    await edit_or_reply(carry,
-        f"**Carry ➥ {name} .**\n\n                     ⣤⣶⣶⣶⣦⣤⣄⡀\n⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀\n⠀⠀⠀⢀⣾⣿⣿⣿⠿⠿⠟⠻⠿⢿⣿⣿⣿⡆\n⠀⠀⠀⢰⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀ ⠈⠉⢻⡇ \n⠀⠀⠀⠈⠿⣿⣇⣠⠤⠤⠤⢤⣀⣤⠤⠤⣺⡏ \n⠀⠀⠀⠀⠐⢉⣯⠹⣀⣀⣢⡸⠉⢏⡄⣀⣯⠁ \n⠀⠀⠀⠀⠡⠀⢹⣆⠀⠀⠀⣀⡀⡰⠀⢠⠖⠂ \n⠀⠀⠀⠀⠀⠈⠙⣿⣿⠀⠠⠚⢋⡁⠀⡜ \n⠀⠀⠀⠀⠀⠀⢸⠈⠙⠦⣤⣀⣤⣤⡼⠁  \n⠀⠀⠀ ⠀⢀⡌⠀⠀⠀⠀ ⠉⢏⡉  \n⠀⠀⠀⣀⣴⣿⣷⣶⣤⣤⣤⣴⣾⣷⣶⣦⡀ \n⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄ \n⠚⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛"
+    await edit_or_reply(
+        carry,
+        f"**Carry ➥ {name} .**\n\n                     ⣤⣶⣶⣶⣦⣤⣄⡀\n⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀\n⠀⠀⠀⢀⣾⣿⣿⣿⠿⠿⠟⠻⠿⢿⣿⣿⣿⡆\n⠀⠀⠀⢰⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀ ⠈⠉⢻⡇ \n⠀⠀⠀⠈⠿⣿⣇⣠⠤⠤⠤⢤⣀⣤⠤⠤⣺⡏ \n⠀⠀⠀⠀⠐⢉⣯⠹⣀⣀⣢⡸⠉⢏⡄⣀⣯⠁ \n⠀⠀⠀⠀⠡⠀⢹⣆⠀⠀⠀⣀⡀⡰⠀⢠⠖⠂ \n⠀⠀⠀⠀⠀⠈⠙⣿⣿⠀⠠⠚⢋⡁⠀⡜ \n⠀⠀⠀⠀⠀⠀⢸⠈⠙⠦⣤⣀⣤⣤⡼⠁  \n⠀⠀⠀ ⠀⢀⡌⠀⠀⠀⠀ ⠉⢏⡉  \n⠀⠀⠀⣀⣴⣿⣷⣶⣤⣤⣤⣴⣾⣷⣶⣦⡀ \n⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄ \n⠚⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛",
     )
 
 
@@ -76,7 +80,7 @@ async def kakashi(think):
         "⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁\n"
         "⠀⠀⠛⢿⣿⣿⣿⣿⣿⣿⡿⠟\n"
     )
-    await edit_or_reply(think,A)
+    await edit_or_reply(think, A)
 
 
 @bot.on(admin_cmd(pattern="sfrog (.*)"))
@@ -101,7 +105,7 @@ async def kakashi(frogsay):
         "⠄⣿⠁⠄⠐⠛⠛⠛⠉⠉⠉⠉⠄⠄⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿\n"
         "⠄⠻⣦⣀⣀⣀⣀⣀⣤⣤⣤⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋\n"
     )
-    await edit_or_reply(frogsay,C)
+    await edit_or_reply(frogsay, C)
 
 
 @bot.on(admin_cmd(pattern="sputin (.*)"))
@@ -127,7 +131,7 @@ async def kakashi(putinsay):
         "⠄⠄⠄⠄⠄⠄⠄⢿⣿⣾⣷⡄⠄⢾⣿⣿⣿⡄⠄⠄⠄⠄⠄⠄\n"
         "⠄⠄⠄⠄⠄⠄⠄⠸⣿⣿⣿⠃⠄⠈⢿⣿⣿⠄⠄⠄⠄⠄⠄⠄\n"
     )
-    await edit_or_reply(putinsay,D)
+    await edit_or_reply(putinsay, D)
 
 
 @bot.on(admin_cmd(pattern="sdead (.*)"))
@@ -152,7 +156,7 @@ async def kakashi(deadfrog):
         "⠄⠄⠄⠄⠄⠄⠄⠁⠙⠒⠙⠯⠍⠙⢉⣡⣶⣿⣿⣿⣿⣿⣿⣿\n"
         "⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
     )
-    await edit_or_reply(deadfrog,E)
+    await edit_or_reply(deadfrog, E)
 
 
 @bot.on(admin_cmd(pattern="strump (.*)"))
@@ -177,7 +181,7 @@ async def kakashi(trumpsay):
         "⠄⠄⠄⠄⠄⠄⠄⠄⠹⣿⣿⡇⠄⠄⠸⣿⡄⠄⠈⠁⠄⠄⠄⣿\n"
         "⠄⠄⠄⠄⠄⠄⠄⠄⠄⢻⣿⡇⠄⠄⠄⢹⣧⠄⠄⠄⠄⠄⠄⠘\n"
     )
-    await edit_or_reply(trumpsay,J)
+    await edit_or_reply(trumpsay, J)
 
 
 @bot.on(admin_cmd(pattern="schina (.*)"))
@@ -203,13 +207,13 @@ async def kakashi(ckmkb):
         "⠄⠄⠄⠄⠄⣿⣿⠃⣦⣄⣿⣿⣿⠇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄\n"
         "⠄⠄⠄⠄⢸⣿⠗⢈⡶⣷⣿⣿⡏⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄\n"
     )
-    await edit_or_reply(ckmkb,K)
+    await edit_or_reply(ckmkb, K)
 
 
 @bot.on(admin_cmd(pattern=r"sshit$"))
 @bot.on(sudo_cmd(pattern="sshit$", allow_sudo=True))
 async def kakashi(shit):
-    await edit_or_reply(shit,G)
+    await edit_or_reply(shit, G)
 
 
 CMD_HELP.update(
