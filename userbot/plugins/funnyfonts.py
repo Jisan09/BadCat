@@ -17,12 +17,12 @@ async def stretch(stret):
     elif textx:
         message = textx.text
     else:
-        await edit_or_reply(stret,"`GiiiiiiiB sooooooomeeeeeee teeeeeeext!`")
+        await edit_or_reply(stret, "`GiiiiiiiB sooooooomeeeeeee teeeeeeext!`")
         return
 
     count = random.randint(3, 10)
     reply_text = re.sub(r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])", (r"\1" * count), message)
-    await edit_or_reply(stret,reply_text)
+    await edit_or_reply(stret, reply_text)
 
 
 @borg.on(admin_cmd(pattern="zal(?: |$)(.*)"))
@@ -36,8 +36,8 @@ async def zal(zgfy):
     elif textx:
         message = textx.text
     else:
-        await edit_or_reply(zgfy,
-            "`gͫ ̆ i̛ ̺ v͇̆ ȅͅ   a̢ͦ   s̴̪ c̸̢ ä̸ rͩͣ y͖͞   t̨͚ é̠ x̢͖  t͔͛`"
+        await edit_or_reply(
+            zgfy, "`gͫ ̆ i̛ ̺ v͇̆ ȅͅ   a̢ͦ   s̴̪ c̸̢ ä̸ rͩͣ y͖͞   t̨͚ é̠ x̢͖  t͔͛`"
         )
         return
 
@@ -58,7 +58,7 @@ async def zal(zgfy):
 
         reply_text.append(charac)
 
-    await edit_or_reply(zgfy,"".join(reply_text))
+    await edit_or_reply(zgfy, "".join(reply_text))
 
 
 @borg.on(admin_cmd(pattern="cp(?: |$)(.*)"))
@@ -72,7 +72,7 @@ async def copypasta(cp_e):
     elif textx:
         message = textx.text
     else:
-        await edit_or_reply(cp_e,"`😂🅱️IvE👐sOME👅text👅for✌️Me👌tO👐MAkE👀iT💞funNy!💦`")
+        await edit_or_reply(cp_e, "`😂🅱️IvE👐sOME👅text👅for✌️Me👌tO👐MAkE👀iT💞funNy!💦`")
         return
 
     reply_text = random.choice(fonts.EMOJIS)
@@ -92,7 +92,7 @@ async def copypasta(cp_e):
             else:
                 reply_text += owo.lower()
     reply_text += random.choice(fonts.EMOJIS)
-    await edit_or_reply(cp_e,reply_text)
+    await edit_or_reply(cp_e, reply_text)
 
 
 @borg.on(admin_cmd(pattern="weeb(?: |$)(.*)"))
@@ -103,14 +103,14 @@ async def weebify(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"`What I am Supposed to Weebify `")
+        await edit_or_reply(event, "`What I am Supposed to Weebify `")
         return
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in fonts.normiefont:
             weebycharacter = fonts.weebyfont[fonts.normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, weebycharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="downside(?: |$)(.*)"))
@@ -121,7 +121,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for upsidecharacter in string:
@@ -130,7 +130,7 @@ async def stylish_generator(event):
                 fonts.upsidefont.index(upsidecharacter)
             ]
             string = string.replace(upsidecharacter, downsidecharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="subscript(?: |$)(.*)"))
@@ -141,7 +141,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -150,7 +150,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, subscriptcharacter)
-    await edit_or_reply(event,string)
+    await edit_or_reply(event, string)
 
 
 @borg.on(admin_cmd(pattern="superscript(?: |$)(.*)"))
@@ -161,7 +161,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event,"What I am Supposed to change give text")
+        await edit_or_reply(event, "What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normaltextcharacter in string:
@@ -170,8 +170,7 @@ async def stylish_generator(event):
                 fonts.normaltext.index(normaltextcharacter)
             ]
             string = string.replace(normaltextcharacter, superscriptcharacter)
-    await edit_or_reply(event,string)
-
+    await edit_or_reply(event, string)
 
 
 CMD_HELP.update(
