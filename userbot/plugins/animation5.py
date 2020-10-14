@@ -3,6 +3,7 @@
 import asyncio
 
 from userbot import ALIVE_NAME
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
@@ -15,7 +16,7 @@ async def _(event):
         return
     animation_interval = 0.05
     animation_ttl = range(200)
-    event = await edit_or_reply(event,"thinking..")
+    event = await edit_or_reply(event, "thinking..")
     animation_chars = [
         "THINKING",
         "THI&K#N₹",
