@@ -108,7 +108,8 @@ async def _(message):
                 return
 
 
-@borg.on(admin_cmd(pattern="fleaveme$"))
+@borg.on(admin_cmd(pattern=r"fleaveme$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"fleaveme$", allow_sudo=True))
 async def _(event):
     animation_interval = 1
     animation_ttl = range(10)
@@ -126,20 +127,21 @@ async def _(event):
     ]
     if event.fwd_from:
         return
-    await event.edit("fleaveme....")
+    event = await edit_or_reply(event,"fleaveme....")
     await asyncio.sleep(2)
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 10])
 
-
-@borg.on(admin_cmd(pattern="loveu", outgoing=True))
+        
+@borg.on(admin_cmd(pattern=r"loveu$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"loveu$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.5
     animation_ttl = range(70)
-    await event.edit("loveu")
+    event = await edit_or_reply(event,"loveu")
     animation_chars = [
         "😀",
         "👩‍🎨",
@@ -182,10 +184,10 @@ async def _(event):
         await event.edit(animation_chars[i % 35])
 
 
-@borg.on(admin_cmd(pattern="plane$", outgoing=True))
+@borg.on(admin_cmd(pattern=r"plane$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"plane$", allow_sudo=True))
 async def _(event):
-    if event.fwd_from:
-        return
+    event = await edit_or_reply(event, "Wait for plane...")
     await event.edit("✈-------------")
     await event.edit("-✈------------")
     await event.edit("--✈-----------")
@@ -204,13 +206,14 @@ async def _(event):
     await event.delete()
 
 
-@borg.on(admin_cmd(pattern=r"police$"))
+@borg.on(admin_cmd(pattern=r"police$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"police$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
     animation_ttl = range(12)
-    await event.edit("Police")
+    event = await edit_or_reply(event,"Police")
     animation_chars = [
         "🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵",
         "🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴",
@@ -230,13 +233,14 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@borg.on(admin_cmd(pattern=f"jio$", outgoing=True))
+@borg.on(admin_cmd(pattern=r"jio$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"jio$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
     animation_ttl = range(19)
-    await event.edit("jio network boosting...")
+    event = await edit_or_reply(event,"jio network boosting...")
     animation_chars = [
         "`Connecting To JIO NETWORK ....`",
         "`█ ▇ ▆ ▅ ▄ ▂ ▁`",
@@ -263,13 +267,14 @@ async def _(event):
         await event.edit(animation_chars[i % 19])
 
 
-@borg.on(admin_cmd(pattern=f"solarsystem$", outgoing=True))
+@borg.on(admin_cmd(pattern=r"solarsystem$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"solarsystem$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.1
     animation_ttl = range(80)
-    await event.edit("solarsystem")
+    event = await edit_or_reply(event,"solarsystem")
     animation_chars = [
         "`◼️◼️◼️◼️◼️\n◼️◼️◼️◼️☀\n◼️◼️🌎◼️◼️\n🌕◼️◼️◼️◼️\n◼️◼️◼️◼️◼️`",
         "`◼️◼️◼️◼️◼️\n🌕◼️◼️◼️◼️\n◼️◼️🌎◼️◼️\n◼️◼️◼️◼️☀\n◼️◼️◼️◼️◼️`",
