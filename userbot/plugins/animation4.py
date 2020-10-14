@@ -490,8 +490,6 @@ CMD_HELP.update(
 \n\n📌** CMD ➥** `.g1` <text>\
 \n**USAGE   ➥  **Send Long list of your text.\
 \n\n📌** CMD ➥** `.eye` | `.uff` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
-\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
-
-"
+\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself"
     }
 )
