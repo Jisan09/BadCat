@@ -203,7 +203,7 @@ async def _(event):
     await event.edit("------------✈-")
     await event.edit("-------------✈")
     await asyncio.sleep(3)
-    await event.delete()
+
 
 
 @borg.on(admin_cmd(pattern=r"police$", outgoing=True))
