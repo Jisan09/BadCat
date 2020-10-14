@@ -101,7 +101,7 @@ async def kakashi(frogsay):
         "⠄⣿⠁⠄⠐⠛⠛⠛⠉⠉⠉⠉⠄⠄⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿\n"
         "⠄⠻⣦⣀⣀⣀⣀⣀⣤⣤⣤⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋\n"
     )
-    awawait edit_or_reply(frogsay,C)
+    await edit_or_reply(frogsay,C)
 
 
 @bot.on(admin_cmd(pattern="sputin (.*)"))
