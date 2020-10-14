@@ -5,7 +5,8 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, bot
+from userbot import bot
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
@@ -31,4 +32,3 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.forward_messages(event.chat_id, respond.message)
-
