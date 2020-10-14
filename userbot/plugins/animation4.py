@@ -194,9 +194,11 @@ async def _(event):
 @borg.on(admin_cmd(pattern=f"uff", outgoing=True))
 @borg.on(sudo_cmd(pattern=f"uff$", allow_sudo=True))
 async def _(event):
-event = await edit_or_reply(event,"Areeeh...")
-    animation_interval = 1
+    if event.fwd_from:
+        return
+    animation_interval = 0.7
     animation_ttl = range(103)
+    event = await edit_or_reply(event,"Areeeh...")
     animation_chars = [
         "U",
         "Uf",
