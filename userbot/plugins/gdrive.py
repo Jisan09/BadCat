@@ -771,8 +771,8 @@ async def lists(gdrive):
     return
 
 
-@bot.on(admin_cmd(pattern=r"glist(?: |$)(-l \d+)?(?: |$)?(.*)?(?: |$)", outgoing=True))
-@bot.on(sudo_cmd(pattern="glist(?: |$)(-l \d+)?(?: |$)?(.*)?(?: |$)", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"glist(?: |$)", outgoing=True))
+@bot.on(sudo_cmd(pattern="glist(?: |$)", allow_sudo=True))
 async def catlists(gdrive):
     await lists(gdrive)
 
