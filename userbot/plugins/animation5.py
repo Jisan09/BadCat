@@ -3,18 +3,19 @@
 import asyncio
 
 from userbot import ALIVE_NAME
-from userbot.utils import admin_cmd
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
 
 @borg.on(admin_cmd(pattern="thinking$"))
+@borg.on(sudo_cmd(pattern="thinking$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
-    animation_interval = 0.01
-    animation_ttl = range(288)
-    await event.edit("thinking..")
+    animation_interval = 0.05
+    animation_ttl = range(200)
+    event = await edit_or_reply(event,"thinking..")
     animation_chars = [
         "THINKING",
         "THI&K#N₹",
@@ -59,11 +60,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"loading$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"loading$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
     animation_ttl = range(20)
+    event = await edit_or_reply(event, "▯")
     animation_chars = ["▮", "▯", "▬", "▭", "‎"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -71,11 +74,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"square$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"square$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
     animation_ttl = range(20)
+    event = await edit_or_reply(event, "◨")
     animation_chars = ["◧", "◨", "◧", "◨", "‎"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -83,11 +88,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"up$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"up$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
     animation_ttl = range(20)
+    event = await edit_or_reply(event, "╻")
     animation_chars = ["╹", "╻", "╹", "╻", "‎"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -95,11 +102,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"round$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"round$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
     animation_ttl = range(20)
+    event = await edit_or_reply(event, "⚫")
     animation_chars = ["⚫", "⬤", "●", "∘", "‎"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -107,11 +116,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"hart$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"hart$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.5
     animation_ttl = range(20)
+    event = await edit_or_reply(event, "❤️")
     animation_chars = ["🖤", "❤️", "🖤", "❤️", "‎"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -119,11 +130,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"anim$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"anim$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
     animation_ttl = range(11)
+    event = await edit_or_reply(event, "😢")
     animation_chars = [
         "😁",
         "😧",
@@ -143,11 +156,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"fnl$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"fnl$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
     animation_ttl = range(6)
+    event = await edit_or_reply(event, "Hey There....")
     animation_chars = ["😁🏿", "😁🏾", "😁🏽", "😁🏼", "‎😁", "**Good to See you friend....**"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -155,11 +170,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"monkey$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"monkey$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
     animation_ttl = range(6)
+    event = await edit_or_reply(event, "Hey There....")
     animation_chars = ["🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**Good to See you friend....**"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -167,11 +184,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"herber$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"herber$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
     animation_ttl = range(11)
+    event = await edit_or_reply(event, "Power On......")
     animation_chars = [
         "**===================**\n      **Server Details**  \n**===================**\n\n\n**=>>>   CPU   <<<=**\n\n    **🔹current_freq:** 2500.09MHz\n    **🔹total_usage:** 10%\n\n    ●○○○○○○○○○\n\n    **🔹cpu core**\n\n        **🔹core_usage:** 5.9%\n        **🔹current_freq:** 2500.09MHz\n        |██████████▉  |\n       \n**=>>>   RAM   <<<=**\n\n    **🔹free:** 8.13GB\n    **🔹used:** 33.77GB\n    **🔹total:** 60.0GB\n    \n    ●●●●●●●○○○\n\n\n**=>>>   DISK   <<<=**\n\n   **🔹free:** 224.12GB\n    **🔹used:** 131.84GB\n    **🔹total:** 375.02GB\n    **🔹usage:** 37.0%\n\n    |████▍        |\n\n\n**=>>>   NETWORK   <<<=**\n\n    **🔹sent:** 158.98GB\n    **🔹recv:** 146.27GB\n    **🔹sent_packets:** 84518799\n    **🔹recv_packets:** 159720314\n\n\n**===================**\n",
         "**===================**\n      **Server Details**  \n**===================**\n\n\n**=>>>   CPU   <<<=**\n\n    **🔹current_freq:** 2500.09MHz\n    **🔹total_usage:** 30%\n\n    ●●●○○○○○○○\n\n    **🔹cpu core**\n\n        **🔹core_usage:** 20.4%\n        **🔹current_freq:** 2500.09MHz\n        |██████████▉  |\n       \n**=>>>   RAM   <<<=**\n\n    **🔹free:** 7.18GB\n    **🔹used:** 28.26GB\n    **🔹total:** 60.0GB\n    \n    ●●●●●●●●●●\n\n\n**=>>>   DISK   <<<=**\n\n   **🔹free:** 224.12GB\n    **🔹used:** 131.84GB\n    **🔹total:** 375.02GB\n    **🔹usage:** 37.0%\n\n    |████▍        |\n\n\n**=>>>   NETWORK   <<<=**\n\n    **🔹sent:** 146.27GB\n    **🔹recv:** 124.33GB\n    **🔹sent_packets:** 54635686\n    **🔹recv_packets:** 143565654\n\n\n**===================**\n",
@@ -190,11 +209,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"hand$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"hand$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
     animation_ttl = range(14)
+    event = await edit_or_reply(event, "🖐️")
     animation_chars = [
         "👈",
         "👉",
@@ -216,11 +237,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=f"gsg$", outgoing=True))
+@borg.on(sudo_cmd(pattern=f"gsg$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
     animation_ttl = range(13)
+    event = await edit_or_reply(event, "ContDown....")
     animation_chars = [
         "🔟",
         "9️⃣",
@@ -241,11 +264,13 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern=r"theart$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"theart$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
     animation_ttl = range(54)
+    event = await edit_or_reply(event, "🖤")
     animation_chars = [
         "❤️",
         "🧡",
