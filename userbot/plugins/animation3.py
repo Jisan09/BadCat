@@ -69,7 +69,8 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@borg.on(admin_cmd(pattern="dump ?(.*)"))
+@borg.on(admin_cmd(pattern=r"dump$", outgoing=True))
+@borg.on(sudo_cmd(pattern=r"dump$", allow_sudo=True))
 async def _(message):
     try:
         obj = message.pattern_match.group(1)
@@ -103,7 +104,7 @@ async def _(message):
         for something_else in something:
             await asyncio.sleep(0.3)
             try:
-                await message.edit(something_else)
+                await edit_or_reply(message,something_else)
             except errors.MessageIdInvalidError:
                 return
 
