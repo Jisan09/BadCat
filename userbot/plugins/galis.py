@@ -265,10 +265,10 @@ async def cat(event):
 CMD_HELP.update(
     {
         "galis": "__**PLUGIN NAME :** Galis__\
-\n\n📌** CMD ➥** `.abuse` | `.abusehard` | `.rendi` | `.fuck` | `.thanos` | `.gf` | `.chod` | `.rape` | `.kiss` | `.fuk` | `.sex` | `.nakal` | `.gaali` | `.gali` | `.egaali` \
-\n**USAGE   ➥  **You already got that! Ain't?.\
 \n\n📌** CMD ➥** `.fk` <text>\
 \n**USAGE   ➥  **Give someone all galis.\
+\n\n📌** CMD ➥** `.abuse` | `.abusehard` | `.rendi` | `.fuck` | `.thanos` | `.gf` | `.chod` | `.rape` | `.kiss` | `.fuk` | `.sex` | `.nakal` | `.gaali` | `.gali` | `.egaali` \
+\n\n**USAGE   ➥  **You already got that! Ain't?.\
 "
     }
 )
