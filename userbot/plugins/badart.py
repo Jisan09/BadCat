@@ -6,6 +6,7 @@ Plugin for CatUserbot
 import asyncio
 
 from userbot import ALIVE_NAME
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 name = str(ALIVE_NAME) if ALIVE_NAME else "BadCat"
@@ -19,7 +20,7 @@ async def kakashi(bsdk):
         return
     animation_interval = 1
     animation_ttl = range(0, 11)
-    bsdk = await edit_or_reply(bsdk,f"**Ohhh nooooo **💦💦...")
+    bsdk = await edit_or_reply(bsdk, f"**Ohhh nooooo **💦💦...")
     animation_chars = [
         "**Ohhh Baby..**😈",
         "__**Ohh Yeaah..**__\n\n 😈\n  |\  \n  |  \   \n 8=👊-D\n  |   \         \n 👟 👟       😲",
@@ -66,12 +67,13 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 14])
-        
-        
+
+
 @borg.on(admin_cmd(pattern=r"ohyaah$"))
 @borg.on(sudo_cmd(pattern="ohyaah$", allow_sudo=True))
 async def kakashi(baby):
-    await edit_or_reply(baby,
+    await edit_or_reply(
+        baby,
         "**💪💪Ohhh Yeeah Baby**...\n\n"
         "／ イ  ..........(((ヽ   \n"
         "(  ﾉ       ￣—--＼    \n"
@@ -88,14 +90,15 @@ async def kakashi(baby):
         "      ( (    ).           ) ).  ) \n"
         "     (      ).            ( |    | \n"
         "      |    /                \    |\n"
-        "      👞.                  👞"
+        "      👞.                  👞",
     )
 
 
 @borg.on(admin_cmd(pattern=r"foff$"))
 @borg.on(sudo_cmd(pattern="foff$", allow_sudo=True))
 async def bluedevilfooku(fooku):
-    await edit_or_reply(fooku,
+    await edit_or_reply(
+        fooku,
         ".                       /¯ )\n"
         "                      /¯  /\n"
         "                    /    /\n"
@@ -109,14 +112,15 @@ async def bluedevilfooku(fooku):
         "Roses are RED\n"
         "Violets are BLUE\n"
         "This is my middle finger\n"
-        "It just for U🖕😂\n"
+        "It just for U🖕😂\n",
     )
 
 
 @borg.on(admin_cmd(pattern=r"sporn$"))
 @borg.on(sudo_cmd(pattern="sporn$", allow_sudo=True))
 async def kakashi(pornhub):
-    await edit_or_reply(pornhub,
+    await edit_or_reply(
+        pornhub,
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿⣧⣤⣤⠀⢠⣤⡄⢸⣿⣿⣿⣿⣿⣿⣿⣿\n"
@@ -140,14 +144,15 @@ async def kakashi(pornhub):
         "⣿⣿⣿⣿⠀⠀⣾⣏⠀⠀⣹⡇⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⠀⠀⠘⠿⠿⠿⠟⠃⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿\n"
-        "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
+        "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n",
     )
 
 
 @borg.on(admin_cmd(pattern=r"spika$"))
 @borg.on(sudo_cmd(pattern="spika$", allow_sudo=True))
 async def kakashi(pikachu):
-    await edit_or_reply(pikachu,
+    await edit_or_reply(
+        pikachu,
         "⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶\n"
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢰⣿⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣀⣀⣾⣿⣿⣿⣿\n"
@@ -165,14 +170,15 @@ async def kakashi(pikachu):
         "⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿\n"
         "⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿\n"
         "⣿⣿⣿⣿⣿⣿🅼🅰️ 🅺🅸 🅲🅷🆄⢸⣿⣿⣿⣿⣿⣿\n"
-        "🅿️🅸🅺🅰️ 🅿️🅸🅺🅰️ 🅿️🅸🅺🅰️🅲🅷🆄\n"
+        "🅿️🅸🅺🅰️ 🅿️🅸🅺🅰️ 🅿️🅸🅺🅰️🅲🅷🆄\n",
     )
 
 
 @borg.on(admin_cmd(pattern=r"sxx$"))
 @borg.on(sudo_cmd(pattern="sxx$", allow_sudo=True))
 async def kakashi(saxy):
-    await edit_or_reply(saxy,
+    await edit_or_reply(
+        saxy,
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀\n"
         "⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀\n"
@@ -210,7 +216,7 @@ async def kakashi(saxy):
         "⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⠄⠄⠄⠄⣿⣿⣿⣿⣿⣿⣿⣿⡟\n"
         "⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠄⠄⠄⠄⢹⣿⣿⣿⣿⣿⣿⣿⡟\n"
         "⣸⣿⣿⣿⣿⣿⣿⣿⣿⠏⠄⠄⠄⠄⠄⠸⣿⣿⣿⣿⡿⢟⣣\n"
-        "ɮǟȶǟʊ ȶɦǟʀӄɨօ ӄʏǟ ɦǟǟʟ ,ӄɛֆǟ ʟǟɢǟ\n"
+        "ɮǟȶǟʊ ȶɦǟʀӄɨօ ӄʏǟ ɦǟǟʟ ,ӄɛֆǟ ʟǟɢǟ\n",
     )
 
 
@@ -218,7 +224,8 @@ async def kakashi(saxy):
 @bot.on(sudo_cmd(pattern="sdick  (.*)", allow_sudo=True))
 async def kakashi(dicksay):
     text = dicksay.pattern_match.group(1)
-    await edit_or_reply(dicksay,
+    await edit_or_reply(
+        dicksay,
         f"**[{name}]({USERNAME})  ➥ {text} .\n**"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠲⢄\n"
@@ -236,5 +243,5 @@ async def kakashi(dicksay):
         "⢸⢿⣿⣿⣿⣿⣿⣿⣿⣯⣻⡟⡆⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠸⣿⣿⣿⣿⣿⣿⣿⣿⣹⣿⡿⡇⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠀⠹⣟⣿⣿⣿⣿⡿⣷⡿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀\n"
-        "⠀⠀⠈⠛⠯⣿⡯⠟⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+        "⠀⠀⠈⠛⠯⣿⡯⠟⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n",
     )
