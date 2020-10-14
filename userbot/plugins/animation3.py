@@ -205,7 +205,6 @@ async def _(event):
     await asyncio.sleep(3)
 
 
-
 @borg.on(admin_cmd(pattern=r"police$", outgoing=True))
 @borg.on(sudo_cmd(pattern=r"police$", allow_sudo=True))
 async def _(event):
