@@ -127,13 +127,13 @@ async def _(event):
     ]
     if event.fwd_from:
         return
-    event = await edit_or_reply(event,"fleaveme....")
+    event = await edit_or_reply(event, "fleaveme....")
     await asyncio.sleep(2)
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 10])
 
-        
+
 @borg.on(admin_cmd(pattern=r"loveu$", outgoing=True))
 @borg.on(sudo_cmd(pattern=r"loveu$", allow_sudo=True))
 async def _(event):
@@ -141,7 +141,7 @@ async def _(event):
         return
     animation_interval = 0.5
     animation_ttl = range(70)
-    event = await edit_or_reply(event,"loveu")
+    event = await edit_or_reply(event, "loveu")
     animation_chars = [
         "😀",
         "👩‍🎨",
@@ -213,7 +213,7 @@ async def _(event):
         return
     animation_interval = 0.3
     animation_ttl = range(12)
-    event = await edit_or_reply(event,"Police")
+    event = await edit_or_reply(event, "Police")
     animation_chars = [
         "🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵",
         "🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴",
@@ -240,7 +240,7 @@ async def _(event):
         return
     animation_interval = 1
     animation_ttl = range(19)
-    event = await edit_or_reply(event,"jio network boosting...")
+    event = await edit_or_reply(event, "jio network boosting...")
     animation_chars = [
         "`Connecting To JIO NETWORK ....`",
         "`█ ▇ ▆ ▅ ▄ ▂ ▁`",
@@ -274,7 +274,7 @@ async def _(event):
         return
     animation_interval = 0.1
     animation_ttl = range(80)
-    event = await edit_or_reply(event,"solarsystem")
+    event = await edit_or_reply(event, "solarsystem")
     animation_chars = [
         "`◼️◼️◼️◼️◼️\n◼️◼️◼️◼️☀\n◼️◼️🌎◼️◼️\n🌕◼️◼️◼️◼️\n◼️◼️◼️◼️◼️`",
         "`◼️◼️◼️◼️◼️\n🌕◼️◼️◼️◼️\n◼️◼️🌎◼️◼️\n◼️◼️◼️◼️☀\n◼️◼️◼️◼️◼️`",
