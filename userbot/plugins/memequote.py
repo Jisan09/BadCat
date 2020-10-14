@@ -11,6 +11,7 @@ Userbot module for having some fun with people.
 import asyncio
 import random
 from random import choice
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 # ================= CONSTANT =================
@@ -21,7 +22,7 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 async def _(event):
     if event.fwd_from:
         return
-    event = await edit_or_reply(event,"getting a logic...")
+    event = await edit_or_reply(event, "getting a logic...")
     await asyncio.sleep(2)
     x = random.randrange(1, 104)
     if x == 1:
@@ -607,14 +608,14 @@ async def _(event):
     if x == 104:
 
         await event.edit("`Do You Know, We can't see Ghosts But Ghosts Can see Us...`")
-        
-        
+
+
 @bot.on(admin_cmd(pattern=f"sing$", outgoing=True))
 @bot.on(sudo_cmd(pattern="sing$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
-    event = await edit_or_reply(event,"singing...")
+    event = await edit_or_reply(event, "singing...")
     await asyncio.sleep(2)
     x = random.randrange(1, 33)
     if x == 1:
@@ -1021,62 +1022,62 @@ GDMORNING = [
     "`It is easy to imagine the world coming to an end. But it is difficult to imagine spending a day without my friends. Good morning.`",
 ]
 
-    
+
 @bot.on(admin_cmd(pattern=f"love$", outgoing=True))
 @bot.on(sudo_cmd(pattern="love$", allow_sudo=True))
 async def suru(chutiyappa):
-    await edit_or_reply(chutiyappa,choice(LOVESTR))
-    
-    
+    await edit_or_reply(chutiyappa, choice(LOVESTR))
+
+
 @bot.on(admin_cmd(pattern=f"dhoka$", outgoing=True))
 @bot.on(sudo_cmd(pattern="dhoka$", allow_sudo=True))
 async def katgya(chutiya):
-    await edit_or_reply(chutiya,choice(DHOKA))
-    
+    await edit_or_reply(chutiya, choice(DHOKA))
+
 
 @bot.on(admin_cmd(pattern=f"metoo$", outgoing=True))
 @bot.on(sudo_cmd(pattern="metoo$", allow_sudo=True))
 async def metoo(hahayes):
-    await edit_or_reply(hahayes,choice(METOOSTR))
+    await edit_or_reply(hahayes, choice(METOOSTR))
 
-    
+
 @bot.on(admin_cmd(pattern=f"gnoon$", outgoing=True))
 @bot.on(sudo_cmd(pattern="gnoon$", allow_sudo=True))
 async def noon(noon):
-    await edit_or_reply(noon,choice(GDNOON))
+    await edit_or_reply(noon, choice(GDNOON))
 
 
 @bot.on(admin_cmd(pattern=f"chase$", outgoing=True))
 @bot.on(sudo_cmd(pattern="chase$", allow_sudo=True))
 async def police(chase):
-    await edit_or_reply(chase,choice(CHASE_STR))
+    await edit_or_reply(chase, choice(CHASE_STR))
 
 
 @bot.on(admin_cmd(pattern=f"congo$", outgoing=True))
 @bot.on(sudo_cmd(pattern="congo$", allow_sudo=True))
 async def Sahih(congrats):
-    await edit_or_reply(congrats,choice(CONGRATULATION))
+    await edit_or_reply(congrats, choice(CONGRATULATION))
 
 
 @bot.on(admin_cmd(pattern=f"qhi$", outgoing=True))
 @bot.on(sudo_cmd(pattern="qhi$", allow_sudo=True))
 async def hoi(hello):
-    await edit_or_reply(hello,choice(HELLOSTR))
+    await edit_or_reply(hello, choice(HELLOSTR))
 
 
 @bot.on(admin_cmd(pattern=f"qbye$", outgoing=True))
 @bot.on(sudo_cmd(pattern="qbye$", allow_sudo=True))
 async def bhago(bhagobc):
-    await edit_or_reply(bhagobc,choice(BYESTR))
+    await edit_or_reply(bhagobc, choice(BYESTR))
 
 
 @bot.on(admin_cmd(pattern=f"gn$", outgoing=True))
 @bot.on(sudo_cmd(pattern="gn$", allow_sudo=True))
 async def night(night):
-    await edit_or_reply(night,choice(GDNIGHT))
+    await edit_or_reply(night, choice(GDNIGHT))
 
 
 @bot.on(admin_cmd(pattern=f"gm$", outgoing=True))
 @bot.on(sudo_cmd(pattern="gm$", allow_sudo=True))
 async def morning(morning):
-    await edit_or_reply(morning,choice(GDMORNING))
+    await edit_or_reply(morning, choice(GDMORNING))
