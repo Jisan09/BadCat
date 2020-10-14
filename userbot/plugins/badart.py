@@ -221,7 +221,7 @@ async def kakashi(saxy):
 
 
 @borg.on(admin_cmd(pattern="sdick (.*)"))
-@bot.on(sudo_cmd(pattern="sdick  (.*)", allow_sudo=True))
+@borg.on(sudo_cmd(pattern="sdick  (.*)", allow_sudo=True))
 async def kakashi(dicksay):
     text = dicksay.pattern_match.group(1)
     await edit_or_reply(
