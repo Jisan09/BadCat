@@ -48,7 +48,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "forward":  "__**PLUGIN NAME :** Forward__\
+        "forward": "__**PLUGIN NAME :** Forward__\
     \n\n📌** CMD ➥** `.frwd` <reply to any message>\
     \n**USAGE   ➥  **Enable Seen Counter in any message, to know how many users have seen your message\
     \n\n📌** CMD ➥** `.fpost text`\
