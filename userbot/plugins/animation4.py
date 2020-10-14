@@ -287,7 +287,7 @@ async def _(event):
         await event.edit(animation_chars[i % 27])
 
 
-@borg.on(admin_cmd(pattern=f"human$", outgoing=True)))
+@borg.on(admin_cmd(pattern=f"human$", outgoing=True))
 @borg.on(sudo_cmd(pattern=f"human$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
