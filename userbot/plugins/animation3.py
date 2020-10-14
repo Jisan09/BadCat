@@ -72,6 +72,7 @@ async def _(event):
 @borg.on(admin_cmd(pattern=r"dump$", outgoing=True))
 @borg.on(sudo_cmd(pattern=r"dump$", allow_sudo=True))
 async def _(message):
+    event = await edit_or_reply(message, "droping....")
     try:
         obj = message.pattern_match.group(1)
         if len(obj) != 3:
@@ -102,7 +103,6 @@ async def _(message):
         ]
     ):
         for something_else in something:
-            event = await edit_or_reply(message, "droping....")
             await asyncio.sleep(0.3)
             try:
                 await event.edit(something_else)
