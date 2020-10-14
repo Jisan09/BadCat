@@ -295,7 +295,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "animation3": "__**PLUGIN NAME :** Animation3__\
+        "animation5": "__**PLUGIN NAME :** Animation5__\
 \n\n📌** CMD ➥** `.thinking` | `.loading` | `.square` | `.up` | `.round` | `.hart` | `.anim` | `.fnl` | `.monkey` | `.herber` | `.hand` | `.gsg` | `.theart`\
 \n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
 "
