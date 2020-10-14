@@ -3,7 +3,7 @@
 
 import asyncio
 
-from userbot import ALIVE_NAME, utils
+from userbot import ALIVE_NAME
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
@@ -161,7 +161,7 @@ async def payf(event):
         paytext * 1,
         paytext * 1,
     )
-    await edit_or_reply(event,pay)
+    await edit_or_reply(event, pay)
 
 
 @borg.on(admin_cmd(pattern=f"eye$", outgoing=True))
