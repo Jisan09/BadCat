@@ -198,6 +198,5 @@ CMD_HELP.update(
         \n\n📌** CMD ➥** `.fmusical` | `.ancient` | `.vapor` | `.smallcaps` | `.blackbf` | `.bubbles` | `.tanf` | `.boxf` | `.smothtext` \
         \n\n**USAGE   ➥  **Use cmd <text> , it will change your text to that font.\
         \n**Example :** `.fmusical hello there`"
-        "
     }
 )
