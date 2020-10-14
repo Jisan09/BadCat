@@ -35,7 +35,8 @@ async def _(event):
         await event.edit(animation_chars[i % 8])
 
 
-@borg.on(utils.admin_cmd(pattern="g1 ?(.*)"))
+@bot.on(admin_cmd(outgoing=True, pattern="g1 ?(.*)"))
+@bot.on(sudo_cmd(pattern="g1 ?(.*)", allow_sudo=True))
 async def payf(event):
     paytext = event.pattern_match.group(1)
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
@@ -160,7 +161,7 @@ async def payf(event):
         paytext * 1,
         paytext * 1,
     )
-    await event.edit(pay)
+    await edit_or_reply(event,pay)
 
 
 @borg.on(admin_cmd(pattern=f"eye$", outgoing=True))
