@@ -485,12 +485,11 @@ async def _(event):
 CMD_HELP.update(
     {
         "animation4": "__**PLUGIN NAME :** Animation4__\
-\n\n📌** CMD ➥** `.eye` | `.uff` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
-\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
 \n\n📌** CMD ➥** `.kilr` <text>\
 \n**USAGE   ➥  **Be a warrior & kill enimes.\
 \n\n📌** CMD ➥** `.g1` <text>\
 \n**USAGE   ➥  **Send Long list of your text.\
-"
+\n\n📌** CMD ➥** `.eye` | `.uff` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
+\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself"
     }
 )
