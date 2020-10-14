@@ -145,14 +145,11 @@ async def stylish_generator(event):
             string = string.replace(normaltextcharacter, hwslcharacter)
     await edit_or_reply(event, string)
 
-
 CMD_HELP.update(
     {
-        "fonts2": "__**\
-        PLUGIN NAME :** Fonts2__\
-        \n**USAGE   ➥  **Some differnt font styles\
+        "fonts2": "__**PLUGIN NAME :** Fonts2__\
         \n\n📌** CMD ➥** `.egyptf` | `.maref` | `.handcf` | `.doublef` | `.mock` | `.ghostf` | `.handsf` \
         \n\n**USAGE   ➥  **Use cmd <text> , it will change your text to that font.\
-        \n**Example :** `.egyptf hello there`"
+        \n\n**Example :** `.egyptf hello there`"
     }
 )
