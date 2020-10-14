@@ -19,7 +19,9 @@ opener.addheaders = [("User-agent", useragent)]
 
 
 @borg.on(admin_cmd(outgoing=True, pattern=r"gs (.*)"))
+@borg.on(sudo_cmd(allow_sudo=True, pattern=r"gs (.*)"))
 async def gsearch(q_event):
+    catevent = await edit_or_reply(q_event, "`searching........`")
     match = q_event.pattern_match.group(1)
     page = re.findall(r"page=\d+", match)
     try:
@@ -40,7 +42,7 @@ async def gsearch(q_event):
             msg += f"👉[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-    await q_event.edit(
+    await catevent.edit(
         "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
     )
     if BOTLOG:
@@ -157,7 +159,7 @@ async def _(img):
             await catevent.edit("`Can't find this piece of shit.`")
             return
 
-        lim = img.pattern_match.group(1) if img.pattern_match.group(1) else 3
+        lim = img.pattern_match.group(1) or 3
         images = await scam(match, lim)
         yeet = []
         for i in images:
