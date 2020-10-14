@@ -102,9 +102,10 @@ async def _(message):
         ]
     ):
         for something_else in something:
+            event = await edit_or_reply(message, "droping....")
             await asyncio.sleep(0.3)
             try:
-                await edit_or_reply(message, something_else)
+                await event.edit(something_else)
             except errors.MessageIdInvalidError:
                 return
 
