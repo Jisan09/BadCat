@@ -196,7 +196,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.7
-    animation_ttl = range(103)
+    animation_ttl = range(13)
     event = await edit_or_reply(event, "Areeeh...")
     animation_chars = [
         "U",
@@ -215,7 +215,7 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 103])
+        await event.edit(animation_chars[i % 13])
 
 
 @borg.on(admin_cmd(pattern=f"idot$", outgoing=True))
