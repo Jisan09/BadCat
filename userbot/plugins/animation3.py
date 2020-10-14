@@ -296,7 +296,7 @@ CMD_HELP.update(
     {
         "animation3": "__**PLUGIN NAME :** Animation3__\
 \n\n📌** CMD ➥** `.star` | `.boxs` | `.rain` | `.deploy` | `.dump` | `.fleaveme` | `.loveu` | `.plane` | `.police` | `.jio` | `.solarsystem` \
-\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
+\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
 "
     }
 )
