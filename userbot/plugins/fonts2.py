@@ -154,6 +154,5 @@ CMD_HELP.update(
         \n\n📌** CMD ➥** `.egyptf` | `.maref` | `.handcf` | `.doublef` | `.mock` | `.ghostf` | `.handsf` \
         \n\n**USAGE   ➥  **Use cmd <text> , it will change your text to that font.\
         \n**Example :** `.egyptf hello there`"
-        "
     }
 )
