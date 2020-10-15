@@ -13,7 +13,7 @@ from userbot import CMD_HELP, bot
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
-@borg.on(admin_cmd(pattern="fox ?(.*)", outgoing=True))
+@bot.on(admin_cmd(pattern="fox ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="fox ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
@@ -37,7 +37,7 @@ async def _(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@borg.on(admin_cmd(pattern="talkme ?(.*)", outgoing=True))
+@bot.on(admin_cmd(pattern="talkme ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="talkme ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
@@ -61,7 +61,7 @@ async def _(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@borg.on(admin_cmd(pattern="brnsay ?(.*)", outgoing=True))
+@bot.on(admin_cmd(pattern="brnsay ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="brnsay ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
@@ -85,7 +85,7 @@ async def _(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@borg.on(admin_cmd(pattern="sbob ?(.*)", outgoing=True))
+@bot.on(admin_cmd(pattern="sbob ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="sbob ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
@@ -109,7 +109,7 @@ async def _(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@borg.on(admin_cmd(pattern="child ?(.*)", outgoing=True))
+@bot.on(admin_cmd(pattern="child ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="child ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
