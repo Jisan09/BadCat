@@ -116,17 +116,18 @@ async def catbot(catmemes):
 
 
 @borg.on(admin_cmd(pattern="lolice(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="lolice(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if not replied:
-        await catmemes.edit("reply to a supported media file")
+        await edit_or_reply(catmemes,"reply to a supported media file")
         return
     if replied.media:
-        await catmemes.edit("passing to telegraph...")
+        kakashi = await edit_or_reply(catmemes,"passing to telegraph...")
     else:
-        await catmemes.edit("reply to a supported media file")
+        await edit_or_reply(catmemes,"reply to a supported media file")
         return
     try:
         cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -147,36 +148,37 @@ async def catbot(catmemes):
             )
             os.remove(download_location)
             return
-        await catmemes.edit("generating image..")
+        await kakashi.edit("generating image..")
     else:
-        await catmemes.edit("the replied file is not supported")
+        await kakashi.edit("the replied file is not supported")
         os.remove(download_location)
         return
     try:
         response = upload_file(download_location)
         os.remove(download_location)
     except exceptions.TelegraphException as exc:
-        await catmemes.edit("ERROR: " + str(exc))
+        await kakashi.edit("ERROR: " + str(exc))
         os.remove(download_location)
         return
     cat = f"https://telegra.ph{response[0]}"
     cat = await lolice(cat)
-    await catmemes.delete()
+    await kakashi.delete()
     await borg.send_file(catmemes.chat_id, cat, reply_to=replied)
 
 
 @borg.on(admin_cmd(pattern="bun(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="bun(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if not replied:
-        await catmemes.edit("reply to a supported media file")
+        await edit_or_reply(catmemes,"reply to a supported media file")
         return
     if replied.media:
-        await catmemes.edit("passing to telegraph...")
+        kakashi = await edit_or_reply(catmemes,"passing to telegraph...")
     else:
-        await catmemes.edit("reply to a supported media file")
+        await edit_or_reply(catmemes,"reply to a supported media file")
         return
     try:
         cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -192,41 +194,42 @@ async def catbot(catmemes):
     size = os.stat(download_location).st_size
     if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
         if size > 5242880:
-            await catmemes.edit(
+            await kakashi.edit(
                 "the replied file size is not supported it must me below 5 mb"
             )
             os.remove(download_location)
             return
-        await catmemes.edit("generating image..")
+        await kakashi.edit("generating image..")
     else:
-        await catmemes.edit("the replied file is not supported")
+        await kakashi.edit("the replied file is not supported")
         os.remove(download_location)
         return
     try:
         response = upload_file(download_location)
         os.remove(download_location)
     except exceptions.TelegraphException as exc:
-        await catmemes.edit("ERROR: " + str(exc))
+        await kakashi.edit("ERROR: " + str(exc))
         os.remove(download_location)
         return
     cat = f"https://telegra.ph{response[0]}"
     cat = await baguette(cat)
-    await catmemes.delete()
+    await kakashi.delete()
     await borg.send_file(catmemes.chat_id, cat, reply_to=replied)
 
 
 @borg.on(admin_cmd(pattern="iphx(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="iphx(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if not replied:
-        await catmemes.edit("reply to a supported media file")
+        await edit_or_reply(catmemes,"reply to a supported media file")
         return
     if replied.media:
-        await catmemes.edit("passing to telegraph...")
+        kakashi = await edit_or_reply(catmemes,"passing to telegraph...")
     else:
-        await catmemes.edit("reply to a supported media file")
+        await edit_or_reply(catmemes,"reply to a supported media file")
         return
     try:
         cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -242,12 +245,12 @@ async def catbot(catmemes):
     size = os.stat(download_location).st_size
     if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
         if size > 5242880:
-            await catmemes.edit(
+            await kakashi.edit(
                 "the replied file size is not supported it must me below 5 mb"
             )
             os.remove(download_location)
             return
-        await catmemes.edit("generating image..")
+        await kakashi.edit("generating image..")
     else:
         await catmemes.edit("the replied file is not supported")
         os.remove(download_location)
@@ -256,12 +259,12 @@ async def catbot(catmemes):
         response = upload_file(download_location)
         os.remove(download_location)
     except exceptions.TelegraphException as exc:
-        await catmemes.edit("ERROR: " + str(exc))
+        await kakashi.edit("ERROR: " + str(exc))
         os.remove(download_location)
         return
     cat = f"https://telegra.ph{response[0]}"
     cat = await iphonex(cat)
-    await catmemes.delete()
+    await kakashi.delete()
     await borg.send_file(catmemes.chat_id, cat, reply_to=replied)
 
 
