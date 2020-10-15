@@ -122,12 +122,12 @@ async def catbot(catmemes):
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if not replied:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     if replied.media:
-        kakashi = await edit_or_reply(catmemes,"passing to telegraph...")
+        kakashi = await edit_or_reply(catmemes, "passing to telegraph...")
     else:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     try:
         cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -173,12 +173,12 @@ async def catbot(catmemes):
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if not replied:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     if replied.media:
-        kakashi = await edit_or_reply(catmemes,"passing to telegraph...")
+        kakashi = await edit_or_reply(catmemes, "passing to telegraph...")
     else:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     try:
         cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -224,12 +224,12 @@ async def catbot(catmemes):
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if not replied:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     if replied.media:
-        kakashi = await edit_or_reply(catmemes,"passing to telegraph...")
+        kakashi = await edit_or_reply(catmemes, "passing to telegraph...")
     else:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     try:
         cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
