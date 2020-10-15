@@ -33,19 +33,18 @@ async def _(event):
             await event.client.forward_messages(chat, reply_message)
             response = await response
         except YouBlockedUserError:
-            await event.reply("unblock @Rekognition_Bot and try again")
-            await cat.delete()
+            await cat.edit("unblock @Rekognition_Bot and try again")
             return
         if response.text.startswith("See next message."):
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=461083923)
             )
             response = await response
-            cat = response.message.message
-            await event.edit(cat)
+            msg = response.message.message
+            await cat.edit(msg)
 
         else:
-            await event.edit("sorry, I couldnt find it")
+            await cat.edit("sorry, I couldnt find it")
 
 
 CMD_HELP.update(
