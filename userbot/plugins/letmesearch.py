@@ -5,6 +5,30 @@ import requests
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
+@bot.on(admin_cmd(pattern="ggl (.*)"))
+@bot.on(sudo_cmd(pattern="ggl (.*)", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    input_str = event.pattern_match.group(1)
+    sample_url = "https://da.gd/s?url=https://lmgtfy.com/?q={}%26iie=1".format(
+        input_str.replace(" ", "+")
+    )
+    response_api = requests.get(sample_url).text
+    if response_api:
+        await edit_or_reply(
+            event,
+            "[{}]({})\n`Thank me Later 🙃` ".format(input_str, response_api.rstrip()),
+        )
+    else:
+        await edit_or_reply(event, "something is wrong. please try again later.")
+    if BOTLOG:
+        await bot.send_message(
+            BOTLOG_CHATID,
+            "LMGTFY query `" + input_str + "` was executed successfully",
+        )
+
+
 @borg.on(admin_cmd(pattern="lmg (.*)"))
 @borg.on(sudo_cmd(pattern="lmg (.*)", allow_sudo=True))
 async def _(event):
