@@ -1782,11 +1782,39 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "memes": "__**PLUGIN NAME :** Memes__\
+        "memestext": "__**PLUGIN NAME :** MemesText__\
+\n\n📌** CMD ➥** `.repo`\
+\n**USAGE   ➥  **Send the repo.\
+\n\n📌** CMD ➥** `.noob`\
+\n**USAGE   ➥  **Whadya want to know? Are you a NOOB?\
+\n\n📌** CMD ➥** `.pro`\
+\n**USAGE   ➥  **If you think you're pro, try this.\
+\n\n📌** CMD ➥** `.insult`\
+\n**USAGE   ➥  **Protects you from unwanted peeps.\
+\n\n📌** CMD ➥** `.love`\
+\n**USAGE   ➥  **Spread the love!\
+\n\n📌** CMD ➥** `.dhoka`\
+\n**USAGE   ➥  **Bewafa thi saali!\
+\n\n📌** CMD ➥** `.metoo`\
+\n**USAGE   ➥  **Hahaha mee tooo!\
+\n\n📌** CMD ➥** `.gnoon`\
+\n**USAGE   ➥  **Good noon everyone!\
 \n\n📌** CMD ➥** `.runs`\
 \n**USAGE   ➥  **Run, run, RUNNN! [`.disable runs`: disable | `.enable runs`: enable]\
+\n\n📌** CMD ➥** `.congo`\
+\n**USAGE   ➥  **Congrts bruh!\
 \n\n📌** CMD ➥** `.hey`\
 \n**USAGE   ➥  **Greet everyone!\
+\n\n📌** CMD ➥** `.qbye`\
+\n**USAGE   ➥  **Bye everyone!\
+\n\n📌** CMD ➥** `.gn`\
+\n**USAGE   ➥  **Good night everyone!\
+\n\n📌** CMD ➥** `.gm`\
+\n**USAGE   ➥  **Good morning everyone!\
+\n\n📌** CMD ➥** | `.tip` | `.bello` | `.logic` |\
+\n**USAGE   ➥  **Give you a life-pro tip!\
+\n\n📌** CMD ➥** `.qt`\
+\n**USAGE   ➥  **Ask a question!\
 "
     }
 )
