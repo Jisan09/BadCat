@@ -1,5 +1,9 @@
-# Ascii By @Jisan7509
-# Line credits: @Ramvans
+"""
+Created by @Jisan7509
+plugin for Cat_Userbot
+☝☝☝
+You remove this, you gay.
+"""
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
