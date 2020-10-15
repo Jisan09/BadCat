@@ -283,7 +283,7 @@ CMD_HELP.update(
     {
         "animation1": "__**PLUGIN NAME :** Animation1__\
 \n\n**📌 CMD ➥** `.stupid` | `.bombs` | `.call` | `.kill` | `.kell` | `.wtf` | `.ding` | `.hypno` | `.candy` | `.gangasta` | `.charging` \
-\n\n**nUSAGE   ➥  **These are animation bruh..Try & check yourself\
+\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
 "
     }
 )
