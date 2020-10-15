@@ -13,17 +13,13 @@ credits to @mrconfused and @sandy1709
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
 
-import pybase64
-from telegraph import exceptions, upload_file
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
 from userbot import CMD_HELP
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import *
 
 
@@ -33,18 +29,18 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await edit_or_reply(event,"```Reply to any user message.```")
+        await edit_or_reply(event, "```Reply to any user message.```")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await edit_or_reply(event,"```reply to media message```")
+        await edit_or_reply(event, "```reply to media message```")
         return
     chat = "@hazmat_suit_bot"
     reply_message.sender
     if reply_message.sender.bot:
-        await edit_or_reply(event,"```Reply to actual users message.```")
+        await edit_or_reply(event, "```Reply to actual users message.```")
         return
-    catevent = await edit_or_reply(event,"```Processing```")
+    catevent = await edit_or_reply(event, "```Processing```")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
