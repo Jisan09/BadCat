@@ -49,7 +49,7 @@ async def _(event):
             await event.client.send_file(
                 event.chat_id,
                 response.message.media,
-                caption=f"**➥ Image Type :** ASCII Art\n**Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
+                caption=f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
 
@@ -77,8 +77,9 @@ async def _(event):
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=1120861844)
             )
-            await event.client.send_message(chat, reply_message)
-            response = await response
+            msg = await conv.send_message(reply_message)
+            details = await conv.get_response()
+            pic = await conv.get_response()
         except YouBlockedUserError:
             await kakashi.edit("```Please unblock @sangmatainfo_bot and try again```")
             return
@@ -90,8 +91,8 @@ async def _(event):
             await kakashi.delete()
             await event.client.send_file(
                 event.chat_id,
-                response.message.media,
-                caption=f"**➥ Image Type :** LINE Art \n**Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
+                pic,
+                caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
 
