@@ -67,3 +67,6 @@ validators
 wand
 wikipedia
 youtube-dl
+hachoir
+scipy
+wordcloud
