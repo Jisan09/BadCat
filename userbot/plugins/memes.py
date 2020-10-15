@@ -335,26 +335,12 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Praise people!\
 \n\n📌** CMD ➥** `.smk` <text/reply>\
 \n**USAGE   ➥  **A shit module for ツ , who cares.\
-\n\n📌** CMD ➥** `.ftext` <emoji/character>\
-\n**USAGE   ➥  **Pay Respects.\
-\n\n📌** CMD ➥** `.repo`\
-\n**USAGE   ➥  **Send the repo.\
 \n\n📌** CMD ➥** `.shg`\
 \n**USAGE   ➥  **Shrug at it !!\
-\n\n📌** CMD ➥** `.noob`\
-\n**USAGE   ➥  **Whadya want to know? Are you a NOOB?\
-\n\n📌** CMD ➥** `.pro`\
-\n**USAGE   ➥  **If you think you're pro, try this.\
-\n\n📌** CMD ➥** `.insult`\
-\n**USAGE   ➥  **Protects you from unwanted peeps.\
 \n\n📌** CMD ➥** `.react` <type>\
 \n**USAGE   ➥  **Make your userbot react. types are <happy ,think ,wave ,wtf ,love ,confused,dead, sad,dog>\
 \n\n📌** CMD ➥** `.bt`\
 \n**USAGE   ➥  **Believe me, you will find this useful.\
-\n\n📌** CMD ➥** `.season`\
-\n**USAGE   ➥  **Believe me, ur season is expire.\
-\n\n📌** CMD ➥** `.ggl` <query>\
-\n**USAGE   ➥  **Let me Google that for you real quick !!\
 \n\n📌** CMD ➥** `.shout text`\
 \n**USAGE   ➥  **shouts the text in a fun way\
 \n\n📌** CMD ➥**  `.gbun <reason>`\
