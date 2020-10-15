@@ -65,6 +65,7 @@ async def _(event):
 
 
 @borg.on(admin_cmd(pattern="awooify(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="awooify(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
@@ -73,7 +74,7 @@ async def catbot(catmemes):
         await edit_or_reply(catmemes, "reply to a supported media file")
         return
     if replied.media:
-        await edit_or_reply(catmemes, "passing to telegraph...")
+        kakashi = await edit_or_reply(catmemes, "passing to telegraph...")
     else:
         await edit_or_reply(catmemes, "reply to a supported media file")
         return
