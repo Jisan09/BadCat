@@ -49,7 +49,7 @@ async def _(event):
             await event.client.send_file(
                 event.chat_id,
                 response.message.media,
-                caption=f"**➥ Here your requested line image  [{DEFAULTUSER}]**({USERNAME})",
+                caption=f"**➥ Image Type :** ASCII Art\n**Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
 
@@ -91,17 +91,17 @@ async def _(event):
             await event.client.send_file(
                 event.chat_id,
                 response.message.media,
-                caption=f"**➥ Here your requested ascii image  [{DEFAULTUSER}]**({USERNAME})",
+                caption=f"**➥ Image Type :** LINE Art \n**Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
 CMD_HELP.update(
     {
-        "ascii": "__**PLUGIN NAME :** Ascii__\
+        "art_img": "__**PLUGIN NAME :** Art Image__\
       \n\n📌** CMD ➥** `.ascii` reply to any image file:\
       \n**USAGE   ➥  **Makes an image ascii style, try out your own.\
       \n\n📌** CMD ➥** `.line` reply to any image file:\
- \n**USAGE   ➥  **Makes an image line style.\ "
+      \n**USAGE   ➥  **Makes an image line style.\ "
     }
 )
