@@ -9,12 +9,13 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 @bot.on(admin_cmd(outgoing=True, pattern="note_help$"))
 @bot.on(sudo_cmd(outgoing=True, pattern="note_help$", allow_sudo=True))
 async def kakashi(jisan):
-    await edit_or_reply(jisan,"All commands for note is [HERE](https://nekobin.com/xihitanafu) ")
+    await edit_or_reply(
+        jisan, "All commands for note is [HERE](https://nekobin.com/xihitanafu) "
+    )
 
 
 @bot.on(admin_cmd(pattern="note(?: |$)(.*)", outgoing=True))
 @bot.on(sudo_cmd(outgoing=True, pattern="note(?: |$)(.*)", allow_sudo=True))
-
 async def kakashi(event):
     if event.fwd_from:
         return
@@ -69,7 +70,7 @@ async def kakashi(event):
         link = "🐱 Cat UserBot 🐱"
     elif link == "badcat":
         link = "My Repo"
-    catevent = await edit_or_reply(event,"```Sending your note....```")
+    catevent = await edit_or_reply(event, "```Sending your note....```")
     async with event.client.conversation("@kakashi_robot") as conv:
         try:
             response = conv.wait_event(
