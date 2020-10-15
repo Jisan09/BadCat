@@ -123,7 +123,7 @@ async def _(event):
     mentions = "**telethon.errors.rpcerrorlist.AuthKeyDuplicatedError: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetMessagesRequest)**"
     await edit_or_reply(event, mentions)
 
-    
+
 @bot.on(admin_cmd(pattern=f"gotm$", outgoing=True))
 @bot.on(sudo_cmd(pattern=f"gotm$", allow_sudo=True))
 async def _(event):
@@ -282,6 +282,7 @@ async def _(event):
             "[For that friend of yours who does not like loud music and head banging...](https://telegra.ph/file/acbce070d3c52b921b2bd.jpg)",
             link_preview=True,
         )
+
 
 @bot.on(admin_cmd(pattern=f"tip$", outgoing=True))
 @bot.on(sudo_cmd(pattern="tip$", allow_sudo=True))
