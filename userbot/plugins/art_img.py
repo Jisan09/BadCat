@@ -1,5 +1,9 @@
-# Ascii By @Jisan7509
-# Line credits: @Ramvans
+"""
+Created by @Jisan7509
+plugin for Cat_Userbot
+☝☝☝
+You remove this, you gay.
+"""
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
@@ -74,27 +78,21 @@ async def _(event):
     kakashi = await edit_or_reply(event, "```Processing```")
     async with event.client.conversation(chat) as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=1120861844)
-            )
+            await conv.send_message("/start")
+            await conv.get_response()
             await conv.send_message(reply_message)
             await conv.get_response()
             pic = await conv.get_response()
-        except YouBlockedUserError:
-            await kakashi.edit("```Please unblock @sangmatainfo_bot and try again```")
-            return
-        if response.text.startswith("Forward"):
-            await kakashi.edit(
-                "```can you kindly disable your forward privacy settings for good?```"
-            )
-        else:
-            await kakashi.delete()
-            await event.client.send_file(
-                event.chat_id,
-                pic,
-                caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
-            )
             await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await kakashi.edit("```Please unblock @Lines50Bot and try again```")
+            return
+        await kakashi.delete()
+        await event.client.send_file(
+            event.chat_id,
+            pic,
+            caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
+        )
 
 
 CMD_HELP.update(
