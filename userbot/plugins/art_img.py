@@ -83,11 +83,6 @@ async def _(event):
         except YouBlockedUserError:
             await kakashi.edit("```Please unblock @sangmatainfo_bot and try again```")
             return
-        if response.text.startswith("Forward"):
-            await kakashi.edit(
-                "```can you kindly disable your forward privacy settings for good?```"
-            )
-        else:
             await kakashi.delete()
             await event.client.send_file(
                 event.chat_id,
