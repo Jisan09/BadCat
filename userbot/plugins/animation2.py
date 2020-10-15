@@ -5,7 +5,6 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP
 
 
-
 @borg.on(admin_cmd(pattern="think$", outgoing=True))
 @borg.on(sudo_cmd(pattern="think$", allow_sudo=True))
 async def _(event):
@@ -171,6 +170,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 32])
+
 
 CMD_HELP.update(
     {
