@@ -8,12 +8,11 @@ import re
 
 import bs4
 import requests
-from googletrans import LANGUAGES, Translator
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import BOTLOG, BOTLOG_CHATID, deEmojify
+from . import BOTLOG, BOTLOG_CHATID
 
 TTS_LANG = "en"
 TRT_LANG = "en"

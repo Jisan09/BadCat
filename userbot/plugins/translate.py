@@ -2,18 +2,13 @@
 Available Commands:
 .tr LanguageCode as reply to a message
 .tr LangaugeCode | text to translate"""
-import os
-import re
 
-import bs4
-import requests
 from googletrans import LANGUAGES, Translator
-from googletrans import Translator
 
 from .. import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import BOTLOG, BOTLOG_CHATID, deEmojify
-from . import deEmojify
+
 TTS_LANG = "en"
 TRT_LANG = "en"
 langi = "en"
@@ -53,7 +48,7 @@ async def _(event):
     except Exception as exc:
         await edit_or_reply(event, str(exc))
 
-        
+
 @bot.on(admin_cmd(outgoing=True, pattern=r"trt(?: |$)([\s\S]*)"))
 @bot.on(sudo_cmd(allow_sudo=True, pattern=r"trt(?: |$)([\s\S]*)"))
 async def translateme(trans):
@@ -106,6 +101,7 @@ async def lang(value):
         await value.client.send_message(
             BOTLOG_CHATID, f"`Language for {scraper} changed to {LANG.title()}.`"
         )
+
 
 CMD_HELP.update(
     {
