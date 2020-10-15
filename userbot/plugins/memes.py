@@ -236,13 +236,6 @@ async def shrugger(e):
     await edit_or_reply(e, txt)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="runs$"))
-@bot.on(sudo_cmd(pattern="runs$", allow_sudo=True))
-async def runner_lol(e):
-    txt = random.choice(catmemes.RUNSREACTS)
-    await edit_or_reply(e, txt)
-
-
 @bot.on(admin_cmd(outgoing=True, pattern="noob$"))
 @bot.on(sudo_cmd(pattern="noob$", allow_sudo=True))
 async def metoo(e):
@@ -254,13 +247,6 @@ async def metoo(e):
 @bot.on(sudo_cmd(pattern="insult$", allow_sudo=True))
 async def insult(e):
     txt = random.choice(catmemes.INSULT_STRINGS)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="hey$"))
-@bot.on(sudo_cmd(pattern="hey$", allow_sudo=True))
-async def hoi(e):
-    txt = random.choice(catmemes.HELLOSTR)
     await edit_or_reply(e, txt)
 
 
@@ -437,16 +423,12 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Send the repo.\
 \n\n📌** CMD ➥** `.shg`\
 \n**USAGE   ➥  **Shrug at it !!\
-\n\n📌** CMD ➥** `.runs`\
-\n**USAGE   ➥  **Run, run, RUNNN! [`.disable runs`: disable | `.enable runs`: enable]\
 \n\n📌** CMD ➥** `.noob`\
 \n**USAGE   ➥  **Whadya want to know? Are you a NOOB?\
 \n\n📌** CMD ➥** `.pro`\
 \n**USAGE   ➥  **If you think you're pro, try this.\
 \n\n📌** CMD ➥** `.insult`\
 \n**USAGE   ➥  **Protects you from unwanted peeps.\
-\n\n📌** CMD ➥** `.hey`\
-\n**USAGE   ➥  **Greet everyone!\
 \n\n📌** CMD ➥** `.react` <type>\
 \n**USAGE   ➥  **Make your userbot react. types are <happy ,think ,wave ,wtf ,love ,confused,dead, sad,dog>\
 \n\n📌** CMD ➥** `.bt`\
