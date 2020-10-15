@@ -74,8 +74,8 @@ async def _(event):
     kakashi = await edit_or_reply(event, "```Processing```")
     async with event.client.conversation(chat) as conv:
         try:
-            msg_start = await conv.send_message("/start")
-            response = await conv.get_response()
+            await conv.send_message("/start")
+            await conv.get_response()
             await conv.send_message(reply_message)
             await conv.get_response()
             pic = await conv.get_response()
