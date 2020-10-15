@@ -74,17 +74,21 @@ async def _(event):
     kakashi = await edit_or_reply(event, "```Processing```")
     async with event.client.conversation(chat) as conv:
         try:
-            msg_start = await conv.send_message("/start")
-            res = await conv.get_response()
-            my_msg = await conv.send_message(reply_message)
-            msg = await conv.get_response()
+            await conv.send_message("/start")
+            await conv.get_response()
+            await conv.send_message(reply_message)
+            await conv.get_response()
             pic = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await kakashi.edit("```Please unblock @Lines50Bot and try again```")
             return
         await kakashi.delete()
-        await event.client.send_file(event.chat_id,pic,caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})")
+        await event.client.send_file(
+            event.chat_id,
+            pic,
+            caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
+        )
 
 
 CMD_HELP.update(
