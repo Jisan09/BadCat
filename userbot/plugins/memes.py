@@ -228,6 +228,7 @@ async def source(e):
         "Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo.",
     )
 
+
 @bot.on(admin_cmd(outgoing=True, pattern="shg$"))
 @bot.on(sudo_cmd(pattern="shg$", allow_sudo=True))
 async def shrugger(e):
@@ -273,8 +274,8 @@ async def bluetext(e):
             "/BLUETEXT /MUST /CLICK.\n"
             "/ARE /YOU /A /STUPID /ANIMAL /WHICH /IS /ATTRACTED /TO /COLOURS?",
         )
-                                
-     
+
+
 @bot.on(admin_cmd(pattern="ggl (.*)"))
 @bot.on(sudo_cmd(pattern="ggl (.*)", allow_sudo=True))
 async def _(event):
