@@ -1,7 +1,6 @@
 import time
 from platform import python_version
 
-
 from telethon import version
 
 from userbot import ALIVE_NAME, CMD_HELP, StartTime, catdef, catversion
