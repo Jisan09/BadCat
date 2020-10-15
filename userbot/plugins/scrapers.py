@@ -14,10 +14,6 @@ from wikipedia.exceptions import DisambiguationError, PageError
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import BOTLOG, BOTLOG_CHATID
 
-TTS_LANG = "en"
-TRT_LANG = "en"
-langi = "en"
-
 
 @bot.on(admin_cmd(outgoing=True, pattern=r"wiki (.*)"))
 @bot.on(sudo_cmd(allow_sudo=True, pattern=r"wiki (.*)"))
