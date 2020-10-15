@@ -228,32 +228,10 @@ async def source(e):
         "Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo.",
     )
 
-
 @bot.on(admin_cmd(outgoing=True, pattern="shg$"))
 @bot.on(sudo_cmd(pattern="shg$", allow_sudo=True))
 async def shrugger(e):
     txt = random.choice(catmemes.SHGS)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="noob$"))
-@bot.on(sudo_cmd(pattern="noob$", allow_sudo=True))
-async def metoo(e):
-    txt = random.choice(catmemes.NOOBSTR)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="insult$"))
-@bot.on(sudo_cmd(pattern="insult$", allow_sudo=True))
-async def insult(e):
-    txt = random.choice(catmemes.INSULT_STRINGS)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="pro$"))
-@bot.on(sudo_cmd(pattern="pro$", allow_sudo=True))
-async def proo(e):
-    txt = random.choice(catmemes.PRO_STRINGS)
     await edit_or_reply(e, txt)
 
 
@@ -295,15 +273,8 @@ async def bluetext(e):
             "/BLUETEXT /MUST /CLICK.\n"
             "/ARE /YOU /A /STUPID /ANIMAL /WHICH /IS /ATTRACTED /TO /COLOURS?",
         )
-
-
-@bot.on(admin_cmd(pattern="session$"))
-@bot.on(sudo_cmd(pattern="session$", allow_sudo=True))
-async def _(event):
-    mentions = "**telethon.errors.rpcerrorlist.AuthKeyDuplicatedError: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetMessagesRequest)**"
-    await event.edit(mentions)
-
-
+                                
+     
 @bot.on(admin_cmd(pattern="ggl (.*)"))
 @bot.on(sudo_cmd(pattern="ggl (.*)", allow_sudo=True))
 async def _(event):
