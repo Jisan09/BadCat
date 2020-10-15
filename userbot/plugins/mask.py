@@ -22,8 +22,8 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
 from userbot import CMD_HELP
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import *
 
 
@@ -33,18 +33,18 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await edit_or_reply(event,"```Reply to any user message.```")
+        await edit_or_reply(event, "```Reply to any user message.```")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await edit_or_reply(event,"```reply to media message```")
+        await edit_or_reply(event, "```reply to media message```")
         return
     chat = "@hazmat_suit_bot"
     reply_message.sender
     if reply_message.sender.bot:
-        await edit_or_reply(event,"```Reply to actual users message.```")
+        await edit_or_reply(event, "```Reply to actual users message.```")
         return
-    catevent = await edit_or_reply(event,"```Processing```")
+    catevent = await edit_or_reply(event, "```Processing```")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -70,12 +70,12 @@ async def catbot(catmemes):
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if not replied:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     if replied.media:
-        kakshi= await edit_or_reply(catmemes,"passing to telegraph...")
+        await edit_or_reply(catmemes, "passing to telegraph...")
     else:
-        await edit_or_reply(catmemes,"reply to a supported media file")
+        await edit_or_reply(catmemes, "reply to a supported media file")
         return
     try:
         cat = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
