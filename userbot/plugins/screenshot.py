@@ -125,7 +125,7 @@ async def _(event):
     else:
         await catevent.edit(response_api.text)
 
-        
+
 CMD_HELP.update(
     {
         "screenshot": "__**PLUGIN NAME :** Screenshot__\
