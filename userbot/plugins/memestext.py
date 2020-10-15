@@ -17,6 +17,113 @@ from . import CMD_HELP, catmemes
 # ================= CONSTANT =================
 
 
+@bot.on(admin_cmd(outgoing=True, pattern="repo$"))
+@bot.on(sudo_cmd(pattern="repo$", allow_sudo=True))
+async def source(e):
+    await edit_or_reply(
+        e,
+        "Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo.",
+    )
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="noob$"))
+@bot.on(sudo_cmd(pattern="noob$", allow_sudo=True))
+async def metoo(e):
+    txt = random.choice(catmemes.NOOBSTR)
+    await edit_or_reply(e, txt)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="pro$"))
+@bot.on(sudo_cmd(pattern="pro$", allow_sudo=True))
+async def proo(e):
+    txt = random.choice(catmemes.PRO_STRINGS)
+    await edit_or_reply(e, txt)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="insult$"))
+@bot.on(sudo_cmd(pattern="insult$", allow_sudo=True))
+async def insult(e):
+    txt = random.choice(catmemes.INSULT_STRINGS)
+    await edit_or_reply(e, txt)
+
+
+@bot.on(admin_cmd(pattern=f"love$", outgoing=True))
+@bot.on(sudo_cmd(pattern="love$", allow_sudo=True))
+async def suru(chutiyappa):
+    txt = random.choice(catmemes.LOVESTR)
+    await edit_or_reply(chutiyappa, txt)
+
+
+@bot.on(admin_cmd(pattern=f"dhoka$", outgoing=True))
+@bot.on(sudo_cmd(pattern="dhoka$", allow_sudo=True))
+async def katgya(chutiya):
+    txt = random.choice(catmemes.DHOKA)
+    await edit_or_reply(chutiya, txt)
+
+
+@bot.on(admin_cmd(pattern=f"metoo$", outgoing=True))
+@bot.on(sudo_cmd(pattern="metoo$", allow_sudo=True))
+async def metoo(hahayes):
+    txt = random.choice(catmemes.METOOSTR)
+    await edit_or_reply(hahayes, txt)
+
+
+@bot.on(admin_cmd(pattern=f"gnoon$", outgoing=True))
+@bot.on(sudo_cmd(pattern="gnoon$", allow_sudo=True))
+async def noon(noon):
+    txt = random.choice(catmemes.GDNOON)
+    await edit_or_reply(noon, txt)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="runs$"))
+@bot.on(sudo_cmd(pattern="runs$", allow_sudo=True))
+async def runner_lol(e):
+    txt = random.choice(catmemes.RUNSREACTS)
+    await edit_or_reply(e, txt)
+
+
+@bot.on(admin_cmd(pattern=f"congo$", outgoing=True))
+@bot.on(sudo_cmd(pattern="congo$", allow_sudo=True))
+async def Sahih(congrats):
+    txt = random.choice(catmemes.CONGRATULATION)
+    await edit_or_reply(congrats, txt)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="hey$"))
+@bot.on(sudo_cmd(pattern="hey$", allow_sudo=True))
+async def hoi(e):
+    txt = random.choice(catmemes.HELLOSTR)
+    await edit_or_reply(e, txt)
+
+
+@bot.on(admin_cmd(pattern=f"qbye$", outgoing=True))
+@bot.on(sudo_cmd(pattern="qbye$", allow_sudo=True))
+async def bhago(bhagobc):
+    txt = random.choice(catmemes.BYESTR)
+    await edit_or_reply(bhagobc, txt)
+
+
+@bot.on(admin_cmd(pattern=f"gn$", outgoing=True))
+@bot.on(sudo_cmd(pattern="gn$", allow_sudo=True))
+async def night(night):
+    txt = random.choice(catmemes.GDNIGHT)
+    await edit_or_reply(night, txt)
+
+
+@bot.on(admin_cmd(pattern=f"gm$", outgoing=True))
+@bot.on(sudo_cmd(pattern="gm$", allow_sudo=True))
+async def morning(morning):
+    txt = random.choice(catmemes.GDMORNING)
+    await edit_or_reply(morning, txt)
+
+
+@bot.on(admin_cmd(pattern="session$"))
+@bot.on(sudo_cmd(pattern="session$", allow_sudo=True))
+async def _(event):
+    mentions = "**telethon.errors.rpcerrorlist.AuthKeyDuplicatedError: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetMessagesRequest)**"
+    await edit_or_reply(event, mentions)
+
+
 @bot.on(admin_cmd(pattern=f"tip$", outgoing=True))
 @bot.on(sudo_cmd(pattern="tip$", allow_sudo=True))
 async def _(event):
@@ -938,6 +1045,8 @@ async def _(event):
 
 
 # ================================================
+
+
 @bot.on(admin_cmd(pattern=f"logic$", outgoing=True))
 @bot.on(sudo_cmd(pattern="logic$", allow_sudo=True))
 async def _(event):
@@ -1671,83 +1780,41 @@ async def _(event):
         await event.edit("Not in a mood to sing. Sorry!")
 
 
-@bot.on(admin_cmd(pattern=f"love$", outgoing=True))
-@bot.on(sudo_cmd(pattern="love$", allow_sudo=True))
-async def suru(chutiyappa):
-    txt = random.choice(catmemes.LOVESTR)
-    await edit_or_reply(chutiyappa, txt)
-
-
-@bot.on(admin_cmd(pattern=f"dhoka$", outgoing=True))
-@bot.on(sudo_cmd(pattern="dhoka$", allow_sudo=True))
-async def katgya(chutiya):
-    txt = random.choice(catmemes.DHOKA)
-    await edit_or_reply(chutiya, txt)
-
-
-@bot.on(admin_cmd(pattern=f"metoo$", outgoing=True))
-@bot.on(sudo_cmd(pattern="metoo$", allow_sudo=True))
-async def metoo(hahayes):
-    txt = random.choice(catmemes.METOOSTR)
-    await edit_or_reply(hahayes, txt)
-
-
-@bot.on(admin_cmd(pattern=f"gnoon$", outgoing=True))
-@bot.on(sudo_cmd(pattern="gnoon$", allow_sudo=True))
-async def noon(noon):
-    txt = random.choice(catmemes.GDNOON)
-    await edit_or_reply(noon, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="runs$"))
-@bot.on(sudo_cmd(pattern="runs$", allow_sudo=True))
-async def runner_lol(e):
-    txt = random.choice(catmemes.RUNSREACTS)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(pattern=f"congo$", outgoing=True))
-@bot.on(sudo_cmd(pattern="congo$", allow_sudo=True))
-async def Sahih(congrats):
-    txt = random.choice(catmemes.CONGRATULATION)
-    await edit_or_reply(congrats, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="hey$"))
-@bot.on(sudo_cmd(pattern="hey$", allow_sudo=True))
-async def hoi(e):
-    txt = random.choice(catmemes.HELLOSTR)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(pattern=f"qbye$", outgoing=True))
-@bot.on(sudo_cmd(pattern="qbye$", allow_sudo=True))
-async def bhago(bhagobc):
-    txt = random.choice(catmemes.BYESTR)
-    await edit_or_reply(bhagobc, txt)
-
-
-@bot.on(admin_cmd(pattern=f"gn$", outgoing=True))
-@bot.on(sudo_cmd(pattern="gn$", allow_sudo=True))
-async def night(night):
-    txt = random.choice(catmemes.GDNIGHT)
-    await edit_or_reply(night, txt)
-
-
-@bot.on(admin_cmd(pattern=f"gm$", outgoing=True))
-@bot.on(sudo_cmd(pattern="gm$", allow_sudo=True))
-async def morning(morning):
-    txt = random.choice(catmemes.GDMORNING)
-    await edit_or_reply(morning, txt)
-
-
 CMD_HELP.update(
     {
-        "memes": "__**PLUGIN NAME :** Memes__\
+        "memestext": "__**PLUGIN NAME :** MemesText__\
+\n\n📌** CMD ➥** `.repo`\
+\n**USAGE   ➥  **Send the repo.\
+\n\n📌** CMD ➥** `.noob`\
+\n**USAGE   ➥  **Whadya want to know? Are you a NOOB?\
+\n\n📌** CMD ➥** `.pro`\
+\n**USAGE   ➥  **If you think you're pro, try this.\
+\n\n📌** CMD ➥** `.insult`\
+\n**USAGE   ➥  **Protects you from unwanted peeps.\
+\n\n📌** CMD ➥** `.love`\
+\n**USAGE   ➥  **Spread the love!\
+\n\n📌** CMD ➥** `.dhoka`\
+\n**USAGE   ➥  **Bewafa thi saali!\
+\n\n📌** CMD ➥** `.metoo`\
+\n**USAGE   ➥  **Hahaha mee tooo!\
+\n\n📌** CMD ➥** `.gnoon`\
+\n**USAGE   ➥  **Good noon everyone!\
 \n\n📌** CMD ➥** `.runs`\
 \n**USAGE   ➥  **Run, run, RUNNN! [`.disable runs`: disable | `.enable runs`: enable]\
+\n\n📌** CMD ➥** `.congo`\
+\n**USAGE   ➥  **Congrts bruh!\
 \n\n📌** CMD ➥** `.hey`\
 \n**USAGE   ➥  **Greet everyone!\
+\n\n📌** CMD ➥** `.qbye`\
+\n**USAGE   ➥  **Bye everyone!\
+\n\n📌** CMD ➥** `.gn`\
+\n**USAGE   ➥  **Good night everyone!\
+\n\n📌** CMD ➥** `.gm`\
+\n**USAGE   ➥  **Good morning everyone!\
+\n\n📌** CMD ➥** | `.tip` | `.bello` | `.logic` |\
+\n**USAGE   ➥  **Give you a life-pro tip!\
+\n\n📌** CMD ➥** `.qt`\
+\n**USAGE   ➥  **Ask a question!\
 "
     }
 )
