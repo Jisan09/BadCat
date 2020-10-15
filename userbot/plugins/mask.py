@@ -64,7 +64,7 @@ async def _(event):
             await event.client.send_file(event.chat_id, response.message.media)
 
 
-@borg.on(admin_cmd(pattern="awooify(?: |$)(.*)"))
+@bot.on(admin_cmd(pattern="awooify(?: |$)(.*)"))
 @bot.on(sudo_cmd(pattern="awooify(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
@@ -115,7 +115,7 @@ async def catbot(catmemes):
     await borg.send_file(catmemes.chat_id, cat, reply_to=replied)
 
 
-@borg.on(admin_cmd(pattern="lolice(?: |$)(.*)"))
+@bot.on(admin_cmd(pattern="lolice(?: |$)(.*)"))
 @bot.on(sudo_cmd(pattern="lolice(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
@@ -166,7 +166,7 @@ async def catbot(catmemes):
     await borg.send_file(catmemes.chat_id, cat, reply_to=replied)
 
 
-@borg.on(admin_cmd(pattern="bun(?: |$)(.*)"))
+@bot.on(admin_cmd(pattern="bun(?: |$)(.*)"))
 @bot.on(sudo_cmd(pattern="bun(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
@@ -217,7 +217,7 @@ async def catbot(catmemes):
     await borg.send_file(catmemes.chat_id, cat, reply_to=replied)
 
 
-@borg.on(admin_cmd(pattern="iphx(?: |$)(.*)"))
+@bot.on(admin_cmd(pattern="iphx(?: |$)(.*)"))
 @bot.on(sudo_cmd(pattern="iphx(?: |$)(.*)", allow_sudo=True))
 async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
