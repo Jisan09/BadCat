@@ -199,36 +199,6 @@ async def smrk(smk):
         await edit_or_reply(smk, reply_text)
 
 
-@bot.on(admin_cmd(pattern="ftext (.*)"))
-@bot.on(sudo_cmd(pattern="ftext (.*)", allow_sudo=True))
-async def payf(event):
-    paytext = event.pattern_match.group(1)
-    pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
-        paytext * 8,
-        paytext * 8,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 6,
-        paytext * 6,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-    )
-    await edit_or_reply(event, pay)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="repo$"))
-@bot.on(sudo_cmd(pattern="repo$", allow_sudo=True))
-async def source(e):
-    await edit_or_reply(
-        e,
-        "Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo.",
-    )
-
-
 @bot.on(admin_cmd(outgoing=True, pattern="shg$"))
 @bot.on(sudo_cmd(pattern="shg$", allow_sudo=True))
 async def shrugger(e):
@@ -300,8 +270,8 @@ async def _(event):
         )
 
 
-@bot.on(admin_cmd(pattern=f"shout", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"shout", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"shout (.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"shout (.*)", allow_sudo=True))
 async def shout(args):
     msg = "```"
     messagestr = args.text
