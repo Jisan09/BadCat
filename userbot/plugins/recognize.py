@@ -7,8 +7,8 @@ from userbot import CMD_HELP
 from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
-@borg.on(admin_cmd(pattern="recognize ?(.*)"))
-@bot.on(sudo_cmd(pattern="qbot(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="recognize ?(.*)"))
+@bot.on(sudo_cmd(pattern="recognize ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
