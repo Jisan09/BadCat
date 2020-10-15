@@ -3,6 +3,7 @@ from collections import deque
 
 from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
+from . import CMD_HELP
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
@@ -281,3 +282,12 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 8])
+
+CMD_HELP.update(
+    {
+        "animation3": "**PLUGIN NAME :** Animation3\
+\n\n📌 CMD ➥ `.star` | `.boxs` | `.rain` | `.deploy` | `.dump  ?(.*)` | `.fleaveme` | `.loveu` | `.plane` | `.police` | `.jio` | `.solar system` \
+\n\nUSAGE   ➥  **These are animation bruh..Try & check yourself\**
+"
+    }
+)
