@@ -36,7 +36,6 @@ async def _(event):
         await event.edit(animation_chars[i % 8])
 
 
-
 @borg.on(admin_cmd(pattern=f"eye$", outgoing=True))
 @borg.on(sudo_cmd(pattern=f"eye$", allow_sudo=True))
 async def _(event):

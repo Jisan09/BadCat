@@ -2,7 +2,7 @@ import asyncio
 
 from telethon import events
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd, register
+from ..utils import admin_cmd, edit_or_reply, register, sudo_cmd
 from . import ALIVE_NAME, CMD_HELP
 
 DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
@@ -46,7 +46,6 @@ async def kakashi(killer):
     )
 
 
-
 @bot.on(admin_cmd(pattern="ftext (.*)"))
 @bot.on(sudo_cmd(pattern="ftext (.*)", allow_sudo=True))
 async def payf(event):
@@ -67,7 +66,7 @@ async def payf(event):
     )
     await edit_or_reply(event, pay)
 
-    
+
 @bot.on(admin_cmd(outgoing=True, pattern="g1 ?(.*)"))
 @bot.on(sudo_cmd(pattern="g1 ?(.*)", allow_sudo=True))
 async def payf(event):
@@ -348,8 +347,8 @@ async def kakashi(jisan):
         "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
         "`\n┗━━┻━┛`"
     )
-    
-    
+
+
 @borg.on(admin_cmd(pattern=r"sayhi$"))
 async def kakashi(jisan):
     await jisan.edit(
@@ -443,7 +442,8 @@ async def kakashi(shit):
 @borg.on(admin_cmd(pattern=r"hallo$"))
 async def kakashi(hello):
     await hello.edit(E)
-    
+
+
 CMD_HELP.update(
     {
         "art": "__**PLUGIN NAME :** Art__\
@@ -456,4 +456,3 @@ CMD_HELP.update(
 "
     }
 )
-
