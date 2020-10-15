@@ -16,7 +16,7 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 # ================= CONSTANT =================
 
-    
+
 @bot.on(admin_cmd(pattern=f"tip$", outgoing=True))
 @bot.on(sudo_cmd(pattern="tip$", allow_sudo=True))
 async def _(event):
@@ -749,8 +749,6 @@ async def _(event):
         )
 
 
-
-        
 @bot.on(admin_cmd(pattern=f"qt$", outgoing=True))
 @bot.on(sudo_cmd(pattern="qt$", allow_sudo=True))
 async def _(event):
@@ -938,7 +936,8 @@ async def _(event):
             '`"What’s something you misunderstood as a child and only realized much later was wrong?"`'
         )
 
-#================================================
+
+# ================================================
 @bot.on(admin_cmd(pattern=f"logic$", outgoing=True))
 @bot.on(sudo_cmd(pattern="logic$", allow_sudo=True))
 async def _(event):
