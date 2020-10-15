@@ -2,47 +2,7 @@
 # Elove by @turquoise-giggle
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import ALIVE_NAME, CMD_HELP
-
-DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
-
-
-@bot.on(admin_cmd(pattern="ded (.*)"))
-@bot.on(sudo_cmd(pattern="ded (.*)", allow_sudo=True))
-async def kakashi(ded):
-    name = ded.pattern_match.group(1)
-    await edit_or_reply(
-        ded,
-        f"[{DEF}]({USR}) --- {name}          \n　　　　　|"
-        "\n　　　　　| \n"
-        "　　　　　| \n"
-        "　　　　　| \n"
-        "　　　　　| \n"
-        "　　　　　| \n"
-        "　　　　　| \n"
-        "　　　　　| \n"
-        "　／￣￣＼| \n"
-        "＜ ´･ 　　 |＼ \n"
-        "　|　３　 | 丶＼ \n"
-        "＜ 、･　　|　　＼ \n"
-        "　＼＿＿／∪ _ ∪) \n"
-        "　　　　　 Ｕ Ｕ\n",
-    )
-
-
-@bot.on(admin_cmd(pattern="killer (.*)"))
-@bot.on(sudo_cmd(pattern="killer (.*)", allow_sudo=True))
-async def kakashi(killer):
-    name = killer.pattern_match.group(1)
-    await edit_or_reply(
-        killer,
-        f"__**Commando **__[{DEF}]({USR})          \n\n"
-        "_/﹋\_\n"
-        "(҂`_´)\n"
-        f"<,︻╦╤─ ҉ - - - {name}\n"
-        "_/﹋\_\n",
-    )
+from . import CMD_HELP
 
 
 @bot.on(admin_cmd(pattern=r"elove$"))
@@ -418,10 +378,6 @@ async def bluedevildislike(dislike):
 CMD_HELP.update(
     {
         "art": "__**PLUGIN NAME :** Art__\
-\n\n📌** CMD ➥** `.killer` <text>\
-\n**USAGE   ➥  **Be a warrior & kill enimes.\
-\n\n📌** CMD ➥** `.ded` <text>\
-\n**USAGE   ➥  **Hang yourself.\
 \n\n📌** CMD ➥** `.elove` | `.monster` | `.pig` | `.gun` | `.dog` | `.hello` | `.hmf` | `.couple` | `.sup` | `.india` | `.wc` | `.snk` | `.bye` | `.shitos` | `.dislike`\
 \n\n**USAGE   ➥  **These are arts,use & see"
     }
