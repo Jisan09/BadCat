@@ -67,7 +67,7 @@ async def kakashi(event):
         link = "🐱 Cat UserBot 🐱"
     elif link == "badcat":
         link = "My Repo"
-    cat = await event.edit("```Sending your note....```")
+    catevent = await event.edit("```Sending your note....```")
     async with event.client.conversation("@kakashi_robot") as conv:
         try:
             response = conv.wait_event(
@@ -76,9 +76,9 @@ async def kakashi(event):
             await conv.send_message(f"{link}")
             response = await response
         except YouBlockedUserError:
-            await cat.edit("```Unblock @kakashi_robot plox```")
+            await catevent.edit("```Unblock @kakashi_robot plox```")
             return
         else:
-            await cat.delete()
+            await catevent.delete()
             await event.client.forward_messages(event.chat_id, response.message)
             await event.client.send_read_acknowledge(conv.chat_id)
