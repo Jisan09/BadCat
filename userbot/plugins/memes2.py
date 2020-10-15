@@ -1670,7 +1670,27 @@ async def _(event):
     if x == 33:
         await event.edit("Not in a mood to sing. Sorry!")
 
+@bot.on(admin_cmd(outgoing=True, pattern="noob$"))
+@bot.on(sudo_cmd(pattern="noob$", allow_sudo=True))
+async def metoo(e):
+    txt = random.choice(catmemes.NOOBSTR)
+    await edit_or_reply(e, txt)
+    
+    
+@bot.on(admin_cmd(outgoing=True, pattern="pro$"))
+@bot.on(sudo_cmd(pattern="pro$", allow_sudo=True))
+async def proo(e):
+    txt = random.choice(catmemes.PRO_STRINGS)
+    await edit_or_reply(e, txt)
+    
 
+@bot.on(admin_cmd(outgoing=True, pattern="insult$"))
+@bot.on(sudo_cmd(pattern="insult$", allow_sudo=True))
+async def insult(e):
+    txt = random.choice(catmemes.INSULT_STRINGS)
+    await edit_or_reply(e, txt)
+    
+    
 @bot.on(admin_cmd(pattern=f"love$", outgoing=True))
 @bot.on(sudo_cmd(pattern="love$", allow_sudo=True))
 async def suru(chutiyappa):
@@ -1740,7 +1760,14 @@ async def morning(morning):
     txt = random.choice(catmemes.GDMORNING)
     await edit_or_reply(morning, txt)
 
-
+                        
+@bot.on(admin_cmd(pattern="session$"))
+@bot.on(sudo_cmd(pattern="session$", allow_sudo=True))
+async def _(event):
+    mentions = "**telethon.errors.rpcerrorlist.AuthKeyDuplicatedError: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetMessagesRequest)**"
+    await edit_or_reply(event,mentions)
+    
+    
 CMD_HELP.update(
     {
         "memes": "__**PLUGIN NAME :** Memes__\
