@@ -8,16 +8,11 @@ import re
 
 import bs4
 import requests
-from googletrans import LANGUAGES, Translator
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import BOTLOG, BOTLOG_CHATID, deEmojify
-
-TTS_LANG = "en"
-TRT_LANG = "en"
-langi = "en"
+from . import BOTLOG, BOTLOG_CHATID
 
 
 @bot.on(admin_cmd(outgoing=True, pattern=r"wiki (.*)"))
@@ -147,57 +142,3 @@ async def imdb(e):
         )
     except IndexError:
         await catevent.edit("Plox enter **Valid movie name** kthx")
-
-
-@bot.on(admin_cmd(outgoing=True, pattern=r"trt(?: |$)([\s\S]*)"))
-@bot.on(sudo_cmd(allow_sudo=True, pattern=r"trt(?: |$)([\s\S]*)"))
-async def translateme(trans):
-    """ For .trt command, translate the given text using Google Translate. """
-    translator = Translator()
-    textx = await trans.get_reply_message()
-    message = trans.pattern_match.group(1)
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await edit_or_reply(trans, "`Give a text or reply to a message to translate!`")
-        return
-    try:
-        reply_text = translator.translate(deEmojify(message), dest=TRT_LANG)
-    except ValueError:
-        await edit_or_reply(trans, "Invalid destination language.")
-        return
-    source_lan = LANGUAGES[f"{reply_text.src.lower()}"]
-    transl_lan = LANGUAGES[f"{reply_text.dest.lower()}"]
-    reply_text = f"**From** __{source_lan.title()}__\n**To **__{transl_lan.title()}__**:**\n\n`{reply_text.text}``"
-
-    await edit_or_reply(trans, reply_text)
-    if BOTLOG:
-        await trans.client.send_message(
-            BOTLOG_CHATID,
-            f"Translated some {source_lan.title()} stuff to {transl_lan.title()} just now.",
-        )
-
-
-@bot.on(admin_cmd(pattern="lang trt (.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="lang trt (.*)", allow_sudo=True))
-async def lang(value):
-    # For .lang command, change the default langauge of userbot scrapers.
-    scraper = "Translator"
-    global TRT_LANG
-    arg = value.pattern_match.group(1).lower()
-    if arg in LANGUAGES:
-        TRT_LANG = arg
-        LANG = LANGUAGES[arg]
-    else:
-        await edit_or_reply(
-            value,
-            f"`Invalid Language code !!`\n`Available language codes for TRT`:\n\n`{LANGUAGES}`",
-        )
-        return
-    await edit_or_reply(value, f"`Language for {scraper} changed to {LANG.title()}.`")
-    if BOTLOG:
-        await value.client.send_message(
-            BOTLOG_CHATID, f"`Language for {scraper} changed to {LANG.title()}.`"
-        )
