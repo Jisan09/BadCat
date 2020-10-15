@@ -2,7 +2,200 @@ import asyncio
 
 from telethon import events
 
-from userbot.utils import admin_cmd, register
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd, register
+from . import ALIVE_NAME, CMD_HELP
+
+DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
+USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
+
+
+@bot.on(admin_cmd(pattern="ded (.*)"))
+@bot.on(sudo_cmd(pattern="ded (.*)", allow_sudo=True))
+async def kakashi(ded):
+    name = ded.pattern_match.group(1)
+    await edit_or_reply(
+        ded,
+        f"[{DEF}]({USR}) --- {name}          \n　　　　　|"
+        "\n　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　／￣￣＼| \n"
+        "＜ ´･ 　　 |＼ \n"
+        "　|　３　 | 丶＼ \n"
+        "＜ 、･　　|　　＼ \n"
+        "　＼＿＿／∪ _ ∪) \n"
+        "　　　　　 Ｕ Ｕ\n",
+    )
+
+
+@bot.on(admin_cmd(pattern="killer (.*)"))
+@bot.on(sudo_cmd(pattern="killer (.*)", allow_sudo=True))
+async def kakashi(killer):
+    name = killer.pattern_match.group(1)
+    await edit_or_reply(
+        killer,
+        f"__**Commando **__[{DEF}]({USR})          \n\n"
+        "_/﹋\_\n"
+        "(҂`_´)\n"
+        f"<,︻╦╤─ ҉ - - - {name}\n"
+        "_/﹋\_\n",
+    )
+
+
+
+@bot.on(admin_cmd(pattern="ftext (.*)"))
+@bot.on(sudo_cmd(pattern="ftext (.*)", allow_sudo=True))
+async def payf(event):
+    paytext = event.pattern_match.group(1)
+    pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
+        paytext * 8,
+        paytext * 8,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+        paytext * 6,
+        paytext * 6,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+        paytext * 2,
+    )
+    await edit_or_reply(event, pay)
+
+    
+@bot.on(admin_cmd(outgoing=True, pattern="g1 ?(.*)"))
+@bot.on(sudo_cmd(pattern="g1 ?(.*)", allow_sudo=True))
+async def payf(event):
+    paytext = event.pattern_match.group(1)
+    pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+        paytext * 1,
+    )
+    await edit_or_reply(event, pay)
+
 
 # ================= CONSTANT =================
 
@@ -155,8 +348,8 @@ async def kakashi(jisan):
         "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
         "`\n┗━━┻━┛`"
     )
-
-
+    
+    
 @borg.on(admin_cmd(pattern=r"sayhi$"))
 async def kakashi(jisan):
     await jisan.edit(
@@ -250,3 +443,17 @@ async def kakashi(shit):
 @borg.on(admin_cmd(pattern=r"hallo$"))
 async def kakashi(hello):
     await hello.edit(E)
+    
+CMD_HELP.update(
+    {
+        "art": "__**PLUGIN NAME :** Art__\
+\n\n📌** CMD ➥** `.killer` <text>\
+\n**USAGE   ➥  **Be a warrior & kill enimes.\
+\n\n📌** CMD ➥** `.ded` <text>\
+\n**USAGE   ➥  **Hang yourself.\
+\n\n📌** CMD ➥** `.g1` <text>\
+\n**USAGE   ➥  **Send Long list of your text.\
+"
+    }
+)
+
