@@ -77,8 +77,8 @@ async def _(event):
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=1120861844)
             )
-            msg = await conv.send_message(reply_message)
-            details = await conv.get_response()
+            await conv.send_message(reply_message)
+            await conv.get_response()
             pic = await conv.get_response()
         except YouBlockedUserError:
             await kakashi.edit("```Please unblock @sangmatainfo_bot and try again```")
