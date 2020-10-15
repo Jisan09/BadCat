@@ -4,7 +4,7 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, ALIVE_NAME
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
