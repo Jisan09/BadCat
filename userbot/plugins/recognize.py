@@ -4,7 +4,7 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from userbot import CMD_HELP
-from userbot.utils import admin_cmd, sudo_cmd, edit_or_reply
+from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
 @borg.on(admin_cmd(pattern="recognize ?(.*)"))
@@ -13,18 +13,18 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await edit_or_reply(event,"Reply to any user's media message.")
+        await edit_or_reply(event, "Reply to any user's media message.")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await edit_or_reply(event,"reply to media file")
+        await edit_or_reply(event, "reply to media file")
         return
     chat = "@Rekognition_Bot"
     reply_message.sender
     if reply_message.sender.bot:
         await event.edit("Reply to actual users message.")
         return
-    cat = await edit_or_reply(event,"recognizeing this media")
+    cat = await edit_or_reply(event, "recognizeing this media")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -46,6 +46,7 @@ async def _(event):
 
         else:
             await event.edit("sorry, I couldnt find it")
+
 
 CMD_HELP.update(
     {
