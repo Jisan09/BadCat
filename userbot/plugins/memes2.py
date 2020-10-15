@@ -10,10 +10,9 @@ Userbot module for having some fun with people.
 """
 import asyncio
 import random
-import re
-from random import choice
-from . import CMD_HELP, catmemes
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP, catmemes
 
 # ================= CONSTANT =================
 
@@ -1692,7 +1691,7 @@ async def metoo(hahayes):
     txt = random.choice(catmemes.METOOSTR)
     await edit_or_reply(hahayes, txt)
 
-    
+
 @bot.on(admin_cmd(pattern=f"gnoon$", outgoing=True))
 @bot.on(sudo_cmd(pattern="gnoon$", allow_sudo=True))
 async def noon(noon):
@@ -1712,7 +1711,7 @@ async def runner_lol(e):
 async def Sahih(congrats):
     txt = random.choice(catmemes.CONGRATULATION)
     await edit_or_reply(congrats, txt)
-    
+
 
 @bot.on(admin_cmd(outgoing=True, pattern="hey$"))
 @bot.on(sudo_cmd(pattern="hey$", allow_sudo=True))
@@ -1740,8 +1739,8 @@ async def night(night):
 async def morning(morning):
     txt = random.choice(catmemes.GDMORNING)
     await edit_or_reply(morning, txt)
-    
-    
+
+
 CMD_HELP.update(
     {
         "memes": "__**PLUGIN NAME :** Memes__\
@@ -1752,5 +1751,3 @@ CMD_HELP.update(
 "
     }
 )
-
-        
