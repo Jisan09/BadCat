@@ -1,6 +1,6 @@
 import asyncio
 from collections import deque
-
+from . import CMD_HELP
 from .. import ALIVE_NAME
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
@@ -276,3 +276,13 @@ async def timer_blankx(e):
         "`Tesla Wireless Charging (beta) Completed...\nDevice Detected: Nokia 1100 (Space Grey Varient)\nBattery Percentage:` [100%](https://telegra.ph/file/a45aa7450c8eefed599d9.mp4) ",
         link_preview=True,
     )
+
+    
+CMD_HELP.update(
+    {
+        "animation1": "__**PLUGIN NAME :** Animation1__\
+\n\n📌 CMD ➥ `.stupid` | `.bombs` | `.call` | `.kill` | `kell` | `.wtf` | `.ding` | `.hypno` | `.candy` | `.gangasta` | `.charging` \
+\n\nUSAGE   ➥  **These are animation bruh..Try & check yourself\**
+"
+    }
+)
