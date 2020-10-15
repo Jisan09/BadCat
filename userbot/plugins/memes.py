@@ -15,7 +15,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChannelParticipantsAdmins, MessageEntityMentionName
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, catmemes
+from . import ALIVE_NAME, CMD_HELP, catmemes
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
@@ -199,61 +199,10 @@ async def smrk(smk):
         await edit_or_reply(smk, reply_text)
 
 
-@bot.on(admin_cmd(pattern="ftext (.*)"))
-@bot.on(sudo_cmd(pattern="ftext (.*)", allow_sudo=True))
-async def payf(event):
-    paytext = event.pattern_match.group(1)
-    pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
-        paytext * 8,
-        paytext * 8,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 6,
-        paytext * 6,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-    )
-    await edit_or_reply(event, pay)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="repo$"))
-@bot.on(sudo_cmd(pattern="repo$", allow_sudo=True))
-async def source(e):
-    await edit_or_reply(
-        e,
-        "Click [here](https://github.com/Jisan09/catuserbot) to open this lit af repo.",
-    )
-
-
 @bot.on(admin_cmd(outgoing=True, pattern="shg$"))
 @bot.on(sudo_cmd(pattern="shg$", allow_sudo=True))
 async def shrugger(e):
     txt = random.choice(catmemes.SHGS)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="noob$"))
-@bot.on(sudo_cmd(pattern="noob$", allow_sudo=True))
-async def metoo(e):
-    txt = random.choice(catmemes.NOOBSTR)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="insult$"))
-@bot.on(sudo_cmd(pattern="insult$", allow_sudo=True))
-async def insult(e):
-    txt = random.choice(catmemes.INSULT_STRINGS)
-    await edit_or_reply(e, txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="pro$"))
-@bot.on(sudo_cmd(pattern="pro$", allow_sudo=True))
-async def proo(e):
-    txt = random.choice(catmemes.PRO_STRINGS)
     await edit_or_reply(e, txt)
 
 
@@ -297,39 +246,8 @@ async def bluetext(e):
         )
 
 
-@bot.on(admin_cmd(pattern="session$"))
-@bot.on(sudo_cmd(pattern="session$", allow_sudo=True))
-async def _(event):
-    mentions = "**telethon.errors.rpcerrorlist.AuthKeyDuplicatedError: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by GetMessagesRequest)**"
-    await event.edit(mentions)
-
-
-@bot.on(admin_cmd(pattern="ggl (.*)"))
-@bot.on(sudo_cmd(pattern="ggl (.*)", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    input_str = event.pattern_match.group(1)
-    sample_url = "https://da.gd/s?url=https://lmgtfy.com/?q={}%26iie=1".format(
-        input_str.replace(" ", "+")
-    )
-    response_api = requests.get(sample_url).text
-    if response_api:
-        await edit_or_reply(
-            event,
-            "[{}]({})\n`Thank me Later 🙃` ".format(input_str, response_api.rstrip()),
-        )
-    else:
-        await edit_or_reply(event, "something is wrong. please try again later.")
-    if BOTLOG:
-        await bot.send_message(
-            BOTLOG_CHATID,
-            "LMGTFY query `" + input_str + "` was executed successfully",
-        )
-
-
-@bot.on(admin_cmd(pattern=f"shout", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"shout", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"shout (.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"shout (.*)", allow_sudo=True))
 async def shout(args):
     msg = "```"
     messagestr = args.text
@@ -417,26 +335,12 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Praise people!\
 \n\n📌** CMD ➥** `.smk` <text/reply>\
 \n**USAGE   ➥  **A shit module for ツ , who cares.\
-\n\n📌** CMD ➥** `.ftext` <emoji/character>\
-\n**USAGE   ➥  **Pay Respects.\
-\n\n📌** CMD ➥** `.repo`\
-\n**USAGE   ➥  **Send the repo.\
 \n\n📌** CMD ➥** `.shg`\
 \n**USAGE   ➥  **Shrug at it !!\
-\n\n📌** CMD ➥** `.noob`\
-\n**USAGE   ➥  **Whadya want to know? Are you a NOOB?\
-\n\n📌** CMD ➥** `.pro`\
-\n**USAGE   ➥  **If you think you're pro, try this.\
-\n\n📌** CMD ➥** `.insult`\
-\n**USAGE   ➥  **Protects you from unwanted peeps.\
 \n\n📌** CMD ➥** `.react` <type>\
 \n**USAGE   ➥  **Make your userbot react. types are <happy ,think ,wave ,wtf ,love ,confused,dead, sad,dog>\
 \n\n📌** CMD ➥** `.bt`\
 \n**USAGE   ➥  **Believe me, you will find this useful.\
-\n\n📌** CMD ➥** `.season`\
-\n**USAGE   ➥  **Believe me, ur season is expire.\
-\n\n📌** CMD ➥** `.ggl` <query>\
-\n**USAGE   ➥  **Let me Google that for you real quick !!\
 \n\n📌** CMD ➥** `.shout text`\
 \n**USAGE   ➥  **shouts the text in a fun way\
 \n\n📌** CMD ➥**  `.gbun <reason>`\
