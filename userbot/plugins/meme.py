@@ -65,7 +65,18 @@ async def typewriter(typew):
         await typew.edit(old_text)
         await asyncio.sleep(sleep_time)
 
+        
+@bot.on(admin_cmd(pattern="repeat (\d*) (.*)",outgoing=True))
+@bot.on(sudo_cmd(pattern="repeat (\d*) (.*)",allow_sudo=True))
+async def _(event):
+    cat = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
+    message = cat[1]
+    count = int(cat[0])
+    repmessage = (f"{message} ")* count
+    await asyncio.wait([event.respond(repmessage)])
+    await event.delete()
 
+    
 @bot.on(admin_cmd(pattern=f"meme", outgoing=True))
 @bot.on(sudo_cmd(pattern=f"meme", allow_sudo=True))
 async def meme(event):
@@ -214,6 +225,8 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Ooooof\
 \n\n📌** CMD ➥** `.type`\
 \n**USAGE   ➥  **Just a small command to make your keyboard become a typewriter!\
+\n\n📌** CMD ➥** `.repeat` <count message>\
+\n**USAGE   ➥  **Try out and check Yourself `.repeat 5 hello`\
 \n\n📌** CMD ➥** `.meme` \
 \n**USAGE   ➥  **Try yourself ;)\
 \n\n📌** CMD ➥** `.give` \
