@@ -5,20 +5,19 @@ By: @Zero_cool7870
 """
 import requests
 
-from userbot import CMD_HELP
-
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP
 
 
-async def download_file_from_google_drive(id):
+async def download_file_from_google_drive(gid):
     URL = "https://docs.google.com/uc?export=download"
 
     session = requests.Session()
 
-    response = session.get(URL, params={"id": id}, stream=True)
+    response = session.get(URL, params={"id": gid}, stream=True)
     token = await get_confirm_token(response)
     if token:
-        params = {"id": id, "confirm": token}
+        params = {"id": gid, "confirm": token}
         response = session.get(URL, params=params, stream=True)
 
     headers = response.headers
@@ -83,8 +82,8 @@ async def get_file_name(content):
     return file_name
 
 
-@borg.on(admin_cmd(pattern=f"gdl (.*)", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"gdl (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"gdl (.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"gdl (.*)", allow_sudo=True))
 async def g_download(event):
     if event.fwd_from:
         return
@@ -92,7 +91,7 @@ async def g_download(event):
     file_id = await get_id(drive_link)
     event = await edit_or_reply(event, "Downloading Requested File from G-Drive...")
     file_name = await download_file_from_google_drive(file_id)
-    await event.edit("File Downloaded.\nName: `" + str(file_name) + "`")
+    await event.edit("File Downloaded.\n**Name : **`" + str(file_name) + "`")
 
 
 CMD_HELP.update(
