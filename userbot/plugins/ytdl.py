@@ -24,14 +24,14 @@ from .. import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, progress, sudo_cmd
 
 
-@borg.on(admin_cmd(pattern="yt(a|v) (.*)"))
-@borg.on(sudo_cmd(pattern="yt(a|v) (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="yt(a|v) (.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern="yt(a|v) (.*)", allow_sudo=True))
 async def download_video(v_url):
     """ For .ytdl command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
-    type = v_url.pattern_match.group(1).lower()
+    ytype = v_url.pattern_match.group(1).lower()
     v_url = await edit_or_reply(v_url, "`Preparing to download...`")
-    if type == "a":
+    if ytype == "a":
         opts = {
             "format": "bestaudio",
             "addmetadata": True,
@@ -53,7 +53,7 @@ async def download_video(v_url):
         }
         video = False
         song = True
-    elif type == "v":
+    elif ytype == "v":
         opts = {
             "format": "best",
             "addmetadata": True,
@@ -161,8 +161,8 @@ async def download_video(v_url):
         await v_url.delete()
 
 
-@borg.on(admin_cmd(pattern="yts (.*)"))
-@borg.on(sudo_cmd(pattern="yts (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="yts (.*)"))
+@bot.on(sudo_cmd(pattern="yts (.*)", allow_sudo=True))
 async def yt_search(video_q):
     """ For .yts command, do a YouTube search from Telegram. """
     query = video_q.pattern_match.group(1)
