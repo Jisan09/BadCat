@@ -36,7 +36,7 @@ async def selfdestruct(destroy):
     await sleep(counter)
     await smsg.delete()
 
-    
+
 CMD_HELP.update(
     {
         "selfdestruct": "__**PLUGIN NAME :** Selfdestruct__\
