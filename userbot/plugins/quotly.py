@@ -58,7 +58,6 @@ async def _(event):
         await edit_or_reply(event, "```Reply to text message```")
         return
     chat = "@QuotLyBot"
-    reply_message.sender
     if reply_message.sender.bot:
         await edit_or_reply(event, "```Reply to actual users message.```")
         return
