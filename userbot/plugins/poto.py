@@ -35,7 +35,7 @@ name = "Profile Photos"
 @bot.on(sudo_cmd(pattern="poto ?(.*)", allow_sudo=True))
 async def potocmd(event):
     """Gets the profile photos of replied users, channels or chats"""
-    id = "".join(event.raw_text.split(maxsplit=1)[1:])
+    uid = "".join(event.raw_text.split(maxsplit=1)[1:])
     user = await event.get_reply_message()
     chat = event.input_chat
     if user:
@@ -44,10 +44,10 @@ async def potocmd(event):
     else:
         photos = await event.client.get_profile_photos(chat)
         u = False
-    if id.strip() == "":
-        id = 1
-        if int(id) <= (len(photos)):
-            send_photos = await event.client.download_media(photos[id - 1])
+    if uid.strip() == "":
+        uid = 1
+        if int(uid) <= (len(photos)):
+            send_photos = await event.client.download_media(photos[uid - 1])
             await event.client.send_file(event.chat_id, send_photos)
         else:
             await edit_or_reply(
@@ -55,7 +55,7 @@ async def potocmd(event):
             )
             await asyncio.sleep(2)
             return
-    elif id.strip() == "all":
+    elif uid.strip() == "all":
         if len(photos) > 0:
             await event.client.send_file(event.chat_id, photos)
         else:
@@ -70,8 +70,8 @@ async def potocmd(event):
                 return
     else:
         try:
-            id = int(id)
-            if id <= 0:
+            uid = int(uid)
+            if uid <= 0:
                 await edit_or_reply(
                     event, "```number Invalid!``` **Are you Comedy Me ?**"
                 )
@@ -79,8 +79,8 @@ async def potocmd(event):
         except BaseException:
             await edit_or_reply(event, "Are you comedy me ?")
             return
-        if int(id) <= (len(photos)):
-            send_photos = await event.client.download_media(photos[id - 1])
+        if int(uid) <= (len(photos)):
+            send_photos = await event.client.download_media(photos[uid - 1])
             await event.client.send_file(event.chat_id, send_photos)
         else:
             await edit_or_reply(
