@@ -21,7 +21,7 @@ async def _(event):
         return await catevent.delete()
     if input_str:
         try:
-            id = int(input_str)
+            uid = int(input_str)
         except ValueError:
             try:
                 u = await event.client.get_entity(input_str)
@@ -31,14 +31,14 @@ async def _(event):
                 )
                 await asyncio.sleep(5)
                 return await catevent.delete()
-            id = u.id
+            uid = u.id
     else:
-        id = reply_message.from_id
+        uid = reply_message.from_id
     chat = "@SangMataInfo_bot"
     catevent = await edit_or_reply(event, "`Processing...`")
     async with event.client.conversation(chat) as conv:
         try:
-            await conv.send_message(f"/search_id {id}")
+            await conv.send_message(f"/search_id {uid}")
         except YouBlockedUserError:
             await catevent.edit("`unblock @Sangmatainfo_bot and then try`")
             await asyncio.sleep(5)
