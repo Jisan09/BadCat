@@ -3,10 +3,8 @@ import asyncio
 import requests
 from telethon import functions
 
-from userbot import ALIVE_NAME
-
-from .. import CMD_HELP, CMD_LIST, SUDO_LIST, yaml_format
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import ALIVE_NAME, CMD_HELP, CMD_LIST, SUDO_LIST, yaml_format
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
@@ -78,7 +76,7 @@ async def cmd_list(event):
         else:
             string = "<b>Please specify which plugin do you want help for !!\
                 \nNumber of plugins : </b><code>{count}</code>\
-                \n<b>Usage:</b> <code>.help</code> <plugin name>\n\n"
+                \n<b>Usage:</b> <code>.help</code> plugin name\n\n"
             catcount = 0
             for i in sorted(CMD_LIST):
                 string += "◆" + f"<code>{str(i)}</code>"
@@ -87,32 +85,7 @@ async def cmd_list(event):
             await event.edit(string.format(count=catcount), parse_mode="HTML")
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="info ?(.*)"))
-@bot.on(sudo_cmd(pattern="info ?(.*)", allow_sudo=True))
-async def info(event):
-    """ For .info command,"""
-    args = event.pattern_match.group(1).lower()
-    if args:
-        if args in CMD_HELP:
-            await edit_or_reply(event, str(CMD_HELP[args]))
-        else:
-            await edit_or_reply(event, "Please specify a valid plugin name.")
-    else:
-        string = "<b>Please specify which plugin do you want help for !!\
-            \nNumber of plugins : </b><code>{count}</code>\
-            \n<b>Usage : </b><code>.info</code> <plugin name>\n\n"
-        catcount = 0
-        for i in sorted(CMD_HELP):
-            string += "◆ " + f"<code>{str(i)}</code>"
-            string += "   "
-            catcount += 1
-        if event.from_id in Config.SUDO_USERS:
-            await event.reply(string.format(count=catcount), parse_mode="HTML")
-        else:
-            await event.edit(string.format(count=catcount), parse_mode="HTML")
-
-
-@bot.on(sudo_cmd(allow_sudo=True, pattern="help(?: |$)(.*)"))
+@bot.on(sudo_cmd(allow_sudo=True, pattern="help ?(.*)"))
 async def info(event):
     input_str = event.pattern_match.group(1)
     if input_str == "text":
@@ -121,7 +94,7 @@ async def info(event):
         plugincount = 0
         for i in sorted(SUDO_LIST):
             plugincount += 1
-            string += f"{plugincount}) Command found in Plugin " + i + " are \n"
+            string += f"{plugincount}) Commands found in Plugin " + i + " are \n"
             for iter_list in SUDO_LIST[i]:
                 string += "    " + str(iter_list)
                 string += "\n"
@@ -154,8 +127,6 @@ async def info(event):
             await event.reply(
                 string.format(count=catcount, input_str=input_str), parse_mode="HTML"
             )
-            await asyncio.sleep(3)
-            await event.delete()
         else:
             reply = await event.reply(input_str + " is not a valid plugin!")
             await asyncio.sleep(3)
@@ -164,7 +135,7 @@ async def info(event):
     else:
         string = "<b>Please specify which plugin do you want help for !!\
             \nNumber of plugins : </b><code>{count}</code>\
-            \n<b>Usage:</b> <code>.help</code> <plugin name>\n\n"
+            \n<b>Usage:</b> <code>.help</code> plugin name\n\n"
         catcount = 0
         for i in sorted(SUDO_LIST):
             string += "◆" + f"<code>{str(i)}</code>"
@@ -173,10 +144,36 @@ async def info(event):
         await event.reply(string.format(count=catcount), parse_mode="HTML")
 
 
-@bot.on(admin_cmd(pattern="dc"))
+@bot.on(admin_cmd(outgoing=True, pattern="info ?(.*)"))
+@bot.on(sudo_cmd(pattern="info ?(.*)", allow_sudo=True))
+async def info(event):
+    """ For .info command,"""
+    args = event.pattern_match.group(1).lower()
+    if args:
+        if args in CMD_HELP:
+            await edit_or_reply(event, str(CMD_HELP[args]))
+        else:
+            event = await edit_or_reply(event, "Please specify a valid plugin name.")
+            await asyncio.sleep(3)
+            await event.delete()
+    else:
+        string = "<b>Please specify which plugin do you want help for !!\
+            \nNumber of plugins : </b><code>{count}</code>\
+            \n<b>Usage : </b><code>.info</code> <plugin name>\n\n"
+        catcount = 0
+        for i in sorted(CMD_HELP):
+            string += "◆ " + f"<code>{str(i)}</code>"
+            string += "   "
+            catcount += 1
+        if event.from_id in Config.SUDO_USERS:
+            await event.reply(string.format(count=catcount), parse_mode="HTML")
+        else:
+            await event.edit(string.format(count=catcount), parse_mode="HTML")
+
+
+@bot.on(admin_cmd(pattern="dc$"))
+@bot.on(sudo_cmd(pattern="dc$", allow_sudo=True))
 async def _(event):
-    if event.fwd_from:
-        return
     result = await bot(functions.help.GetNearestDcRequest())
     result = (
         yaml_format(result)
@@ -188,4 +185,4 @@ async def _(event):
                                     \nDC5 : Singapore, SG\
                                     "
     )
-    await event.edit(result)
+    await edit_or_reply(event, result)
