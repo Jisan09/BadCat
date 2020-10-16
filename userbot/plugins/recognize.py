@@ -20,7 +20,6 @@ async def _(event):
         await edit_or_reply(event, "reply to media file")
         return
     chat = "@Rekognition_Bot"
-    reply_message.sender
     if reply_message.sender.bot:
         await event.edit("Reply to actual users message.")
         return
