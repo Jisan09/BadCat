@@ -23,7 +23,7 @@ B = (
 )
 # ===========================================
 
-
+#credit @Infinity
 @bot.on(admin_cmd(outgoing=True, pattern="imp (.*)"))
 @bot.on(sudo_cmd(pattern="imp (.*)", allow_sudo=True))
 async def _(event):
@@ -336,7 +336,7 @@ async def kakashi(lol):
 
 CMD_HELP.update(
     {
-        "art": "__**PLUGIN NAME :** Art__\
+        "fun": "__**PLUGIN NAME :** Fun__\
 \n\n📌** CMD ➥** `.imp` / `.nimp` <text>\
 \n**USAGE   ➥  **Find imposter.\
 \n\n📌** CMD ➥** `.ml` <text>\
