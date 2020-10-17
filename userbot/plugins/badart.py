@@ -12,14 +12,90 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 name = str(ALIVE_NAME) if ALIVE_NAME else "BadCat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
+#==================================================================
 
-@borg.on(admin_cmd(pattern=r"ohnoo$"))
-@borg.on(sudo_cmd(pattern="ohnoo$", allow_sudo=True))
+C = (
+    "\n......................................../´¯/) "
+    "\n......................................,/¯../ "
+    "\n...................................../..../ "
+    "\n..................................../´.¯/"
+    "\n..................................../´¯/"
+    "\n..................................,/¯../ "
+    "\n................................../..../ "
+    "\n................................./´¯./"
+    "\n................................/´¯./"
+    "\n..............................,/¯../ "
+    "\n............................./..../ "
+    "\n............................/´¯/"
+    "\n........................../´¯./"
+    "\n........................,/¯../ "
+    "\n......................./..../ "
+    "\n....................../´¯/"
+    "\n....................,/¯../ "
+    "\n.................../..../ "
+    "\n............./´¯/'...'/´¯¯`·¸ "
+    "\n........../'/.../..../......./¨¯\ "
+    "\n........('(...´...´.... ¯~/'...') "
+    "\n.........\.................'...../ "
+    "\n..........''...\.......... _.·´ "
+    "\n............\..............( "
+    "\n..............\.............\..."
+)
+
+
+
+GAMBAR_TITIT = """
+🍆🍆
+🍆🍆🍆
+  🍆🍆🍆
+    🍆🍆🍆
+     🍆🍆🍆
+       🍆🍆🍆
+        🍆🍆🍆
+         🍆🍆🍆
+          🍆🍆🍆
+          🍆🍆🍆
+      🍆🍆🍆🍆
+ 🍆🍆🍆🍆🍆🍆
+ 🍆🍆🍆  🍆🍆🍆
+    🍆🍆       🍆🍆
+"""
+
+#=======================================================
+
+
+@bot.on(admin_cmd(pattern=r"muth$"))
+@bot.on(sudo_cmd(pattern="muth$", allow_sudo=True))
+async def kakashi(bsdk):
+    if bsdk.fwd_from:
+        return
+    animation_interval = 0.3
+    animation_ttl = range(100)
+    bsdk = await edit_or_reply(bsdk, f"**Ahhhhhhhh......**💦💦...")
+    animation_chars = [
+        "8✊️===D",
+        "8=✊️==D",
+        "8==✊️=D",
+        "8===✊️D",
+        "8==✊️=D",
+        "8=✊️==D",
+        "8✊️===D",
+        "8===✊️D💦",
+        "8==✊️=D💦💦",
+        "8=✊️==D💦💦💦",
+    ]
+
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await bsdk.edit(animation_chars[i % 10])
+
+@bot.on(admin_cmd(pattern=r"ohnoo$"))
+@bot.on(sudo_cmd(pattern="ohnoo$", allow_sudo=True))
 async def kakashi(bsdk):
     if bsdk.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0, 11)
+    animation_ttl = range(11)
     bsdk = await edit_or_reply(bsdk, f"**Ohhh nooooo **💦💦...")
     animation_chars = [
         "**Ohhh Baby..**😈",
@@ -39,8 +115,8 @@ async def kakashi(bsdk):
         await bsdk.edit(animation_chars[i % 11])
 
 
-@borg.on(admin_cmd(pattern=r"lovestory$"))
-@borg.on(sudo_cmd(pattern="lovestory$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"lovestory$"))
+@bot.on(sudo_cmd(pattern="lovestory$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -69,8 +145,8 @@ async def _(event):
         await event.edit(animation_chars[i % 14])
 
 
-@borg.on(admin_cmd(pattern=r"ohyaah$"))
-@borg.on(sudo_cmd(pattern="ohyaah$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"ohyaah$"))
+@bot.on(sudo_cmd(pattern="ohyaah$", allow_sudo=True))
 async def kakashi(baby):
     await edit_or_reply(
         baby,
@@ -94,8 +170,8 @@ async def kakashi(baby):
     )
 
 
-@borg.on(admin_cmd(pattern=r"foff$"))
-@borg.on(sudo_cmd(pattern="foff$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"foff$"))
+@bot.on(sudo_cmd(pattern="foff$", allow_sudo=True))
 async def bluedevilfooku(fooku):
     await edit_or_reply(
         fooku,
@@ -115,9 +191,13 @@ async def bluedevilfooku(fooku):
         "It just for U🖕😂\n",
     )
 
+@bot.on(admin_cmd(pattern=r"mf$"))
+@bot.on(sudo_cmd(pattern="mf$", allow_sudo=True))
+async def kakashi(mf):
+    await edit_or_reply(mf, C)
 
-@borg.on(admin_cmd(pattern=r"sporn$"))
-@borg.on(sudo_cmd(pattern="sporn$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"sporn$"))
+@bot.on(sudo_cmd(pattern="sporn$", allow_sudo=True))
 async def kakashi(pornhub):
     await edit_or_reply(
         pornhub,
@@ -148,8 +228,8 @@ async def kakashi(pornhub):
     )
 
 
-@borg.on(admin_cmd(pattern=r"spika$"))
-@borg.on(sudo_cmd(pattern="spika$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"spika$"))
+@bot.on(sudo_cmd(pattern="spika$", allow_sudo=True))
 async def kakashi(pikachu):
     await edit_or_reply(
         pikachu,
@@ -174,8 +254,8 @@ async def kakashi(pikachu):
     )
 
 
-@borg.on(admin_cmd(pattern=r"sxx$"))
-@borg.on(sudo_cmd(pattern="sxx$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"sxx$"))
+@bot.on(sudo_cmd(pattern="sxx$", allow_sudo=True))
 async def kakashi(saxy):
     await edit_or_reply(
         saxy,
@@ -220,8 +300,8 @@ async def kakashi(saxy):
     )
 
 
-@borg.on(admin_cmd(pattern="sdick (.*)"))
-@borg.on(sudo_cmd(pattern="sdick  (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="sdick (.*)"))
+@bot.on(sudo_cmd(pattern="sdick  (.*)", allow_sudo=True))
 async def kakashi(dicksay):
     text = dicksay.pattern_match.group(1)
     await edit_or_reply(
@@ -245,3 +325,12 @@ async def kakashi(dicksay):
         "⠀⠹⣟⣿⣿⣿⣿⡿⣷⡿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠀⠀⠈⠛⠯⣿⡯⠟⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n",
     )
+    
+@bot.on(admin_cmd(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?"))
+@bot.on(sudo_cmd(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?", allow_sudo=True))
+async def emoji_penis(e):
+    emoji = e.pattern_match.group(1)
+    titid = GAMBAR_TITIT
+    if emoji:
+        titid = titid.replace("🍆", emoji)
+    await e.edit(titid)
