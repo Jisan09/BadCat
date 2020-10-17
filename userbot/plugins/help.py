@@ -65,7 +65,7 @@ async def cmd_list(event):
             await asyncio.sleep(3)
             await event.delete()
     else:
-        if HELPTYPE:
+        if HELPTYPE is True:
             help_string = f"Userbot Helper.. Provided by [{DEFAULTUSER}]({USERNAME})\
                           \nUserbot Helper to reveal all the plugin names\
                           \n__Do__ `.help` __plugin_name for commands, in case popup doesn't appear.__\
@@ -191,18 +191,22 @@ async def _(event):
     await edit_or_reply(event, result)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="setinline (True|False)"))
+@bot.on(admin_cmd(outgoing=True, pattern="setinline (true|false)"))
 async def _(event):
     global HELPTYPE
-    type = event.pattern_match.group(1)
-    if HELPTYPE:
-        if type:
+    input_str = event.pattern_match.group(1)
+    if input_str == "true":
+        type = True
+    else:
+        type = False
+    if HELPTYPE is True:
+        if type is True:
             await event.edit("`inline mode is already enabled`")
         else:
             HELPTYPE = type
             await event.edit("`inline mode is disabled`")
     else:
-        if type:
+        if type is True:
             HELPTYPE = type
             await event.edit("`inline mode is enabled`")
         else:
