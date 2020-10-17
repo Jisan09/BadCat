@@ -23,7 +23,7 @@ B = (
 )
 # ===========================================
 
-#credit @Infinity
+# credit @Infinity
 @bot.on(admin_cmd(outgoing=True, pattern="imp (.*)"))
 @bot.on(sudo_cmd(pattern="imp (.*)", allow_sudo=True))
 async def _(event):
