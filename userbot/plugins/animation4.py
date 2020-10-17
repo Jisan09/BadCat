@@ -35,7 +35,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 8])
 
-        
+
 @bot.on(admin_cmd(pattern=r"acarry$"))
 @bot.on(sudo_cmd(pattern="acarry$", allow_sudo=True))
 async def kakashi(event):
