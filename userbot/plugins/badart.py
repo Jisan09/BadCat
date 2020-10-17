@@ -12,7 +12,7 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 name = str(ALIVE_NAME) if ALIVE_NAME else "BadCat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
-#==================================================================
+# ==================================================================
 
 C = (
     "\n......................................../´¯/) "
@@ -43,7 +43,6 @@ C = (
 )
 
 
-
 GAMBAR_TITIT = """
 🍆🍆
 🍆🍆🍆
@@ -61,7 +60,7 @@ GAMBAR_TITIT = """
     🍆🍆       🍆🍆
 """
 
-#=======================================================
+# =======================================================
 
 
 @bot.on(admin_cmd(pattern=r"muth$"))
@@ -88,6 +87,7 @@ async def kakashi(bsdk):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await bsdk.edit(animation_chars[i % 10])
+
 
 @bot.on(admin_cmd(pattern=r"ohnoo$"))
 @bot.on(sudo_cmd(pattern="ohnoo$", allow_sudo=True))
@@ -191,10 +191,12 @@ async def bluedevilfooku(fooku):
         "It just for U🖕😂\n",
     )
 
+
 @bot.on(admin_cmd(pattern=r"mf$"))
 @bot.on(sudo_cmd(pattern="mf$", allow_sudo=True))
 async def kakashi(mf):
     await edit_or_reply(mf, C)
+
 
 @bot.on(admin_cmd(pattern=r"sporn$"))
 @bot.on(sudo_cmd(pattern="sporn$", allow_sudo=True))
@@ -325,7 +327,8 @@ async def kakashi(dicksay):
         "⠀⠹⣟⣿⣿⣿⣿⡿⣷⡿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀\n"
         "⠀⠀⠈⠛⠯⣿⡯⠟⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n",
     )
-    
+
+
 @bot.on(admin_cmd(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?"))
 @bot.on(sudo_cmd(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?", allow_sudo=True))
 async def emoji_penis(e):
