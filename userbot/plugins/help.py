@@ -9,8 +9,7 @@ from . import ALIVE_NAME, CMD_HELP, CMD_LIST, SUDO_LIST, yaml_format
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
-HELPTYPE = Config.HELP_INLINETYPE else "True"
-
+HELPTYPE = Config.HELP_INLINETYPE or True
 
 @bot.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
 async def cmd_list(event):
@@ -195,14 +194,14 @@ async def _(event):
 async def _(event):
     global HELPTYPE
     type = event.pattern_match.group(1)
-    if HELPTYPE:
-        if type:
+    if HELPTYPE is True:
+        if type is True:
             await event.edit("`inline mode is already enabled`")
         else:
             HELPTYPE = type
             await event.edit("`inline mode is disabled`")
     else:
-        if type:
+        if type is True:
             HELPTYPE = type
             await event.edit("`inline mode is enabled`")
         else:
