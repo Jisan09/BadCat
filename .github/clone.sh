@@ -29,7 +29,7 @@ FILE=/app/.git
 if [ -d "$FILE" ] ; then
     echo "$FILE directory exists already."
 else
-    git clone -b jisan https://github.com/Jisan09/catuserbot cat_ub
+    git clone https://github.com/Jisan09/catuserbot cat_ub
     rm -rf userbot
     mv cat_ub/.git .
     mv cat_ub/userbot .
