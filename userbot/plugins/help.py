@@ -8,8 +8,8 @@ from . import ALIVE_NAME, CMD_HELP, CMD_LIST, SUDO_LIST, yaml_format
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
-DEFAULTUSER = str(Config.HELP_INLINETYPE) if Config.HELP_INLINETYPE else "True"
-# HELPTYPE = Config.HELP_INLINETYPE or True
+
+HELPTYPE = Config.HELP_INLINETYPE or True
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
@@ -65,7 +65,7 @@ async def cmd_list(event):
             await asyncio.sleep(3)
             await event.delete()
     else:
-        if HELPTYPE:
+        if HELPTYPE is True:
             help_string = f"Userbot Helper.. Provided by [{DEFAULTUSER}]({USERNAME})\
                           \nUserbot Helper to reveal all the plugin names\
                           \n__Do__ `.help` __plugin_name for commands, in case popup doesn't appear.__\
