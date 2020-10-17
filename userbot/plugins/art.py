@@ -348,6 +348,7 @@ T = (
     "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `"
 )
 
+
 @bot.on(admin_cmd(pattern=r"monster$"))
 @bot.on(sudo_cmd(pattern="monster$", allow_sudo=True))
 async def bluedevilmonster(monster):
@@ -431,16 +432,18 @@ async def bluedevilshitos(shitos):
 async def bluedevildislike(dislike):
     await edit_or_reply(dislike, R)
 
-    
+
 @bot.on(admin_cmd(pattern=r"lool$"))
 @bot.on(sudo_cmd(pattern="lool$", allow_sudo=True))
 async def kakashi(lool):
     await edit_or_reply(lool, T)
-    
+
+
 @bot.on(admin_cmd(pattern=r"lol$"))
 @bot.on(sudo_cmd(pattern="lol$", allow_sudo=True))
 async def kakashi(lol):
     await edit_or_reply(lol, S)
+
 
 CMD_HELP.update(
     {
