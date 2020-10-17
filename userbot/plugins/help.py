@@ -9,9 +9,12 @@ from . import ALIVE_NAME, CMD_HELP, CMD_LIST, SUDO_LIST, yaml_format
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
+HELPTYPE = Config.HELP_INLINETYPE or False
+
 
 @bot.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
 async def cmd_list(event):
+    global HELPTYPE
     reply_to_id = None
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
@@ -62,7 +65,7 @@ async def cmd_list(event):
             await asyncio.sleep(3)
             await event.delete()
     else:
-        if Config.HELP_INLINETYPE is None:
+        if HELPTYPE:
             help_string = f"Userbot Helper.. Provided by [{DEFAULTUSER}]({USERNAME})\
                           \nUserbot Helper to reveal all the plugin names\
                           \n__Do__ `.help` __plugin_name for commands, in case popup doesn't appear.__\
@@ -178,11 +181,29 @@ async def _(event):
     result = (
         yaml_format(result)
         + "\n\n**List Of Telegram Data Centres:**\
-                                    \nDC1 : Miami FL, USA\
-                                    \nDC2 : Amsterdam, NL\
-                                    \nDC3 : Miami FL, USA\
-                                    \nDC4 : Amsterdam, NL\
-                                    \nDC5 : Singapore, SG\
-                                    "
+                \nDC1 : Miami FL, USA\
+                \nDC2 : Amsterdam, NL\
+                \nDC3 : Miami FL, USA\
+                \nDC4 : Amsterdam, NL\
+                \nDC5 : Singapore, SG\
+                "
     )
     await edit_or_reply(event, result)
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="setinline (True|False)"))
+async def _(event):
+    global HELPTYPE
+    type = event.pattern_match.group(1)
+    if HELPTYPE:
+        if type:
+            await event.edit("`inline mode is already enabled`")
+        else:
+            HELPTYPE = type
+            await event.edit("`inline mode is disabled`")
+    else:
+        if type:
+            HELPTYPE = type
+            await event.edit("`inline mode is enabled`")
+        else:
+            await event.edit("`inline mode is already disabled`")
