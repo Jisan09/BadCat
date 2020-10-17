@@ -1,19 +1,13 @@
 from telethon import events
 
-from userbot.plugins.sql_helper.welcomesql import (
+from .. import BOTLOG_CHATID, CMD_HELP, bot
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from .sql_helper import pmpermit_sql as pmpermit_sql
+from .sql_helper.welcomesql import (
     addwelcome_setting,
     getcurrent_welcome_settings,
     rmwelcome_setting,
 )
-
-from .. import CMD_HELP, bot
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
-if Config.PRIVATE_GROUP_BOT_API_ID is None:
-    BOTLOG = False
-else:
-    BOTLOG = True
-    BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
 
 
 @bot.on(events.ChatAction)
@@ -54,6 +48,8 @@ async def _(event):
                 current_saved_welcome_message = msg_o.message
             elif cws.reply:
                 current_saved_welcome_message = cws.reply
+        if not pmpermit_sql.is_approved(userid):
+            pmpermit_sql.approve(userid, "Due to private welcome")
         current_message = await event.client.send_message(
             userid,
             current_saved_welcome_message.format(
@@ -128,7 +124,7 @@ async def show_welcome(event):
     if not cws:
         await edit_or_reply(event, "`No pwelcome message saved here.`")
         return
-    elif cws.f_mesg_id:
+    if cws.f_mesg_id:
         msg_o = await bot.get_messages(entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id))
         await edit_or_reply(
             event, "`I am currently pwelcoming new users with this welcome note.`"

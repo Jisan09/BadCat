@@ -1,4 +1,4 @@
-telethon >= 1.16.1
+telethon
 aiofiles
 aiohttp
 aria2p
@@ -28,7 +28,7 @@ gsearch
 gtts
 hachoir
 heroku3
-httplib2<0.16.0
+html-telegraph-poster
 humanize
 jotquote
 justwatch
@@ -37,7 +37,6 @@ lottie
 lxml
 lyricsgenius
 nekos.py
-oauth2client
 patool
 Pillow
 programmingquotes
@@ -52,7 +51,6 @@ pylast
 PyLyrics
 pySmartDL
 python-barcode
-python-magic
 pytuneteller
 pytz
 qrcode
