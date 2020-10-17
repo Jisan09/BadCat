@@ -24,83 +24,38 @@ B = (
 # ===========================================
 
 # credit @Infinity
-@bot.on(admin_cmd(outgoing=True, pattern="imp (.*)"))
-@bot.on(sudo_cmd(pattern="imp (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="imp(|n) (.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern="imp(|n) (.*)", allow_sudo=True))
 async def _(event):
-    kakashi = event.pattern_match.group(1)
-    event = await edit_or_reply(event, f"{kakashi} is ejected.......")
+    name = event.pattern_match.group(2)
+    cmd = event.pattern_match.group(1).lower()
+    catevent = await edit_or_reply(event, f"{name} is ejected.......")
     await asyncio.sleep(2)
-    await event.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
+    await catevent.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤඞㅤㅤㅤㅤ ㅤㅤㅤ")
+    await catevent.edit("ㅤඞㅤㅤㅤㅤ ㅤㅤㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤ ඞㅤㅤㅤㅤㅤㅤ")
+    await catevent.edit("ㅤㅤ ඞㅤㅤㅤㅤㅤㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤ ඞㅤㅤㅤㅤㅤ")
+    await catevent.edit("ㅤㅤㅤ ඞㅤㅤㅤㅤㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤ ඞㅤㅤㅤㅤ")
+    await catevent.edit("ㅤㅤㅤㅤ ඞㅤㅤㅤㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤ ඞㅤㅤㅤ")
+    await catevent.edit("ㅤㅤㅤㅤㅤ ඞㅤㅤㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤ ඞㅤㅤ")
+    await catevent.edit("ㅤㅤㅤㅤㅤㅤ ඞㅤㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤㅤ ඞㅤ")
+    await catevent.edit("ㅤㅤㅤㅤㅤㅤㅤ ඞㅤ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ඞ")
+    await catevent.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ඞ")
     await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ")
+    await catevent.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ")
     await asyncio.sleep(0.2)
-    await event.edit(
-        f""". 　　　。　　　　•　 　ﾟ　　。 　　.
- .　　　 　　.　　　　　。　　 。　. 　
-
-  . 　　 。   　     ඞ         。 . 　　 • 　　　　•
-
-  ﾟ     {kakashi} was an Impostor.      。　. 　 　       。　.                                        。　. 
-                                   　.          。　  　. 
-　'         0 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。
-　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。"""
-    )
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="nimp (.*)"))
-@bot.on(sudo_cmd(pattern="nimp (.*)", allow_sudo=True))
-async def _(event):
-    kakashi = event.pattern_match.group(1)
-    event = await edit_or_reply(event, f"{kakashi} is ejected.......")
-    await asyncio.sleep(2)
-    await event.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤඞㅤㅤㅤㅤ ㅤㅤㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤ ඞㅤㅤㅤㅤㅤㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤ ඞㅤㅤㅤㅤㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤ ඞㅤㅤㅤㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤ ඞㅤㅤㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤ ඞㅤㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤㅤ ඞㅤ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ඞ")
-    await asyncio.sleep(0.8)
-    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ")
-    await asyncio.sleep(0.2)
-    await event.edit(
-        f""". 　　　。　　　　•　 　ﾟ　　。 　　.
- .　　　 　　.　　　　　。　　 。　. 　
-
-  . 　　 。   　     ඞ         。 . 　　 • 　　　　•
-
-  ﾟ     {kakashi} was not an Impostor.      。　. 　 　       。　.                                        。　. 
-                                   　.          。　  　. 
-　'         1 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。
-　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。"""
-    )
-
+    if cmd == "":
+        await catevent.edit(f". 　　　。　　　　•　 　ﾟ　　。 　　.\n .　　　 　　.　　　　　。　　 。　. 　\n\n  . 　　 。   　     ඞ         。 . 　　 • 　　　　•\n\n  ﾟ     {name} was an Impostor.      。　. 　 　       。　.                                        。　. \n                                   　.          。　  　. \n　'         0 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。\n　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。")
+    elif cmd == "n":
+        await catevent.edit(f". 　　　。　　　　•　 　ﾟ　　。 　　.\n .　　　 　　.　　　　　。　　 。　. 　\n\n  . 　　 。   　     ඞ         。 . 　　 • 　　　　•\n\n  ﾟ     {name} was not an Impostor.      。　. 　 　       。　.                                        。　. \n                                   　.          。　  　. \n　'         1 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。\n　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。")
+    
 
 @bot.on(admin_cmd(pattern="ml (.*)"))
 @bot.on(sudo_cmd(pattern="ml (.*)", allow_sudo=True))
@@ -337,7 +292,7 @@ async def kakashi(lol):
 CMD_HELP.update(
     {
         "fun": "__**PLUGIN NAME :** Fun__\
-\n\n📌** CMD ➥** `.imp` / `.nimp` <text>\
+\n\n📌** CMD ➥** `.imp` / `.impn` <text>\
 \n**USAGE   ➥  **Find imposter.\
 \n\n📌** CMD ➥** `.ml` <text>\
 \n**USAGE   ➥  **Monster send your text.\
