@@ -9,7 +9,7 @@ from . import ALIVE_NAME, CMD_HELP, CMD_LIST, SUDO_LIST, yaml_format
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
-HELPTYPE = Config.HELP_INLINETYPE or False
+HELPTYPE = Config.HELP_INLINETYPE or True
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
