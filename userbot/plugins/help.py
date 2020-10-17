@@ -194,7 +194,7 @@ async def _(event):
 @bot.on(admin_cmd(outgoing=True, pattern="setinline (True|False)"))
 async def _(event):
     global HELPTYPE
-    type = event.pattern_match.group(1)
+    type = bool(event.pattern_match.group(1))
     if HELPTYPE is True:
         if type is True:
             await event.edit("`inline mode is already enabled`")
