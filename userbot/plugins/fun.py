@@ -1,3 +1,5 @@
+import asyncio
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP
 
@@ -20,6 +22,84 @@ B = (
     "`\n🌹<\ *`"
 )
 # ===========================================
+
+#credit @Infinity
+@bot.on(admin_cmd(outgoing=True, pattern="imp (.*)"))
+@bot.on(sudo_cmd(pattern="imp (.*)", allow_sudo=True))
+async def _(event):
+    kakashi = event.pattern_match.group(1)
+    event = await edit_or_reply(event, f"{kakashi} is ejected.......")
+    await asyncio.sleep(2)
+    await event.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤඞㅤㅤㅤㅤ ㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤ ඞㅤㅤㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤ ඞㅤㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤ ඞㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤ ඞㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤ ඞㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤㅤ ඞㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ඞ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ")
+    await asyncio.sleep(0.2)
+    await event.edit(
+        f""". 　　　。　　　　•　 　ﾟ　　。 　　.
+ .　　　 　　.　　　　　。　　 。　. 　
+
+  . 　　 。   　     ඞ         。 . 　　 • 　　　　•
+
+  ﾟ     {kakashi} was an Impostor.      。　. 　 　       。　.                                        。　. 
+                                   　.          。　  　. 
+　'         0 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。
+　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。"""
+    )
+
+
+@bot.on(admin_cmd(outgoing=True, pattern="nimp (.*)"))
+@bot.on(sudo_cmd(pattern="nimp (.*)", allow_sudo=True))
+async def _(event):
+    kakashi = event.pattern_match.group(1)
+    event = await edit_or_reply(event, f"{kakashi} is ejected.......")
+    await asyncio.sleep(2)
+    await event.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤඞㅤㅤㅤㅤ ㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤ ඞㅤㅤㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤ ඞㅤㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤ ඞㅤㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤ ඞㅤㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤ ඞㅤㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤㅤ ඞㅤ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ඞ")
+    await asyncio.sleep(0.8)
+    await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ")
+    await asyncio.sleep(0.2)
+    await event.edit(
+        f""". 　　　。　　　　•　 　ﾟ　　。 　　.
+ .　　　 　　.　　　　　。　　 。　. 　
+
+  . 　　 。   　     ඞ         。 . 　　 • 　　　　•
+
+  ﾟ     {kakashi} was not an Impostor.      。　. 　 　       。　.                                        。　. 
+                                   　.          。　  　. 
+　'         1 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。
+　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。"""
+    )
 
 
 @bot.on(admin_cmd(pattern="ml (.*)"))
@@ -256,7 +336,9 @@ async def kakashi(lol):
 
 CMD_HELP.update(
     {
-        "art": "__**PLUGIN NAME :** Art__\
+        "fun": "__**PLUGIN NAME :** Fun__\
+\n\n📌** CMD ➥** `.imp` / `.nimp` <text>\
+\n**USAGE   ➥  **Find imposter.\
 \n\n📌** CMD ➥** `.ml` <text>\
 \n**USAGE   ➥  **Monster send your text.\
 \n\n📌** CMD ➥** `.g1` <text>\
