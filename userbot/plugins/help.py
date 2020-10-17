@@ -11,6 +11,7 @@ USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 HELPTYPE = Config.HELP_INLINETYPE or True
 
+
 @bot.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
 async def cmd_list(event):
     global HELPTYPE
