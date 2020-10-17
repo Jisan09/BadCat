@@ -56,7 +56,7 @@ pytz
 qrcode
 regex
 requests
-git+https://github.com/bisoncorps/search-engine-parser
+search-engine-parser
 selenium
 spamwatch
 speedtest-cli
@@ -67,6 +67,3 @@ validators
 wand
 wikipedia
 youtube-dl
-
-
-
