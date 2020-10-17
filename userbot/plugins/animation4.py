@@ -35,9 +35,29 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 8])
 
+        
+@bot.on(admin_cmd(pattern=r"acarry$"))
+@bot.on(sudo_cmd(pattern="acarry$", allow_sudo=True))
+async def kakashi(event):
+    if event.fwd_from:
+        return
+    animation_interval = 0.7
+    animation_ttl = range(0, 5)
+    cat = await edit_or_reply(event, "**Carry :- To kese hai aplog....**")
+    animation_chars = [
+        "**Carry :**          \n                     ⣤⣶⣶⣶⣦⣤⣄⡀\n⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀\n⠀⠀⠀⢀⣾⣿⣿⣿⠿⠿⠟⠻⠿⢿⣿⣿⣿⡆\n⠀⠀⠀⢰⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀ ⠈⠉⢻⡇ \n⠀⠀⠀⠈⠿⣿⣇⣠⠤⠤⠤⢤⣀⣤⠤⠤⣺⡏ \n⠀⠀⠀⠀⠐⢉⣯⠹⣀⣀⣢⡸⠉⢏⡄⣀⣯⠁ \n⠀⠀⠀⠀⠡⠀⢹⣆⠀⠀⠀⣀⡀⡰⠀⢠⠖⠂BHAUT \n⠀⠀⠀⠀⠀⠈⠙⣿⣿⠀⠠⠚⢋⡁⠀⡜ \n⠀⠀⠀⠀⠀⠀⢸⠈⠙⠦⣤⣀⣤⣤⡼⠁  \n⠀⠀⠀ ⠀⢀⡌⠀⠀⠀⠀ ⠉⢏⡉  \n⠀⠀⠀⣀⣴⣿⣷⣶⣤⣤⣤⣴⣾⣷⣶⣦⡀ \n⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄ \n⠚⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛",
+        "**Carry :**          \n                     ⣤⣶⣶⣶⣦⣤⣄⡀\n⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀\n⠀⠀⠀⢀⣾⣿⣿⣿⠿⠿⠟⠻⠿⢿⣿⣿⣿⡆\n⠀⠀⠀⢰⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀ ⠈⠉⢻⡇ \n⠀⠀⠀⠈⠿⣿⣇⣠⠤⠤⠤⢤⣀⣤⠤⠤⣺⡏ \n⠀⠀⠀⠀⠐⢉⣯⠹⣀⣀⣢⡸⠉⢏⡄⣀⣯⠁ \n⠀⠀⠀⠀⠡⠀⢹⣆⠀⠀⠀⣀⡀⡰⠀⢠⠖⠂BHAUT \n⠀⠀⠀⠀⠀⠈⠙⣿⣿⠀⠠⠚⢋⡁⠀⡜ BURE\n⠀⠀⠀⠀⠀⠀⢸⠈⠙⠦⣤⣀⣤⣤⡼⠁  \n⠀⠀⠀ ⠀⢀⡌⠀⠀⠀⠀ ⠉⢏⡉  \n⠀⠀⠀⣀⣴⣿⣷⣶⣤⣤⣤⣴⣾⣷⣶⣦⡀ \n⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄ \n⠚⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛",
+        "**Carry :**          \n                     ⣤⣶⣶⣶⣦⣤⣄⡀\n⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀\n⠀⠀⠀⢀⣾⣿⣿⣿⠿⠿⠟⠻⠿⢿⣿⣿⣿⡆\n⠀⠀⠀⢰⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀ ⠈⠉⢻⡇ \n⠀⠀⠀⠈⠿⣿⣇⣠⠤⠤⠤⢤⣀⣤⠤⠤⣺⡏ \n⠀⠀⠀⠀⠐⢉⣯⠹⣀⣀⣢⡸⠉⢏⡄⣀⣯⠁ \n⠀⠀⠀⠀⠡⠀⢹⣆⠀⠀⠀⣀⡀⡰⠀⢠⠖⠂BHAUT \n⠀⠀⠀⠀⠀⠈⠙⣿⣿⠀⠠⠚⢋⡁⠀⡜ BURE\n⠀⠀⠀⠀⠀⠀⢸⠈⠙⠦⣤⣀⣤⣤⡼⠁ HAIN \n⠀⠀⠀ ⠀⢀⡌⠀⠀⠀⠀ ⠉⢏⡉  \n⠀⠀⠀⣀⣴⣿⣷⣶⣤⣤⣤⣴⣾⣷⣶⣦⡀ \n⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄ \n⠚⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛",
+        "**Carry :**          \n                     ⣤⣶⣶⣶⣦⣤⣄⡀\n⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀\n⠀⠀⠀⢀⣾⣿⣿⣿⠿⠿⠟⠻⠿⢿⣿⣿⣿⡆\n⠀⠀⠀⢰⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀ ⠈⠉⢻⡇ \n⠀⠀⠀⠈⠿⣿⣇⣠⠤⠤⠤⢤⣀⣤⠤⠤⣺⡏ \n⠀⠀⠀⠀⠐⢉⣯⠹⣀⣀⣢⡸⠉⢏⡄⣀⣯⠁ \n⠀⠀⠀⠀⠡⠀⢹⣆⠀⠀⠀⣀⡀⡰⠀⢠⠖⠂BHAUT \n⠀⠀⠀⠀⠀⠈⠙⣿⣿⠀⠠⠚⢋⡁⠀⡜ BURE\n⠀⠀⠀⠀⠀⠀⢸⠈⠙⠦⣤⣀⣤⣤⡼⠁ HAIN \n⠀⠀⠀ ⠀⢀⡌⠀⠀⠀⠀ ⠉⢏⡉ HUM \n⠀⠀⠀⣀⣴⣿⣷⣶⣤⣤⣤⣴⣾⣷⣶⣦⡀ \n⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄ \n⠚⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛",
+        "**Carry :**          \n                     ⣤⣶⣶⣶⣦⣤⣄⡀\n⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀\n⠀⠀⠀⢀⣾⣿⣿⣿⠿⠿⠟⠻⠿⢿⣿⣿⣿⡆\n⠀⠀⠀⢰⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀ ⠈⠉⢻⡇ \n⠀⠀⠀⠈⠿⣿⣇⣠⠤⠤⠤⢤⣀⣤⠤⠤⣺⡏ \n⠀⠀⠀⠀⠐⢉⣯⠹⣀⣀⣢⡸⠉⢏⡄⣀⣯⠁ \n⠀⠀⠀⠀⠡⠀⢹⣆⠀⠀⠀⣀⡀⡰⠀⢠⠖⠂BHAUT \n⠀⠀⠀⠀⠀⠈⠙⣿⣿⠀⠠⠚⢋⡁⠀⡜ BURE\n⠀⠀⠀⠀⠀⠀⢸⠈⠙⠦⣤⣀⣤⣤⡼⠁ HAIN \n⠀⠀⠀ ⠀⢀⡌⠀⠀⠀⠀ ⠉⢏⡉ HUM LOG \n⠀⠀⠀⣀⣴⣿⣷⣶⣤⣤⣤⣴⣾⣷⣶⣦⡀ \n⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄ \n⠚⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛",
+    ]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await cat.edit(animation_chars[i % 5])
 
-@borg.on(admin_cmd(pattern=f"eye$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"eye$", allow_sudo=True))
+
+@bot.on(admin_cmd(pattern=f"eye$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"eye$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -63,8 +83,8 @@ async def _(event):
     await event.delete()
 
 
-@borg.on(admin_cmd(pattern=f"uff", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"uff$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"uff", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"uff$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -91,8 +111,8 @@ async def _(event):
         await event.edit(animation_chars[i % 13])
 
 
-@borg.on(admin_cmd(pattern=f"idot$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"idot$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"idot$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"idot$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -118,8 +138,8 @@ async def _(event):
     )
 
 
-@borg.on(admin_cmd(pattern=f"snake$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"snake$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"snake$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"snake$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -160,8 +180,8 @@ async def _(event):
         await event.edit(animation_chars[i % 27])
 
 
-@borg.on(admin_cmd(pattern=f"human$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"human$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"human$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"human$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -191,8 +211,8 @@ async def _(event):
         await event.edit(animation_chars[i % 16])
 
 
-@borg.on(admin_cmd(pattern=f"mc$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"mc$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"mc$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"mc$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -234,8 +254,8 @@ async def _(event):
         await event.edit(animation_chars[i % 28])
 
 
-@borg.on(admin_cmd(pattern=f"virus$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"virus$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"virus$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"virus$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -279,8 +299,8 @@ async def _(event):
         await event.edit(animation_chars[i % 30])
 
 
-@borg.on(admin_cmd(pattern=f"music$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"music$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"music$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"music$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -305,8 +325,8 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@borg.on(admin_cmd(pattern=f"squ$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"squ$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"squ$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"squ$", allow_sudo=True))
 async def _(event):
     event = await edit_or_reply(event, "squ...")
     await event.edit("╔═══════════════════╗ \n  \n╚═══════════════════╝")
@@ -358,7 +378,7 @@ CMD_HELP.update(
         "animation4": "__**PLUGIN NAME :** Animation4__\
 \n\n📌** CMD ➥** `.kilr` <text>\
 \n**USAGE   ➥  **Be a warrior & kill enimes.\
-\n\n📌** CMD ➥** `.eye` | `.uff` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
+\n\n📌** CMD ➥** `.acarry` | `.eye` | `.uff` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
 \n\n**USAGE   ➥  **These are animation bruh..Try & check yourself"
     }
 )
