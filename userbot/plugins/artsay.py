@@ -254,7 +254,6 @@ CMD_HELP.update(
       \n**USAGE   ➥  **Send your text with china's art.\
       \n\n📌** CMD ➥** `.sshit` \
       \n**USAGE   ➥  **Ahhh shit...here we go again..\
-
 "
     }
 )
