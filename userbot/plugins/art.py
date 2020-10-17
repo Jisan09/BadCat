@@ -335,6 +335,18 @@ R = (
     "░░░░░░░░░░░░▀▀\n"
 )
 
+S = (
+    "`╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ `\n"
+    "`╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `\n"
+    "`╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `\n"
+    "`╱┗━━━┛╰━━━╯┗━━━┛╱ `\n"
+)
+
+T = (
+    "`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈`"
+    "`\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈`"
+    "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `"
+)
 
 @bot.on(admin_cmd(pattern=r"monster$"))
 @bot.on(sudo_cmd(pattern="monster$", allow_sudo=True))
@@ -419,11 +431,21 @@ async def bluedevilshitos(shitos):
 async def bluedevildislike(dislike):
     await edit_or_reply(dislike, R)
 
+    
+@bot.on(admin_cmd(pattern=r"lool$"))
+@bot.on(sudo_cmd(pattern="lool$", allow_sudo=True))
+async def kakashi(lool):
+    await edit_or_reply(lool, T)
+    
+@bot.on(admin_cmd(pattern=r"lol$"))
+@bot.on(sudo_cmd(pattern="lol$", allow_sudo=True))
+async def kakashi(lol):
+    await edit_or_reply(lol, S)
 
 CMD_HELP.update(
     {
         "art": "__**PLUGIN NAME :** Art__\
-\n\n📌** CMD ➥** `.gay` | `.bot` | `.hai` | `.nou` |`.elove` | `.monster` | `.pig` | `.gun` | `.dog` | `.hello` | `.hmf` | `.couple` | `.sup` | `.india` | `.wc` | `.snk` | `.bye` | `.shitos` | `.dislike`\
+\n\n📌** CMD ➥** `.gay` | `.bot` | `.hai` | `.nou` |`.elove` | `.monster` | `.pig` | `.gun` | `.dog` | `.hello` | `.hmf` | `.couple` | `.sup` | `.india` | `.wc` | `.snk` | `.bye` | `.shitos` | `.dislike` | `.lol` | `.loal`\
 \n\n**USAGE   ➥  **These are arts,use & see"
     }
 )
