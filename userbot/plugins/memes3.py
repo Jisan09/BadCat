@@ -1,14 +1,8 @@
-import asyncio
-
-from telethon import events
-
-from ..utils import admin_cmd, edit_or_reply, register, sudo_cmd
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import ALIVE_NAME, CMD_HELP
 
 DEF = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USR = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
-
-
 
 
 @bot.on(admin_cmd(pattern="ftext (.*)"))
@@ -164,7 +158,6 @@ async def payf(event):
 # ================= CONSTANT =================
 
 
-
 # ===========================================
 
 
@@ -176,9 +169,6 @@ A = (
 )
 
 
-
-
-
 E = (
     "`\n(\_/)`"
     "`\n(•_•)`"
@@ -188,6 +178,7 @@ E = (
     "`\n(•_•)`"
     "`\n🌹<\ *`"
 )
+
 
 @borg.on(admin_cmd(pattern="ml (.*)"))
 async def kakashi(jisan):
@@ -203,17 +194,15 @@ async def kakashi(jisan):
     )
 
 
-
-
 @borg.on(admin_cmd(pattern=r"fail$"))
 async def kakashi(fail):
     await fail.edit(A)
 
 
-
 @borg.on(admin_cmd(pattern=r"nih$"))
 async def kakashi(shit):
     await shit.edit(E)
+
 
 CMD_HELP.update(
     {
