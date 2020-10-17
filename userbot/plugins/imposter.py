@@ -123,6 +123,6 @@ CMD_HELP.update(
 \n\n📌** CMD ➥** `.imp` / `.impn` <text>\
 \n**USAGE   ➥  **Find imposter with stickers.\
 \n\n📌** CMD ➥** `.timp` / `.timpn` <text>\
-\n**USAGE   ➥  **Find imposter only text.\"
+\n**USAGE   ➥  **Find imposter only text."
 }
 )
