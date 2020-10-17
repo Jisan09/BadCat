@@ -25,6 +25,7 @@ async def _(event):
         count += 1
     await event.edit(f"Chain length: {count}")
 
+
 CMD_HELP.update(
     {
         "chain": "__**PLUGIN NAME :** Chain__\
