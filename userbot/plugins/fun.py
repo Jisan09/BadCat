@@ -29,6 +29,7 @@ B = (
 async def _(event):
     kakashi = event.pattern_match.group(1)
     event = await edit_or_reply(event, f"{kakashi} is ejected.......")
+    await asyncio.sleep(2)
     await event.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
     await asyncio.sleep(0.8)
     await event.edit("ㅤඞㅤㅤㅤㅤ ㅤㅤㅤ")
@@ -65,7 +66,9 @@ async def _(event):
 @bot.on(admin_cmd(outgoing=True, pattern="nimp (.*)"))
 @bot.on(sudo_cmd(pattern="nimp (.*)", allow_sudo=True))
 async def _(event):
+    kakashi = event.pattern_match.group(1)
     event = await edit_or_reply(event, f"{kakashi} is ejected.......")
+    await asyncio.sleep(2)
     await event.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
     await asyncio.sleep(0.8)
     await event.edit("ㅤඞㅤㅤㅤㅤ ㅤㅤㅤ")
@@ -334,6 +337,8 @@ async def kakashi(lol):
 CMD_HELP.update(
     {
         "art": "__**PLUGIN NAME :** Art__\
+\n\n📌** CMD ➥** `.imp` / `.nimp` <text>\
+\n**USAGE   ➥  **Find imposter.\
 \n\n📌** CMD ➥** `.ml` <text>\
 \n**USAGE   ➥  **Monster send your text.\
 \n\n📌** CMD ➥** `.g1` <text>\
