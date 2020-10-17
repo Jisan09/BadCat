@@ -1,7 +1,6 @@
-import random, re
-from ..utils import admin_cmd, edit_or_reply,sudo_cmd
 import asyncio
-from telethon import events
+
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP
 
 # ================= CONSTANT =================
@@ -50,7 +49,8 @@ async def _(event):
     await asyncio.sleep(0.8)
     await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ")
     await asyncio.sleep(0.2)
-    await event.edit(f""". 　　　。　　　　•　 　ﾟ　　。 　　.
+    await event.edit(
+        f""". 　　　。　　　　•　 　ﾟ　　。 　　.
  .　　　 　　.　　　　　。　　 。　. 　
 
   . 　　 。   　     ඞ         。 . 　　 • 　　　　•
@@ -58,9 +58,9 @@ async def _(event):
   ﾟ     {kakashi} was an Impostor.      。　. 　 　       。　.                                        。　. 
                                    　.          。　  　. 
 　'         0 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。
-　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。""")
-        
-        
+　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。"""
+    )
+
 
 @bot.on(admin_cmd(outgoing=True, pattern="nimp (.*)"))
 @bot.on(sudo_cmd(pattern="nimp (.*)", allow_sudo=True))
@@ -86,7 +86,8 @@ async def _(event):
     await asyncio.sleep(0.8)
     await event.edit("ㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ")
     await asyncio.sleep(0.2)
-    await event.edit(f""". 　　　。　　　　•　 　ﾟ　　。 　　.
+    await event.edit(
+        f""". 　　　。　　　　•　 　ﾟ　　。 　　.
  .　　　 　　.　　　　　。　　 。　. 　
 
   . 　　 。   　     ඞ         。 . 　　 • 　　　　•
@@ -94,9 +95,10 @@ async def _(event):
   ﾟ     {kakashi} was not an Impostor.      。　. 　 　       。　.                                        。　. 
                                    　.          。　  　. 
 　'         1 Impostor remains    　 。　.  　　.                。　.        。 　     .          。 　            .               .         .    ,      。
-　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。""")
-    
-    
+　　ﾟ　　　.　　.    ,　 　。　 　. 　 .     。"""
+    )
+
+
 @bot.on(admin_cmd(pattern="ml (.*)"))
 @bot.on(sudo_cmd(pattern="ml (.*)", allow_sudo=True))
 async def kakashi(jisan):
