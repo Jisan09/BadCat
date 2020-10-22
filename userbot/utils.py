@@ -58,6 +58,8 @@ def load_module(shortname):
         sys.modules["uniborg.util"] = userbot.utils
         mod.Config = Config
         mod.borg = bot
+        mod.edit_or_reply = edit_or_reply
+        mod.edit_delete = edit_delete
         # support for paperplaneextended
         sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)
@@ -212,6 +214,24 @@ def sudo_cmd(pattern=None, **args):
     return events.NewMessage(**args)
 
 
+# https://t.me/c/1220993104/623253
+# https://docs.telethon.dev/en/latest/misc/changelog.html#breaking-changes
+async def edit_or_reply(event, text, parsemode=None):
+    if parsemode:
+        if event.sender_id in Config.SUDO_USERS:
+            reply_to = await event.get_reply_message()
+            if reply_to:
+                return await reply_to.reply(text, parse_mode=parsemode)
+            return await event.reply(text, parse_mode=parsemode)
+        return await event.edit(text, parse_mode=parsemode)
+    if event.sender_id in Config.SUDO_USERS:
+        reply_to = await event.get_reply_message()
+        if reply_to:
+            return await reply_to.reply(text)
+        return await event.reply(text)
+    return await event.edit(text)
+
+
 # from paperplaneextended
 on = bot.on
 
@@ -226,6 +246,16 @@ def on(**args):
         return wrapper
 
     return decorater
+
+
+async def edit_delete(event, text, time):
+    if event.sender_id in Config.SUDO_USERS:
+        reply_to = await event.get_reply_message()
+        catevent = await reply_to.reply(text) if reply_to else await event.reply(text)
+    else:
+        catevent = await event.edit(text)
+    await asyncio.sleep(time)
+    return await catevent.delete()
 
 
 def errors_handler(func):
@@ -381,16 +411,6 @@ async def is_admin(client, chat_id, user_id):
         return False
     else:
         return False
-
-
-# https://t.me/c/1220993104/623253
-async def edit_or_reply(event, text):
-    if event.from_id in Config.SUDO_USERS:
-        reply_to = await event.get_reply_message()
-        if reply_to:
-            return await reply_to.reply(text)
-        return await event.reply(text)
-    return await event.edit(text)
 
 
 def register(**args):
