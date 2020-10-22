@@ -40,7 +40,7 @@ async def get_adzan(adzan):
 
 CMD_HELP.update(
     {
-        "ezanvakti":"__**PLUGIN NAME :** Ezanvakti__\
+        "ezanvakti": "__**PLUGIN NAME :** Ezanvakti__\
     \n\n📌** CMD ➥** `.ezanvakti` <city name>\
     \n**USAGE   ➥  **__Shows you the Islamic prayer times of the given city name__"
     }
