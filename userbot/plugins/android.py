@@ -30,8 +30,14 @@ async def kakashi(magisk):
         f"**Beta : **[APK v8.0.2](https://github.com/topjohnwu/Magisk/releases/download/manager-v8.0.2/MagiskManager-v8.0.2.apk) | [ZIP v21.0](https://github.com/topjohnwu/Magisk/releases/download/v21.0/Magisk-v21.0.zip) | [Uninstaller](https://github.com/topjohnwu/Magisk/releases/download/v21.0/Magisk-uninstaller-20201003.zip)\n"
         f"**Canary : **[APK v4e0a3f5e](https://github.com/topjohnwu/magisk_files/blob/canary/app-debug.apk) | [ZIP v4e0a3f5e](https://github.com/topjohnwu/magisk_files/blob/canary/magisk-debug.zip) | [Uninstaller](https://github.com/topjohnwu/magisk_files/blob/canary/magisk-uninstaller.zip)"
     )
-    #await edit_or_reply(magisk, releases)
-    await borg.send_file(magisk.chat_id,MAGISK,caption=releases,link_preview=False,allow_cache=True,)
+    # await edit_or_reply(magisk, releases)
+    await borg.send_file(
+        magisk.chat_id,
+        MAGISK,
+        caption=releases,
+        link_preview=False,
+        allow_cache=True,
+    )
 
 
 @bot.on(admin_cmd(outgoing=True, pattern=r"device(?: |$)(\S*)"))
