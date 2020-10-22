@@ -23,29 +23,17 @@ DEVICES_DATA = (
 @bot.on(sudo_cmd(pattern=r"magisk", allow_sudo=True))
 async def kakashi(magisk):
     reply_to_id = magisk.message
-    MAGISK = "https://telegra.ph/file/15aa289d09948f343e558.jpg"
+    MAGISK = "https://telegra.ph/file/a4b88cbc8da9c562fdb44.jpg"
     """magisk latest releases"""
     releases = (
         "__**Latest Magisk Releases:**__\n\n"
-        f"**Stable : **[APK v8.0.2](https://github.com/topjohnwu/Magisk/releases/download/manager-v8.0.2/MagiskManager-v8.0.2.apk) |\
-        [ZIP v20.4](https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-v20.4.zip) |\
-        [Uninstaller](https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-uninstaller-20200323.zip)\n"
-        f"**Beta : **[APK v8.0.2](https://github.com/topjohnwu/Magisk/releases/download/manager-v8.0.2/MagiskManager-v8.0.2.apk) |\
-        [ZIP v21.0](https://github.com/topjohnwu/Magisk/releases/download/v21.0/Magisk-v21.0.zip) |\
-        [Uninstaller](https://github.com/topjohnwu/Magisk/releases/download/v21.0/Magisk-uninstaller-20201003.zip)\n"
-        f"**Canary : **[APK v4e0a3f5e](https://github.com/topjohnwu/magisk_files/blob/canary/app-debug.apk) |\
-        [ZIP v4e0a3f5e](https://github.com/topjohnwu/magisk_files/blob/canary/magisk-debug.zip) |\
-        [Uninstaller](https://github.com/topjohnwu/magisk_files/blob/canary/magisk-uninstaller.zip)"
+        f"**Stable : **[APK v8.0.2](https://github.com/topjohnwu/Magisk/releases/download/manager-v8.0.2/MagiskManager-v8.0.2.apk) | [ZIP v20.4](https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-v20.4.zip) | [Uninstaller](https://github.com/topjohnwu/Magisk/releases/download/v20.4/Magisk-uninstaller-20200323.zip)\n"
+        f"**Beta : **[APK v8.0.2](https://github.com/topjohnwu/Magisk/releases/download/manager-v8.0.2/MagiskManager-v8.0.2.apk) | [ZIP v21.0](https://github.com/topjohnwu/Magisk/releases/download/v21.0/Magisk-v21.0.zip) | [Uninstaller](https://github.com/topjohnwu/Magisk/releases/download/v21.0/Magisk-uninstaller-20201003.zip)\n"
+        f"**Canary : **[APK v4e0a3f5e](https://github.com/topjohnwu/magisk_files/blob/canary/app-debug.apk) | [ZIP v4e0a3f5e](https://github.com/topjohnwu/magisk_files/blob/canary/magisk-debug.zip) | [Uninstaller](https://github.com/topjohnwu/magisk_files/blob/canary/magisk-uninstaller.zip)"
     )
-    # await edit_or_reply(magisk, releases)
-    await borg.send_file(
-        magisk.chat_id,
-        MAGISK,
-        caption=releases,
-        reply_to=reply_to_id,
-        link_preview=False,
-        allow_cache=True,
-    )
+    await bot.send_file(magisk.chat_id,MAGISK,caption=releases,reply_to=reply_to_id,link_preview=False,allow_cache=True,)
+    await magisk.delete()
+
 
 
 @bot.on(admin_cmd(outgoing=True, pattern=r"device(?: |$)(\S*)"))
