@@ -18,7 +18,7 @@ PROFILE_IMAGE = os.environ.get(
 )
 
 
-@borg.on(admin_cmd(pattern="offline"))  # pylint:disable=E0602
+@bot.on(admin_cmd(pattern="offline"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -65,7 +65,7 @@ async def _(event):
         await event.edit(str(e))
 
 
-@borg.on(admin_cmd(pattern="online"))  # pylint:disable=E0602
+@bot.on(admin_cmd(pattern="online"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return

@@ -58,7 +58,7 @@ async def _(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@borg.on(admin_cmd(pattern="line ?(.*)"))
+@bot.on(admin_cmd(pattern="line ?(.*)"))
 @bot.on(sudo_cmd(pattern="line ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:

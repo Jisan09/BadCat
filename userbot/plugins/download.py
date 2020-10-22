@@ -21,8 +21,8 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
-@borg.on(admin_cmd(pattern="download(?: |$)(.*)", outgoing=True))
-@borg.on(sudo_cmd(pattern="download(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="download(?: |$)(.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern="download(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return

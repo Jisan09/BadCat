@@ -6,8 +6,8 @@ from .. import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
-@borg.on(admin_cmd(pattern="covid(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="covid(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="covid(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="covid(?: |$)(.*)", allow_sudo=True))
 async def corona(event):
     if event.pattern_match.group(1):
         country = event.pattern_match.group(1)

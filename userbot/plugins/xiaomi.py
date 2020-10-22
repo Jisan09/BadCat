@@ -9,8 +9,8 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP
 
 
-@borg.on(admin_cmd(pattern="firmware(?: |$)(.*)"))
-@borg.on(sudo_cmd(outgoing=True, pattern="firmware(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="firmware(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="firmware(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -33,8 +33,8 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, respond.message)
 
 
-@borg.on(admin_cmd(pattern="specs(?: |$)(.*)"))
-@borg.on(sudo_cmd(outgoing=True, pattern="specs(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="specs(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="specs(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -57,8 +57,8 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, respond.message)
 
 
-@borg.on(admin_cmd(pattern="fastboot(?: |$)(.*)"))
-@borg.on(sudo_cmd(outgoing=True, pattern="fastboot(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="fastboot(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="fastboot(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -81,8 +81,8 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, respond.message)
 
 
-@borg.on(admin_cmd(pattern="recovery(?: |$)(.*)"))
-@borg.on(sudo_cmd(outgoing=True, pattern="recovery(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="recovery(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="recovery(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -105,8 +105,8 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, respond.message)
 
 
-@borg.on(admin_cmd(pattern="pb(?: |$)(.*)"))
-@borg.on(sudo_cmd(outgoing=True, pattern="pb(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="pb(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="pb(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -129,8 +129,8 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, respond.message)
 
 
-@borg.on(admin_cmd(pattern="of(?: |$)(.*)"))
-@borg.on(sudo_cmd(outgoing=True, pattern="of(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="of(?: |$)(.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="of(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return

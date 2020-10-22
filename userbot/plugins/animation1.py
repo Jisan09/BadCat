@@ -9,8 +9,8 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
-@borg.on(admin_cmd(pattern="stupid$"))
-@borg.on(sudo_cmd(pattern="stupid$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="stupid$"))
+@bot.on(sudo_cmd(pattern="stupid$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -39,8 +39,8 @@ async def _(event):
         await event.edit(animation_chars[i % 14])
 
 
-@borg.on(admin_cmd(pattern=f"bombs$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"bombs$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"bombs$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"bombs$", allow_sudo=True))
 async def _(event):
     event = await edit_or_reply(event, "bombs")
     await event.edit("▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n")
@@ -65,8 +65,8 @@ async def _(event):
     await asyncio.sleep(2)
 
 
-@borg.on(admin_cmd(pattern=r"call$"))
-@borg.on(sudo_cmd(pattern=r"call$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"call$"))
+@bot.on(sudo_cmd(pattern=r"call$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -98,8 +98,8 @@ async def _(event):
         await event.edit(animation_chars[i % 18])
 
 
-@borg.on(admin_cmd(pattern=f"kill$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"kill$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"kill$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"kill$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -125,8 +125,8 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@borg.on(admin_cmd(pattern=f"kell$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"kell$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"kell$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"kell$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -152,8 +152,8 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@borg.on(admin_cmd(pattern="wtf$"))
-@borg.on(sudo_cmd(pattern="wtf$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="wtf$"))
+@bot.on(sudo_cmd(pattern="wtf$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -173,8 +173,8 @@ async def _(event):
         await event.edit(animation_chars[i % 5])
 
 
-@borg.on(admin_cmd(pattern="ding$"))
-@borg.on(sudo_cmd(pattern="ding$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="ding$"))
+@bot.on(sudo_cmd(pattern="ding$", allow_sudo=True))
 async def _(event):
     animation_interval = 0.3
     animation_ttl = range(30)
@@ -196,8 +196,8 @@ async def _(event):
         await event.edit(animation_chars[i % 10])
 
 
-@borg.on(admin_cmd(pattern=f"hypno$", outgoing=True))
-@borg.on(sudo_cmd(pattern=f"hypno$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"hypno$", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"hypno$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -226,8 +226,8 @@ async def _(event):
         await event.edit(animation_chars[i % 15])
 
 
-@borg.on(admin_cmd(pattern=r"candy$"))
-@borg.on(sudo_cmd(pattern=r"candy$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"candy$"))
+@bot.on(sudo_cmd(pattern=r"candy$", allow_sudo=True))
 async def _(event):
     event = await edit_or_reply(event, "candy")
     deq = deque(list("🍦🍧🍩🍪🎂🍰🧁🍫🍬🍭"))
@@ -237,8 +237,8 @@ async def _(event):
         deq.rotate(1)
 
 
-@borg.on(admin_cmd(pattern="gangasta$"))
-@borg.on(sudo_cmd(pattern="gangasta$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="gangasta$"))
+@bot.on(sudo_cmd(pattern="gangasta$", allow_sudo=True))
 async def _(event):
     event = await edit_or_reply(event, "gangasta")
     await event.edit("EVERyBOdy")
@@ -258,8 +258,8 @@ async def _(event):
     await event.edit("EVERyBOdy iZ GangSTur UNtIL I ArRivE 🔥🔥🔥")
 
 
-@borg.on(admin_cmd(pattern=f"charging$"))
-@borg.on(sudo_cmd(pattern=f"charging$", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"charging$"))
+@bot.on(sudo_cmd(pattern=f"charging$", allow_sudo=True))
 async def timer_blankx(e):
     e = await edit_or_reply(e, "charging")
     txt = (

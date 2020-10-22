@@ -3,8 +3,8 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import fonts
 
 
-@borg.on(admin_cmd(pattern="fmusical(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="fmusical(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="fmusical(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="fmusical(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -23,8 +23,8 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@borg.on(admin_cmd(pattern="ancient(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="ancient(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="ancient(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="ancient(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -43,8 +43,8 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@borg.on(admin_cmd(pattern="vapor(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="vapor(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="vapor(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="vapor(?: |$)(.*)", allow_sudo=True))
 async def vapor(vpr):
     """ Vaporize everything! """
     if not vpr.text[0].isalpha() and vpr.text[0] not in (";"):
@@ -70,8 +70,8 @@ async def vapor(vpr):
         await edit_or_reply(vpr, "".join(reply_text))
 
 
-@borg.on(admin_cmd(pattern="smallcaps(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="smallcaps(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="smallcaps(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="smallcaps(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -90,8 +90,8 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@borg.on(admin_cmd(pattern="blackbf(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="blackbf(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="blackbf(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="blackbf(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -110,8 +110,8 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@borg.on(admin_cmd(pattern="bubbles(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="bubbles(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="bubbles(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="bubbles(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -130,8 +130,8 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@borg.on(admin_cmd(pattern="tanf(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="tanf(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="tanf(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="tanf(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -150,8 +150,8 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@borg.on(admin_cmd(pattern="boxf(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="boxf(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="boxf(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="boxf(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -170,8 +170,8 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@borg.on(admin_cmd(pattern="smothtext(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="smothtext(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="smothtext(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="smothtext(?: |$)(.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:

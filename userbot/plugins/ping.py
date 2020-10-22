@@ -8,7 +8,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
-@borg.on(admin_cmd(pattern=f"fping$", outgoing=True))
+@bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -56,8 +56,8 @@ async def _(event):
     )
 
 
-@borg.on(admin_cmd(pattern="ping$"))
-@borg.on(sudo_cmd(pattern="ping$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="ping$"))
+@bot.on(sudo_cmd(pattern="ping$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return

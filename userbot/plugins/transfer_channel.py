@@ -10,7 +10,7 @@ from telethon.tl import functions
 from userbot import utils
 
 
-@borg.on(utils.admin_cmd(pattern="otransfer (.*)"))  # pylint:disable=E0602
+@bot.on(utils.admin_cmd(pattern="otransfer (.*)"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
