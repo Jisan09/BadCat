@@ -1,4 +1,4 @@
-telethon==1.16.4
+telethon >= 1.17.0
 aiofiles
 aiohttp
 asyncurban
@@ -7,7 +7,6 @@ cairosvg
 cfscrape
 coffeehouse
 covid
-covid-india
 cowpy
 cryptg
 csvfaker
@@ -50,7 +49,6 @@ pylast
 PyLyrics
 pySmartDL
 python-barcode
-python-magic
 pytuneteller
 pytz
 qrcode
