@@ -234,7 +234,7 @@ async def kakashi(shit):
 
 CMD_HELP.update(
     {
-        "artsay": "__**PLUGIN NAME :** Carry__\
+        "artsay": "__**PLUGIN NAME :** Artsay__\
       \n\n📌** CMD ➥** `.carry` <your text>\
       \n**USAGE   ➥  **Send your text with carry's art.\
       \n\n📌** CMD ➥** `.killer` <text>\
