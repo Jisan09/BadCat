@@ -31,14 +31,14 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             if CAT_IMG:
                 result = builder.photo(
                     CAT_IMG,
-                    #title="Alive cat",
-                    #force_document=False,
+                    # title="Alive cat",
+                    # force_document=False,
                     text=query,
                     buttons=buttons,
                 )
             else:
                 result = builder.article(
-                    #title="Alive cat",
+                    # title="Alive cat",
                     text=query,
                     buttons=buttons,
                 )
