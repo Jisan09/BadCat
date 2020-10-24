@@ -1,7 +1,7 @@
 from telethon.utils import pack_bot_file_id
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from .. import CMD_HELP
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
 @bot.on(admin_cmd(pattern="get_id"))
@@ -29,7 +29,8 @@ async def _(event):
             )
     else:
         await edit_or_reply(event, "Current Chat ID: `{}`".format(str(event.chat_id)))
-        
+
+
 CMD_HELP.update(
     {
         "get_id": "__**PLUGIN NAME :** Get_id__\
@@ -37,4 +38,3 @@ CMD_HELP.update(
     \n**USAGE   ➥  **To get id of certain chat, channel or user."
     }
 )
-
