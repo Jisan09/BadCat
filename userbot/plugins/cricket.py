@@ -3,11 +3,11 @@ Created by @Jisan7509
 plugin for Cat_Userbot
 """
 
-from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP
+
 
 @bot.on(admin_cmd(pattern=r"score$"))
 @bot.on(sudo_cmd(pattern=r"score$", allow_sudo=True))
@@ -31,10 +31,13 @@ async def _(event):
             await catevent.edit("sorry i can't find it")
         else:
             await catevent.delete()
-            await event.client.send_message(event.chat_id, respond.message, reply_to=reply_to_id)
+            await event.client.send_message(
+                event.chat_id, respond.message, reply_to=reply_to_id
+            )
         await event.client.delete_messages(
             conv.chat_id, [msg_start.id, msg.id, response.id, respond.id]
         )
+
 
 @bot.on(admin_cmd(pattern=r"get(.*)"))
 @bot.on(sudo_cmd(pattern=r"get(.*)", allow_sudo=True))
@@ -59,11 +62,13 @@ async def _(event):
             await catevent.edit("sorry i can't find it")
         else:
             await catevent.delete()
-            await event.client.send_message(event.chat_id, respond.message, reply_to=reply_to_id)
+            await event.client.send_message(
+                event.chat_id, respond.message, reply_to=reply_to_id
+            )
         await event.client.delete_messages(
             conv.chat_id, [msg_start.id, msg.id, response.id, respond.id]
         )
-        
+
 
 CMD_HELP.update(
     {
