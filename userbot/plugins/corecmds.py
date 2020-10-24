@@ -2,7 +2,7 @@ import asyncio
 import os
 from datetime import datetime
 from pathlib import Path
-
+from . import CMD_HELP
 from .. import ALIVE_NAME
 from ..utils import admin_cmd, edit_or_reply, load_module, remove_plugin, sudo_cmd
 
@@ -113,3 +113,19 @@ async def load(event):
             event,
             f"Could not load {shortname} because of the following error.\n{str(e)}",
         )
+
+        
+        CMD_HELP.update(
+    {
+        "corecmds": "__**PLUGIN NAME :** corecmds__\
+    \n\n📌** CMD ➥** `.install` <replay on a plugin>\
+    \n**USAGE   ➥  **To install external plugin in bot. \
+    \n\n📌** CMD ➥** `.send` <plugin name>\
+    \n**USAGE   ➥  **To send/share loaded plugin.\
+    \n\n📌** CMD ➥** `.unload` <plugin name>\
+    \n**USAGE   ➥  **To unload any loaded plugin from bot.\
+    \n\n📌** CMD ➥** `.load` <plugin name>\
+    \n**USAGE   ➥  **To load plugins which are istalled but unloaded in bot.\
+    "
+    }
+)
