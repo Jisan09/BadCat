@@ -118,7 +118,7 @@ async def load(event):
 
 CMD_HELP.update(
     {
-        "corecmds": "__**PLUGIN NAME :** corecmds__\
+        "corecmds": "__**PLUGIN NAME :** Corecmds__\
     \n\n📌** CMD ➥** `.install` <replay on a plugin>\
     \n**USAGE   ➥  **To install external plugin in bot. \
     \n\n📌** CMD ➥** `.send` <plugin name>\
