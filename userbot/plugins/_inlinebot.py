@@ -32,7 +32,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 result = builder.document(
                     CAT_IMG,
                     title="Alive cat",
-                    force_document = False,
+                    force_document=False,
                     text=query,
                     buttons=buttons,
                 )
