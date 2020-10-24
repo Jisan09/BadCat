@@ -1,5 +1,5 @@
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from .. import CMD_HELP
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 R = (
     "██╗░░██╗██╗\n"
@@ -257,8 +257,8 @@ async def sprinkle(event):
         event,
         "✨.•*¨*.¸.•*¨*.¸¸.•*¨*• ƸӜƷ\n🌸🌺🌸🌺🌸🌺🌸🌺\n Sprinkled with love❤\n🌷🌻🌷🌻🌷🌻🌷🌻\n ¨*.¸.•*¨*. ¸.•*¨*.¸¸.•*¨`*•.✨\n🌹🍀🌹🍀🌹🍀🌹🍀",
     )
-    
-    
+
+
 CMD_HELP.update(
     {
         "greetings": "__**PLUGIN NAME :** Greetings__\
