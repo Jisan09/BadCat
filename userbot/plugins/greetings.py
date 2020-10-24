@@ -1,5 +1,5 @@
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
+from .. import CMD_HELP
 R = (
     "██╗░░██╗██╗\n"
     "██║░░██║██║\n"
@@ -256,3 +256,13 @@ async def sprinkle(event):
         event,
         "✨.•*¨*.¸.•*¨*.¸¸.•*¨*• ƸӜƷ\n🌸🌺🌸🌺🌸🌺🌸🌺\n Sprinkled with love❤\n🌷🌻🌷🌻🌷🌻🌷🌻\n ¨*.¸.•*¨*. ¸.•*¨*.¸¸.•*¨`*•.✨\n🌹🍀🌹🍀🌹🍀🌹🍀",
     )
+CMD_HELP.update(
+    {
+        "Greetings": "__**PLUGIN NAME :** Greetings__\
+    \n\n📌** CMD ➥** `.hy` | `.baby` | `.hbd` | `.thanks` |`.gmg` | `.gnt` | `.gmg2` | `.gnt2` | `.gnt3` | `.lmoon` | `.city` | `.cheer` | `.getwell` | `.luck` | `.sprinkle` \
+\n\n**USAGE   ➥  **These are art bruh..Try & check yourself\
+     \n\n📌** CMD ➥** `.hi or hi <emoji>`\
+\n\n**USAGE   ➥  **Send a hi with your custom emoji. \     
+"
+    }
+)
