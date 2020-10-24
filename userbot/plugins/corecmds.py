@@ -125,7 +125,7 @@ async def load(event):
     \n\n📌** CMD ➥** `.unload` <plugin name>\
     \n**USAGE   ➥  **To unload any loaded plugin from bot.\
     \n\n📌** CMD ➥** `.load` <plugin name>\
-    \n**USAGE   ➥  **To load plugins which are istalled but unloaded in bot.\
+    \n**USAGE   ➥  **To load plugins which are installed but unloaded in bot.\
     "
     }
 )
