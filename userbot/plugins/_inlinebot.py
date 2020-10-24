@@ -29,20 +29,20 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 )
             ]
             try:
-            if CAT_IMG.endswith((".png", ".jpg")):
-                result = builder.photo(
-                    CAT_IMG,
-                    text=query,
-                    buttons=buttons,
-                )
-            elif CAT_IMG.endswith((".mp4", ".gif", ".mov")):
-                result = builder.document(
-                    CAT_IMG,
-                    title="Alive cat",
-                    force_document=False,
-                    text=query,
-                    buttons=buttons,
-                )
+                if CAT_IMG.endswith((".png", ".jpg")):
+                    result = builder.photo(
+                        CAT_IMG,
+                        text=query,
+                        buttons=buttons,
+                    )
+                elif CAT_IMG.endswith((".mp4", ".gif", ".mov")):
+                    result = builder.document(
+                        CAT_IMG,
+                        title="Alive cat",
+                        force_document=False,
+                        text=query,
+                        buttons=buttons,
+                    )
             except:
                 result = builder.article(
                     # title="Alive cat",
