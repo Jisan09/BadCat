@@ -3,24 +3,21 @@ Syntax: .exec Code"""
 import asyncio
 import io
 import sys
-import time
 import traceback
 
 from .. import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
-@bot.on(admin_cmd(pattern="bash ?(.*)"))
-@bot.on(sudo_cmd(pattern="bash ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="bash (.*)"))
+@bot.on(sudo_cmd(pattern="bash (.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from or event.via_bot_id:
         return
-    PROCESS_RUN_TIME = 100
     cmd = "".join(event.text.split(maxsplit=1)[1:])
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
-    time.time() + PROCESS_RUN_TIME
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
@@ -42,17 +39,15 @@ async def _(event):
         await edit_or_reply(event, OUTPUT)
 
 
-@bot.on(admin_cmd(pattern="exec ?(.*)"))
-@bot.on(sudo_cmd(pattern="exec ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="exec (.*)"))
+@bot.on(sudo_cmd(pattern="exec (.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from or event.via_bot_id:
         return
-    PROCESS_RUN_TIME = 100
     cmd = "".join(event.text.split(maxsplit=1)[1:])
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
-    time.time() + PROCESS_RUN_TIME
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
@@ -83,8 +78,8 @@ async def _(event):
         await edit_or_reply(event, OUTPUT)
 
 
-@bot.on(admin_cmd(pattern="eval"))
-@bot.on(sudo_cmd(pattern="eval", allow_sudo=True))
+@bot.on(admin_cmd(pattern="eval (.*)"))
+@bot.on(sudo_cmd(pattern="eval (.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from or event.via_bot_id:
         return
