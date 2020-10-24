@@ -5,6 +5,7 @@ from pathlib import Path
 
 from .. import ALIVE_NAME
 from ..utils import admin_cmd, edit_or_reply, load_module, remove_plugin, sudo_cmd
+from . import CMD_HELP
 
 DELETE_TIMEOUT = 5
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
@@ -113,3 +114,17 @@ async def load(event):
             event,
             f"Could not load {shortname} because of the following error.\n{str(e)}",
         )
+        CMD_HELP.update(
+    {
+        "corecmds": "__**PLUGIN NAME :** corecmds__\
+    \n\n📌** CMD ➥** `.install (?Pw+)`\
+\n**USAGE   ➥  **To install external plugin in bot. \
+    \n\n📌** CMD ➥** `.send (?Pw+)`\
+\n**USAGE   ➥  **To send/share loaded plugin.\
+    \n\n📌** CMD ➥** `.unload (?Pw+)`\
+\n**USAGE   ➥  **To uninstall any loaded plugin from bot.\
+    \n\n📌** CMD ➥** `.load (?Pw+)`\
+\n**USAGE   ➥  **To install default plugins in bot.\
+    "
+    }
+)
