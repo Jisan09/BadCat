@@ -106,12 +106,12 @@ async def lang(value):
 CMD_HELP.update(
     {
         "translate": "__**PLUGIN NAME :** Translate__\
-         \n\n📌** CMD ➥** `.tl` LanguageCode as reply to a message\
+         \n\n📌** CMD ➥** `.tl` [LanguageCode](https://telegra.ph/Jisan-10-13-6) as reply to a message\
          \n**USAGE   ➥  **.tl LangaugeCode | text to translate\
          \n**Example :** `.tl hi`\
          \n\n📌** CMD ➥** `.trt` Reply to a message\
          \n**USAGE   ➥  **It will translate your messege\
-         \n\n📌** CMD ➥** `.lang trt` LanguageCode\
+         \n\n📌** CMD ➥** `.lang trt` [LanguageCode](https://telegra.ph/Jisan-10-13-6)\
          \n**USAGE   ➥  **It will set default langaugeCode for **trt**\
         "
     }
