@@ -18,7 +18,6 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP, catmemes, mention
 
 
-
 async def get_user(event):
     # Get the user from argument or replied message.
     if event.reply_to_msg_id:
