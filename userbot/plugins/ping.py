@@ -64,9 +64,11 @@ async def _(event):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await edit_or_reply(event, cat, "html")
-    await event.edit(f"</b></i>☞ Pong</b></i>\n➥ {ms}\n➥ </b></i>Bot of {mention}</b></i>")
-    
-    
+    await event.edit(
+        f"</b></i>☞ Pong</b></i>\n➥ {ms}\n➥ </b></i>Bot of {mention}</b></i>"
+    )
+
+
 CMD_HELP.update(
     {
         "ping": "__**PLUGIN NAME :** Ping__\
