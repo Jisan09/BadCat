@@ -1,11 +1,10 @@
 import asyncio
 from datetime import datetime
 
-from .. import ALIVE_NAME, CMD_HELP
+from .. import ALIVE_NAME, CMD_HELP, mentionuser
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
 @bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
@@ -61,12 +60,13 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
+    USERNAME = bot.uid
     start = datetime.now()
     event = await edit_or_reply(event, "__**☞ Pong!__**")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await event.edit(
-        f"__**☞ Pong!__**\n➥ {ms}\n➥ __**Bot**__ __**of**__ [{DEFAULTUSER}]({USERNAME})"
+        f"__**☞ Pong!__**\n➥ {ms}\n➥ __**Bot**__ __**of**__ {mentionuser(DEFAULTUSER, USERNAME)}"
     )
 
 
