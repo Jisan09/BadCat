@@ -110,7 +110,33 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 13])
 
+        
+@bot.on(admin_cmd(pattern=f"hm", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"hm$", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    animation_interval = 0.7
+    animation_ttl = range(11)
+    event = await edit_or_reply(event, "Hm")
+    animation_chars = [
+        "Hmm",
+        "Hmmm",
+        "Hmmmm",
+        "Hmmmmm",
+        "Hmmmmmm",
+        "Hmmmmmmm",
+        "Hmmmmmmmm",
+        "Hmmmmmmmmm",
+        "Hmmmmmmmmmm",
+        "Hmmmmmmmmmmm",
+        "Hmmmmmmmmmmmm",
+    ]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await event.edit(animation_chars[i % 11])
 
+        
 @bot.on(admin_cmd("bigoof$"))
 @bot.on(sudo_cmd(pattern="bigoof$", allow_sudo=True))
 async def _(event):
@@ -404,7 +430,7 @@ CMD_HELP.update(
         "animation4": "__**PLUGIN NAME :** Animation4__\
 \n\n📌** CMD ➥** `.kilr` <text>\
 \n**USAGE   ➥  **Be a warrior & kill enimes.\
-\n\n📌** CMD ➥** `.acarry` | `.eye` | `.bigoof` | `.uff` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
+\n\n📌** CMD ➥** `.acarry` | `.eye` | `.bigoof` | `.uff` | `.hm` | `.snake` | `.idot` | `.human` | `.mc` | `.virus` | `.music` | `.squ` \
 \n\n**USAGE   ➥  **These are animation bruh..Try & check yourself"
     }
 )
