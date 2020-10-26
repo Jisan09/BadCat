@@ -8,8 +8,8 @@ import requests
 import spamwatch as spam_watch
 
 from .. import *
-from ..Config import Config
 from .. import ALIVE_NAME
+from ..Config import Config
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
@@ -33,8 +33,10 @@ if Config.SUDO_USERS:
     for user in Config.SUDO_USERS:
         cat_users.append(user)
 
+
 def mention():
     return f"[{DEFAULTUSER}](tg://user?id={cat_users})"
+
 
 def check(cat):
     if "/start" in cat:
