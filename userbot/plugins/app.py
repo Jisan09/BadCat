@@ -5,9 +5,9 @@
 
 import bs4
 import requests
-from . import CMD_HELP, mention
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP, mention
 
 
 @bot.on(admin_cmd(pattern="app (.*)"))
