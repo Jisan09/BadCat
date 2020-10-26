@@ -5,8 +5,6 @@ from .. import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import mention
 
-USERID = bot.uid
-
 
 @bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
 async def _(event):
@@ -66,7 +64,7 @@ async def _(event):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await event.edit(
-        f"__**☞ Pong!__**\n➥ {ms}\n➥ __**Bot**__ __**of**__ {mention(USERID)}"
+        f"__**☞ Pong!__**\n➥ {ms}\n➥ __**Bot**__ __**of**__ {mention}"
     )
 
 
