@@ -1,8 +1,8 @@
 import asyncio
 from datetime import datetime
 
-from . import CMD_HELP, hmention
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP, hmention
 
 
 @bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
