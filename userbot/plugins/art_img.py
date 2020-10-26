@@ -8,12 +8,8 @@ You remove this, you gay.
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import ALIVE_NAME, CMD_HELP
-
+from . import CMD_HELP, mention
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
 @bot.on(admin_cmd("ascii ?(.*)"))
@@ -53,7 +49,7 @@ async def _(event):
             await event.client.send_file(
                 event.chat_id,
                 response.message.media,
-                caption=f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
+                caption=f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** **{mention}**",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
 
@@ -91,7 +87,7 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             pic,
-            caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** [{DEFAULTUSER}]({USERNAME})",
+            caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** **{mention}**",
         )
 
 
