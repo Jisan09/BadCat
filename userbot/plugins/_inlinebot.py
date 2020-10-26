@@ -28,22 +28,21 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                     Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
-            try:
-                if CAT_IMG.endswith((".png", ".jpg")):
-                    result = builder.photo(
-                        CAT_IMG,
-                        text=query,
-                        buttons=buttons,
-                    )
-                elif CAT_IMG.endswith((".mp4", ".gif", ".mov")):
-                    result = builder.document(
-                        CAT_IMG,
-                        title="Alive cat",
-                        force_document=False,
-                        text=query,
-                        buttons=buttons,
-                    )
-            except:
+            if CAT_IMG and CAT_IMG.endswith((".jpg", ".png")):
+                result = builder.photo(
+                    CAT_IMG,
+                    # title="Alive cat",
+                    text=query,
+                    buttons=buttons,
+                )
+            elif CAT_IMG:
+                result = builder.document(
+                    CAT_IMG,
+                    title="Alive cat",
+                    text=query,
+                    buttons=buttons,
+                )
+            else:
                 result = builder.article(
                     title="Alive cat",
                     text=query,
