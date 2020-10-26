@@ -39,8 +39,8 @@ async def _(event):
         )
 
 
-@bot.on(admin_cmd(pattern=r"get(.*)"))
-@bot.on(sudo_cmd(pattern=r"get(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"cric(.*)"))
+@bot.on(sudo_cmd(pattern=r"cric(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -75,8 +75,8 @@ CMD_HELP.update(
         "cricket": "__**PLUGIN NAME :** Cricket__\
       \n\n📌** CMD ➥** `.score`\
       \n**USAGE   ➥  **To see score of ongoing matches.\
-      \n\n📌** CMD ➥** `.get` <commnd>\
+      \n\n📌** CMD ➥** `.cric` <commnd>\
       \n**USAGE   ➥**  That will send details like scoreboard or commentary.\
-      \n\n**Example :-** `.get /scorecard_30....`"
+      \n\n**Example :-** `.cric /scorecard_30....`"
     }
 )
