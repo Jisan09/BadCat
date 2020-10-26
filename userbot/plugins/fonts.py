@@ -3,8 +3,8 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import fonts
 
 
-@bot.on(admin_cmd(pattern="fmusical (.*)", command="fmusical (.*)"))
-@bot.on(sudo_cmd(pattern="fmusical (.*)", command="fmusical (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="fmusical(.*)", command="fmusical (.*)"))
+@bot.on(sudo_cmd(pattern="fmusical(.*)", command="fmusical (.*)", allow_sudo=True))
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
