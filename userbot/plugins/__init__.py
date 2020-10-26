@@ -12,7 +12,7 @@ from .. import ALIVE_NAME
 from ..Config import Config
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USERID = bot.uid
+
 Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME
@@ -34,7 +34,7 @@ if Config.SUDO_USERS:
         cat_users.append(user)
 
 
-def mention():
+def mention(USERID):
     return f"[{DEFAULTUSER}](tg://user?id={USERID})"
 
 
