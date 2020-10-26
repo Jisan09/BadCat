@@ -19,7 +19,7 @@ auth_url = r["auth_url"]
 async def _(event):
     if event.fwd_from:
         return
-    catevent = await edit_or_reply(event, "<code>processing........</code>","html")
+    catevent = await edit_or_reply(event, "<code>processing........</code>", "html")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if BOTLOG:
