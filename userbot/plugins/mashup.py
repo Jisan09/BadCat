@@ -43,7 +43,7 @@ async def _(event):
 CMD_HELP.update(
     {
         "mashup": "__**PLUGIN NAME :** Mashup__\
-      \n\n📌** CMD ➥** `.mash` <text> :\
+      \n\n📌** CMD ➥** `.mash` <text> \
       \n**USAGE   ➥  **Send you the related video message of given text . "
     }
 )
