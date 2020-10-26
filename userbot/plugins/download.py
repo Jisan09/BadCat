@@ -45,7 +45,7 @@ async def _(event):
             end = datetime.now()
             ms = (end - start).seconds
             await mone.edit(
-                f"<b><i>➥ Downloaded in {ms} seconds.</i></b><b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
+                f"<b><i>➥ Downloaded in {ms} seconds.</i></b>\n<b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
                 parse_mode="html",
             )
     elif input_str:
@@ -86,7 +86,7 @@ async def _(event):
         ms = (end - start).seconds
         if downloader.isSuccessful():
             await mone.edit(
-                f"<b><i>➥ Downloaded in {ms} seconds.</i></b><b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
+                f"<b><i>➥ Downloaded in {ms} seconds.</i></b>\n<b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
                 parse_mode="html",
             )
         else:
