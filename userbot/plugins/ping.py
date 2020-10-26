@@ -63,7 +63,7 @@ async def _(event):
     event = await edit_or_reply(
         event,
         "</b></i>☞ Pong!</b></i>",
-        parsemode="html",
+        parsemode="html"
     )
     end = datetime.now()
     ms = (end - start).microseconds / 1000
