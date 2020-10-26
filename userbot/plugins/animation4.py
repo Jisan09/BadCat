@@ -110,7 +110,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 13])
 
-        
+
 @bot.on(admin_cmd(pattern=f"hm", outgoing=True))
 @bot.on(sudo_cmd(pattern=f"hm$", allow_sudo=True))
 async def _(event):
@@ -136,7 +136,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 11])
 
-        
+
 @bot.on(admin_cmd("bigoof$"))
 @bot.on(sudo_cmd(pattern="bigoof$", allow_sudo=True))
 async def _(event):
