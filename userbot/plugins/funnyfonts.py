@@ -154,7 +154,9 @@ async def stylish_generator(event):
 
 
 @bot.on(admin_cmd(pattern="superscript (.*)", command="superscript (.*)"))
-@bot.on(sudo_cmd(pattern="superscript (.*)", command="superscript (.*)", allow_sudo=True))
+@bot.on(
+    sudo_cmd(pattern="superscript (.*)", command="superscript (.*)", allow_sudo=True)
+)
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
