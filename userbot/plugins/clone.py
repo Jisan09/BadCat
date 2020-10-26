@@ -18,7 +18,7 @@ DEFAULTUSERBIO = (
     if DEFAULT_BIO
     else "sıɥʇ ǝpoɔǝp uǝɥʇ llıʇu∩ ˙ ǝɔɐds ǝʇɐʌıɹd ǝɯos ǝɯ ǝʌı⅁˙"
 )
-#USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "Jisan_cat_09"
+# USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "Jisan_cat_09"
 
 if Config.PRIVATE_GROUP_BOT_API_ID is None:
     BOTLOG = False
@@ -98,6 +98,7 @@ async def _(event):
         await event.client.send_message(
             BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
         )
+
 
 """
 @bot.on(admin_cmd(pattern="fclone ?(.*)"))
@@ -186,6 +187,7 @@ async def _(event):
     
 =================================================================================
 """
+
 
 async def get_full_user(event):
     if event.reply_to_msg_id:
