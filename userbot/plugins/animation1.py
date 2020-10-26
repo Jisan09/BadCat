@@ -1,12 +1,10 @@
 import asyncio
 from collections import deque
 
-from .. import ALIVE_NAME
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import mention
 from . import CMD_HELP
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 
 @bot.on(admin_cmd(pattern="stupid$"))
@@ -77,13 +75,13 @@ async def _(event):
         "`Connecting To Telegram Headquarters...`",
         "`Call Connected.`",
         "`Telegram: Hello This is Telegram HQ. Who is this?`",
-        f"`Me: Yo this is` {DEFAULTUSER} ,`Please Connect me to my big bro, Rahul `",
+        f"`Me: Yo this is` {mention} ,`Please Connect me to my big bro, Rahul `",
         "`Rahul sir is busy , doing Chutiyappa.`",
         "`Calling Asmo `  `At +916969696969`",
         "`Private  Call Connected...`",
         "`Me: Hello Sir, Please Ban This Telegram Account.`",
         "`Asmo : May I Know Who Is This?`",
-        f"`Me: Yo Brah, I Am` {DEFAULTUSER} ",
+        f"`Me: Yo Brah, I Am` {mention} ",
         "`Asmo : OMG!!! Long time no see, Wassup cat...\nI'll Make Sure That Guy Account Will Get Blocked Within 24Hrs.`",
         "`Me: Thanks, See You Later Brah.`",
         "`Asmo : Please Don't Thank Brah, Telegram Is Our's. Just Gimme A Call When You Become Free.`",
@@ -118,7 +116,7 @@ async def _(event):
         "------------------>",
         "------>;(^。^)ノ",
         "(￣ー￣) DEAD",
-        f"[{DEFAULTUSER}]({USERNAME})` Killed targeted user by Headshot 😈.😈.😈.😈.😈.😈.😈......`\n '#Sad_Reacts_Online'\n",
+        f"{mention}` Killed targeted user by Headshot 😈.😈.😈.😈.😈.😈.😈......`\n '#Sad_Reacts_Online'\n",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -145,7 +143,7 @@ async def _(event):
         "------------------>",
         "------>;(^。^)ノ",
         "(￣ー￣) DED",
-        f"[{DEFAULTUSER}]({USERNAME})** killed target successfully (°̥̥̥̥̥̥̥̥•̀.̫•́°̥̥̥̥̥̥̥)**",
+        f"{mention}** killed target successfully (°̥̥̥̥̥̥̥̥•̀.̫•́°̥̥̥̥̥̥̥)**",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
