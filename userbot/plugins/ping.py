@@ -1,11 +1,8 @@
 import asyncio
 from datetime import datetime
 
-from .. import ALIVE_NAME, CMD_HELP
+from . import CMD_HELP, hmention
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-hmm = bot.uid
 
 
 @bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
@@ -66,7 +63,7 @@ async def _(event):
     event = await edit_or_reply(event, cat, "html")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
-    cat2 = f"<b><i>☞ Pong</b></i>\n➥ {ms}\n➥ <b><i>Bot of</b></i> <a href = tg://user?id={hmm}><b><i>{DEFAULTUSER}</b></i></a>"
+    cat2 = f"<b><i>☞ Pong</b></i>\n➥ {ms}\n➥ <b><i>Bot of {hmention}</b></i>"
     await event.edit(cat2, parse_mode="html")
 
 
