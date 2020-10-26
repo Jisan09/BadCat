@@ -3,7 +3,7 @@ from datetime import datetime
 
 from .. import CMD_HELP, mention
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
+USERNAME = bot.uid
 
 @bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
 async def _(event):
