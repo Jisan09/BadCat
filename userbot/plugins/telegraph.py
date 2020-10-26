@@ -7,10 +7,8 @@ from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP
+from . import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, hmention
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
@@ -22,7 +20,7 @@ auth_url = r["auth_url"]
 async def _(event):
     if event.fwd_from:
         return
-    catevent = await edit_or_reply(event, "`processing........`")
+    catevent = await edit_or_reply(event, "<code>processing........</code>")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if BOTLOG:
@@ -61,10 +59,8 @@ async def _(event):
                 jisan = "https://telegra.ph{}".format(media_urls[0])
                 os.remove(downloaded_file_name)
                 await catevent.edit(
-                    f"**__➥ Uploaded to :-__ [Telegraph]**({jisan})\
-                    \n__**➥ Uploaded in {ms + ms_two} seconds .**__\n__**➥ Uploaded by :-**__ [{DEFAULTUSER}]({USERNAME})",
-                    link_preview=True,
-                )
+                    f"<b><i>➥ Uploaded to :- <a href = {jisan}>{Telegraph}</a></i></b>\
+                    \n<b><i>➥ Uploaded in {ms + ms_two} seconds .</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",parse_mode="html",link_preview=True)
         elif input_str == "text":
             user_object = await borg.get_entity(r_message.sender_id)
             title_of_page = user_object.first_name  # + " " + user_object.last_name
@@ -90,9 +86,8 @@ async def _(event):
             ms = (end - start).seconds
             cat = f"https://telegra.ph/{response['path']}"
             await catevent.edit(
-                f"**__➥ Pasted to :-__ [Telegraph]**({cat})\
-                \n__**➥ Pasted in {ms} seconds .**__",
-                link_preview=True,
+                f"<b><i>➥ Pasted to :- <a href = {cat}>{Telegraph}</a</i></b>\
+                \n<b><i>➥ Pasted in {ms} seconds .</i></b>",parse_mode="html",link_preview=True,
             )
     else:
         await catevent.edit(
