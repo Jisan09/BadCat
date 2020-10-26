@@ -9,6 +9,9 @@ import spamwatch as spam_watch
 
 from .. import *
 from ..Config import Config
+from .. import ALIVE_NAME
+
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
 Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
@@ -30,6 +33,8 @@ if Config.SUDO_USERS:
     for user in Config.SUDO_USERS:
         cat_users.append(user)
 
+def mention():
+    return f"[{DEFAULTUSER}](tg://user?id={cat_users})"
 
 def check(cat):
     if "/start" in cat:
