@@ -5,11 +5,9 @@
 
 import bs4
 import requests
-
-from .. import ALIVE_NAME, CMD_HELP
+from . import CMD_HELP, mention
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
 
 @bot.on(admin_cmd(pattern="app (.*)"))
@@ -74,7 +72,7 @@ async def apk(event):
             + app_link
             + "'>View in Play Store</a>"
         )
-        app_details += f"\n\n===> {DEFAULTUSER} <==="
+        app_details += f"\n\n===> {mention} <==="
         await event.edit(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
         await event.edit("No result found in search. Please enter **Valid app name**")
