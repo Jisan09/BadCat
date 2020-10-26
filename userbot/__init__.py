@@ -71,8 +71,6 @@ if bool(ENV):
     OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
     # Youtube API key
     YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
-    # username to be displayed in .live
-    LIVE_USERNAME = os.environ.get("LIVE_USERNAME", None)
     # Default .alive name
     ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
     AUTONAME = os.environ.get("AUTONAME", None)
