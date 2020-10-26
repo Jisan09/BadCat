@@ -18,7 +18,7 @@ DEFAULTUSERBIO = (
     if DEFAULT_BIO
     else "sıɥʇ ǝpoɔǝp uǝɥʇ llıʇu∩ ˙ ǝɔɐds ǝʇɐʌıɹd ǝɯos ǝɯ ǝʌı⅁˙"
 )
-USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "Jisan_cat_09"
+#USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "Jisan_cat_09"
 
 if Config.PRIVATE_GROUP_BOT_API_ID is None:
     BOTLOG = False
@@ -99,7 +99,7 @@ async def _(event):
             BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
         )
 
-
+"""
 @bot.on(admin_cmd(pattern="fclone ?(.*)"))
 async def _(event):
     if event.fwd_from:
@@ -176,7 +176,16 @@ async def _(event):
         await event.client.send_message(
             BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
         )
-
+        
+        
+================================================================================
+    \n\n📌** CMD ➥** `.fclone`<reply to user who you want to clone\
+    \n**USAGE   ➥  **Fully clone the replied user account with username also\
+    \n\n📌** CMD ➥** `.frevert`\
+    \n**USAGE   ➥  **Reverts back to your profile use it if you used `.fclone`\
+    
+=================================================================================
+"""
 
 async def get_full_user(event):
     if event.reply_to_msg_id:
@@ -235,10 +244,6 @@ CMD_HELP.update(
     \n**USAGE   ➥  **Clone the replied user account\
     \n\n📌** CMD ➥** `.revert`\
     \n**USAGE   ➥  **Reverts back to your profile which you have set in heroku for  AUTONAME,DEFAULT_BIO\
-    \n\n📌** CMD ➥** `.fclone`<reply to user who you want to clone\
-    \n**USAGE   ➥  **Fully clone the replied user account with username also\
-    \n\n📌** CMD ➥** `.frevert`\
-    \n**USAGE   ➥  **Reverts back to your profile use it if you used `.fclone`\
     "
     }
 )
