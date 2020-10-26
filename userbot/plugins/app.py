@@ -7,7 +7,7 @@ import bs4
 import requests
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP, mention
+from . import CMD_HELP, hmention
 
 
 @bot.on(admin_cmd(pattern="app (.*)"))
@@ -72,7 +72,7 @@ async def apk(event):
             + app_link
             + "'>View in Play Store</a>"
         )
-        app_details += f"\n\n===> {mention} <==="
+        app_details += f"\n\n===> {hmention} <==="
         await event.edit(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
         await event.edit("No result found in search. Please enter **Valid app name**")
