@@ -7,8 +7,7 @@ from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, hmention
-
+from . import BOTLOG, BOTLOG_CHATID, CMD_HELP, hmention
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
@@ -60,7 +59,10 @@ async def _(event):
                 os.remove(downloaded_file_name)
                 await catevent.edit(
                     f"<b><i>➥ Uploaded to :- <a href = {jisan}>{Telegraph}</a></i></b>\
-                    \n<b><i>➥ Uploaded in {ms + ms_two} seconds .</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",parse_mode="html",link_preview=True)
+                    \n<b><i>➥ Uploaded in {ms + ms_two} seconds .</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
+                    parse_mode="html",
+                    link_preview=True,
+                )
         elif input_str == "text":
             user_object = await borg.get_entity(r_message.sender_id)
             title_of_page = user_object.first_name  # + " " + user_object.last_name
@@ -87,7 +89,9 @@ async def _(event):
             cat = f"https://telegra.ph/{response['path']}"
             await catevent.edit(
                 f"<b><i>➥ Pasted to :- <a href = {cat}>{Telegraph}</a</i></b>\
-                \n<b><i>➥ Pasted in {ms} seconds .</i></b>",parse_mode="html",link_preview=True,
+                \n<b><i>➥ Pasted in {ms} seconds .</i></b>",
+                parse_mode="html",
+                link_preview=True,
             )
     else:
         await catevent.edit(
