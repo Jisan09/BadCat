@@ -88,7 +88,7 @@ async def _(event):
             ms = (end - start).seconds
             cat = f"https://telegra.ph/{response['path']}"
             await catevent.edit(
-                f"<b><i>➥ Pasted to :- <a href = {cat}>Telegraph</a</i></b>\
+                f"<b><i>➥ Pasted to :- <a href = {cat}>Telegraph</a></i></b>\
                 \n<b><i>➥ Pasted in {ms} seconds .</i></b>",
                 parse_mode="html",
                 link_preview=True,
