@@ -85,7 +85,6 @@ async def _(event):
         supports_streaming=True,
         parse_mode="html",
         reply_to=reply_to_id,
-        allow_cache=True,
     )
     await catevent.delete()
     for files in (catthumb, song_file):
@@ -157,7 +156,6 @@ async def _(event):
         supports_streaming=True,
         parse_mode="html",
         reply_to=reply_to_id,
-        allow_cache=True,
     )
     await catevent.delete()
     for files in (catthumb, vsong_file):
