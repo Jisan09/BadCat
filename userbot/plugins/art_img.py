@@ -49,7 +49,7 @@ async def _(event):
             await event.client.send_file(
                 event.chat_id,
                 response.message.media,
-                caption=f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** **{mention}**",
+                caption=f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** {mention}",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
 
@@ -87,7 +87,7 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             pic,
-            caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** **{mention}**",
+            caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** {mention}",
         )
 
 
