@@ -14,10 +14,7 @@ from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import ALIVE_NAME, CMD_HELP, name_dl, runcmd, song_dl, video_dl, yt_search
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
+from . import ALIVE_NAME, CMD_HELP, name_dl, runcmd, song_dl, video_dl, yt_search, hmention
 
 
 @bot.on(admin_cmd(pattern="(song|song320)($| (.*))"))
@@ -83,10 +80,12 @@ async def _(event):
         event.chat_id,
         song_file,
         force_document=False,
-        caption=f"➥ __**Song :- {query}**__\n__**➥ Uploaded by :-**__ [{DEFAULTUSER}]({USERNAME})",
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
         supports_streaming=True,
+        parse_mode="html",
         reply_to=reply_to_id,
+        allow_cache=True,
     )
     await catevent.delete()
     for files in (catthumb, song_file):
@@ -153,10 +152,12 @@ async def _(event):
         event.chat_id,
         vsong_file,
         force_document=False,
-        caption=f"➥ __**Song :- {query}**__\n__**➥ Uploaded by :-**__ [{DEFAULTUSER}]({USERNAME})",
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
         supports_streaming=True,
+        parse_mode="html",
         reply_to=reply_to_id,
+        allow_cache=True,
     )
     await catevent.delete()
     for files in (catthumb, vsong_file):
