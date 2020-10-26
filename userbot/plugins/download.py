@@ -14,8 +14,8 @@ from datetime import datetime
 
 from pySmartDL import SmartDL
 
-from . import  CMD_HELP,hmention
 from ..utils import admin_cmd, edit_or_reply, humanbytes, progress, sudo_cmd
+from . import CMD_HELP, hmention
 
 
 @bot.on(admin_cmd(pattern="download(?: |$)(.*)", outgoing=True))
@@ -45,7 +45,8 @@ async def _(event):
             end = datetime.now()
             ms = (end - start).seconds
             await mone.edit(
-                f"<b><i>➥ Downloaded in {ms} seconds.</i></b><b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",parse_mode="html"
+                f"<b><i>➥ Downloaded in {ms} seconds.</i></b><b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
+                parse_mode="html",
             )
     elif input_str:
         start = datetime.now()
@@ -85,7 +86,8 @@ async def _(event):
         ms = (end - start).seconds
         if downloader.isSuccessful():
             await mone.edit(
-                f"<b><i>➥ Downloaded in {ms} seconds.</i></b><b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",parse_mode="html"
+                f"<b><i>➥ Downloaded in {ms} seconds.</i></b><b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
+                parse_mode="html",
             )
         else:
             await mone.edit("Incorrect URL\n {}".format(input_str))
