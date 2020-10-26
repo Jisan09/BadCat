@@ -22,9 +22,7 @@ async def _(event):
     stcr1 = await event.client.send_file(
         event.chat_id, "CAADAQADRwADnjOcH98isYD5RJTwAg"
     )
-    text2 = await event.reply(
-        f"**{mention} :** I have to call discussion"
-    )
+    text2 = await event.reply(f"**{mention} :** I have to call discussion")
     await asyncio.sleep(3)
     await stcr1.delete()
     await text2.delete()
@@ -44,9 +42,7 @@ async def _(event):
     await asyncio.sleep(2)
     await text4.edit(f"**Others :** Who?? ")
     await asyncio.sleep(2)
-    await text4.edit(
-        f"**{mention} :** Its {name} , I saw {name}  using vent,"
-    )
+    await text4.edit(f"**{mention} :** Its {name} , I saw {name}  using vent,")
     await asyncio.sleep(3)
     await text4.edit(f"**Others :**Okay.. Vote {name} ")
     await asyncio.sleep(2)
