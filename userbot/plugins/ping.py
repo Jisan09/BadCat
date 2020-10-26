@@ -5,7 +5,7 @@ from .. import ALIVE_NAME, CMD_HELP, mentionuser
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-
+USERNAME = bot.uid
 
 @bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
 async def _(event):
@@ -60,7 +60,6 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    USERNAME = bot.uid
     start = datetime.now()
     event = await edit_or_reply(event, "__**☞ Pong!__**")
     end = datetime.now()
