@@ -7,15 +7,6 @@ from telethon.tl.tlobject import TLObject
 from telethon.tl.types import MessageEntityPre
 from telethon.utils import add_surrogate
 
-from .. import ALIVE_NAME
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-
-
-def mention(USERID):
-    return f"[{DEFAULTUSER}](tg://user?id={USERID})"
-
-
 def mentionuser(name, userid):
     return f"[{name}](tg://user?id={userid})"
 
