@@ -4,10 +4,7 @@ from collections import deque
 from userbot import ALIVE_NAME
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USERNAME = str(Config.LIVE_USERNAME) if Config.LIVE_USERNAME else "@Jisan7509"
+from . import CMD_HELP, mention
 
 
 @bot.on(admin_cmd(pattern=r"star$", outgoing=True))
@@ -53,8 +50,8 @@ async def _(event):
     event = await edit_or_reply(event, "Deploying...")
     animation_chars = [
         "**Heroku Connecting To Latest Github Build **",
-        f"**Build started by user** [{DEFAULTUSER}]({USERNAME})",
-        f"**Deploy** `535a74f0` **by user** [{DEFAULTUSER}]({USERNAME})",
+        f"**Build started by user** {mention}",
+        f"**Deploy** `535a74f0` **by user** {mention}",
         "**Restarting Heroku Server...**",
         "**State changed from up to starting**",
         "**Stopping all processes with SIGTERM**",
