@@ -15,9 +15,8 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChannelParticipantsAdmins, MessageEntityMentionName
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import ALIVE_NAME, CMD_HELP, catmemes
+from . import CMD_HELP, catmemes, mention
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
 
 async def get_user(event):
@@ -106,7 +105,7 @@ async def _(event):
 @bot.on(sudo_cmd(pattern="slap(?: |$)(.*)", allow_sudo=True))
 async def who(event):
     replied_user = await get_user(event)
-    caption = await catmemes.slap(replied_user, event, DEFAULTUSER)
+    caption = await catmemes.slap(replied_user, event, mention)
     message_id_to_reply = event.message.reply_to_msg_id
     if not message_id_to_reply:
         message_id_to_reply = None
@@ -291,7 +290,7 @@ async def gbun(event):
         # make meself invulnerable cuz why not xD
         if idd == 710863476:
             await catevent.edit(
-                "`Wait a second, This is my master!`\n**How dare you threaten to ban my master nigger!**\n\n__Your account has been hacked! Pay 69$ to my master__ [π.$](tg://user?id=710863476) __to release your account__😏"
+                f"`Wait a second, This is my master!`\n**How dare you threaten to ban my master nigger!**\n\n__Your account has been hacked! Pay 69$ to my master__ {mention} __to release your account__😏"
             )
         else:
             jnl = (
