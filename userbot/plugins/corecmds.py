@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 
 from ..utils import admin_cmd, edit_or_reply, load_module, remove_plugin, sudo_cmd
-from . import CMD_HELP, mention
+from . import CMD_HELP, hmention
 
 DELETE_TIMEOUT = 5
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
@@ -71,9 +71,7 @@ async def send(event):
         end = datetime.now()
         ms = (end - start).seconds
         await event.delete()
-        await caat.edit(
-            f"__**➥ Plugin Name:- {input_str} .**__\n__**➥ Uploaded in {ms} seconds.**__\n__**➥ Uploaded by :- {mention}**__"
-        )
+        await caat.edit(f"<b><i>➥ Plugin Name:- {input_str} .</i></b>\n<b><i>➥ Uploaded in {ms} seconds.</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>", parse_mode="html")
     else:
         await edit_or_reply(event, "404: File Not Found")
 
