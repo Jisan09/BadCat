@@ -8,11 +8,12 @@ import requests
 import spamwatch as spam_watch
 
 from .. import *
-from .. import ALIVE_NAME
 from ..Config import Config
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 USERID = bot.uid
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
+mention = f"[{DEFAULTUSER}](tg://user?id={USERID})"
+
 Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME
@@ -32,10 +33,6 @@ cat_users = [bot.uid]
 if Config.SUDO_USERS:
     for user in Config.SUDO_USERS:
         cat_users.append(user)
-
-
-def mention():
-    return f"[{DEFAULTUSER}](tg://user?id={USERID})"
 
 
 def check(cat):
