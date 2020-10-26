@@ -2,9 +2,9 @@
 # idot by @turquoise-giggle
 
 import asyncio
-from . import CMD_HELP, mention
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
+from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP, mention
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="kilr (.*)"))
