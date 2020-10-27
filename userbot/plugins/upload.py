@@ -214,7 +214,7 @@ async def video_catfile(event):
             crop_by = width if (height > width) else height
             await runcmd(f'ffmpeg -i {catfile} -vf "crop={crop_by}:{crop_by}" {PATH}')
             os.remove(catfile)
-        elif aspect_ratio = 1:
+        elif aspect_ratio == 1:
             crop_by = width if (height == width) else height
             await runcmd(f'ffmpeg -i {catfile} -vf "crop={crop_by}:{crop_by}" {PATH}')
             os.remove(catfile)
