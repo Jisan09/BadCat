@@ -84,7 +84,8 @@ async def kakashi(event):
             await catevent.delete()
             await event.client.forward_messages(event.chat_id, response.message)
             await event.client.send_read_acknowledge(conv.chat_id)
-            
+
+
 CMD_HELP.update(
     {
         "kakashi": "__**PLUGIN NAME :** Kakashi__\
