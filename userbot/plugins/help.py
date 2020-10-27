@@ -211,10 +211,10 @@ async def _(event):
         else:
             await event.edit("`inline mode is already disabled`")
 
-            
+
 CMD_HELP.update(
-{
-  "help": "__**PLUGIN NAME :** Help__\
+    {
+        "help": "__**PLUGIN NAME :** Help__\
     \n\n📌** CMD ➥** `.help` <plguin name>\
     \n**USAGE   ➥  **Get commands of a specific plugin.\
     \n\n📌** CMD ➥** `.info` <plguin name>\
@@ -223,4 +223,5 @@ CMD_HELP.update(
     \n**USAGE   ➥  **To get info list of telegram data centres.\
     \n\n📌** CMD ➥** `.setinline true` <or> ~.setinline false`\
     \n**USAGE   ➥  **To enable or disable inline mode of help menu."
-    })
+    }
+)
