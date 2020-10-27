@@ -4,6 +4,7 @@ Syntax: .invite <User(s)>"""
 from telethon import functions
 
 from userbot.utils import admin_cmd, sudo_cmd
+from .. import CMD_HELP
 
 
 @bot.on(admin_cmd(pattern="invite ?(.*)"))
@@ -74,3 +75,12 @@ async def _(event):
                 except Exception as e:
                     await event.reply(str(e))
             await event.reply("Invited Successfully")
+            CMD_HELP.update(        
+ {
+  "Invite": "__**PLUGIN NAME :**Invite__\
+    \n\n📌** CMD ➥** `.invite <username>`\
+    \n**USAGE   ➥  **Invite specified user in certain chat.
+    "
+            }
+ )
+
