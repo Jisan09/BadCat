@@ -61,8 +61,6 @@ async def kakashi(event):
         link = "Forward"
     elif link in ("custompmtext", "cppt"):
         link = "Custom PM Permit Text"
-    elif link in ("liveusername", "lu"):
-        link = "Live Username"
     elif link in ("customalivetext", "cat"):
         link = "Custom Alive Text"
     elif link in ("customaliveemoji", "cae"):
@@ -87,7 +85,7 @@ async def kakashi(event):
             await event.client.forward_messages(event.chat_id, response.message)
             await event.client.send_read_acknowledge(conv.chat_id)
             
-        CMD_HELP.update(
+CMD_HELP.update(
     {
         "kakashi": "__**PLUGIN NAME :** Kakashi__\
     \n\n📌** CMD ➥** `.note_help` \
