@@ -215,13 +215,13 @@ async def _(event):
 CMD_HELP.update(
     {
         "help": "__**PLUGIN NAME :** Help__\
-    \n\n📌** CMD ➥** `.help` <plguin name>\
+    \n\n📌** CMD ➥** `.help` <plugin name>\
     \n**USAGE   ➥  **Get commands of a specific plugin.\
-    \n\n📌** CMD ➥** `.info` <plguin name>\
+    \n\n📌** CMD ➥** `.info` <plugin name>\
     \n**USAGE   ➥  **To get commands and usage of a specific plugin.\
     \n\n📌** CMD ➥** `.dc`\
     \n**USAGE   ➥  **To get info list of telegram data centres.\
-    \n\n📌** CMD ➥** `.setinline true` <or> ~.setinline false`\
+    \n\n📌** CMD ➥** `.setinline true` <or> `.setinline false`\
     \n**USAGE   ➥  **To enable or disable inline mode of help menu."
     }
 )
