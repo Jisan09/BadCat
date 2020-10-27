@@ -210,3 +210,18 @@ async def _(event):
             await event.edit("`inline mode is enabled`")
         else:
             await event.edit("`inline mode is already disabled`")
+           CMD_HELP.update(
+            {
+  "Help": "__**PLUGIN NAME :** Help__\
+    \n\n📌** CMD ➥** `.help <plguin name>`\
+    \n**USAGE   ➥  **Get commands to use specified plugin.\
+    \n\n📌** CMD ➥** `.info <plguin name>`\
+    \n**USAGE   ➥  **To get commands and usage of specified plugin.\
+    \n\n📌** CMD ➥** `.dc`\
+    \n**USAGE   ➥  **To get info list of telegram data centre.\
+    \n\n📌** CMD ➥** `.setinline (True\False)`\
+    \n**USAGE   ➥  **To enable or disable inline mood of bot.
+    "
+    }
+            )
+    
