@@ -2,7 +2,7 @@
 Syntax: .invite <User(s)>"""
 
 from telethon import functions
-ftom .. import CMD_HELP
+from .. import CMD_HELP
 from userbot.utils import admin_cmd, sudo_cmd
 
 
