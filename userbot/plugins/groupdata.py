@@ -143,17 +143,16 @@ async def get_users(show):
     await show.get_input_chat()
     if not input_str:
         if not show.is_group:
-            await edit_or_reply(show, "Are you sure this is a group?")
+            await edit_or_reply(show, "`Are you sure this is a group?`")
             return
     else:
         mentions_heading = "Users in {} Group: \n".format(input_str)
         mentions = mentions_heading
         try:
-            chat = await event.client.get_entity(input_str)
+            chat = await show.client.get_entity(input_str)
         except Exception as e:
-            await event.show(str(e))
-            return None
-    catevent = await edit_or_reply(show, "getting users list wait...")
+            await edit_delete(show, f"`{str(e)}`", 10)
+    catevent = await edit_or_reply(show, "`getting users list wait...`  ")
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
@@ -176,7 +175,7 @@ async def get_users(show):
     if len(mentions) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(mentions)) as out_file:
             out_file.name = "users.text"
-            await event.client.send_file(
+            await show.client.send_file(
                 show.chat_id,
                 out_file,
                 force_document=True,
@@ -237,7 +236,7 @@ async def _(event):
 
 
 @bot.on(admin_cmd(pattern="ikuck ?(.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="ikuck (.*)", allow_sudo=True))
+@bot.on(sudo_cmd(pattern="ikuck ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -384,27 +383,25 @@ None: {}""".format(
 async def rm_deletedacc(show):
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "`No deleted accounts found, Group is clean`"
+    del_status = "`No zombies or deleted accounts found in this group, Group is clean`"
     if con != "clean":
         event = await edit_or_reply(
             show, "`Searching for ghost/deleted/zombie accounts...`"
         )
-        async for user in bot.iter_participants(show.chat_id):
+        async for user in show.client.iter_participants(show.chat_id):
             if user.deleted:
                 del_u += 1
                 await sleep(0.5)
         if del_u > 0:
-            del_status = f"`Found` **{del_u}** ghost/deleted/zombie account(s) in this group,\
-            \nclean them by using `.zombies clean`"
+            del_status = f"__Found__ **{del_u}** __ghost/deleted/zombie account(s) in this group,\
+                           \nclean them by using__ `.zombies clean`"
         await event.edit(del_status)
         return
-    # Here laying the sanity check
     chat = await show.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
-    # Well
     if not admin and not creator:
-        await edit_or_reply(show, "`I am not an admin here!`")
+        await edit_delete(show, "`I am not an admin here!`", 5)
         return
     event = await edit_or_reply(
         show, "`Deleting deleted accounts...\nOh I can do that?!?!`"
@@ -416,25 +413,23 @@ async def rm_deletedacc(show):
             try:
                 await show.client.kick_participant(show.chat_id, user.id)
                 await sleep(0.5)
+                del_u += 1
             except ChatAdminRequiredError:
-                await event.edit("`I don't have ban rights in this group`")
+                await edit_delete(event, "`I don't have ban rights in this group`", 5)
                 return
             except UserAdminInvalidError:
-                del_u -= 1
                 del_a += 1
     if del_u > 0:
         del_status = f"Cleaned **{del_u}** deleted account(s)"
     if del_a > 0:
         del_status = f"Cleaned **{del_u}** deleted account(s) \
         \n**{del_a}** deleted admin accounts are not removed"
-    await event.edit(del_status)
-    await sleep(5)
-    await show.delete()
+    await edit_delete(event, del_status, 5)
     if BOTLOG:
         await show.client.send_message(
             BOTLOG_CHATID,
-            "#CLEANUP\n"
-            f"Cleaned **{del_u}** deleted account(s) !!\
+            f"#CLEANUP\
+            \n{del_status}\
             \nCHAT: {show.chat.title}(`{show.chat_id}`)",
         )
 
@@ -702,6 +697,7 @@ async def fetch_info(chat, event):
     if description:
         caption += f"Description: \n<code>{description}</code>\n"
     return caption
+
 
 
 CMD_HELP.update(
