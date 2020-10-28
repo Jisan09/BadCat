@@ -699,7 +699,6 @@ async def fetch_info(chat, event):
     return caption
 
 
-
 CMD_HELP.update(
     {
         "groupdata": "__**PLUGIN NAME :** Groupdata__\
