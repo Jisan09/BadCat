@@ -1,6 +1,6 @@
 import asyncio
+import calendar
 import json
-import logging
 import os
 from datetime import datetime
 from urllib.parse import quote
@@ -16,10 +16,6 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP
-
-logging.basicConfig(
-    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
-)
 
 
 @bot.on(admin_cmd(pattern="scan ?(.*)"))
@@ -193,32 +189,23 @@ async def make_qr(makeqr):
     await makeqr.delete()
 
 
-@bot.on(admin_cmd(pattern="calendar (.*)"))
-@bot.on(sudo_cmd(pattern="calendar (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="cal (.*)"))
+@bot.on(sudo_cmd(pattern="cal (.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
-    catevent = await edit_or_reply(event, "`Gathering infomation.......`")
     input_str = event.pattern_match.group(1)
-    input_sgra = input_str.split("-")
-    if len(input_sgra) == 3:
+    input_sgra = input_str.split(";")
+    if len(input_sgra) == 2:
         yyyy = input_sgra[0]
         mm = input_sgra[1]
-        dd = input_sgra[2]
-        required_url = "https://calendar.kollavarsham.org/api/years/{}/months/{}/days/{}?lang={}".format(
-            yyyy, mm, dd, "en"
-        )
-        headers = {"Accept": "application/json"}
-        response_content = requests.get(required_url, headers=headers).json()
-        a = ""
-        if "error" not in response_content:
-            current_date_detail_arraays = response_content["months"][0]["days"][0]
-            a = json.dumps(current_date_detail_arraays, sort_keys=True, indent=4)
-        else:
-            a = response_content["error"]
-        await catevent.edit(str(a))
+        try:
+            input = calendar.month(int(yyyy.strip()), int(mm.strip()))
+            await edit_or_reply(event, f"```{input}```")
+        except Exception as e:
+            await edit_delete(event, f"`{e}`", 5)
     else:
-        await catevent.edit("**Syntax : **`.calendar YYYY-MM-DD`")
+        await edit_delete(event, "**Syntax : **`.cal year ; month `", 5)
 
 
 @bot.on(admin_cmd(pattern="currency (.*)"))
@@ -387,6 +374,8 @@ CMD_HELP.update(
 \n**USAGE   ➥  **To get decoded content of those codes.\
 \n\n📌** CMD ➥** `.currency` amount (from currency) (to currency)\
 \n**USAGE   ➥  **Currency converter for userbot **Example :** `.currency 10 usd inr`\
+\n\n📌** CMD ➥** `cal year ; month`\
+\n**USAGE   ➥  **Shows you the calendar of given month and year.\
 \n\n📌** CMD ➥** `.currencies`\
 \n**USAGE   ➥  **Shows you the some list of currencies\
 \n\n📌** CMD ➥** `.ifsc` <IFSC code>\
