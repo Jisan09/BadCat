@@ -42,8 +42,8 @@ async def kickme(leave):
     await leave.client.kick_participant(leave.chat_id, "me")
 
 
-@bot.on(admin_cmd(pattern="get_admins ?(.*)"))
-@bot.on(sudo_cmd(pattern="get_admins ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="admins ?(.*)"))
+@bot.on(sudo_cmd(pattern="admins ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -95,19 +95,19 @@ async def _(event):
     await event.delete()
 
 
-@bot.on(admin_cmd(pattern="get_bots ?(.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="get_bots ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="bots ?(.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern="bots ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "**Bots in this Channel**: \n"
+    mentions = "**Bots in this Group**: \n"
     input_str = event.pattern_match.group(1)
     to_write_chat = await event.get_input_chat()
     chat = None
     if not input_str:
         chat = to_write_chat
     else:
-        mentions = "Bots in {} channel: \n".format(input_str)
+        mentions = "Bots in {} Group: \n".format(input_str)
         try:
             chat = await event.client.get_entity(input_str)
         except Exception as e:
@@ -703,20 +703,20 @@ CMD_HELP.update(
     {
         "groupdata": "__**PLUGIN NAME :** Groupdata__\
     \n\n📌** CMD ➥** `.kickme`\
-    \n**USAGE   ➥  **Throws you away from that chat\
-    \n\n📌** CMD ➥** `.get_admins` or .`get_admins <username of group >`\
-    \n**USAGE   ➥  **Retrieves a list of admins in the chat.\
-    \n\n📌** CMD ➥** `.get_bots or .get_bots <username of group >`\
-    \n**USAGE   ➥  **Retrieves a list of bots in the chat.\
-    \n\n📌** CMD ➥** `.users` or `.users <name of member>`\
-    \n**USAGE   ➥  **Retrieves all (or queried) users in the chat.\
+    \n**USAGE   ➥  **__Throws you away from that chat_\
+    \n\n📌** CMD ➥** `.admins` <or> `.admins <username of group >`\
+    \n**USAGE   ➥  **__Retrieves a list of admins in the chat.__\
+    \n\n📌** CMD ➥** `.bots` <or> `.bots <username of group >`\
+    \n**USAGE   ➥  **__Retrieves a list of bots in the chat.__\
+    \n\n📌** CMD ➥** `.users` <or> `.users <name of member>`\
+    \n**USAGE   ➥  **__Retrieves all (or queried) users in the chat.__\
     \n\n📌** CMD ➥** `.unbanall`\
-    \n**USAGE   ➥  **Unbans everyone who are blocked in that group \
+    \n**USAGE   ➥  **__Unbans everyone who are blocked in that group __\
     \n\n📌** CMD ➥** `.ikuck`\
-    \n**USAGE   ➥  **Stats of the group like no of users no of deleted users. \
-    \n\n📌** CMD ➥** `.chatinfo` or `.chatinfo <username of group>`\
-    \n**USAGE   ➥  **Shows you the total information of the required chat.\
+    \n**USAGE   ➥  **__stats of the group like no of users no of deleted users.__\
+    \n\n📌** CMD ➥** `.chatinfo` <or> `.chatinfo <username of group>`\
+    \n**USAGE   ➥  **__Shows you the total information of the required chat.__\
     \n\n📌** CMD ➥** `.zombies`\
-    \n**USAGE   ➥  **Searches for deleted accounts in a group. Use `.zombies clean` to remove deleted accounts from the group."
+    \n**USAGE   ➥  **__Searches for deleted accounts in a group. Use `.zombies clean` to remove deleted accounts from the group.__"
     }
 )
