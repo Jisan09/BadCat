@@ -73,14 +73,11 @@ class Config((object)):
     )
     CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
     # specify LOAD and NO_LOAD
-    NO_LOAD = [
-        "notification_mtab_manager",
-        "dbhelper",
-        "fban_gban",
-        "unbanmute",
-    ]
+    NO_LOAD = [x for x in os.environ.get("NO_LOAD", "").split()]
     # in alive message pic
     ALIVE_PIC = os.environ.get("ALIVE_PIC", None)
+    CUSTOM_ALIVE_TEXT = os.environ.get("CUSTOM_ALIVE_TEXT", None)
+    CUSTOM_ALIVE_EMOJI = os.environ.get("CUSTOM_ALIVE_EMOJI", None)
     # in pm permit pic
     PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
     CUSTOM_PMPERMIT_TEXT = os.environ.get("CUSTOM_PMPERMIT_TEXT", None)
@@ -165,8 +162,6 @@ class Config((object)):
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     # SpamWatch, CAS, SpamProtection ban Needed or not
     ANTISPAMBOT_BAN = os.environ.get("ANTISPAMBOT_BAN", False)
-    CUSTOM_ALIVE_TEXT = os.environ.get("CUSTOM_ALIVE_TEXT", None)
-    CUSTOM_ALIVE_EMOJI = os.environ.get("CUSTOM_ALIVE_EMOJI", None)
 
 
 class Production(Config):
