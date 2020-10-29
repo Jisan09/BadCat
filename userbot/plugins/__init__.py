@@ -40,7 +40,7 @@ def check(cat):
     if "/start" in cat:
         return True
     try:
-        hi = re.search(cat, "(a|b|c|d)", flags=re.IGNORECASE)
+        hi = re.search(cat.lower(), "(a|b|c|d)", flags=re.IGNORECASE)
     except:
         hi = False
     return bool(hi)
