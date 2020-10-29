@@ -3,13 +3,13 @@
 import asyncio
 import os
 import time
-from telethon import events
+from datetime import datetime
 from html import unescape
 from pathlib import Path
-from datetime import datetime
+
 from googleapiclient.discovery import build
-from telethon.tl.types import DocumentAttributeAudio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.types import DocumentAttributeAudio
 from youtube_dl import YoutubeDL
 from youtube_dl.utils import (
     ContentTooShortError,
@@ -22,9 +22,9 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 
-from . import CMD_HELP, hmention
 from .. import CMD_HELP, progress
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP, hmention
 
 
 @bot.on(admin_cmd(pattern="yt(a|v) (.*)", outgoing=True))
@@ -224,7 +224,7 @@ async def youtube_search(
         nexttok = "KeyError, try again."
         return (nexttok, videos)
 
-                  
+
 @bot.on(admin_cmd(outgoing=True, pattern="insta (.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="insta (.*)", allow_sudo=True))
 async def kakashi(event):
@@ -233,7 +233,9 @@ async def kakashi(event):
     chat = "@allsaverbot"
     link = event.pattern_match.group(1)
     if "www.instagram.com" not in link:
-        await edit_or_reply(event, "` I need a Instagram link to download it's Video...`(*_*)")
+        await edit_or_reply(
+            event, "` I need a Instagram link to download it's Video...`(*_*)"
+        )
     else:
         start = datetime.now()
         catevent = await edit_or_reply(event, "**Downloading.....**")
@@ -243,19 +245,27 @@ async def kakashi(event):
             response = await conv.get_response()
             msg = await conv.send_message(link)
             details = await conv.get_response()
-            response2 = await conv.get_response()
-            response3 = await conv.get_response()
+            await conv.get_response()
+            await conv.get_response()
             video = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await catevent.edit("**Error:** `unblock` @allsaverbot `and retry!`")
             return
         await catevent.delete()
-        cat = await event.client.send_file(event.chat_id, video,)
+        cat = await event.client.send_file(
+            event.chat_id,
+            video,
+        )
         end = datetime.now()
         ms = (end - start).seconds
-        await cat.edit(f"<b><i>➥ Video uploaded in {ms} seconds.</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",parse_mode="html",)
-    await event.client.delete_messages(conv.chat_id, [msg_start.id, response.id, msg.id, details.id, video.id])
+        await cat.edit(
+            f"<b><i>➥ Video uploaded in {ms} seconds.</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
+            parse_mode="html",
+        )
+    await event.client.delete_messages(
+        conv.chat_id, [msg_start.id, response.id, msg.id, details.id, video.id]
+    )
 
 
 CMD_HELP.update(
