@@ -10,7 +10,7 @@ from . import CMD_HELP
 
 
 @bot.on(admin_cmd(pattern="firmware(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="firmware(?: |$)(.*)", allow_sudo=True))
+@bot.on(sudo_cmd(pattern="firmware(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -33,8 +33,32 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, respond.message)
 
 
+@bot.on(admin_cmd(pattern="vendor(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="vendor(?: |$)(.*)", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    link = event.pattern_match.group(1)
+    vendor = f"vendor"
+    catevent = await edit_or_reply(event, "```Processing```")
+    async with event.client.conversation("@XiaomiGeeksBot") as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{vendor} {link}")
+            respond = await response
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit("```Unblock @XiaomiGeeksBot plox```")
+            return
+        else:
+            await catevent.delete()
+            await event.client.forward_messages(event.chat_id, respond.message)
+
+
 @bot.on(admin_cmd(pattern="specs(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="specs(?: |$)(.*)", allow_sudo=True))
+@bot.on(sudo_cmd(pattern="specs(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -58,7 +82,7 @@ async def _(event):
 
 
 @bot.on(admin_cmd(pattern="fastboot(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="fastboot(?: |$)(.*)", allow_sudo=True))
+@bot.on(sudo_cmd(pattern="fastboot(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -82,7 +106,7 @@ async def _(event):
 
 
 @bot.on(admin_cmd(pattern="recovery(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="recovery(?: |$)(.*)", allow_sudo=True))
+@bot.on(sudo_cmd(pattern="recovery(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -106,7 +130,7 @@ async def _(event):
 
 
 @bot.on(admin_cmd(pattern="pb(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="pb(?: |$)(.*)", allow_sudo=True))
+@bot.on(sudo_cmd(pattern="pb(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -129,8 +153,32 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, respond.message)
 
 
+@bot.on(admin_cmd(pattern="twrp(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="twrp(?: |$)(.*)", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    link = event.pattern_match.group(1)
+    twrp = f"twrp"
+    catevent = await edit_or_reply(event, "```Processing```")
+    async with event.client.conversation("@XiaomiGeeksBot") as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=774181428)
+            )
+            await conv.send_message(f"/{twrp} {link}")
+            respond = await response
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit("```Unblock @XiaomiGeeksBot plox```")
+            return
+        else:
+            await catevent.delete()
+            await event.client.forward_messages(event.chat_id, respond.message)
+
+
 @bot.on(admin_cmd(pattern="of(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="of(?: |$)(.*)", allow_sudo=True))
+@bot.on(sudo_cmd(pattern="of(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -159,6 +207,8 @@ CMD_HELP.update(
         \n\n__**For Xiaomeme devices only!**__\
 \n\n📌** CMD ➥** `.firmware` (codename)\
 \n**USAGE   ➥  **Get lastest Firmware\
+\n\n📌** CMD ➥** `.vendor` (codename)\
+\n**USAGE   ➥  **Get lastest Vendor\
 \n\n📌** CMD ➥** `.pb` (codename)\
 \n**USAGE   ➥  **Get latest PBRP\
 \n\n📌** CMD ➥** `.specs` (codename)\
@@ -167,6 +217,8 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Get latest fastboot MIUI\
 \n\n📌** CMD ➥** `.recovery` (codename)\
 \n**USAGE   ➥  **Get latest recovery MIUI\
+\n\n📌** CMD ➥** `.twrp` (codename)\
+\n**USAGE   ➥  **Get latest twrp recovery\
 \n\n📌** CMD ➥** `.of` (codename)\
 \n**USAGE   ➥  **Get latest ORangeFox Recovery"
     }
