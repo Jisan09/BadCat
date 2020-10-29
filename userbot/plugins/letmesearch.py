@@ -1,8 +1,9 @@
 from asyncio import sleep
 
 import requests
-from . import BOTLOG, BOTLOG_CHATID
+
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import BOTLOG, BOTLOG_CHATID
 
 
 @bot.on(admin_cmd(pattern="lfy ?(.*)"))
@@ -33,6 +34,7 @@ async def _(event):
             BOTLOG_CHATID,
             f"LMGTFY query `{input_str}` was executed successfully",
         )
+
 
 @bot.on(admin_cmd(pattern="lmg (.*)"))
 @bot.on(sudo_cmd(pattern="lmg (.*)", allow_sudo=True))
