@@ -81,7 +81,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "sangamata": "__**PLUGIN NAME :** Sangamata__\
+        "sangmata": "__**PLUGIN NAME :** Sangmata__\
     \n\n📌** CMD ➥** `.sg` <username/userid/reply>\
     \n**USAGE   ➥  **Shows you the previous name history of user.\
     \n\n📌** CMD ➥** `.sgu` <username/userid/reply>\
