@@ -191,7 +191,7 @@ async def video_catfile(event):
             return
         catevent = await edit_or_reply(event, "`Converting to video note..........`")
         catfile = await reply.download_media(file="./temp/")
-    if not catfile.endswith((".mp4", ".tgs", ".mp3", ".mov", ".gif")):
+    if not catfile.endswith((".mp4", ".tgs", ".mp3", ".mov", ".gif", ".opus")):
         os.remove(catfile)
         await edit_delete(catevent, "```Supported Media not found...```", 5)
         return
@@ -274,12 +274,9 @@ async def video_catfile(event):
 CMD_HELP.update(
     {
         "upload": "__**PLUGIN NAME :** Upload__\
-    \n\n📌** CMD ➥** `.upload` path of file\
-    \n**USAGE   ➥  **Uploads the file from the server\
-    \n\n📌** CMD ➥** `.uploadasstream` path of video/audio\
-    \n**USAGE   ➥  **Uploads video/audio as streamable from the server\
-    \n\n📌** CMD ➥** `.uploadasvn path of video`\
-    \n**USAGE   ➥  **Uploads video/audio as round video from the server **Present supports few videos need to work onit takes some time to develop it **\
-    "
+    \n\n📌** CMD ➥** `.upload` <path of file/folder>\
+    \n**USAGE   ➥  **__Uploads the file from the server or list of files from that folder__\
+    \n\n📌** CMD ➥** `.circle` <reply to media or path of media>\
+    \n**USAGE   ➥  **__Uploads video/audio as streamable from the server__"
     }
 )
