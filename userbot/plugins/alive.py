@@ -124,6 +124,6 @@ CMD_HELP.update(
       \n\n📌** CMD ➥** `.alive`\
       \n**USAGE   ➥  **To see wether your bot is working or not.\
       \n\n📌** CMD ➥** `.ialive`\
-      \n**USAGE   ➥**  status of bot."
+      \n**USAGE   ➥  **__Status of bot will be showed by inline mode with button__."
     }
 )
