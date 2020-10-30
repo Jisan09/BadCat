@@ -22,9 +22,8 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 
-from .. import CMD_HELP, progress
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP, hmention
+from . import CMD_HELP, hmention, progress
 
 
 @bot.on(admin_cmd(pattern="yt(a|v) (.*)", outgoing=True))
@@ -225,6 +224,7 @@ async def youtube_search(
         return (nexttok, videos)
 
 
+#Created by @Jisan7509
 @bot.on(admin_cmd(outgoing=True, pattern="insta (.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="insta (.*)", allow_sudo=True))
 async def kakashi(event):
