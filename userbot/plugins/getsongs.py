@@ -165,6 +165,8 @@ async def _(event):
 """
 By @Jisan7509
 """
+
+
 @bot.on(admin_cmd(pattern="sdl (.*)"))
 @bot.on(sudo_cmd(pattern="sdl (.*)", allow_sudo=True))
 async def kakashi(event):
@@ -196,9 +198,11 @@ async def kakashi(event):
             caption=f"<b><i>➥ Song :- {song}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
             parse_mode="html",
         )
-    await event.client.delete_messages(conv.chat_id, [msg_start.id, response.id, msg.id, response2.id, music.id])
-    
-    
+    await event.client.delete_messages(
+        conv.chat_id, [msg_start.id, response.id, msg.id, response2.id, music.id]
+    )
+
+
 @bot.on(admin_cmd(pattern="music (.*)"))
 @bot.on(sudo_cmd(pattern="music (.*)", allow_sudo=True))
 async def kakashi(event):
