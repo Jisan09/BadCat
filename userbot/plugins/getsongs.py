@@ -268,7 +268,7 @@ CMD_HELP.update(
         \n\n📌** CMD ➥** `.vsong` <query> or `.vsong reply to song name`\
         \n**USAGE   ➥  **Searches the video song you entered in query and sends it\
         \n\n📌** CMD ➥** `.music` <Artist - Song Title>\
-        \n**USAGE   ➥  **Download yor music by just name\
+        \n**USAGE   ➥  **Download your music by just name\
         \n\n📌** CMD ➥** `.dzd` <Spotify/Deezer Link>\
         \n**USAGE   ➥  **Download music from Spotify or Deezer."
     }
