@@ -224,7 +224,7 @@ async def youtube_search(
         return (nexttok, videos)
 
 
-#Created by @Jisan7509
+# Created by @Jisan7509
 @bot.on(admin_cmd(outgoing=True, pattern="insta (.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="insta (.*)", allow_sudo=True))
 async def kakashi(event):
