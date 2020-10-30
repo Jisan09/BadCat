@@ -162,7 +162,7 @@ async def _(event):
         if files and os.path.exists(files):
             os.remove(files)
 
-
+"""
 @bot.on(admin_cmd(outgoing=True, pattern="spd(?: |$)(.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="spd(?: |$)(.*)", allow_sudo=True))
 async def _(event):
@@ -184,10 +184,14 @@ async def _(event):
         await catevent.delete()
         await event.client.forward_messages(event.chat_id, respond.message)
         await event.client.send_read_acknowledge(conv.chat_id)
+        
+        
+        \n\n📌** CMD ➥** `.spd` <Artist - Song Title>\
+        \n**USAGE   ➥  **For searching songs from Spotify.\
+"""
 
-
-@bot.on(admin_cmd(outgoing=True, pattern="netease(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="netease(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="music (.*)"))
+@bot.on(sudo_cmd(pattern="music (.*)", allow_sudo=True))
 async def kakashi(event):
     if event.fwd_from:
         return
@@ -197,22 +201,24 @@ async def kakashi(event):
     catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
     async with event.client.conversation(chat) as conv:
         try:
-            msg = await conv.send_message(link)
+            msg_start = await conv.send_message("/start")
             response = await conv.get_response()
-            respond = await conv.get_response()
+            msg = await conv.send_message(link)
+            baka = await conv.get_response()
+            music = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await catevent.edit("```Please unblock @WooMaiBot and try again```")
             return
         await catevent.edit("`Sending Your Music...`")
-        await asyncio.sleep(3)
+        await asyncio.sleep(1.5)
         await catevent.delete()
-        await event.client.send_file(event.chat_id, respond)
-    await event.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
+        await event.client.send_file(event.chat_id, music, caption=f"<b><i>➥ Song :- {song}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",parse_mode="html",)
+    await event.client.delete_messages(conv.chat_id, [msg_start.id, response.id, msg.id, baka.id, music.id])
 
-
-@bot.on(admin_cmd(outgoing=True, pattern="dzd(?: |$)(.*)"))
-@bot.on(sudo_cmd(outgoing=True, pattern="dzd(?: |$)(.*)", allow_sudo=True))
+    
+@bot.on(admin_cmd(outgoing=True, pattern="dzd (.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="dzd (.*)", allow_sudo=True))
 async def kakashi(event):
     if event.fwd_from:
         return
@@ -253,10 +259,8 @@ CMD_HELP.update(
         \n**USAGE   ➥  **Searches the song you entered in query and sends it quality of it is 320k\
         \n\n📌** CMD ➥** `.vsong` <query> or `.vsong reply to song name`\
         \n**USAGE   ➥  **Searches the video song you entered in query and sends it\
-        \n\n📌** CMD ➥** `.spd` <Artist - Song Title>\
-        \n**USAGE   ➥  **For searching songs from Spotify.\
-        \n\n📌** CMD ➥** `.netease` <Artist - Song Title>\
-        \n**USAGE   ➥  **Download music with @WooMaiBot\
+        \n\n📌** CMD ➥** `.music` <Artist - Song Title>\
+        \n**USAGE   ➥  **Download yor music by just name\
         \n\n📌** CMD ➥** `.dzd` <Spotify/Deezer Link>\
         \n**USAGE   ➥  **Download music from Spotify or Deezer."
     }
