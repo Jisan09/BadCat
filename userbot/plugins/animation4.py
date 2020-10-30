@@ -31,7 +31,7 @@ async def _(event):
         await event.edit(animation_chars[i % 8])
 
 
-@bot.on(admin_cmd(pattern=r"acarry$"))
+@bot.on(admin_cmd(pattern="acarry$"))
 @bot.on(sudo_cmd(pattern="acarry$", allow_sudo=True))
 async def kakashi(event):
     if event.fwd_from:
@@ -51,8 +51,8 @@ async def kakashi(event):
         await cat.edit(animation_chars[i % 5])
 
 
-@bot.on(admin_cmd(pattern=f"eye$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"eye$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="eye$", outgoing=True))
+@bot.on(sudo_cmd(pattern="eye$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -78,8 +78,8 @@ async def _(event):
     await event.delete()
 
 
-@bot.on(admin_cmd(pattern=f"uff", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"uff$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="uff$", outgoing=True))
+@bot.on(sudo_cmd(pattern="uff$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -106,8 +106,8 @@ async def _(event):
         await event.edit(animation_chars[i % 13])
 
 
-@bot.on(admin_cmd(pattern=f"hm", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"hm$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="hm$", outgoing=True))
+@bot.on(sudo_cmd(pattern="hm$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -158,8 +158,8 @@ async def _(event):
         await event.edit(animation_chars[i % 7])
 
 
-@bot.on(admin_cmd(pattern=f"idot$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"idot$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="idot$", outgoing=True))
+@bot.on(sudo_cmd(pattern="idot$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -185,8 +185,8 @@ async def _(event):
     )
 
 
-@bot.on(admin_cmd(pattern=f"snake$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"snake$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="snake$", outgoing=True))
+@bot.on(sudo_cmd(pattern="snake$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -227,8 +227,8 @@ async def _(event):
         await event.edit(animation_chars[i % 27])
 
 
-@bot.on(admin_cmd(pattern=f"human$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"human$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="human$", outgoing=True))
+@bot.on(sudo_cmd(pattern="human$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -258,8 +258,8 @@ async def _(event):
         await event.edit(animation_chars[i % 16])
 
 
-@bot.on(admin_cmd(pattern=f"mc$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"mc$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="mc$", outgoing=True))
+@bot.on(sudo_cmd(pattern="mc$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -301,8 +301,8 @@ async def _(event):
         await event.edit(animation_chars[i % 28])
 
 
-@bot.on(admin_cmd(pattern=f"virus$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"virus$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="virus$", outgoing=True))
+@bot.on(sudo_cmd(pattern="virus$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -346,8 +346,8 @@ async def _(event):
         await event.edit(animation_chars[i % 30])
 
 
-@bot.on(admin_cmd(pattern=f"music$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"music$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="music$", outgoing=True))
+@bot.on(sudo_cmd(pattern="music$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -372,8 +372,8 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"squ$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"squ$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="squ$", outgoing=True))
+@bot.on(sudo_cmd(pattern="squ$", allow_sudo=True))
 async def _(event):
     event = await edit_or_reply(event, "squ...")
     await event.edit("╔═══════════════════╗ \n  \n╚═══════════════════╝")
