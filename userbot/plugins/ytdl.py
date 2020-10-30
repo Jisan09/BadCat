@@ -1,4 +1,5 @@
 # Thanks to @AvinashReddy3108 for this plugin
+# Instadl by @Jisan7509
 
 import asyncio
 import os
@@ -224,7 +225,6 @@ async def youtube_search(
         return (nexttok, videos)
 
 
-# Created by @Jisan7509
 @bot.on(admin_cmd(outgoing=True, pattern="insta (.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="insta (.*)", allow_sudo=True))
 async def kakashi(event):
@@ -274,7 +274,7 @@ CMD_HELP.update(
     \n\n📌** CMD ➥** `.yta` <link>\
     \n**USAGE   ➥  **Downloads the audio from the given link(Suports the all sites which support youtube-dl)\
     \n\n📌** CMD ➥** `.ytv` <link>\
-    \n**USAGE   ➥  **Downloads th video from the given link(Suports the all sites which support youtube-dl)\
+    \n**USAGE   ➥  **Downloads the video from the given link(Suports the all sites which support youtube-dl)\
     \n\n📌** CMD ➥** `.yts` <query>\
     \n**USAGE   ➥  **Fetches youtube results you need api token for this\
     \n\n📌** CMD ➥** `.insta` <link>\
