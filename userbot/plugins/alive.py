@@ -23,7 +23,6 @@ async def amireallyalive(alive):
     reply_to_id = alive.message
     uptime = await catdef.get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
-    bot.uid
     if alive.reply_to_msg_id:
         reply_to_id = await alive.get_reply_message()
     if CAT_IMG:
