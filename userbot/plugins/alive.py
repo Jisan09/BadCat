@@ -3,10 +3,8 @@ from platform import python_version
 
 from telethon import version
 
-from . import CMD_HELP, StartTime, catdef, catversion, hmention
-
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-
+from . import CMD_HELP, StartTime, catdef, catversion, hmention
 
 CAT_IMG = Config.ALIVE_PIC
 JISAN = (
@@ -25,7 +23,7 @@ async def amireallyalive(alive):
     reply_to_id = alive.message
     uptime = await catdef.get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
-    hmm = bot.uid
+    bot.uid
     if alive.reply_to_msg_id:
         reply_to_id = await alive.get_reply_message()
     if CAT_IMG:
@@ -63,7 +61,8 @@ async def amireallyalive(alive):
             f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
             f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
             f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
-            "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>", parse_mode="html",
+            "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>",
+            parse_mode="html",
         )
 
 
