@@ -27,7 +27,7 @@ async def amireallyalive(alive):
         reply_to_id = await alive.get_reply_message()
     if CAT_IMG:
         cat_caption = f"<b>{JISAN}</b>\n\n"
-        cat_caption += f"<b>{EMOJI} Master :</b> {hmention}</b>\n"
+        cat_caption += f"<b>{EMOJI} Master : {hmention}</b>\n"
         cat_caption += f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
         cat_caption += (
             f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
@@ -54,7 +54,7 @@ async def amireallyalive(alive):
         await edit_or_reply(
             alive,
             f"<b>{JISAN}</b>\n\n"
-            f"<b>{EMOJI} Master :</b> {hmention}</b>\n"
+            f"<b>{EMOJI} Master : {hmention}</b>\n"
             f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
             f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
             f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
