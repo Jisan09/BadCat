@@ -191,7 +191,7 @@ async def _(event):
         output_str += f"- {channel_obj.title} @{channel_obj.username} \n"
     await event.edit(output_str)
 
-    
+
 CMD_HELP.update(
     {
         "profile": "__**PLUGIN NAME :** Profile__\
