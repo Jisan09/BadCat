@@ -41,7 +41,7 @@ async def _(event):
                     await edit_delete(event, f"`{str(e)}`", 5)
 
         await edit_or_reply(event, f"`{to_add_users} is/are Invited Successfully`")
-        
+
 
 CMD_HELP.update(
     {
