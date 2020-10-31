@@ -148,8 +148,8 @@ async def _(event):
     afk_start = start_1.replace(microsecond=0)
     if not USERAFK_ON:
         input_str = event.pattern_match.group(1)
-        if " " in input_str:
-            msg, link = input_str.split(" ", 1)
+        if ";" in input_str:
+            msg, link = input_str.split(";", 1)
             reason = f"[{msg}]({link})"
         else:
             reason = f"{input_str}"
