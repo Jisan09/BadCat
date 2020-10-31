@@ -5,7 +5,7 @@ from telethon import events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 
 from ..utils import admin_cmd
-from . import ALIVE_NAME, CMD_HELP, PM_START, PMMENU, check, mention
+from . import CMD_HELP, PM_START, PMMENU, check, mention
 from .sql_helper import pmpermit_sql as pmpermit_sql
 
 PM_WARNS = {}
