@@ -4,7 +4,7 @@ from platform import python_version
 from telethon import version
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP, StartTime, catdef, catversion, hmention
+from . import CMD_HELP, StartTime, catdef, catversion, mention, hmention
 
 CAT_IMG = Config.ALIVE_PIC
 JISAN = (
@@ -74,9 +74,8 @@ async def amireallyalive(alive):
     reply_to_id = alive.message
     if alive.reply_to_msg_id:
         reply_to_id = await alive.get_reply_message()
-    hmm = bot.uid
     cat_caption = f"**Catuserbot is Up and Running**\n"
-    cat_caption += f"**  -Master :** [{DEFAULTUSER}](tg://user?id={hmm})\n"
+    cat_caption += f"**  -Master :** {mention}\n"
     cat_caption += f"**  -Python Version :** `{python_version()}\n`"
     cat_caption += f"**  -Telethon version :** `{version.__version__}\n`"
     cat_caption += f"**  -Catuserbot Version :** `{catversion}`\n"
