@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import progress
+from . import CMD_HELP, progress
 
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "thumb_image.jpg"
 
@@ -80,6 +80,10 @@ async def _(event):
         )
         end = datetime.now()
         ms_one = (end - start).seconds
+        try:
+            thumb = await reply_message.download_media(thumb=-1)
+        except Exception:
+            thumb = thumb
         if os.path.exists(downloaded_file_name):
             c_time = time.time()
             caat = await event.client.send_file(
@@ -110,3 +114,15 @@ async def _(event):
         await catevent.edit(
             "**Syntax : **`.rnupload file.name` as reply to a Telegram media"
         )
+        
+
+CMD_HELP.update(
+    {
+        "rename": "__**PLUGIN NAME :** Rename__\
+    \n\n📌** CMD ➥** `.rename` <filename>\
+    \n**USAGE   ➥  **__Reply to media with above command to save in your server with that given filename__\
+    \n\n📌** CMD ➥** `.rnup` <filename>\
+    \n**USAGE   ➥  **__Reply to media with above command to rename and upload the file with given name__\
+    "
+    }
+)
