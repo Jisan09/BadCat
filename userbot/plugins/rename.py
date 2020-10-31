@@ -114,7 +114,7 @@ async def _(event):
         await catevent.edit(
             "**Syntax : **`.rnupload file.name` as reply to a Telegram media"
         )
-        
+
 
 CMD_HELP.update(
     {
