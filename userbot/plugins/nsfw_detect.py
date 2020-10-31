@@ -56,7 +56,7 @@ async def detect(event):
         parse_mode="HTML",
     )
 
-    
+
 CMD_HELP.update(
     {
         "nsfw_detect": "__**PLUGIN NAME :** Nsfw_detect__\
