@@ -107,7 +107,7 @@ async def on_afk(event):
     if USERAFK_ON and not (await event.get_sender()).bot:
         msg = None
         message_to_reply = (
-            f"**I am AFK .**\n\n**AFK Since : {endtime}**\n**Reason : **__{reason}__"
+            f"**I am AFK .**\n\n**AFK Since : {endtime}**\n**Reason : **{reason}"
             if reason
             else f"**I am AFK .**\n\n**AFK Since : {endtime}**\n**Reason : **`Not Mentioned ( ಠ ʖ̯ ಠ)`"
         )
@@ -161,7 +161,7 @@ async def _(event):
         USERAFK_ON = f"on: {reason}"
         if reason:
             await edit_delete(
-                event, f"`I shall be Going afk! because ~` __{reason}__", 5
+                event, f"`I shall be Going afk! because ~` {reason}", 5
             )
         else:
             await edit_delete(event, f"`I shall be Going afk! `", 5)
