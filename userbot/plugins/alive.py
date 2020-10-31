@@ -3,11 +3,11 @@ from platform import python_version
 
 from telethon import version
 
-from userbot import ALIVE_NAME, CMD_HELP, StartTime, catdef, catversion
+from . import CMD_HELP, StartTime, catdef, catversion, hmention
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
+
 CAT_IMG = Config.ALIVE_PIC
 JISAN = (
     str(Config.CUSTOM_ALIVE_TEXT)
@@ -30,7 +30,7 @@ async def amireallyalive(alive):
         reply_to_id = await alive.get_reply_message()
     if CAT_IMG:
         cat_caption = f"<b>{JISAN}</b>\n\n"
-        cat_caption += f"<b>{EMOJI} Master :</b> <a href = tg://user?id={hmm}><b>{DEFAULTUSER}</b></a>\n"
+        cat_caption += f"<b>{EMOJI} Master :</b> {hmention}</b>\n"
         cat_caption += f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
         cat_caption += (
             f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
@@ -56,14 +56,14 @@ async def amireallyalive(alive):
     else:
         await edit_or_reply(
             alive,
-            f"** {JISAN}**\n\n"
-            f"**{EMOJI} Master:** [{DEFAULTUSER}](tg://user?id={hmm})\n"
-            f"**{EMOJI} Uptime :** `{uptime}\n`"
-            f"**{EMOJI} Python Version :** `{python_version()}\n`"
-            f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
-            f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-            f"**{EMOJI} Database :** `{check_sgnirts}`\n\n"
-            "   **[GoodCat]**(https://github.com/sandy1709/catuserbot) | **[BadCat]**(https://github.com/Jisan09/catuserbot) | **[Support]**(https://t.me/catuserbot_support) ",
+            f"<b>{JISAN}</b>\n\n"
+            f"<b>{EMOJI} Master :</b> {hmention}</b>\n"
+            f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
+            f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
+            f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
+            f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
+            f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
+            "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>", parse_mode="html",
         )
 
 
