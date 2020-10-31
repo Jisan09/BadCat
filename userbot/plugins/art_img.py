@@ -12,8 +12,8 @@ from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP, mention
 
 
-@bot.on(admin_cmd("ascii ?(.*)"))
-@bot.on(sudo_cmd(pattern="ascii ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd("iascii ?(.*)"))
+@bot.on(sudo_cmd(pattern="iascii ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -94,7 +94,7 @@ async def _(event):
 CMD_HELP.update(
     {
         "art_img": "__**PLUGIN NAME :** Art Image__\
-      \n\n📌** CMD ➥** `.ascii` reply to any image file:\
+      \n\n📌** CMD ➥** `.iascii` reply to any image file:\
       \n**USAGE   ➥  **Makes an image ascii style, try out your own.\
       \n\n📌** CMD ➥** `.line` reply to any image file:\
       \n**USAGE   ➥  **Makes an image line style.\ "
