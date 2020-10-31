@@ -807,6 +807,8 @@ CMD_HELP.update(
     \n**USAGE   ➥  **Creates a image meme with give text at specific locations and sends\
     \n\n📌** CMD ➥** `.mms toptext ; bottomtext`\
     \n**USAGE   ➥  **Creates a sticker meme with give text at specific locations and sends\
+    \n\n📌** CMD ➥** `.ascii`\
+    \n**USAGE   ➥  **Reply to media file to get ascii image of that media\
     \n\n📌** CMD ➥** `.invert`\
     \n**USAGE   ➥  **Inverts the colors in media file\
     \n\n📌** CMD ➥** `.solarize`\
