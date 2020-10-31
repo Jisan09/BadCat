@@ -182,6 +182,8 @@ CMD_HELP.update(
 \n\n📌** CMD ➥** `.afk` [Optional Reason]\
 \n**USAGE   ➥  **Sets you as afk.\nReplies to anyone who tags/PM's \
 you telling them that you are AFK(reason)\n\n__Switches off AFK when you type back anything, anywhere.__\
+\n\n**Note :** If you want AFK with hyperlink use " ; " after reason then paste the media link.\
+\n**Example :** `.afk Study time ;<Media_link>`\
 "
     }
 )
