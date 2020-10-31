@@ -22,6 +22,10 @@ class Config((object)):
     PRIVATE_GROUP_BOT_API_ID = os.environ.get("PRIVATE_GROUP_BOT_API_ID", None)
     if PRIVATE_GROUP_BOT_API_ID:
         PRIVATE_GROUP_BOT_API_ID = int(PRIVATE_GROUP_BOT_API_ID)
+    # same as  PRIVATE_GROUP_BOT_API_ID but set only if you need pmpermit
+    PRIVATE_GROUP_ID = os.environ.get("PRIVATE_GROUP_ID", None)
+    if PRIVATE_GROUP_ID:
+        PRIVATE_GROUP_ID = int(PRIVATE_GROUP_ID)
     # Send .get_id in any channel to fill this value. ReQuired for @Manuel15
     # inspiration to work!
     PRIVATE_CHANNEL_BOT_API_ID = os.environ.get("PRIVATE_CHANNEL_BOT_API_ID", None)
@@ -74,7 +78,7 @@ class Config((object)):
     CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
     # specify LOAD and NO_LOAD
     NO_LOAD = [x for x in os.environ.get("NO_LOAD", "").split()]
-    # in alive message pic
+    # in alive
     ALIVE_PIC = os.environ.get("ALIVE_PIC", None)
     CUSTOM_ALIVE_TEXT = os.environ.get("CUSTOM_ALIVE_TEXT", None)
     CUSTOM_ALIVE_EMOJI = os.environ.get("CUSTOM_ALIVE_EMOJI", None)
@@ -162,6 +166,8 @@ class Config((object)):
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     # SpamWatch, CAS, SpamProtection ban Needed or not
     ANTISPAMBOT_BAN = os.environ.get("ANTISPAMBOT_BAN", False)
+    # Deepai value can get from https://deepai.org/
+    DEEP_AI = os.environ.get("DEEP_AI", None)
 
 
 class Production(Config):
