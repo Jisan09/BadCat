@@ -6,6 +6,7 @@ import os
 import requests
 
 from ..utils import admin_cmd, sudo_cmd
+from . import CMD_HELP
 
 
 @bot.on(admin_cmd(pattern="detect$", outgoing=True))
@@ -17,8 +18,15 @@ async def detect(event):
         )
     reply = await event.get_reply_message()
     if not reply:
-        return await edit_delete(event, "`Reply to media !`", 5)
+        return await edit_delete(
+            event, "`Reply to any image or non animated sticker !`", 5
+        )
+    catevent = await edit_or_reply(event, "`Downloading the file to check...`")
     media = await event.client.download_media(reply)
+    if not media.endswith(("png", "jpg", "webp")):
+        return await edit_delete(
+            event, "`Reply to any image or non animated sticker !`", 5
+        )
     catevent = await edit_or_reply(event, "`Detecting NSFW limit...`")
     r = requests.post(
         "https://api.deepai.org/api/nsfw-detector",
@@ -40,10 +48,19 @@ async def detect(event):
         for parts in detections:
             name = parts["name"]
             confidence = int(float(parts["confidence"]) * 100)
-            result += f"• {name}:\n   <code>{confidence} %</code>\n"
+            result += f"<b>• {name}:</b>\n   <code>{confidence} %</code>\n"
     await edit_or_reply(
         catevent,
         result,
         link_preview=False,
         parse_mode="HTML",
     )
+
+    
+CMD_HELP.update(
+    {
+        "nsfw_detect": "__**PLUGIN NAME :** Nsfw_detect__\
+    \n\n📌** CMD ➥** `.detect`\
+    \n**USAGE   ➥  **__Reply .detect command to any image or non animated sticker to detect the nudity in that__"
+    }
+)
