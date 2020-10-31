@@ -38,8 +38,9 @@ async def on_new_message(event):
 async def on_add_black_list(event):
     text = event.pattern_match.group(1)
     to_blacklist = list(
-        set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
+        {trigger.strip() for trigger in text.split("\n") if trigger.strip()}
     )
+
     for trigger in to_blacklist:
         sql.add_to_blacklist(event.chat_id, trigger.lower())
     await edit_or_reply(
@@ -55,12 +56,15 @@ async def on_add_black_list(event):
 async def on_delete_blacklist(event):
     text = event.pattern_match.group(1)
     to_unblacklist = list(
-        set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
+        {trigger.strip() for trigger in text.split("\n") if trigger.strip()}
     )
-    successful = 0
-    for trigger in to_unblacklist:
-        if sql.rm_from_blacklist(event.chat_id, trigger.lower()):
-            successful += 1
+
+    successful = sum(
+        1
+        for trigger in to_unblacklist
+        if sql.rm_from_blacklist(event.chat_id, trigger.lower())
+    )
+
     await edit_or_reply(
         event, f"Removed {successful} / {len(to_unblacklist)} from the blacklist"
     )
@@ -75,16 +79,16 @@ async def on_view_blacklist(event):
         for trigger in all_blacklisted:
             OUT_STR += f"👉 {trigger} \n"
     else:
-        OUT_STR = "No BlackLists. Start Saving using `.addblacklist`"
+        OUT_STR = "No Blacklists found. Start saving using `.addblacklist`"
     if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "blacklist.text"
-            await borg.send_file(
+            await event.client.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
                 allow_cache=False,
-                caption="BlackLists in the Current Chat",
+                caption="Blacklists in the Current Chat",
                 reply_to=event,
             )
             await event.delete()
