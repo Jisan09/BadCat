@@ -68,7 +68,7 @@ async def _(event):
             change_info=changeinfo,
         )
         try:
-            result = await borg(  # pylint:disable=E0602
+            result = await event.client(  # pylint:disable=E0602
                 functions.messages.EditChatDefaultBannedRightsRequest(
                     peer=peer_id, banned_rights=banned_rights
                 )
@@ -205,11 +205,11 @@ async def _(event):
             rights = types.ChatBannedRights(until_date=None, view_messages=True)
             added_users = event.action_message.action.users
             for user_id in added_users:
-                user_obj = await borg.get_entity(user_id)
+                user_obj = await event.client.get_entity(user_id)
                 if user_obj.bot:
                     is_ban_able = True
                     try:
-                        await borg(
+                        await event.client(
                             functions.channels.EditBannedRequest(
                                 event.chat_id, user_obj, rights
                             )

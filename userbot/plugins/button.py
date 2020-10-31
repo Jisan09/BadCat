@@ -52,7 +52,7 @@ async def _(event):
     tgbot_reply_message = None
     if reply_message:
         if reply_message.media:
-            tgbot_reply_message = await borg.download_media(reply_message.media)
+            tgbot_reply_message = await event.client.download_media(reply_message.media)
     await tgbot.send_message(
         entity=chat,
         message=message_text,
