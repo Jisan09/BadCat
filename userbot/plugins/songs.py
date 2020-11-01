@@ -296,7 +296,7 @@ async def kakashi(event):
 
 CMD_HELP.update(
     {
-        "getsongs": "__**PLUGIN NAME :** Get Songs__\
+        "songs": "__**PLUGIN NAME :** Songs__\
         \n\n📌** CMD ➥** `.song` <query>\
         \n**USAGE   ➥  **Searches the song you entered in query and sends it.\
         \n\n📌** CMD ➥** `.vsong` <query> or `.vsong reply to song name`\
