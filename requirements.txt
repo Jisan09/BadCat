@@ -1,6 +1,7 @@
 telethon >= 1.17.0
 aiofiles
 aiohttp
+aria2p
 asyncurban
 beautifulsoup4
 cairosvg
