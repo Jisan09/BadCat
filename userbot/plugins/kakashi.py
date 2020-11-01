@@ -4,6 +4,7 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from . import CMD_HELP
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="note_help$"))
@@ -60,8 +61,6 @@ async def kakashi(event):
         link = "Forward"
     elif link in ("custompmtext", "cppt"):
         link = "Custom PM Permit Text"
-    elif link in ("liveusername", "lu"):
-        link = "Live Username"
     elif link in ("customalivetext", "cat"):
         link = "Custom Alive Text"
     elif link in ("customaliveemoji", "cae"):
@@ -85,3 +84,15 @@ async def kakashi(event):
             await catevent.delete()
             await event.client.forward_messages(event.chat_id, response.message)
             await event.client.send_read_acknowledge(conv.chat_id)
+
+
+CMD_HELP.update(
+    {
+        "kakashi": "__**PLUGIN NAME :** Kakashi__\
+    \n\n📌** CMD ➥** `.note_help` \
+    \n**USAGE   ➥  **To get code name list of notes present in kakashi.\
+    \n\n📌** CMD ➥** `.note <name of note or give it's code name>`\
+    \n**USAGE   ➥  **Type .note_name/note_code to get the corresponding note.\
+    \n\n**Example:** `.note ap` , this will send you note on how to set alive pic."
+    }
+)

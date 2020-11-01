@@ -5,7 +5,6 @@ Online = Remove Offline Tag from your name and change profile pic to vars PROFIL
 Note - If you have a last name remove it unless it automatically removed.
 """
 
-
 import os
 import urllib
 
@@ -19,7 +18,7 @@ PROFILE_IMAGE = os.environ.get(
 )
 
 
-@borg.on(admin_cmd(pattern="offline"))  # pylint:disable=E0602
+@bot.on(admin_cmd(pattern="offline"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -38,12 +37,12 @@ async def _(event):
     if photo:
         file = await event.client.upload_file(photo)
         try:
-            await borg(
+            await event.client(
                 functions.photos.DeletePhotosRequest(
                     await event.client.get_profile_photos("me", limit=1)
                 )
             )
-            await borg(functions.photos.UploadProfilePhotoRequest(file))
+            await event.client(functions.photos.UploadProfilePhotoRequest(file))
         except Exception as e:  # pylint:disable=C0103,W0703
             await event.edit(str(e))
         else:
@@ -55,7 +54,7 @@ async def _(event):
     last_name = user.first_name
     first_name = OFFLINE_TAG
     try:
-        await borg(
+        await event.client(
             functions.account.UpdateProfileRequest(  # pylint:disable=E0602
                 last_name=last_name, first_name=first_name
             )
@@ -66,7 +65,7 @@ async def _(event):
         await event.edit(str(e))
 
 
-@borg.on(admin_cmd(pattern="online"))  # pylint:disable=E0602
+@bot.on(admin_cmd(pattern="online"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -84,12 +83,12 @@ async def _(event):
     if photo:
         file = await event.client.upload_file(photo)
         try:
-            await borg(
+            await event.client(
                 functions.photos.DeletePhotosRequest(
                     await event.client.get_profile_photos("me", limit=1)
                 )
             )
-            await borg(functions.photos.UploadProfilePhotoRequest(file))
+            await event.client(functions.photos.UploadProfilePhotoRequest(file))
         except Exception as e:  # pylint:disable=C0103,W0703
             await event.edit(str(e))
         else:
@@ -101,7 +100,7 @@ async def _(event):
     first_name = user.last_name
     last_name = ""
     try:
-        await borg(
+        await event.client(
             functions.account.UpdateProfileRequest(  # pylint:disable=E0602
                 last_name=last_name, first_name=first_name
             )

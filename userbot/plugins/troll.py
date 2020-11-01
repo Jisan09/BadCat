@@ -1,7 +1,6 @@
 """
 Created by @Jisan7509
 plugin for Cat_Userbot
-
 ☝☝☝
 You remove this, you gay.
 """
