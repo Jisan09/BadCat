@@ -11,7 +11,7 @@ from . import CMD_HELP
 @bot.on(sudo_cmd(outgoing=True, pattern="note_help$", allow_sudo=True))
 async def kakashi(jisan):
     await edit_or_reply(
-        jisan, "All commands for note is [HERE](https://nekobin.com/xihitanafu) "
+        jisan, "All commands for note is [HERE](https://nekobin.com/yajifahajo) "
     )
 
 
@@ -65,6 +65,8 @@ async def kakashi(event):
         link = "Custom Alive Text"
     elif link in ("customaliveemoji", "cae"):
         link = "Custom Alive Emoji"
+    elif link == "status":
+        link = "Status"
     elif link == "goodcat":
         link = "🐱 Cat UserBot 🐱"
     elif link == "badcat":
