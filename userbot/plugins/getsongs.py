@@ -13,7 +13,16 @@ from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP, hmention, name_dl, reply_id, runcmd, song_dl, video_dl, yt_search
+from . import (
+    CMD_HELP,
+    hmention,
+    name_dl,
+    reply_id,
+    runcmd,
+    song_dl,
+    video_dl,
+    yt_search,
+)
 
 # =========================================================== #
 #                           STRINGS                           #
@@ -132,8 +141,9 @@ async def _(event):
         force_document=False,
         caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
-        supports_streaming=True,parse_mode="html",
-        reply_to=reply_to_id,  
+        supports_streaming=True,
+        parse_mode="html",
+        reply_to=reply_to_id,
     )
     await catevent.delete()
     for files in (catthumb, song_file):
@@ -207,7 +217,8 @@ async def _(event):
         force_document=False,
         caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
-        supports_streaming=True,parse_mode="html",
+        supports_streaming=True,
+        parse_mode="html",
         reply_to=reply_to_id,
     )
     await catevent.delete()
