@@ -3,6 +3,7 @@ import json
 import math
 import os
 import re
+import time
 
 from telethon import Button, custom, events
 
@@ -27,13 +28,26 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                     Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
-            result = builder.article(
-                # catpic,
-                title="Alive cat",
-                # force_document = False,
-                text=query,
-                buttons=buttons,
-            )
+            if CAT_IMG and CAT_IMG.endswith((".jpg", ".png")):
+                result = builder.photo(
+                    CAT_IMG,
+                    # title="Alive cat",
+                    text=query,
+                    buttons=buttons,
+                )
+            elif CAT_IMG:
+                result = builder.document(
+                    CAT_IMG,
+                    title="Alive cat",
+                    text=query,
+                    buttons=buttons,
+                )
+            else:
+                result = builder.article(
+                    title="Alive cat",
+                    text=query,
+                    buttons=buttons,
+                )
             await event.answer([result] if result else None)
         elif event.query.user_id == bot.uid and query.startswith("Userbot"):
             rev_text = query[::-1]
@@ -115,7 +129,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 u = int(u.id)
             except:
                 return
-            timestamp = int(event.query.query_id)
+            timestamp = int(time.time() * 2)
             newsecret = {str(timestamp): {"userid": u, "text": txct}}
 
             buttons = [
@@ -213,7 +227,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 # https://github.com/Dark-Princ3/X-tra-Telegram/commit/275fd0ec26b284d042bf56de325472e088e6f364#diff-2b2df8998ff11b6c15893b2c8d5d6af3
                 with io.BytesIO(str.encode(reply_pop_up_alert)) as out_file:
                     out_file.name = "{}.txt".format(plugin_name)
-                    await borg.send_file(
+                    await event.client.send_file(
                         event.chat_id,
                         out_file,
                         force_document=True,
