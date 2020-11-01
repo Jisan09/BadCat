@@ -256,7 +256,9 @@ async def kakashi(event):
             caption=f"<b><i>➥ Song :- {song}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
             parse_mode="html",
         )
-    await event.client.delete_messages(conv.chat_id, [msg_start.id, response.id, msg.id, baka.id, music.id])
+    await event.client.delete_messages(
+        conv.chat_id, [msg_start.id, response.id, msg.id, baka.id, music.id]
+    )
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="dzd (.*)"))
