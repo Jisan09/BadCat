@@ -39,8 +39,8 @@ async def _(event):
         )
 
 
-@bot.on(admin_cmd(pattern=r"cric(.*)"))
-@bot.on(sudo_cmd(pattern=r"cric(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"cric (.*)"))
+@bot.on(sudo_cmd(pattern=r"cric (.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
