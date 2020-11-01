@@ -233,8 +233,8 @@ async def kakashi(event):
     if event.fwd_from:
         return
     song = event.pattern_match.group(1)
-    chat = "@WooMaiBot"
-    link = f"/netease {song}"
+    chat = "@SongsForYouBot"
+    link = f"/song {song}"
     catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
     async with event.client.conversation(chat) as conv:
         try:
@@ -245,7 +245,7 @@ async def kakashi(event):
             music = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit("```Please unblock @WooMaiBot and try again```")
+            await catevent.edit("```Please unblock @SongsForYouBot and try again```")
             return
         await catevent.edit("`Sending Your Music...`")
         await asyncio.sleep(1.5)
@@ -256,9 +256,7 @@ async def kakashi(event):
             caption=f"<b><i>➥ Song :- {song}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
             parse_mode="html",
         )
-    await event.client.delete_messages(
-        conv.chat_id, [msg_start.id, response.id, msg.id, baka.id, music.id]
-    )
+    await event.client.delete_messages(conv.chat_id, [msg_start.id, response.id, msg.id, baka.id, music.id])
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="dzd (.*)"))
