@@ -182,7 +182,7 @@ async def _(event):
         if files and os.path.exists(files):
             os.remove(files)
 
-            
+
 @bot.on(admin_cmd(pattern="song2 (.*)"))
 @bot.on(sudo_cmd(pattern="song2 (.*)", allow_sudo=True))
 async def cat_song_fetcer(event):
