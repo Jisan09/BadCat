@@ -19,7 +19,7 @@ from . import runcmd
 
 HEROKU_APP_NAME = Var.HEROKU_APP_NAME
 HEROKU_API_KEY = Var.HEROKU_API_KEY
-UPSTREAM_REPO_BRANCH = "upmaster"
+UPSTREAM_REPO_BRANCH = "uparia"
 UPSTREAM_REPO_URL = "https://github.com/Jisan09/catuserbot"
 
 requirements_path = path.join(
