@@ -204,9 +204,8 @@ async def kang(args):
                         await edit_delete(catevent,
                             f"Sticker added in a Different Pack !\
                             \nThis Pack is Newly created!\
-                            \nYour pack can be found [here](t.me/addstickers/{packname}) and emoji of the sticker added is {emoji}",
-                            parse_mode="md",6
-                        )
+                            \nYour pack can be found [here](t.me/addstickers/{packname}) and emoji of the sticker added is {emoji}",6)
+                            #parse_mode="md",
                         return
                 if is_anim:
                     await conv.send_file("AnimatedSticker.tgs")
@@ -281,9 +280,8 @@ async def kang(args):
                 await bot.send_read_acknowledge(conv.chat_id)
         await edit_delete(catevent,
             f"Sticker kanged successfully!\
-            \nPack can be found [here](t.me/addstickers/{packname}) and emoji of the sticker is {emoji}",
-            parse_mode="md", 6
-        )
+            \nPack can be found [here](t.me/addstickers/{packname}) and emoji of the sticker is {emoji}",6)
+            #parse_mode="md", 6
 
 
 @bot.on(admin_cmd(pattern="stkrinfo$", outgoing=True))
