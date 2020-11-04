@@ -22,10 +22,6 @@ from . import unzip
 
 MARGINS = [50, 150, 250, 350, 450]
 
-CNG_FONTS = "userbot/helpers/styles/impact.ttf"
-FONTS = "1. `ProductSans-BoldItalic.ttf`\n2.`ProductSans-Light.ttf`\n3.`RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
-
-
 def asciiart(in_f, SC, GCF, out_f, color1, color2, bgcolor="black"):
     chars = np.asarray(list(" .,:irs?@9B&#"))
     font = ImageFont.load_default()
@@ -62,7 +58,7 @@ def get_warp_length(width):
     return int((20.0 / 1024.0) * (width + 0.0))
 
 
-async def cat_meme(topString, bottomString, filename, endname):
+async def cat_meme(topString, bottomString,CNG_FONTS, filename, endname):
     img = Image.open(filename)
     imageSize = img.size
     # find biggest font size that works
@@ -108,7 +104,7 @@ async def cat_meme(topString, bottomString, filename, endname):
     img.save(endname)
 
 
-async def cat_meeme(upper_text, lower_text, picture_name, endname):
+async def cat_meeme(upper_text, lower_text,CNG_FONTS, picture_name, endname):
     main_image = catimage(filename=picture_name)
     main_image.resize(
         1024, int(((main_image.height * 1.0) / (main_image.width * 1.0)) * 1024.0)
