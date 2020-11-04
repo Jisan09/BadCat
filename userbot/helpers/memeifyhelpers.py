@@ -22,6 +22,8 @@ from . import unzip
 
 MARGINS = [50, 150, 250, 350, 450]
 
+CNG_FONTS = "userbot/helpers/styles/impact.ttf"
+FONTS = "1. `ProductSans-BoldItalic.ttf`\n2.`ProductSans-Light.ttf`\n3.`RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
 
 def asciiart(in_f, SC, GCF, out_f, color1, color2, bgcolor="black"):
     chars = np.asarray(list(" .,:irs?@9B&#"))
@@ -64,14 +66,12 @@ async def cat_meme(topString, bottomString, filename, endname):
     imageSize = img.size
     # find biggest font size that works
     fontSize = int(imageSize[1] / 5)
-    font = ImageFont.truetype("userbot/helpers/styles/RoadRage-Regular.ttf", fontSize)
+    font = ImageFont.truetype(CNG_FONTS, fontSize)
     topTextSize = font.getsize(topString)
     bottomTextSize = font.getsize(bottomString)
     while topTextSize[0] > imageSize[0] - 20 or bottomTextSize[0] > imageSize[0] - 20:
         fontSize -= 1
-        font = ImageFont.truetype(
-            "userbot/helpers/styles/RoadRage-Regular.ttf", fontSize
-        )
+        font = ImageFont.truetype(CNG_FONTS, fontSize)
         topTextSize = font.getsize(topString)
         bottomTextSize = font.getsize(bottomString)
 
@@ -116,7 +116,7 @@ async def cat_meeme(upper_text, lower_text, picture_name, endname):
     lower_text = "\n".join(wrap(lower_text, get_warp_length(main_image.width))).upper()
     lower_margin = MARGINS[lower_text.count("\n")]
     text_draw = Drawing()
-    text_draw.font = join(getcwd(), "userbot/helpers/styles/RoadRage-Regular.ttf")
+    text_draw.font = join(getcwd(), CNG_FONTS)
     text_draw.font_size = 100
     text_draw.text_alignment = "center"
     text_draw.stroke_color = Color("black")
