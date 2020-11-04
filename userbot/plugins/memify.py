@@ -9,7 +9,6 @@ import random
 from ..utils import admin_cmd, sudo_cmd
 from . import (
     CMD_HELP,
-    FONTS,
     LOGS,
     add_frame,
     asciiart,
