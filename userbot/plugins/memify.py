@@ -9,13 +9,12 @@ import random
 from ..utils import admin_cmd, sudo_cmd
 from . import (
     CMD_HELP,
+    FONTS,
     LOGS,
     add_frame,
     asciiart,
     cat_meeme,
     cat_meme,
-    CNG_FONTS,
-    FONTS,
     convert_toimage,
     convert_tosticker,
     crop,
@@ -131,18 +130,22 @@ async def memes(cat):
         if files and os.path.exists(files):
             os.remove(files)
 
-            
+
 @bot.on(admin_cmd(pattern="memefont (.*)"))
 @bot.on(sudo_cmd(pattern="memefont (.*)", allow_sudo=True))
 async def lang(event):
     global CNG_FONTS
     input_str = event.pattern_match.group(1)
     if input_str not in FONTS:
-        catevent = await edit_or_reply(event, f"**Give me a correct font name,**\n**Available Fonts names are here:-**\n\n{FONTS}")
+        catevent = await edit_or_reply(
+            event,
+            f"**Give me a correct font name,**\n**Available Fonts names are here:-**\n\n{FONTS}",
+        )
     else:
         arg = f"userbot/helpers/styles/{input_str}"
         CNG_FONTS = arg
-        await edit_or_reply(event,f"`Fontes for Memify  changed to {input_str}.`")
+        await edit_or_reply(event, f"`Fontes for Memify  changed to {input_str}.`")
+
 
 @bot.on(admin_cmd(outgoing=True, pattern="ascii ?(.*)"))
 @bot.on(sudo_cmd(pattern="ascii ?(.*)", allow_sudo=True))

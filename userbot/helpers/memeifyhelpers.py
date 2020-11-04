@@ -25,6 +25,7 @@ MARGINS = [50, 150, 250, 350, 450]
 CNG_FONTS = "userbot/helpers/styles/impact.ttf"
 FONTS = "1. `ProductSans-BoldItalic.ttf`\n2.`ProductSans-Light.ttf`\n3.`RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
 
+
 def asciiart(in_f, SC, GCF, out_f, color1, color2, bgcolor="black"):
     chars = np.asarray(list(" .,:irs?@9B&#"))
     font = ImageFont.load_default()
