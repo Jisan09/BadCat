@@ -87,8 +87,8 @@ async def main(event):
         cat = str(
             pybase64.b64decode("dXNlcmJvdC9oZWxwZXJzL3N0eWxlcy9kaWdpdGFsLnR0Zg==")
         )[2:36]
-        fnt = ImageFont.truetype(cat, 200)
-        drawn_text.text((350, 100), current_time, font=fnt, fill=(124, 252, 0))
+        fnt = ImageFont.truetype(cat, 150)
+        drawn_text.text((150,250), current_time, font=fnt, fill=(124, 252, 0))
         img.save(poto)
         file = await event.client.upload_file(poto)
         await event.client(
