@@ -140,7 +140,7 @@ async def lang(event):
     global CNG_FONTS
     input_str = event.pattern_match.group(1)
     if input_str not in FONTS:
-        catevent = await edit_or_reply(event,"`Give me a correct font name...`")
+        catevent = await edit_or_reply(event, "`Give me a correct font name...`")
         await asyncio.sleep(2)
         await catevent.edit(f"**Available Fonts names are here:-**\n\n{FONTS}")
     else:
