@@ -72,13 +72,8 @@ async def autopic(event):
 async def main(event):
     await event.edit("Starting Digital Profile Pic, see magic in 5 sec.")
     poto = "userbot/poto_pfp.png"
-    cat = str(
-        pybase64.b64decode(
-            "aHR0cHM6Ly90ZWxlZ3JhLnBoL2ZpbGUvYWVhZWJlMzNiMWYzOTg4YTBiNjkwLmpwZw=="
-        )
-    )[2:51]
     downloaded_file_name = "userbot/digital_pic.png"
-    downloader = SmartDL(cat, downloaded_file_name, progress_bar=True)
+    downloader = SmartDL(Var.DOWNLOAD_PFP_URL_CLOCK, downloaded_file_name, progress_bar=True)
     downloader.start(blocking=False)
     await asyncio.sleep(5)
     while True:
