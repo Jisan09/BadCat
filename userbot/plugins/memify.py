@@ -121,9 +121,9 @@ async def memes(cat):
     meme_file = convert_toimage(meme_file)
     meme = "catmeme.jpg"
     if max(len(top), len(bottom)) < 21:
-        await cat_meme(CNG_FONTS,top, bottom, meme_file, meme)
+        await cat_meme(CNG_FONTS, top, bottom, meme_file, meme)
     else:
-        await cat_meeme(top, bottom,CNG_FONTS, meme_file, meme)
+        await cat_meeme(top, bottom, CNG_FONTS, meme_file, meme)
     if cmd != "mmf":
         meme = await convert_tosticker(meme)
     await cat.client.send_file(cat.chat_id, meme, reply_to=catid)
