@@ -59,7 +59,7 @@ def get_warp_length(width):
     return int((20.0 / 1024.0) * (width + 0.0))
 
 
-async def cat_meme(topString, bottomString, filename, endname):
+async def cat_meme(CNG_FONTS, topString, bottomString, filename, endname):
     img = Image.open(filename)
     imageSize = img.size
     # find biggest font size that works
@@ -105,7 +105,7 @@ async def cat_meme(topString, bottomString, filename, endname):
     img.save(endname)
 
 
-async def cat_meeme(upper_text, lower_text, picture_name, endname):
+async def cat_meeme(upper_text, lower_text,CNG_FONTS picture_name, endname):
     main_image = catimage(filename=picture_name)
     main_image.resize(
         1024, int(((main_image.height * 1.0) / (main_image.width * 1.0)) * 1024.0)
