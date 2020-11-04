@@ -141,12 +141,12 @@ async def lang(event):
     input_str = event.pattern_match.group(1)
     if input_str not in FONTS:
         catevent = await edit_or_reply(event, "`Give me a correct font name...`")
-        await asyncio.sleep(2)
+        await asyncio.sleep(1)
         await catevent.edit(f"**Available Fonts names are here:-**\n\n{FONTS}")
     else:
         arg = f"userbot/helpers/styles/{input_str}"
         CNG_FONTS = arg
-        await edit_or_reply(event, f"**Fontes for Memify changed to :-** `{input_str}`")
+        await edit_or_reply(event, f"**Fonts for Memify changed to :-** `{input_str}`")
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="ascii ?(.*)"))
