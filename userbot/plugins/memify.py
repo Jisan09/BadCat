@@ -37,6 +37,9 @@ def random_color():
     ]
 
 
+CNG_FONTS = "userbot/helpers/styles/impact.ttf"
+FONTS = "1. `ProductSans-BoldItalic.ttf`\n2.`ProductSans-Light.ttf`\n3.`RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
+
 @bot.on(admin_cmd(outgoing=True, pattern="(mmf|mms) ?(.*)"))
 @bot.on(sudo_cmd(pattern="(mmf|mms) ?(.*)", allow_sudo=True))
 async def memes(cat):
@@ -131,8 +134,8 @@ async def memes(cat):
             os.remove(files)
 
 
-@bot.on(admin_cmd(pattern="memefont (.*)"))
-@bot.on(sudo_cmd(pattern="memefont (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="cfont (.*)"))
+@bot.on(sudo_cmd(pattern="cfont (.*)", allow_sudo=True))
 async def lang(event):
     global CNG_FONTS
     input_str = event.pattern_match.group(1)
