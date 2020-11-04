@@ -37,7 +37,7 @@ def random_color():
 
 
 CNG_FONTS = "userbot/helpers/styles/impact.ttf"
-FONTS = "1. `ProductSans-BoldItalic.ttf`\n2.`ProductSans-Light.ttf`\n3.`RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
+FONTS = "1. `ProductSans-BoldItalic.ttf`\n2. `ProductSans-Light.ttf`\n3. `RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="(mmf|mms) ?(.*)"))
@@ -140,14 +140,13 @@ async def lang(event):
     global CNG_FONTS
     input_str = event.pattern_match.group(1)
     if input_str not in FONTS:
-        catevent = await edit_or_reply(
-            event,
-            f"**Give me a correct font name,**\n**Available Fonts names are here:-**\n\n{FONTS}",
-        )
+        catevent = await edit_or_reply(event,"`Give me a correct font name...`)
+        await asyncio.sleep(2)
+        await catevent.edit(f"**Available Fonts names are here:-**\n\n{FONTS}")
     else:
         arg = f"userbot/helpers/styles/{input_str}"
         CNG_FONTS = arg
-        await edit_or_reply(event, f"`Fontes for Memify  changed to {input_str}.`")
+        await edit_or_reply(event, f"**Fontes for Memify changed to :-** `{input_str}`")
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="ascii ?(.*)"))
@@ -827,6 +826,8 @@ CMD_HELP.update(
     \n**USAGE   ➥  **Creates a image meme with give text at specific locations and sends\
     \n\n📌** CMD ➥** `.mms toptext ; bottomtext`\
     \n**USAGE   ➥  **Creates a sticker meme with give text at specific locations and sends\
+    \n\n📌** CMD ➥** `.cfont` <Font Name>\
+    \n**USAGE   ➥  **Change the font style use for memify,\nTo get fonts name use this cmd (`.ls userbot/helpers/styles`)\
     \n\n📌** CMD ➥** `.ascii`\
     \n**USAGE   ➥  **Reply to media file to get ascii image of that media\
     \n\n📌** CMD ➥** `.invert`\
