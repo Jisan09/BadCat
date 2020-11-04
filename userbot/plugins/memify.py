@@ -40,6 +40,7 @@ def random_color():
 CNG_FONTS = "userbot/helpers/styles/impact.ttf"
 FONTS = "1. `ProductSans-BoldItalic.ttf`\n2.`ProductSans-Light.ttf`\n3.`RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
 
+
 @bot.on(admin_cmd(outgoing=True, pattern="(mmf|mms) ?(.*)"))
 @bot.on(sudo_cmd(pattern="(mmf|mms) ?(.*)", allow_sudo=True))
 async def memes(cat):
