@@ -69,7 +69,9 @@ async def cat_meme(topString, bottomString, filename, endname):
     bottomTextSize = font.getsize(bottomString)
     while topTextSize[0] > imageSize[0] - 20 or bottomTextSize[0] > imageSize[0] - 20:
         fontSize -= 1
-        font = ImageFont.truetype("userbot/helpers/styles/RoadRage-Regular.ttf", fontSize)
+        font = ImageFont.truetype(
+            "userbot/helpers/styles/RoadRage-Regular.ttf", fontSize
+        )
         topTextSize = font.getsize(topString)
         bottomTextSize = font.getsize(bottomString)
 
