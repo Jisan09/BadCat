@@ -10,9 +10,9 @@ CAT_IMG = Config.ALIVE_PIC
 JISAN = (
     str(Config.CUSTOM_ALIVE_TEXT)
     if Config.CUSTOM_ALIVE_TEXT
-    else "✮ ZINDA HOON BSDWALO 🤧 ✮"
+    else "🕸️ ZINDA HOON BSDWALO 👿 🕸️"
 )
-EMOJI = str(Config.CUSTOM_ALIVE_EMOJI) if Config.CUSTOM_ALIVE_EMOJI else "✧✧"
+EMOJI = str(Config.CUSTOM_ALIVE_EMOJI) if Config.CUSTOM_ALIVE_EMOJI else "🕸️👿"
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="alive$"))
