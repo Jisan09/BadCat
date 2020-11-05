@@ -58,7 +58,7 @@ async def _(event):
                 await catevent.edit(
                     "**➥ Uploaded to :- [telegraph](https://telegra.ph{})**\
                     \n**➥ Uploaded in {} seconds **.\n**➥ Uploaded by :- {}**".format(
-                        media_urls[0], (ms + ms_two),(mention)
+                        media_urls[0], (ms + ms_two), (mention)
                     ),
                     link_preview=True,
                 )
