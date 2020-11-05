@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+
 from .. import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
@@ -30,6 +31,7 @@ async def _(event):
                 status_code, input_str
             ),
         )
+
 
 CMD_HELP.update(
     {
