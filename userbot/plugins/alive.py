@@ -10,7 +10,7 @@ CAT_IMG = Config.ALIVE_PIC
 JISAN = (
     str(Config.CUSTOM_ALIVE_TEXT)
     if Config.CUSTOM_ALIVE_TEXT
-    else "✮ MY BOT IS RUNNING SUCCESFULLY ✮"
+    else "✮ ZINDA HOON BSDWALO 🤧 ✮"
 )
 EMOJI = str(Config.CUSTOM_ALIVE_EMOJI) if Config.CUSTOM_ALIVE_EMOJI else "✧✧"
 
