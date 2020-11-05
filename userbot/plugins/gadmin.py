@@ -210,7 +210,7 @@ async def startgmute(event):
     if event.fwd_from:
         return
     if event.is_private:
-        await event.edit("Unexpected issues or ugly errors may occur!")
+        await event.edit("Ruk na badwe abhi tekro dikhata hoon 😒!")
         await asyncio.sleep(3)
         private = True
 
@@ -234,7 +234,7 @@ async def startgmute(event):
     except Exception as e:
         await edit_or_reply(event, "Error occured!\nError is " + str(e))
     else:
-        await edit_or_reply(event, "Successfully gmuted that person")
+        await edit_or_reply(event, "Successfully gmuted that person\n Bask bilkul chup ab tu mooh nahi kholega")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -251,7 +251,7 @@ async def endgmute(event):
     if event.fwd_from:
         return
     if event.is_private:
-        await event.edit("Unexpected issues or ugly errors may occur!")
+        await event.edit("Ja agli bar samne math aa !")
         await asyncio.sleep(3)
         private = True
     reply = await event.get_reply_message()
@@ -275,7 +275,7 @@ async def endgmute(event):
     except Exception as e:
         await edit_or_reply(event, "Error occured!\nError is " + str(e))
     else:
-        await edit_or_reply(event, "Successfully ungmuted that person")
+        await edit_or_reply(event, "Successfully ungmuted that person\n Maaf kiya bsdk tuje ja ab")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
