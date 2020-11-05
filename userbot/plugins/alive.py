@@ -1,126 +1,102 @@
-import time
-from platform import python_version
+# telegraph utils for catuserbot
 
-from telethon import version
+import os
+from datetime import datetime
+
+from PIL import Image
+from telegraph import Telegraph, exceptions, upload_file
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP, StartTime, catdef, catversion, hmention, mention
+from . import BOTLOG, BOTLOG_CHATID, CMD_HELP
 
-CAT_IMG = Config.ALIVE_PIC
-JISAN = (
-    str(Config.CUSTOM_ALIVE_TEXT)
-    if Config.CUSTOM_ALIVE_TEXT
-    else "✮ MY BOT IS RUNNING SUCCESFULLY ✮"
-)
-EMOJI = str(Config.CUSTOM_ALIVE_EMOJI) if Config.CUSTOM_ALIVE_EMOJI else "✧✧"
+telegraph = Telegraph()
+r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
+auth_url = r["auth_url"]
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="alive$"))
-@bot.on(sudo_cmd(pattern="alive$", allow_sudo=True))
-async def amireallyalive(alive):
-    if alive.fwd_from:
+@bot.on(admin_cmd(pattern="telegraph (media|text) ?(.*)"))
+@bot.on(sudo_cmd(pattern="telegraph (media|text) ?(.*)", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
         return
-    reply_to_id = alive.message
-    uptime = await catdef.get_readable_time((time.time() - StartTime))
-    _, check_sgnirts = check_data_base_heal_th()
-    if alive.reply_to_msg_id:
-        reply_to_id = await alive.get_reply_message()
-    if CAT_IMG:
-        cat_caption = f"<b>{JISAN}</b>\n\n"
-        cat_caption += f"<b>{EMOJI} Master : {hmention}</b>\n"
-        cat_caption += f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
-        cat_caption += (
-            f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
+    catevent = await edit_or_reply(event, "`processing........`")
+    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
+    if BOTLOG:
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "Created New Telegraph account {} for the current session. \n**Do not give this url to anyone, even if they say they are from Telegram!**".format(
+                auth_url
+            ),
         )
-        cat_caption += (
-            f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
-        )
-        cat_caption += (
-            f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
-        )
-        cat_caption += f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
-        cat_caption += "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>"
-        await alive.client.send_file(
-            alive.chat_id,
-            CAT_IMG,
-            caption=cat_caption,
-            parse_mode="html",
-            reply_to=reply_to_id,
-            link_preview=False,
-            allow_cache=True,
-        )
-        await alive.delete()
+    optional_title = event.pattern_match.group(2)
+    if event.reply_to_msg_id:
+        start = datetime.now()
+        r_message = await event.get_reply_message()
+        input_str = event.pattern_match.group(1)
+        if input_str == "media":
+            downloaded_file_name = await event.client.download_media(
+                r_message, Config.TMP_DOWNLOAD_DIRECTORY
+            )
+            end = datetime.now()
+            ms = (end - start).seconds
+            await catevent.edit(
+                "Downloaded to {} in {} seconds.".format(downloaded_file_name, ms),
+            )
+            if downloaded_file_name.endswith((".webp")):
+                resize_image(downloaded_file_name)
+            try:
+                start = datetime.now()
+                media_urls = upload_file(downloaded_file_name)
+            except exceptions.TelegraphException as exc:
+                await catevent.edit("**Error : **" + str(exc))
+                os.remove(downloaded_file_name)
+            else:
+                end = datetime.now()
+                ms_two = (end - start).seconds
+                os.remove(downloaded_file_name)
+                await catevent.edit(
+                    "**link : **[telegraph](https://telegra.ph{})\
+                    \n**Time Taken : **`{} seconds.`".format(
+                        media_urls[0], (ms + ms_two)
+                    ),
+                    link_preview=True,
+                )
+        elif input_str == "text":
+            user_object = await event.client.get_entity(r_message.sender_id)
+            title_of_page = user_object.first_name  # + " " + user_object.last_name
+            # apparently, all Users do not have last_name field
+            if optional_title:
+                title_of_page = optional_title
+            page_content = r_message.message
+            if r_message.media:
+                if page_content != "":
+                    title_of_page = page_content
+                downloaded_file_name = await event.client.download_media(
+                    r_message, Config.TMP_DOWNLOAD_DIRECTORY
+                )
+                m_list = None
+                with open(downloaded_file_name, "rb") as fd:
+                    m_list = fd.readlines()
+                for m in m_list:
+                    page_content += m.decode("UTF-8") + "\n"
+                os.remove(downloaded_file_name)
+            page_content = page_content.replace("\n", "<br>")
+            response = telegraph.create_page(title_of_page, html_content=page_content)
+            end = datetime.now()
+            ms = (end - start).seconds
+            cat = f"https://telegra.ph/{response['path']}"
+            await catevent.edit(
+                f"**link : ** [telegraph]({cat})\
+                 \n**Time Taken : **`{ms} seconds.`",
+                link_preview=True,
+            )
     else:
-        await edit_or_reply(
-            alive,
-            f"<b>{JISAN}</b>\n\n"
-            f"<b>{EMOJI} Master : {hmention}</b>\n"
-            f"<b>{EMOJI} Uptime :</b> <code>{uptime}</code>\n"
-            f"<b>{EMOJI} Python Version :</b> <code>{python_version()}</code>\n"
-            f"<b>{EMOJI} Telethon version :</b> <code>{version.__version__}</code>\n"
-            f"<b>{EMOJI} Catuserbot Version :</b> <code>{catversion}</code>\n"
-            f"<b>{EMOJI} Database :</b> <code>{check_sgnirts}</code>\n\n"
-            "    <a href = https://github.com/sandy1709/catuserbot><b>GoodCat</b></a> | <a href = https://github.com/Jisan09/catuserbot><b>BadCat</b></a> | <a href = https://t.me/catuserbot_support><b>Support</b></a>",
-            parse_mode="html",
+        await catevent.edit(
+            "`Reply to a message to get a permanent telegra.ph link. (Inspired by @ControllerBot)`",
         )
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="ialive$"))
-@bot.on(sudo_cmd(pattern="ialive$", allow_sudo=True))
-async def amireallyalive(alive):
-    if alive.fwd_from:
-        return
-    tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
-    reply_to_id = alive.message
-    if alive.reply_to_msg_id:
-        reply_to_id = await alive.get_reply_message()
-    cat_caption = f"**Catuserbot is Up and Running**\n"
-    cat_caption += f"**  -Master :** {mention}\n"
-    cat_caption += f"**  -Python Version :** `{python_version()}\n`"
-    cat_caption += f"**  -Telethon version :** `{version.__version__}\n`"
-    cat_caption += f"**  -Catuserbot Version :** `{catversion}`\n"
-    results = await bot.inline_query(tgbotusername, cat_caption)  # pylint:disable=E0602
-    await results[0].click(alive.chat_id, reply_to=reply_to_id, hide_via=True)
-    await alive.delete()
-
-
-# UniBorg Telegram UseRBot
-# Copyright (C) 2020 @UniBorg
-# This code is licensed under
-# the "you can't use this for anything - public or private,
-# unless you know the two prime factors to the number below" license
-# 543935563961418342898620676239017231876605452284544942043082635399903451854594062955
-# വിവരണം അടിച്ചുമാറ്റിക്കൊണ്ട് പോകുന്നവർ
-# ക്രെഡിറ്റ് വെച്ചാൽ സന്തോഷമേ ഉള്ളു..!
-# uniborg
-
-
-def check_data_base_heal_th():
-    # https://stackoverflow.com/a/41961968
-    is_database_working = False
-    output = "No Database is set"
-    if not Var.DB_URI:
-        return is_database_working, output
-    from userbot.plugins.sql_helper import SESSION
-
-    try:
-        # to check database we will execute raw query
-        SESSION.execute("SELECT 1")
-    except Exception as e:
-        output = f"❌ {str(e)}"
-        is_database_working = False
-    else:
-        output = "Functioning"
-        is_database_working = True
-    return is_database_working, output
-
-
-CMD_HELP.update(
-    {
-        "alive": "__**PLUGIN NAME :** Alive__\
-      \n\n📌** CMD ➥** `.alive`\
-      \n**USAGE   ➥  **To see wether your bot is working or not.\
-      \n\n📌** CMD ➥** `.ialive`\
-      \n**USAGE   ➥  **__Status of bot will be showed by inline mode with button__."
-    }
-)
+def resize_image(image):
+    im = Image.open(image)
+    im.save(image, "PNG")
