@@ -272,7 +272,7 @@ async def gbun(event):
     gbunVar = event.text
     gbunVar = gbunVar[6:]
     mentions = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\n`"
-    catevent = await edit_or_reply(event, "**Summoning out Hatake Kakashi ❗️⚜️☠️**")
+    catevent = await edit_or_reply(event, "**Gbaning user please wait ❗️⚜️☠️**")
     await asyncio.sleep(3.5)
     chat = await event.get_input_chat()
     async for _ in event.client.iter_participants(
@@ -300,19 +300,19 @@ async def gbun(event):
                 "**ID : ** `{}`\n"
             ).format(firstname, idd, firstname, idd)
             if usname is None:
-                jnl += "**Victim Nigga's username: ** `Doesn't own a username!`\n"
+                jnl += "**Victim Chutiya's username: ** `Doesn't own a username!`\n"
             else:
-                jnl += "**Victim Nigga's username** : @{}\n".format(usname)
+                jnl += "**Victim Chutiya's username** : @{}\n".format(usname)
             if len(gbunVar) > 0:
                 gbunm = "`{}`".format(gbunVar)
                 gbunr = "**Reason: **" + gbunm
                 jnl += gbunr
             else:
-                no_reason = "__Reason: Potential spammer. __"
+                no_reason = "__Reason: ekdum 🔥 chutiya breed he. __"
                 jnl += no_reason
             await catevent.edit(jnl)
     else:
-        mention = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\nReason: Potential spammer. `"
+        mention = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\nReason:ekdum 🔥 chutiya breed he. `"
         await catevent.edit(mention)
 
 
