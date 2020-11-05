@@ -1,9 +1,6 @@
-"""Get info about a File Extension
-Syntax: .filext EXTENSION"""
-
 import requests
 from bs4 import BeautifulSoup
-
+from .. import CMD_HELP
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 
 
@@ -33,3 +30,11 @@ async def _(event):
                 status_code, input_str
             ),
         )
+
+CMD_HELP.update(
+    {
+        "filext": "__**PLUGIN NAME :** Filext__\
+      \n\n📌** CMD ➥** `.filext` <Extension>\
+      \n**USAGE   ➥  **Get info about a File Extension."
+    }
+)
