@@ -83,7 +83,7 @@ async def _(event):
         "**(8) Change Chat Info: ☑️**",
         "**(8) Change Chat Info: ✅**",
         "**Permission Granted Successfully**",
-        f"**pRoMooTeD SuCcEsSfUlLy bY: {DEFAULTUSER}**",
+        f"**PROMOTED SUCCESSFULLY BY: {DEFAULTUSER}**",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
