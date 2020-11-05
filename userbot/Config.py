@@ -38,7 +38,7 @@ class Config((object)):
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
     # This is required for the @telegraph functionality.
-    TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "mrconfused")
+    TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "jisan")
     # Set False to stop deleting old welcome messages
     CLEAN_WELCOME = os.environ.get("CLEAN_WELCOME", True)
     # github vars
