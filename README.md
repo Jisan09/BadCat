@@ -6,7 +6,7 @@ Get APP ID and API HASH from [HERE](https://my.telegram.org) and BOT TOKEN from 
 
 [![Get string session](https://repl.it/badge/github/sandy1709/sandeep1709)](https://generatestringsession.sandeep1709.repl.run/)
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https:https://github.com/cobracommander-snakexenziagang)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https:https://github.com/cobracommander-snakexenziagang/catuserbot)
 <p align="center">
   <a href="https://github.com/cobracommander-snakexenziagang/catuserbot/fork">
     <img src="https://img.shields.io/github/forks/Jisan09/catuserbot?label=Fork&style=social">
