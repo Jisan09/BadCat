@@ -8,12 +8,12 @@ Get APP ID and API HASH from [HERE](https://my.telegram.org) and BOT TOKEN from 
 
 [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https:https://github.com/cobracommander-snakexenziagang)
 <p align="center">
-  <a href="https://github.com/Jisan09/catuserbot/fork">
+  <a href="https://github.com/cobracommander-snakexenziagang/catuserbot/fork">
     <img src="https://img.shields.io/github/forks/Jisan09/catuserbot?label=Fork&style=social">
     
   </a>
-  <a href="https://github.com/Jisan09/catuserbot">
-    <img src="https://img.shields.io/github/stars/Jisan09/catuserbot?style=social">
+  <a href="https://github.com/cobracommander-snakexenziagang/catuserbot">
+    <img src="https://img.shields.io/github/stars/cobracommander-snakexenziagang/catuserbot?style=social">
   </a>
 </p>
 
