@@ -157,7 +157,7 @@ async def _(event):
         except BaseException:
             pass
 
-        
+
 CMD_HELP.update(
     {
         "dice_dart_ball": "__**PLUGIN NAME :** dice_dart_ball__\
