@@ -73,15 +73,18 @@ def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
         if len(obj) > max_str_len:
             result += "…"
         return result
-    if isinstance(obj, bytes):
+    elif isinstance(obj, bytes):
         # repr() bytes if it's printable, hex like "FF EE BB" otherwise
         if all(0x20 <= c < 0x7F for c in obj):
             return repr(obj)
-        return "<…>" if len(obj) > max_byte_len else " ".join(f"{b:02X}" for b in obj)
-    if isinstance(obj, datetime.datetime):
+        else:
+            return (
+                "<…>" if len(obj) > max_byte_len else " ".join(f"{b:02X}" for b in obj)
+            )
+    elif isinstance(obj, datetime.datetime):
         # ISO-8601 without timezone offset (telethon dates are always UTC)
         return obj.strftime("%Y-%m-%d %H:%M:%S")
-    if hasattr(obj, "__iter__"):
+    elif hasattr(obj, "__iter__"):
         # display iterables one after another at the base indentation level
         result.append("\n")
         indent += 2
