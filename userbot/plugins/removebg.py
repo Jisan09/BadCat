@@ -107,7 +107,6 @@ def convert_to_webp(file_name, output_file_name):
     return output_file_name
 
 
-
 CMD_HELP.update(
     {
         "removebg": "__**PLUGIN NAME :** Removebg__\
