@@ -143,6 +143,7 @@ async def imdb(e):
     except IndexError:
         await catevent.edit("Plox enter **Valid movie name** kthx")
 
+
 CMD_HELP.update(
     {
         "scrapers": """__**PLUGIN NAME :** Scrapers__\
