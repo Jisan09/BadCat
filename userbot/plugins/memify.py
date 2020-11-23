@@ -38,7 +38,13 @@ def random_color():
 
 CNG_FONTS = "userbot/helpers/styles/impact.ttf"
 FONTS = "1. `ProductSans-BoldItalic.ttf`\n2. `ProductSans-Light.ttf`\n3. `RoadRage-Regular.ttf`\n4. `digital.ttf`\n5. `impact.ttf`"
-
+font_list = [
+    "ProductSans-BoldItalic.ttf",
+    "ProductSans-Light.ttf",
+    "RoadRage-Regular.ttf",
+    "digital.ttf",
+    "impact.ttf",
+]
 
 @bot.on(admin_cmd(outgoing=True, pattern="(mmf|mms) ?(.*)"))
 @bot.on(sudo_cmd(pattern="(mmf|mms) ?(.*)", allow_sudo=True))
@@ -139,7 +145,7 @@ async def memes(cat):
 async def lang(event):
     global CNG_FONTS
     input_str = event.pattern_match.group(1)
-    if input_str not in FONTS:
+    if input_str not in font_list:
         catevent = await edit_or_reply(event, "`Give me a correct font name...`")
         await asyncio.sleep(1)
         await catevent.edit(f"**Available Fonts names are here:-**\n\n{FONTS}")
