@@ -72,6 +72,7 @@ async def _(event):
     except Exception as e:  # pylint:disable=C0103,W0703
         await event.edit(str(e))
 
+
 CMD_HELP.update(
     {
         "antiflood": "__**PLUGIN NAME :** Antiflood__\
