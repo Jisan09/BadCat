@@ -1,7 +1,6 @@
 git+https://github.com/LonamiWebs/Telethon
 aiofiles
 aiohttp
-aria2p
 asyncurban
 beautifulsoup4
 cairosvg
