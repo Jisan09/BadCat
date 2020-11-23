@@ -3,8 +3,7 @@ from asyncio import sleep
 import requests
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP
-from . import BOTLOG, BOTLOG_CHATID
+from . import BOTLOG, BOTLOG_CHATID, CMD_HELP
 
 
 @bot.on(admin_cmd(pattern="lfy ?(.*)"))
@@ -262,7 +261,7 @@ async def _(event):
     else:
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
-        
+
 CMD_HELP.update(
     {
         "letmesearch": "__**PLUGIN NAME :** Letmesearch__\
