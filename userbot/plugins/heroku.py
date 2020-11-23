@@ -198,7 +198,7 @@ def prettyjson(obj, indent=2, maxlinelength=80):
     )
     return indentitems(items, indent, level=0)
 
-   
+
 CMD_HELP.update(
     {
         "heroku": "__**PLUGIN NAME :** Heroku__\
