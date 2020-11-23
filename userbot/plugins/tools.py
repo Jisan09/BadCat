@@ -96,7 +96,7 @@ async def parseqr(qr_e):
     if os.path.exists(downloaded_file_name):
         os.remove(downloaded_file_name)
 
-        
+
 @bot.on(admin_cmd(pattern="barcode ?(.*)"))
 @bot.on(sudo_cmd(pattern="barcode ?(.*)", allow_sudo=True))
 async def _(event):
