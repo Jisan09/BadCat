@@ -10,6 +10,7 @@ CAT_IMG = Config.ALIVE_PIC
 CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "✮ MY BOT IS RUNNING SUCCESFULLY ✮"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "✧✧"
 
+
 @bot.on(admin_cmd(outgoing=True, pattern="alive$"))
 @bot.on(sudo_cmd(pattern="alive$", allow_sudo=True))
 async def amireallyalive(alive):
@@ -104,7 +105,6 @@ def check_data_base_heal_th():
         output = "Functioning"
         is_database_working = True
     return is_database_working, output
-
 
 
 CMD_HELP.update(
