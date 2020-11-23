@@ -28,6 +28,7 @@ import asyncio
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP
+
 name = "Profile Photos"
 
 
@@ -88,7 +89,8 @@ async def potocmd(event):
             )
             await asyncio.sleep(2)
             return
-        
+
+
 CMD_HELP.update(
     {
         "poto": "__**PLUGIN NAME :** Poto__\
