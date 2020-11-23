@@ -30,7 +30,7 @@ async def hmm(cat):
     factcat = nekos.fact()
     await edit_or_reply(cat, factcat)
 
-    
+
 CMD_HELP.update(
     {
         "funtxts": """__**PLUGIN NAME :** Funtxts__
