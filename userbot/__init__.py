@@ -10,7 +10,6 @@ from pySmartDL import SmartDL
 from requests import get
 from telethon import TelegramClient
 from telethon.sessions import StringSession
-
 from var import Var
 
 StartTime = time.time()

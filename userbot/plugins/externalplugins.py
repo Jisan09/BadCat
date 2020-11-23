@@ -2,9 +2,9 @@ import os
 from pathlib import Path
 
 from telethon.tl.types import InputMessagesFilterDocument
+from var import Var
 
 from userbot.utils import load_module
-from var import Var
 
 from .. import CMD_HELP
 from ..utils import admin_cmd, sudo_cmd
