@@ -86,7 +86,7 @@ CMD_HELP.update(
       \n**USAGE   ➥  **__Warns the given user in the chat you used__\
       \n\n📌** CMD ➥** `.warns` <reply>\
       \n**USAGE   ➥  **__Gets the warns of the given user in the chat you used__\
-      \n\n📌** CMD ➥** `resetwarns` <reply>\
+      \n\n📌** CMD ➥** `.resetwarns` <reply>\
       \n**USAGE   ➥  **__Resets the warns of the replied users in the chat where u used command__"
     }
 )
