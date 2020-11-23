@@ -260,7 +260,7 @@ async def _(event):
             event.chat_id, response.message, reply_to=previous_message
         )
 
-        
+
 CMD_HELP.update(
     {
         "pastebin": "__**PLUGIN NAME :** Pastebin__\
