@@ -46,6 +46,7 @@ font_list = [
     "impact.ttf",
 ]
 
+
 @bot.on(admin_cmd(outgoing=True, pattern="(mmf|mms) ?(.*)"))
 @bot.on(sudo_cmd(pattern="(mmf|mms) ?(.*)", allow_sudo=True))
 async def memes(cat):
