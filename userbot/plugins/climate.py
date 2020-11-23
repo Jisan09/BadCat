@@ -214,6 +214,7 @@ async def _(event):
     except:
         pass
 
+
 CMD_HELP.update(
     {
         "climate": "__**PLUGIN NAME :** Climate__\
