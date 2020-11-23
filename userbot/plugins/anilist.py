@@ -324,6 +324,7 @@ async def anilist(event):
     msg = await formatJSON(result)
     await event.edit(msg, link_preview=True)
 
+
 CMD_HELP.update(
     {
         "anilist": "__**PLUGIN NAME :** Anilist__\
