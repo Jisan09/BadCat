@@ -7,19 +7,19 @@ from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
 
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import BOTLOG, BOTLOG_CHATID, CMD_HELP, hmention
+from . import BOTLOG, BOTLOG_CHATID, CMD_HELP, mention
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
 auth_url = r["auth_url"]
 
 
-@bot.on(admin_cmd(pattern="telegraph (media|text) ?(.*)"))
-@bot.on(sudo_cmd(pattern="telegraph (media|text) ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="tg(m|t) ?(.*)"))
+@bot.on(sudo_cmd(pattern="tg(m|t) ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
-    catevent = await edit_or_reply(event, "<code>processing........</code>", "html")
+    catevent = await edit_or_reply(event, "`processing........`")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if BOTLOG:
@@ -34,7 +34,7 @@ async def _(event):
         start = datetime.now()
         r_message = await event.get_reply_message()
         input_str = event.pattern_match.group(1)
-        if input_str == "media":
+        if input_str == "media" or "m":
             downloaded_file_name = await event.client.download_media(
                 r_message, Config.TMP_DOWNLOAD_DIRECTORY
             )
@@ -54,16 +54,15 @@ async def _(event):
             else:
                 end = datetime.now()
                 ms_two = (end - start).seconds
-                media_urls = upload_file(downloaded_file_name)
-                jisan = "https://telegra.ph{}".format(media_urls[0])
                 os.remove(downloaded_file_name)
                 await catevent.edit(
-                    f"<b><i>➥ Uploaded to :- <a href = {jisan}>Telegraph</a></i></b>\
-                    \n<b><i>➥ Uploaded in {ms + ms_two} seconds .</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
-                    parse_mode="html",
+                    "**➥ Uploaded to :-** [Telegraph](https://telegra.ph{})\
+                    \n**➥ Uploaded in {} seconds **.\n**➥ Uploaded by :-** {}".format(
+                        media_urls[0], (ms + ms_two), (mention)
+                    ),
                     link_preview=True,
                 )
-        elif input_str == "text":
+        elif input_str == "text" or "t":
             user_object = await event.client.get_entity(r_message.sender_id)
             title_of_page = user_object.first_name  # + " " + user_object.last_name
             # apparently, all Users do not have last_name field
@@ -88,9 +87,8 @@ async def _(event):
             ms = (end - start).seconds
             cat = f"https://telegra.ph/{response['path']}"
             await catevent.edit(
-                f"<b><i>➥ Pasted to :- <a href = {cat}>Telegraph</a></i></b>\
-                \n<b><i>➥ Pasted in {ms} seconds .</i></b>",
-                parse_mode="html",
+                f"**➥ Pasted to :-** [Telegraph]({cat})\
+                 \n**➥ Pasted in {ms} seconds .**",
                 link_preview=True,
             )
     else:

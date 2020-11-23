@@ -34,7 +34,9 @@ from . import (
     LOGS,
     TMP_DOWNLOAD_DIRECTORY,
     CancelProcess,
+    aria2,
     bot,
+    check_metadata,
     progress,
 )
 from .sql_helper import google_drive_sql as helper
@@ -1043,9 +1045,9 @@ async def google_drive(gdrive):
                 return None
         elif re.findall(r"\bhttps?://.*\.\S+", value) or "magnet:?" in value:
             uri = value.split()
-            return await gdrive.edit("If you want this, manually deploy aira branch")
+            return await gdrive.edit("If you want this, manually deploy aria branch")
         else:
-            return await gdrive.edit("If you want this, manually deploy aira branch")
+            return await gdrive.edit("If you want this, manually deploy aria branch")
             for fileId in value.split():
                 one = any(map(str.isdigit, fileId))
                 two = "-" in fileId or "_" in fileId
