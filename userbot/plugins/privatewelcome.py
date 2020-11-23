@@ -143,7 +143,6 @@ async def show_welcome(event):
         await event.reply(cws.reply)
 
 
-
 CMD_HELP.update(
     {
         "privatewelcome": "__**PLUGIN NAME :** Privatewelcome__\
