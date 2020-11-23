@@ -62,7 +62,7 @@ async def _(event):
                     ),
                     link_preview=True,
                 )
-        elif input_str == "text" or "t"::
+        elif input_str == "text" or "t":
             user_object = await event.client.get_entity(r_message.sender_id)
             title_of_page = user_object.first_name  # + " " + user_object.last_name
             # apparently, all Users do not have last_name field
