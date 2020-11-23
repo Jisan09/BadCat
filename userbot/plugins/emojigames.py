@@ -185,7 +185,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "dice_dart_ball": "__**PLUGIN NAME :** dice_dart_ball__\
+        "emojigames": "__**PLUGIN NAME :** Emojigames\
     \n\n📌** CMD ➥** `.🎯` or `.dart` [1-6]\
     \n**USAGE   ➥  **Each number shows different animation\
     \n\n📌** CMD ➥** `.🎲` or `.dice` [1-6]\
