@@ -30,7 +30,9 @@ async def gen_chlog(repo, diff):
     ch_log = ""
     d_form = "%d/%m/%y"
     for c in repo.iter_commits(diff):
-        ch_log +=  f"  • {c.summary} ({c.committed_datetime.strftime(d_form)}) <{c.author}>\n"
+        ch_log += (
+            f"  • {c.summary} ({c.committed_datetime.strftime(d_form)}) <{c.author}>\n"
+        )
     return ch_log
 
 
@@ -151,7 +153,9 @@ async def upstream(event):
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     if HEROKU_API_KEY or HEROKU_APP_NAME is None:
-        return await edit_or_reply(event,"`Set the required vars first to update the bot`")
+        return await edit_or_reply(
+            event, "`Set the required vars first to update the bot`"
+        )
     try:
         txt = "`Oops.. Updater cannot continue due to "
         txt += "some problems occured`\n\n**LOGTRACE:**\n"
