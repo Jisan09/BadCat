@@ -96,6 +96,7 @@ def convert_from_bytes(size):
         n += 1
     return f"{round(size, 2)} {units[n]}"
 
+
 CMD_HELP.update(
     {
         "speedtest": "__**PLUGIN NAME :** Speedtest__\
