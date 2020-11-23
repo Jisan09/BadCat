@@ -124,7 +124,6 @@ async def git_commit(file_name, mone):
         return await mone.edit("`Committed Suicide`")
 
 
-
 CMD_HELP.update(
     {
         "github": "__**PLUGIN NAME :** Github__\
