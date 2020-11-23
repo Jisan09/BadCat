@@ -6,19 +6,19 @@ Get APP ID and API HASH from [HERE](https://my.telegram.org) and BOT TOKEN from 
 
 [![Get string session](https://repl.it/badge/github/sandy1709/sandeep1709)](https://generatestringsession.sandeep1709.repl.run/)
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Jisan09/catuserbot)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RxyMX/Sharck)
 <p align="center">
-  <a href="https://github.com/Jisan09/catuserbot/fork">
-    <img src="https://img.shields.io/github/forks/Jisan09/catuserbot?label=Fork&style=social">
+  <a href="https://github.com/RxyMX/Sharck/fork">
+    <img src="https://img.shields.io/github/forks/RxyMX/Sharck?label=Fork&style=social">
     
   </a>
-  <a href="https://github.com/Jisan09/catuserbot">
-    <img src="https://img.shields.io/github/stars/Jisan09/catuserbot?style=social">
+  <a href="https://github.com/RxyMX/Sharck">
+    <img src="https://img.shields.io/github/stars/RxyMX/Sharck?style=social">
   </a>
 </p>
 
 
-[![catuserbot logo](https://telegra.ph/file/7e1e89621fabbf02596f8.jpg)](https://heroku.com/deploy)
+[![sharck logo](https://telegra.ph/file/0c4248ddcb46bec042e01.jpg)](https://heroku.com/deploy)
 
 
 ### Join [here](https://t.me/catuserbot17) for updates and tuts and [here](https://t.me/catuserbot_support) for discussion and bugs
