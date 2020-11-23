@@ -72,7 +72,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     if catsticker.endswith(".tgs"):
         await cat.edit(
@@ -113,7 +113,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
@@ -243,7 +243,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     jisanidea = None
     if catsticker.endswith(".tgs"):
@@ -288,7 +288,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
@@ -325,7 +325,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     jisanidea = None
     if catsticker.endswith(".tgs"):
@@ -370,7 +370,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
@@ -407,7 +407,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     jisanidea = None
     if catsticker.endswith(".tgs"):
@@ -452,7 +452,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
@@ -489,7 +489,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     jisanidea = None
     if catsticker.endswith(".tgs"):
@@ -534,7 +534,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
@@ -571,7 +571,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     jisanidea = None
     if catsticker.endswith(".tgs"):
@@ -616,7 +616,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
@@ -655,7 +655,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     jisanidea = None
     if catsticker.endswith(".tgs"):
@@ -699,7 +699,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
@@ -751,7 +751,7 @@ async def memes(cat):
         os.remove(catsticker)
         await edit_or_reply(cat, "```Supported Media not found...```")
         return
-    import pybase64
+    import base64
 
     jisanidea = None
     if catsticker.endswith(".tgs"):
@@ -795,7 +795,7 @@ async def memes(cat):
         )
         meme_file = catsticker
     try:
-        san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
         await cat.client(san)
     except BaseException:
