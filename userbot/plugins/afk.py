@@ -112,7 +112,9 @@ async def on_afk(event):
                 f"**I am AFK**\n\n**AFK Since :** `{endtime}`\n**Reason : **{reason}"
             )
         elif reason:
-            message_to_reply = f"**I am AFK\n\nAFK Since :** `{endtime}`\n**Reason : **`{reason}`"
+            message_to_reply = (
+                f"**I am AFK\n\nAFK Since :** `{endtime}`\n**Reason : **`{reason}`"
+            )
         else:
             message_to_reply = (
                 f"`I am AFK\n\nAFK Since :{endtime}\nReason : Not Mentioned ( ಠ ʖ̯ ಠ)`"
@@ -182,6 +184,7 @@ async def _(event):
                     BOTLOG_CHATID,
                     f"#AFKTRUE \nSet AFK mode to True, and Reason is Not Mentioned",
                 )
+
 
 CMD_HELP.update(
     {
