@@ -212,6 +212,7 @@ def search_torrentz_eu(search_query):
                 pass
     return r
 
+
 CMD_HELP.update(
     {
         "torrent_search": "__**PLUGIN NAME :** Torrent_search__\
