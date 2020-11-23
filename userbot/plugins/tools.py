@@ -63,11 +63,11 @@ async def _(event):
 @bot.on(admin_cmd(pattern=r"decode$", outgoing=True))
 @bot.on(sudo_cmd(pattern=r"decode$", allow_sudo=True))
 async def parseqr(qr_e):
-    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
+    if not os.path.isdir(Config.TEMP_DIR):
+        os.makedirs(Config.TEMP_DIR)
     # For .decode command, get QR Code/BarCode content from the replied photo.
     downloaded_file_name = await qr_e.client.download_media(
-        await qr_e.get_reply_message(), Config.TMP_DOWNLOAD_DIRECTORY
+        await qr_e.get_reply_message(), Config.TEMP_DIR
     )
     # parse the Official ZXing webpage to decode the QRCode
     command_to_exec = [
@@ -96,7 +96,7 @@ async def parseqr(qr_e):
     if os.path.exists(downloaded_file_name):
         os.remove(downloaded_file_name)
 
-
+        
 @bot.on(admin_cmd(pattern="barcode ?(.*)"))
 @bot.on(sudo_cmd(pattern="barcode ?(.*)", allow_sudo=True))
 async def _(event):
