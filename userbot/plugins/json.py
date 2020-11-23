@@ -52,6 +52,7 @@ async def _(event):
     else:
         await edit_or_reply(event, the_real_message, parse_mode=parse_pre)
 
+
 CMD_HELP.update(
     {
         "json": """__**PLUGIN NAME :** Json__
