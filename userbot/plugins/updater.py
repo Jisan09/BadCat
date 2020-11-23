@@ -16,8 +16,8 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from ..utils import admin_cmd, edit_or_reply, sudo_cmd
 from . import CMD_HELP, runcmd
 
-HEROKU_APP_NAME = Config.HEROKU_APP_NAME
-HEROKU_API_KEY = Config.HEROKU_API_KEY
+HEROKU_APP_NAME = Config.HEROKU_APP_NAME or None
+HEROKU_API_KEY = Config.HEROKU_API_KEY or None
 UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
 UPSTREAM_REPO_URL = Config.UPSTREAM_REPO_URL
 
@@ -30,10 +30,7 @@ async def gen_chlog(repo, diff):
     ch_log = ""
     d_form = "%d/%m/%y"
     for c in repo.iter_commits(diff):
-        ch_log += (
-            f"•[{c.committed_datetime.strftime(d_form)}]: "
-            f"{c.summary} <{c.author}>\n"
-        )
+        ch_log +=  f"  • {c.summary} ({c.committed_datetime.strftime(d_form)}) <{c.author}>\n"
     return ch_log
 
 
@@ -153,6 +150,8 @@ async def upstream(event):
     event = await edit_or_reply(event, "`Checking for updates, please wait....`")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
+    if HEROKU_API_KEY or HEROKU_APP_NAME is None:
+        return await edit_or_reply(event,"`Set the required vars first to update the bot`")
     try:
         txt = "`Oops.. Updater cannot continue due to "
         txt += "some problems occured`\n\n**LOGTRACE:**\n"
