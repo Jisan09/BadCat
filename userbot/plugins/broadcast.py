@@ -310,7 +310,7 @@ async def catbroadcast_remove(event):
                 f"The user {chat.first_name} is removed from category {keyword}",
                 parse_mode=parse_pre,
             )
-            
+
 
 CMD_HELP.update(
     {
