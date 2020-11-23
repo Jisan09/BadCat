@@ -32,6 +32,7 @@ async def _(event):
     else:
         await event.edit("Transferred 🌚")
 
+
 CMD_HELP.update(
     {
         "transfer_channel": "__**PLUGIN NAME :** Transfer_channel__\
