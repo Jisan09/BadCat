@@ -74,6 +74,7 @@ async def collage(cat):
         if files and os.path.exists(files):
             os.remove(files)
 
+
 CMD_HELP.update(
     {
         "collage": "__**PLUGIN NAME :** Collage__\
