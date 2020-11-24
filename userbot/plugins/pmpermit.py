@@ -283,7 +283,7 @@ if Config.PRIVATE_GROUP_ID is not None:
         PREV_REPLY_MESSAGE[chat_id] = r
         return None
 
-    
+
 CMD_HELP.update(
     {
         "pmpermit": "__**PLUGIN NAME :** Pm Permit__\
