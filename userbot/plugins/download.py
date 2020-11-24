@@ -1,5 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
+
 import asyncio
 import math
 import os
@@ -8,8 +9,10 @@ from datetime import datetime
 
 from pySmartDL import SmartDL
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
-from . import CMD_HELP, hmention, humanbytes, progress
+from ..utils import admin_cmd, sudo_cmd
+from . import ALIVE_NAME, CMD_HELP, humanbytes, progress
+
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 
 
 @bot.on(admin_cmd(pattern="download(?: |$)(.*)", outgoing=True))
@@ -17,7 +20,7 @@ from . import CMD_HELP, hmention, humanbytes, progress
 async def _(event):
     if event.fwd_from:
         return
-    mone = await edit_or_reply(event, "<code>Processing ...</code>", "html")
+    mone = await edit_or_reply(event, "`Processing ...`")
     input_str = event.pattern_match.group(1)
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
@@ -39,8 +42,7 @@ async def _(event):
             end = datetime.now()
             ms = (end - start).seconds
             await mone.edit(
-                f"<b><i>➥ Downloaded in {ms} seconds.</i></b>\n<b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
-                parse_mode="html",
+                f"**  •  Downloaded in {ms} seconds.**\n**  •  Downloaded to :- ** `{downloaded_file_name}`\n**  •  Downloaded by :-** {DEFAULTUSER}"
             )
     elif input_str:
         start = datetime.now()
@@ -63,14 +65,19 @@ async def _(event):
             diff = now - c_time
             percentage = downloader.get_progress() * 100
             downloader.get_speed()
-            progress_str = "{0}{1}\nProgress: {2}%".format(
-                "".join(["█" for i in range(math.floor(percentage / 5))]),
-                "".join(["░" for i in range(20 - math.floor(percentage / 5))]),
+            progress_str = "`{0}{1} {2}`%".format(
+                "".join(["▰" for i in range(math.floor(percentage / 5))]),
+                "".join(["▱" for i in range(20 - math.floor(percentage / 5))]),
                 round(percentage, 2),
             )
             estimated_total_time = downloader.get_eta(human=True)
             try:
-                current_message = f"trying to download\nURL: {url}\nFile Name: {file_name}\n{progress_str}\n{humanbytes(downloaded)} of {humanbytes(total_length)}\nETA: {estimated_total_time}"
+                current_message = f"Downloading the file\
+                                \n\n**URL : **`{url}`\
+                                \n**File Name :** `{file_name}`\
+                                \n{progress_str}\
+                                \n`{humanbytes(downloaded)} of {humanbytes(total_length)}`\
+                                \n**ETA : **`{estimated_total_time}``"
                 if round(diff % 10.00) == 0 and current_message != display_message:
                     await mone.edit(current_message)
                     display_message = current_message
@@ -80,14 +87,12 @@ async def _(event):
         ms = (end - start).seconds
         if downloader.isSuccessful():
             await mone.edit(
-                f"<b><i>➥ Downloaded in {ms} seconds.</i></b>\n<b><i>➥ Downloaded to :-</i></b> <code>{downloaded_file_name}</code>\n<b><i>➥ Downloaded by :- {hmention}</i></b>",
-                parse_mode="html",
+                f"**  •  Downloaded in {ms} seconds.**\n**  •  Downloaded to :- ** `{downloaded_file_name}`"
             )
         else:
             await mone.edit("Incorrect URL\n {}".format(input_str))
     else:
         await mone.edit("Reply to a message to download to my local server.")
-
 
 CMD_HELP.update(
     {
