@@ -10,7 +10,7 @@ from telethon import events, functions
 
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 
-from . import PM_START, mention
+from . import  mention, PM_START, PMMESSAGE_CACHE, set_key
 
 PREV_REPLY_MESSAGE = {}
 
@@ -24,10 +24,9 @@ async def _(event):
         chat = await event.get_chat()
         if chat_id not in PM_START:
             PM_START.append(chat_id)
-        if event.fwd_from:
-            return
         if not event.is_private:
             return
+        set_key(PMMESSAGE_CACHE, event.chat_id, event.id)
         PM = (
             "Hello. You are accessing the availabe menu of my master, "
             f"{mention}.\n"
@@ -51,87 +50,114 @@ async def _(event):
             async with event.client.conversation(chat) as conv:
                 if pmpermit_sql.is_approved(chat_id):
                     return
-                await event.client.send_message(chat, PM)
+                test1 = await event.client.send_message(chat, PM)
+                set_key(PMMESSAGE_CACHE, event.chat_id, test1.id)
                 chat_id = event.sender_id
                 response = await conv.get_response(chat)
                 y = response.text
                 if y == "a" or "A":
                     if pmpermit_sql.is_approved(chat_id):
                         return
-                    await event.client.send_message(chat, ONE)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                    test2 = await event.client.send_message(chat, ONE)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, test2.id)
                     response = await conv.get_response(chat)
                     if response.text != "/start":
                         if pmpermit_sql.is_approved(chat_id):
                             return
-                        await event.client.send_message(chat, LWARN)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                        test3 = await event.client.send_message(chat, LWARN)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, test3.id)
                         response = await conv.get_response(chat)
                         if response.text != "/start":
                             if pmpermit_sql.is_approved(chat_id):
                                 return
-                            await event.client.send_message(chat, TWO)
+                            set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                            test4 = await event.client.send_message(chat, TWO)
+                            set_key(PMMESSAGE_CACHE, event.chat_id, test4.id)
                             await asyncio.sleep(3)
                             await event.client(functions.contacts.BlockRequest(chat_id))
                 elif y == "b" or "B":
                     if pmpermit_sql.is_approved(chat_id):
                         return
-                    await event.client.send_message(chat, LWARN)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                    test5 = await event.client.send_message(chat, LWARN)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, test5.id)
                     response = await conv.get_response(chat)
                     if response.text != "/start":
                         if pmpermit_sql.is_approved(chat_id):
                             return
-                        await event.client.send_message(chat, TWO)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                        test6 = await event.client.send_message(chat, TWO)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, test6.id)
                         await asyncio.sleep(3)
                         await event.client(functions.contacts.BlockRequest(chat_id))
                 elif y == "c" or "C":
                     if pmpermit_sql.is_approved(chat_id):
                         return
-                    await event.client.send_message(chat, THREE)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                    test7 = await event.client.send_message(chat, THREE)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, test7.id)
                     response = await conv.get_response(chat)
                     if response.text != "/start":
                         if pmpermit_sql.is_approved(chat_id):
                             return
-                        await event.client.send_message(chat, LWARN)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                        test8 = await event.client.send_message(chat, LWARN)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, test8.id)
                         response = await conv.get_response(chat)
                         if response.text != "/start":
                             if pmpermit_sql.is_approved(chat_id):
                                 return
-                            await event.client.send_message(chat, TWO)
+                            set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                            test9 = await event.client.send_message(chat, TWO)
+                            set_key(PMMESSAGE_CACHE, event.chat_id, test9.id)
                             await asyncio.sleep(3)
                             await event.client(functions.contacts.BlockRequest(chat_id))
                 elif y == "d" or "D":
                     if pmpermit_sql.is_approved(chat_id):
                         return
-                    await event.client.send_message(chat, FOUR)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                    test10 = await event.client.send_message(chat, FOUR)
+                    set_key(PMMESSAGE_CACHE, event.chat_id, test10.id)
                     response = await conv.get_response(chat)
                     if response.text != "/start":
                         if pmpermit_sql.is_approved(chat_id):
                             return
-                        await event.client.send_message(chat, LWARN)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                        test11 = await event.client.send_message(chat, LWARN)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, test11.id)
                         response = await conv.get_response(chat)
                         if response.text != "/start":
                             if pmpermit_sql.is_approved(chat_id):
                                 return
+                            set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
                             await event.client.send_message(chat, TWO)
                             await asyncio.sleep(3)
                             await event.client(functions.contacts.BlockRequest(chat_id))
                 else:
                     if pmpermit_sql.is_approved(chat_id):
                         return
-                    await event.client.send_message(
+                    test12 = await event.client.send_message(
                         chat,
                         "You have entered an invalid command. Please send `/start` again or do not send another message if you do not wish to be blocked and reported.",
                     )
+                    set_key(PMMESSAGE_CACHE, event.chat_id, test12.id)
                     response = await conv.get_response(chat)
                     z = response.text
                     if z != "/start":
                         if pmpermit_sql.is_approved(chat_id):
                             return
-                        await event.client.send_message(chat, LWARN)
-                        await conv.get_response(chat)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                        test13 = await event.client.send_message(chat, LWARN)
+                        set_key(PMMESSAGE_CACHE, event.chat_id, test13.id)
+                        response = await conv.get_response(chat)
                         if response.text != "/start":
                             if pmpermit_sql.is_approved(chat_id):
                                 return
-                            await event.client.send_message(chat, TWO)
+                            set_key(PMMESSAGE_CACHE, event.chat_id, response.id)
+                            test14 = await event.client.send_message(chat, TWO)
+                            set_key(PMMESSAGE_CACHE, event.chat_id, test14.id)
                             await asyncio.sleep(3)
                             await event.client(functions.contacts.BlockRequest(chat_id))
         except:
