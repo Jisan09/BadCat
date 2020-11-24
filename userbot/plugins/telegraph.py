@@ -13,6 +13,7 @@ telegraph = Telegraph()
 r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
 auth_url = r["auth_url"]
 
+
 @bot.on(admin_cmd(pattern="telegraph (media|text) ?(.*)"))
 @bot.on(sudo_cmd(pattern="telegraph (media|text) ?(.*)", allow_sudo=True))
 @bot.on(admin_cmd(pattern="tg(m|t) ?(.*)"))
