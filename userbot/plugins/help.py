@@ -51,7 +51,7 @@ async def cmd_list(event):
             string = "<b>{count} Commands found in plugin {input_str}:</b>\n\n"
             catcount = 0
             for i in CMD_LIST[input_str]:
-                string += f"  ◆  <code>{i}</code>"
+                string += f"  •  <code>{i}</code>"
                 string += "\n"
                 catcount += 1
             await event.edit(
@@ -122,7 +122,7 @@ async def info(event):
             string = "<b>{count} Commands found in plugin {input_str}:</b>\n\n"
             catcount = 0
             for i in SUDO_LIST[input_str]:
-                string += f"  ◆  <code>{i}</code>"
+                string += f"  •  <code>{i}</code>"
                 string += "\n"
                 catcount += 1
             await event.reply(
