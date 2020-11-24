@@ -1,7 +1,7 @@
 # ported from ProjectBish by @sandy1709
-# Copyright (C) 2020 Adek Maulana
 
 # Catuserbot Google Drive managers  ported from Projectbish and added extra things by @mrconfused
+
 import asyncio
 import base64
 import json
@@ -210,12 +210,11 @@ async def get_file_id(input_str):
     link = input_str
     found = GDRIVE_ID.search(link)
     if found and "folder" in link:
-        out = (found.group(1), "folder")
+        return found.group(1), "folder"
     elif found:
-        out = (found.group(1), "file")
+        return found.group(1), "file"
     else:
-        out = (link, "unknown")
-    return out
+        return link, "unknown"
 
 
 async def download(event, gdrive, service, uri=None):
@@ -227,14 +226,33 @@ async def download(event, gdrive, service, uri=None):
         os.makedirs(TMP_DOWNLOAD_DIRECTORY)
         required_file_name = ""
     if uri:
+        try:
+            from .torrentutils import aria2, check_metadata
+
+            cattorrent = True
+        except:
+            cattorrent = False
         full_path = os.getcwd() + TMP_DOWNLOAD_DIRECTORY.strip(".")
-        if isfile(uri) and uri.endswith(".torrent"):
-            downloads = aria2.add_torrent(
-                uri, uris=None, options={"dir": full_path}, position=None
-            )
+        if cattorrent:
+            LOGS.info("torrentutils exists")
+            if isfile(uri) and uri.endswith(".torrent"):
+                downloads = aria2.add_torrent(
+                    uri, uris=None, options={"dir": full_path}, position=None
+                )
+            else:
+                uri = [uri]
+                downloads = aria2.add_uris(
+                    uri, options={"dir": full_path}, position=None
+                )
         else:
-            uri = [uri]
-            downloads = aria2.add_uris(uri, options={"dir": full_path}, position=None)
+            LOGS.info("No torrentutils")
+            await edit_or_reply(
+                gdrive,
+                "`To use torrent files or download files from link install torrentutils from` @catplugins",
+            )
+            return "install torrentutils"
+        from .torrentutils import aria2, check_metadata
+
         gid = downloads.gid
         await check_progress_for_dl(gdrive, gid, previous=None)
         file = aria2.get_download(gid)
@@ -939,11 +957,16 @@ async def cancel_process(gdrive):
     Abort process for download and upload
     """
     global is_cancelled
-    downloads = aria2.get_downloads()
     gdrive = await edit_or_reply(gdrive, "`Cancelling...`")
-    if len(downloads) != 0:
-        aria2.remove_all(force=True)
-        aria2.autopurge()
+    try:
+        from .torrentutils import aria2
+
+        downloads = aria2.get_downloads()
+        if len(downloads) != 0:
+            aria2.remove_all(force=True)
+            aria2.autopurge()
+    except:
+        pass
     is_cancelled = True
     await asyncio.sleep(3.5)
     await gdrive.delete()
@@ -970,7 +993,7 @@ async def google_drive(gdrive):
         return None
     service = await create_app(gdrive)
     event = gdrive
-    gdrive = await edit_or_reply(gdrive, "Uploading...")
+    gdrive = await edit_or_reply(gdrive, "`Uploading...`")
     if service is False:
         return None
     if isfile(value):
@@ -1013,7 +1036,10 @@ async def google_drive(gdrive):
             await reset_parentId()
             return True
     elif not value and event.reply_to_msg_id:
-        reply += await download(event, gdrive, service)
+        output = await download(event, gdrive, service)
+        if output == "install torrentutils":
+            return
+        reply += output
         await gdrive.edit(reply, link_preview=False)
         return None
     else:
@@ -1036,16 +1062,13 @@ async def google_drive(gdrive):
                         f"**Reason : **`{str(e)}`\n\n"
                     )
                     continue
-            if reply:
-                await gdrive.edit(reply, link_preview=False)
-                return True
-            else:
+            if not reply:
                 return None
+            await gdrive.edit(reply, link_preview=False)
+            return True
         elif re.findall(r"\bhttps?://.*\.\S+", value) or "magnet:?" in value:
             uri = value.split()
-            return await gdrive.edit("If you want this, manually deploy aria branch")
         else:
-            return await gdrive.edit("If you want this, manually deploy aria branch")
             for fileId in value.split():
                 one = any(map(str.isdigit, fileId))
                 two = "-" in fileId or "_" in fileId
@@ -1065,11 +1088,10 @@ async def google_drive(gdrive):
                             f"**Reason : **`{str(e)}`\n\n"
                         )
                         continue
-            if reply:
-                await gdrive.edit(reply, link_preview=False)
-                return True
-            else:
+            if not reply:
                 return None
+            await gdrive.edit(reply, link_preview=False)
+            return True
         if not uri and not event.reply_to_msg_id:
             await gdrive.edit(
                 "**[VALUE - ERROR]**\n\n"
@@ -1083,7 +1105,10 @@ async def google_drive(gdrive):
     if uri and not event.reply_to_msg_id:
         for dl in uri:
             try:
-                reply += await download(event, gdrive, service, dl)
+                output = await download(event, gdrive, service, dl)
+                if output == "install torrentutils":
+                    return
+                reply += output
             except Exception as e:
                 if " not found" in str(e) or "'file'" in str(e):
                     reply += (
@@ -1223,6 +1248,8 @@ async def check_progress_for_dl(event, gid, previous):
     global is_cancelled
     global filenames
     is_cancelled = False
+    from .torrentutils import aria2
+
     while not complete:
         file = aria2.get_download(gid)
         complete = file.is_complete
@@ -1383,6 +1410,7 @@ async def g_download(event):
             "**File Downloaded and uploaded.\nName : **`" + str(file_name) + "`",
             5,
         )
+
 
 
 CMD_HELP.update(
