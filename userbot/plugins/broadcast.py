@@ -314,21 +314,20 @@ async def catbroadcast_remove(event):
 
 CMD_HELP.update(
     {
-        "broadcast": """__**PLUGIN NAME :** Broadcast__
-\n\n📌** CMD ➥** `.sendto category_name`
-\n**USAGE   ➥  **__Will send the replied message to all the chats in give category__
-\n\n📌** CMD ➥** `.fwdto category_name`
-\n**USAGE   ➥  **__Will forward the replied message to all the chats in give category__
-\n\n📌** CMD ➥** `.addto category_name`
-\n**USAGE   ➥  **__It will add this chat/user/channel to the category of the given name__
-\n\n📌** CMD ➥** `.rmfrom category_name`
-\n**USAGE   ➥  **__To remove the Chat/user/channel from the given category name__
-\n\n📌** CMD ➥** `.list category_name`
-\n**USAGE   ➥  **__Will show the list of all chats in the given category__
-\n\n📌** CMD ➥** `.listall`
-\n**USAGE   ➥  **__Will show the list of all category names__
-\n\n📌** CMD ➥** `.frmfrom category_name chat_id`
-\n**USAGE   ➥  **__To force remove the given chat_id from the given category name usefull when you left that chat or banned you there__
-"""
+        "broadcast": "__**PLUGIN NAME :** Broadcast__\
+\n\n📌** CMD ➥** `.sendto category_name`\
+\n**USAGE   ➥  **__Will send the replied message to all the chats in give category__\
+\n\n📌** CMD ➥** `.fwdto category_name`\
+\n**USAGE   ➥  **__Will forward the replied message to all the chats in give category__\
+\n\n📌** CMD ➥** `.addto category_name`\
+\n**USAGE   ➥  **__It will add this chat/user/channel to the category of the given name__\
+\n\n📌** CMD ➥** `.rmfrom category_name`\
+\n**USAGE   ➥  **__To remove the Chat/user/channel from the given category name__\
+\n\n📌** CMD ➥** `.list category_name`\
+\n**USAGE   ➥  **__Will show the list of all chats in the given category__\
+\n\n📌** CMD ➥** `.listall`\
+\n**USAGE   ➥  **__Will show the list of all category names__\
+\n\n📌** CMD ➥** `.frmfrom category_name chat_id`\
+\n**USAGE   ➥  **__To force remove the given chat_id from the given category name usefull when you left that chat or banned you there__"
     }
 )
