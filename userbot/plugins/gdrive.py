@@ -34,7 +34,6 @@ from . import (
     LOGS,
     TMP_DOWNLOAD_DIRECTORY,
     CancelProcess,
-    aria2,
     bot,
     check_metadata,
     progress,
