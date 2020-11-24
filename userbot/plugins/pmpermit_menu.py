@@ -10,7 +10,7 @@ from telethon import events, functions
 
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 
-from . import  mention, PM_START, PMMESSAGE_CACHE, set_key
+from . import PM_START, PMMESSAGE_CACHE, mention, set_key
 
 PREV_REPLY_MESSAGE = {}
 
