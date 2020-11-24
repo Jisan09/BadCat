@@ -31,7 +31,7 @@ if Config.PRIVATE_GROUP_ID is not None:
         if event.fwd_from:
             return
         chat = await event.get_chat()
-        if event.text.startswith((".block", ".disapprove")):
+        if event.text.startswith((".block", ".disapprove", ".a", ".da", ".approve")):
             return
         if (
             event.is_private
@@ -61,7 +61,9 @@ if Config.PRIVATE_GROUP_ID is not None:
                 PM_START.remove(user.id)
             pmpermit_sql.approve(user.id, reason)
             await edit_delete(
-                event, f"Approved to pm [{user.first_name}](tg://user?id={user.id})", 5
+                event,
+                f"`Approved to pm `[{user.first_name}](tg://user?id={user.id})",
+                5,
             )
             if user.id in PMMESSAGE_CACHE:
                 try:
@@ -73,7 +75,7 @@ if Config.PRIVATE_GROUP_ID is not None:
         else:
             await edit_delete(
                 event,
-                f"[{user.first_name}](tg://user?id={user.id}) is already in approved list",
+                f"[{user.first_name}](tg://user?id={user.id}) `is already in approved list`",
                 5,
             )
 
@@ -85,8 +87,8 @@ if Config.PRIVATE_GROUP_ID is not None:
             user, reason = await get_user_from_event(event, secondgroup=True)
             if not user:
                 return await edit_delete(event, "`Couldn't Fectch user`", 5)
-        if reason == "all":
-            return
+            if reason == "all":
+                return
         if user.id in PM_START:
             PM_START.remove(user.id)
         if pmpermit_sql.is_approved(user.id):
@@ -155,7 +157,7 @@ if Config.PRIVATE_GROUP_ID is not None:
     async def disapprove_p_m(event):
         if event.fwd_from:
             return
-        result = "ok , everyone is disapproved now"
+        result = "`ok , everyone is disapproved now`"
         pmpermit_sql.disapprove_all()
         await edit_delete(event, result, parse_mode=parse_pre, time=10)
 
@@ -225,6 +227,7 @@ if Config.PRIVATE_GROUP_ID is not None:
         my_fullname = f"{my_first} {my_last}" if my_last else my_first
         my_username = f"@{me.username}" if me.username else my_mention
         totalwarns = Config.MAX_FLOOD_IN_P_M_s + 1
+        warns = PM_WARNS[chat_id] + 1
         if PMMENU:
             if Config.CUSTOM_PMPERMIT_TEXT:
                 USER_BOT_NO_WARN = (
@@ -240,6 +243,8 @@ if Config.PRIVATE_GROUP_ID is not None:
                         my_fullname=my_fullname,
                         my_username=my_username,
                         my_mention=my_mention,
+                        totalwarns=totalwarns,
+                        warns=warns,
                     )
                     + "\n\n"
                     + "**Send** `/start` ** so that my master can decide why you're here.**"
@@ -247,10 +252,10 @@ if Config.PRIVATE_GROUP_ID is not None:
             else:
 
                 USER_BOT_NO_WARN = (
-                    f"`Hi `{mention} `,I haven't approved you yet to personal message me, Don't spam my inbox."
-                    f"Just say reason and wait untill for approval.\
-                    \n\nyou have {PM_WARNS[chat_id]}/{totalwarns}`\
-                    \n\n**Send** `/start` ** so that my master can decide why you're here.**"
+                    f"`Hi `{mention}`, I haven't approved you yet to personal message me, Don't spam my inbox."
+                    f"Just say the reason and wait until you get approved.\
+                                    \n\nyou have {warns}/{totalwarns} warns`\
+                                    \n\n**Send** `/start` **so that my master can decide why you're here.**"
                 )
         else:
             if Config.CUSTOM_PMPERMIT_TEXT:
@@ -266,12 +271,14 @@ if Config.PRIVATE_GROUP_ID is not None:
                     my_fullname=my_fullname,
                     my_username=my_username,
                     my_mention=my_mention,
+                    totalwarns=totalwarns,
+                    warns=warns,
                 )
             else:
                 USER_BOT_NO_WARN = (
-                    f"`Hi `{mention} `,I haven't approved you yet to personal message me, Don't spam my inbox."
-                    f"Just say reason and wait untill for approval.\
-                    \n\nyou have {PM_WARNS[chat_id]}/{totalwarns}`"
+                    f"`Hi `{mention}`, I haven't approved you yet to personal message me, Don't spam my inbox."
+                    f"Just say the reason and wait until you get approved.\
+                                    \n\nyou have {warns}/{totalwarns} warns`"
                 )
         if PMPERMIT_PIC:
             r = await event.reply(USER_BOT_NO_WARN, file=PMPERMIT_PIC)
@@ -283,7 +290,7 @@ if Config.PRIVATE_GROUP_ID is not None:
         PREV_REPLY_MESSAGE[chat_id] = r
         return None
 
-
+    
 CMD_HELP.update(
     {
         "pmpermit": "__**PLUGIN NAME :** Pm Permit__\
