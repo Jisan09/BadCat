@@ -215,7 +215,7 @@ def search_torrentz_eu(search_query):
 
 CMD_HELP.update(
     {
-        "torrent_search": "__**PLUGIN NAME :** Torrent_search__\
+        "torrentsearch": "__**PLUGIN NAME :** Torrentsearch__\
       \n\n📌** CMD ➥** `.tsearch` <query>\
       \n**USAGE   ➥  **__Fetches torrent links of given query__\
       \n\n📌** CMD ➥** `.movie idop.se` <query>\
