@@ -254,21 +254,15 @@ async def download(event, gdrive, service, uri=None):
         from .torrentutils import aria2, check_metadata
 
         gid = downloads.gid
-        await check_progress_for_dl(gdrive, gid, previous=None)
+        filename = await check_progress_for_dl(gdrive, gid, previous=None)
         file = aria2.get_download(gid)
-        filename = file.name
-        LOGS.info(f"1. {filename}")
         if file.followed_by_ids:
             new_gid = await check_metadata(gid)
-            await check_progress_for_dl(gdrive, new_gid, previous=None)
+            filename = await check_progress_for_dl(gdrive, new_gid, previous=None)
         try:
-            LOGS.info(f"4. {filenames}")
             required_file_name = TMP_DOWNLOAD_DIRECTORY + filenames
-            LOGS.info(f"2. {required_file_name}")
         except Exception:
-            LOGS.info(f"5. {filename}")
             required_file_name = TMP_DOWNLOAD_DIRECTORY + filename
-            LOGS.info(f"3. {required_file_name}")
     else:
         try:
             current_time = time.time()
@@ -362,7 +356,6 @@ async def download(event, gdrive, service, uri=None):
             f"**{status}**\n\n" "**Status : **`failed`\n" f"**Reason : **`{str(e)}`\n\n"
         )
         return reply
-    return
 
 
 async def list_drive_dir(service, file_id):
@@ -1108,7 +1101,7 @@ async def google_drive(gdrive):
                 output = await download(event, gdrive, service, dl)
                 if output == "install torrentutils":
                     return
-                reply += output
+                reply += str(output)
             except Exception as e:
                 if " not found" in str(e) or "'file'" in str(e):
                     reply += (
@@ -1284,12 +1277,13 @@ async def check_progress_for_dl(event, gid, previous):
                     await event.edit("Error : `{}`".format(str(file.error_message)))
                     return
             else:
-                return await event.edit(
+                await event.edit(
                     f"**Name : **`{file.name}`\n"
                     f"**Size : **`{file.total_length_string()}`\n"
                     f"**Path : **`{TMP_DOWNLOAD_DIRECTORY + file.name}`\n"
                     "**Resp : **`OK - Successfully downloaded...`"
                 )
+                return file.name
         except Exception as e:
             if " not found" in str(e) or "'file'" in str(e):
                 await event.edit("Download Canceled :\n`{}`".format(file.name))
@@ -1411,7 +1405,7 @@ async def g_download(event):
             5,
         )
 
-
+        
 CMD_HELP.update(
     {
         "gdrive": "__**PLUGIN NAME :** G-Drive__"
