@@ -32,11 +32,17 @@ async def variable(var):
     Manage most of ConfigVars setting, set new var, get current var,
     or delete var...
     """
+    if Config.HEROKU_API_KEY is None:
+        return await edit_delete(
+            var,
+            "Set the required var in heroku to function this normally `HEROKU_API_KEY`.",
+        )
     if Config.HEROKU_APP_NAME is not None:
         app = Heroku.app(Config.HEROKU_APP_NAME)
     else:
-        return await edit_or_reply(
-            var, "`[HEROKU]:" "\nPlease setup your` **HEROKU_APP_NAME**"
+        return await edit_delete(
+            var,
+            "Set the required var in heroku to function this normally `HEROKU_APP_NAME`.",
         )
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
@@ -111,6 +117,16 @@ async def dyno_usage(dyno):
     """
     Get your account Dyno Usage
     """
+    if HEROKU_APP_NAME is None:
+        return await edit_delete(
+            dyno,
+            "Set the required var in heroku to function this normally `HEROKU_APP_NAME`.",
+        )
+    if HEROKU_API_KEY is None:
+        return await edit_delete(
+            dyno,
+            "Set the required var in heroku to function this normally `HEROKU_API_KEY`.",
+        )
     dyno = await edit_or_reply(dyno, "`Processing...`")
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
@@ -167,6 +183,16 @@ async def dyno_usage(dyno):
 @bot.on(admin_cmd(pattern="herokulogs$", outgoing=True))
 @bot.on(sudo_cmd(pattern="herokulogs$", allow_sudo=True))
 async def _(dyno):
+    if HEROKU_APP_NAME is None:
+        return await edit_delete(
+            dyno,
+            "Set the required var in heroku to function this normally `HEROKU_APP_NAME`.",
+        )
+    if HEROKU_API_KEY is None:
+        return await edit_delete(
+            dyno,
+            "Set the required var in heroku to function this normally `HEROKU_API_KEY`.",
+        )
     try:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
         app = Heroku.app(HEROKU_APP_NAME)
