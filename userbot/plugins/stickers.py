@@ -23,7 +23,7 @@ from telethon.tl.types import (
 )
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 
 KANGING_STR = [
     "Using Witchery to kang this sticker...",

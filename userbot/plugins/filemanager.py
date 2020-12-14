@@ -7,7 +7,7 @@ import os
 import time
 from pathlib import Path
 
-from ..utils import admin_cmd, edit_or_reply, humanbytes, sudo_cmd
+from ..utils import admin_cmd, humanbytes, sudo_cmd
 from . import CMD_HELP, runcmd
 
 

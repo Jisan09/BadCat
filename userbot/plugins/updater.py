@@ -13,7 +13,7 @@ from os import environ, execle, path, remove
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, runcmd
 
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME or None

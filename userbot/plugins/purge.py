@@ -4,7 +4,7 @@ from asyncio import sleep
 
 from telethon.errors import rpcbaseerrors
 
-from ..utils import admin_cmd, edit_or_reply, errors_handler, sudo_cmd
+from ..utils import admin_cmd, errors_handler, sudo_cmd
 from . import BOTLOG, BOTLOG_CHATID, CMD_HELP
 
 

@@ -3,7 +3,7 @@ from platform import python_version
 
 from telethon import version
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, StartTime, catdef, catversion, hmention, mention, reply_id
 
 CAT_IMG = Config.ALIVE_PIC

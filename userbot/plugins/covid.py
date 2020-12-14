@@ -1,7 +1,7 @@
 # corona virus stats for catuserbot
 from covid import Covid
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, covidindia
 
 

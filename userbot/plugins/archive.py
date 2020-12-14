@@ -19,7 +19,7 @@ from hachoir.parser import createParser
 from telethon.tl.types import DocumentAttributeVideo
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, edit_or_reply, progress, sudo_cmd
+from ..utils import admin_cmd, progress, sudo_cmd
 
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 

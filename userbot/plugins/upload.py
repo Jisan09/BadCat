@@ -11,7 +11,7 @@ from hachoir.parser import createParser
 from pymediainfo import MediaInfo
 from telethon.tl.types import DocumentAttributeVideo
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, make_gif, progress, reply_id, runcmd, thumb_from_audio
 
 PATH = os.path.join("./temp", "temp_vid.mp4")

@@ -23,7 +23,7 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from telethon import events
 
-from ..utils import admin_cmd, edit_or_reply, humanbytes, sudo_cmd, time_formatter
+from ..utils import admin_cmd, humanbytes, sudo_cmd, time_formatter
 from . import (
     BOTLOG_CHATID,
     CMD_HELP,

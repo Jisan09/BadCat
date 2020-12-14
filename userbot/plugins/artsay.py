@@ -3,7 +3,7 @@ Created by  Md Jisan.  tg @Jisan7509
 Plugin for CatUserbot
 """
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, mention
 
 

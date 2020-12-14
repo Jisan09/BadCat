@@ -5,7 +5,7 @@ Plugin for CatUserbot
 """
 import asyncio
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import mention
 
 # ==================================================================

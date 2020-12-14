@@ -5,7 +5,7 @@ GF created by @KshitijGagan
 import asyncio
 import random
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, catmemes
 
 

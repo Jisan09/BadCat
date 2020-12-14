@@ -9,7 +9,7 @@ from userbot.plugins.sql_helper.welcome_sql import (
     update_previous_welcome,
 )
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import BOTLOG_CHATID, CMD_HELP, LOGS
 
 

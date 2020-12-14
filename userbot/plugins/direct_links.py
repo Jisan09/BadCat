@@ -16,7 +16,7 @@ import requests
 from bs4 import BeautifulSoup
 from humanize import naturalsize
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP
 
 

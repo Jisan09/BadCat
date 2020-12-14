@@ -1,6 +1,6 @@
 from telethon.utils import pack_bot_file_id
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP
 
 

@@ -2,7 +2,7 @@
 
 from telethon import events
 
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import BOTLOG_CHATID, CMD_HELP, cat_users
 from .sql_helper.snip_sql import add_note, get_note, get_notes, rm_note
 

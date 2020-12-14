@@ -21,7 +21,7 @@ from telethon.tl.functions.channels import (
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChatAdminRights, ChatBannedRights, MessageMediaPhoto
 
-from ..utils import admin_cmd, edit_or_reply, errors_handler, sudo_cmd
+from ..utils import admin_cmd, errors_handler, sudo_cmd
 from . import BOTLOG, BOTLOG_CHATID, CMD_HELP, LOGS, get_user_from_event
 from .sql_helper.mute_sql import is_muted, mute, unmute
 

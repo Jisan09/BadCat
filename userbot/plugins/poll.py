@@ -5,7 +5,7 @@ from telethon.errors.rpcerrorlist import PollOptionInvalidError
 from telethon.tl.types import InputMediaPoll, Poll
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd, sudo_cmd
 from . import Build_Poll
 
 
