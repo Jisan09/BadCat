@@ -1,5 +1,3 @@
- Heroku manager for your catuserbot
-
 # CC- @refundisillegal\nSyntax:-\n.get var NAME\n.del var NAME\n.set var NAME
 
 # Copyright (C) 2020 Adek Maulana.
