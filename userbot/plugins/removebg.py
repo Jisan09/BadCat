@@ -101,6 +101,7 @@ def ReTrieveURL(input_url):
         stream=True,
     )
 
+
 CMD_HELP.update(
     {
         "removebg": "__**PLUGIN NAME :** Removebg__\
