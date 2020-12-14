@@ -1,4 +1,5 @@
 # Random RGB Sticklet by @PhycoNinja13b
+# modified by @UniBorg
 # imported from ppe-remix by @heyworld & @DeletedUser420
 # modified by @mrconfused
 
@@ -10,7 +11,7 @@ import textwrap
 from PIL import Image, ImageDraw, ImageFont
 from telethon.tl.types import InputMessagesFilterDocument
 
-from .. import CMD_HELP, bot
+from .. import CMD_HELP
 from ..utils import admin_cmd, sudo_cmd
 from . import deEmojify, waifutxt
 
