@@ -158,22 +158,24 @@ def Build_Poll(options):
     return [PollAnswer(option, bytes(i)) for i, option in enumerate(options, start=1)]
 
 
-def convert_toimage(image):
+def convert_toimage(image, filename=None):
+    filename = filename or os.path.join("./temp/", "temp.jpg")
     img = Image.open(image)
     if img.mode != "RGB":
         img = img.convert("RGB")
-    img.save("./temp/temp.jpg", "jpeg")
+    img.save(filename, "jpeg")
     os.remove(image)
-    return "./temp/temp.jpg"
+    return filename
 
 
-async def convert_tosticker(image):
-    img = Image.open(image)
-    if img.mode != "RGB":
-        img = img.convert("RGB")
-    img.save("./temp/temp.webp", "webp")
-    os.remove(image)
-    return "./temp/temp.webp"
+def convert_tosticker(response, filename=None):
+    filename = filename or os.path.join("./temp/", "temp.webp")
+    image = Image.open(response)
+    if image.mode != "RGB":
+        image.convert("RGB")
+    image.save(filename, "webp")
+    os.remove(response)
+    return filename
 
 
 # covid india data
