@@ -142,7 +142,7 @@ CMD_HELP.update(
     {
         "lydia": "__**PLUGIN NAME :** Lydia__\
     \n\n📌** CMD ➥** `.enai` <reply to user>\
-    \n**USAGE   ➥  **your bot will auto reply to the tagged user until you stops it by `.remcf`\
+    \n**USAGE   ➥  **your bot will auto reply to the tagged user until you stops it by `.reai`\
     \n\n📌** CMD ➥** `.reai`<replay to user > \
     \n**USAGE   ➥  **reply to the user to who you want to disable the lydia\
     \n\n📌** CMD ➥** `.liai` \
