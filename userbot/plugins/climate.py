@@ -217,8 +217,8 @@ async def _(event):
 CMD_HELP.update(
     {
         "climate": "__**PLUGIN NAME :** Climate__\
-    \n\n📌** CMD ➥** `.climate` <city> or `.weather` <city>, <country name/code>\
-    \n**USAGE   ➥  **Gets the weather of a city.By default it is delhi change it by setcity.\
+    \n\n📌** CMD ➥** `.climate` <country name/code>\
+    \n**USAGE   ➥  **Gets the weather of a city. By default it is Kolkata change it by setcity.\
     \n\n📌** CMD ➥** `.wttr` <city>\
     \n**USAGE   ➥  **Shows you the climate data of 3 days from today in a image.\
     \n\n📌** CMD ➥** `.setcity` <city> or `.setcity` <city>, <country name/code>\
