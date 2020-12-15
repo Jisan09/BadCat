@@ -250,9 +250,7 @@ async def kakashi(event):
             details = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit(
-                "**Error:** `unblock` @instasavegrambot `and retry!`"
-            )
+            await catevent.edit("**Error:** `unblock` @instasavegrambot `and retry!`")
             return
         await catevent.delete()
         cat = await event.client.send_file(
@@ -266,7 +264,7 @@ async def kakashi(event):
             parse_mode="html",
         )
     await event.client.delete_messages(
-        conv.chat_id, [msg_start.id, response.id, msg.id, video.id , details.id]
+        conv.chat_id, [msg_start.id, response.id, msg.id, video.id, details.id]
     )
 
 
