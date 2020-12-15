@@ -244,13 +244,15 @@ async def kakashi(event):
             msg_start = await conv.send_message("/start")
             response = await conv.get_response()
             msg = await conv.send_message(link)
-            #details = await conv.get_response()
-            #await conv.get_response()
-            #await conv.get_response()
+            # details = await conv.get_response()
+            # await conv.get_response()
+            # await conv.get_response()
             video = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit("**Error:** `unblock` @instadownloadingbot `and retry!`")
+            await catevent.edit(
+                "**Error:** `unblock` @instadownloadingbot `and retry!`"
+            )
             return
         await catevent.delete()
         cat = await event.client.send_file(
