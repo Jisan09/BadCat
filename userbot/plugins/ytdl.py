@@ -266,7 +266,7 @@ async def kakashi(event):
             parse_mode="html",
         )
     await event.client.delete_messages(
-        conv.chat_id, [msg_start.id, response.id, msg.id, details.id, video.id]
+        conv.chat_id, [msg_start.id, response.id, msg.id, video.id]
     )
 
 
