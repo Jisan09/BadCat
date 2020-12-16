@@ -289,7 +289,7 @@ async def endgmute(event):
         )
 
 
-@command(incoming=True)
+@bot.on(admin_cmd(incoming=True))
 async def watcher(event):
     if is_muted(event.sender_id, "gmute"):
         await event.delete()
