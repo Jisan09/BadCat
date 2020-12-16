@@ -7,7 +7,7 @@ from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, StartTime, catdef, catversion, hmention, mention, reply_id
 
 CAT_IMG = Config.ALIVE_PIC
-CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "✮ MY BOT IS RUNNING SUCCESFULLY ✮"
+CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "✧✧"
 
 
