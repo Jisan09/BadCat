@@ -3,6 +3,7 @@
 
 import asyncio
 import os
+import re
 import time
 from datetime import datetime
 from html import unescape
@@ -27,8 +28,8 @@ from ..utils import admin_cmd, sudo_cmd
 from . import CMD_HELP, hmention, progress, reply_id
 
 
-@bot.on(admin_cmd(pattern="yt(a|v) (?: |$)(.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="yt(a|v) (?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="yt(a|v)(?: |$)(.*)", outgoing=True))
+@bot.on(sudo_cmd(pattern="yt(a|v)(?: |$)(.*)", allow_sudo=True))
 async def download_video(v_url):
     """ For .ytdl command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
@@ -37,7 +38,7 @@ async def download_video(v_url):
         myString = rmsg.text
         url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
     if not url:
-        await edit_or_reply(event, "What I am Supposed to find? Give link")
+        await edit_or_reply(v_url, "What I am Supposed to find? Give link")
         return
     ytype = v_url.pattern_match.group(1).lower()
     v_url = await edit_or_reply(v_url, "`Preparing to download...`")
