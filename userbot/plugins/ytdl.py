@@ -36,7 +36,7 @@ async def download_video(v_url):
         rmsg = await v_url.get_reply_message()
         myString = rmsg.text
         url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
-    if not args:
+    if not url:
         await edit_or_reply(event, "What I am Supposed to find? Give link")
         return
     ytype = v_url.pattern_match.group(1).lower()
