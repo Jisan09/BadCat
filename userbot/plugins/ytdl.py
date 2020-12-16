@@ -32,6 +32,13 @@ from . import CMD_HELP, hmention, progress, reply_id
 async def download_video(v_url):
     """ For .ytdl command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
+    if not url:
+        rmsg = await v_url.get_reply_message()
+        myString = rmsg.text
+        url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
+    if not args:
+        await edit_or_reply(event, "What I am Supposed to find? Give link")
+        return
     ytype = v_url.pattern_match.group(1).lower()
     v_url = await edit_or_reply(v_url, "`Preparing to download...`")
     reply_to_id = await reply_id(v_url)
