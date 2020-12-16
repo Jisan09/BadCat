@@ -15,9 +15,8 @@ from telethon import events
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 
-from userbot.Config import Config
-
 from . import CMD_LIST, LOAD_PLUG, LOGS, SUDO_LIST, bot
+from .Config import Config
 from .helpers.exceptions import CancelProcess
 
 
@@ -35,6 +34,7 @@ def load_module(shortname):
         LOGS.info("Successfully imported " + shortname)
     else:
         import userbot.utils
+        from userbot import CMD_HELP
 
         from .helpers.utils import install_pip
         from .managers import edit_delete, edit_or_reply
@@ -46,7 +46,9 @@ def load_module(shortname):
         mod.bot = bot
         mod.tgbot = bot.tgbot
         mod.Config = Config
-        mod.command = command
+        mod.admin_cmd = admin_cmd
+        mod.sudo_cmd = sudo_cmd
+        mod.CMD_HELP = CMD_HELP
         mod.logger = logging.getLogger(shortname)
         # support for uniborg
         sys.modules["uniborg.util"] = userbot.utils
