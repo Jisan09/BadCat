@@ -103,6 +103,7 @@ async def newpacksticker(
     conv,
     cmd,
     args,
+    pack,
     packnick,
     stfile,
     emoji,
@@ -163,7 +164,7 @@ async def newpacksticker(
                 time=10,
             )
     else:
-        return packname
+        return pack, packname
 
 
 async def add_to_pack(
@@ -204,6 +205,7 @@ async def add_to_pack(
                 conv,
                 cmd,
                 args,
+                pack,
                 packnick,
                 stfile,
                 emoji,
@@ -239,7 +241,7 @@ async def add_to_pack(
             time=10,
         )
     else:
-        return packname
+        return pack, packname
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="kang ?(.*)"))
@@ -354,6 +356,7 @@ async def kang(args):
                     conv,
                     cmd,
                     args,
+                    pack,
                     packnick,
                     stfile,
                     emoji,
@@ -416,8 +419,10 @@ async def pack_kang(event):
             )
         )
     )
-    noofst = len(get_stickerset.packs)
+    noofst = get_stickerset.set.count
     blablapacks = []
+    blablapacknames = []
+    pack = None
     for message in reqd_sticker_set.documents:
         if "image" in message.mime_type.split("/"):
             await edit_or_reply(
@@ -449,14 +454,15 @@ async def pack_kang(event):
         if photo:
             splat = ("".join(event.text.split(maxsplit=1)[1:])).split()
             emoji = emoji or "😂"
-            pack = 1
-            if len(splat) == 1:
-                pack = splat[0]
-            elif len(splat) > 1:
-                return await edit_delete(
-                    catevent,
-                    "`Sorry the given name cant be used for pack or there is no pack with that name`",
-                )
+            if pack is None:
+                pack = 1
+                if len(splat) == 1:
+                    pack = splat[0]
+                elif len(splat) > 1:
+                    return await edit_delete(
+                        catevent,
+                        "`Sorry the given name cant be used for pack or there is no pack with that name`",
+                    )
             packnick = pack_nick(username, pack, is_anim)
             packname = pack_name(userid, pack, is_anim)
             cmd = "/newpack"
@@ -476,7 +482,7 @@ async def pack_kang(event):
                 not in htmlstr
             ):
                 async with event.client.conversation("Stickers") as conv:
-                    catpackname = await add_to_pack(
+                    pack, catpackname = await add_to_pack(
                         catevent,
                         conv,
                         event,
@@ -492,11 +498,12 @@ async def pack_kang(event):
                     )
             else:
                 async with event.client.conversation("Stickers") as conv:
-                    catpackname = await newpacksticker(
+                    pack, catpackname = await newpacksticker(
                         catevent,
                         conv,
                         cmd,
                         event,
+                        pack,
                         packnick,
                         stfile,
                         emoji,
@@ -506,13 +513,12 @@ async def pack_kang(event):
                     )
             if catpackname not in blablapacks:
                 blablapacks.append(catpackname)
+                blablapacknames.append(pack)
         kangst += 1
         await asyncio.sleep(2)
     result = "`This sticker pack is kanged into the following your sticker pack(s):`\n"
-    a = 0
-    for i in blablapacks:
-        a += 1
-        result += f"  •  [pack {a}](t.me/addstickers/{i})"
+    for i in range(0, len(blablapacks)):
+        result += f"  •  [pack {blablapacknames[i]}](t.me/addstickers/{blablapacks[i]})"
     await catevent.edit(result)
 
 
@@ -554,7 +560,7 @@ async def get_pack_info(event):
         f"**Sticker Short Name:** `{get_stickerset.set.short_name}`\n"
         f"**Official:** `{get_stickerset.set.official}`\n"
         f"**Archived:** `{get_stickerset.set.archived}`\n"
-        f"**Stickers In Pack:** `{len(get_stickerset.packs)}`\n"
+        f"**Stickers In Pack:** `{get_stickerset.set.count}`\n"
         f"**Emojis In Pack:**\n{' '.join(pack_emojis)}"
     )
     await catevent.edit(OUTPUT)
