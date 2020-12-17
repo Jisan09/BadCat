@@ -200,6 +200,7 @@ async def add_to_pack(
         x = await conv.get_response()
         if x.text == "Invalid pack selected.":
             return await newpacksticker(
+                catevent,
                 conv,
                 cmd,
                 args,
@@ -508,8 +509,10 @@ async def pack_kang(event):
         kangst += 1
         await asyncio.sleep(2)
     result = "`This sticker pack is kanged into the following your sticker pack(s):`\n"
+    a = 0
     for i in blablapacks:
-        result += f"  •  [pack 1](t.me/addstickers/{i})"
+        a += 1
+        result += f"  •  [pack {a}](t.me/addstickers/{i})"
     await catevent.edit(result)
 
 
@@ -580,7 +583,7 @@ async def cb_sticker(event):
             reply += f"\n **• ID: **`{packid}`\n [{packtitle}]({packlink})"
     await catevent.edit(reply)
 
-
+    
 CMD_HELP.update(
     {
         "stickers": "__**PLUGIN NAME :** Stickers__\
