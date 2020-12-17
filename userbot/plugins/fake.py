@@ -117,6 +117,7 @@ CMD_HELP.update(
         "fake": "__**PLUGIN NAME :** Fake__\
     \n\n📌** CMD ➥** `.scam` <action> <time>\
     \n**USAGE   ➥  **Type .scam (action name) this shows the fake action in the group  the actions are typing ,contact ,game, location, voice, round, video,photo,document, cancel.\
+    \n***NOTE :-** Time use sec, __Example :__ `.scam game 120`  , will do scam for 120s.\
     \n\n📌** CMD ➥** `.prankpromote` reply to user to who you want to prank promote\
     \n**USAGE   ➥  **It promotes him to admin but he will not have any permission to take action that is he can see rection actions but cant take any admin action\
     \n\n📌** CMD ➥** `.padmin`\
