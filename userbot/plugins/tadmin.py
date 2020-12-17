@@ -180,7 +180,7 @@ async def ban(catty):
 
 CMD_HELP.update(
     {
-        "tadmin": "__**PLUGIN NAME :** Tadmin\
+        "tadmin": "__**PLUGIN NAME :** Tadmin__\
       \n\n📌** CMD ➥** `.tmute <reply/username/userid> <time> <reason>`\
       \n**USAGE   ➥  **Temporary mutes the user for given time.\
       \n\n📌** CMD ➥** `.tban <reply/username/userid> <time> <reason>`\
