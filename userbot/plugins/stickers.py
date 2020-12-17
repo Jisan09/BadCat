@@ -583,7 +583,7 @@ async def cb_sticker(event):
             reply += f"\n **• ID: **`{packid}`\n [{packtitle}]({packlink})"
     await catevent.edit(reply)
 
-    
+
 CMD_HELP.update(
     {
         "stickers": "__**PLUGIN NAME :** Stickers__\
