@@ -107,9 +107,9 @@ def resize_image(image):
 CMD_HELP.update(
     {
         "telegraph": "__**PLUGIN NAME :** Telegraph__\
-     \n\n📌** CMD ➥** `.telegraph media`\
+     \n\n📌** CMD ➥** `.telegraph media` < or > `.tgm`\
      \n**USAGE   ➥  **Reply to any image or video to upload it to telgraph(video must be less than 5mb)\
-     \n\n📌** CMD ➥** `.telegraph text`\
+     \n\n📌** CMD ➥** `.telegraph text` < or > `.tgt`\
      \n**USAGE   ➥  **Reply to any text file or any message to paste it to telegraph\
     "
     }
