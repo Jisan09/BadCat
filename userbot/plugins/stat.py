@@ -7,8 +7,6 @@ from telethon.tl.custom import Dialog
 from telethon.tl.types import Channel, Chat, User
 
 
-
-
 @bot.on(admin_cmd(pattern="stat$"))
 @bot.on(sudo_cmd(pattern="stat$", allow_sudo=True))
 async def stats(

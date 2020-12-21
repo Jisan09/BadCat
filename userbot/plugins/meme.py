@@ -1,8 +1,6 @@
 import asyncio
 
 
-
-
 @bot.on(admin_cmd(outgoing=True, pattern="^\:/$"))
 @bot.on(sudo_cmd(pattern="^\:/$", allow_sudo=True))
 async def kek(keks):

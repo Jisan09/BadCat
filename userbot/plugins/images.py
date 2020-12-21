@@ -7,7 +7,6 @@ from oub
 import os
 import shutil
 
-
 from ..helpers.google_image_download import googleimagesdownload
 
 

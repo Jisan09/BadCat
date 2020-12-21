@@ -5,8 +5,6 @@ import json
 import requests
 
 
-
-
 @bot.on(admin_cmd(pattern="ezanvakti (.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="ezanvakti (.*)", allow_sudo=True))
 async def get_adzan(adzan):

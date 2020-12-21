@@ -6,8 +6,6 @@ import os
 import requests
 
 
-
-
 @bot.on(admin_cmd(pattern="detect$", outgoing=True))
 @bot.on(sudo_cmd(pattern="detect$", allow_sudo=True))
 async def detect(event):

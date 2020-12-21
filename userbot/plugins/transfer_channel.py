@@ -8,8 +8,6 @@ import telethon.password as pwd_mod
 from telethon.tl import functions
 
 
-
-
 @bot.on(admin_cmd(pattern="otransfer (.*)"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:

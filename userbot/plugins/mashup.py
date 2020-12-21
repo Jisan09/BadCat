@@ -6,9 +6,6 @@ Syntax: .mash <text>
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 
-
-
-
 @bot.on(admin_cmd(pattern="mash ?(.*)"))
 @bot.on(sudo_cmd(pattern="mash ?(.*)", allow_sudo=True))
 async def _(event):

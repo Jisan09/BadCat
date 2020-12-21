@@ -8,8 +8,6 @@ import os
 
 import requests
 
-
-
 OCR_SPACE_API_KEY = Config.OCR_SPACE_API_KEY
 
 

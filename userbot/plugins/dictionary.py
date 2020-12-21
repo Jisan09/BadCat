@@ -7,8 +7,6 @@ import asyncurban
 from PyDictionary import PyDictionary
 
 
-
-
 @bot.on(admin_cmd(pattern="ud (.*)"))
 @bot.on(sudo_cmd(pattern="ud (.*)", allow_sudo=True))
 async def _(event):

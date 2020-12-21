@@ -14,8 +14,6 @@ from telethon import events
 import userbot.plugins.sql_helper.blacklist_sql as sql
 
 
-
-
 @bot.on(events.NewMessage(incoming=True))
 async def on_new_message(event):
     # TODO: exempt admins from locks

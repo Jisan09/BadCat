@@ -5,8 +5,6 @@ from datetime import datetime
 import requests
 
 
-
-
 @bot.on(admin_cmd(pattern="stt (.*)"))
 @bot.on(sudo_cmd(pattern="stt (.*)", allow_sudo=True))
 async def _(event):

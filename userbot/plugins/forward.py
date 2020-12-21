@@ -2,8 +2,6 @@ import string
 
 from telethon.tl.types import Channel
 
-
-
 global msg_cache
 msg_cache = {}
 

@@ -10,8 +10,6 @@ import urllib
 import requests
 from telethon.tl import functions
 
-
-
 COLLECTION_STRING1 = [
     "awesome-batman-wallpapers",
     "batman-arkham-knight-4k-wallpaper",

@@ -6,8 +6,6 @@ plugin for Cat_Userbot
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 
-
-
 @bot.on(admin_cmd(pattern=r"score$"))
 @bot.on(sudo_cmd(pattern=r"score$", allow_sudo=True))
 async def _(event):

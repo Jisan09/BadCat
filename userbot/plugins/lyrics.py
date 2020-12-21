@@ -5,8 +5,6 @@ import os
 import lyricsgenius
 from tswift import Song
 
-
-
 GENIUS = os.environ.get("GENIUS_API_TOKEN", None)
 
 

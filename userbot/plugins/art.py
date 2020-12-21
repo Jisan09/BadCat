@@ -2,7 +2,6 @@
 # Elove by @turquoise-giggle
 
 
-
 @bot.on(admin_cmd(pattern=r"elove$"))
 @bot.on(sudo_cmd(pattern="elove$", allow_sudo=True))
 async def kakashi(event):

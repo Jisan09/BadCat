@@ -5,7 +5,6 @@ from datetime import datetime
 from telethon import events
 from telethon.tl import functions, types
 
-
 from . import BOTLOG, BOTLOG_CHATID
 
 global USERAFK_ON

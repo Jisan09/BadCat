@@ -8,8 +8,6 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 
-
-
 def progress(current, total):
     logger.info(
         "Downloaded {} of {}\nCompleted {}".format(

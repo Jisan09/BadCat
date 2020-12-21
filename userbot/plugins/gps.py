@@ -17,9 +17,6 @@ from geopy.geocoders import Nominatim
 from telethon.tl import types
 
 
-
-
-
 @bot.on(admin_cmd(pattern="gps ?(.*)"))
 async def gps(event):
     if event.fwd_from:

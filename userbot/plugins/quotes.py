@@ -4,8 +4,6 @@ import random
 import requests
 
 
-
-
 @bot.on(admin_cmd(pattern="quote ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="quote ?(.*)", allow_sudo=True))
 async def quote_search(event):

@@ -10,8 +10,6 @@ import re
 from bs4 import BeautifulSoup
 from requests import get
 
-
-
 GITHUB = "https://github.com"
 DEVICES_DATA = (
     "https://raw.githubusercontent.com/androidtrackers/"

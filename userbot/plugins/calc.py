@@ -4,8 +4,6 @@ import sys
 import traceback
 
 
-
-
 @bot.on(admin_cmd(pattern="calc (.*)"))
 @bot.on(sudo_cmd(pattern="calc (.*)", allow_sudo=True))
 async def _(car):

@@ -7,8 +7,6 @@ By: @Zero_cool7870
 import os
 import subprocess
 
-
-
 location = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "temp")
 
 

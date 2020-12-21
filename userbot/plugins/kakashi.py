@@ -4,8 +4,6 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 
-
-
 @bot.on(admin_cmd(outgoing=True, pattern="note_help$"))
 @bot.on(sudo_cmd(outgoing=True, pattern="note_help$", allow_sudo=True))
 async def kakashi(jisan):

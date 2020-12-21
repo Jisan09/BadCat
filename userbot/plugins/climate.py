@@ -17,7 +17,6 @@ from pytz import timezone as tz
 
 from ..utils import errors_handler
 
-
 # ===== CONSTANT =====
 DEFCITY = "Kolkata"
 # ====================

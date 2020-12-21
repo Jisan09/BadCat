@@ -31,8 +31,6 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeFilename
 
 
-
-
 @bot.on(admin_cmd(pattern="frybot$"))
 @bot.on(sudo_cmd(pattern="frybot$", allow_sudo=True))
 async def _(event):

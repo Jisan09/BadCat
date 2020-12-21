@@ -1,8 +1,6 @@
 from asyncio import sleep
 
 
-
-
 @bot.on(admin_cmd(pattern="schd (\d*) (.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="schd (\d*) (.*)", allow_sudo=True))
 async def _(event):

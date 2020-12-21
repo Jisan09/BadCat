@@ -2,7 +2,6 @@ import asyncio
 
 from telethon import events, functions
 
-
 from . import (
     ALIVE_NAME,
     PM_START,

@@ -6,8 +6,6 @@
 
 from justwatch import JustWatch, justwatchapi
 
-
-
 justwatchapi.__dict__["HEADER"] = {
     "User-Agent": "JustWatch client (github.com/dawoudt/JustWatchAPI)"
 }

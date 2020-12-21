@@ -9,8 +9,6 @@ import subprocess
 
 import requests
 
-
-
 link_regex = re.compile(
     "((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)", re.DOTALL
 )

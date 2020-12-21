@@ -26,8 +26,6 @@ Type `.poto` for get **All profile pics of that User**
 
 import asyncio
 
-
-
 name = "Profile Photos"
 
 

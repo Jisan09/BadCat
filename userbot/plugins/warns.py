@@ -4,8 +4,6 @@ import html
 import userbot.plugins.sql_helper.warns_sql as sql
 
 
-
-
 @bot.on(admin_cmd(pattern="warn (.*)"))
 @bot.on(sudo_cmd(pattern="warn (.*)", allow_sudo=True))
 async def _(event):

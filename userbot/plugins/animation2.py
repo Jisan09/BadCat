@@ -2,8 +2,6 @@ import asyncio
 from collections import deque
 
 
-
-
 @bot.on(admin_cmd(pattern="think$", outgoing=True))
 @bot.on(sudo_cmd(pattern="think$", allow_sudo=True))
 async def _(event):
