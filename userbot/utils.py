@@ -15,7 +15,7 @@ from telethon import events
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 
-from . import CMD_LIST, LOAD_PLUG, LOGS, SUDO_LIST, bot
+from . import CMD_HELP, CMD_LIST, LOAD_PLUG, LOGS, SUDO_LIST, bot
 from .Config import Config
 from .helpers.exceptions import CancelProcess
 
@@ -24,8 +24,6 @@ def load_module(shortname):
     if shortname.startswith("__"):
         pass
     elif shortname.endswith("_"):
-        import userbot.utils
-
         path = Path(f"userbot/plugins/{shortname}.py")
         name = "userbot.plugins.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
@@ -34,9 +32,9 @@ def load_module(shortname):
         LOGS.info("Successfully imported " + shortname)
     else:
         import userbot.utils
-        from userbot import CMD_HELP
 
-        from .helpers.utils import install_pip
+        from .helpers.tools import media_type
+        from .helpers.utils import install_pip, parse_pre, reply_id
         from .managers import edit_delete, edit_or_reply
 
         path = Path(f"userbot/plugins/{shortname}.py")
@@ -44,19 +42,21 @@ def load_module(shortname):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         mod.bot = bot
-        mod.tgbot = bot.tgbot
         mod.Config = Config
-        mod.admin_cmd = admin_cmd
+        mod.tgbot = bot.tgbot
         mod.sudo_cmd = sudo_cmd
         mod.CMD_HELP = CMD_HELP
+        mod.reply_id = reply_id
+        mod.admin_cmd = admin_cmd
+        mod.parse_pre = parse_pre
+        mod.media_type = media_type
+        mod.edit_delete = edit_delete
+        mod.install_pip = install_pip
+        mod.edit_or_reply = edit_or_reply
         mod.logger = logging.getLogger(shortname)
         # support for uniborg
         sys.modules["uniborg.util"] = userbot.utils
-        mod.Config = Config
         mod.borg = bot
-        mod.edit_or_reply = edit_or_reply
-        mod.edit_delete = edit_delete
-        mod.install_pip = install_pip
         # support for paperplaneextended
         sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)
