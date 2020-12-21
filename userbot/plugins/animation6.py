@@ -1,8 +1,5 @@
 import asyncio
 
-from ..utils import admin_cmd, sudo_cmd
-from . import CMD_HELP
-
 
 @bot.on(admin_cmd(pattern="unoob$"))
 @bot.on(sudo_cmd(pattern="unoob$", allow_sudo=True))

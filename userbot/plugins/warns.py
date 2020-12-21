@@ -3,9 +3,6 @@ import html
 
 import userbot.plugins.sql_helper.warns_sql as sql
 
-from ..utils import admin_cmd, sudo_cmd
-from . import CMD_HELP
-
 
 @bot.on(admin_cmd(pattern="warn (.*)"))
 @bot.on(sudo_cmd(pattern="warn (.*)", allow_sudo=True))

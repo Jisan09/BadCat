@@ -7,8 +7,7 @@ from time import time
 from coffeehouse.api import API
 from coffeehouse.lydia import LydiaAI
 
-from ..utils import admin_cmd, sudo_cmd
-from . import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from . import BOTLOG, BOTLOG_CHATID
 from .sql_helper.lydia_ai_sql import add_s, get_all_s, get_s, remove_s
 
 if Config.LYDIA_API_KEY:

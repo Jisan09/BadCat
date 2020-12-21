@@ -8,9 +8,7 @@ import re
 
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
-from ..utils import admin_cmd, sudo_cmd
 from . import (
-    CMD_HELP,
     changemymind,
     deEmojify,
     fakegs,

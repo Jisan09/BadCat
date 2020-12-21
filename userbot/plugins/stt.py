@@ -4,9 +4,6 @@ from datetime import datetime
 
 import requests
 
-from ..utils import admin_cmd, sudo_cmd
-from . import CMD_HELP
-
 
 @bot.on(admin_cmd(pattern="stt (.*)"))
 @bot.on(sudo_cmd(pattern="stt (.*)", allow_sudo=True))

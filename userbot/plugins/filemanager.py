@@ -7,8 +7,8 @@ import os
 import time
 from pathlib import Path
 
-from ..utils import admin_cmd, humanbytes, sudo_cmd
-from . import CMD_HELP, runcmd
+from ..utils import humanbytes
+from . import runcmd
 
 
 @bot.on(admin_cmd(pattern="ls ?(.*)"))

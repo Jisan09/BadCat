@@ -12,8 +12,7 @@ Userbot module for having some fun with people.
 import asyncio
 import random
 
-from ..utils import admin_cmd, sudo_cmd
-from . import CMD_HELP, catmemes
+from . import catmemes
 
 # ================= CONSTANT =================
 

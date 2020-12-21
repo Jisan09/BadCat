@@ -13,9 +13,6 @@ from telethon import events
 
 import userbot.plugins.sql_helper.blacklist_sql as sql
 
-from .. import CMD_HELP
-from ..utils import admin_cmd, sudo_cmd
-
 
 @bot.on(events.NewMessage(incoming=True))
 async def on_new_message(event):
