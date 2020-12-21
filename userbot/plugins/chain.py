@@ -6,7 +6,6 @@ from telethon.tl.functions.messages import SaveDraftRequest
 from .. import CMD_HELP
 
 
-
 @bot.on(admin_cmd(pattern="chain$"))
 @bot.on(sudo_cmd(pattern="chain$", allow_sudo=True))
 async def _(event):

@@ -5,8 +5,7 @@ from datetime import datetime
 
 import speedtest
 
-
-from . import  reply_id
+from . import reply_id
 
 
 @bot.on(admin_cmd(pattern="speedtest ?(.*)"))

@@ -5,7 +5,6 @@ Plugin for CatUserbot
 """
 import asyncio
 
-
 from . import mention
 
 # ==================================================================

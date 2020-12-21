@@ -10,8 +10,7 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
-
-from . import  awooify, baguette, iphonex, lolice
+from . import awooify, baguette, iphonex, lolice
 
 
 @bot.on(admin_cmd("mask$", outgoing=True))

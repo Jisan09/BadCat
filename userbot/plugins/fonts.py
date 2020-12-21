@@ -1,5 +1,4 @@
 from .. import CMD_HELP
-
 from . import fonts
 
 

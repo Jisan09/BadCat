@@ -1,7 +1,6 @@
 import requests
 from validators.url import url
 
-
 from . import CMD_HELP
 
 

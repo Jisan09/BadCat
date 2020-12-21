@@ -5,7 +5,6 @@ import os
 
 import requests
 
-
 from . import CMD_HELP
 
 

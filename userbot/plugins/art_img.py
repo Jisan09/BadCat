@@ -8,8 +8,7 @@ You remove this, you gay.
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-
-from . import  mention
+from . import mention
 
 
 @bot.on(admin_cmd("iascii ?(.*)"))

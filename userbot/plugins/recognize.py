@@ -6,7 +6,6 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from .. import CMD_HELP
 
 
-
 @bot.on(admin_cmd(pattern="recognize ?(.*)"))
 @bot.on(sudo_cmd(pattern="recognize ?(.*)", allow_sudo=True))
 async def _(event):

@@ -3,8 +3,7 @@
 
 import asyncio
 
-
-from . import  mention
+from . import mention
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="kilr (.*)"))

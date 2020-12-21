@@ -2,8 +2,7 @@
 import random
 import re
 
-
-from . import  fonts
+from . import fonts
 
 
 @bot.on(admin_cmd(pattern="str(.*)", command="str (.*)"))

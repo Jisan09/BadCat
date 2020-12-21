@@ -4,7 +4,7 @@ Plugin for CatUserbot
 """
 
 
-from . import  mention
+from . import mention
 
 
 @bot.on(admin_cmd(pattern="carry (.*)"))

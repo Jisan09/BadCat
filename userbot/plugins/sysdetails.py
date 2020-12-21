@@ -8,8 +8,7 @@ from datetime import datetime
 import psutil
 from telethon import __version__
 
-
-from . import ALIVE_NAME,  runcmd
+from . import ALIVE_NAME, runcmd
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"

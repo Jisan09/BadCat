@@ -1,7 +1,6 @@
 from telethon.tl.types import ChannelParticipantsAdmins
 
-
-from . import  reply_id
+from . import reply_id
 
 
 @bot.on(admin_cmd(pattern="tagall$"))

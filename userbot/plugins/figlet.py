@@ -3,7 +3,6 @@ import pyfiglet
 from .. import CMD_HELP
 
 
-
 @bot.on(admin_cmd(pattern="figlet ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="figlet ?(.*)", allow_sudo=True))
 async def figlet(event):

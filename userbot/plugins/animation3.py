@@ -1,8 +1,7 @@
 import asyncio
 from collections import deque
 
-
-from . import  mention
+from . import mention
 
 
 @bot.on(admin_cmd(pattern=r"star$", outgoing=True))

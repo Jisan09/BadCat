@@ -4,7 +4,6 @@ import json
 
 import requests
 
-
 from . import CMD_HELP
 
 

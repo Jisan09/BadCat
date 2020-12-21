@@ -6,7 +6,6 @@ from telethon.tl import functions
 from .. import CMD_HELP
 
 
-
 @bot.on(admin_cmd(pattern="create (b|g|c) (.*)"))  # pylint:disable=E0602
 @bot.on(sudo_cmd(pattern="create (b|g|c) (.*)", allow_sudo=True))
 async def _(event):

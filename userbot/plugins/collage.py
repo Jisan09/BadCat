@@ -7,8 +7,7 @@
 
 import os
 
-
-from . import  make_gif, runcmd
+from . import make_gif, runcmd
 
 
 @bot.on(admin_cmd(pattern="collage(?: |$)(.*)", outgoing=True))

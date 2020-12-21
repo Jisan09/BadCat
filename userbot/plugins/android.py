@@ -12,7 +12,6 @@ from requests import get
 
 from .. import CMD_HELP
 
-
 GITHUB = "https://github.com"
 DEVICES_DATA = (
     "https://raw.githubusercontent.com/androidtrackers/"

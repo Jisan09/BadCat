@@ -3,8 +3,8 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from ..utils import  load_module, remove_plugin
-from . import  hmention
+from ..utils import load_module, remove_plugin
+from . import hmention
 
 DELETE_TIMEOUT = 5
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"

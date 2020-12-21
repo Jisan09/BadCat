@@ -33,7 +33,6 @@ from telethon.tl.types import DocumentAttributeFilename
 from .. import CMD_HELP
 
 
-
 @bot.on(admin_cmd(pattern="frybot$"))
 @bot.on(sudo_cmd(pattern="frybot$", allow_sudo=True))
 async def _(event):

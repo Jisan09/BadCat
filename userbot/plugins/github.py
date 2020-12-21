@@ -4,8 +4,7 @@ from datetime import datetime
 import requests
 from github import Github
 
-
-from . import  reply_id
+from . import reply_id
 
 GIT_TEMP_DIR = "./temp/"
 

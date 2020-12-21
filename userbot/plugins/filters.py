@@ -1,7 +1,6 @@
 # ported from paperplaneExtended by avinashreddy3108 for media support
 import re
 
-
 from . import BOTLOG, BOTLOG_CHATID
 from .sql_helper.filter_sql import (
     add_filter,

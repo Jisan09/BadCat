@@ -11,7 +11,6 @@ import requests
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 
-
 from . import BOTLOG, BOTLOG_CHATID
 
 

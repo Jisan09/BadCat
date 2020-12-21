@@ -7,8 +7,8 @@ import time
 from subprocess import PIPE
 from subprocess import run as runapp
 
-from ..utils import  errors_handler
-from . import  media_type, progress
+from ..utils import errors_handler
+from . import media_type, progress
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="hash (.*)"))

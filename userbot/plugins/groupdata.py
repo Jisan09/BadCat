@@ -32,7 +32,6 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_input_location
 
-
 from . import BOTLOG, BOTLOG_CHATID
 
 

@@ -7,8 +7,7 @@ Userbot plugin fot CatUserbot
 
 import asyncio
 
-
-from . import  mention
+from . import mention
 
 
 @bot.on(admin_cmd(pattern="(imp|impn) (.*)", outgoing=True))

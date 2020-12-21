@@ -6,8 +6,7 @@
 import bs4
 import requests
 
-
-from . import  hmention
+from . import hmention
 
 
 @bot.on(admin_cmd(pattern="app (.*)"))

@@ -4,7 +4,7 @@ from asyncio import sleep
 
 from telethon.errors import rpcbaseerrors
 
-from ..utils import  errors_handler
+from ..utils import errors_handler
 from . import BOTLOG, BOTLOG_CHATID
 
 

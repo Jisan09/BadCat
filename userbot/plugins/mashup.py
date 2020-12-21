@@ -6,7 +6,7 @@ Syntax: .mash <text>
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from userbot import CMD_HELP
-from userbot.utils import  sudo_cmd
+from userbot.utils import sudo_cmd
 
 
 @bot.on(admin_cmd(pattern="mash ?(.*)"))

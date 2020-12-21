@@ -9,8 +9,7 @@ from datetime import datetime
 
 from pySmartDL import SmartDL
 
-
-from . import ALIVE_NAME,  humanbytes, progress
+from . import ALIVE_NAME, humanbytes, progress
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
 

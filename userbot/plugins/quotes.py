@@ -3,7 +3,6 @@ import random
 
 import requests
 
-
 from . import CMD_HELP
 
 

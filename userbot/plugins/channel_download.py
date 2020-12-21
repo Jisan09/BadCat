@@ -9,7 +9,6 @@ import subprocess
 
 from .. import CMD_HELP
 
-
 location = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "temp")
 
 

@@ -8,8 +8,7 @@ import os
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-
-from . import  convert_tosticker, process
+from . import convert_tosticker, process
 
 
 @bot.on(admin_cmd(pattern="q(?: |$)(.*)", outgoing=True))

@@ -2,8 +2,7 @@ import asyncio
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-
-from . import  parse_pre, sanga_seperator
+from . import parse_pre, sanga_seperator
 
 
 @bot.on(admin_cmd(pattern="(sg|sgu)($| (.*))"))

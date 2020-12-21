@@ -3,9 +3,10 @@ from platform import python_version
 
 from telethon import version
 
+from . import StartTime, catdef, catversion, hmention, mention, reply_id
+
 # backup
 
-from . import  StartTime, catdef, catversion, hmention, mention, reply_id
 
 CAT_IMG = Config.ALIVE_PIC
 CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"

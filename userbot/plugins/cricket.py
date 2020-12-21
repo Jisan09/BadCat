@@ -5,7 +5,6 @@ plugin for Cat_Userbot
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-
 from . import CMD_HELP
 
 

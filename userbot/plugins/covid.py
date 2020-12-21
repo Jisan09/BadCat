@@ -1,8 +1,7 @@
 # corona virus stats for catuserbot
 from covid import Covid
 
-
-from . import  covidindia
+from . import covidindia
 
 
 @bot.on(admin_cmd(pattern="covid(?: |$)(.*)"))

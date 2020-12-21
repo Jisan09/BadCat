@@ -1,7 +1,6 @@
 from telethon import events
 
-
-from . import BOTLOG_CHATID,  bot
+from . import BOTLOG_CHATID, bot
 from .sql_helper import pmpermit_sql as pmpermit_sql
 from .sql_helper.welcomesql import (
     addwelcome_setting,

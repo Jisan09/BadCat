@@ -12,8 +12,7 @@ Userbot module for having some fun with people.
 import asyncio
 import random
 
-
-from . import  catmemes
+from . import catmemes
 
 # ================= CONSTANT =================
 

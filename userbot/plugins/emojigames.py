@@ -3,7 +3,6 @@ from telethon.tl.types import InputMediaDice
 
 from .. import CMD_HELP
 
-
 # EMOJI CONSTANTS
 DART_E_MOJI = "🎯"
 DICE_E_MOJI = "🎲"

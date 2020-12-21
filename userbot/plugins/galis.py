@@ -5,8 +5,7 @@ GF created by @KshitijGagan
 import asyncio
 import random
 
-
-from . import  catmemes
+from . import catmemes
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="abuse$"))

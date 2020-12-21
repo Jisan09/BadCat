@@ -1,7 +1,6 @@
 import random
 
-
-from . import  fonts
+from . import fonts
 
 
 @bot.on(admin_cmd(pattern="egyptf(.*)", command="egyptf (.*)"))
