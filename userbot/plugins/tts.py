@@ -9,7 +9,7 @@ from datetime import datetime
 
 from gtts import gTTS
 
-from .. import CMD_HELP
+
 from . import deEmojify
 
 

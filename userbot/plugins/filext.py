@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from .. import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="filext (.*)"))

@@ -16,8 +16,8 @@
 from geopy.geocoders import Nominatim
 from telethon.tl import types
 
-from userbot import CMD_HELP
-from userbot.utils import sudo_cmd
+
+
 
 
 @bot.on(admin_cmd(pattern="gps ?(.*)"))

@@ -3,7 +3,7 @@ import html
 
 import userbot.plugins.sql_helper.warns_sql as sql
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="warn (.*)"))

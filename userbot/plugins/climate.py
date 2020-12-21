@@ -16,7 +16,7 @@ from pytz import country_timezones as c_tz
 from pytz import timezone as tz
 
 from ..utils import errors_handler
-from . import CMD_HELP
+
 
 # ===== CONSTANT =====
 DEFCITY = "Kolkata"

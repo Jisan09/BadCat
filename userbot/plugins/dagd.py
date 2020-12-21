@@ -1,7 +1,7 @@
 import requests
 from validators.url import url
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="dns( (.*)|$)"))

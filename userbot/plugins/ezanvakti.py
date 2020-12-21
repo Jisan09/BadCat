@@ -4,7 +4,7 @@ import json
 
 import requests
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="ezanvakti (.*)", outgoing=True))

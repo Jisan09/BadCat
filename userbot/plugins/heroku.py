@@ -11,7 +11,7 @@ import heroku3
 import requests
 import urllib3
 
-from .. import CMD_HELP
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # =================

@@ -1,7 +1,7 @@
 import asyncio
 from collections import deque
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="think$", outgoing=True))

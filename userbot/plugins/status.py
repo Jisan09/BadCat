@@ -10,7 +10,7 @@ import urllib
 
 from telethon.tl import functions
 
-from userbot.utils import admin_cmd
+
 
 OFFLINE_TAG = "[OFFLINE]"
 PROFILE_IMAGE = os.environ.get(

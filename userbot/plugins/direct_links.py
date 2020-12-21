@@ -16,7 +16,7 @@ import requests
 from bs4 import BeautifulSoup
 from humanize import naturalsize
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(outgoing=True, pattern=r"direct(?: |$)([\s\S]*)"))

@@ -3,7 +3,7 @@ Syntax: .invite <User(s)>"""
 
 from telethon import functions
 
-from .. import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="invite ?(.*)"))

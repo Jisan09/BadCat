@@ -1,6 +1,6 @@
 import asyncio
 
-from .. import CMD_HELP
+
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="^\:/$"))

@@ -3,7 +3,7 @@ import random
 
 import requests
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="quote ?(.*)", outgoing=True))

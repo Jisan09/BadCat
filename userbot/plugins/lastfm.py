@@ -15,7 +15,7 @@ from telethon.errors.rpcerrorlist import FloodWaitError
 from telethon.tl.functions.account import UpdateProfileRequest
 from telethon.tl.functions.users import GetFullUserRequest
 
-from ..utils import admin_cmd
+
 from . import BOTLOG, BOTLOG_CHATID, DEFAULT_BIO
 
 BIO_PREFIX = Config.BIO_PREFIX

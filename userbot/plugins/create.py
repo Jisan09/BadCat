@@ -3,7 +3,7 @@ Available Commands:
 .create (b|g) GroupName"""
 from telethon.tl import functions
 
-from .. import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="create (b|g|c) (.*)"))  # pylint:disable=E0602

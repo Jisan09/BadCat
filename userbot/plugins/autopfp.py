@@ -10,7 +10,7 @@ import urllib
 import requests
 from telethon.tl import functions
 
-from userbot.utils import admin_cmd
+
 
 COLLECTION_STRING1 = [
     "awesome-batman-wallpapers",

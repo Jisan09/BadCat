@@ -6,7 +6,7 @@ Syntax: .ud Query"""
 import asyncurban
 from PyDictionary import PyDictionary
 
-from .. import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="ud (.*)"))

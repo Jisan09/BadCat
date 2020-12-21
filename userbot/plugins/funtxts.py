@@ -1,6 +1,6 @@
 import nekos
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="tcat$"))

@@ -6,7 +6,7 @@
 
 from justwatch import JustWatch, justwatchapi
 
-from .. import CMD_HELP
+
 
 justwatchapi.__dict__["HEADER"] = {
     "User-Agent": "JustWatch client (github.com/dawoudt/JustWatchAPI)"

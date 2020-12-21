@@ -1,6 +1,6 @@
 import pyfiglet
 
-from .. import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="figlet ?(.*)", outgoing=True))

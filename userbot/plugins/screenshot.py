@@ -10,7 +10,7 @@ import requests
 from selenium import webdriver
 from validators.url import url
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="ss (.*)"))

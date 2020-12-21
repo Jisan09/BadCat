@@ -5,7 +5,7 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from . import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="firmware(?: |$)(.*)"))

@@ -8,7 +8,7 @@ import os
 
 import requests
 
-from . import CMD_HELP
+
 
 OCR_SPACE_API_KEY = Config.OCR_SPACE_API_KEY
 

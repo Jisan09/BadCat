@@ -9,7 +9,7 @@ import subprocess
 
 import requests
 
-from .. import CMD_HELP
+
 
 link_regex = re.compile(
     "((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)", re.DOTALL

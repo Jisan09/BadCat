@@ -3,7 +3,7 @@ import io
 import sys
 import traceback
 
-from .. import CMD_HELP
+
 
 
 @bot.on(admin_cmd(pattern="calc (.*)"))
