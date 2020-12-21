@@ -2,7 +2,7 @@ import string
 
 from telethon.tl.types import Channel
 
-from ..utils import admin_cmd, sudo_cmd
+
 from . import CMD_HELP
 
 global msg_cache

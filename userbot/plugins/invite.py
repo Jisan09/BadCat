@@ -4,7 +4,7 @@ Syntax: .invite <User(s)>"""
 from telethon import functions
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, sudo_cmd
+
 
 
 @bot.on(admin_cmd(pattern="invite ?(.*)"))

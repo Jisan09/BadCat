@@ -7,8 +7,8 @@
 
 import os
 
-from ..utils import admin_cmd, sudo_cmd
-from . import CMD_HELP, make_gif, runcmd
+
+from . import  make_gif, runcmd
 
 
 @bot.on(admin_cmd(pattern="collage(?: |$)(.*)", outgoing=True))

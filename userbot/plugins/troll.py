@@ -7,9 +7,9 @@ You remove this, you gay.
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, bot
+from userbot import  bot
 
-from ..utils import admin_cmd, sudo_cmd
+
 
 
 @bot.on(admin_cmd(pattern="fox ?(.*)", outgoing=True))

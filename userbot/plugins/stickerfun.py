@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 from telethon.tl.types import InputMessagesFilterDocument
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, sudo_cmd
+
 from . import deEmojify, waifutxt
 
 # RegEx by https://t.me/c/1220993104/500653 ( @SnapDragon7410 )

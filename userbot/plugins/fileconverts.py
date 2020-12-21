@@ -12,8 +12,8 @@ from telethon.errors import PhotoInvalidDimensionsError
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.messages import SendMediaRequest
 
-from ..utils import admin_cmd, progress, sudo_cmd
-from . import CMD_HELP, unzip
+from ..utils import  progress
+from . import  unzip
 
 if not os.path.isdir("./temp"):
     os.makedirs("./temp")

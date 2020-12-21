@@ -12,7 +12,7 @@ import requests
 import urllib3
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, sudo_cmd
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # =================

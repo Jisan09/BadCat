@@ -2,8 +2,8 @@
 import random
 import re
 
-from ..utils import admin_cmd, sudo_cmd
-from . import CMD_HELP, fonts
+
+from . import  fonts
 
 
 @bot.on(admin_cmd(pattern="str(.*)", command="str (.*)"))

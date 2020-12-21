@@ -3,8 +3,8 @@ Created by  Md Jisan.  tg @Jisan7509
 Plugin for CatUserbot
 """
 
-from ..utils import admin_cmd, sudo_cmd
-from . import CMD_HELP, mention
+
+from . import  mention
 
 
 @bot.on(admin_cmd(pattern="carry (.*)"))

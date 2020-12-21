@@ -6,7 +6,7 @@ from telethon import events
 from telethon.tl import functions, types
 
 from ..utils import admin_cmd
-from . import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from . import BOTLOG, BOTLOG_CHATID
 
 global USERAFK_ON
 global afk_time

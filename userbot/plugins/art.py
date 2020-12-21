@@ -1,7 +1,7 @@
 # Edit credit @Sur_vivor & @jisan7509
 # Elove by @turquoise-giggle
 
-from ..utils import admin_cmd, sudo_cmd
+
 from . import CMD_HELP
 
 

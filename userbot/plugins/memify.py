@@ -6,9 +6,9 @@ import asyncio
 import os
 import random
 
-from ..utils import admin_cmd, sudo_cmd
+
 from . import (
-    CMD_HELP,
+    
     LOGS,
     add_frame,
     asciiart,

@@ -2,7 +2,7 @@
 
 import asyncio
 
-from ..utils import admin_cmd, sudo_cmd
+
 from . import CMD_HELP
 
 

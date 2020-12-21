@@ -1,7 +1,7 @@
 import asyncio
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, sudo_cmd
+
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="^\:/$"))

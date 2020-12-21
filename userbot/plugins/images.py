@@ -9,7 +9,7 @@ import shutil
 
 from .. import CMD_HELP
 from ..helpers.google_image_download import googleimagesdownload
-from ..utils import admin_cmd, sudo_cmd
+
 
 
 @bot.on(admin_cmd(pattern=r"img(?: |$)(\d*)? ?(.*)"))
