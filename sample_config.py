@@ -131,6 +131,7 @@ class Config(object):
     G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID", None)
     G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA", None)
     G_DRIVE_DATA = os.environ.get("G_DRIVE_DATA", None)
+    G_DRIVE_INDEX_LINK = os.environ.get("G_DRIVE_INDEX_LINK", None)
     TMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./downloads")
     # for heroku plugin
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
