@@ -4,6 +4,7 @@ import re
 import time
 
 import heroku3
+import lottie
 import requests
 import spamwatch as spam_watch
 from validators.url import url
@@ -20,7 +21,7 @@ ALIVE_NAME = Config.ALIVE_NAME
 AUTONAME = Config.AUTONAME
 DEFAULT_BIO = Config.DEFAULT_BIO
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-
+BOT_USERNAME = Config.TG_BOT_USER_NAME_BF_HER
 # mention user
 mention = f"[{DEFAULTUSER}](tg://user?id={USERID})"
 hmention = f"<a href = tg://user?id={USERID}>{DEFAULTUSER}</a>"
@@ -181,3 +182,13 @@ async def catalive():
                   \nღ Uptime : {uptime}\
                   \nღ Dyno : {dyno}\
                   "
+
+
+async def make_gif(event, reply, quality=None, fps=None):
+    fps = fps or 1
+    quality = quality or 256
+    result_p = os.path.join("temp", "animation.gif")
+    animation = lottie.parsers.tgs.parse_tgs(reply)
+    with open(result_p, "wb") as result:
+        await run_sync(lottie.exporters.gif.export_gif, animation, result, quality, fps)
+    return result_p
