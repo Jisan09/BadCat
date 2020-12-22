@@ -1,7 +1,5 @@
 from telethon.tl.types import ChannelParticipantsAdmins
 
-from . import reply_id
-
 
 @bot.on(admin_cmd(pattern="tagall$"))
 @bot.on(sudo_cmd(pattern="tagall$", allow_sudo=True))
@@ -45,7 +43,8 @@ async def _(event):
     async for x in event.client.iter_participants(
         chat, filter=ChannelParticipantsAdmins
     ):
-        mentions += f"[\u2063](tg://user?id={x.id})"
+        if not x.bot:
+            mentions += f"[\u2063](tg://user?id={x.id})"
     await event.client.send_message(event.chat_id, mentions, reply_to=reply_to_id)
     await event.delete()
 
