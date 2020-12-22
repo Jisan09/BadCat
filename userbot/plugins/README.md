@@ -11,10 +11,10 @@ The Mandatory Imports are now automatically imported.
 Now I will show a short script to show the formation of the desired script.
 ```python3
 
-
 @bot.on(admin_cmd(pattern="alive", outgoing=True))
+@bot.on(sudo_cmd(pattern="alive", outgoing=True))
 async def hello_world(event):
     if event.fwd_from:
         return
-    await event.edit("**HELLO WORLD**\n\nThe following is controlling me too!\n" + Config.SUDO_USERS)
+    await edit_or_reply(event , "**HELLO WORLD**\n\nThe following is controlling me too!\n" + Config.SUDO_USERS)
 ```
