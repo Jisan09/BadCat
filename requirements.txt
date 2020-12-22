@@ -1,4 +1,6 @@
-git+https://github.com/LonamiWebs/Telethon.git
+telethon
+setuptools
+wheel
 aiofiles
 aiohttp
 asyncurban
