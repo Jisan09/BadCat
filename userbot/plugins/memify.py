@@ -141,11 +141,16 @@ async def memes(cat):
             os.remove(files)
 
 
-@bot.on(admin_cmd(pattern="cfont (.*)"))
-@bot.on(sudo_cmd(pattern="cfont (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="cfont(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="cfont(?: |$)(.*)", allow_sudo=True))
 async def lang(event):
+    if event.fwd_from:
+        return
     global CNG_FONTS
     input_str = event.pattern_match.group(1)
+    if not input_str:
+        await event.edit(f"**Available Fonts names are here:-**\n\n{FONTS}")
+        return
     if input_str not in font_list:
         catevent = await edit_or_reply(event, "`Give me a correct font name...`")
         await asyncio.sleep(1)
