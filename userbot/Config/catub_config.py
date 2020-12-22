@@ -1,8 +1,8 @@
 # config values will be loaded from here
 
-from os import environ
+import os
 
-ENV = bool(environ.get("ENV", False))
+ENV = bool(os.environ.get("ENV", False))
 
 if ENV:
     from sample_config import Config  # noqa
