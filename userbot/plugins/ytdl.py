@@ -1,6 +1,6 @@
 # Thanks to @AvinashReddy3108 for this plugin
 # Instadl by @Jisan7509
-
+# youtube plugin for catuserbot
 import asyncio
 import os
 import re
@@ -9,7 +9,6 @@ from datetime import datetime
 from html import unescape
 from pathlib import Path
 
-from googleapiclient.discovery import build
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeAudio
 from youtube_dl import YoutubeDL
@@ -24,7 +23,9 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 
-from . import hmention, progress, reply_id
+from . import hmention, progress
+from . import yt_search as yt_search_no
+from . import yt_search_api
 
 
 @bot.on(admin_cmd(pattern="yt(a|v)(?: |$)(.*)", outgoing=True))
@@ -171,65 +172,40 @@ async def download_video(v_url):
     await v_url.delete()
 
 
-@bot.on(admin_cmd(pattern="yts (.*)"))
-@bot.on(sudo_cmd(pattern="yts (.*)", allow_sudo=True))
-async def yt_search(video_q):
-    """ For .yts command, do a YouTube search from Telegram. """
-    query = video_q.pattern_match.group(1)
-    result = ""
-    if not Config.YOUTUBE_API_KEY:
-        await edit_or_reply(
-            video_q,
-            "`Error: YouTube API key missing! Add it to reveal config vars in heroku or userbot/uniborgConfig.py in github fork.`",
-        )
+@bot.on(admin_cmd(pattern="yts(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="yts(?: |$)(.*)", allow_sudo=True))
+async def yt_search(event):
+    if event.fwd_from:
         return
-    video_q = await edit_or_reply(video_q, "```Processing...```")
-    full_response = await youtube_search(query)
-    videos_json = full_response[1]
-    for video in videos_json:
-        title = f"{unescape(video['snippet']['title'])}"
-        link = f"https://youtu.be/{video['id']['videoId']}"
-        result += f"{title}\n{link}\n\n"
-    reply_text = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n{result}"
+    query = event.pattern_match.group(1)
+    if not query:
+        return await edit_delete(event, "what should i search", parse_mode=parse_pre)
+    video_q = await edit_or_reply(event, "```Searching...```")
+    try:
+        full_response = await youtube_search(query)
+    except Exception as e:
+        return await edit_delete(video_q, str(e), time=10, parse_mode=parse_pre)
+    reply_text = (
+        f"**•  Search Query:**\n`{query}`\n\n**•  Results:**\n\n{full_response}"
+    )
     await video_q.edit(reply_text)
 
 
-async def youtube_search(
-    query, order="relevance", token=None, location=None, location_radius=None
-):
-    """ Do a YouTube search. """
-    youtube = build(
-        "youtube", "v3", developerKey=Config.YOUTUBE_API_KEY, cache_discovery=False
-    )
-    search_response = (
-        youtube.search()
-        .list(
-            q=query,
-            type="video",
-            pageToken=token,
-            order=order,
-            part="id,snippet",
-            maxResults=10,
-            location=location,
-            locationRadius=location_radius,
-        )
-        .execute()
-    )
-    videos = [
-        search_result
-        for search_result in search_response.get("items", [])
-        if search_result["id"]["kind"] == "youtube#video"
-    ]
-
+async def youtube_search(cat):
+    result = ""
     try:
-        nexttok = search_response["nextPageToken"]
-        return (nexttok, videos)
-    except HttpError:
-        nexttok = "last_page"
-        return (nexttok, videos)
-    except KeyError:
-        nexttok = "KeyError, try again."
-        return (nexttok, videos)
+        if Config.YOUTUBE_API_KEY:
+            vi = await yt_search_api(cat)
+            for v in vi:
+                result += f"☞ [{unescape(v['snippet']['title'])}](https://youtu.be/{v['id']['videoId']})"
+                result += f"\n`{unescape(v['snippet']['description'])}`\n\n"
+    except:
+        pass
+    if result == "":
+        vi = await yt_search_no(cat)
+        for v in vi:
+            result += f"☞ {v}\n"
+    return result
 
 
 @bot.on(admin_cmd(pattern="insta (.*)"))
