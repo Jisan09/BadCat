@@ -34,7 +34,7 @@ def load_module(shortname):
         import userbot.utils
 
         from .helpers.tools import media_type
-        from .helpers.utils import install_pip, parse_pre, reply_id
+        from .helpers.utils import install_pip, parse_pre, reply_id, run_async, run_sync
         from .managers import edit_delete, edit_or_reply
 
         path = Path(f"userbot/plugins/{shortname}.py")
@@ -46,7 +46,9 @@ def load_module(shortname):
         mod.tgbot = bot.tgbot
         mod.sudo_cmd = sudo_cmd
         mod.CMD_HELP = CMD_HELP
+        mod.run_sync = run_sync
         mod.reply_id = reply_id
+        mod.run_async = run_async
         mod.admin_cmd = admin_cmd
         mod.parse_pre = parse_pre
         mod.media_type = media_type
