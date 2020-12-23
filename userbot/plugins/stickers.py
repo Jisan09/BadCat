@@ -623,6 +623,8 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Kang's the sticker/image to the specified pack but uses 🤔 as emoji.\
 \n\n📌** CMD ➥** `.kang [emoji('s)] [number]`\
 \n**USAGE   ➥  **Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
+\n\n📌** CMD ➥** `.pkang [number]`\
+\n**USAGE   ➥  **Kang's the entire sticker pack of replied sticker to the specified pack \
 \n\n📌** CMD ➥** `.stickers name`\
 \n**USAGE   ➥  **Shows you the list of non-animated sticker packs with that name.\
 \n\n📌** CMD ➥** `.stkrinfo`\
