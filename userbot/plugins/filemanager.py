@@ -231,6 +231,11 @@ CMD_HELP.update(
      \n**USAGE   ➥  **Will return file details\
      \n\n📌** CMD ➥** `.rem` path\
      \n**USAGE   ➥  **To delete the required item from the bot server\
-     \n\nSimple Module for people who dont wanna use shell executor for listing files."
+     \n\n📌** CMD ➥** `.mkdir foldername`\
+     \n**USAGE   ➥  **Creates a new empty folder in the server\
+     \n\n📌** CMD ➥** `.mvto frompath ; topath`\
+     \n**USAGE   ➥  **Move a file from one location to other location in bot server\
+     \n\n📌** CMD ➥** `.cpto frompath ; topath`\
+     \n**USAGE   ➥  **Copy a file from one location to other location in bot server\"
     }
 )
