@@ -120,7 +120,7 @@ async def download_video(v_url):
     catthumb = Path(f"{ytdl_data['id']}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{ytdl_data['id']}.webp")
-    elif not os.path.exists(catthumb):
+    if not os.path.exists(catthumb):
         catthumb = None
     if song:
         await v_url.edit(
@@ -228,8 +228,6 @@ async def kakashi(event):
             response = await conv.get_response()
             msg = await conv.send_message(link)
             video = await conv.get_response()
-            # await conv.get_response()
-            # await conv.get_response()
             details = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
