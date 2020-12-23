@@ -147,7 +147,7 @@ async def _(event):
             event, "Reply to a message to download to my server.", parse_mode=parse_pre
         )
 
-        
+
 CMD_HELP.update(
     {
         "download": "__**PLUGIN NAME :** Download__\
