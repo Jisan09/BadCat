@@ -236,6 +236,6 @@ CMD_HELP.update(
      \n\n📌** CMD ➥** `.mvto frompath ; topath`\
      \n**USAGE   ➥  **Move a file from one location to other location in bot server\
      \n\n📌** CMD ➥** `.cpto frompath ; topath`\
-     \n**USAGE   ➥  **Copy a file from one location to other location in bot server\"
+     \n**USAGE   ➥  **Copy a file from one location to other location in bot server"
     }
 )
