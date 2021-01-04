@@ -51,7 +51,7 @@ async def _(event):
     sleep(counter)
     await event.edit("`OK, I'm awake now.`")
 
-    
+
 CMD_HELP.update(
     {
         "power_tools": "**Plugin : **`power_tools`\
