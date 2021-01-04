@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 
 from ..utils import load_module, remove_plugin
-from . import hmention, CMD_LIST, SUDO_LIST
+from . import CMD_LIST, SUDO_LIST, hmention
 
 DELETE_TIMEOUT = 5
 thumb_image_path = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
