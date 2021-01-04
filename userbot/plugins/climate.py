@@ -18,7 +18,7 @@ from pytz import timezone as tz
 from ..utils import errors_handler
 
 # ===== CONSTANT =====
-DEFCITY = "Delhi"
+DEFCITY = "Kolkata"
 # ====================
 OWM_API = Config.OPEN_WEATHER_MAP_APPID
 
