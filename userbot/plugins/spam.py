@@ -220,6 +220,7 @@ async def spammer(event):
                 + f"Delay Spam was executed successfully in {event.chat.title}(`{event.chat_id}`) chat with {spamDelay}s Delay and {counter} times with: `{message}`",
             )
 
+
 CMD_HELP.update(
     {
         "spam": "__**PLUGIN NAME :** Spam__\
