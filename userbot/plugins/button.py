@@ -6,6 +6,8 @@ import re
 
 from telethon import Button
 
+from . import BOT_USERNAME
+
 # regex obtained from:
 # https://github.com/PaulSonOfLars/tgbot/blob/master/tg_bot/modules/helper_funcs/string_handling.py#L23
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
@@ -44,11 +46,13 @@ async def _(event):
             prev = match.start(1) - 1
     else:
         note_data += markdown_note[prev:]
-    message_text = note_data.strip()
+    message_text = note_data.strip() or None
     tl_ib_buttons = build_keyboard(buttons)
     tgbot_reply_message = None
     if reply_message and reply_message.media:
         tgbot_reply_message = await event.client.download_media(reply_message.media)
+    if tl_ib_buttons == []:
+        tl_ib_buttons = None
     await tgbot.send_message(
         entity=chat,
         message=message_text,
@@ -56,7 +60,6 @@ async def _(event):
         file=tgbot_reply_message,
         link_preview=False,
         buttons=tl_ib_buttons,
-        silent=True,
     )
     await event.delete()
     if tgbot_reply_message:
