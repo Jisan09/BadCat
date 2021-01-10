@@ -82,9 +82,6 @@ async def stickerchat(catquotes):
 async def _(event):
     if event.fwd_from:
         return
-    if not event.reply_to_msg_id:
-        await edit_or_reply(event, "```Reply to any user message.```")
-        return
     reply_message = await event.get_reply_message()
     if not reply_message:
         get = await event.get_reply_message()
