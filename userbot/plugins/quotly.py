@@ -86,6 +86,9 @@ async def _(event):
         await edit_or_reply(event, "```Reply to any user message.```")
         return
     reply_message = await event.get_reply_message()
+    if not reply_message:
+        get = await event.get_reply_message()
+        reply_message = get.text
     if not reply_message.text:
         await edit_or_reply(event, "```Reply to text message```")
         return
