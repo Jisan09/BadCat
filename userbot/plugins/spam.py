@@ -246,6 +246,8 @@ CMD_HELP.update(
         "spam": "__**PLUGIN NAME :** Spam__\
 \n\n📌** CMD ➥** `.cspam` <text>\
 \n**USAGE   ➥  **Spam the text letter by letter.\
+\n\n📌** CMD ➥** `.spspam` reply to sticker\
+\n**USAGE   ➥  **Spams the chat with all stickers in that pack\
 \n\n📌** CMD ➥** `.spam` <count> <text>\
 \n**USAGE   ➥  **Floods text in the chat !!\
 \n\n📌** CMD ➥** `.spam` <count> replay to media\
