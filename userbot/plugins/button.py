@@ -100,7 +100,6 @@ def build_keyboard(buttons):
     return keyb
 
 
-
 CMD_HELP.update(
     {
         "button": "__**PLUGIN NAME :** Button__\
