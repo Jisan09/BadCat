@@ -1,8 +1,31 @@
 import datetime
+import re
 
+import requests
 from telethon.tl.tlobject import TLObject
 from telethon.tl.types import MessageEntityPre
 from telethon.utils import add_surrogate
+
+
+def paste_text(text):
+    asciich = ["*", "`", "_"]
+    for i in asciich:
+        text = re.sub(rf"\{i}", "", text)
+    try:
+        key = (
+            requests.post("https://nekobin.com/api/documents", json={"content": text})
+            .json()
+            .get("result")
+            .get("key")
+        )
+        link = f"https://nekobin.com/{key}"
+    except:
+        text = re.sub(r"•", ">>", text)
+        kresult = requests.post(
+            "https://del.dog/documents", data=text.encode("UTF-8")
+        ).json()
+        link = f"https://del.dog/{kresult['key']}"
+    return link
 
 
 def mentionuser(name, userid):
@@ -15,6 +38,31 @@ def htmlmentionuser(name, userid):
 
 # kanged from uniborg @spechide
 # https://github.com/SpEcHiDe/UniBorg/blob/d8b852ee9c29315a53fb27055e54df90d0197f0b/uniborg/utils.py#L250
+
+
+def reformattext(text):
+    return text.replace("~", "").replace("_", "").replace("*", "").replace("`", "")
+
+
+def replacetext(text):
+    return (
+        text.replace(
+            '"',
+            "",
+        )
+        .replace(
+            "\\r",
+            "",
+        )
+        .replace(
+            "\\n",
+            "",
+        )
+        .replace(
+            "\\",
+            "",
+        )
+    )
 
 
 def parse_pre(text):
