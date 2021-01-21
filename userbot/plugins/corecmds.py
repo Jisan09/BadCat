@@ -7,7 +7,7 @@ from ..utils import load_module, remove_plugin
 from . import CMD_LIST, SUDO_LIST, hmention
 
 DELETE_TIMEOUT = 5
-thumb_image_path = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
+thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
 
 @bot.on(admin_cmd(pattern="install$"))
