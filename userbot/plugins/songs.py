@@ -288,7 +288,7 @@ async def kakashi(event):
         try:
             msg_start = await conv.send_message("/start")
             response = await conv.get_response()
-            r = await conv.get_response()
+            #r = await conv.get_response()
             msg = await conv.send_message(link)
             details = await conv.get_response()
             song = await conv.get_response()
@@ -300,7 +300,7 @@ async def kakashi(event):
         await catevent.delete()
         await event.client.send_file(event.chat_id, song, caption=details.text)
         await event.client.delete_messages(
-            conv.chat_id, [msg_start.id, response.id, r.id, msg.id, details.id, song.id]
+            conv.chat_id, [msg_start.id, response.id, msg.id, details.id, song.id]
         )
 
 
