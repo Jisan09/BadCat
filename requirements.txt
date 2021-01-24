@@ -3,6 +3,7 @@ setuptools
 wheel
 aiofiles
 aiohttp
+asyncurban
 beautifulsoup4
 cairosvg
 cfscrape
@@ -15,7 +16,7 @@ csvfaker
 DateTime
 fontTools
 python-dotenv
-emoji
+emoji==0.6.0
 fonttools
 geopy
 gitpython
@@ -23,7 +24,7 @@ glitch_this
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
-googletrans==4.0.0-rc1
+googletrans==3.1.0a0
 gsearch
 gtts
 hachoir
@@ -67,5 +68,4 @@ validators
 vcsi
 wand
 wikipedia
-youtube_dl
-youtube-search-python
+youtube_dl > 2020.11.12
