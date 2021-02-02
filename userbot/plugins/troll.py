@@ -31,7 +31,11 @@ async def _(event):
             return
         else:
             await cat.delete()
-            await event.client.send_message(event.chat_id, response.message,reply_to=reply_to_id,)
+            await event.client.send_message(
+                event.chat_id,
+                response.message,
+                reply_to=reply_to_id,
+            )
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
@@ -56,7 +60,11 @@ async def _(event):
             return
         else:
             await cat.delete()
-            await event.client.send_message(event.chat_id, response.message,reply_to=reply_to_id,)
+            await event.client.send_message(
+                event.chat_id,
+                response.message,
+                reply_to=reply_to_id,
+            )
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
@@ -81,7 +89,11 @@ async def _(event):
             return
         else:
             await cat.delete()
-            await event.client.send_message(event.chat_id, response.message,reply_to=reply_to_id,)
+            await event.client.send_message(
+                event.chat_id,
+                response.message,
+                reply_to=reply_to_id,
+            )
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
@@ -106,7 +118,11 @@ async def _(event):
             return
         else:
             await cat.delete()
-            await event.client.send_message(event.chat_id, response.message,reply_to=reply_to_id,)
+            await event.client.send_message(
+                event.chat_id,
+                response.message,
+                reply_to=reply_to_id,
+            )
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
@@ -131,7 +147,11 @@ async def _(event):
             return
         else:
             await cat.delete()
-            await event.client.send_message(event.chat_id, response.message,reply_to=reply_to_id,)
+            await event.client.send_message(
+                event.chat_id,
+                response.message,
+                reply_to=reply_to_id,
+            )
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
