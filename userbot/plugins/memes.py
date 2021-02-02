@@ -113,7 +113,6 @@ async def who(event):
         )
 
 
-
 @bot.on(admin_cmd(outgoing=True, pattern="(yes|no|maybe|decide)$"))
 @bot.on(sudo_cmd(pattern="(yes|no|maybe|decide)$", allow_sudo=True))
 async def decide(event):
