@@ -12,19 +12,19 @@ def paste_text(text):
     for i in asciich:
         text = re.sub(rf"\{i}", "", text)
     try:
-        key = (
+        nekokey = (
             requests.post("https://nekobin.com/api/documents", json={"content": text})
             .json()
             .get("result")
             .get("key")
         )
-        link = f"https://nekobin.com/{key}"
+        link = f"https://nekobin.com/{nekokey}"
     except:
-        text = re.sub(r"•", ">>", text)
-        kresult = requests.post(
-            "https://del.dog/documents", data=text.encode("UTF-8")
-        ).json()
-        link = f"https://del.dog/{kresult['key']}"
+        url = "https://del.dog/documents"
+        r = requests.post(url, data=text).json()
+        link = f"https://del.dog/{r['key']}"
+        if r["isUrl"]:
+            link = f"https://del.dog/v/{r['key']}"
     return link
 
 
