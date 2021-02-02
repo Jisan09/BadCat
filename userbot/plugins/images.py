@@ -1,3 +1,4 @@
+# image search for catuserbot
 import os
 import shutil
 
@@ -42,9 +43,7 @@ async def img_sampler(event):
     except Exception as e:
         return await cat.edit(f"Error: \n`{e}`")
     lst = paths[0][query]
-    await bot.send_file(
-        await bot.get_input_entity(event.chat_id), lst, reply_to=reply_to_id
-    )
+    await event.client.send_file(event.chat_id, lst, reply_to=reply_to_id)
     shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
     await cat.delete()
 
