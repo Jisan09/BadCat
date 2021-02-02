@@ -12,7 +12,6 @@ from telethon.tl.types import Channel, PollAnswer
 from validators.url import url
 from youtubesearchpython import VideosSearch
 
-from ..Config import Config
 from .resources.states import states
 
 
@@ -70,40 +69,13 @@ async def yt_search(cat):
             if user_data:
                 video_link.append("https://www.youtube.com/watch?v=" + user_data[k])
             k += 1
-            if k > 10:
+            if k > 3:
                 break
         if video_link:
-            return video_link
+            return video_link[0]
         return "Couldnt fetch results"
     except:
         return "Couldnt fetch results"
-
-
-from googleapiclient.discovery import build
-
-
-async def yt_search_api(cat):
-    youtube = build(
-        "youtube", "v3", developerKey=Config.YOUTUBE_API_KEY, cache_discovery=False
-    )
-    order = "relevance"
-    search_response = (
-        youtube.search()
-        .list(
-            q=cat,
-            type="video",
-            order=order,
-            part="id,snippet",
-            maxResults=10,
-        )
-        .execute()
-    )
-    videos = [
-        search_result
-        for search_result in search_response.get("items", [])
-        if search_result["id"]["kind"] == "youtube#video"
-    ]
-    return videos
 
 
 async def sanga_seperator(sanga_list):
@@ -138,7 +110,7 @@ async def ytsearch(query, limit):
         except:
             textresult += "**Description : **`None`\n"
         textresult += f"**Duration : **__{v['duration']}__  **Views : **__{v['viewCount']['short']}__\n"
-        result += f"☞{textresult}\n"
+        result += f"☞ {textresult}\n"
     return result
 
 
