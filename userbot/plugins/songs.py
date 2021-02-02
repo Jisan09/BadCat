@@ -3,7 +3,6 @@ by  @sandy1709 ( https://t.me/mrconfused  )
 """
 # songs finder for catuserbot
 
-import asyncio
 import base64
 import os
 from pathlib import Path
@@ -176,6 +175,7 @@ async def _(event):
         if files and os.path.exists(files):
             os.remove(files)
 
+
 """"
 @bot.on(admin_cmd(pattern="song2 (.*)"))
 @bot.on(sudo_cmd(pattern="song2 (.*)", allow_sudo=True))
@@ -259,6 +259,7 @@ async def kakashi(event):
         \n\n📌** CMD ➥** `.music` <Artist - Song Title>\
         \n**USAGE   ➥  **Download your music by just name.\
 """
+
 
 @bot.on(admin_cmd(outgoing=True, pattern="dzd (.*)"))
 @bot.on(sudo_cmd(outgoing=True, pattern="dzd (.*)", allow_sudo=True))
