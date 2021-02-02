@@ -240,7 +240,7 @@ async def spammer(event):
     await event.delete()
     await spam_function(event, reply, cat, sleeptimem, sleeptimet, DelaySpam=True)
 
-    
+
 CMD_HELP.update(
     {
         "spam": "__**PLUGIN NAME :** Spam__\
