@@ -12,9 +12,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
 
-from . import hmention, name_dl, song_dl, video_dl
-from . import yt_search as yt_search_no
-from . import yt_search_api
+from . import hmention, name_dl, song_dl, video_dl, yt_search
 
 # =========================================================== #
 #                           STRINGS                           #
@@ -177,20 +175,6 @@ async def _(event):
     for files in (catthumb, vsong_file):
         if files and os.path.exists(files):
             os.remove(files)
-
-
-async def yt_search(cat):
-    videol = None
-    try:
-        if Config.YOUTUBE_API_KEY:
-            vi = await yt_search_api(cat)
-            video = f"https://youtu.be/{vi[0]['id']['videoId']}"
-    except:
-        pass
-    if videol is None:
-        vi = await yt_search_no(cat)
-        video = vi[0]
-    return video
 
 
 @bot.on(admin_cmd(pattern="song2 (.*)"))
