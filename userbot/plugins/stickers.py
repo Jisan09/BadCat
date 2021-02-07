@@ -600,7 +600,6 @@ async def cb_sticker(event):
     await catevent.edit(reply)
 
 
-
 CMD_HELP.update(
     {
         "stickers": "__**PLUGIN NAME :** Stickers__\
