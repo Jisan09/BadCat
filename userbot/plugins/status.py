@@ -13,7 +13,7 @@ from telethon.tl import functions
 OFFLINE_TAG = "[OFFLINE]"
 
 
-@bot.on(admin_cmd(pattern="affline"))  # pylint:disable=E0602
+@bot.on(admin_cmd(pattern="offline"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -55,7 +55,7 @@ async def _(event):
         await event.edit(str(e))
 
 
-@bot.on(admin_cmd(pattern="anline"))  # pylint:disable=E0602
+@bot.on(admin_cmd(pattern="online"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
