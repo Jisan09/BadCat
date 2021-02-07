@@ -146,7 +146,7 @@ async def _(event):
     if catcheck:
         os.remove(file_name)
 
-        
+
 CMD_HELP.update(
     {
         "webupload": "__**PLUGIN NAME :** Web Upload__\
