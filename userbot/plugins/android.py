@@ -236,7 +236,7 @@ CMD_HELP.update(
 \n**USAGE   ➥  **Get info about android device codename or model.\
 \n\n📌** CMD ➥** `.codename` <brand> <device>\
 \n**USAGE   ➥  **Search for android device codename.\
-\n\n📌** CMD ➥** `.aspecs` <brand> <device>\
+\n\n📌** CMD ➥** `.specs` <brand> <device>\
 \n**USAGE   ➥  **Get device specifications info.\
 \n\n📌** CMD ➥** `.twrp` <codename>\
 \n**USAGE   ➥  **Get latest twrp download for android device."
