@@ -82,7 +82,6 @@ async def _(event):
     )
 
 
-
 CMD_HELP.update(
     {
         "mention": """__**PLUGIN NAME :** Mention__
