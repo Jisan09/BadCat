@@ -197,8 +197,8 @@ async def _(event):
         yyyy = input_sgra[0]
         mm = input_sgra[1]
         try:
-            input = calendar.month(int(yyyy.strip()), int(mm.strip()))
-            await edit_or_reply(event, f"```{input}```")
+            output_result = calendar.month(int(yyyy.strip()), int(mm.strip()))
+            await edit_or_reply(event, f"```{output_result}```")
         except Exception as e:
             await edit_delete(event, f"`{e}`", 5)
     else:
@@ -355,7 +355,7 @@ Year: {}""".format(
     else:
         await catevent.edit("xkcd n.{} not found!".format(xkcd_id))
 
-
+        
 CMD_HELP.update(
     {
         "tools": "__**PLUGIN NAME :** Tools__\
