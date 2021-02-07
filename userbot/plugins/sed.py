@@ -109,7 +109,6 @@ async def on_regex(event):
     raise events.StopPropagation
 
 
-
 CMD_HELP.update(
     {
         "sed": "__**PLUGIN NAME :** Sed__\
