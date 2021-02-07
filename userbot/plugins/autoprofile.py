@@ -278,7 +278,6 @@ CMD_HELP.update(
 \n\n📌** CMD ➥** `.end function`\
 \n**USAGE   ➥  **To stop the given functions like autopic ,difitalpfp , bloom , autoname and autobio\
 \n\n**⚠️DISCLAIMER⚠️**\
-__USING THIS PLUGIN CAN RESULT IN ACCOUNT BAN. WE ARE NOT RESPONSIBLE FOR YOUR BAN.__
-"""
+__USING THIS PLUGIN CAN RESULT IN ACCOUNT BAN. WE ARE NOT RESPONSIBLE FOR YOUR BAN.__"
     }
 )
