@@ -60,8 +60,7 @@ async def autopic(event):
         input_str = 0
     if AUTOPICSTART:
         return await edit_delete(event, f"`Autopic is already enabled`")
-    else:
-        AUTOPICSTART = True
+    AUTOPICSTART = True
     counter = input_str
     await edit_delete(event, f"`Autopic has been started by my Master`")
     while AUTOPICSTART:
@@ -100,8 +99,7 @@ async def main(event):
     downloader.start(blocking=False)
     if DIGITALPICSTART:
         return await edit_delete(event, f"`Digitalpfp is already enabled`")
-    else:
-        DIGITALPICSTART = True
+    DIGITALPICSTART = True
     await edit_delete(event, f"`digitalpfp has been started by my Master`")
     while DIGITALPICSTART:
         shutil.copy(downloaded_file_name, poto)
@@ -141,8 +139,7 @@ async def autopic(event):
         pass
     if BLOOMSTART:
         return await edit_delete(event, f"`Bloom is already enabled`")
-    else:
-        BLOOMSTART = True
+    BLOOMSTART = True
     await edit_delete(
         event, "`Bloom colour profile pic have been enabled by my master`"
     )
@@ -182,8 +179,7 @@ async def _(event):
     global AUTONAMESTART
     if AUTONAMESTART:
         return await edit_delete(event, f"`Autoname is already enabled`")
-    else:
-        AUTONAMESTART = True
+    AUTONAMESTART = True
     await edit_delete(event, "`Auto Name has been started by my Master `")
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
@@ -205,8 +201,7 @@ async def _(event):
         return
     if AUTOBIOSTART:
         return await edit_delete(event, f"`Autobio is already enabled`")
-    else:
-        AUTOBIOSTART = True
+    AUTOBIOSTART = True
     await edit_delete(event, "`Autobio has been started by my Master`")
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
@@ -237,25 +232,25 @@ async def _(event):
             await edit_delete(event, "`Autopic has been stopped now`")
         else:
             await edit_delete(event, "`Autopic haven't enabled`")
-    elif input_str == "digitalpfp":
+    if input_str == "digitalpfp":
         if DIGITALPICSTART:
             DIGITALPICSTART = False
             await edit_delete(event, "`Digital profile pic has been stopped now`")
         else:
             await edit_delete(event, "`Digital profile pic haven't enabled`")
-    elif input_str == "bloom":
+    if input_str == "bloom":
         if BLOOMSTART:
             BLOOMSTART = False
             await edit_delete(event, "`Bloom has been stopped now`")
         else:
             await edit_delete(event, "`Bloom haven't enabled`")
-    elif input_str == "autoname":
+    if input_str == "autoname":
         if AUTONAMESTART:
             AUTONAMESTART = False
             await edit_delete(event, "`Autoname has been stopped now`")
         else:
             await edit_delete(event, "`Autoname haven't enabled`")
-    elif input_str == "autobio":
+    if input_str == "autobio":
         if AUTOBIOSTART:
             AUTOBIOSTART = False
             await edit_delete(event, "`Autobio has been stopped now`")
@@ -280,9 +275,10 @@ CMD_HELP.update(
 \n**USAGE   ➥  **For time along name to work this you must set `AUTONAME`in the heroku vars first \
 \n\n📌** CMD ➥** `.autobio`\
 \n**USAGE   ➥  **For time along with your bio to work this you must set `DEFAULT_BIO` in the heroku vars first \
-\n\n📌** CMD ➥** `.monkeybio`\
-\n**USAGE   ➥  **Set of funny monkey bio's\
-\n\n for stoping these aby command you need to do `.restart` and change them manually\
-"
+\n\n📌** CMD ➥** `.end function`\
+\n**USAGE   ➥  **To stop the given functions like autopic ,difitalpfp , bloom , autoname and autobio\
+\n\n**⚠️DISCLAIMER⚠️**\
+__USING THIS PLUGIN CAN RESULT IN ACCOUNT BAN. WE ARE NOT RESPONSIBLE FOR YOUR BAN.__
+"""
     }
 )
