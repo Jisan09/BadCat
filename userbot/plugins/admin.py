@@ -229,7 +229,7 @@ async def ban(bon):
     if reason:
         await catevent.edit(f"**User Id : **`{str(user.id)}`\n[{user.first_name}](tg://user?id={user.id}) is banned !!\nReason: `{reason}`")
     else:
-        await catevent.edit(f"**User Id : **`{str(user.id)}`\n[{user.first_name}](tg://user?id={user.id}) is banned !!)
+        await catevent.edit(f"**User Id : **`{str(user.id)}`\n[{user.first_name}](tg://user?id={user.id}) is banned !!")
     if BOTLOG:
         await bon.client.send_message(
             BOTLOG_CHATID,
