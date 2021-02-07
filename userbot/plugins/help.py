@@ -3,7 +3,7 @@ import asyncio
 import requests
 from telethon import functions
 
-from . import mention, CMD_LIST, SUDO_LIST
+from . import CMD_LIST, SUDO_LIST, mention
 
 HELPTYPE = Config.HELP_INLINETYPE or True
 
@@ -213,7 +213,7 @@ async def _(event):
         else:
             await event.edit("`inline mode is already disabled`")
 
-            
+
 CMD_HELP.update(
     {
         "help": "__**PLUGIN NAME :** Help__\
