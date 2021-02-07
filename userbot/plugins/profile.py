@@ -188,7 +188,7 @@ async def _(event):
 
     await event.edit(output_str)
 
-    
+
 CMD_HELP.update(
     {
         "profile": "__**PLUGIN NAME :** Profile__\
