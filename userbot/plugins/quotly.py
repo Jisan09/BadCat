@@ -133,7 +133,7 @@ async def _(event):
             event.chat_id, response.message, reply_to=reply_to
         )
 
-        
+
 CMD_HELP.update(
     {
         "quotly": "__**PLUGIN NAME :** Quotly__\
