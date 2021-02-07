@@ -68,7 +68,7 @@ async def _(event):
                 sandy = True
                 await catevent.edit(i, parse_mode=parse_pre)
 
-                
+
 CMD_HELP.update(
     {
         "sangmata": "__**PLUGIN NAME :** Sangmata__\
