@@ -21,6 +21,9 @@ async def get_user_from_event(event, secondgroup=None):
     extra = None
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
+        if previous_message.from_id is None and not event.is_private:
+            await edit_delete(event, "`Well that's an anonymous admin !`")
+            return None, None
         user_obj = await event.client.get_entity(previous_message.sender_id)
         extra = event.pattern_match.group(1)
     elif args:
@@ -41,5 +44,6 @@ async def get_user_from_event(event, secondgroup=None):
         try:
             user_obj = await event.client.get_entity(user)
         except (TypeError, ValueError):
+            await edit_delete(event, "`Couldn't fetch user to procced further`", 5)
             return None, None
     return user_obj, extra
