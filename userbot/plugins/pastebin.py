@@ -300,7 +300,6 @@ async def _(event):
         )
 
 
-
 CMD_HELP.update(
     {
         "pastebin": "__**PLUGIN NAME :** Pastebin__\
