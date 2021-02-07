@@ -227,13 +227,9 @@ async def ban(bon):
         )
         return
     if reason:
-        await catevent.edit(
-            f"**User Id : **`{str(user.id)}`\n[{user.first_name}](tg://user?id={user.id}) is banned !!\nReason: `{reason}`"
-        )
+        await catevent.edit(f"**User Id : **`{str(user.id)}`\n[{user.first_name}](tg://user?id={user.id}) is banned !!\nReason: `{reason}`")
     else:
-        await catevent.edit(
-            f"**User Id : **`{str(user.id)}`\n[{user.first_name}](tg://user?id={user.id}) is banned !!"
-        )
+        await catevent.edit(f"**User Id : **`{str(user.id)}`\n[{user.first_name}](tg://user?id={user.id}) is banned !!")
     if BOTLOG:
         await bon.client.send_message(
             BOTLOG_CHATID,
@@ -265,9 +261,7 @@ async def nothanos(unbon):
         return
     try:
         await unbon.client(EditBannedRequest(unbon.chat_id, user.id, UNBAN_RIGHTS))
-        await catevent.edit(
-            f"[{user.first_name}](tg://user?id={user.id}) ```Unbanned Successfully. Granting another chance.```"
-        )
+        await catevent.edit(f"[{user.first_name}](tg://user?id={user.id}) ```Unbanned Successfully. Granting another chance.```")
         if BOTLOG:
             await unbon.client.send_message(
                 BOTLOG_CHATID,
@@ -346,8 +340,8 @@ async def startmute(event):
                         event,
                         "`This user is already muted in this chat ~~lmfao sed rip~~`",
                     )
-            except:
-                pass
+            except Exception as e:
+                LOGS.info(str(e))
             await event.client(EditBannedRequest(event.chat_id, user.id, MUTE_RIGHTS))
         except UserAdminInvalidError:
             if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None:
@@ -434,7 +428,7 @@ async def endmute(event):
                         await event.client(
                             EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS)
                         )
-                except:
+                except Exception:
                     return await edit_or_reply(
                         event,
                         "`This user can already speak freely in this chat ~~lmfao sed rip~~`",
@@ -526,8 +520,8 @@ async def pin(msg):
                 f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n"
                 f"LOUD: {is_silent}",
             )
-        except:
-            pass
+        except Exception as e:
+            LOGS.info(str(e))
 
 
 @bot.on(admin_cmd(pattern="unpin($| (.*))", command="unpin"))
@@ -571,8 +565,8 @@ async def pin(msg):
                 f"**Admin : **[{user.first_name}](tg://user?id={user.id})\n"
                 f"**Chat : **{msg.chat.title}(`{msg.chat_id}`)\n",
             )
-        except:
-            pass
+        except Exception as e:
+            LOGS.info(str(e))
 
 
 @bot.on(admin_cmd(pattern="iundlt$", command="iundlt"))
@@ -599,8 +593,8 @@ async def _(event):
         await sleep(3)
         try:
             await event.delete()
-        except:
-            pass
+        except Exception as e:
+            LOGS.info(str(e))
 
 
 async def get_user_from_id(user, event):
