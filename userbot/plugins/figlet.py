@@ -49,6 +49,7 @@ async def figlet(event):
         result = pyfiglet.figlet_format(deEmojify(text))
     await edit_or_reply(event, result, parse_mode=parse_pre)
 
+
 CMD_HELP.update(
     {
         "figlet": "__**PLUGIN NAME :** Figlet__\
