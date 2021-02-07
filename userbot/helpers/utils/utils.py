@@ -43,5 +43,5 @@ async def unsavegif(event, sandy):
                 unsave=True,
             )
         )
-    except:
-        pass
+    except Exception as e:
+        LOGS.info(str(e))
