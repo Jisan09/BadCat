@@ -63,8 +63,10 @@ async def kakashi(event):
         link = "Custom Alive Text"
     elif link in ("customaliveemoji", "cae"):
         link = "Custom Alive Emoji"
-    elif link == "status":
-        link = "Status"
+    elif link == "rmbg":
+        link = "Rmbg"
+    elif link in ("lastfm", "lf"):
+        link = "LastFm"
     elif link == "goodcat":
         link = "🐱 Cat UserBot 🐱"
     elif link == "badcat":
