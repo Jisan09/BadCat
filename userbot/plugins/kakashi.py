@@ -8,7 +8,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 @bot.on(sudo_cmd(outgoing=True, pattern="note_help$", allow_sudo=True))
 async def kakashi(jisan):
     await edit_or_reply(
-        jisan, "All commands for note is [HERE](https://nekobin.com/yajifahajo) "
+        jisan, "All commands for note is [HERE](https://nekobin.com/pizacisawi) "
     )
 
 
