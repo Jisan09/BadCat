@@ -78,8 +78,8 @@ if Config.THUMB_IMAGE is not None:
         try:
             with open(thumb_image_path, "wb") as f:
                 f.write(requests.get(Config.THUMB_IMAGE).content)
-        except Exception:
-            pass
+        except Exception as e:
+            LOGS.info(str(e))
 
 
 def check(cat):
