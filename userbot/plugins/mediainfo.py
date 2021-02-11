@@ -96,7 +96,7 @@ async def mediainfo(event):
     )
     os.remove(file_path)
 
-    
+
 CMD_HELP.update(
     {
         "mediainfo": "__**PLUGIN NAME :** Mediainfo\
