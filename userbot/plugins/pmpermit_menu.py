@@ -159,5 +159,5 @@ async def _(event):
                             set_key(PMMESSAGE_CACHE, event.chat_id, test14.id)
                             await asyncio.sleep(3)
                             await event.client(functions.contacts.BlockRequest(chat_id))
-        except Exception as e:
+        except Exception:
             pass

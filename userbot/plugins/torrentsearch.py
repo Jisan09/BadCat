@@ -79,7 +79,7 @@ async def tor_search(event):
             try:
                 mg = div.p.a["href"]
                 magnets.append(mg)
-            except Exception as e:
+            except Exception:
                 pass
     shorted_links = dogbin(magnets)
     msg = ""

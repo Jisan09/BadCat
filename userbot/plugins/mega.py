@@ -138,7 +138,7 @@ async def mega_downloader(megadl):
                 await catevent.edit(current_message)
                 await asyncio.sleep(1)
                 display_message = current_message
-        except Exception as e:
+        except Exception:
             pass
         finally:
             if status == "Combining":

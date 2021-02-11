@@ -220,7 +220,7 @@ async def _(event):
             )
     try:
         await event.delete()
-    except Exception as e:
+    except Exception:
         pass
 
 
