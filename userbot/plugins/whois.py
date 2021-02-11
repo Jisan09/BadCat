@@ -84,8 +84,8 @@ async def get_full_user(event):
         try:
             try:
                 input_str = int(input_str)
-            except Exception:
-                pass
+            except Exception as e:
+                LOGS.info(str(e))
             user_object = await event.client.get_entity(input_str)
             user_id = user_object.id
             replied_user = await event.client(GetFullUserRequest(user_id))
