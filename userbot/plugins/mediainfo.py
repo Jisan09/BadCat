@@ -54,8 +54,8 @@ async def file_data(reply):
         if reply.media.document.thumbs:
             hmm += f"Thumb  :\
                 \n {_format.yaml_format(reply.media.document.thumbs[-1])}<br>"
-    except Exception:
-        pass
+    except Exception as e:
+        LOGS.info(str(e))
     return hmm
 
 
@@ -96,7 +96,7 @@ async def mediainfo(event):
     )
     os.remove(file_path)
 
-
+    
 CMD_HELP.update(
     {
         "mediainfo": "__**PLUGIN NAME :** Mediainfo\
