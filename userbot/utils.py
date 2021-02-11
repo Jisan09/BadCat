@@ -360,7 +360,8 @@ async def is_admin(client, chat_id, user_id):
             chat_participant, (ChannelParticipantCreator, ChannelParticipantAdmin)
         ):
             return True
-    except Exception:
+    except Exception as e:
+        LOGS.info(str(e))
         return False
     else:
         return False
