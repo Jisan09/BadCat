@@ -3,7 +3,7 @@ import asyncio
 import requests
 from telethon import functions
 
-from . import mention, CMD_LIST, SUDO_LIST
+from . import CMD_LIST, SUDO_LIST, mention
 from .sql_helper.globals import addgvar, gvarstatus
 
 
