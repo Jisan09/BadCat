@@ -223,7 +223,7 @@ async def lastlog(lstlog):
 
 CMD_HELP.update(
     {
-        "lastfm": "__**PLUGIN NAME :** Lastfm\
+        "lastfm": "__**PLUGIN NAME :** Lastfm__\
     \n\n📌** CMD ➥** `.lastfm`\
     \n**USAGE   ➥  **Shows currently scrobbling track or most recent scrobbles if nothing is playing.\
     \n\n📌** CMD ➥** `.lastbio <on/off>`\
