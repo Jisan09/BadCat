@@ -196,7 +196,6 @@ async def stats(event):
         )
 
 
-
 @bot.on(admin_cmd(pattern="ustat ?(.*)"))
 @bot.on(sudo_cmd(pattern="ustat ?(.*)", allow_sudo=True))
 async def _(event):
@@ -232,7 +231,6 @@ async def _(event):
         response = await conv.get_response()
         await event.client.send_read_acknowledge(conv.chat_id)
         await catevent.edit(response.text)
-
 
 
 def inline_mention(user):

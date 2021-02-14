@@ -154,6 +154,7 @@ async def newpacksticker(
         return otherpack, packname, emoji
     return pack, packname
 
+
 async def add_to_pack(
     catevent,
     conv,
@@ -222,7 +223,6 @@ async def add_to_pack(
     if not pkang:
         return packname, emoji
     return pack, packname
-
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="kang ?(.*)"))
