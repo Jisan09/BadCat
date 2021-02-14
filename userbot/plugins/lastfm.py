@@ -220,7 +220,7 @@ async def lastlog(lstlog):
     else:
         await lstlog.edit(LFM_LOG_ERR)
 
-        
+
 CMD_HELP.update(
     {
         "lastfm": "__**PLUGIN NAME :** Lastfm\
