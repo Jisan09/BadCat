@@ -203,7 +203,6 @@ async def _(event):
         LOGS.info(str(e))
 
 
-
 CMD_HELP.update(
     {
         "climate": "__**PLUGIN NAME :** Climate__\
