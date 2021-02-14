@@ -3,6 +3,7 @@ from datetime import datetime
 from math import sqrt
 
 from emoji import emojize
+from telethon import functions
 from telethon.errors import (
     ChannelInvalidError,
     ChannelPrivateError,
@@ -19,7 +20,42 @@ from telethon.tl.types import (
 )
 from telethon.utils import get_input_location
 
-from . import BOTLOG, BOTLOG_CHATID
+from . import BOTLOG, BOTLOG_CHATID, get_user_from_event
+
+
+@bot.on(admin_cmd(pattern="adminperm(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="adminperm(?: |$)(.*)", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    user, reason = await get_user_from_event(event)
+    if not user:
+        return
+    result = await event.client(
+        functions.channels.GetParticipantRequest(channel=event.chat_id, user_id=user.id)
+    )
+    try:
+        c_info = "✅" if result.participant.admin_rights.change_info else "❌"
+        del_me = "✅" if result.participant.admin_rights.delete_messages else "❌"
+        ban = "✅" if result.participant.admin_rights.ban_users else "❌"
+        invite_u = "✅" if result.participant.admin_rights.invite_users else "❌"
+        pin = "✅" if result.participant.admin_rights.pin_messages else "❌"
+        add_a = "✅" if result.participant.admin_rights.add_admins else "❌"
+        call = "✅" if result.participant.admin_rights.manage_call else "❌"
+    except:
+        return await edit_or_reply(
+            event,
+            f"{_format.mentionuser(user.first_name ,user.id)} `is not admin of this this {event.chat.title} chat`",
+        )
+    output = f"**Admin rights of **{_format.mentionuser(user.first_name ,user.id)} **in {event.chat.title} chat are **\n"
+    output += f"__Change info :__ {c_info}\n"
+    output += f"__Delete messages :__ {del_me}\n"
+    output += f"__Ban users :__ {ban}\n"
+    output += f"__Invite users :__ {invite_u}\n"
+    output += f"__Pin messages :__ {pin}\n"
+    output += f"__Add admins :__ {add_a}\n"
+    output += f"__Manage call :__ {call}\n"
+    await edit_or_reply(event, output)
 
 
 @bot.on(admin_cmd(pattern="admins ?(.*)"))
@@ -442,6 +478,8 @@ async def fetch_info(chat, event):
 CMD_HELP.update(
     {
         "groupdata": "__**PLUGIN NAME :** Groupdata__\
+    \n\n📌** CMD ➥** `.adminperm` (username/reply)\
+    \n**USAGE   ➥  **__Shows you the admin permissions in the group.__\
     \n\n📌** CMD ➥** `.admins` or `.admins <username of group >`\
     \n**USAGE   ➥  **__Retrieves a list of admins in the chat.__\
     \n\n📌** CMD ➥** `.bots` or `.bots <username of group >`\
