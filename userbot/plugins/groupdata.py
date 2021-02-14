@@ -441,7 +441,7 @@ async def fetch_info(chat, event):
 
 CMD_HELP.update(
     {
-        "groupdata": "__**Plugin : **Groupdata__\
+        "groupdata": "__**PLUGIN NAME :** Groupdata__\
     \n\n📌** CMD ➥** `.admins` or `.admins <username of group >`\
     \n**USAGE   ➥  **__Retrieves a list of admins in the chat.__\
     \n\n📌** CMD ➥** `.bots` or `.bots <username of group >`\
