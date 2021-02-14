@@ -6,7 +6,6 @@ from telethon import functions
 from . import CMD_LIST, SUDO_LIST, mention
 from .sql_helper.globals import addgvar, gvarstatus
 
-
 @bot.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
 async def cmd_list(event):
     if event.fwd_from:

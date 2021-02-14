@@ -137,7 +137,7 @@ async def set_default_city(city):
             city, "`Get an API key from` https://openweathermap.org/ `first.`"
         )
     if not city.pattern_match.group(1):
-        CITY = gvarstatus("DEFCITY") or "Delhi"
+        CITY = gvarstatus("DEFCITY") or "Kolkata"
     else:
         CITY = city.pattern_match.group(1)
     timezone_countries = {
