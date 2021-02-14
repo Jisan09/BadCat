@@ -10,7 +10,10 @@ from telethon import Button, custom, events
 from . import CMD_LIST, catalive
 
 CAT_IMG = Config.ALIVE_PIC or None
-TEXT_TO_DISPLAY_IN_HELP = Config.TEXT_TO_DISPLAY_IN_HELP or "Yeh mera maal hai !! Haat kese laga diya be tune ise? \n\nNikal, jaake apna catuserbot bana..."
+TEXT_TO_DISPLAY_IN_HELP = (
+    Config.TEXT_TO_DISPLAY_IN_HELP
+    or "Yeh mera maal hai !! Haat kese laga diya be tune ise? \n\nNikal, jaake apna catuserbot bana..."
+)
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
 
 if Config.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
