@@ -315,7 +315,7 @@ async def video_catfile(event):
         os.remove(PATH)
     await catevent.delete()
 
-    
+
 CMD_HELP.update(
     {
         "upload": "__**PLUGIN NAME :** Upload__\
