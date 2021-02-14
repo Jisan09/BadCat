@@ -63,7 +63,7 @@ async def add_new_filter(new_handler):
         else:
             await edit_or_reply(
                 new_handler,
-                "`Saving media as reply to the filter requires the BOTLOG_CHATID to be set.`",
+                "`Saving media as reply to the filter requires the PRIVATE_GROUP_BOT_API_ID to be set.`",
             )
             return
     elif new_handler.reply_to_msg_id and not string:
@@ -120,6 +120,7 @@ async def on_all_snip_delete(event):
         await edit_or_reply(event, f"filters in current chat deleted successfully")
     else:
         await edit_or_reply(event, f"There are no filters in this group")
+
 
 
 CMD_HELP.update(
