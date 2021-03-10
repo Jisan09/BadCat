@@ -134,7 +134,7 @@ class Config(object):
     # emoji to be displayed in .help
     EMOJI_TO_DISPLAY_IN_HELP = os.environ.get("EMOJI_TO_DISPLAY_IN_HELP", " ")
     TEXT_TO_DISPLAY_IN_HELP = os.environ.get("TEXT_TO_DISPLAY_IN_HELP", None)
-    
+
     # specify command handler that should be used for the plugins
     # this should be a valid "regex" pattern
     COMMAND_HAND_LER = os.environ.get("COMMAND_HAND_LER", r"\.")
