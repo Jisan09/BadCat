@@ -1008,7 +1008,7 @@ async def _(event):
                 )
             )
 
-            
+
 CMD_HELP.update(
     {
         "locks": "**Plugin : __**PLUGIN NAME :** Locks__\
