@@ -1582,7 +1582,6 @@ async def gshare(event):
     await share(service, catevent, input_str)
 
 
-
 CMD_HELP.update(
     {
         "gdrive": "__**PLUGIN NAME :** G-Drive__"
