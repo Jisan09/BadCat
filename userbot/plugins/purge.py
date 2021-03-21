@@ -206,7 +206,7 @@ async def delete_it(event):
     else:
         await event.delete()
 
-        
+
 CMD_HELP.update(
     {
         "purge": "__**PLUGIN NAME :** Purge__\
