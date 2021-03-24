@@ -186,7 +186,7 @@ async def catbot(catmemes):
     os.remove(download_location)
     await catmemes.client.send_file(catmemes.chat_id, cat, reply_to=catid)
 
-    
+
 CMD_HELP.update(
     {
         "trolls": "__**PLUGIN NAME :** TROLLS__\
