@@ -3,18 +3,17 @@ import os
 import sys
 
 import heroku3
+import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 # -- Constants -- #
-IS_SELECTED_DIFFERENT_BRANCH = (
-    "looks like a custom branch {branch_name} "
-    "is being used:\n"
-    "in this case, Updater is unable to identify the branch to be updated."
-    "please check out to an official branch, and re-start the updater."
-)
+
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME or None
 HEROKU_API_KEY = Config.HEROKU_API_KEY or None
+Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
+heroku_api = "https://api.heroku.com"
+
 UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
 UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
@@ -23,8 +22,17 @@ IFFUCI_ACTIVE_BRANCH_NAME = "master"
 NO_HEROKU_APP_CFGD = "no heroku application found, but a key given? 😕 "
 HEROKU_GIT_REF_SPEC = "HEAD:refs/heads/master"
 RESTARTING_APP = "re-starting heroku application"
+IS_SELECTED_DIFFERENT_BRANCH = (
+    "looks like a custom branch {branch_name} "
+    "is being used:\n"
+    "in this case, Updater is unable to identify the branch to be updated."
+    "please check out to an official branch, and re-start the updater."
+)
+
+
 # -- Constants End -- #
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 requirements_path = os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "requirements.txt"
@@ -258,6 +266,26 @@ async def upstream(event):
     await deploy(event, repo, ups_rem, ac_br, txt)
 
 
+@bot.on(admin_cmd(pattern=r"goodcat$", outgoing=True))
+@bot.on(sudo_cmd(pattern=r"goodcat$", allow_sudo=True))
+async def variable(var):
+    if Config.HEROKU_API_KEY is None:
+        return await edit_delete(
+            var,
+            "Set the required var in heroku to function this normally `HEROKU_API_KEY`.",
+        )
+    if Config.HEROKU_APP_NAME is not None:
+        app = Heroku.app(Config.HEROKU_APP_NAME)
+    else:
+        return await edit_delete(
+            var,
+            "Set the required var in heroku to function this normally `HEROKU_APP_NAME`.",
+        )
+    heroku_var = app.config()
+    await edit_or_reply(var, f"`Changing goodcat to badcat wait for 2-3 minutes.`")
+    heroku_var["UPSTREAM_REPO"] = "https://github.com/sandy1709/catuserbot"
+
+
 CMD_HELP.update(
     {
         "updater": "__**PLUGIN NAME :** Updater__"
@@ -270,5 +298,7 @@ CMD_HELP.update(
         "\n\n📌** CMD ➥** `.update deploy`"
         "\n**USAGE   ➥  **Deploy your userbot.So even you restart it doesnt go back to previous version"
         "\nThis will triggered deploy always, even no updates."
+        "\n\n📌** CMD ➥** `.goodcat`"
+        "\n**USAGE   ➥  **Shifts to official cat repo from badcat's repo."
     }
 )
