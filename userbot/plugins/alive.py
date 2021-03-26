@@ -2,7 +2,6 @@ import time
 from platform import python_version
 
 from telethon import version
-
 from . import StartTime, catversion, get_readable_time, hmention, mention, reply_id
 
 CAT_IMG = Config.ALIVE_PIC
