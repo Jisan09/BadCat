@@ -107,7 +107,6 @@ async def on_snip_delete(event):
     await edit_or_reply(event, "snip #{} deleted successfully".format(name))
 
 
-
 CMD_HELP.update(
     {
         "snip": "__**PLUGIN NAME :** Snip__\
