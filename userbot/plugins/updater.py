@@ -257,10 +257,10 @@ async def upstream(event):
     await event.edit("`Deploying userbot, please wait....`")
     await deploy(event, repo, ups_rem, ac_br, txt)
 
-    
+
 CMD_HELP.update(
     {
-        "updater":"__**PLUGIN NAME :** Updater__"
+        "updater": "__**PLUGIN NAME :** Updater__"
         "\n\n📌** CMD ➥** `.update`"
         "\n**USAGE   ➥  **Checks if the main userbot repository has any updates "
         "and shows a changelog if so."
