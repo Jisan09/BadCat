@@ -295,7 +295,7 @@ async def kakashi(event):
             conv.chat_id, [msg_start.id, response.id, msg.id, details.id, song.id]
         )
 
-        
+
 @bot.on(admin_cmd(pattern="szm$", outgoing=True))
 @bot.on(sudo_cmd(pattern="szm$", allow_sudo=True))
 async def _(event):
@@ -309,12 +309,14 @@ async def _(event):
     catevent = await edit_or_reply(event, "```Identifying the song```")
     async with event.client.conversation(chat) as conv:
         try:
-            start_msg = await conv.send_message("/start")
+            await conv.send_message("/start")
             await conv.get_response()
             await conv.send_message(reply_message)
             check = await conv.get_response()
             if not check.text.startswith("Audio received"):
-                return await catevent.edit("An error while identifying the song. Try to use a 5-10s long audio message.")
+                return await catevent.edit(
+                    "An error while identifying the song. Try to use a 5-10s long audio message."
+                )
             await catevent.edit("Wait just a sec...")
             result = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
@@ -325,7 +327,7 @@ async def _(event):
         \n\n**Details : **__{result.text.splitlines()[2]}__"
     await catevent.edit(namem)
 
-    
+
 CMD_HELP.update(
     {
         "songs": "__**PLUGIN NAME :** Songs__\
