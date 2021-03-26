@@ -1,11 +1,14 @@
 import time
 from platform import python_version
+
 from telethon import version
+
 from . import StartTime, catversion, get_readable_time, hmention, mention, reply_id
 
 CAT_IMG = Config.ALIVE_PIC
 CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "✧✧"
+
 
 @bot.on(admin_cmd(outgoing=True, pattern="alive$"))
 @bot.on(sudo_cmd(pattern="alive$", allow_sudo=True))
