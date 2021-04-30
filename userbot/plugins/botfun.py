@@ -75,6 +75,6 @@ CMD_HELP.update(
       \n\n📌** CMD ➥** `.honk` <type a text / reply to text>\
       \n**USAGE   ➥  **Honk will reply with your text.\
       \n\n📌** CMD ➥** `.twt` <type a text / reply to text>\
-      \n**USAGE   ➥  **Tweet your text.\"
+      \n**USAGE   ➥  **Tweet your text."
     }
 )
