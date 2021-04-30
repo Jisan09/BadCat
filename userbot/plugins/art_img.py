@@ -5,22 +5,22 @@ plugin for Cat_Userbot
 You remove this, you gay.
 """
 import os
-from . import mention
-from . import convert_toimage
+
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
+from . import convert_toimage, mention
 
- 
+
 @bot.on(admin_cmd("iascii ?(.*)"))
 @bot.on(sudo_cmd(pattern="iascii ?(.*)", allow_sudo=True))
 async def bad(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        return await edit_delete(event, "```Reply to any user message.```",time=6)
+        return await edit_delete(event, "```Reply to any user message.```", time=6)
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        return await edit_delete(event, "```Reply to a media file...```",time=6)
+        return await edit_delete(event, "```Reply to a media file...```", time=6)
     c_id = await reply_id(event)
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
@@ -46,7 +46,7 @@ async def bad(event):
             await event.client.send_file(
                 event.chat_id,
                 response,
-                reply_to = c_id,
+                reply_to=c_id,
                 caption=f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** {mention}",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
@@ -61,10 +61,10 @@ async def pussy(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        return await edit_delete(event, "```Reply to any user message.```",time=6)
+        return await edit_delete(event, "```Reply to any user message.```", time=6)
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        return await edit_delete(event, "```Reply to a media file...```",time=6)
+        return await edit_delete(event, "```Reply to a media file...```", time=6)
     c_id = await reply_id(event)
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
@@ -89,7 +89,7 @@ async def pussy(event):
         await event.client.send_file(
             event.chat_id,
             pic,
-            reply_to = c_id,
+            reply_to=c_id,
             caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** {mention}",
         )
     await event.client.delete_messages(conv.chat_id, [msg.id, pic.id])
@@ -103,10 +103,10 @@ async def cat(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        return await edit_delete(event, "```Reply to any user message.```",time=6)
+        return await edit_delete(event, "```Reply to any user message.```", time=6)
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        return await edit_delete(event, "```Reply to a media file...```",time=6)
+        return await edit_delete(event, "```Reply to a media file...```", time=6)
     c_id = await reply_id(event)
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
@@ -121,7 +121,7 @@ async def cat(event):
     kakashi = await edit_or_reply(event, "```Processing...```")
     async with event.client.conversation(chat) as conv:
         try:
-            msg= await conv.send_file(output_file)
+            msg = await conv.send_file(output_file)
             pic = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
@@ -131,13 +131,13 @@ async def cat(event):
         await event.client.send_file(
             event.chat_id,
             pic,
-            reply_to = c_id,
+            reply_to=c_id,
         )
     await event.client.delete_messages(conv.chat_id, [msg.id, pic.id])
     if os.path.exists(output_file):
         os.remove(output_file)
-    
-    
+
+
 CMD_HELP.update(
     {
         "art_img": "__**PLUGIN NAME :** Art Image__\
