@@ -7,7 +7,6 @@ You remove this, you gay.
 import os
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
 from . import convert_toimage, mention
 
 
@@ -17,16 +16,19 @@ async def bad(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        return await edit_delete(event, "```Reply to any user message.```", time=6)
+        return await edit_delete(event, "```Reply to any user message.```")
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        return await edit_delete(event, "```Reply to a media file...```", time=6)
+        return await edit_delete(event, "```Reply to a media file...```")
     c_id = await reply_id(event)
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
-    output = await _cattools.media_to_pic(event, reply_message)
-    outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
     output_file = os.path.join("./temp", "jisan.jpg")
+    if ".png" in reply_message.file.ext:
+        output_file = await event.client.download_media(reply_message,output_file) 
+    else:
+        output = await _cattools.media_to_pic(event, reply_message)
+        outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
     chat = "@asciiart_bot"
     kakashi = await edit_or_reply(event, "```Wait making ASCII...```")
     async with event.client.conversation(chat) as conv:
@@ -61,16 +63,19 @@ async def pussy(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        return await edit_delete(event, "```Reply to any user message.```", time=6)
+        return await edit_delete(event, "```Reply to any user message.```")
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        return await edit_delete(event, "```Reply to a media file...```", time=6)
+        return await edit_delete(event, "```Reply to a media file...```")
     c_id = await reply_id(event)
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
-    output = await _cattools.media_to_pic(event, reply_message)
-    outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
     output_file = os.path.join("./temp", "jisan.jpg")
+    if ".png" in reply_message.file.ext:
+        output_file = await event.client.download_media(reply_message,output_file) 
+    else:
+        output = await _cattools.media_to_pic(event, reply_message)
+        outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
     chat = "@Lines50Bot"
     reply_message.sender
     if reply_message.sender.bot:
@@ -103,16 +108,19 @@ async def cat(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        return await edit_delete(event, "```Reply to any user message.```", time=6)
+        return await edit_delete(event, "```Reply to any user message.```")
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        return await edit_delete(event, "```Reply to a media file...```", time=6)
+        return await edit_delete(event, "```Reply to a media file...```")
     c_id = await reply_id(event)
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
-    output = await _cattools.media_to_pic(event, reply_message)
-    outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
     output_file = os.path.join("./temp", "jisan.jpg")
+    if ".png" in reply_message.file.ext:
+        output_file = await event.client.download_media(reply_message,output_file) 
+    else:
+        output = await _cattools.media_to_pic(event, reply_message)
+        outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
     chat = "@clippy"
     reply_message.sender
     if reply_message.sender.bot:
