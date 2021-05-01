@@ -7,6 +7,7 @@ You remove this, you gay.
 import os
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
 from . import convert_toimage, mention
 
 
@@ -25,7 +26,7 @@ async def bad(event):
         os.mkdir("./temp")
     output_file = os.path.join("./temp", "jisan.jpg")
     if ".png" in reply_message.file.ext:
-        output_file = await event.client.download_media(reply_message,output_file) 
+        output_file = await event.client.download_media(reply_message, output_file)
     else:
         output = await _cattools.media_to_pic(event, reply_message)
         outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
@@ -72,7 +73,7 @@ async def pussy(event):
         os.mkdir("./temp")
     output_file = os.path.join("./temp", "jisan.jpg")
     if ".png" in reply_message.file.ext:
-        output_file = await event.client.download_media(reply_message,output_file) 
+        output_file = await event.client.download_media(reply_message, output_file)
     else:
         output = await _cattools.media_to_pic(event, reply_message)
         outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
@@ -117,7 +118,7 @@ async def cat(event):
         os.mkdir("./temp")
     output_file = os.path.join("./temp", "jisan.jpg")
     if ".png" in reply_message.file.ext:
-        output_file = await event.client.download_media(reply_message,output_file) 
+        output_file = await event.client.download_media(reply_message, output_file)
     else:
         output = await _cattools.media_to_pic(event, reply_message)
         outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
