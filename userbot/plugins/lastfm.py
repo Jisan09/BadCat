@@ -183,7 +183,18 @@ async def get_curr_track(lfmbio):
                 await bot.send_message(BOTLOG_CHATID, f"Error changing bio:\n{err}")
         await sleep(2)
     LASTFM_.RUNNING = False
-
+    
+    
+@bot.on(admin_cmd(pattern="now$"))
+@bot.on(sudo_cmd(pattern="now$", allow_sudo=True))
+async def current(event):
+    if event.fwd_from:
+        return
+    bot = "@nowplaybot"
+    results = await event.client.inline_query(bot, "current")
+    await results[0].click(event.chat_id)
+    await event.delete()
+    
 
 @bot.on(admin_cmd(outgoing=True, pattern=r"lastbio (on|off)"))
 async def lastbio(lfmbio):
@@ -226,6 +237,8 @@ CMD_HELP.update(
         "lastfm": "__**PLUGIN NAME :** Lastfm__\
     \n\n📌** CMD ➥** `.lastfm`\
     \n**USAGE   ➥  **Shows currently scrobbling track or most recent scrobbles if nothing is playing.\
+    \n\n📌** CMD ➥** `.now`\
+    \n**USAGE   ➥  **Sends you your current playing song from Lastfm/Spotify/Deezer.\nYou need to authorize the bot(@nowplaybot) for working of this command.\
     \n\n📌** CMD ➥** `.lastbio <on/off>`\
     \n**USAGE   ➥  **Enables/Disables last.fm current playing to bio.\
     \n\n📌** CMD ➥** `.lastlog <on/off>`\
