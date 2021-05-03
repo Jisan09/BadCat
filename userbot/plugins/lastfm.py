@@ -183,8 +183,8 @@ async def get_curr_track(lfmbio):
                 await bot.send_message(BOTLOG_CHATID, f"Error changing bio:\n{err}")
         await sleep(2)
     LASTFM_.RUNNING = False
-    
-    
+
+
 @bot.on(admin_cmd(pattern="now$"))
 @bot.on(sudo_cmd(pattern="now$", allow_sudo=True))
 async def current(event):
@@ -194,7 +194,7 @@ async def current(event):
     results = await event.client.inline_query(bot, "current")
     await results[0].click(event.chat_id)
     await event.delete()
-    
+
 
 @bot.on(admin_cmd(outgoing=True, pattern=r"lastbio (on|off)"))
 async def lastbio(lfmbio):
