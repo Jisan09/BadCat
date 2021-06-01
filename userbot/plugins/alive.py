@@ -32,22 +32,14 @@ async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
-    ##############################NUB########################################
-    if gvarstatus("ALIVE_EMOJI") is None:
-        EMOJI = "✧✧"
-    else:
-        EMOJI = gvarstatus("ALIVE_EMOJI")
-    if gvarstatus("ALIVE_TEXT") is None:
-        CUSTOM_ALIVE_TEXT = "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
-    else:
-        CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT")
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "✧✧"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
     CAT_IMG = gvarstatus("ALIVE_PIC")
-    ##############################END#########################################
     if CAT_IMG:
         CAT = [x for x in CAT_IMG.split()]
         A_IMG = list(CAT)
         PIC = random.choice(A_IMG)
-        cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
+        cat_caption = f"**{ALIVE_TEXT}**\n\n"
         cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
         cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
         cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
@@ -65,7 +57,7 @@ async def amireallyalive(event):
     else:
         await edit_or_reply(
             event,
-            f"**{CUSTOM_ALIVE_TEXT}**\n\n"
+            f"**{ALIVE_TEXT}**\n\n"
             f"**{EMOJI} Database :** `{check_sgnirts}`\n"
             f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
             f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
@@ -89,10 +81,7 @@ async def amireallyalive(event):
 async def amireallyalive(event):
     "A kind of showing bot details by your inline bot"
     reply_to_id = await reply_id(event)
-    if gvarstatus("ALIVE_EMOJI") is None:
-        EMOJI = "✧✧"
-    else:
-        EMOJI = gvarstatus("ALIVE_EMOJI")
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "✧✧"
     cat_caption = f"**Catuserbot is Up and Running**\n"
     cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
     cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
