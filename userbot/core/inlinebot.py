@@ -253,12 +253,13 @@ async def inline_handler(event):  # sourcery no-metrics
                 and gvarstatus("ALIVE_PIC") is not None
             ):
                 CAT = [x for x in gvarstatus("IALIVE_PIC").split()]
-            if gvarstatus("IALIVE_PIC") is not None and gvarstatus("ALIVE_PIC") is None:
+            elif gvarstatus("IALIVE_PIC") is not None and gvarstatus("ALIVE_PIC") is None:
                 CAT = [x for x in gvarstatus("IALIVE_PIC").split()]
             elif (
                 gvarstatus("IALIVE_PIC") is None and gvarstatus("ALIVE_PIC") is not None
             ):
                 CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
+            else : CAT = None
             if CAT is not None:
                 PIC = list(CAT)
                 I_IMG = random.choice(PIC)
