@@ -1,10 +1,11 @@
 import json
 import math
 import os
+import random
 import re
 import time
 from uuid import uuid4
-import random
+
 from telethon import Button, types
 from telethon.events import CallbackQuery, InlineQuery
 from youtubesearchpython import VideosSearch
@@ -247,9 +248,13 @@ async def inline_handler(event):  # sourcery no-metrics
                     Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
-            CAT = [x for x in gvarstatus("IALIVE_PIC").split()] or [x for x in gvarstatus("ALIVE_PIC").split()] or None
+            CAT = (
+                [x for x in gvarstatus("IALIVE_PIC").split()]
+                or [x for x in gvarstatus("ALIVE_PIC").split()]
+                or None
+            )
             if CAT is not None:
-                PIC = list(CAT)
+                list(CAT)
                 I_IMG = random.choice(CAT_IMG)
             if I_IMG and I_IMG.endswith((".jpg", ".png")):
                 result = builder.photo(
