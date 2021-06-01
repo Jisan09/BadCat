@@ -96,6 +96,12 @@ def main_menu():
                 data=f"extra_menu",
             ),
             Button.inline(
+                f"⚰️ Useless ({len(GRP_INFO['useless'])})",
+                data=f"useless_menu",
+            ),
+        ),
+        (
+            Button.inline(
                 f"🔒 Close Menu",
                 data=f"close",
             ),
