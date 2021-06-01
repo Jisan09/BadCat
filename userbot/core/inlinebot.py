@@ -254,8 +254,8 @@ async def inline_handler(event):  # sourcery no-metrics
                 or None
             )
             if CAT is not None:
-                list(CAT)
-                I_IMG = random.choice(CAT_IMG)
+                PIC = list(CAT)
+                I_IMG = random.choice(PIC)
             if I_IMG and I_IMG.endswith((".jpg", ".png")):
                 result = builder.photo(
                     I_IMG,
