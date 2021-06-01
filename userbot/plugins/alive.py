@@ -41,12 +41,12 @@ async def amireallyalive(event):
         CUSTOM_ALIVE_TEXT = "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
     else:
         CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT")
-    if gvarstatus("ALIVE_PIC") is not None:
-        CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
-        CAT_IMG = list(CAT)
+    CAT_IMG = gvarstatus("ALIVE_PIC")
     ##############################END#########################################
     if CAT_IMG:
-        PIC = random.choice(CAT_IMG)
+        CAT = [x for x in CAT_IMG.split()]
+        A_IMG = list(CAT)
+        PIC = random.choice(A_IMG)
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
         cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
         cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
