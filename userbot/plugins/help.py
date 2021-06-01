@@ -19,6 +19,7 @@ hemojis = {
     "tools": "🧰",
     "utils": "🗂",
     "extra": "➕",
+    "useless": "⚰️",
 }
 
 
@@ -99,7 +100,7 @@ async def plugininfo(input_str, event, flag):
 async def grpinfo():
     outstr = "**Plugins in Catuserbot are:**\n\n"
     outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <plugin name>`\n\n"
-    category = ["admin", "bot", "fun", "misc", "tools", "utils", "extra"]
+    category = ["admin", "bot", "fun", "misc", "tools", "utils", "extra","useless"]
     for cat in category:
         plugins = GRP_INFO[cat]
         outstr += f"**{hemojis[cat]} {cat.title()} **({len(plugins)})\n"
