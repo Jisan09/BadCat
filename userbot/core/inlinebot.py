@@ -4,7 +4,7 @@ import os
 import re
 import time
 from uuid import uuid4
-
+import random
 from telethon import Button, types
 from telethon.events import CallbackQuery, InlineQuery
 from youtubesearchpython import VideosSearch
@@ -244,20 +244,23 @@ async def inline_handler(event):  # sourcery no-metrics
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
-                    Button.url("Repo", "https://github.com/sandy1709/catuserbot"),
+                    Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
-            CAT_IMG = Config.ALIVE_PIC or None
-            if CAT_IMG and CAT_IMG.endswith((".jpg", ".png")):
+            CAT = [x for x in gvarstatus("IALIVE_PIC").split()] or [x for x in gvarstatus("ALIVE_PIC").split()] or None
+            if CAT is not None:
+                PIC = list(CAT)
+                I_IMG = random.choice(CAT_IMG)
+            if I_IMG and I_IMG.endswith((".jpg", ".png")):
                 result = builder.photo(
-                    CAT_IMG,
+                    I_IMG,
                     # title="Alive cat",
                     text=query,
                     buttons=buttons,
                 )
-            elif CAT_IMG:
+            elif I_IMG:
                 result = builder.document(
-                    CAT_IMG,
+                    I_IMG,
                     title="Alive cat",
                     text=query,
                     buttons=buttons,
@@ -473,7 +476,7 @@ async def inline_handler(event):  # sourcery no-metrics
     else:
         buttons = [
             (
-                Button.url("Source code", "https://github.com/sandy1709/catuserbot"),
+                Button.url("Source code", "https://github.com/Jisan09/catuserbot"),
                 Button.url(
                     "Deploy",
                     "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FMr-confused%2Fcatpack&template=https%3A%2F%2Fgithub.com%2FMr-confused%2Fcatpack",
@@ -492,7 +495,7 @@ async def inline_handler(event):  # sourcery no-metrics
             type="photo",
             title="𝘾𝙖𝙩𝙐𝙨𝙚𝙧𝙗𝙤𝙩",
             description="Deploy yourself",
-            url="https://github.com/sandy1709/catuserbot",
+            url="https://github.com/Jisan09/catuserbot",
             thumb=photo,
             content=photo,
             send_message=types.InputBotInlineMessageMediaAuto(
