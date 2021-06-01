@@ -31,8 +31,6 @@ LOGS = logging.getLogger(__name__)
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
 CATLOGO = "https://telegra.ph/file/493268c1f5ebedc967eba.jpg"
 tr = Config.COMMAND_HAND_LER
-ALIVE_PIC = gvarstatus("ALIVE_PIC")
-IALIVE_PIC = gvarstatus("IALIVE_PIC")
 
 
 def getkey(val):
@@ -131,13 +129,14 @@ def paginate_help(
 ):  # sourcery no-metrics
     number_of_rows = Config.NO_OF_ROWS_IN_HELP
     number_of_cols = Config.NO_OF_COLUMNS_IN_HELP
+    HELP_EMOJI = gvarstatus("HELP_EMOJI")
     helpable_plugins = [p for p in loaded_plugins if not p.startswith("_")]
     helpable_plugins = sorted(helpable_plugins)
-    if len(Config.EMOJI_TO_DISPLAY_IN_HELP) == 2:
+    if len(HELP_EMOJI) == 2:
         if plugins:
             modules = [
                 Button.inline(
-                    f"{Config.EMOJI_TO_DISPLAY_IN_HELP[0]} {x} {Config.EMOJI_TO_DISPLAY_IN_HELP[1]}",
+                    f"{HELP_EMOJI[0]} {x} {HELP_EMOJI[1]}",
                     data=f"{x}_prev(1)_command_{prefix}_{page_number}",
                 )
                 for x in helpable_plugins
@@ -145,7 +144,7 @@ def paginate_help(
         else:
             modules = [
                 Button.inline(
-                    f"{Config.EMOJI_TO_DISPLAY_IN_HELP[0]} {x} {Config.EMOJI_TO_DISPLAY_IN_HELP[1]}",
+                    f"{HELP_EMOJI[0]} {x} {HELP_EMOJI[1]}",
                     data=f"{x}_cmdhelp_{prefix}_{page_number}_{category_plugins}_{category_pgno}",
                 )
                 for x in helpable_plugins
@@ -154,7 +153,7 @@ def paginate_help(
         if plugins:
             modules = [
                 Button.inline(
-                    f"{Config.EMOJI_TO_DISPLAY_IN_HELP} {x} {Config.EMOJI_TO_DISPLAY_IN_HELP}",
+                    f"{HELP_EMOJI} {x} {HELP_EMOJI}",
                     data=f"{x}_prev(1)_command_{prefix}_{page_number}",
                 )
                 for x in helpable_plugins
@@ -162,7 +161,7 @@ def paginate_help(
         else:
             modules = [
                 Button.inline(
-                    f"{Config.EMOJI_TO_DISPLAY_IN_HELP} {x} {Config.EMOJI_TO_DISPLAY_IN_HELP}",
+                    f"{HELP_EMOJI} {x} {HELP_EMOJI}",
                     data=f"{x}_cmdhelp_{prefix}_{page_number}_{category_plugins}_{category_pgno}",
                 )
                 for x in helpable_plugins
@@ -250,6 +249,8 @@ async def inline_handler(event):  # sourcery no-metrics
                     Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
+            ALIVE_PIC = gvarstatus("ALIVE_PIC")
+            IALIVE_PIC = gvarstatus("IALIVE_PIC")
             if IALIVE_PIC:
                 CAT = [x for x in IALIVE_PIC.split()]
                 PIC = list(CAT)
@@ -258,8 +259,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 CAT = [x for x in ALIVE_PIC.split()]
                 PIC = list(CAT)
                 I_IMG = random.choice(PIC)
-            elif not IALIVE_PIC and not ALIVE_PIC:
-                I_IMG = None
+            elif not IALIVE_PIC and not ALIVE_PIC: I_IMG = None
             if I_IMG and I_IMG.endswith((".jpg", ".png")):
                 result = builder.photo(
                     I_IMG,
