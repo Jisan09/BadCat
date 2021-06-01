@@ -128,7 +128,6 @@ async def kakashi(think):
     await edit_or_reply(think, A)
 
 
-
 @catub.cat_cmd(
     pattern="sfrog (.*)",
     command=("sfrog", plugin_category),
