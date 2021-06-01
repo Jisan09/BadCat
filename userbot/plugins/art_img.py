@@ -5,13 +5,15 @@ plugin for Cat_Userbot
 You remove this, you gay.
 """
 import os
-from . import reply_id, convert_toimage, mention, catub, _cattools
-from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.functions import clippy
+
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
+from ..core.managers import edit_delete, edit_or_reply
+from ..helpers.functions import clippy
+from . import _cattools, catub, convert_toimage, mention, reply_id
 
 plugin_category = "useless"
+
 
 @catub.cat_cmd(
     pattern="iascii ?(.*)",
@@ -42,16 +44,20 @@ async def bad(event):
             response = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            return await kakashi.edit("```Please unblock @asciiart_bot and try again```")
+            return await kakashi.edit(
+                "```Please unblock @asciiart_bot and try again```"
+            )
         if response.text.startswith("Forward"):
-            await kakashi.edit("```can you kindly disable your forward privacy settings for good?```")
+            await kakashi.edit(
+                "```can you kindly disable your forward privacy settings for good?```"
+            )
         else:
             await kakashi.delete()
             await event.client.send_file(
                 event.chat_id,
                 response,
-                reply_to = c_id,
-                caption = f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** {mention}",
+                reply_to=c_id,
+                caption=f"**➥ Image Type :** ASCII Art\n**➥ Uploaded By :** {mention}",
             )
             await event.client.send_read_acknowledge(conv.chat_id)
     await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
@@ -93,8 +99,8 @@ async def pussy(event):
         await event.client.send_file(
             event.chat_id,
             pic,
-            reply_to = c_id,
-            caption = f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** {mention}",
+            reply_to=c_id,
+            caption=f"**➥ Image Type :** LINE Art \n**➥ Uploaded By :** {mention}",
         )
     await event.client.delete_messages(conv.chat_id, [msg.id, pic.id])
     if os.path.exists(output_file):
@@ -123,7 +129,7 @@ async def cat(event):
     output_file = os.path.join("./temp", "jisan.jpg")
     output = await _cattools.media_to_pic(event, reply_message)
     outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
-    kakashi = await edit_or_reply(event, "```Processing...```")
+    await edit_or_reply(event, "```Processing...```")
     await clippy(event.client, output_file, event.chat_id, c_id)
     if os.path.exists(output_file):
         os.remove(output_file)
