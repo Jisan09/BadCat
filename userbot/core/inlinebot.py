@@ -1,11 +1,10 @@
 import json
 import math
 import os
-import random
 import re
 import time
 from uuid import uuid4
-
+import random
 from telethon import Button, types
 from telethon.events import CallbackQuery, InlineQuery
 from youtubesearchpython import VideosSearch
@@ -31,7 +30,8 @@ LOGS = logging.getLogger(__name__)
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
 CATLOGO = "https://telegra.ph/file/493268c1f5ebedc967eba.jpg"
 tr = Config.COMMAND_HAND_LER
-
+ALIVE_PIC = gvarstatus("ALIVE_PIC")
+IALIVE_PIC = gvarstatus("IALIVE_PIC")
 
 def getkey(val):
     for key, value in GRP_INFO.items():
@@ -248,29 +248,18 @@ async def inline_handler(event):  # sourcery no-metrics
                     Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
-            if (
-                gvarstatus("IALIVE_PIC") is not None
-                and gvarstatus("ALIVE_PIC") is not None
-            ):
-                CAT = [x for x in gvarstatus("IALIVE_PIC").split()]
+            if IALIVE_PIC :
+                CAT = [x for x in IALIVE_PIC.split()]
                 PIC = list(CAT)
                 I_IMG = random.choice(PIC)
-            if gvarstatus("IALIVE_PIC") is not None and gvarstatus("ALIVE_PIC") is None:
-                CAT = [x for x in gvarstatus("IALIVE_PIC").split()]
+            if not IALIVE_PIC and ALIVE_PIC :
+                CAT = [x for x in ALIVE_PIC.split()]
                 PIC = list(CAT)
                 I_IMG = random.choice(PIC)
-            elif (
-                gvarstatus("IALIVE_PIC") is None and gvarstatus("ALIVE_PIC") is not None
-            ):
-                CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
-                PIC = list(CAT)
-                I_IMG = random.choice(PIC)
-            else:
-                I_IMG = None
+            else: PIC = None
             if I_IMG and I_IMG.endswith((".jpg", ".png")):
                 result = builder.photo(
                     I_IMG,
-                    # title="Alive cat",
                     text=query,
                     buttons=buttons,
                 )
