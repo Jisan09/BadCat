@@ -33,8 +33,10 @@ async def amireallyalive(event):
     uptime = await get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
     ##############################NUB########################################
-    EMOJI = "✧✧" if gvarstatus("ALIVE_EMOJI") is None else EMOJI = gvarstatus("ALIVE_EMOJI")
-    CUSTOM_ALIVE_TEXT = "✮ MY BOT IS RUNNING SUCCESSFULLY ✮" if gvarstatus("ALIVE_TEXT") is None else CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT")
+    if gvarstatus("ALIVE_EMOJI") is None: EMOJI = "✧✧" 
+    else: EMOJI = gvarstatus("ALIVE_EMOJI")
+    if gvarstatus("ALIVE_TEXT") is None: CUSTOM_ALIVE_TEXT = "✮ MY BOT IS RUNNING SUCCESSFULLY ✮" 
+    else: CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT")
     if gvarstatus("ALIVE_PIC") is not None: CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
     CAT_IMG = list(CAT)
     ##############################END#########################################
@@ -86,7 +88,8 @@ async def amireallyalive(event):
 async def amireallyalive(event):
     "A kind of showing bot details by your inline bot"
     reply_to_id = await reply_id(event)
-    EMOJI = "✧✧" if gvarstatus("ALIVE_EMOJI") is None else EMOJI = gvarstatus("ALIVE_EMOJI")
+    if gvarstatus("ALIVE_EMOJI") is None: EMOJI = "✧✧" 
+    else: EMOJI = gvarstatus("ALIVE_EMOJI")
     cat_caption = f"**Catuserbot is Up and Running**\n"
     cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
     cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
