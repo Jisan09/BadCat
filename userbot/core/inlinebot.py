@@ -1,10 +1,11 @@
 import json
 import math
 import os
+import random
 import re
 import time
 from uuid import uuid4
-import random
+
 from telethon import Button, types
 from telethon.events import CallbackQuery, InlineQuery
 from youtubesearchpython import VideosSearch
@@ -247,11 +248,16 @@ async def inline_handler(event):  # sourcery no-metrics
                     Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
-            if gvarstatus("IALIVE_PIC") is not None and gvarstatus("ALIVE_PIC") is not None:
+            if (
+                gvarstatus("IALIVE_PIC") is not None
+                and gvarstatus("ALIVE_PIC") is not None
+            ):
                 CAT = [x for x in gvarstatus("IALIVE_PIC").split()]
             if gvarstatus("IALIVE_PIC") is not None and gvarstatus("ALIVE_PIC") is None:
                 CAT = [x for x in gvarstatus("IALIVE_PIC").split()]
-            elif gvarstatus("IALIVE_PIC") is None and gvarstatus("ALIVE_PIC") is not None:
+            elif (
+                gvarstatus("IALIVE_PIC") is None and gvarstatus("ALIVE_PIC") is not None
+            ):
                 CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
             if CAT is not None:
                 PIC = list(CAT)
