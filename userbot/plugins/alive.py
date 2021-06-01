@@ -43,7 +43,7 @@ async def amireallyalive(event):
         CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT")
     if gvarstatus("ALIVE_PIC") is not None:
         CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
-    CAT_IMG = list(CAT)
+        CAT_IMG = list(CAT)
     ##############################END#########################################
     if CAT_IMG:
         PIC = random.choice(CAT_IMG)
