@@ -35,7 +35,7 @@ async def amireallyalive(event):
     ##############################NUB########################################
     EMOJI = "✧✧" if gvarstatus("ALIVE_EMOJI") is None else EMOJI = gvarstatus("ALIVE_EMOJI")
     CUSTOM_ALIVE_TEXT = "✮ MY BOT IS RUNNING SUCCESSFULLY ✮" if gvarstatus("ALIVE_TEXT") is None else CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT")
-    if gvarstatus("ALIVE_PIC") is not None CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
+    if gvarstatus("ALIVE_PIC") is not None: CAT = [x for x in gvarstatus("ALIVE_PIC").split()]
         CAT_IMG = list(CAT)
     ##############################END#########################################
     if CAT_IMG:
