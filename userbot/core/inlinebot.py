@@ -1,10 +1,11 @@
 import json
 import math
 import os
+import random
 import re
 import time
 from uuid import uuid4
-import random
+
 from telethon import Button, types
 from telethon.events import CallbackQuery, InlineQuery
 from youtubesearchpython import VideosSearch
@@ -32,6 +33,7 @@ CATLOGO = "https://telegra.ph/file/493268c1f5ebedc967eba.jpg"
 tr = Config.COMMAND_HAND_LER
 ALIVE_PIC = gvarstatus("ALIVE_PIC")
 IALIVE_PIC = gvarstatus("IALIVE_PIC")
+
 
 def getkey(val):
     for key, value in GRP_INFO.items():
@@ -248,15 +250,16 @@ async def inline_handler(event):  # sourcery no-metrics
                     Button.url("Repo", "https://github.com/Jisan09/catuserbot"),
                 )
             ]
-            if IALIVE_PIC :
+            if IALIVE_PIC:
                 CAT = [x for x in IALIVE_PIC.split()]
                 PIC = list(CAT)
                 I_IMG = random.choice(PIC)
-            if not IALIVE_PIC and ALIVE_PIC :
+            if not IALIVE_PIC and ALIVE_PIC:
                 CAT = [x for x in ALIVE_PIC.split()]
                 PIC = list(CAT)
                 I_IMG = random.choice(PIC)
-            else: I_IMG = None
+            else:
+                I_IMG = None
             if I_IMG and I_IMG.endswith((".jpg", ".png")):
                 result = builder.photo(
                     I_IMG,
