@@ -2,7 +2,7 @@ import os
 import urllib
 
 from ..helpers.functions import clippy, convert_tosticker, higlighted_text
-from . import catub, deEmojify, reply_id
+from . import catub, deEmojify, reply_id,edit_or_reply,edit_delete
 
 plugin_category = "useless"
 
@@ -130,11 +130,13 @@ async def knife(event):
         linespace="-5",
         position=position,
     )
-    if cmd == "t":
+    if cmd == "b":
         cat = convert_tosticker(file_name)
         await event.client.send_file(
             event.chat_id, cat, reply_to=reply_to_id, force_document=False
         )
+    else:
+        await clippy(event.client, file_name, event.chat_id, reply_to_id)
     await event.delete()
     for files in (temp_name, file_name):
         if files and os.path.exists(files):
