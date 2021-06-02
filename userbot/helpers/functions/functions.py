@@ -37,63 +37,92 @@ def reddit_thumb_link(preview, thumb=None):
     return thumb.replace("\u0026", "&")
 
 
-def higlighted_text(input_img,text,output_img,background="black",foreground="white",transparency=255,align = "center",direction=None,text_wrap=2,font_name=None,font_size=60,linespace="+2", rad=20,position=(0,0)):
+def higlighted_text(
+    input_img,
+    text,
+    output_img,
+    background="black",
+    foreground="white",
+    transparency=255,
+    align="center",
+    direction=None,
+    text_wrap=2,
+    font_name=None,
+    font_size=60,
+    linespace="+2",
+    rad=20,
+    position=(0, 0),
+):
     templait = Image.open(input_img)
-#resize image
+    # resize image
     source_img = templait.convert("RGBA").resize((1024, 1024))
     w, h = source_img.size
-    if font_name is None : font_name = "userbot/helpers/styles/impact.ttf"
-    font = ImageFont.truetype(font_name,font_size)
-    ew,eh = position
-#get text size
-    tw,th = font.getsize(text)
+    if font_name is None:
+        font_name = "userbot/helpers/styles/impact.ttf"
+    font = ImageFont.truetype(font_name, font_size)
+    ew, eh = position
+    # get text size
+    tw, th = font.getsize(text)
     width = 50 + ew
     hight = 30 + eh
     print(f"{h}-({th}+{int(th/1.2)}) = {(h- th + int(th/1.2))}")
-#wrap the text & save in a list
-    mask_size = int((w/text_wrap)+50)
+    # wrap the text & save in a list
+    mask_size = int((w / text_wrap) + 50)
     input_text = "\n".join(wrap(text, int((40.0 / w) * mask_size)))
     list_text = input_text.splitlines()
-#create image with correct size and black background
+    # create image with correct size and black background
     if direction == "upwards":
         list_text.reverse()
         operator = "-"
-        hight = h - (th + int(th/1.2)) + eh
+        hight = h - (th + int(th / 1.2)) + eh
         print(f"{h}-({th}+{int(th/1.2)}) = {(h- th + int(th/1.2))}")
-    else : operator = "+"
+    else:
+        operator = "+"
     for i, items in enumerate(list_text):
-        x,y = (font.getsize(list_text[i])[0]+50,int(th*2-(th/2)))
-#align masks on the image....left,right & center 
-        if align == "right" : width_align = "(mask_size-x)"
-        if align == "left" : width_align = "0"
-        if align == "center" : width_align = "((mask_size-x)/2)"
+        x, y = (font.getsize(list_text[i])[0] + 50, int(th * 2 - (th / 2)))
+        # align masks on the image....left,right & center
+        if align == "right":
+            width_align = "(mask_size-x)"
+        if align == "left":
+            width_align = "0"
+        if align == "center":
+            width_align = "((mask_size-x)/2)"
         clr = ImageColor.getcolor(background, "RGBA")
         if transparency == 0:
-            mask_img = Image.new('RGBA', (x,y), (clr[0],clr[1],clr[2],0))#background
+            mask_img = Image.new(
+                "RGBA", (x, y), (clr[0], clr[1], clr[2], 0)
+            )  # background
             mask_draw = ImageDraw.Draw(mask_img)
-            mask_draw.text((25,8), list_text[i], foreground, font=font)
+            mask_draw.text((25, 8), list_text[i], foreground, font=font)
         else:
-            mask_img = Image.new('RGBA', (x,y), (clr[0],clr[1],clr[2],transparency))#background
-#put text on mask
+            mask_img = Image.new(
+                "RGBA", (x, y), (clr[0], clr[1], clr[2], transparency)
+            )  # background
+            # put text on mask
             mask_draw = ImageDraw.Draw(mask_img)
-            mask_draw.text((25,8), list_text[i], foreground, font=font)
-#remove corner (source- https://stackoverflow.com/questions/11287402/how-to-round-corner-a-logo-without-white-backgroundtransparent-on-it-using-pi)
-            circle = Image.new('L', (rad * 2, rad * 2), 0)
+            mask_draw.text((25, 8), list_text[i], foreground, font=font)
+            # remove corner (source- https://stackoverflow.com/questions/11287402/how-to-round-corner-a-logo-without-white-backgroundtransparent-on-it-using-pi)
+            circle = Image.new("L", (rad * 2, rad * 2), 0)
             draw = ImageDraw.Draw(circle)
             draw.ellipse((0, 0, rad * 2, rad * 2), transparency)
-            alpha = Image.new('L', mask_img.size, transparency)
+            alpha = Image.new("L", mask_img.size, transparency)
             mw, mh = mask_img.size
             alpha.paste(circle.crop((0, 0, rad, rad)), (0, 0))
             alpha.paste(circle.crop((0, rad, rad, rad * 2)), (0, mh - rad))
             alpha.paste(circle.crop((rad, 0, rad * 2, rad)), (mw - rad, 0))
             alpha.paste(circle.crop((rad, rad, rad * 2, rad * 2)), (mw - rad, mh - rad))
             mask_img.putalpha(alpha)
-#put mask_img on source image & trans remove the corner white
+        # put mask_img on source image & trans remove the corner white
         trans = Image.new("RGBA", source_img.size)
-        trans.paste(mask_img, ((int(width) + int(eval(f"{width_align}"))),(eval(f"{hight} {operator}({y*i}+({int(linespace)*i}))"))))
-        source_img = Image.alpha_composite(source_img,trans)
+        trans.paste(
+            mask_img,
+            (
+                (int(width) + int(eval(f"{width_align}"))),
+                (eval(f"{hight} {operator}({y*i}+({int(linespace)*i}))")),
+            ),
+        )
+        source_img = Image.alpha_composite(source_img, trans)
     source_img.save(output_img, "png")
-
 
 
 async def clippy(borg, msg, chat_id, reply_to_id):
