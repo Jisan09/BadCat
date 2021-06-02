@@ -12,7 +12,7 @@ from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import clippy
 from . import _cattools, catub, convert_toimage, mention, reply_id
 
-plugin_category = "useless"
+plugin_category = "extra"
 
 
 @catub.cat_cmd(
