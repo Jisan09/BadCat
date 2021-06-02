@@ -5,7 +5,7 @@ Plugin for CatUserbot
 
 from . import catub, edit_or_reply, mention
 
-plugin_category = "useless"
+plugin_category = "fun"
 
 
 @catub.cat_cmd(
