@@ -9,8 +9,8 @@ from PIL import Image, ImageDraw, ImageFont
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from ...Config import Config
-from ..resources.states import states
 from ...sql_helper.globals import gvarstatus
+from ..resources.states import states
 
 
 def rand_key():
