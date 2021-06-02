@@ -65,7 +65,6 @@ def higlighted_text(
     tw, th = font.getsize(text)
     width = 50 + ew
     hight = 30 + eh
-    print(f"{h}-({th}+{int(th/1.2)}) = {(h- th + int(th/1.2))}")
     # wrap the text & save in a list
     mask_size = int((w / text_wrap) + 50)
     input_text = "\n".join(wrap(text, int((40.0 / w) * mask_size)))
@@ -75,7 +74,6 @@ def higlighted_text(
         list_text.reverse()
         operator = "-"
         hight = h - (th + int(th / 1.2)) + eh
-        print(f"{h}-({th}+{int(th/1.2)}) = {(h- th + int(th/1.2))}")
     else:
         operator = "+"
     for i, items in enumerate(list_text):
