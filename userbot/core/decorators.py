@@ -20,7 +20,7 @@ def check_owner(func):
                 pass
         else:
             await c_q.answer(
-                getvarstatus("HELP_TEXT")
+                gvarstatus("HELP_TEXT")
                 or "Only My Master can Access This !!\n\nDeploy your own Catuserbot.",
                 alert=True,
             )
