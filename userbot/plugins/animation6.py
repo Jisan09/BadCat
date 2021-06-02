@@ -1,11 +1,20 @@
 import asyncio
 
+from . import catub, edit_or_reply
 
-@bot.on(admin_cmd(pattern="unoob$"))
-@bot.on(sudo_cmd(pattern="unoob$", allow_sudo=True))
+plugin_category = "fun"
+
+
+@catub.cat_cmd(
+    pattern="unoob$",
+    command=("unoob", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}unoob",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
     animation_ttl = range(9)
     event = await edit_or_reply(event, "unnoob")
@@ -25,11 +34,16 @@ async def _(event):
         await asyncio.sleep(animation_interval)
 
 
-@bot.on(admin_cmd(pattern="menoob$"))
-@bot.on(sudo_cmd(pattern="menoob$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="menoob$",
+    command=("menoob", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}menoob",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
     animation_ttl = range(9)
     event = await edit_or_reply(event, "menoob")
@@ -49,11 +63,16 @@ async def _(event):
         await asyncio.sleep(animation_interval)
 
 
-@bot.on(admin_cmd(pattern="upro$"))
-@bot.on(sudo_cmd(pattern="upro$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="upro$",
+    command=("upro", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}upro",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
     animation_ttl = range(8)
     event = await edit_or_reply(event, "upro")
@@ -72,11 +91,16 @@ async def _(event):
         await asyncio.sleep(animation_interval)
 
 
-@bot.on(admin_cmd(pattern="mepro$"))
-@bot.on(sudo_cmd(pattern="mepro$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="mepro$",
+    command=("mepro", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}mepro",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
     animation_ttl = range(8)
     event = await edit_or_reply(event, "mepro")
@@ -95,11 +119,16 @@ async def _(event):
         await asyncio.sleep(animation_interval)
 
 
-@bot.on(admin_cmd(pattern=f"quickheal$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"quickheal$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="quickheal$",
+    command=("quickheal", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}quickheal",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 5
     animation_ttl = range(11)
     event = await edit_or_reply(event, "quickheal")
@@ -121,11 +150,16 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"sqh$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"sqh$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="sqh$",
+    command=("sqh", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}sqh",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.1
     animation_ttl = range(11)
     event = await edit_or_reply(event, "sqh")
@@ -147,11 +181,16 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"vquickheal$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"vquickheal$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="vquickheal$",
+    command=("vquickheal", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}vquickheal",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 5
     animation_ttl = range(11)
     event = await edit_or_reply(event, "vquickheal")
@@ -173,11 +212,16 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"macos$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"macos$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="macoc$",
+    command=("macoc", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}macoc",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.5
     animation_ttl = range(11)
     event = await edit_or_reply(event, "macos")
@@ -199,11 +243,16 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"windows$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"windows$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="windows$",
+    command=("windows", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}windows",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.5
     animation_ttl = range(11)
     event = await edit_or_reply(event, "windows")
@@ -218,18 +267,23 @@ async def _(event):
         "`Loading Windows 10... 69%\n█████████████▒▒▒▒▒▒▒▒▒▒▒▒ `",
         "`Loading Windows 10... 89%\n█████████████████████▒▒▒▒ `",
         "`Loading Windows 10... 100%\n█████████████████████████ `",
-        "`Welcome...\n\nStock OS: Symbian OS\nCurrent OS: Windows 10`\n\n**My PC Specs:**\n\n **CPU:** __2.9GHz Intel Core i9-8950HK (hexa-core, 12MB cache, up to 4.8GHz)__\n\n**Graphics:** __Nvidia GeForce GTX 1080 OC (8GB GDDR5X)__\n\n**RAM:** __32GB DDR4 (2,666MHz)__\n\n**Screen:** __17.3-inch, QHD (2,560 x 1,440) 120Hz G-Sync__\n\n**Storage:** __512GB PCIe SSD, 1TB HDD (7,200 rpm)__\n\n**Ports:** __2 x USB 3.0, 1 x USB-C 3.0, 1 x USB-C (Thunderbolt 3), HDMI, mini DisplayPort, Ethernet, headphone jack, microphone jack__\n\n**Connectivity:** __Killer 1550 802.11ac Wi-Fi, Bluetooth 5.0__\n\n**Camera:** __Alienware FHD camera, Tobii IR Eye-tracking with Windows Hello__\n\n**Size:** __16.7 x 13.1 x 1.18 inches (42.4 x 33.2 x 2.99cm; W x D x H)__",
+        "`Welcome...\n\nStock OS: Symbian OS\nCurrent OS: Windows 10`\n\n**My PC Specs:**\n\n **CPU:** __3.4GHz ryzen 9 5950x (16-core,32 threads 64MB cache, up to 4.9GHz)__\n\n**Graphics:** __Nvidia GeForce RTX 3090 OC (24GB GDDR6X)__\n\n**RAM:** __64GB DDR4 (4000MHz)__\n\n**Screen:** __17.3-inch, UHD (3840 x 2160) 144Hz Hdr G-Sync__\n\n**Storage:** __512GB nvme gen 4 SSD, 5 TB HDD (7,200 rpm)__\n\n**Ports:** __2 x USB 3.1, 1 x USB-C 3.0, 1 x USB-C (Thunderbolt 3), 2 HDMI2.0, mini DisplayPort, Ethernet, headphone jack, microphone jack__\n\n**Connectivity:** __Killer 1550 802.11ac Wi-Fi, Bluetooth 5.0__\n\n**Camera:** __Alienware FHD camera, Tobii IR Eye-tracking with Windows Hello__\n\n**Size:** __16.7 x 13.1 x 1.18 inches (42.4 x 33.2 x 2.99cm; W x D x H)__",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"linux$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"linux$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="linux$",
+    command=("linux", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}linux",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.5
     animation_ttl = range(11)
     event = await edit_or_reply(event, "linux")
@@ -251,11 +305,16 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"stock$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"stock$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="stock$",
+    command=("stock", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}stock",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.5
     animation_ttl = range(11)
     event = await edit_or_reply(event, "stock")
@@ -277,11 +336,16 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"os$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"os$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="os$",
+    command=("os", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}os",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.1
     animation_ttl = range(7)
     event = await edit_or_reply(event, "os")
@@ -292,18 +356,8 @@ async def _(event):
         "__Current Loaded OS: Symbian OS__\n\n**To Boot Other OS, Use The Following Trigger:**\n✅ `.macos`\n☑️ `.windows`\n☑️ `.linux`\n☑️ `.stock`",
         "__Current Loaded OS: Symbian OS__\n\n**To Boot Other OS, Use The Following Trigger:**\n✅ `.macos`\n✅ `.windows`\n☑️ `.linux`\n☑️ `.stock`",
         "__Current Loaded OS: Symbian OS__\n\n**To Boot Other OS, Use The Following Trigger:**\n✅ `.macos`\n✅ `.windows`\n✅ `.linux`\n☑️ `.stock`",
-        "__Current Loaded OS: Symbian OS__\n\n**To Boot Other OS, Use The Following Trigger:**\n✅ `.macos`\n✅ `.windows`\n✅ `.linux`\n✅ `.stock`\n\nDeveloped By: @Jisan7509",
+        "__Current Loaded OS: Symbian OS__\n\n**To Boot Other OS, Use The Following Trigger:**\n✅ `.macos`\n✅ `.windows`\n✅ `.linux`\n✅ `.stock`\n\nDeveloped By: @catuserbot17",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 7])
-
-
-CMD_HELP.update(
-    {
-        "animation6": "__**PLUGIN NAME :** Animation6__\
-\n\n📌** CMD ➥** `.unoob` | `.menoob` | `.upro` | `.mepro` | `.quickheal` | `.vquickheal` | `.macos` | `.windows` | `.linux` | `.stock` | `.os` \
-\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
-"
-    }
-)

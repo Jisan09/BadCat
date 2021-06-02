@@ -1,15 +1,21 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from telethon.tl.functions.messages import SaveDraftRequest
 
+from . import catub
 
-@bot.on(admin_cmd(pattern="chain$"))
-@bot.on(sudo_cmd(pattern="chain$", allow_sudo=True))
+plugin_category = "tools"
+
+
+@catub.cat_cmd(
+    pattern="chain$",
+    command=("chain", plugin_category),
+    info={
+        "header": "Reply this command to any converstion(or message) and it will find the chain length of that message",
+        "usage": "{tr}chain <reply>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
-    await event.edit("Counting...")
+    "To find the chain length of a message."
+    await event.edit("`Counting...`")
     count = -1
     message = event.message
     while message:
@@ -22,14 +28,4 @@ async def _(event):
             )
         message = reply
         count += 1
-    await event.edit(f"Chain length: {count}")
-
-
-CMD_HELP.update(
-    {
-        "chain": "__**PLUGIN NAME :** Chain__\
-        \n\n📌** CMD ➥** `.chain`\
-        \n**USAGE : **Reply this command to any converstion where you want to find length of converstion(Only tagged chain will count ) \
-    "
-    }
-)
+    await event.edit(f"Chain length: `{count}`")
