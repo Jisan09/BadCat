@@ -1,7 +1,9 @@
 import asyncio
+
 from userbot import catub
+
+from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import reply_id
-from ..core.managers import edit_delete,edit_or_reply
 
 plugin_category = "fun"
 
@@ -18,7 +20,6 @@ game_name = [
     "Pool Checkers",
 ]
 game_list = "1.`ttt` :- Tic-Tac-Toe\n2.`ttf` :- Tic-Tac-Four\n3.`cf` :- Connect Four\n4.`rps` :- Rock-Paper-Scissors\n5.`rpsls` :- Rock-Paper-Scissors-Lizard-Spock\n6.`rr` :- Russian Roulette\n7.`c` :- Checkers\n8.`pc` :- Pool Checkers"
-
 
 
 @catub.cat_cmd(
@@ -41,7 +42,6 @@ game_list = "1.`ttt` :- Tic-Tac-Toe\n2.`ttf` :- Tic-Tac-Four\n3.`cf` :- Connect 
         "examples": "{tr}game ttt ",
     },
 )
-
 async def igame(event):
     "Fun game by inline"
     reply_to_id = await reply_id(event)
@@ -68,6 +68,5 @@ async def igame(event):
         await asyncio.sleep(1)
         bot = "@inlinegamesbot"
         results = await event.client.inline_query(bot, gname)
-        await results[int(game)].click(event.chat_id,reply_to=reply_to_id)
+        await results[int(game)].click(event.chat_id, reply_to=reply_to_id)
         await event.delete()
-
