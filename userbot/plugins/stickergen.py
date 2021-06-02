@@ -1,10 +1,8 @@
 import os
 import urllib
-import asyncio
-from . import catub, edit_or_reply, mention,deEmojify,reply_id
-from ..helpers.functions import convert_tosticker, higlighted_text, clippy
 
-
+from ..helpers.functions import clippy, convert_tosticker, higlighted_text
+from . import catub, deEmojify, reply_id
 
 plugin_category = "useless"
 
@@ -35,34 +33,46 @@ async def quby(event):
     if not text and event.is_reply:
         text = (await event.get_reply_message()).message
     if not text:
-        return await edit_delete(event, "__What is quby supposed to say? Give some text.__")
+        return await edit_delete(
+            event, "__What is quby supposed to say? Give some text.__"
+        )
     await edit_delete(event, "`Wait, processing.....`")
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
     temp_name = "./temp/quby_temp.png"
     file_name = "./temp/quby.png"
-    templait = urllib.request.urlretrieve("https://telegra.ph/file/09f4df5a129758a2e1c9c.jpg",temp_name)
-    if len(text) <40:
+    templait = urllib.request.urlretrieve(
+        "https://telegra.ph/file/09f4df5a129758a2e1c9c.jpg", temp_name
+    )
+    if len(text) < 40:
         font = 80
-        wrap=1.4
-        position=(100,0)
+        wrap = 1.4
+        position = (100, 0)
     else:
         font = 60
-        wrap=1.2
-        position=(0,0)
+        wrap = 1.2
+        position = (0, 0)
     text = deEmojify(text)
-    higlighted_text(temp_name,text,file_name,text_wrap=wrap,font_size=font,linespace="+4",position=position)
+    higlighted_text(
+        temp_name,
+        text,
+        file_name,
+        text_wrap=wrap,
+        font_size=font,
+        linespace="+4",
+        position=position,
+    )
     if cmd == "b":
         cat = convert_tosticker(file_name)
-        await event.client.send_file(event.chat_id, cat, reply_to = reply_to_id, force_document=False)
+        await event.client.send_file(
+            event.chat_id, cat, reply_to=reply_to_id, force_document=False
+        )
     else:
         await clippy(event.client, file_name, event.chat_id, reply_to_id)
     await event.delete()
     for files in (temp_name, file_name):
         if files and os.path.exists(files):
             os.remove(files)
-
-
 
 
 @catub.cat_cmd(
@@ -91,32 +101,44 @@ async def knife(event):
     if not text and event.is_reply:
         text = (await event.get_reply_message()).message
     if not text:
-        return await edit_delete(event, "__What is knife supposed to say? Give some text.__")
+        return await edit_delete(
+            event, "__What is knife supposed to say? Give some text.__"
+        )
     await edit_delete(event, "`Wait, processing.....`")
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
     temp_name = "./temp/knife_temp.png"
     file_name = "./temp/knife.png"
-    templait = urllib.request.urlretrieve("https://telegra.ph/file/2188367c8c5f43c36aa59.jpg",temp_name)
-    if len(text) <50:
+    templait = urllib.request.urlretrieve(
+        "https://telegra.ph/file/2188367c8c5f43c36aa59.jpg", temp_name
+    )
+    if len(text) < 50:
         font = 90
-        wrap=2
-        position=(250,-450)
+        wrap = 2
+        position = (250, -450)
     else:
         font = 60
-        wrap=1.4
-        position=(150,500)
+        wrap = 1.4
+        position = (150, 500)
     text = deEmojify(text)
-    higlighted_text(temp_name,text,file_name,text_wrap=wrap,font_size=font,linespace="-5",position=position)
+    higlighted_text(
+        temp_name,
+        text,
+        file_name,
+        text_wrap=wrap,
+        font_size=font,
+        linespace="-5",
+        position=position,
+    )
     if cmd == "t":
         cat = convert_tosticker(file_name)
-        await event.client.send_file(event.chat_id, cat, reply_to = reply_to_id, force_document=False)
+        await event.client.send_file(
+            event.chat_id, cat, reply_to=reply_to_id, force_document=False
+        )
     await event.delete()
     for files in (temp_name, file_name):
         if files and os.path.exists(files):
             os.remove(files)
-
-
 
 
 """
