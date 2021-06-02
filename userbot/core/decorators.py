@@ -2,7 +2,7 @@ import asyncio
 
 from telethon.errors import FloodWaitError, MessageNotModifiedError
 from telethon.events import CallbackQuery
-
+from ..sql_helper.globals import gvarstatus
 from ..Config import Config
 
 
@@ -19,9 +19,9 @@ def check_owner(func):
             except MessageNotModifiedError:
                 pass
         else:
+            HELP_TEXT = gvarstatus("HELP_TEXT") or "Only My Master can Access This !!\n\nDeploy your own Catuserbot.",
             await c_q.answer(
-                gvarstatus("HELP_TEXT")
-                or "Only My Master can Access This !!\n\nDeploy your own Catuserbot.",
+                HELP_TEXT,
                 alert=True,
             )
 
