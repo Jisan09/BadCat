@@ -5,8 +5,9 @@ Plugin for CatUserbot
 """
 
 import asyncio
-from .import catub,mention
+
 from ..core.managers import edit_or_reply
+from . import catub, mention
 
 plugin_category = "useless"
 
@@ -60,6 +61,7 @@ GAMBAR_TITIT = """
 """
 
 # =======================================================
+
 
 @catub.cat_cmd(
     pattern="muth$",
