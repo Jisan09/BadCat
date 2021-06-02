@@ -129,6 +129,7 @@ async def knife(event):
         font_size=font,
         linespace="-5",
         position=position,
+        direction="upwards",
     )
     if cmd == "b":
         cat = convert_tosticker(file_name)
