@@ -8,7 +8,6 @@ from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
 cmdhd = Config.COMMAND_HAND_LER
-extractor = URLExtract()
 vlist = [
     "ALIVE_PIC",
     "ALIVE_EMOJI",
