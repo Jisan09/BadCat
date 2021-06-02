@@ -9,7 +9,7 @@ import asyncio
 from ..core.managers import edit_or_reply
 from . import catub, mention
 
-plugin_category = "useless"
+plugin_category = "fun"
 
 
 # ==================================================================
