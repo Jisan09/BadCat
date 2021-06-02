@@ -9,7 +9,15 @@ plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
 cmdhd = Config.COMMAND_HAND_LER
 extractor = URLExtract()
-vlist = ["ALIVE_PIC", "ALIVE_EMOJI", "ALIVE_TEXT","IALIVE_TEXT","IALIVE_PIC","HELP_EMOJI","HELP_TEXT,PM_PIC"]
+vlist = [
+    "ALIVE_PIC",
+    "ALIVE_EMOJI",
+    "ALIVE_TEXT",
+    "IALIVE_TEXT",
+    "IALIVE_PIC",
+    "HELP_EMOJI",
+    "HELP_TEXT,PM_PIC",
+]
 
 
 @catub.cat_cmd(
@@ -27,9 +35,9 @@ vlist = ["ALIVE_PIC", "ALIVE_EMOJI", "ALIVE_TEXT","IALIVE_TEXT","IALIVE_PIC","HE
             "ALIVE_PIC": "To set picture in alive",
             "ALIVE_EMOJI": "To set custom emoji in alive",
             "ALIVE_TEXT": "To set custom text in alive",
-            "IALIVE_TEXT":"To set custom text in ialive",
+            "IALIVE_TEXT": "To set custom text in ialive",
             "IALIVE_PIC": "To set picture in alive",
-            "HELP_EMOJI":"To set custom emoji in help",
+            "HELP_EMOJI": "To set custom emoji in help",
             "HELP_TEXT": "To set custom text in help",
             "PM_PIC": "To customize pmpermit pic",
         },
@@ -89,7 +97,7 @@ async def bad(event):
             event, f"**📑 Give correct var name from the list :\n\n**{vnlist}", time=60
         )
 
-        
+
 @catub.cat_cmd(
     pattern="custom (pmpermit|pmblock)$",
     command=("custom", plugin_category),
