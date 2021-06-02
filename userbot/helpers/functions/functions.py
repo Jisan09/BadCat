@@ -5,7 +5,7 @@ from textwrap import wrap
 from uuid import uuid4
 
 import requests
-from PIL import Image, ImageDraw, ImageFont,ImageColor
+from PIL import Image, ImageColor, ImageDraw, ImageFont
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from ...Config import Config
