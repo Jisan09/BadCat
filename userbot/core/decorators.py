@@ -20,7 +20,10 @@ def check_owner(func):
             except MessageNotModifiedError:
                 pass
         else:
-            HELP_TEXT = gvarstatus("HELP_TEXT") or "Only My Master can Access This !!\n\nDeploy your own Catuserbot."
+            HELP_TEXT = (
+                gvarstatus("HELP_TEXT")
+                or "Only My Master can Access This !!\n\nDeploy your own Catuserbot."
+            )
             await c_q.answer(
                 HELP_TEXT,
                 alert=True,
