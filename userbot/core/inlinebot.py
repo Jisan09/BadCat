@@ -459,18 +459,24 @@ async def inline_handler(event):  # sourcery no-metrics
             buttons = [
                 Button.inline(text="Show Options.", data="show_pmpermit_options"),
             ]
-            CAT_IMG = gvarstatus("pmpermit_pic") or None
+            PM_PIC = gvarstatus("PM_PIC")
+            if PM_PIC:
+                CAT = [x for x in IALIVE_PIC.split()]
+                PIC = list(CAT)
+                P_IMG = random.choice(PIC)
+            else:
+                P_IMG = None
             query = gvarstatus("pmpermit_text")
-            if CAT_IMG and CAT_IMG.endswith((".jpg", ".jpeg", ".png")):
+            if P_IMG and P_IMG.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
-                    CAT_IMG,
+                    P_IMG,
                     # title="Alive cat",
                     text=query,
                     buttons=buttons,
                 )
-            elif CAT_IMG:
+            elif P_IMG:
                 result = builder.document(
-                    CAT_IMG,
+                    P_IMG,
                     title="Alive cat",
                     text=query,
                     buttons=buttons,
