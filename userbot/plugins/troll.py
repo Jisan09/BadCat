@@ -5,13 +5,15 @@ plugin for Cat_Userbot
 You remove this, you gay.
 """
 
-from . import catub, reply_id
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
 from ..core.managers import edit_delete, edit_or_reply
+from . import catub, reply_id
 
 plugin_category = "fun"
 
-async def mememaker(borg, msg,cat, chat_id, reply_to_id):
+
+async def mememaker(borg, msg, cat, chat_id, reply_to_id):
     async with borg.conversation("@themememakerbot") as conv:
         try:
             msg = await conv.send_message(msg)
@@ -27,8 +29,8 @@ async def mememaker(borg, msg,cat, chat_id, reply_to_id):
             reply_to=reply_to_id,
         )
     await borg.delete_messages(conv.chat_id, [msg.id, pic.id])
-    
-    
+
+
 @catub.cat_cmd(
     pattern="fox ?(.*)",
     command=("fox", plugin_category),
@@ -46,9 +48,9 @@ async def cat(event):
         return await edit_delete(event, "`Give me some text to process...`")
     msg = f"/sf {input_text}"
     cat = await edit_or_reply(event, "```Fox is on your way...```")
-    await mememaker(event.client,msg,cat,event.chat_id,reply_to_id)
-    
-    
+    await mememaker(event.client, msg, cat, event.chat_id, reply_to_id)
+
+
 @catub.cat_cmd(
     pattern="talkme ?(.*)",
     command=("talkme", plugin_category),
@@ -66,9 +68,9 @@ async def cat(event):
         return await edit_delete(event, "`Give me some text to process...`")
     msg = f"/ttm {input_text}"
     cat = await edit_or_reply(event, "```Wait making your hardcore meme...```")
-    await mememaker(event.client,msg,cat,event.chat_id,reply_to_id)
-    
-    
+    await mememaker(event.client, msg, cat, event.chat_id, reply_to_id)
+
+
 @catub.cat_cmd(
     pattern="sleep ?(.*)",
     command=("sleep", plugin_category),
@@ -86,9 +88,9 @@ async def cat(event):
         return await edit_delete(event, "`Give me some text to process...`")
     msg = f"/bbn {input_text}"
     cat = await edit_or_reply(event, "```You can't sleep...```")
-    await mememaker(event.client,msg,cat,event.chat_id,reply_to_id)
-    
-    
+    await mememaker(event.client, msg, cat, event.chat_id, reply_to_id)
+
+
 @catub.cat_cmd(
     pattern="sbob ?(.*)",
     command=("sbob", plugin_category),
@@ -106,7 +108,7 @@ async def cat(event):
         return await edit_delete(event, "`Give me some text to process...`")
     msg = f"/sp {input_text}"
     cat = await edit_or_reply(event, "```Yaah wait for spongebob...```")
-    await mememaker(event.client,msg,cat,event.chat_id,reply_to_id)
+    await mememaker(event.client, msg, cat, event.chat_id, reply_to_id)
 
 
 @catub.cat_cmd(
@@ -126,4 +128,4 @@ async def cat(event):
         return await edit_delete(event, "`Give me some text to process...`")
     msg = f"/love {input_text}"
     cat = await edit_or_reply(event, "```Wait for your son......```")
-    await mememaker(event.client,msg,cat,event.chat_id,reply_to_id)
+    await mememaker(event.client, msg, cat, event.chat_id, reply_to_id)
