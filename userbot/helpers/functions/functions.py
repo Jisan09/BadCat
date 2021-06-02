@@ -7,9 +7,10 @@ from uuid import uuid4
 import requests
 from PIL import Image, ImageDraw, ImageFont
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from ..sql_helper.globals import gvarstatus
+
 from ...Config import Config
 from ..resources.states import states
+from ..sql_helper.globals import gvarstatus
 
 
 def rand_key():
