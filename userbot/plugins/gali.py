@@ -1,4 +1,3 @@
-
 """
 Created By @Jisan7509
 GF created by @KshitijGagan
@@ -8,7 +7,7 @@ import asyncio
 import random
 
 from ..core.managers import edit_or_reply
-from . import catmemes,catub
+from . import catmemes, catub
 
 plugin_category = "extra"
 
@@ -53,7 +52,7 @@ async def metoo(e):
     "random gali string"
     txt = random.choice(catmemes.RENDISTR)
     await edit_or_reply(e, txt)
-    
+
 
 @catub.cat_cmd(
     pattern="fuck$",
