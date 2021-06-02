@@ -2,7 +2,7 @@ import asyncio
 
 from telethon.errors import FloodWaitError, MessageNotModifiedError
 from telethon.events import CallbackQuery
-from ..sql_helper.globals import gvarstatus
+
 from ..Config import Config
 
 
@@ -20,7 +20,8 @@ def check_owner(func):
                 pass
         else:
             await c_q.answer(
-                getvarstatus("HELP_TEXT") or "Only My Master can Access This !!\n\nDeploy your own Catuserbot.",
+                getvarstatus("HELP_TEXT")
+                or "Only My Master can Access This !!\n\nDeploy your own Catuserbot.",
                 alert=True,
             )
 
