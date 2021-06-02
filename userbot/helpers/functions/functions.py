@@ -10,7 +10,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from ...Config import Config
 from ..resources.states import states
-from ..sql_helper.globals import gvarstatus
+from ...sql_helper.globals import gvarstatus
 
 
 def rand_key():
