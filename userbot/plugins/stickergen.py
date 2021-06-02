@@ -2,7 +2,7 @@ import os
 import urllib
 
 from ..helpers.functions import clippy, convert_tosticker, higlighted_text
-from . import catub, deEmojify, reply_id,edit_or_reply,edit_delete
+from . import catub, deEmojify, edit_delete, reply_id
 
 plugin_category = "useless"
 
