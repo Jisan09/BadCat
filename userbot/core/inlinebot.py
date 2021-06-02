@@ -129,7 +129,7 @@ def paginate_help(
 ):  # sourcery no-metrics
     number_of_rows = Config.NO_OF_ROWS_IN_HELP
     number_of_cols = Config.NO_OF_COLUMNS_IN_HELP
-    HELP_EMOJI = gvarstatus("HELP_EMOJI")
+    HELP_EMOJI = gvarstatus("HELP_EMOJI") or " "
     helpable_plugins = [p for p in loaded_plugins if not p.startswith("_")]
     helpable_plugins = sorted(helpable_plugins)
     if len(HELP_EMOJI) == 2:
