@@ -1,40 +1,31 @@
+
 """
 Created & modified by @Jisan7509
 
 Base idea DevsExpo
 
 """
-import asyncio
-import os
 import re
-import urllib
-
+import os
 import PIL
+import urllib
+import asyncio
 import requests
+from userbot import catub
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
-
-from userbot import catub
-
+from . import reply_id, convert_toimage
 from ..core.managers import edit_delete, edit_or_reply
-from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import convert_toimage, reply_id
+from ..sql_helper.globals import addgvar, gvarstatus,delgvar
 
-# ======================================================================================================================================================================================
 
-vars_list = {
-    "bg": "LOGO_BACKGROUND",
-    "lfc": "LOGO_FONT_COLOR",
-    "lfs": "LOGO_FONT_SIZE",
-    "lfh": "LOGO_FONT_HEIGHT",
-    "lfw": "LOGO_FONT_WIDTH",
-    "lf": "LOGO_FONT",
-}
+#======================================================================================================================================================================================
 
-# ======================================================================================================================================================================================
+vars_list = {"lbg" : "LOGO_BACKGROUND", "lfc" : "LOGO_FONT_COLOR", "lfs" : "LOGO_FONT_SIZE", "lfh" : "LOGO_FONT_HEIGHT", "lfw" : "LOGO_FONT_WIDTH", "lf" : "LOGO_FONT"}
 
+#======================================================================================================================================================================================
+  
 plugin_category = "useless"
-
 
 @catub.cat_cmd(
     pattern="(|s)logo(?: |$)(.*)",
@@ -60,7 +51,7 @@ async def very(event):
     cmd = event.pattern_match.group(1).lower()
     text = event.pattern_match.group(2)
     if not text:
-        return await edit_delete(event, "```Give some text to make the logo...```")
+        return await edit_delete(event,"```Give some text to make the logo...```")  
     reply_to_id = await reply_id(event)
     catevent = await edit_or_reply(event, "`Processing.....`")
     LOGO_FONT_SIZE = gvarstatus("LOGO_FONT_SIZE") or 220
@@ -69,32 +60,24 @@ async def very(event):
     LOGO_FONT_COLOR = gvarstatus("LOGO_FONT_COLOR") or "red"
     if not os.path.exists("temp/bg_img.jpg"):
         if gvarstatus("LOGO_BACKGROUND") is None:
-            urllib.request.urlretrieve(
-                "https://telegra.ph/file/47fce894d66ae67e3665f.jpg", "temp/bg_img.jpg"
-            )
+            urllib.request.urlretrieve("https://telegra.ph/file/47fce894d66ae67e3665f.jpg","temp/bg_img.jpg")
         else:
             LOGO_BACKGROUND = gvarstatus("LOGO_BACKGROUND")
-            urllib.request.urlretrieve(LOGO_BACKGROUND, "temp/bg_img.jpg")
+            urllib.request.urlretrieve(LOGO_BACKGROUND,"temp/bg_img.jpg")
     img = Image.open("./temp/bg_img.jpg")
     draw = ImageDraw.Draw(img)
     if not os.path.exists("temp/logo.ttf"):
         if gvarstatus("LOGO_FONT") is None:
-            urllib.request.urlretrieve(
-                "https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true",
-                "temp/logo.ttf",
-            )
+            urllib.request.urlretrieve("https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true","temp/logo.ttf")
         else:
             LOGO_FONT = gvarstatus("LOGO_FONT")
-            urllib.request.urlretrieve(LOGO_FONT, "temp/logo.ttf")
+            urllib.request.urlretrieve(LOGO_FONT,"temp/logo.ttf")
     font = ImageFont.truetype("temp/logo.ttf", int(LOGO_FONT_SIZE))
     image_widthz, image_heightz = img.size
     w, h = draw.textsize(text, font=font)
     h += int(h * 0.21)
     draw.text(
-        (
-            (image_widthz - w) / float(LOGO_FONT_WIDTH),
-            (image_heightz - h) / float(LOGO_FONT_HEIGHT),
-        ),
+        ((image_widthz - w) / float(LOGO_FONT_WIDTH), (image_heightz - h) / float(LOGO_FONT_HEIGHT)),
         text,
         font=font,
         fill=LOGO_FONT_COLOR,
@@ -112,11 +95,11 @@ async def very(event):
     await catevent.delete()
     if os.path.exists(file_name):
         os.remove(file_name)
-
+ 
 
 @catub.cat_cmd(
     pattern="(|c)lbg(?: |$)(.*)",
-    command=("bg", plugin_category),
+    command=("lbg", plugin_category),
     info={
         "header": "Change the background of logo",
         "description": "To change the background on which logo will created, in **bg** there few built-in backgrounds.",
@@ -138,14 +121,14 @@ async def bad(event):
     cmd = event.pattern_match.group(1).lower()
     input_str = event.pattern_match.group(2)
     source = requests.get("https://github.com/Jisan09/Files/tree/main/backgroud")
-    soup = BeautifulSoup(source.text, features="html.parser")
-    links = soup.find_all("a", class_="js-navigation-open Link--primary")
+    soup = BeautifulSoup(source.text,features="html.parser")
+    links = soup.find_all('a', class_ ="js-navigation-open Link--primary")
     bg_name = []
     for i in links:
         bg_name.append(i.text)
-    lbg = ""
-    for i, each in enumerate(bg_name, start=1):
-        lbg += f"**{i}.**  `{each}`\n"
+    lbg_list = ""
+    for i,each in enumerate(bg_name,start=1):
+        lbg_list += f"**{i}.**  `{each}`\n"
     if os.path.exists("./temp/bg_img.jpg"):
         os.remove("./temp/bg_img.jpg")
     if cmd == "c":
@@ -153,38 +136,25 @@ async def bad(event):
         if not input_str and event.reply_to_msg_id and reply_message.media:
             if not os.path.isdir("./temp"):
                 os.mkdir("./temp")
-            os.path.join("./temp", "bg_img.jpg")
             output = await _cattools.media_to_pic(event, reply_message)
             convert_toimage(output[1], filename="./temp/bg_img.jpg")
-            return await edit_delete(
-                event, "This media is successfully set as background."
-            )
+            return await edit_delete(event, "This media is successfully set as background.")
         if input_str.startswith("https://t"):
             addgvar("LOGO_BACKGROUND", input_str)
-            return await edit_delete(
-                event, f"**Background for logo changed to :-** `{input_str}`"
-            )
+            return await edit_delete(event, f"**Background for logo changed to :-** `{input_str}`")
         else:
-            return await edit_delete(
-                event, "Give a valid Telegraph picture link, Or reply to a media."
-            )
+            return await edit_delete(event, "Give a valid Telegraph picture link, Or reply to a media.")
     if not input_str:
-        await edit_delete(
-            event, f"**Available background names are here:-**\n\n{lbg}", time=40
-        )
+        await edit_delete(event,f"**Available background names are here:-**\n\n{lbg_list}",time=40)
         return
     if input_str not in bg_name:
         catevent = await edit_or_reply(event, "`Give me a correct background name...`")
         await asyncio.sleep(1)
-        await edit_delete(
-            catevent, f"**Available background names are here:-**\n\n{lbg}", time=40
-        )
+        await edit_delete(catevent,f"**Available background names are here:-**\n\n{lbg_list}",time=40)
     else:
         string = f"https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/{input_str}"
         addgvar("LOGO_BACKGROUND", string)
-        await edit_delete(
-            event, f"**Background for logo changed to :-** `{input_str}`", time=10
-        )
+        await edit_delete(event, f"**Background for logo changed to :-** `{input_str}`",time=10)
 
 
 @catub.cat_cmd(
@@ -221,112 +191,71 @@ async def pussy(event):
     input_str = event.pattern_match.group(2)
     if cmd == "":
         source = requests.get("https://github.com/Jisan09/Files/tree/main/fonts")
-        soup = BeautifulSoup(source.text, features="html.parser")
-        links = soup.find_all("a", class_="js-navigation-open Link--primary")
+        soup = BeautifulSoup(source.text,features="html.parser")
+        links = soup.find_all('a', class_ ="js-navigation-open Link--primary")
         logo_font = []
         for i in links:
             logo_font.append(i.text)
             font_name = ""
-            for i, each in enumerate(logo_font, start=1):
+            for i,each in enumerate(logo_font,start=1):
                 font_name += f"**{i}.**  `{each}`\n"
         if not input_str:
-            return await edit_delete(
-                event, f"**Available font names are here:-**\n\n{font_name}", time=60
-            )
+            return await edit_delete(event,f"**Available font names are here:-**\n\n{font_name}",time=60)
         if input_str not in logo_font:
             catevent = await edit_or_reply(event, "`Give me a correct font name...`")
             await asyncio.sleep(1)
-            await edit_delete(
-                catevent, f"**Available font names are here:-**\n\n{font_name}", time=60
-            )
+            await edit_delete(catevent,f"**Available font names are here:-**\n\n{font_name}",time=60)
         else:
             if " " in input_str:
-                input_str = str(input_str).replace(" ", "%20")
-            string = (
-                f"https://github.com/Jisan09/Files/blob/main/fonts/{input_str}?raw=true"
-            )
+                input_str = str(input_str).replace(" ","%20")
+            string = f"https://github.com/Jisan09/Files/blob/main/fonts/{input_str}?raw=true"
             if os.path.exists("temp/logo.ttf"):
                 os.remove("temp/logo.ttf")
-                urllib.request.urlretrieve(
-                    string,
-                    "temp/logo.ttf",
-                )
+                urllib.request.urlretrieve(string,"temp/logo.ttf",)
             addgvar("LOGO_FONT", string)
-            await edit_delete(
-                event, f"**Font for logo changed to :-** `{input_str}`", time=10
-            )
+            await edit_delete(event, f"**Font for logo changed to :-** `{input_str}`",time=10)
     elif cmd == "c":
-        fg_name = []
-        for name, code in PIL.ImageColor.colormap.items():
+        fg_name=[]
+        for name,code in PIL.ImageColor.colormap.items():
             fg_name.append(name)
-            fg_list = str(fg_name).replace("'", "`")
+            fg_list = str(fg_name).replace("'","`")
         if not input_str:
-            return await edit_delete(
-                event,
-                f"**Available foreground color names are here:-**\n\n{fg_list}",
-                time=60,
-            )
+            return await edit_delete(event,f"**Available foreground color names are here:-**\n\n{fg_list}",time=60)  
         if input_str not in fg_name:
-            catevent = await edit_or_reply(
-                event, "`Give me a correct foreground color name...`"
-            )
+            catevent = await edit_or_reply(event, "`Give me a correct foreground color name...`")
             await asyncio.sleep(1)
-            await edit_delete(
-                catevent,
-                f"**Available foreground color names are here:-**\n\n{fg_list}",
-                time=60,
-            )
+            await edit_delete(catevent,f"**Available foreground color names are here:-**\n\n{fg_list}",time=60)
         else:
             addgvar("LOGO_FONT_COLOR", input_str)
-            await edit_delete(
-                event,
-                f"**Foreground color for logo changed to :-** `{input_str}`",
-                time=10,
-            )
+            await edit_delete(event, f"**Foreground color for logo changed to :-** `{input_str}`",time=10)
     else:
-        cat = re.compile(r"^\-?[1-9][0-9]*\.?[0-9]*")
-        isint = re.match(cat, input_str)
+        cat = re.compile(r'^\-?[1-9][0-9]*\.?[0-9]*')
+        isint = re.match(cat,input_str)
         if not input_str or not isint:
-            return await edit_delete(
-                event, f"**Give an integer value to set**", time=10
-            )
+            return await edit_delete(event,f"**Give an integer value to set**",time=10) 
         else:
             if cmd == "s":
-                input_str = int(input_str)
-                if input_str > 0 and input_str <= 1000:
+                input_str=int(input_str)
+                if input_str>0 and input_str<=1000:
                     addgvar("LOGO_FONT_SIZE", input_str)
-                    await edit_delete(
-                        event, f"**Font size is changed to :-** `{input_str}`"
-                    )
+                    await edit_delete(event, f"**Font size is changed to :-** `{input_str}`")
                 else:
-                    await edit_delete(
-                        event,
-                        f"**Font size is between 20 - 1000, You can't set limit to :** `{input_str}`",
-                    )
+                    await edit_delete(event,f"**Font size is between 20 - 1000, You can't set limit to :** `{input_str}`")
             elif cmd == "w":
-                input_str = float(input_str)
-                if input_str > 0 and input_str <= 100:
+                input_str=float(input_str)
+                if input_str>0 and input_str <=100:
                     addgvar("LOGO_FONT_WIDTH", input_str)
-                    await edit_delete(
-                        event, f"**Font width is changed to :-** `{input_str}`"
-                    )
+                    await edit_delete(event, f"**Font width is changed to :-** `{input_str}`")
                 else:
-                    await edit_delete(
-                        event,
-                        f"**Font width is between 0 - 30, You can't set limit to {input_str}",
-                    )
+                    await edit_delete(event,f"**Font width is between 0 - 30, You can't set limit to {input_str}")
             elif cmd == "h":
-                input_str = float(input_str)
-                if input_str > 0 and input_str <= 100:
+                input_str=float(input_str)
+                if input_str>0 and input_str <=100:
                     addgvar("LOGO_FONT_HEIGHT", input_str)
-                    await edit_delete(
-                        event, f"**Font hight is changed to :-** `{input_str}`"
-                    )
+                    await edit_delete(event, f"**Font hight is changed to :-** `{input_str}`")
                 else:
-                    await edit_delete(
-                        event,
-                        f"**Font hight is between 0 - 30, You can't set limit to {input_str}",
-                    )
+                    await edit_delete(event,f"**Font hight is between 0 - 30, You can't set limit to {input_str}")
+
 
 
 @catub.cat_cmd(
@@ -346,7 +275,7 @@ async def pussy(event):
             "{tr}rlvar",
         ],
         "examples": [
-            "{tr}glvar bg",
+            "{tr}glvar lbg",
             "{tr}dlvar lfc",
         ],
     },
@@ -359,18 +288,16 @@ async def cat(event):
         var = vars_list[input_str]
         if cmd == "g":
             var_data = gvarstatus(var)
-            await edit_delete(event, f"📑 Value of **{var}** is  `{var_data}`", time=60)
+            await edit_delete(event, f"📑 Value of **{var}** is  `{var_data}`",time=60)
         elif cmd == "d":
-            if input_str == "bg":
+            if input_str =="lbg":
                 if os.path.exists("./temp/bg_img.jpg"):
                     os.remove("./temp/bg_img.jpg")
-            if input_str == "lf":
+            if input_str =="lf":
                 if os.path.exists("./temp/logo.ttf"):
                     os.remove("./temp/logo.ttf")
             delgvar(var)
-            await edit_delete(
-                event, f"📑 Value of **{var}** is now deleted & set to default.", time=60
-            )
+            await edit_delete(event, f"📑 Value of **{var}** is now deleted & set to default.",time=60)
     elif not input_str and cmd == "r":
         delgvar("LOGO_BACKGROUND")
         delgvar("LOGO_FONT_COLOR")
@@ -382,14 +309,6 @@ async def cat(event):
             os.remove("./temp/bg_img.jpg")
         if os.path.exists("./temp/logo.ttf"):
             os.remove("./temp/logo.ttf")
-        await edit_delete(
-            event,
-            "📑 Values for all vars deleted successfully & all settings reset.",
-            time=20,
-        )
+        await edit_delete(event,"📑 Values for all vars deleted successfully & all settings reset.",time=20)
     else:
-        await edit_delete(
-            event,
-            f"**📑 Give correct vars name :**\n__Correct Vars code list is :__\n\n1. `bg` : **LOGO_BACKGROUND**\n2. `lfc` : **LOGO_FONT_COLOR**\n3. `lf` : **LOGO_FONT**\n4. `lfs` : **LOGO_FONT_SIZE**\n5. `lfh` : **LOGO_FONT_HEIGHT**\n6. `lfw` : **LOGO_FONT_WIDTH**",
-            time=60,
-        )
+        await edit_delete(event, f"**📑 Give correct vars name :**\n__Correct Vars code list is :__\n\n1. `lbg` : **LOGO_BACKGROUND**\n2. `lfc` : **LOGO_FONT_COLOR**\n3. `lf` : **LOGO_FONT**\n4. `lfs` : **LOGO_FONT_SIZE**\n5. `lfh` : **LOGO_FONT_HEIGHT**\n6. `lfw` : **LOGO_FONT_WIDTH**",time=60)
