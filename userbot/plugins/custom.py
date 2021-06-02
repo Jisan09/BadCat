@@ -16,7 +16,8 @@ vlist = [
     "IALIVE_TEXT",
     "IALIVE_PIC",
     "HELP_EMOJI",
-    "HELP_TEXT,PM_PIC",
+    "HELP_TEXT",
+    "PM_PIC",
 ]
 
 
