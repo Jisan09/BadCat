@@ -2,44 +2,23 @@ from asyncio import sleep
 
 import requests
 
-from . import BOTLOG, BOTLOG_CHATID
+from userbot import catub
+
+from ..core.managers import edit_delete, edit_or_reply
+
+plugin_category = "utils"
 
 
-@bot.on(admin_cmd(pattern="lfy ?(.*)"))
-@bot.on(sudo_cmd(pattern="lfy ?(.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="lmg (.*)",
+    command=("lmg", plugin_category),
+    info={
+        "header": "Searches the given query in Google and shows you the link of that query.",
+        "usage": "{tr}lmg <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
-    input_str = event.pattern_match.group(1)
-    reply = await event.get_reply_message()
-    if not input_str and reply:
-        input_str = reply.text
-    if not input_str:
-        return await edit_delete(
-            event, "`either reply to text message or give input to search`", 5
-        )
-    sample_url = f"https://da.gd/s?url=https://lmgtfy.com/?q={input_str.replace(' ', '+')}%26iie=1"
-    response_api = requests.get(sample_url).text
-    if response_api:
-        await edit_or_reply(
-            event, f"[{input_str}]({response_api.rstrip()})\n`Thank me Later 🙃` "
-        )
-    else:
-        return await edit_delete(
-            event, "`something is wrong. please try again later.`", 5
-        )
-    if BOTLOG:
-        await event.client.send_message(
-            BOTLOG_CHATID,
-            f"LMGTFY query `{input_str}` was executed successfully",
-        )
-
-
-@bot.on(admin_cmd(pattern="lmg (.*)"))
-@bot.on(sudo_cmd(pattern="lmg (.*)", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given query in Google and shows you the link of that query."
     input_str = event.pattern_match.group(1)
     sample_url = "https://da.gd/s?url=http://google.com/search?q={}".format(
         input_str.replace(" ", "+")
@@ -57,11 +36,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="lmy (.*)"))
-@bot.on(sudo_cmd(pattern="lmy (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="lmy (.*)",
+    command=("lmy", plugin_category),
+    info={
+        "header": "Searches the given query in youtube and shows you the link of that query.",
+        "usage": "{tr}lmy <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given query in youtube and shows you the link of that query."
     input_str = event.pattern_match.group(1)
     sample_url = (
         "https://da.gd/s?url=https://www.youtube.com/results?search_query={}".format(
@@ -81,11 +65,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="ddg (.*)"))
-@bot.on(sudo_cmd(pattern="ddg (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="ddg (.*)",
+    command=("ddg", plugin_category),
+    info={
+        "header": "Searches the given query in Duck buck go and shows you the link of that query.",
+        "usage": "{tr}ddg <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given query in Duck buck go and shows you the link of that query."
     input_str = event.pattern_match.group(1)
     sample_url = (
         "https://da.gd/s?url=https://duckduckgo.com/?q={}&t=h_&ia=about".format(
@@ -105,11 +94,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="lmalt (.*)"))
-@bot.on(sudo_cmd(pattern="lmalt (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="lmalt (.*)",
+    command=("lmalt", plugin_category),
+    info={
+        "header": "Searches the given query in altnews and shows you the link of that query.",
+        "usage": "{tr}lmalt <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given query in altnews and shows you the link of that query."
     input_str = event.pattern_match.group(1)
     sample_url = "https://da.gd/s?url=https://www.altnews.in/?s={}".format(
         input_str.replace(" ", "+")
@@ -127,11 +121,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="lmvar (.*)"))
-@bot.on(sudo_cmd(pattern="lmvar (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="lmvar (.*)",
+    command=("lmvar", plugin_category),
+    info={
+        "header": "Searches the given app name in heroku and show that app vars page link .",
+        "usage": "{tr}lmvar <app name>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given app name in heroku and show that app vars page link ."
     input_str = event.pattern_match.group(1)
     sample_url = (
         "https://da.gd/s?url=https://dashboard.heroku.com/apps/{}/settings".format(
@@ -151,11 +150,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="lmlog (.*)"))
-@bot.on(sudo_cmd(pattern="lmlog (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="lmlog (.*)",
+    command=("lmlog", plugin_category),
+    info={
+        "header": "Searches the given app name in heroku and shows you logs page link of that app.",
+        "usage": "{tr}lmlog <app name>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given app name in heroku and shows you logs page link of that app."
     input_str = event.pattern_match.group(1)
     sample_url = "https://da.gd/s?url=https://dashboard.heroku.com/apps/{}/logs".format(
         input_str.replace(" ", "+")
@@ -173,11 +177,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="dyno (.*)"))
-@bot.on(sudo_cmd(pattern="dyno (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="dyno (.*)",
+    command=("dyno", plugin_category),
+    info={
+        "header": "Searches the given app name in heroku and shows you dyno page link of that app.",
+        "usage": "{tr}dyno <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given app name in heroku and shows you dyno page link of that app."
     input_str = event.pattern_match.group(1)
     sample_url = "https://da.gd/s?url=https://dashboard.heroku.com/account/{}".format(
         input_str.replace(" ", "+")
@@ -195,11 +204,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="lmkp (.*)"))
-@bot.on(sudo_cmd(pattern="lmkp (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="lmkp (.*)",
+    command=("lmkp", plugin_category),
+    info={
+        "header": "Searches the given query in indian kanoon and shows you the link of that query.",
+        "usage": "{tr}lmkp <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given query in indian kanoon and shows you the link of that query."
     input_str = event.pattern_match.group(1)
     sample_url = "https://da.gd/s?url=https://indiankanoon.org/search/?formInput={}+sortby%3Amostrecent".format(
         input_str.replace(" ", "+")
@@ -217,11 +231,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="gem (.*)"))
-@bot.on(sudo_cmd(pattern="gem (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="gem (.*)",
+    command=("gem", plugin_category),
+    info={
+        "header": "Searches the given query in Government e marketplace and shows you the link of that query.",
+        "usage": "{tr}gem <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given query in Government e marketplace and shows you the link of that query."
     input_str = event.pattern_match.group(1)
     sample_url = "https://da.gd/s?url=https://mkp.gem.gov.in/search?q={}&sort_type=created_at_desc&_xhr=1".format(
         input_str.replace(" ", "+")
@@ -239,11 +258,16 @@ async def _(event):
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
 
 
-@bot.on(admin_cmd(pattern="archive (.*)"))
-@bot.on(sudo_cmd(pattern="archive (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="archive (.*)",
+    command=("archive", plugin_category),
+    info={
+        "header": "Searches the given query in web archive and shows you the link of that query.",
+        "usage": "{tr}archive <Query>",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "Searches the given query in web archive and shows you the link of that query."
     input_str = event.pattern_match.group(1)
     sample_url = "https://da.gd/s?url=https://web.archive.org/web/*/{}".format(
         input_str.replace(" ", "+")
@@ -259,33 +283,3 @@ async def _(event):
         )
     else:
         await edit_delete(event, "`Something went wrong. Please try again later.`", 5)
-
-
-CMD_HELP.update(
-    {
-        "letmesearch": "__**PLUGIN NAME :** Letmesearch__\
-\n\n**Functions : **__Searches the given query and shows you the link of that query .\
-\n\n📌** CMD ➥** `.lfy` <query>\
-\n**USAGE   ➥  **let me LMGTFY(lfy)\
-\n\n📌** CMD ➥** `.lmg` <query>\
-\n**USAGE   ➥  **let me google(lmg)\
-\n\n📌** CMD ➥** `.lmy` <query>\
-\n**USAGE   ➥  **let me youtube(lmy)\
-\n\n📌** CMD ➥** `.ddg` <query>\
-\n**USAGE   ➥  **Duck buck go (ddg)\
-\n\n📌** CMD ➥** `.lmalt` <query>\
-\n**USAGE   ➥  **let me altnews(lmalt)\
-\n\n📌** CMD ➥** `.lmvar` <heroku app name>\
-\n**USAGE   ➥  **let me var(lmvar) var from heroku\
-\n\n📌** CMD ➥** `.lmlog` <heroku app name>\
-\n**USAGE   ➥  **let me log(lmlog) logs link for heroku\
-\n\n📌** CMD ➥** `.dyno` <heroku app name>\
-\n**USAGE   ➥  **heroku dyno link (dyno)\
-\n\n📌** CMD ➥** `.lmkp` <query>\
-\n**USAGE   ➥  **indian kanoon (lmkp)\
-\n\n📌** CMD ➥** `.gem` <query>\
-\n**USAGE   ➥  **Government e marketplace(gem)\
-\n\n📌** CMD ➥** `.archive` <query>\
-\n**USAGE   ➥  **web archive (archive)"
-    }
-)

@@ -1,64 +1,20 @@
-# https://github.com/Jisan09/catuserbot credits to @Jisan7509
-
 import asyncio
 
+from . import catub, edit_or_reply
 
-@bot.on(admin_cmd(pattern="thinking$"))
-@bot.on(sudo_cmd(pattern="thinking$", allow_sudo=True))
+plugin_category = "fun"
+
+
+@catub.cat_cmd(
+    pattern="loading$",
+    command=("loading", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}loading",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
-    animation_interval = 0.05
-    animation_ttl = range(200)
-    event = await edit_or_reply(event, "thinking..")
-    animation_chars = [
-        "THINKING",
-        "THI&K#N₹",
-        "T+IN@I?G",
-        "¿H$NK∆NG",
-        "¶H×NK&N*",
-        "NGITHKIN",
-        "T+I#K@₹G",
-        "THINKING",
-        "THI&K#N₹",
-        "T+IN@I?G",
-        "¿H$NK∆NG",
-        "¶H×NK&N*",
-        "NGITHKIN",
-        "T+I#K@₹G",
-        "THINKING",
-        "THI&K#N₹",
-        "T+IN@I?G",
-        "¿H$NK∆NG",
-        "¶H×NK&N*",
-        "NGITHKIN",
-        "T+I#K@₹G",
-        "THINKING",
-        "THI&K#N₹",
-        "T+IN@I?G",
-        "¿H$NK∆NG",
-        "¶H×NK&N*",
-        "NGITHKIN",
-        "T+I#K@₹G",
-        "THINKING",
-        "THI&K#N₹",
-        "T+IN@I?G",
-        "¿H$NK∆NG",
-        "¶H×NK&N*",
-        "NGITHKIN",
-        "T+I#K@₹G",
-        "THINKING... 🤔",
-    ]
-    for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 36])
-
-
-@bot.on(admin_cmd(pattern=f"loading$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"loading$", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.3
     animation_ttl = range(20)
     event = await edit_or_reply(event, "▯")
@@ -68,11 +24,16 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@bot.on(admin_cmd(pattern=f"square$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"square$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="asquare$",
+    command=("asquare", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}asquare",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.3
     animation_ttl = range(20)
     event = await edit_or_reply(event, "◨")
@@ -82,11 +43,16 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@bot.on(admin_cmd(pattern=f"up$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"up$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="up$",
+    command=("up", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}up",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.3
     animation_ttl = range(20)
     event = await edit_or_reply(event, "╻")
@@ -96,11 +62,16 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@bot.on(admin_cmd(pattern=f"round$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"round$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="round$",
+    command=("round", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}round",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.3
     animation_ttl = range(20)
     event = await edit_or_reply(event, "Round...")
@@ -110,11 +81,16 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@bot.on(admin_cmd(pattern=f"hart$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"hart$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="hart$",
+    command=("hart", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}hart",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.5
     animation_ttl = range(20)
     event = await edit_or_reply(event, "❤️")
@@ -124,11 +100,16 @@ async def _(event):
         await event.edit(animation_chars[i % 4])
 
 
-@bot.on(admin_cmd(pattern=f"anim$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"anim$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="anim$",
+    command=("anim", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}anim",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
     animation_ttl = range(20)
     event = await edit_or_reply(event, "😢")
@@ -142,46 +123,61 @@ async def _(event):
         "😧",
         "😡",
         "😢",
-        "__**[Good to See you guys....]**__(github.com/Jisan09/catuserbot)",
+        "__**[Good to see you guys....]**__(github.com/sandy1709/catuserbot)",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 10])
 
 
-@bot.on(admin_cmd(pattern=f"fnl$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"fnl$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="fnl$",
+    command=("fnl", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}fnl",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 2
     animation_ttl = range(6)
     event = await edit_or_reply(event, "Hey There....")
-    animation_chars = ["😁🏿", "😁🏾", "😁🏽", "😁🏼", "‎😁", "**Good to See you friend....**"]
+    animation_chars = ["😁🏿", "😁🏾", "😁🏽", "😁🏼", "‎😁", "**Good to see you friend....**"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 6])
 
 
-@bot.on(admin_cmd(pattern=f"monkey$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"monkey$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="monkey$",
+    command=("monkey", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}monkey",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 2
     animation_ttl = range(12)
     event = await edit_or_reply(event, "Hey There....")
-    animation_chars = ["🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**Good to See you friend....**"]
+    animation_chars = ["🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**Good to see you friend....**"]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 6])
 
 
-@bot.on(admin_cmd(pattern=f"herber$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"herber$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="herber$",
+    command=("herber", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}herber",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 2
     animation_ttl = range(10)
     event = await edit_or_reply(event, "Power On......")
@@ -202,11 +198,16 @@ async def _(event):
         await event.edit(animation_chars[i % 10])
 
 
-@bot.on(admin_cmd(pattern=f"hand$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"hand$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="hand$",
+    command=("hand", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}hand",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
     animation_ttl = range(13)
     event = await edit_or_reply(event, "🖐️")
@@ -230,13 +231,18 @@ async def _(event):
         await event.edit(animation_chars[i % 13])
 
 
-@bot.on(admin_cmd(pattern=f"gsg$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"gsg$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="gsg$",
+    command=("gsg", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}gsg",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
-    animation_ttl = range(11)
+    animation_ttl = range(12)
     event = await edit_or_reply(event, "ContDown....")
     animation_chars = [
         "🔟",
@@ -254,14 +260,19 @@ async def _(event):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 11])
+        await event.edit(animation_chars[i % 12])
 
 
-@bot.on(admin_cmd(pattern=r"theart$", outgoing=True))
-@bot.on(sudo_cmd(pattern=r"theart$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="theart$",
+    command=("theart", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}theart",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.3
     animation_ttl = range(54)
     event = await edit_or_reply(event, "🖤")
@@ -288,13 +299,3 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 18])
-
-
-CMD_HELP.update(
-    {
-        "animation5": "__**PLUGIN NAME :** Animation5__\
-\n\n📌** CMD ➥** `.thinking` | `.loading` | `.square` | `.up` | `.round` | `.hart` | `.anim` | `.fnl` | `.monkey` | `.herber` | `.hand` | `.gsg` | `.theart`\
-\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
-"
-    }
-)

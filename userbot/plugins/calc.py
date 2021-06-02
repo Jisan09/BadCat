@@ -1,14 +1,25 @@
-# credits to @mrconfused
 import io
 import sys
 import traceback
 
+from . import catub, edit_or_reply
 
-@bot.on(admin_cmd(pattern="calc (.*)"))
-@bot.on(sudo_cmd(pattern="calc (.*)", allow_sudo=True))
-async def _(car):
-    cmd = car.text.split(" ", maxsplit=1)[1]
-    event = await edit_or_reply(car, "Calculating ...")
+plugin_category = "utils"
+
+
+@catub.cat_cmd(
+    pattern="calc (.*)",
+    command=("calc", plugin_category),
+    info={
+        "header": "To solve basic mathematics equations.",
+        "description": "Solves the given maths equation by BODMAS rule.",
+        "usage": "{tr}calc 2+9",
+    },
+)
+async def calculator(event):
+    "To solve basic mathematics equations."
+    cmd = event.text.split(" ", maxsplit=1)[1]
+    event = await edit_or_reply(event, "Calculating ...")
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = io.StringIO()
@@ -31,7 +42,7 @@ async def _(car):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "Sorry I cant find result for the given equation"
+        evaluation = "Sorry I can't find result for the given equation"
     final_output = "**EQUATION**: `{}` \n\n **SOLUTION**: \n`{}` \n".format(
         cmd, evaluation
     )
@@ -41,12 +52,3 @@ async def _(car):
 async def aexec(code, event):
     exec(f"async def __aexec(event): " + "".join(f"\n {l}" for l in code.split("\n")))
     return await locals()["__aexec"](event)
-
-
-CMD_HELP.update(
-    {
-        "calc": "__**PLUGIN NAME :** Calc__\
-      \n\n📌** CMD ➥** `.calc` your equation :\
-      \n**USAGE   ➥  **Solves the given maths equation by bodmass rule. "
-    }
-)

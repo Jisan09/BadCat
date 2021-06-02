@@ -3,9 +3,14 @@ Created by @Jisan7509
 Plugin for CatUserbot
 #credit @GulfysHalfyyyy
 """
+
 import asyncio
 
-from . import mention
+from ..core.managers import edit_or_reply
+from . import catub, mention
+
+plugin_category = "fun"
+
 
 # ==================================================================
 
@@ -58,11 +63,16 @@ GAMBAR_TITIT = """
 # =======================================================
 
 
-@bot.on(admin_cmd(pattern=r"muth$"))
-@bot.on(sudo_cmd(pattern="muth$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="muth$",
+    command=("muth", plugin_category),
+    info={
+        "header": "bad animation, try yourself ",
+        "usage": "{tr}muth",
+    },
+)
 async def kakashi(bsdk):
-    if bsdk.fwd_from:
-        return
+    "Bad stuff"
     animation_interval = 0.3
     animation_ttl = range(100)
     bsdk = await edit_or_reply(bsdk, f"**Ahhhhhhhh......**💦💦...")
@@ -78,17 +88,21 @@ async def kakashi(bsdk):
         "8==✊️=D💦💦",
         "8=✊️==D💦💦💦",
     ]
-
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await bsdk.edit(animation_chars[i % 10])
 
 
-@bot.on(admin_cmd(pattern=r"ohnoo$"))
-@bot.on(sudo_cmd(pattern="ohnoo$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="ohnoo$",
+    command=("ohnoo", plugin_category),
+    info={
+        "header": "bad animation, try yourself ",
+        "usage": "{tr}ohnoo",
+    },
+)
 async def kakashi(bsdk):
-    if bsdk.fwd_from:
-        return
+    "Bad stuff"
     animation_interval = 1
     animation_ttl = range(11)
     bsdk = await edit_or_reply(bsdk, f"**Ohhh nooooo **💦💦...")
@@ -110,11 +124,16 @@ async def kakashi(bsdk):
         await bsdk.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=r"lovestory$"))
-@bot.on(sudo_cmd(pattern="lovestory$", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
+@catub.cat_cmd(
+    pattern="lovestory$",
+    command=("lovestory", plugin_category),
+    info={
+        "header": "bad animation, try yourself ",
+        "usage": "{tr}lovestory",
+    },
+)
+async def kakashi(event):
+    "Bad stuff"
     animation_interval = 3
     animation_ttl = range(14)
     event = await edit_or_reply(event, "Starting asf")
@@ -140,11 +159,16 @@ async def _(event):
         await event.edit(animation_chars[i % 14])
 
 
-@bot.on(admin_cmd(pattern=r"ohyaah$"))
-@bot.on(sudo_cmd(pattern="ohyaah$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="ohhyaah$",
+    command=("ohhyaah", plugin_category),
+    info={
+        "header": "bad animation, try yourself ",
+        "usage": "{tr}ohhyaah",
+    },
+)
 async def kakashi(baby):
-    if baby.fwd_from:
-        return
+    "Bad stuff"
     await edit_or_reply(
         baby,
         "**💪💪Ohhh Yeeah Baby**...\n\n"
@@ -167,9 +191,16 @@ async def kakashi(baby):
     )
 
 
-@bot.on(admin_cmd(pattern=r"foff$"))
-@bot.on(sudo_cmd(pattern="foff$", allow_sudo=True))
-async def bluedevilfooku(fooku):
+@catub.cat_cmd(
+    pattern="foff$",
+    command=("foff", plugin_category),
+    info={
+        "header": "bad animation, try yourself ",
+        "usage": "{tr}foff",
+    },
+)
+async def kakashi(fooku):
+    "Bad stuff"
     await edit_or_reply(
         fooku,
         ".                       /¯ )\n"
@@ -189,15 +220,29 @@ async def bluedevilfooku(fooku):
     )
 
 
-@bot.on(admin_cmd(pattern=r"mf$"))
-@bot.on(sudo_cmd(pattern="mf$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="mf$",
+    command=("mf", plugin_category),
+    info={
+        "header": "bad animation, try yourself ",
+        "usage": "{tr}mf",
+    },
+)
 async def kakashi(mf):
+    "Bad stuff"
     await edit_or_reply(mf, C)
 
 
-@bot.on(admin_cmd(pattern=r"sporn$"))
-@bot.on(sudo_cmd(pattern="sporn$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="sporn$",
+    command=("sporn", plugin_category),
+    info={
+        "header": "bad animation, try yourself ",
+        "usage": "{tr}sporn",
+    },
+)
 async def kakashi(pornhub):
+    "Bad stuff"
     await edit_or_reply(
         pornhub,
         "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
@@ -227,9 +272,16 @@ async def kakashi(pornhub):
     )
 
 
-@bot.on(admin_cmd(pattern=r"spika$"))
-@bot.on(sudo_cmd(pattern="spika$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="spika$",
+    command=("spika", plugin_category),
+    info={
+        "header": "bad art, try yourself ",
+        "usage": "{tr}spika",
+    },
+)
 async def kakashi(pikachu):
+    "Bad stuff"
     await edit_or_reply(
         pikachu,
         "⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶\n"
@@ -253,9 +305,16 @@ async def kakashi(pikachu):
     )
 
 
-@bot.on(admin_cmd(pattern=r"sxx$"))
-@bot.on(sudo_cmd(pattern="sxx$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="sxx$",
+    command=("sxx", plugin_category),
+    info={
+        "header": "bad art, try yourself ",
+        "usage": "{tr}sxx",
+    },
+)
 async def kakashi(saxy):
+    "Bad stuff"
     await edit_or_reply(
         saxy,
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -299,9 +358,16 @@ async def kakashi(saxy):
     )
 
 
-@bot.on(admin_cmd(pattern="sdick (.*)"))
-@bot.on(sudo_cmd(pattern="sdick  (.*)", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="sdick (.*)",
+    command=("sdick", plugin_category),
+    info={
+        "header": "bad art, try yourself ",
+        "usage": "{tr}sdick <text>",
+    },
+)
 async def kakashi(dicksay):
+    "Bad stuff"
     text = dicksay.pattern_match.group(1)
     await edit_or_reply(
         dicksay,
@@ -326,9 +392,16 @@ async def kakashi(dicksay):
     )
 
 
-@bot.on(admin_cmd(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?"))
-@bot.on(sudo_cmd(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?", allow_sudo=True))
-async def emoji_penis(e):
+@catub.cat_cmd(
+    pattern=r"^\.(?:penis|dick)\s?(.)?",
+    command=("penis|dick", plugin_category),
+    info={
+        "header": "bad art, try yourself ",
+        "usage": "{tr}penis",
+    },
+)
+async def kakashi(e):
+    "Bad stuff"
     emoji = e.pattern_match.group(1)
     titid = GAMBAR_TITIT
     if emoji:

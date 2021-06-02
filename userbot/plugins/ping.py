@@ -1,17 +1,56 @@
 import asyncio
 from datetime import datetime
 
-from . import hmention
+from ..core.managers import edit_or_reply
+from . import catub, hmention
+
+plugin_category = "tools"
 
 
-@bot.on(admin_cmd(pattern=f"fping$", outgoing=True))
+@catub.cat_cmd(
+    pattern="ping( -a|$)",
+    command=("ping", plugin_category),
+    info={
+        "header": "check how long it takes to ping your userbot",
+        "flags": {"-a": "average ping"},
+        "usage": ["{tr}ping", "{tr}ping -a"],
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "To check ping"
+    flag = event.pattern_match.group(1)
     start = datetime.now()
-    animation_interval = 0.2
-    animation_ttl = range(0, 26)
-    await event.edit("ping....")
+    if flag == " -a":
+        catevent = await edit_or_reply(event, "`!....`")
+        await asyncio.sleep(0.3)
+        await catevent.edit("`..!..`")
+        await asyncio.sleep(0.3)
+        await catevent.edit("`....!`")
+        end = datetime.now()
+        tms = (end - start).microseconds / 1000
+        ms = round((tms - 0.6) / 3, 3)
+        await catevent.edit(f"**☞ Average Pong!**\n➥ {ms} ms")
+    else:
+        catevent = await edit_or_reply(event, "<b><i>☞ Pong!</b></i>", "html")
+        end = datetime.now()
+        ms = (end - start).microseconds / 1000
+        await catevent.edit(
+            f"<b><i>☞ Pong</b></i>\n➥ {ms} <b><i>ms\n➥ Bot of {hmention}</b></i>",
+            parse_mode="html",
+        )
+
+
+@catub.cat_cmd(
+    pattern="fping$",
+    command=("fping", plugin_category),
+    info={"header": "Shows the server ping with extra animation", "usage": "{tr}fping"},
+)
+async def _(event):
+    "To check ping with animation"
+    start = datetime.now()
+    animation_interval = 0.3
+    animation_ttl = range(26)
+    event = await edit_or_reply(event, "ping....")
     animation_chars = [
         "⬛⬛⬛⬛⬛⬛⬛⬛⬛",
         "⬛⬛⬛⬛⬛⬛⬛⬛⬛ \n⬛‎📶‎📶‎📶‎📶‎📶‎📶‎📶⬛",
@@ -46,33 +85,5 @@ async def _(event):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await event.edit(
-        "‎‎‎‎‎‎‎‎‎⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛⬛📶📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛📶⬛⬛\n⬛⬛⬛⬛⬛📶⬛⬛⬛\n⬛⬛⬛⬛📶⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛📶⬛⬛⬛📶⬛\n⬛⬛📶📶⬛⬛📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶⬛📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛ \n‎‎‎‎‎‎‎‎‎ \n \n My 🇵 🇮 🇳 🇬  Is : {} ms".format(
-            ms
-        )
+        f"‎‎‎‎‎‎‎‎‎⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛⬛📶📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛📶⬛⬛\n⬛⬛⬛⬛⬛📶⬛⬛⬛\n⬛⬛⬛⬛📶⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛📶⬛⬛⬛📶⬛\n⬛⬛📶📶⬛⬛📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶⬛📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛ \n‎‎‎‎‎‎‎‎‎ \n \n My 🇵 🇮 🇳 🇬  Is : {ms} ms"
     )
-
-
-@bot.on(admin_cmd(pattern="ping$"))
-@bot.on(sudo_cmd(pattern="ping$", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    start = datetime.now()
-    event = await edit_or_reply(event, "<b><i>☞ Pong!</b></i>", "html")
-    end = datetime.now()
-    ms = (end - start).microseconds / 1000
-    await event.edit(
-        f"<b><i>☞ Pong</b></i>\n➥ {ms} ms\n➥ <b><i>Bot of {hmention}</b></i>",
-        parse_mode="html",
-    )
-
-
-CMD_HELP.update(
-    {
-        "ping": "__**PLUGIN NAME :** Ping__\
-    \n\n📌** CMD ➥** `.fping`\
-    \n**USAGE   ➥  **A kind ofping with extra animation\
-    \n\n📌** CMD ➥** `.ping`\
-    \n**USAGE   ➥  **Shows you the ping speed of server"
-    }
-)

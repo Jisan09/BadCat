@@ -1,17 +1,24 @@
 import asyncio
 from collections import deque
 
-from . import mention
+from . import catub, edit_or_reply, mention
+
+plugin_category = "fun"
 
 
-@bot.on(admin_cmd(pattern="stupid$"))
-@bot.on(sudo_cmd(pattern="stupid$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="stupid$",
+    command=("stupid", plugin_category),
+    info={
+        "header": "throwing brain in dustbin animation",
+        "usage": "{tr}stupid",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 1
     animation_ttl = range(14)
-    event = await edit_or_reply(event, "brain")
+    event = await edit_or_reply(event, "`Throw your brain in dustbin`")
     animation_chars = [
         "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠         <(^_^ <)🗑",
         "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠       <(^_^ <)  🗑",
@@ -29,16 +36,20 @@ async def _(event):
         "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n           <(^_^ <)🗑",
     ]
     for i in animation_ttl:
-
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 14])
 
 
-@bot.on(admin_cmd(pattern=f"bombs$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"bombs$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="bombs$",
+    command=("bombs", plugin_category),
+    info={
+        "header": "bomb animation",
+        "usage": "{tr}bombs",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     event = await edit_or_reply(event, "bombs")
     await event.edit("▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n")
     await asyncio.sleep(0.5)
@@ -62,32 +73,37 @@ async def _(event):
     await asyncio.sleep(2)
 
 
-@bot.on(admin_cmd(pattern=r"call$"))
-@bot.on(sudo_cmd(pattern=r"call$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="call$",
+    command=("call", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}call",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 3
     animation_ttl = range(18)
-    event = await edit_or_reply(event, "Calling Rahul (peru of telegram)......")
+    event = await edit_or_reply(event, "Calling Pavel Durov (ceo of telegram)......")
     animation_chars = [
         "`Connecting To Telegram Headquarters...`",
         "`Call Connected.`",
         "`Telegram: Hello This is Telegram HQ. Who is this?`",
-        f"`Me: Yo this is` {mention} ,`Please Connect me to my big bro, Rahul `",
-        "`Rahul sir is busy , doing Chutiyappa.`",
-        "`Calling Asmo `  `At +916969696969`",
+        f"`Me: Yo this is` {mention} ,`Please Connect me to my lil bro, Pavel Durov `",
+        "`User Authorised.`",
+        "`Calling Pavel Durov `  `At +916969696969`",
         "`Private  Call Connected...`",
         "`Me: Hello Sir, Please Ban This Telegram Account.`",
-        "`Asmo : May I Know Who Is This?`",
+        "`Pavel Durov : May I Know Who is This?`",
         f"`Me: Yo Brah, I Am` {mention} ",
-        "`Asmo : OMG!!! Long time no see, Wassup cat...\nI'll Make Sure That Guy Account Will Get Blocked Within 24Hrs.`",
+        "`Pavel Durov : OMG!!! Long time no see, Wassup cat...\nI'll Make Sure That Guy Account Will Get Blocked Within 24Hrs.`",
         "`Me: Thanks, See You Later Brah.`",
-        "`Asmo : Please Don't Thank Brah, Telegram Is Our's. Just Gimme A Call When You Become Free.`",
+        "`Pavel Durov : Please Don't Thank Brah, Telegram Is Our's. Just Gimme A Call When You Become Free.`",
         "`Me: Is There Any Issue/Emergency???`",
-        "`Asmo : Yes Sur, There Is A Bug In Telegram v69.6.9.\nI Am Not Able To Fix It. If Possible, Please Help Fix The Bug.`",
+        "`Pavel Durov : Yes Sur, There is A Bug in Telegram v69.6.9.\nI Am Not Able To Fix It. If Possible, Please Help Fix The Bug.`",
         "`Me: Send Me The App On My Telegram Account, I Will Fix The Bug & Send You.`",
-        "`Asmo : Sure Sur \nTC Bye Bye :)`",
+        "`Pavel Durov : Sure Sur \nTC Bye Bye :)`",
         "`Private Call Disconnected.`",
     ]
     for i in animation_ttl:
@@ -95,11 +111,16 @@ async def _(event):
         await event.edit(animation_chars[i % 18])
 
 
-@bot.on(admin_cmd(pattern=f"kill$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"kill$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="kill$",
+    command=("kill", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}kill",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.7
     animation_ttl = range(12)
     event = await edit_or_reply(event, "ready to die dude.....")
@@ -122,11 +143,16 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@bot.on(admin_cmd(pattern=f"kell$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"kell$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="kell$",
+    command=("kell", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}kell",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.7
     animation_ttl = range(12)
     event = await edit_or_reply(event, "ready to die dude.....")
@@ -149,11 +175,16 @@ async def _(event):
         await event.edit(animation_chars[i % 12])
 
 
-@bot.on(admin_cmd(pattern="wtf$"))
-@bot.on(sudo_cmd(pattern="wtf$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="wtf$",
+    command=("wtf", plugin_category),
+    info={
+        "header": "Fun animation try yourself to know more",
+        "usage": "{tr}wtf",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.8
     animation_ttl = range(5)
     event = await edit_or_reply(event, "wtf")
@@ -162,19 +193,23 @@ async def _(event):
         "What The",
         "What The F",
         "What The F Brah",
-        "What The F Brah\n https://telegra.ph/file/e2972bf037db28f9ec8ed.png",
+        "What The F Brah\nhttps://telegra.ph/file/f3b760e4a99340d331f9b.jpg",
     ]
     for i in animation_ttl:
-
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 5], link_preview=True)
 
 
-@bot.on(admin_cmd(pattern="ding$"))
-@bot.on(sudo_cmd(pattern="ding$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="ding$",
+    command=("ding", plugin_category),
+    info={
+        "header": "throwing brain in dustbin animation.",
+        "usage": "{tr}ding",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.3
     animation_ttl = range(30)
     animation_chars = [
@@ -195,11 +230,16 @@ async def _(event):
         await event.edit(animation_chars[i % 10])
 
 
-@bot.on(admin_cmd(pattern=f"hypno$", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"hypno$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="hypno$",
+    command=("hypno", plugin_category),
+    info={
+        "header": "Fun animation try yourself to see.",
+        "usage": "{tr}hypno",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     animation_interval = 0.3
     animation_ttl = range(15)
     event = await edit_or_reply(event, "hypno....")
@@ -225,24 +265,34 @@ async def _(event):
         await event.edit(animation_chars[i % 15])
 
 
-@bot.on(admin_cmd(pattern=r"candy$"))
-@bot.on(sudo_cmd(pattern=r"candy$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="candy$",
+    command=("candy", plugin_category),
+    info={
+        "header": "Fun animation try yourself to see",
+        "usage": "{tr}candy",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     event = await edit_or_reply(event, "candy")
     deq = deque(list("🍦🍧🍩🍪🎂🍰🧁🍫🍬🍭"))
-    for _ in range(999):
+    for _ in range(100):
         await asyncio.sleep(0.4)
         await event.edit("".join(deq))
         deq.rotate(1)
 
 
-@bot.on(admin_cmd(pattern="gangasta$"))
-@bot.on(sudo_cmd(pattern="gangasta$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="gangasta$",
+    command=("gangasta", plugin_category),
+    info={
+        "header": "Fun animation try yourself to see.",
+        "usage": "{tr}gangasta",
+    },
+)
 async def _(event):
-    if event.fwd_from:
-        return
+    "animation command"
     event = await edit_or_reply(event, "gangasta")
     await event.edit("EVERyBOdy")
     await asyncio.sleep(0.3)
@@ -261,34 +311,27 @@ async def _(event):
     await event.edit("EVERyBOdy iZ GangSTur UNtIL I ArRivE 🔥🔥🔥")
 
 
-@bot.on(admin_cmd(pattern=f"charging$"))
-@bot.on(sudo_cmd(pattern=f"charging$", allow_sudo=True))
-async def timer_blankx(e):
-    if e.fwd_from:
-        return
-    e = await edit_or_reply(e, "charging")
-    txt = (
-        e.text[10:]
-        + "\n\n`Tesla Wireless Charging (beta) Started...\nDevice Detected: Nokia 1100\nBattery Percentage:` "
-    )
-    j = 10
-    k = j
-    for j in range(j):
-        await e.edit(txt + str(k))
+@catub.cat_cmd(
+    pattern="charging$",
+    command=("charging", plugin_category),
+    info={
+        "header": "Phone charging animation.",
+        "usage": "{tr}charging",
+    },
+)
+async def _(event):
+    "animation command"
+    event = await edit_or_reply(event, "charging")
+    txt = "`Tesla Wireless Charging (beta) Started...\
+            \nDevice Detected: Nokia 1100\nBattery Percentage:` "
+    k = 10
+    for _ in range(10):
+        await event.edit(txt + str(k))
         k += 10
         await asyncio.sleep(1)
-    await asyncio.sleep(1)
-    await e.edit(
-        "`Tesla Wireless Charging (beta) Completed...\nDevice Detected: Nokia 1100 (Space Grey Varient)\nBattery Percentage:` [100%](https://telegra.ph/file/a45aa7450c8eefed599d9.mp4) ",
+    await event.edit(
+        "`Tesla Wireless Charging (beta) Completed...\
+        \nDevice Detected: Nokia 1100 (Space Grey Varient)\
+        \nnBattery Percentage:` [100%](https://telegra.ph/file/a45aa7450c8eefed599d9.mp4) ",
         link_preview=True,
     )
-
-
-CMD_HELP.update(
-    {
-        "animation1": "__**PLUGIN NAME :** Animation1__\
-\n\n**📌 CMD ➥** `.stupid` | `.bombs` | `.call` | `.kill` | `.kell` | `.wtf` | `.ding` | `.hypno` | `.candy` | `.gangasta` | `.charging` \
-\n\n**USAGE   ➥  **These are animation bruh..Try & check yourself\
-"
-    }
-)

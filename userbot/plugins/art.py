@@ -1,58 +1,56 @@
-# Edit credit @Sur_vivor & @jisan7509
-# Elove by @turquoise-giggle
+from . import ALIVE_NAME, catub, edit_or_reply
+
+plugin_category = "fun"
 
 
-@bot.on(admin_cmd(pattern=r"elove$"))
-@bot.on(sudo_cmd(pattern="elove$", allow_sudo=True))
-async def kakashi(event):
+@catub.cat_cmd(
+    pattern="ded (.*)",
+    command=("ded", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}ded <text>",
+    },
+)
+async def _(event):
+    "fun art command"
+    name = event.pattern_match.group(1)
     await edit_or_reply(
         event,
-        "░░▄███▄███▄\n░░█████████\n░░▒▀█████▀░\n░░▒░░▀█▀\n░░▒░░█░\n░░▒░█\n░░░█\n░░█░░░░███████\n░██░░░██▓▓███▓██▒\n██░░░█▓▓▓▓▓▓▓█▓████\n██░░██▓▓▓(◐)▓█▓█▓█\n███▓▓▓█▓▓▓▓▓█▓█▓▓▓▓█\n▀██▓▓█░██▓▓▓▓██▓▓▓▓▓█\n░▀██▀░░█▓▓▓▓▓▓▓▓▓▓▓▓▓█\n░░░░▒░░░█▓▓▓▓▓█▓▓▓▓▓▓█\n░░░░▒░░░█▓▓▓▓█▓█▓▓▓▓▓█\n░▒░░▒░░░█▓▓▓█▓▓▓█▓▓▓▓█\n░▒░░▒░░░█▓▓▓█░░░█▓▓▓█\n░▒░░▒░░██▓██░░░██▓▓██\n██████████████████████\n█─████─▄▄─██─█─██─▄▄─█\n█─██▀█─██─██─█─██─▄█▀█\n█▄▄▄▄▀▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▀",
+        f"{ALIVE_NAME} --- {name}          \n　　　　　|"
+        "\n　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　　　　　| \n"
+        "　／￣￣＼| \n"
+        "＜ ´･ 　　 |＼ \n"
+        "　|　３　 | 丶＼ \n"
+        "＜ 、･　　|　　＼ \n"
+        "　＼＿＿／∪ _ ∪) \n"
+        "　　　　　 Ｕ Ｕ\n",
     )
 
 
-@bot.on(admin_cmd(pattern=r"gay$"))
-@bot.on(sudo_cmd(pattern="gay$", allow_sudo=True))
-async def kakashi(jisan):
+@catub.cat_cmd(
+    pattern="killer (.*)",
+    command=("killer", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}killer <text>",
+    },
+)
+async def _(event):
+    "fun art command"
+    name = event.pattern_match.group(1)
     await edit_or_reply(
-        jisan,
-        "`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
-        "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
-        "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈U GAY`"
-        "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈",
-    )
-
-
-@bot.on(admin_cmd(pattern=r"bot$"))
-@bot.on(sudo_cmd(pattern="bot$", allow_sudo=True))
-async def kakashi(jisan):
-    await edit_or_reply(
-        jisan,
-        "` \n   ╲╲╭━━━━╮ \n╭╮┃▆┈┈▆┃╭╮ \n┃╰┫▽▽▽┣╯┃ \n╰━┫△△△┣━╯`"
-        "`\n╲╲┃┈┈┈┈┃  \n╲╲┃┈┏┓┈┃ `",
-    )
-
-
-@bot.on(admin_cmd(pattern=r"hai$"))
-@bot.on(sudo_cmd(pattern="hai$", allow_sudo=True))
-async def kakashi(jisan):
-    await edit_or_reply(
-        jisan,
-        "\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HELLO!┊😀`"
-        "`\n┈┈▕▔▇▔▔┳▔▏╰┳╮HELLO!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈`"
-        "`\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`",
-    )
-
-
-@bot.on(admin_cmd(pattern=r"nou$"))
-@bot.on(sudo_cmd(pattern="nou$", allow_sudo=True))
-async def kakashi(jisan):
-    await edit_or_reply(
-        jisan,
-        "`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
-        "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
-        "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
-        "`\n┗━━┻━┛`",
+        event,
+        f"__**Commando **__{ALIVE_NAME}          \n\n"
+        "_/﹋\_\n"
+        "(҂`_´)\n"
+        f"<,︻╦╤─ ҉ - - - {name}\n"
+        "_/﹋\_\n",
     )
 
 
@@ -332,120 +330,184 @@ R = (
     "░░░░░░░░░░░░▀▀\n"
 )
 
-S = (
-    "`╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ `\n"
-    "`╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `\n"
-    "`╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `\n"
-    "`╱┗━━━┛╰━━━╯┗━━━┛╱ `\n"
+
+@catub.cat_cmd(
+    pattern="monster$",
+    command=("monster", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}monster",
+    },
 )
-
-T = (
-    "`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈`"
-    "`\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈`"
-    "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `"
-)
-
-
-@bot.on(admin_cmd(pattern=r"monster$"))
-@bot.on(sudo_cmd(pattern="monster$", allow_sudo=True))
 async def bluedevilmonster(monster):
+    "fun art command"
     await edit_or_reply(monster, A)
 
 
-@bot.on(admin_cmd(pattern=r"pig$"))
-@bot.on(sudo_cmd(pattern="pig$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="pig$",
+    command=("pig", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}pig",
+    },
+)
 async def bluedevilpig(pig):
+    "fun art command"
     await edit_or_reply(pig, B)
 
 
-@bot.on(admin_cmd(pattern=r"gun$"))
-@bot.on(sudo_cmd(pattern="gun$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="gun$",
+    command=("gun", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}gun",
+    },
+)
 async def bluedevilgun(gun):
+    "fun art command"
     await edit_or_reply(gun, D)
 
 
-@bot.on(admin_cmd(pattern=r"dog$"))
-@bot.on(sudo_cmd(pattern="dog$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="dog$",
+    command=("dog", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}dog",
+    },
+)
 async def bluedevildog(dog):
+    "fun art command"
     await edit_or_reply(dog, E)
 
 
-@bot.on(admin_cmd(pattern=r"hello$"))
-@bot.on(sudo_cmd(pattern="hello$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="hello$",
+    command=("hello", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}hello",
+    },
+)
 async def bluedevilhello(hello):
+    "fun art command"
     await edit_or_reply(hello, F)
 
 
-@bot.on(admin_cmd(pattern=r"hmf$"))
-@bot.on(sudo_cmd(pattern="hmf$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="hmf$",
+    command=("hmf", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}hmf",
+    },
+)
 async def bluedevilhmf(hmf):
+    "fun art command"
     await edit_or_reply(hmf, G)
 
 
-@bot.on(admin_cmd(pattern=r"couple$"))
-@bot.on(sudo_cmd(pattern="couple$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="couple$",
+    command=("couple", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}couple",
+    },
+)
 async def bluedevilcouple(couple):
+    "fun art command"
     await edit_or_reply(couple, H)
 
 
-@bot.on(admin_cmd(pattern=r"sup$"))
-@bot.on(sudo_cmd(pattern="sup$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="sup$",
+    command=("sup", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}sup",
+    },
+)
 async def bluedevilsupreme(supreme):
+    "fun art command"
     await edit_or_reply(supreme, I)
 
 
-@bot.on(admin_cmd(pattern=r"india$"))
-@bot.on(sudo_cmd(pattern="india$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="india$",
+    command=("india", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}india",
+    },
+)
 async def bluedevilindia(india):
+    "fun art command"
     await edit_or_reply(india, J)
 
 
-@bot.on(admin_cmd(pattern=r"wc$"))
-@bot.on(sudo_cmd(pattern="wc$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="wc$",
+    command=("wc", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}wc",
+    },
+)
 async def bluedevilwelcome(welcome):
+    "fun art command"
     await edit_or_reply(welcome, K)
 
 
-@bot.on(admin_cmd(pattern=r"snk$"))
-@bot.on(sudo_cmd(pattern="snk$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="snk$",
+    command=("snk", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}snk",
+    },
+)
 async def bluedevilsnake(snake):
+    "fun art command"
     await edit_or_reply(snake, L)
 
 
-@bot.on(admin_cmd(pattern=r"bye$"))
-@bot.on(sudo_cmd(pattern="bye$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="bye$",
+    command=("bye", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}bye",
+    },
+)
 async def bluedevilbye(bye):
+    "fun art command"
     await edit_or_reply(bye, O)
 
 
-@bot.on(admin_cmd(pattern=r"shitos$"))
-@bot.on(sudo_cmd(pattern="shitos$", allow_sudo=True))
+@catub.cat_cmd(
+    pattern="shitos$",
+    command=("shitos", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}shitos",
+    },
+)
 async def bluedevilshitos(shitos):
+    "fun art command"
     await edit_or_reply(shitos, P)
 
 
-@bot.on(admin_cmd(pattern=r"dislike$"))
-@bot.on(sudo_cmd(pattern="dislike$", allow_sudo=True))
-async def bluedevildislike(dislike):
-    await edit_or_reply(dislike, R)
-
-
-@bot.on(admin_cmd(pattern=r"lool$"))
-@bot.on(sudo_cmd(pattern="lool$", allow_sudo=True))
-async def kakashi(lool):
-    await edit_or_reply(lool, T)
-
-
-@bot.on(admin_cmd(pattern=r"lol$"))
-@bot.on(sudo_cmd(pattern="lol$", allow_sudo=True))
-async def kakashi(lol):
-    await edit_or_reply(lol, S)
-
-
-CMD_HELP.update(
-    {
-        "art": "__**PLUGIN NAME :** Art__\
-\n\n📌** CMD ➥** `.gay` | `.bot` | `.hai` | `.nou` |`.elove` | `.monster` | `.pig` | `.gun` | `.dog` | `.hello` | `.hmf` | `.couple` | `.sup` | `.india` | `.wc` | `.snk` | `.bye` | `.shitos` | `.dislike` | `.lol` | `.loal`\
-\n\n**USAGE   ➥  **These are arts,use & see"
-    }
+@catub.cat_cmd(
+    pattern="dislike$",
+    command=("dislike", plugin_category),
+    info={
+        "header": "Just a art command try out yourself to see",
+        "usage": "{tr}dislike",
+    },
 )
+async def bluedevildislike(dislike):
+    "fun art command"
+    await edit_or_reply(dislike, R)

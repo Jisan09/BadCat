@@ -1,53 +1,5 @@
 import random
 
-LOVESTR = [
-    "The best and most beautiful things in this world cannot be seen or even heard, but must be felt with the heart.",
-    "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
-    "Love recognizes no barriers. It jumps hurdles, leaps fences, penetrates walls to arrive at its destination full of hope.",
-    "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.",
-    "The real lover is the man who can thrill you by kissing your forehead or smiling into your eyes or just staring into space.",
-    "I swear I couldn't love you more than I do right now, and yet I know I will tomorrow.",
-    "When I saw you I fell in love, and you smiled because you knew it.",
-    "In all the world, there is no heart for me like yours. / In all the world, there is no love for you like mine.",
-    "To love or have loved, that is enough. Ask nothing further. There is no other pearl to be found in the dark folds of life.",
-    "If you live to be a hundred, I want to live to be a hundred minus one day, so I never have to live without you.",
-    "Some love stories aren't epic novels. Some are short stories. But that doesn't make them any less filled with love.",
-    "As he read, I fell in love the way you fall asleep: slowly, and then all at once.",
-    "I've never had a moment's doubt. I love you. I believe in you completely. You are my dearest one. My reason for life.",
-    "Do I love you? My god, if your love were a grain of sand, mine would be a universe of beaches.",
-    "I am who I am because of you.",
-    "I just want you to know that you're very special... and the only reason I'm telling you is that I don't know if anyone else ever has.",
-    "Remember, we're madly in love, so it's all right to kiss me any time you feel like it.",
-    "I love you. I knew it the minute I met you.",
-    "I loved her against reason, against promise, against peace, against hope, against happiness, against all discouragement that could be.",
-    "I love you not because of who you are, but because of who I am when I am with you.",
-]
-
-DHOKA = [
-    "Humne Unse Wafa Ki, Aur Dil Bhi Gya Toot, Wo Bhi Chinaal Nikli, Uski Maa ki Chut.",
-    "Dabbe Me Dabba, Dabbe Me Cake ..Tu Chutiya Hai Zara Seesha To Dekh.",
-    "Kaam Se Kaam Rakhoge Toh Naam Hoga, Randi Log Ke Chakkkar Me Padoge to Naam Badnaam Hoga.",
-    "Usne Kaha- Mah Lyf maH Rule, Maine Kaha Bhag BSDK , Tujhy Paida Karna hi Teri Baap ki Sabse Badi Vul.",
-    "Humse Ulajhna Mat, BSDK Teri Hasi Mita Dunga, Muh Me Land Daal Ke..Sari Hosiyaari Gand Se Nikal Dunga.",
-    "Aur Sunau Bhosdiwalo ..Kya Haal Hai?..Tumhare Sakal Se Zayda Toh Tumhare Gand Laal Hai!!",
-    "Pata Nhi Kya Kashish Hai Tumhare Mohabbat Me,Jab Bhi Tumhe Yaad Karta Hu Mera Land Khada Ho Jata Hai.",
-    "Konsa Mohabbat Kounsi Story, Gand Faad Dunga Agr Bolne Aayi Sorry!",
-    "Naam Banta Hai Risk Se, Chutiya Banta Hai IshQ Se.",
-    "Sun Be, Ab Tujhy Mere Zindegi Me Ane ka Koi Haq Nhi,,Aur Tu 1 Number Ki Randi Hai Isme KOi Saq Nhi.",
-    "Beta Tu Chugli Karna Chor De , Hum Ungli Karna Chor Dengy.",
-]
-
-METOOSTR = [
-    "Me too thanks",
-    "Haha yes, me too",
-    "Same lol",
-    "Me irl",
-    "Same here",
-    "Haha yes",
-    "Me rn",
-]
-
-
 GDNOON = [
     "`My wishes will always be with you, Morning wish to make you feel fresh, Afternoon wish to accompany you, Evening wish to refresh you, Night wish to comfort you with sleep, Good Afternoon Dear!`",
     "`With a deep blue sky over my head and a relaxing wind around me, the only thing I am missing right now is the company of you. I wish you a refreshing afternoon!`",
@@ -96,30 +48,6 @@ GDNOON = [
     "`My heart craves for your company all the time. A beautiful afternoon like this can be made more enjoyable if you just decide to spend it with me. Good afternoon!`",
 ]
 
-CONGRATULATION = [
-    "`Congratulations and BRAVO!`",
-    "`You did it! So proud of you!`",
-    "`This calls for celebrating! Congratulations!`",
-    "`I knew it was only a matter of time. Well done!`",
-    "`Congratulations on your well-deserved success.`",
-    "`Heartfelt congratulations to you.`",
-    "`Warmest congratulations on your achievement.`",
-    "`Congratulations and best wishes for your next adventure!”`",
-    "`So pleased to see you accomplishing great things.`",
-    "`Feeling so much joy for you today. What an impressive achievement!`",
-]
-
-BYESTR = [
-    "`Nice talking with you`",
-    "`I've gotta go!`",
-    "`I've gotta run!`",
-    "`I've gotta split`",
-    "`I'm off!`",
-    "`Great to see you,bye`",
-    "`See you soon`",
-    "`Farewell!`",
-]
-
 GDNIGHT = [
     "`Good night keep your dreams alive`",
     "`Night, night, to a dear friend! May you sleep well!`",
@@ -158,6 +86,77 @@ GDNIGHT = [
     "`Every day, you encourage me to do new things, friend! May tonight’s rest bring a new day that overflows with courage and exciting events!`",
 ]
 
+PROGQUOTES = [
+    "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.",
+    "If debugging is the process of removing software bugs, then programming must be the process of putting them in.",
+    "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.",
+    "Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.",
+    "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    "Good code is its own best documentation. As you’re about to add a comment, ask yourself, ‘How can I improve the code so that this comment isn’t needed?",
+    "One of my most productive days was throwing away 1000 lines of code.",
+    "The trouble with programmers is that you can never tell what a programmer is doing until it’s too late.",
+    "Hardware: The parts of a computer system that can be kicked.",
+    "Computers are useless. They can only give you answers.",
+    "The problem with troubleshooting is that trouble shoots back.",
+    "A computer lets you make more mistakes faster than any invention in human history-with the possible exceptions of handguns and tequila.",
+    "The production of too many useful things results in too many useless people.",
+    "Technology makes it possible for people to gain control over everything, except over technology.",
+    "Like car accidents, most hardware problems are due to driver error.",
+    "Programmers are tools for converting caffeine into code.",
+    "My software never has bugs. It just develops random features.",
+    "The great thing about Object Oriented code is that it can make small, simple problems look like large, complex ones.",
+    "After Perl everything else is just assembly language.",
+    "The Internet: where men are men, women are men, and children are FBI agents.",
+    "There are 10 types of people in the world: those who understand binary, and those who don't.",
+    "Difference between a virus and windows ? Viruses rarely fail.",
+    "1f u c4n r34d th1s u r34lly n33d t0 g37 l41d",
+    "Hacking is like sex. You get in, you get out, and hope that you didn't leave something that can be traced back to you.",
+    "Mess with the best, die like the rest."
+    "QA Engineer walks into a bar. Orders a beer. Orders 0 beers. Orders 999999999 beers. Orders a lizard. Orders -1 beers. Orders a sfdeljknesv.",
+    "There are only two hard things in Computer Science: cache invalidation, naming things and off-by-one errors.",
+    "In software, we rarely have meaningful requirements. Even if we do, the only measure of success that matters is whether our solution solves the customer’s shifting idea of what their problem is.",
+    "If Java had true garbage collection, most programs would delete themselves upon execution.",
+    "C++ : Where friends have access to your private members.",
+    "In C++ it’s harder to shoot yourself in the foot, but when you do, you blow off your whole leg.",
+    "Most software today is very much like an Egyptian pyramid with millions of bricks piled on top of each other, with no structural integrity, but just done by brute force and thousands of slaves.",
+    "I’ve noticed lately that the paranoid fear of computers becoming intelligent and taking over the world has almost entirely disappeared from the common culture.  Near as I can tell, this coincides with the release of MS-DOS.",
+    "No matter how slick the demo is in rehearsal, when you do it in front of a live audience, the probability of a flawless presentation is inversely proportional to the number of people watching, raised to the power of the amount of money involved.",
+    "The most amazing achievement of the computer software industry is its continuing cancellation of the steady and staggering gains made by the computer hardware industry.",
+    "There are two major products that come out of Berkeley: LSD and UNIX.  We don’t believe this to be a coincidence.",
+    "Computers are like bikinis. They save people a lot of guesswork.",
+    "Linux is only free if your time has no value.",
+    "Documentation is like sex; when it's good, it's very, very good, and when it's bad, it's better than nothing.",
+    "The difference between theory and practice is that in theory, there is no difference between theory and practice.",
+    "Programming is like sex: one mistake and you’re providing support for a lifetime.",
+    "There are only two kinds of programming languages: those people always bitch about and those nobody uses.",
+    "Beware of bugs in the above code; I have only proved it correct, not tried it. ",
+    "We know about as much about software quality problems as they knew about the Black Plague in the 1600s. We’ve seen the victims’ agonies and helped burn the corpses. We don’t know what causes it; we don’t really know if there is only one disease. We just suffer — and keep pouring our sewage into our water supply.",
+    "Writing the first 90 percent of a computer program takes 90 percent of the time. The remaining ten percent also takes 90 percent of the time and the final touches also take 90 percent of the time.",
+    "There are two ways of constructing a software design; one way is to make it so simple that there are obviously no deficiencies, and the other way is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.",
+    "You should name a variable using the same care with which you name a first-born child.",
+    "Einstein argued that there must be simplified explanations of nature, because God is not capricious or arbitrary. No such faith comforts the software engineer.",
+    "XML is like violence – if it doesn’t solve your problems, you are not using enough of it.",
+    "Saying that Java is good because it works on all platforms is like saying anal sex is good because it works on all genders.",
+    "I love deadlines. I like the whooshing sound they make as they fly by.",
+    "Perl – The only language that looks the same before and after RSA encryption.",
+    "Two things are infinite: the universe and human stupidity; and I’m not sure about the universe.",
+    "In theory, theory and practice are the same. In practice, they’re not.",
+    "It is practically impossible to teach good programming style to students that have had prior exposure to BASIC. As potential programmers, they are mentally mutilated beyond hope of regeneration.",
+    "If debugging is the process of removing software bugs, then programming must be the process of putting them in.",
+    "A computer lets you make more mistakes faster than any other invention in human history, with the possible exceptions of handguns and tequila.",
+    "I have always wished for my computer to be as easy to use as my telephone; my wish has come true because I can no longer figure out how to use my telephone.",
+    "I don’t care if it works on your machine! We are not shipping your machine!",
+    "Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning.",
+    "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.",
+    "On two occasions I have been asked, ‘Pray, Mr. Babbage, if you put into the machine wrong figures, will the right answers come out?’ I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question.”",
+    "PHP is a minor evil perpetrated and created by incompetent amateurs, whereas Perl is a great and insidious evil, perpetrated by skilled but perverted professionals.",
+    "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.",
+    "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+    "Some people, when confronted with a problem, think “I know, I’ll use regular expressions.” Now they have two problems.",
+    "It always takes longer than you expect, even when you take into account Hofstadter’s Law.",
+    "Walking on water and developing software from a specification are easy if both are frozen.",
+    "We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil.",
+]
 GDMORNING = [
     "`Life is full of uncertainties. But there will always be a sunrise after every sunset. Good morning!`",
     "`It doesn’t matter how bad was your yesterday. Today, you are going to make it a good one. Wishing you a good morning!`",
@@ -223,6 +222,18 @@ NOOBSTR = [
     "`Zikr Jinka hota hai galiyo meh woh bhosdika ajj paya gya naliyo me`",
 ]
 
+CONGOREACTS = [
+    "`Congratulations and BRAVO!`",
+    "`You did it! So proud of you!`",
+    "`This calls for celebrating! Congratulations!`",
+    "`I knew it was only a matter of time. Well done!`",
+    "`Congratulations on your well-deserved success.`",
+    "`Heartfelt congratulations to you.`",
+    "`Warmest congratulations on your achievement.`",
+    "`Congratulations and best wishes for your next adventure!”`",
+    "`So pleased to see you accomplishing great things.`",
+    "`Feeling so much joy for you today. What an impressive achievement!`",
+]
 
 INSULT_STRINGS = [
     "Active Volcano is the best swimming pool for you.",

@@ -1,65 +1,72 @@
 """
 Created by @Jisan7509
-Peru helper @mrconfused
+modified by  @mrconfused
 Userbot plugin for CatUserbot
 """
 
+from . import catub, edit_or_reply
+from . import fonts as emojify
 
-from . import *
-
-
-@bot.on(admin_cmd(pattern="emoji(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern="emoji(?: |$)(.*)", allow_sudo=True))
-async def itachi(event):
-    args = event.pattern_match.group(1)
-    if not args:
-        get = await event.get_reply_message()
-        args = get.text
-    if not args:
-        await edit_or_reply(
-            event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
-        )
-        return
-    string = "  ".join(args).lower()
-    for chutiya in string:
-        if chutiya in emojify.kakashitext:
-            bsdk = emojify.kakashiemoji[emojify.kakashitext.index(chutiya)]
-            string = string.replace(chutiya, bsdk)
-    await edit_or_reply(event, string)
+plugin_category = "fun"
 
 
-@bot.on(admin_cmd(pattern="cmoji(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern="cmoji(?: |$)(.*)", allow_sudo=True))
-async def itachi(event):
-    args = event.pattern_match.group(1)
-    if not args:
-        get = await event.get_reply_message()
-        args = get.text
-    if not args:
-        await edit_or_reply(
-            event, "`What am I Supposed to do with this nibba/nibbi, Give me a text. `"
-        )
-        return
-    emoji, args = args.split(" ", 1)
-    string = "  ".join(args).lower()
-    for chutiya in string:
-        if chutiya in emojify.kakashitext:
-            bsdk = emojify.itachiemoji[emojify.kakashitext.index(chutiya)].format(
-                cj=emoji
-            )
-            string = string.replace(chutiya, bsdk)
-    await edit_or_reply(event, string)
-
-
-CMD_HELP.update(
-    {
-        "emojify": "__**PLUGIN NAME :** Emojify__\
-      \n\n📌** CMD ➥** `.emoji` <text>\
-      \n**USAGE   ➥  **Converts your text to big emoji text, with default emoji. \
-      \n\n📌** CMD ➥** `.cmoji` <emoji> <text>\
-      \n**USAGE   ➥  **Converts your text to big emoji text, with your custom emoji.\
-      \n\n**☞ NOTE :** For giving sapce between two words use **@** symbol.\
-      \n**EXAMPLE :**  `.emoji Bad@cat`\
-      \n                    `.cmoji 😋 Good@cat`"
-    }
+@catub.cat_cmd(
+    pattern="emoji(?: |$)(.*)",
+    command=("emoji", plugin_category),
+    info={
+        "header": "Converts your text to big emoji text, with some default emojis.\n use @ symbol for line space",
+        "usage": "{tr}emoji <text>",
+        "examples": ["{tr}emoji catuserbot"],
+    },
 )
+async def itachi(event):
+    "To get emoji art text."
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await edit_or_reply(
+            event, "`What am I Supposed to do with this idiot, Give me a text. `"
+        )
+        return
+    result = ""
+    for a in args:
+        a = a.lower()
+        if a in emojify.kakashitext:
+            char = emojify.kakashiemoji[emojify.kakashitext.index(a)]
+            result += char
+        else:
+            result += a
+    await edit_or_reply(event, result)
+
+
+@catub.cat_cmd(
+    pattern="cmoji(?: |$)(.*)",
+    command=("cmoji", plugin_category),
+    info={
+        "header": "Converts your text to big emoji text, with your custom emoji.\n use @ symbol for line space.",
+        "usage": "{tr}cmoji <emoji> <text>",
+        "examples": ["{tr}cmoji 😺 catuserbot"],
+    },
+)
+async def itachi(event):
+    "To get custom emoji art text."
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        return await edit_or_reply(
+            event, "`What am I Supposed to do with this idiot, Give me a text. `"
+        )
+    emoji, arg = args.split(" ", 1)
+    result = ""
+    for a in arg:
+        a = a.lower()
+        if a in emojify.kakashitext:
+            char = emojify.itachiemoji[emojify.kakashitext.index(a)].format(cj=emoji)
+            result += char
+        else:
+            result += a
+    await edit_or_reply(event, result)
