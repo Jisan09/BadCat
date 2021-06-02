@@ -59,7 +59,7 @@ async def set_not_afk(event):
             else:
                 endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
     current_message = event.message.message
-    if (("afk" not in current_message) or ("#afk" not in current_message)) and (
+    if (("afk" not in current_message) and (
         "on" in AFK_.USERAFK_ON
     ):
         shite = await event.client.send_message(
@@ -106,7 +106,7 @@ async def on_afk(event):  # sourcery no-metrics
             else:
                 endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
     current_message_text = event.message.message.lower()
-    if "afk" in current_message_text or "#afk" in current_message_text:
+    if "afk" in current_message_text:
         return False
     if not await event.get_sender():
         return
@@ -128,7 +128,7 @@ async def on_afk(event):  # sourcery no-metrics
         elif AFK_.afk_type == "media":
             if AFK_.reason:
                 message_to_reply = (
-                    f"`I am AFK .\n\nAFK Since {endtime}\nReason : {AFK_.reason}`"
+                    f"**I am AFK .\n\nAFK Since {endtime}\nReason :** __{AFK_.reason}__"
                 )
             else:
                 message_to_reply = f"`I am AFK .\n\nAFK Since {endtime}\nReason : Not Mentioned ( ಠ ʖ̯ ಠ)`"
