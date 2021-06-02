@@ -66,3 +66,4 @@ wget
 wikipedia
 youtube-search-python
 youtube_dl
+fake_useragent
