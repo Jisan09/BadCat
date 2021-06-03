@@ -13,12 +13,13 @@ import PIL
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
-
+from ..helpers.functions import clippy
 from userbot import catub
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from . import convert_toimage, reply_id
+
 
 # ======================================================================================================================================================================================
 
