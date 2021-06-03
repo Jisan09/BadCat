@@ -300,11 +300,11 @@ async def upstream(event):
 
 
 @catub.cat_cmd(
-    pattern="badcat$",
-    command=("badcat", plugin_category),
+    pattern="goodcat$",
+    command=("goodcat", plugin_category),
     info={
-        "header": "To update to badcat( for extra masala and gali).",
-        "usage": "{tr}badcat",
+        "header": "To update to goodcat( For vEg peeps).",
+        "usage": "{tr}goodcat",
     },
 )
 async def variable(var):
@@ -323,4 +323,4 @@ async def variable(var):
         )
     heroku_var = app.config()
     await edit_or_reply(var, f"`Changing goodcat to badcat wait for 2-3 minutes.`")
-    heroku_var["UPSTREAM_REPO"] = "https://github.com/Jisan09/catuserbot"
+    heroku_var["UPSTREAM_REPO"] = "https://github.com/sandy1709/catuserbot"
