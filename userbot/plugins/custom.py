@@ -36,7 +36,6 @@ vlist = [
             "ALIVE_EMOJI": "To set custom emoji in alive",
             "ALIVE_TEXT": "To set custom text in alive",
             "ALLOW_NSFW": "To acess NSFW stuff by bot set is value 'True'",
-            "IALIVE_TEXT": "To set custom text in ialive",
             "IALIVE_PIC": "To set picture in alive",
             "HELP_EMOJI": "To set custom emoji in help",
             "HELP_TEXT": "To set custom text in help",
