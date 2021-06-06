@@ -42,8 +42,8 @@ vlist = [
             "HELP_EMOJI": "To set custom emoji in help",
             "HELP_TEXT": "To set custom text in help",
             "PM_PIC": "To customize pmpermit pic",
-            "PM_TEXT":"To customize pmpermit text. For custom options check `{tr}help -c custom`",
-            "PM_BLOCK":"To customize pmpermit block message. For custom options check `{tr}help -c custom`"
+            "PM_TEXT": "To customize pmpermit text. For custom options check `{tr}help -c custom`",
+            "PM_BLOCK": "To customize pmpermit block message. For custom options check `{tr}help -c custom`",
         },
         "usage": [
             "{tr}setdv <var name> <var value>",
@@ -127,7 +127,7 @@ async def bad(event):
             "{warns}": "warns",
             "{remwarns}": "remaining warns",
         },
-        "usage":"{tr}custom <option> reply",
+        "usage": "{tr}custom <option> reply",
         "NOTE": "You can set,fetch or delete these by `{tr}setdv` , `{tr}getdv` & `{tr}deldv` as well.",
     },
 )
