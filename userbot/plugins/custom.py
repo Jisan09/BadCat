@@ -17,6 +17,8 @@ vlist = [
     "HELP_TEXT",
     "IALIVE_PIC",
     "PM_PIC",
+    "PM_TEXT",
+    "PM_BLOCK",
 ]
 
 
@@ -40,6 +42,8 @@ vlist = [
             "HELP_EMOJI": "To set custom emoji in help",
             "HELP_TEXT": "To set custom text in help",
             "PM_PIC": "To customize pmpermit pic",
+            "PM_TEXT":"To customize pmpermit text. For custom options check `{tr}help -c custom`",
+            "PM_BLOCK":"To customize pmpermit block message. For custom options check `{tr}help -c custom`"
         },
         "usage": [
             "{tr}setdv <var name> <var value>",
@@ -73,7 +77,7 @@ async def bad(event):
                 return await edit_delete(
                     event, f"Give some values which you want to save for **{vname}**"
                 )
-            if "PIC" in vname and "https://t" not in vinfo:
+            if "PIC" in vname and "https://" not in vinfo:
                 await edit_delete(event, "**Give me a correct link...**")
             else:
                 addgvar(vname, vinfo)
@@ -123,9 +127,8 @@ async def bad(event):
             "{warns}": "warns",
             "{remwarns}": "remaining warns",
         },
-        "usage": [
-            "{tr}custom <option> reply",
-        ],
+        "usage":"{tr}custom <option> reply",
+        "NOTE": "You can set,fetch or delete these by `{tr}setdv` , `{tr}getdv` & `{tr}deldv` as well.",
     },
 )
 async def custom_catuserbot(event):
@@ -136,37 +139,7 @@ async def custom_catuserbot(event):
         return await edit_delete(event, "__Reply to custom text or url__")
     input_str = event.pattern_match.group(1)
     if input_str == "pmpermit":
-        addgvar("pmpermit_txt", text)
+        addgvar("PM_TEXT", text)
     if input_str == "pmblock":
-        addgvar("pmblock", text)
+        addgvar("PM_BLOCK", text)
     await edit_or_reply(event, f"__Your custom {input_str} has been updated__")
-
-
-@catub.cat_cmd(
-    pattern="delcustom (pmpermit|pmblock)$",
-    command=("delcustom", plugin_category),
-    info={
-        "header": "To delete costomization of your CatUserbot.",
-        "options": {
-            "pmpermit": "To delete custom pmpermit text",
-            "pmblock": "To delete custom pmpermit block message",
-        },
-        "usage": [
-            "{tr}delcustom <option>",
-        ],
-    },
-)
-async def custom_catuserbot(event):
-    "To delete costomization of your CatUserbot."
-    input_str = event.pattern_match.group(1)
-    if input_str == "pmpermit":
-        if gvarstatus("pmpermit_txt") is None:
-            return await edit_delete(event, "__You haven't customzied your pmpermit.__")
-        delgvar("pmpermit_txt")
-    if input_str == "pmblock":
-        if gvarstatus("pmblock") is None:
-            return await edit_delete(event, "__You haven't customzied your pmblock.__")
-        delgvar("pmblock")
-    await edit_or_reply(
-        event, f"__Succesfully deleted your customization of {input_str}.__"
-    )
