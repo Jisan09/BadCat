@@ -19,6 +19,7 @@ vlist = [
     "PM_PIC",
     "PM_TEXT",
     "PM_BLOCK",
+    "MAX_FLOOD_IN_PMS",
 ]
 
 
@@ -44,6 +45,7 @@ vlist = [
             "PM_PIC": "To customize pmpermit pic",
             "PM_TEXT": "To customize pmpermit text. For custom options check `{tr}help -c custom`",
             "PM_BLOCK": "To customize pmpermit block message. For custom options check `{tr}help -c custom`",
+            "MAX_FLOOD_IN_PMS": "To set max nimber of flood message in pm",
         },
         "usage": [
             "{tr}setdv <var name> <var value>",
