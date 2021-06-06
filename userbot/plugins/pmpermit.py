@@ -46,7 +46,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
     my_username = f"@{me.username}" if me.username else my_mention
     if str(chat.id) not in PM_WARNS:
         PM_WARNS[str(chat.id)] = 0
-    max_flood = gvarstatus("MAX_FLOOD_IN_PMS") or 4095
+    max_flood = int(gvarstatus("MAX_FLOOD_IN_PMS")) or 4095
     totalwarns = max_flood + 1
     warns = PM_WARNS[str(chat.id)] + 1
     remwarns = totalwarns - warns
