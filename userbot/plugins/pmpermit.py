@@ -46,10 +46,10 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
     my_username = f"@{me.username}" if me.username else my_mention
     if str(chat.id) not in PM_WARNS:
         PM_WARNS[str(chat.id)] = 0
-    totalwarns = Config.MAX_FLOOD_IN_PMS + 1
+    totalwarns = gvarstatus("MAX_FLOOD_IN_PMS") + 1
     warns = PM_WARNS[str(chat.id)] + 1
     remwarns = totalwarns - warns
-    if PM_WARNS[str(chat.id)] >= Config.MAX_FLOOD_IN_PMS:
+    if PM_WARNS[str(chat.id)] >= gvarstatus("MAX_FLOOD_IN_PMS"):
         try:
             if str(chat.id) in PMMESSAGE_CACHE:
                 await event.client.delete_messages(
@@ -58,7 +58,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
                 del PMMESSAGE_CACHE[str(chat.id)]
         except Exception as e:
             LOGS.info(str(e))
-        custompmblock = gvarstatus("pmblock") or None
+        custompmblock = gvarstatus("PM_BLOCK") or None
         if custompmblock is not None:
             USER_BOT_WARN_ZERO = custompmblock.format(
                 mention=mention,
@@ -95,7 +95,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
             )
         except BaseException:
             return
-    custompmpermit = gvarstatus("pmpermit_txt") or None
+    custompmpermit = gvarstatus("PM_TEXT") or None
     if custompmpermit is not None:
         USER_BOT_NO_WARN = custompmpermit.format(
             mention=mention,
@@ -115,9 +115,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
         )
     else:
         USER_BOT_NO_WARN = f"""__Hi__ {mention}__, I haven't approved you yet to personal message me. 
-
 You have {warns}/{totalwarns} warns until you get blocked by the CatUserbot.
-
 Choose an option from below to specify the reason of your message and wait for me to check it. __⬇️"""
     addgvar("pmpermit_text", USER_BOT_NO_WARN)
     PM_WARNS[str(chat.id)] += 1
@@ -448,7 +446,6 @@ async def on_plug_in_callback_query_handler(event):
         return await event.answer(text, cache_time=0, alert=True)
     text = f"""Ok, Now you are accessing the availabe menu of my master, {mention}.
 __Let's make this smooth and let me know why you are here.__
-
 **Choose one of the following reasons why you are here:**"""
     buttons = [
         (Button.inline(text="To enquire something.", data="to_enquire_something"),),
@@ -501,7 +498,6 @@ async def on_plug_in_callback_query_handler(event):
         return await event.answer(text, cache_time=0, alert=True)
     text = """__Okay. I have notified my master about this. When he/she comes comes online\
  or when my master is free he/she will look into this chat and will ping you so we can have a friendly chat.__\
-
 **But right now please do not spam unless you wish to get blocked.**"""
     sqllist.add_to_list("pmrequest", event.query.user_id)
     try:
