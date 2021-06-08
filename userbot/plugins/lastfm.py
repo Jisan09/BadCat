@@ -18,6 +18,8 @@ from userbot import catub
 
 from ..Config import Config
 from ..core.logger import logging
+from ..helpers.functions import deEmojify, hide_inlinebot
+from ..helpers.utils import reply_id
 from . import BOTLOG, BOTLOG_CHATID, DEFAULT_BIO
 
 LOGS = logging.getLogger(__name__)
@@ -200,6 +202,44 @@ async def last_fm(lastFM):
         await lastFM.edit(f"{output}", parse_mode="md", link_preview=True)
     else:
         await lastFM.edit(f"{output}", parse_mode="md")
+
+
+@catub.cat_cmd(
+    pattern="now$",
+    command=("now", plugin_category),
+    info={
+        "header": "Send your current listening song from Lastfm/Spotify/Deezer.",
+        "usage": "{tr}now",
+        "note": "For working of this command, you need to authorize @NowPlayBot.",
+    },
+)
+async def now(event):
+    "Send your current listening song."
+    text = " "
+    reply_to_id = await reply_id(event)
+    bot_name = "@nowplaybot"
+    text = deEmojify(text)
+    await event.delete()
+    await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
+
+
+@catub.cat_cmd(
+    pattern="inow$",
+    command=("inow", plugin_category),
+    info={
+        "header": "Show your current listening song in the form of a cool image.",
+        "usage": "{tr}inow",
+        "note": "For working of this command, you need to authorize @SpotiPieBot.",
+    },
+)
+async def nowimg(event):
+    "Show your current listening song."
+    text = " "
+    reply_to_id = await reply_id(event)
+    bot_name = "@Spotipiebot"
+    text = deEmojify(text)
+    await event.delete()
+    await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
 
 
 @catub.cat_cmd(
