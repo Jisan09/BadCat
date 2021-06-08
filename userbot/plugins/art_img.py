@@ -123,13 +123,14 @@ async def cat(event):
     reply_message = await event.get_reply_message()
     if not event.reply_to_msg_id or not reply_message.media:
         return await edit_delete(event, "```Reply to a media file...```")
+    cat = await edit_or_reply(event, "```Processing...```")
     c_id = await reply_id(event)
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
     output_file = os.path.join("./temp", "jisan.jpg")
     output = await _cattools.media_to_pic(event, reply_message)
     outputt = convert_toimage(output[1], filename="./temp/jisan.jpg")
-    await edit_or_reply(event, "```Processing...```")
+    await cat.delete()
     await clippy(event.client, output_file, event.chat_id, c_id)
     if os.path.exists(output_file):
         os.remove(output_file)
