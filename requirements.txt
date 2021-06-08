@@ -1,5 +1,6 @@
 aiofiles
 aiohttp[speedups]
+cairosvg
 cloudscraper
 colour
 covid
@@ -7,6 +8,7 @@ cowpy
 dataclasses
 DateTime
 emoji
+fake_useragent
 fonttools
 geopy
 gitpython
@@ -29,7 +31,6 @@ moviepy
 nekos.py
 Pillow
 prettytable
-prsaw
 psutil
 psycopg2
 PyDictionary
@@ -43,6 +44,7 @@ python-barcode
 python-dotenv
 pytz
 qrcode
+randomstuff.py
 regex
 requests
 search-engine-parser
@@ -63,7 +65,6 @@ validators
 vcsi
 wand
 wget
-wikipedia
+git+https://github.com/goldsmith/Wikipedia
 youtube-search-python
 youtube_dl
-fake_useragent
