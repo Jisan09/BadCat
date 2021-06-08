@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Dict, List, Union
 
 from telethon import TelegramClient, events
+from telethon.errors import MessageIdInvalidError, MessageNotModifiedError
 
 from ..Config import Config
 from ..helpers.utils.events import checking
@@ -105,6 +106,10 @@ class CatUserBotClient(TelegramClient):
                     raise events.StopPropagation
                 except KeyboardInterrupt:
                     pass
+                except MessageNotModifiedError:
+                    LOGS.error("Message was same as previous message")
+                except MessageIdInvalidError:
+                    LOGS.error("Message was deleted or cant be found")
                 except BaseException as e:
                     LOGS.exception(e)
                     if not disable_errors:
@@ -214,6 +219,10 @@ class CatUserBotClient(TelegramClient):
                     raise events.StopPropagation
                 except KeyboardInterrupt:
                     pass
+                except MessageNotModifiedError:
+                    LOGS.error("Message was same as previous message")
+                except MessageIdInvalidError:
+                    LOGS.error("Message was deleted or cant be found")
                 except BaseException as e:
                     # Check if we have to disable error logging.
                     LOGS.exception(e)  # Log the error in console
@@ -284,4 +293,4 @@ class CatUserBotClient(TelegramClient):
 CatUserBotClient.fast_download_file = download_file
 CatUserBotClient.fast_upload_file = upload_file
 CatUserBotClient.reload = restart_script
-CatUserBotClient.check_testcases = checking
+CatUserBotClient.check_testcases = 
