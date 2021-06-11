@@ -477,7 +477,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 CAT_IMG = random.choice(PIC)
             else:
                 CAT_IMG = None
-            query = gvarstatus("PM_TEXT")
+            query = gvarstatus("pmpermit_text")
             if CAT_IMG and CAT_IMG.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
                     CAT_IMG,
