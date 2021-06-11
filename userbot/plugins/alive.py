@@ -46,7 +46,9 @@ async def amireallyalive(event):
         cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
         cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
         cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
-        await event.client.send_file(event.chat_id,PIC,caption=cat_caption,reply_to=reply_to_id)
+        await event.client.send_file(
+            event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
+        )
         await event.delete()
     else:
         await edit_or_reply(
