@@ -7,11 +7,13 @@ This module can search images in danbooru and send in to the chat!
 
 import os
 import urllib
-import requests
-from userbot import catub
-from . import edit_delete, edit_or_reply,reply_id
-from ..helpers.functions import age_verification
 
+import requests
+
+from userbot import catub
+
+from ..helpers.functions import age_verification
+from . import edit_delete, edit_or_reply, reply_id
 
 plugin_category = "useless"
 
@@ -75,7 +77,9 @@ async def danbooru(message):
         return
     for image_url in valid_urls:
         try:
-            await message.client.send_file(message.chat_id, image_url,reply_to=reply_to)
+            await message.client.send_file(
+                message.chat_id, image_url, reply_to=reply_to
+            )
             await message.delete()
             return
         except Exception as e:
@@ -99,11 +103,11 @@ async def boobs(e):
     reply_to = await reply_id(e)
     if await age_verification(e, reply_to):
         return
-    a = await edit_or_reply(e,"`Sending boobs...`")
+    a = await edit_or_reply(e, "`Sending boobs...`")
     nsfw = requests.get("http://api.oboobs.ru/noise/1").json()[0]["preview"]
     urllib.request.urlretrieve("http://media.oboobs.ru/{}".format(nsfw), "*.jpg")
     os.rename("*.jpg", "boobs.jpg")
-    await e.client.send_file(e.chat_id, "boobs.jpg",reply_to=reply_to)
+    await e.client.send_file(e.chat_id, "boobs.jpg", reply_to=reply_to)
     os.remove("boobs.jpg")
     await a.delete()
 
@@ -122,10 +126,10 @@ async def butts(e):
     reply_to = await reply_id(e)
     if await age_verification(e, reply_to):
         return
-    a = await edit_or_reply(e,"`Sending beautiful butts...`")
+    a = await edit_or_reply(e, "`Sending beautiful butts...`")
     nsfw = requests.get("http://api.obutts.ru/butts/10/1/random").json()[0]["preview"]
     urllib.request.urlretrieve("http://media.obutts.ru/{}".format(nsfw), "*.jpg")
     os.rename("*.jpg", "butts.jpg")
-    await e.client.send_file(e.chat_id, "butts.jpg",reply_to=reply_to)
+    await e.client.send_file(e.chat_id, "butts.jpg", reply_to=reply_to)
     os.remove("butts.jpg")
     await a.delete()
