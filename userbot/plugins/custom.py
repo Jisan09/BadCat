@@ -22,7 +22,9 @@ vlist = [
     "PM_TEXT",
     "PM_BLOCK",
     "MAX_FLOOD_IN_PMS",
+    "START_TEXT",
 ]
+
 
 
 @catub.cat_cmd(
@@ -40,14 +42,15 @@ vlist = [
             "ALIVE_PIC": "To set picture in alive",
             "ALIVE_EMOJI": "To set custom emoji in alive",
             "ALIVE_TEXT": "To set custom text in alive",
-            "ALLOW_NSFW": "To acess NSFW stuff by bot set is value 'True'",
+            "ALLOW_NSFW": "To acess NSFW stuff by bot",
             "IALIVE_PIC": "To set picture in alive",
             "HELP_EMOJI": "To set custom emoji in help",
             "HELP_TEXT": "To set custom text in help",
             "PM_PIC": "To customize pmpermit pic",
             "PM_TEXT": "To customize pmpermit text. For custom options check `{tr}help -c custom`",
             "PM_BLOCK": "To customize pmpermit block message. For custom options check `{tr}help -c custom`",
-            "MAX_FLOOD_IN_PMS": "To set max nimber of flood message in pm",
+            "MAX_FLOOD_IN_PMS": "To set max number of flood message in pm",
+            "START_TEXT": "To customise pm bot start message",
         },
         "usage": [
             "{tr}setdv <var name> <var value>",
@@ -111,13 +114,15 @@ async def bad(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="custom (pmpermit|pmblock)$",
+    pattern="custom (pmpermit|pmblock|startmsg)$",
     command=("custom", plugin_category),
     info={
         "header": "To customize your CatUserbot.",
         "options": {
             "pmpermit": "To customize pmpermit text. ",
             "pmblock": "To customize pmpermit block message.",
+            "startmsg": "To customize startmsg of bot when some one started it.",
+            "pmpic": "To customize pmpermit pic. Reply to media url or text containing media.",
         },
         "custom": {
             "{mention}": "mention user",
@@ -152,4 +157,6 @@ async def custom_catuserbot(event):
         addgvar("PM_TEXT", text)
     if input_str == "pmblock":
         addgvar("PM_BLOCK", text)
+    if input_str == "startmsg":
+        addgvar("START_TEXT", text)
     await edit_or_reply(event, f"__Your custom {input_str} has been updated__")
