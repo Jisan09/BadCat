@@ -1,18 +1,9 @@
 import os
 from pathlib import Path
-
+from datetime import datetime
 from ..Config import Config
 from ..utils import load_module, remove_plugin
-from . import (
-    CMD_HELP,
-    CMD_LIST,
-    SUDO_LIST,
-    catub,
-    edit_delete,
-    edit_or_reply,
-    hmention,
-    reply_id,
-)
+from . import CMD_HELP, CMD_LIST, SUDO_LIST, catub, edit_delete, edit_or_reply, reply_id,hmention
 
 plugin_category = "tools"
 
@@ -101,20 +92,12 @@ async def send(event):
     input_str = event.pattern_match.group(1)
     the_plugin_file = f"./userbot/plugins/{input_str}.py"
     if os.path.exists(the_plugin_file):
-        datetime.now()
-        caat = await event.client.send_file(
-            event.chat_id,
-            the_plugin_file,
-            force_document=True,
-            allow_cache=False,
-            reply_to=reply_to_id,
-            thumb=thumb,
-        )
+        start = datetime.now()
+        caat = await event.client.send_file(event.chat_id,the_plugin_file,force_document=True,allow_cache=False,reply_to=reply_to_id,thumb=thumb)
+        end = datetime.now()
+        ms = (end - start).seconds
         await event.delete()
-        await caat.edit(
-            f"<b><i>➥ Plugin Name :- {input_str} .</i></b>\n<b><i>➥ Uploaded in {ms} seconds.</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
-            parse_mode="html",
-        )
+        await caat.edit(f"<b><i>➥ Plugin Name :- {input_str} .</i></b>\n<b><i>➥ Uploaded in {ms} seconds.</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",parse_mode="html")
     else:
         await edit_or_reply(event, "404: File Not Found")
 
