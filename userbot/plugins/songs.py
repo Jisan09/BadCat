@@ -16,7 +16,7 @@ from validators.url import url
 from userbot import catub
 
 from ..core.logger import logging
-from ..core.managers import edit_delete, edit_or_reply
+from . import edit_delete, edit_or_reply, mention
 from ..helpers.functions import name_dl, song_dl, video_dl, yt_search
 from ..helpers.tools import media_type
 from ..helpers.utils import _catutils, reply_id
@@ -103,7 +103,7 @@ async def _(event):
         event.chat_id,
         song_file,
         force_document=False,
-        caption=query,
+        caption=f"**➥ Song :- {query}**\n**➥ Uploaded by :- {mention}**",
         thumb=catthumb,
         supports_streaming=True,
         reply_to=reply_to_id,
@@ -186,7 +186,7 @@ async def _(event):
         event.chat_id,
         vsong_file,
         force_document=False,
-        caption=query,
+        caption=f"**➥ Song :- {query}**\n**➥ Uploaded by :- {mention}**",
         thumb=catthumb,
         supports_streaming=True,
         reply_to=reply_to_id,
