@@ -33,7 +33,7 @@ async def source(e):
     "Source code link of userbot"
     await edit_or_reply(
         e,
-        "Click [here](https://github.com/sandy1709/catuserbot) to open this bot source code\
+        "Click [here](https://github.com/Jisan09/catuserbot) to open this bot source code\
         \nClick [here](https://github.com/Mr-confused/catpack) to open supported link for heroku",
     )
 
