@@ -4,13 +4,15 @@ Plugin Made by [NIKITA](https://t.me/kirito6969)
 """
 
 import os
+
 import nekos
 import requests
 from fake_useragent import UserAgent
 from PIL import Image
 from telethon import functions, types
-from . import catub,reply_id,edit_delete,edit_or_reply
+
 from ..helpers.functions import age_verification
+from . import catub, edit_delete, edit_or_reply, reply_id
 
 POSSIBLE = [
     "feet",
@@ -109,12 +111,14 @@ async def _(event):
     reply_to = await reply_id(event)
     choose = event.pattern_match.group(1)
     if choose not in POSSIBLE:
-        return await edit_delete(event,"`Bruh.. What I am supposed to do!`")
+        return await edit_delete(event, "`Bruh.. What I am supposed to do!`")
     if await age_verification(event, reply_to):
         return
     catevent = await edit_or_reply(event, "`Processing Nekos...`")
     target = nekos.img(f"{choose}")
-    nohorny = await event.client.send_file(event.chat_id, file=target, caption=f"**{choose}**", reply_to=reply_to)
+    nohorny = await event.client.send_file(
+        event.chat_id, file=target, caption=f"**{choose}**", reply_to=reply_to
+    )
     try:
         await event.client(
             functions.messages.SaveGifRequest(
