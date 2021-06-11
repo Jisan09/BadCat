@@ -149,7 +149,7 @@ async def dva(event):
     ).json()
     url = nsfw.get("url")
     if not url:
-        return await edit_delete(event "`uuuf.. No URL found from the API`")
+        return await edit_delete(event, "`uuuf.. No URL found from the API`")
     await event.client.send_file(event.chat_id, file=url, reply_to=reply_to)
     await event.delete()
 
