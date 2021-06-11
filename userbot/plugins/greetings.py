@@ -59,8 +59,9 @@ V = (
     "... (   YOU DESERVE\n"
     "☻/ THEM A LOT\n"
     "/▌✿🌷✿\n"
-    r"/ \     \|/\n"
-    "▃▃▃▃▃▃▃▃▃▃▃\n"
+    "/ \     \|/\n"
+    "▃▃▃▃▃▃▃▃▃▃▃\n\n"
+    f"**{text}**
 )
 
 W = (
@@ -110,14 +111,18 @@ async def baby(event):
 
 
 @catub.cat_cmd(
-    pattern="hbd$",
+    pattern="hbd(?: |$)(.*)",
     command=("hbd", plugin_category),
     info={
         "header": "Happy birthday art.",
-        "usage": "{tr}hbd",
+        "usage": "{tr}hbd <text>",
     },
 )
 async def hbd(event):
+    inpt = event.pattern_match.group(1)
+    text=f"**♥️{inpt}♥️**"
+    if not inpt:
+        text = ""
     "Happy birthday art."
     await edit_or_reply(event, V)
 
