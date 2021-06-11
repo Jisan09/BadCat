@@ -36,8 +36,8 @@ async def source(e):
         "Click [here](https://github.com/sandy1709/catuserbot) to open this bot source code\
         \nClick [here](https://github.com/Mr-confused/catpack) to open supported link for heroku",
     )
-    
-    
+
+
 @catub.cat_cmd(
     pattern="github( -l(\d+))? (.*)",
     command=("github", plugin_category),
