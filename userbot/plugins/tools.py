@@ -1,6 +1,7 @@
 import calendar
 import json
 import os
+import re
 from datetime import datetime
 from urllib.parse import quote
 
@@ -15,10 +16,71 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import catub
 
 from ..Config import Config
+from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
+from ..helpers import AioHttp
 from ..helpers.utils import _catutils, _format, reply_id
 
 plugin_category = "tools"
+
+
+LOGS = logging.getLogger(__name__)
+
+
+@catub.cat_cmd(
+    pattern="cur(?: |$)(.*)",
+    command=("cur", plugin_category),
+    info={
+        "header": "To convert one currency value to other.",
+        "description": "To find exchange rates of currencies.",
+        "usage": "{tr}cur <value> <from currencyid> <to currencyid>",
+        "examples": "{tr}cur 10 USD INR",
+        "note": "List of currency ids are [here](https://nekobin.com/vacuwocesa)",
+    },
+)
+async def currency(event):
+    """To convert one currency value to other."""
+    if Config.CURRENCY_API is None:
+        return await edit_delete(
+            event,
+            "__You haven't set the api value. Set Api var __`CURRENCY_API` __in heroku get value from https://free.currencyconverterapi.com__.",
+            link_preview=False,
+            time=10,
+        )
+    input_str = event.pattern_match.group(1)
+    values = input_str.split(" ")
+    if len(values) == 3:
+        value, fromcurrency, tocurrency = values
+    else:
+        return await edit_delete(event, "__Use proper syntax. check__ `.help -c cur`")
+    fromcurrency = fromcurrency.upper()
+    tocurrency = tocurrency.upper()
+    if value.isdigit():
+        aresponse = await AioHttp().get_json(
+            f"https://free.currconv.com/api/v7/convert?q={fromcurrency}_{tocurrency}&compact=ultra&apiKey={Config.CURRENCY_API}"
+        )
+        symbols = await AioHttp().get_raw(
+            f"https://raw.githubusercontent.com/sandy1709/CatUserbot-Resources/master/Resources/Data/currency.py"
+        )
+        symbols = json.loads(re.sub(", *\n *}", "}", symbols.decode("utf-8")))
+        try:
+            result = aresponse[f"{fromcurrency}_{tocurrency}"]
+        except KeyError:
+            return await edit_delete(
+                event,
+                "__You have used wrong currency codes or Api can't fetch details.__",
+            )
+        output = float(value) * float(result)
+        output = round(output, 4)
+        await edit_or_reply(
+            event,
+            f"The Currency value of **{symbols[fromcurrency]}{value} {fromcurrency}** in **{tocurrency}** is **{symbols[tocurrency]}{output}**",
+        )
+    else:
+        await edit_or_reply(
+            event,
+            f"__It seems you are using different currency value. which doesn't exist on earth.__",
+        )
 
 
 @catub.cat_cmd(
