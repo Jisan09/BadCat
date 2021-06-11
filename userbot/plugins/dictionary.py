@@ -1,8 +1,11 @@
 # Urban Dictionary for catuserbot by @mrconfused
 from PyDictionary import PyDictionary
 
+from userbot import catub
+
+from ..core.managers import edit_delete, edit_or_reply
+from ..helpers import AioHttp
 from ..helpers.utils import _format
-from . import AioHttp, catub, edit_delete, edit_or_reply
 
 plugin_category = "utils"
 
@@ -34,7 +37,7 @@ async def _(event):
     except Exception as e:
         await edit_delete(
             event,
-            text="`The Unban Dictionary API could not be reached`",
+            text="`The Urban Dictionary API could not be reached`",
         )
         print(e)
 
