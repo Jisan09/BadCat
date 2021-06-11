@@ -30,6 +30,7 @@ oldvars = {
     "PM_BLOCK": "pmblock",
 }
 
+
 @catub.cat_cmd(
     pattern="(set|get|del)dv(?: |$)(.*)",
     command=("dv", plugin_category),
@@ -115,7 +116,7 @@ async def bad(event):  # sourcery no-metrics
         await edit_delete(
             event, f"**📑 Give correct var name from the list :\n\n**{vnlist}", time=60
         )
-        
+
 
 @catub.cat_cmd(
     pattern="custom (pmpermit|pmblock|startmsg)$",
