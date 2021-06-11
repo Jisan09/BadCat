@@ -60,7 +60,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
                 del PMMESSAGE_CACHE[str(chat.id)]
         except Exception as e:
             LOGS.info(str(e))
-        custompmblock = gvarstatus("PM_BLOCK") or None
+        custompmblock = gvarstatus("pmblock") or None
         if custompmblock is not None:
             USER_BOT_WARN_ZERO = custompmblock.format(
                 mention=mention,
@@ -97,7 +97,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
             )
         except BaseException:
             return
-    custompmpermit = gvarstatus("PM_TEXT") or None
+    custompmpermit = gvarstatus("pmpermit_txt") or None
     if custompmpermit is not None:
         USER_BOT_NO_WARN = custompmpermit.format(
             mention=mention,
