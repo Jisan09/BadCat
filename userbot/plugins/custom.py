@@ -26,7 +26,6 @@ vlist = [
 ]
 
 
-
 @catub.cat_cmd(
     pattern="(set|get|del)dv(?: |$)(.*)",
     command=("dv", plugin_category),
