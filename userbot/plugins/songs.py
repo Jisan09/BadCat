@@ -19,7 +19,7 @@ from ..core.logger import logging
 from ..helpers.functions import name_dl, song_dl, video_dl, yt_search
 from ..helpers.tools import media_type
 from ..helpers.utils import _catutils, reply_id
-from . import edit_delete, edit_or_reply, mention
+from . import edit_delete, edit_or_reply, hmention
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
@@ -103,9 +103,10 @@ async def _(event):
         event.chat_id,
         song_file,
         force_document=False,
-        caption=f"**➥ Song :- {query}**\n**➥ Uploaded by :- {mention}**",
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
         supports_streaming=True,
+        parse_mode="html",
         reply_to=reply_to_id,
     )
     await catevent.delete()
@@ -186,9 +187,10 @@ async def _(event):
         event.chat_id,
         vsong_file,
         force_document=False,
-        caption=f"**➥ Song :- {query}**\n**➥ Uploaded by :- {mention}**",
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
         supports_streaming=True,
+        parse_mode="html",
         reply_to=reply_to_id,
     )
     await catevent.delete()
@@ -286,7 +288,7 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             music,
-            caption=f"<b>➥ Song :- <code>{song}</code></b>",
+            caption=f"<b><i>➥ Song :- {song}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
             parse_mode="html",
             reply_to=reply_id_,
         )
