@@ -13,7 +13,7 @@ from userbot import catub
 from ..Config import Config
 from ..core.logger import logging
 from ..core.managers import edit_or_reply
-from . import BOTLOG, BOTLOG_CHATID,mention
+from . import BOTLOG, BOTLOG_CHATID, mention
 
 LOGS = logging.getLogger(__name__)
 plugin_category = "utils"
