@@ -25,6 +25,10 @@ vlist = [
     "START_TEXT",
 ]
 
+oldvars = {
+    "PM_TEXT": "pmpermit_txt",
+    "PM_BLOCK": "pmblock",
+}
 
 @catub.cat_cmd(
     pattern="(set|get|del)dv(?: |$)(.*)",
@@ -80,6 +84,8 @@ async def bad(event):  # sourcery no-metrics
     if not vinfo and reply:
         vinfo = reply.text
     if vname in vlist:
+        if vname in oldvars:
+            vname = oldvars[vname]
         if cmd == "set":
             if not vinfo:
                 return await edit_delete(
@@ -88,8 +94,7 @@ async def bad(event):  # sourcery no-metrics
             check = vinfo.split(" ")
             for i in check:
                 if "PIC" in vname and not url(i):
-                    await edit_delete(event, "**Give me a correct link...**")
-                    return
+                    return await edit_delete(event, "**Give me a correct link...**")
             addgvar(vname, vinfo)
             await edit_delete(
                 event, f"📑 Value of **{vname}** is changed to :- `{vinfo}`", time=20
@@ -110,7 +115,7 @@ async def bad(event):  # sourcery no-metrics
         await edit_delete(
             event, f"**📑 Give correct var name from the list :\n\n**{vnlist}", time=60
         )
-
+        
 
 @catub.cat_cmd(
     pattern="custom (pmpermit|pmblock|startmsg)$",
@@ -121,7 +126,6 @@ async def bad(event):  # sourcery no-metrics
             "pmpermit": "To customize pmpermit text. ",
             "pmblock": "To customize pmpermit block message.",
             "startmsg": "To customize startmsg of bot when some one started it.",
-            "pmpic": "To customize pmpermit pic. Reply to media url or text containing media.",
         },
         "custom": {
             "{mention}": "mention user",
@@ -153,9 +157,9 @@ async def custom_catuserbot(event):
         return await edit_delete(event, "__Reply to custom text or url__")
     input_str = event.pattern_match.group(1)
     if input_str == "pmpermit":
-        addgvar("PM_TEXT", text)
+        addgvar("pmpermit_txt", text)
     if input_str == "pmblock":
-        addgvar("PM_BLOCK", text)
+        addgvar("pmblock", text)
     if input_str == "startmsg":
         addgvar("START_TEXT", text)
     await edit_or_reply(event, f"__Your custom {input_str} has been updated__")
