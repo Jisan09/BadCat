@@ -170,19 +170,39 @@ async def doge(event):
     if not text and event.is_reply:
         text = (await event.get_reply_message()).message
     if not text:
-        return await edit_delete(event, "__What is doge supposed to say? Give some text.__")
+        return await edit_delete(
+            event, "__What is doge supposed to say? Give some text.__"
+        )
     await edit_delete(event, "`Wait, processing.....`")
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
     temp_name = "./temp/doge_temp.jpg"
     file_name = "./temp/doge.jpg"
-    templait = urllib.request.urlretrieve("https://telegra.ph/file/6f621b9782d9c925bd6c4.jpg",temp_name)
+    templait = urllib.request.urlretrieve(
+        "https://telegra.ph/file/6f621b9782d9c925bd6c4.jpg", temp_name
+    )
     text = deEmojify(text)
-    font,wrap = (90,2) if len(text)<90 else (70,2.5)
-    bg,fg,alpha,ls = ("black","white",255,"5") if cmd == "h" else ("white","black",0,"-40")
-    higlighted_text(temp_name,text,file_name,text_wrap=wrap,font_size=font,linespace=ls, position=(0,10), align = "left", background = bg, foreground = fg, transparency = alpha)
+    font, wrap = (90, 2) if len(text) < 90 else (70, 2.5)
+    bg, fg, alpha, ls = (
+        ("black", "white", 255, "5") if cmd == "h" else ("white", "black", 0, "-40")
+    )
+    higlighted_text(
+        temp_name,
+        text,
+        file_name,
+        text_wrap=wrap,
+        font_size=font,
+        linespace=ls,
+        position=(0, 10),
+        align="left",
+        background=bg,
+        foreground=fg,
+        transparency=alpha,
+    )
     cat = convert_tosticker(file_name)
-    await event.client.send_file(event.chat_id, cat, reply_to = reply_to_id, force_document=False)
+    await event.client.send_file(
+        event.chat_id, cat, reply_to=reply_to_id, force_document=False
+    )
     await event.delete()
     for files in (temp_name, file_name):
         if files and os.path.exists(files):
