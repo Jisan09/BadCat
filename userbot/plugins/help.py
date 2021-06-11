@@ -87,11 +87,11 @@ async def plugininfo(input_str, event, flag):
     if category is not None:
         outstr += f"**Category :** `{category}`\n\n"
     for cmd in cmds:
-        outstr += f"•  **cmd :** `{cmdprefix}{cmd}`\n"
+        outstr += f"**✘ Cmd :** `{cmdprefix}{cmd}`\n"
         try:
-            outstr += f"•  **info :** `{CMD_INFO[cmd][1]}`\n\n"
+            outstr += f"**➥ Info :** __{CMD_INFO[cmd][1]}__\n\n"
         except IndexError:
-            outstr += f"•  **info :** `None`\n\n"
+            outstr += f"**➥ Info :** `None`\n\n"
     outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <command name>`\
         \n**Note : **If command name is same as plugin name then use this `{cmdprefix}help -c <command name>`."
     return outstr
@@ -193,7 +193,7 @@ async def _(event):
             return await edit_delete(event, "__Invalid plugin name recheck it.__")
         except Exception as e:
             return await edit_delete(event, f"**Error**\n`{str(e)}`")
-        outstr = f"• **{input_str.title()} has {len(cmds)} commands**\n"
+        outstr = f"**✘ {input_str.title()} has {len(cmds)} commands**\n"
         for cmd in cmds:
             outstr += f"  - `{cmdprefix}{cmd}`\n"
         outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help -c <command name>`"
