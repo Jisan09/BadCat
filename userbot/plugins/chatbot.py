@@ -202,4 +202,4 @@ async def ai_reply(event):
             uid=event.client.uid,
             language=AI_LANG,
         )
-        await event.reply(response.message
+        await event.reply(response.message)
