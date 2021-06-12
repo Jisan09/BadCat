@@ -11,30 +11,54 @@ from ..core.logger import logging
 from ..core.managers import edit_delete
 from ..helpers.functions import age_verification
 from ..helpers.utils import _catutils, reply_id
-from . import BOTLOG, BOTLOG_CHATID,edit_or_reply
+from . import edit_or_reply
 
 LOGS = logging.getLogger(__name__)
 API = "https://weaverbottest.herokuapp.com/gimme"
 
 plugin_category = "useless"
 
-pawn = ["nsfw_gifs","60fpsporn","porn","porn_gifs","porninfifteenseconds","CuteModeSlutMode","NSFW_HTML5","the_best_nsfw_gifs","verticalgifs","besthqporngifs","jigglefuck","gangbang","passionx","titfuck","HappyEmbarrassedGirls","suicidegirls","porninaminute","SexInFrontOfOthers","tiktoknsfw","tiktokthots","tiktokporn","NSFWFunny",]
+pawn = [
+    "nsfw_gifs",
+    "60fpsporn",
+    "porn",
+    "porn_gifs",
+    "porninfifteenseconds",
+    "CuteModeSlutMode",
+    "NSFW_HTML5",
+    "the_best_nsfw_gifs",
+    "verticalgifs",
+    "besthqporngifs",
+    "jigglefuck",
+    "gangbang",
+    "passionx",
+    "titfuck",
+    "HappyEmbarrassedGirls",
+    "suicidegirls",
+    "porninaminute",
+    "SexInFrontOfOthers",
+    "tiktoknsfw",
+    "tiktokthots",
+    "tiktokporn",
+    "NSFWFunny",
+]
 
 horny = "**Catagory :** "
 for i in pawn:
     horny += f" `{i.lower()}` ||"
-    
+
+
 @catub.cat_cmd(
     pattern="porn(?: |$)(.*)",
     command=("porn", plugin_category),
     info={
         "header": "Get a porn video or gif.",
         "usage": [
-        "{tr}porn",
-        "{tr}porn <options/subreddit>",
-    ],
+            "{tr}porn",
+            "{tr}porn <options/subreddit>",
+        ],
         "examples": "{tr}porn nsfw_gifs",
-        "options":horny,
+        "options": horny,
     },
 )
 async def bad(event):
@@ -55,18 +79,21 @@ async def bad(event):
     media_url = r["url"]
     captionx = f"<b><a href = {postlink}>{title}</a></b>\n"
     if "https://i.imgur.com" in media_url:
-        media_url = media_url.replace(".gifv",".mp4")
+        media_url = media_url.replace(".gifv", ".mp4")
     else:
         source = requests.get(media_url)
         soup = BeautifulSoup(source.text, "lxml")
-        links = [i['content'] for i in soup.findAll("meta", property = "og:video")]
-        try: media_url = links[1]
-        except: media_url = links[0]
+        links = [i["content"] for i in soup.findAll("meta", property="og:video")]
+        try:
+            media_url = links[1]
+        except:
+            media_url = links[0]
     await event.delete()
-    sandy = await event.client.send_file(event.chat_id, media_url, caption=captionx,reply_to=reply_to,parse_mode="html")
+    sandy = await event.client.send_file(
+        event.chat_id, media_url, caption=captionx, reply_to=reply_to, parse_mode="html"
+    )
     if media_url.endswith(".gif"):
         await _catutils.unsavegif(event, sandy)
-
 
 
 @catub.cat_cmd(
@@ -75,11 +102,11 @@ async def bad(event):
     info={
         "header": "download porn video or gif in bulk.",
         "usage": [
-        "{tr}bulkporn",
-        "{tr}bulkporn <count> <options/subreddit>",
-    ],
+            "{tr}bulkporn",
+            "{tr}bulkporn <count> <options/subreddit>",
+        ],
         "examples": "{tr}bulkporn 10 nsfw_gifs",
-        "options":horny,
+        "options": horny,
     },
 )
 async def pussy(event):
@@ -87,7 +114,7 @@ async def pussy(event):
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
     if intxt and " " in intxt:
-        count,sub_r = intxt.split(" ")
+        count, sub_r = intxt.split(" ")
     else:
         count = 1
         sub_r = "60fpsporn"
@@ -106,25 +133,37 @@ async def pussy(event):
     title = []
     postlink = []
     media_url = []
-    for x in r["memes"]: postlink.append(x["postLink"])
-    for x in r["memes"]: title.append(x["title"])
-    for x in r["memes"]: media_url.append(x["url"])
-    i=0
+    for x in r["memes"]:
+        postlink.append(x["postLink"])
+    for x in r["memes"]:
+        title.append(x["title"])
+    for x in r["memes"]:
+        media_url.append(x["url"])
+    i = 0
     await event.delete()
-    for m,p,t in zip(media_url,postlink,title):
+    for m, p, t in zip(media_url, postlink, title):
         if "https://i.imgur.com" in m:
-            media_url = m.replace(".gifv",".mp4")
+            media_url = m.replace(".gifv", ".mp4")
         else:
             source = requests.get(m)
             soup = BeautifulSoup(source.text, "lxml")
-            links = [itm['content'] for itm in soup.findAll("meta", property = "og:video")]
-            try: media_url = links[1]
-            except: media_url = links[0]
-        sandy = await event.client.send_file(event.chat_id, media_url, caption=f"<b><a href = {p}>{t}</a></b>",reply_to=reply_to,parse_mode="html")
+            links = [
+                itm["content"] for itm in soup.findAll("meta", property="og:video")
+            ]
+            try:
+                media_url = links[1]
+            except:
+                media_url = links[0]
+        sandy = await event.client.send_file(
+            event.chat_id,
+            media_url,
+            caption=f"<b><a href = {p}>{t}</a></b>",
+            reply_to=reply_to,
+            parse_mode="html",
+        )
         if media_url.endswith(".gif"):
             await _catutils.unsavegif(event, sandy)
-        i+=1
-        
+        i += 1
 
 
 @catub.cat_cmd(
@@ -133,11 +172,11 @@ async def pussy(event):
     info={
         "header": "Get a list porn video or gif.",
         "usage": [
-        "{tr}listporn",
-        "{tr}listporn <count> <options/subreddit>",
-    ],
+            "{tr}listporn",
+            "{tr}listporn <count> <options/subreddit>",
+        ],
         "examples": "{tr}listporn 10 nsfw_gifs",
-        "options":horny,
+        "options": horny,
     },
 )
 async def cat(event):
@@ -145,7 +184,7 @@ async def cat(event):
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
     if intxt and " " in intxt:
-        count,sub_r = intxt.split(" ")
+        count, sub_r = intxt.split(" ")
     else:
         count = 1
         sub_r = "60fpsporn"
@@ -164,20 +203,27 @@ async def cat(event):
     title = []
     postlink = []
     media_url = []
-    for x in r["memes"]: postlink.append(x["postLink"])
-    for x in r["memes"]: title.append(x["title"])
-    for x in r["memes"]: media_url.append(x["url"])
-    i=0
+    for x in r["memes"]:
+        postlink.append(x["postLink"])
+    for x in r["memes"]:
+        title.append(x["title"])
+    for x in r["memes"]:
+        media_url.append(x["url"])
+    i = 0
     pwnlist = f"<b>{count} results for {sub_r} :</b>\n\n"
-    for m,p,t in zip(media_url,postlink,title):
+    for m, p, t in zip(media_url, postlink, title):
         if "https://i.imgur.com" in m:
-            media_url = m.replace(".gifv",".mp4")
+            media_url = m.replace(".gifv", ".mp4")
         else:
             source = requests.get(m)
             soup = BeautifulSoup(source.text, "lxml")
-            links = [itm['content'] for itm in soup.findAll("meta", property = "og:video")]
-            try: media_url = links[1]
-            except: media_url = links[0]
-        pwnlist+= f"<b><i>{i+1}. <a href = {p}>{t}</a></i> : [<a href = {media_url}>Download</a>]</b>\n"
-        i+=1
-    await edit_or_reply(event,pwnlist,parse_mode="html")
+            links = [
+                itm["content"] for itm in soup.findAll("meta", property="og:video")
+            ]
+            try:
+                media_url = links[1]
+            except:
+                media_url = links[0]
+        pwnlist += f"<b><i>{i+1}. <a href = {p}>{t}</a></i> : [<a href = {media_url}>Download</a>]</b>\n"
+        i += 1
+    await edit_or_reply(event, pwnlist, parse_mode="html")
