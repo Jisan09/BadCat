@@ -136,7 +136,7 @@ class CatUserBotClient(TelegramClient):
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
                         ftext += result
-                        pastelink = paste_text(ftext)
+                        pastelink = paste_text(ftext, markdown=False)
                         text = "**CatUserbot Error report**\n\n"
                         link = "[here](https://t.me/catuserbot_support)"
                         text += "If you wanna you can report it"
@@ -250,7 +250,7 @@ class CatUserBotClient(TelegramClient):
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
                         ftext += result
-                        pastelink = paste_text(ftext)
+                        pastelink = paste_text(ftext, markdown=False)
                         text = "**CatUserbot Error report**\n\n"
                         link = "[here](https://t.me/catuserbot_support)"
                         text += "If you wanna you can report it"
@@ -293,4 +293,4 @@ class CatUserBotClient(TelegramClient):
 CatUserBotClient.fast_download_file = download_file
 CatUserBotClient.fast_upload_file = upload_file
 CatUserBotClient.reload = restart_script
-CatUserBotClient.check_testcases = checking
+CatUserBotClient.check_testcases = 
