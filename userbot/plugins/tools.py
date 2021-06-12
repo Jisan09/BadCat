@@ -134,34 +134,29 @@ async def _(event):
     command=("decode", plugin_category),
     info={
         "header": "To decode qrcode or barcode",
+        "description": "Reply to qrcode or barcode to decode it and get text.",
         "usage": "{tr}decode",
     },
 )
-async def parseqr(qr_e):
+async def parseqr(event):
     "To decode qrcode or barcode"
-    if not os.path.isdir(Config.TEMP_DIR):
-        os.makedirs(Config.TEMP_DIR)
-    # For .decode command, get QR Code/BarCode content from the replied photo.
-    downloaded_file_name = await qr_e.client.download_media(
-        await qr_e.get_reply_message(), Config.TEMP_DIR
-    )
+    catevent = await edit_or_reply(event, "`Decoding....`")
+    reply = await event.get_reply_message()
+    downloaded_file_name = await reply.download_media()
     # parse the Official ZXing webpage to decode the QRCode
-    command_to_exec = [
-        "curl",
-        "-X",
-        "POST",
-        "-F",
-        "f=@" + downloaded_file_name + "",
-        "https://zxing.org/w/decode",
-    ]
+    command_to_exec = f"curl -s -F f=@{downloaded_file_name} https://zxing.org/w/decode"
     t_response, e_response = (await _catutils.runcmd(command_to_exec))[:2]
-    if not t_response:
-        return await edit_or_reply(qr_e, f"Failed to decode.\n`{e_response}`")
-    soup = BeautifulSoup(t_response, "html.parser")
-    qr_contents = soup.find_all("pre")[0].text
-    await edit_or_reply(qr_e, qr_contents)
     if os.path.exists(downloaded_file_name):
         os.remove(downloaded_file_name)
+    soup = BeautifulSoup(t_response, "html.parser")
+    try:
+        qr_contents = soup.find_all("pre")[0].text
+        await edit_or_reply(catevent, f"**The decoded message is :**\n`{qr_contents}`")
+    except IndexError:
+        result = soup.text
+        await edit_or_reply(catevent, f"**Failed to Decode:**\n`{result}`")
+    except Exception as e:
+        await edit_or_reply(catevent, f"**Error:**\n`{str(e)}`")
 
 
 @catub.cat_cmd(
