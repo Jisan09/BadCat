@@ -12,7 +12,7 @@ from PIL import Image
 from telethon import functions, types
 
 from ..helpers.functions import age_verification
-from . import catub, edit_delete, edit_or_reply, reply_id
+from . import catub, edit_delete, edit_or_reply, reply_id,_catutils
 
 POSSIBLE = [
     "feet",
@@ -120,16 +120,7 @@ async def _(event):
         event.chat_id, file=target, caption=f"**{choose}**", reply_to=reply_to
     )
     try:
-        await event.client(
-            functions.messages.SaveGifRequest(
-                id=types.InputDocument(
-                    id=nohorny.media.document.id,
-                    access_hash=nohorny.media.document.access_hash,
-                    file_reference=nohorny.media.document.file_reference,
-                ),
-                unsave=True,
-            )
-        )
+        await _catutils.unsavegif(event, nohorny)
     except:
         pass
     await catevent.delete()
