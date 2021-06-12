@@ -23,6 +23,9 @@ vlist = [
     "PM_BLOCK",
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
+    "NO_OF_ROWS_IN_HELP",
+    "NO_OF_COLUMNS_IN_HELP",
+    "CUSTOM_STICKER_PACKNAME",
 ]
 
 oldvars = {
@@ -32,7 +35,7 @@ oldvars = {
 
 
 @catub.cat_cmd(
-    pattern="(set|get|del)dv(?: |$)(.*)",
+    pattern="(set|get|del)dv(?: |$)([\s\S]*)",
     command=("dv", plugin_category),
     info={
         "header": "Set vars in database or Check or Delete",
@@ -50,11 +53,11 @@ oldvars = {
             "IALIVE_PIC": "To set picture in alive",
             "HELP_EMOJI": "To set custom emoji in help",
             "HELP_TEXT": "To set custom text in help",
+            "MAX_FLOOD_IN_PMS": "To set max number of flood message in pm",
             "PM_PIC": "To customize pmpermit pic",
             "PM_TEXT": "To customize pmpermit text. For custom options check `{tr}help -c custom`",
             "PM_BLOCK": "To customize pmpermit block message. For custom options check `{tr}help -c custom`",
-            "MAX_FLOOD_IN_PMS": "To set max number of flood message in pm",
-            "START_TEXT": "To customise pm bot start message",
+            "START_TEXT": "To customise pm bot start message `{tr}help -c custom`",
         },
         "usage": [
             "{tr}setdv <var name> <var value>",
