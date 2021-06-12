@@ -293,4 +293,4 @@ class CatUserBotClient(TelegramClient):
 CatUserBotClient.fast_download_file = download_file
 CatUserBotClient.fast_upload_file = upload_file
 CatUserBotClient.reload = restart_script
-CatUserBotClient.check_testcases = 
+CatUserBotClient.check_testcases = checking
