@@ -9,10 +9,9 @@ import nekos
 import requests
 from fake_useragent import UserAgent
 from PIL import Image
-from telethon import functions, types
 
 from ..helpers.functions import age_verification
-from . import catub, edit_delete, edit_or_reply, reply_id,_catutils
+from . import _catutils, catub, edit_delete, edit_or_reply, reply_id
 
 POSSIBLE = [
     "feet",
