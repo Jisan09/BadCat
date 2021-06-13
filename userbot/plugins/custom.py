@@ -45,7 +45,7 @@ oldvars = {
             "get": "To show the already existing var value.",
             "del": "To delete the existing value",
         },
-        "var name":        "**[List of Database Vars]**(https://catuserbot.gitbook.io/catuserbot/data-vars-setup)",
+        "var name": "**[List of Database Vars]**(https://catuserbot.gitbook.io/catuserbot/data-vars-setup)",
         "usage": [
             "{tr}setdv <var name> <var value>",
             "{tr}getdv <var name>",
