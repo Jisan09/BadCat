@@ -152,7 +152,7 @@ async def pussy(event):
     count = int(count)
     if count > 30:
         return await edit_delete(event, "**Value error!.. Count value 1 to 30**")
-    await edit_or_reply(event, "**Just hold a sec u horny kid...**")
+    catevent = await edit_or_reply(event, "**Just hold a sec u horny kid...**")
     subreddit_api = f"{API}/{sub_r}/{count}"
     try:
         cn = requests.get(subreddit_api)
@@ -176,7 +176,7 @@ async def pussy(event):
             event, "**(ノಠ益ಠ)ノ  Tou sure this a vaid catagory/subreddit ??**", time=20
         )
     i = 0
-    await event.delete()
+    await catevent.delete()
     for m, p, t in zip(media_url, postlink, title):
         if "https://i.imgur.com" in m:
             media_url = m.replace(".gifv", ".mp4")
