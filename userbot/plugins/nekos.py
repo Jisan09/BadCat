@@ -118,10 +118,7 @@ async def _(event):
     nohorny = await event.client.send_file(
         event.chat_id, file=target, caption=f"**{choose}**", reply_to=reply_to
     )
-    try:
-        await _catutils.unsavegif(event, nohorny)
-    except:
-        pass
+    await _catutils.unsavegif(event, nohorny)
     await catevent.delete()
 
 
