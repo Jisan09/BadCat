@@ -8,9 +8,10 @@ import os
 import nekos
 import requests
 from PIL import Image
-
+from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
-from . import _catutils, catub, edit_delete, edit_or_reply, reply_id, useless
+from ..helpers.utils import _catutils, reply_id
+from . import catub, useless
 
 plugin_category = "useless"
 
@@ -38,6 +39,9 @@ async def _(event):
     if await age_verification(event, reply_to):
         return
     catevent = await edit_or_reply(event, "`Processing Nekos...`")
+    flag = await useless.importent(event)
+    if flag:
+        return
     target = nekos.img(f"{choose}")
     nohorny = await event.client.send_file(
         event.chat_id, file=target, caption=f"**{choose}**", reply_to=reply_to
@@ -88,6 +92,9 @@ async def avatarlewd(event):
     reply_to = await reply_id(event)
     if await age_verification(event, reply_to):
         return
+    flag = await useless.importent(event)
+    if flag:
+        return
     with open("temp.png", "wb") as f:
         target = "nsfw_avatar"
         f.write(requests.get(nekos.img(target)).content)
@@ -113,6 +120,9 @@ async def lewdn(event):
     reply_to = await reply_id(event)
     if await age_verification(event, reply_to):
         return
+    flag = await useless.importent(event)
+    if flag:
+        return
     nsfw = requests.get("https://nekos.life/api/lewd/neko").json()
     url = nsfw.get("neko")
     if not url:
@@ -133,6 +143,9 @@ async def gasm(event):
     "NSFW. It's gasm"
     reply_to = await reply_id(event)
     if await age_verification(event, reply_to):
+        return
+    flag = await useless.importent(event)
+    if flag:
         return
     with open("temp.png", "wb") as f:
         target = "gasm"
