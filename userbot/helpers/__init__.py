@@ -1,6 +1,6 @@
 from . import fonts
-from . import nsfw
 from . import memeshelper as catmemes
+from . import nsfw
 from .aiohttp_helper import AioHttp
 from .utils import *
 
