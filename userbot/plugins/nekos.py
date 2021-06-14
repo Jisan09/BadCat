@@ -30,7 +30,7 @@ async def _(event):
     reply_to = await reply_id(event)
     choose = event.pattern_match.group(1)
     if choose not in useless.hemtai:
-        return await edit_delete(event, "`Bruh.. What I am supposed to do!`")
+        return await edit_delete(event, f"Wrong catagory!! Choose from here:\n\n{useless.nsfw(useless.hemtai)}")
     if await age_verification(event, reply_to):
         return
     catevent = await edit_or_reply(event, "`Processing Nekos...`")
