@@ -64,10 +64,6 @@ class Config(object):
     THUMB_IMAGE = os.environ.get(
         "THUMB_IMAGE", "https://telegra.ph/file/ca95524e4734b0d5461b5.jpg"
     )
-    # set blacklist_chats where you do not want userbot's features
-    UB_BLACK_LIST_CHAT = {
-        int(x) for x in os.environ.get("UB_BLACK_LIST_CHAT", "").split()
-    }
     # specify NO_LOAD with plugin names for not loading in userbot
     NO_LOAD = [x for x in os.environ.get("NO_LOAD", "").split()]
     # for custom pic for .digitalpfp
@@ -109,6 +105,8 @@ class Config(object):
     GENIUS_API_TOKEN = os.environ.get("GENIUS_API_TOKEN", None)
     # Get your own API key from https://www.remove.bg/
     REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
+    # Get this value from https://free.currencyconverterapi.com/
+    CURRENCY_API = os.environ.get("CURRENCY_API", None)
     # Google Drive plugin https://telegra.ph/G-Drive-guide-for-catuserbot-01-01
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
@@ -160,6 +158,8 @@ class Config(object):
     # dont touch this at all
     SUDO_USERS: Set[int] = set()
     CATUBLOGO = None
+    BOTLOG = False
+    BOTLOG_CHATID = 0
 
 
 class Production(Config):
