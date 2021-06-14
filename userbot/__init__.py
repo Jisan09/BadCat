@@ -7,9 +7,9 @@ from .core.logger import logging
 from .core.session import catub
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
-__version__ = "3.0.0"
+__version__ = "3.0.1"
 __license__ = "GNU Affero General Public License v3.0"
-__author__ = "CatUserBot <https://github.com/sandy1709/catuserbot>"
+__author__ = "CatUserBot <https://github.com/Jisan09/catuserbot>"
 __copyright__ = "CatUserBot Copyright (C) 2020 - 2021  " + __author__
 
 catub.version = __version__
