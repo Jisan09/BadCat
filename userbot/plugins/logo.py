@@ -1,8 +1,6 @@
 """
 Created & modified by @Jisan7509
-
 Base idea DevsExpo
-
 """
 import asyncio
 import os
@@ -68,25 +66,20 @@ async def very(event):
     LOGO_FONT_WIDTH = gvarstatus("LOGO_FONT_WIDTH") or 2
     LOGO_FONT_HEIGHT = gvarstatus("LOGO_FONT_HEIGHT") or 2
     LOGO_FONT_COLOR = gvarstatus("LOGO_FONT_COLOR") or "red"
+    LOGO_BACKGROUND = (
+        gvarstatus("LOGO_BACKGROUND")
+        or f"https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/black.jpg"
+    )
+    LOGO_FONT = (
+        gvarstatus("LOGO_FONT")
+        or f"https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true"
+    )
     if not os.path.exists("temp/bg_img.jpg"):
-        if gvarstatus("LOGO_BACKGROUND") is None:
-            urllib.request.urlretrieve(
-                "https://telegra.ph/file/47fce894d66ae67e3665f.jpg", "temp/bg_img.jpg"
-            )
-        else:
-            LOGO_BACKGROUND = gvarstatus("LOGO_BACKGROUND")
-            urllib.request.urlretrieve(LOGO_BACKGROUND, "temp/bg_img.jpg")
+        urllib.request.urlretrieve(LOGO_BACKGROUND, "temp/bg_img.jpg")
     img = Image.open("./temp/bg_img.jpg")
     draw = ImageDraw.Draw(img)
     if not os.path.exists("temp/logo.ttf"):
-        if gvarstatus("LOGO_FONT") is None:
-            urllib.request.urlretrieve(
-                "https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true",
-                "temp/logo.ttf",
-            )
-        else:
-            LOGO_FONT = gvarstatus("LOGO_FONT")
-            urllib.request.urlretrieve(LOGO_FONT, "temp/logo.ttf")
+        urllib.request.urlretrieve(LOGO_FONT, "temp/logo.ttf")
     font = ImageFont.truetype("temp/logo.ttf", int(LOGO_FONT_SIZE))
     image_widthz, image_heightz = img.size
     w, h = draw.textsize(text, font=font)
@@ -142,11 +135,11 @@ async def bad(event):
     soup = BeautifulSoup(source.text, features="html.parser")
     links = soup.find_all("a", class_="js-navigation-open Link--primary")
     bg_name = []
-    for i in links:
-        bg_name.append(i.text)
-    lbg_list = ""
-    for i, each in enumerate(bg_name, start=1):
-        lbg_list += f"**{i}.**  `{each}`\n"
+    lbg_list = "**Available background names are here:-**\n\n"
+    for i, each in enumerate(links, start=1):
+        cat = os.path.splitext(each.text)[0]
+        bg_name.append(cat)
+        lbg_list += f"**{i}.**  `{cat}`\n"
     if os.path.exists("./temp/bg_img.jpg"):
         os.remove("./temp/bg_img.jpg")
     if cmd == "c":
@@ -169,20 +162,13 @@ async def bad(event):
                 event, "Give a valid Telegraph picture link, Or reply to a media."
             )
     if not input_str:
-        await edit_delete(
-            event, f"**Available background names are here:-**\n\n{lbg_list}", time=40
-        )
-        return
+        return await edit_delete(event, lbg_list, time=60)
     if input_str not in bg_name:
         catevent = await edit_or_reply(event, "`Give me a correct background name...`")
         await asyncio.sleep(1)
-        await edit_delete(
-            catevent,
-            f"**Available background names are here:-**\n\n{lbg_list}",
-            time=40,
-        )
+        await edit_delete(catevent, lbg_list, time=60)
     else:
-        string = f"https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/{input_str}"
+        string = f"https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/{input_str}.jpg"
         addgvar("LOGO_BACKGROUND", string)
         await edit_delete(
             event, f"**Background for logo changed to :-** `{input_str}`", time=10
@@ -226,27 +212,21 @@ async def pussy(event):
         soup = BeautifulSoup(source.text, features="html.parser")
         links = soup.find_all("a", class_="js-navigation-open Link--primary")
         logo_font = []
-        for i in links:
-            logo_font.append(i.text)
-            font_name = ""
-            for i, each in enumerate(logo_font, start=1):
-                font_name += f"**{i}.**  `{each}`\n"
+        font_name = "**Available font names are here:-**\n\n"
+        for i, each in enumerate(links, start=1):
+            cat = os.path.splitext(each.text)[0]
+            logo_font.append(cat)
+            font_name += f"**{i}.**  `{cat}`\n"
         if not input_str:
-            return await edit_delete(
-                event, f"**Available font names are here:-**\n\n{font_name}", time=60
-            )
+            return await edit_delete(event, font_name, time=80)
         if input_str not in logo_font:
             catevent = await edit_or_reply(event, "`Give me a correct font name...`")
             await asyncio.sleep(1)
-            await edit_delete(
-                catevent, f"**Available font names are here:-**\n\n{font_name}", time=60
-            )
+            await edit_delete(catevent, font_name, time=80)
         else:
             if " " in input_str:
                 input_str = str(input_str).replace(" ", "%20")
-            string = (
-                f"https://github.com/Jisan09/Files/blob/main/fonts/{input_str}?raw=true"
-            )
+            string = f"https://github.com/Jisan09/Files/blob/main/fonts/{input_str}.ttf?raw=true"
             if os.path.exists("temp/logo.ttf"):
                 os.remove("temp/logo.ttf")
                 urllib.request.urlretrieve(
@@ -266,7 +246,7 @@ async def pussy(event):
             return await edit_delete(
                 event,
                 f"**Available foreground color names are here:-**\n\n{fg_list}",
-                time=60,
+                time=80,
             )
         if input_str not in fg_name:
             catevent = await edit_or_reply(
@@ -276,7 +256,7 @@ async def pussy(event):
             await edit_delete(
                 catevent,
                 f"**Available foreground color names are here:-**\n\n{fg_list}",
-                time=60,
+                time=80,
             )
         else:
             addgvar("LOGO_FONT_COLOR", input_str)
