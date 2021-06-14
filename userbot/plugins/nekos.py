@@ -4,16 +4,16 @@ Plugin Made by [NIKITA](https://t.me/kirito6969)
 """
 
 import os
+
 import nekos
 import requests
-from fake_useragent import UserAgent
 from PIL import Image
 
 from ..helpers.functions import age_verification
 from . import _catutils, catub, edit_delete, edit_or_reply, reply_id, useless
 
-
 plugin_category = "useless"
+
 
 @catub.cat_cmd(
     pattern="nn ?(.*)",
@@ -41,6 +41,7 @@ async def _(event):
     await _catutils.unsavegif(event, nohorny)
     await catevent.delete()
 
+
 """
 def user_agent():
     return UserAgent().random
@@ -67,6 +68,7 @@ async def dva(event):
     await event.client.send_file(event.chat_id, file=url, reply_to=reply_to)
     await event.delete()
 """
+
 
 @catub.cat_cmd(
     pattern="nsfw$",
