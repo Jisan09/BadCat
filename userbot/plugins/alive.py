@@ -4,8 +4,9 @@ import time
 from platform import python_version
 
 from telethon import version
-from telethon.events import CallbackQuery
 from telethon.errors.rpcerrorlist import WebpageCurlFailedError
+from telethon.events import CallbackQuery
+
 from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
@@ -52,7 +53,10 @@ async def amireallyalive(event):
             )
             await event.delete()
         except WebpageCurlFailedError:
-            await edit_or_reply(event, f"**Value error!! Can't get media from this link.\nLink is :** `{PIC}`\n\n__Change the link by__ `.setdv`")
+            await edit_or_reply(
+                event,
+                f"**Value error!! Can't get media from this link.\nLink is :** `{PIC}`\n\n__Change the link by__ `.setdv`",
+            )
     else:
         await edit_or_reply(
             event,
