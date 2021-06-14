@@ -52,22 +52,24 @@ async def danbooru(event):
         if response.status_code == 200:
             response = response.json()
         else:
-            return await edit_delete(event,f"**An error occurred, response code: **`{response.status_code}`")
-            
+            return await edit_delete(
+                event, f"**An error occurred, response code: **`{response.status_code}`"
+            )
+
     if not response:
-        return await edit_delete(event, f"**No results for query:** __{search_query}__")  
+        return await edit_delete(event, f"**No results for query:** __{search_query}__")
     valid_urls = [
         response[0][url]
         for url in ["file_url", "large_file_url", "source"]
         if url in response[0].keys()
     ]
     if not valid_urls:
-        return await edit_delete(event, f"**Failed to find URLs for query:** __{search_query}__")
+        return await edit_delete(
+            event, f"**Failed to find URLs for query:** __{search_query}__"
+        )
     for image_url in valid_urls:
         try:
-            await event.client.send_file(
-                event.chat_id, image_url, reply_to=reply_to
-            )
+            await event.client.send_file(event.chat_id, image_url, reply_to=reply_to)
             await event.delete()
             return
         except Exception as e:
@@ -91,7 +93,7 @@ async def boobs(e):
         return
     a = await edit_or_reply(e, "`Sending boobs...`")
     nsfw = requests.get("http://api.oboobs.ru/noise/1").json()[0]["preview"]
-    urllib.request.urlretrieve(f"http://media.oboobs.ru/{nsfw}","boobs.jpg")
+    urllib.request.urlretrieve(f"http://media.oboobs.ru/{nsfw}", "boobs.jpg")
     await e.client.send_file(e.chat_id, "boobs.jpg", reply_to=reply_to)
     os.remove("boobs.jpg")
     await a.delete()
@@ -113,7 +115,7 @@ async def butts(e):
         return
     a = await edit_or_reply(e, "`Sending beautiful butts...`")
     nsfw = requests.get("http://api.obutts.ru/butts/10/1/random").json()[0]["preview"]
-    urllib.request.urlretrieve(f"http://media.obutts.ru/{nsfw}","butts.jpg")
+    urllib.request.urlretrieve(f"http://media.obutts.ru/{nsfw}", "butts.jpg")
     await e.client.send_file(e.chat_id, "butts.jpg", reply_to=reply_to)
     os.remove("butts.jpg")
     await a.delete()
