@@ -10,55 +10,12 @@ from telethon.errors.rpcerrorlist import WebpageCurlFailedError
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
 from ..helpers.utils import _catutils, reply_id
-from . import catub
+from . import catub, useless
 
-API = "https://weaverbottest.herokuapp.com/gimme"
+API = useless.API
+horny = useless.nsfw(useless.pawn)
 
 plugin_category = "useless"
-
-pawn = [
-    "nsfw",
-    "nsfw_gifs",
-    "nsfw_gif",
-    "60fpsporn",
-    "porn",
-    "porn_gifs",
-    "porninfifteenseconds",
-    "CuteModeSlutMode",
-    "NSFW_HTML5",
-    "the_best_nsfw_gifs",
-    "verticalgifs",
-    "besthqporngifs",
-    "boobs",
-    "pussy",
-    "jigglefuck",
-    "broslikeus",
-    "gangbang",
-    "passionx",
-    "titfuck",
-    "HappyEmbarrassedGirls",
-    "suicidegirls",
-    "porninaminute",
-    "SexInFrontOfOthers",
-    "tiktoknsfw",
-    "tiktokporn",
-    "TikThots",
-    "NSFWFunny",
-    "GWNerdy",
-    "WatchItForThePlot",
-    "HoldTheMoan",
-    "OnOff",
-    "TittyDrop",
-    "extramile",
-    "Exxxtras",
-    "adorableporn",
-]
-
-pawn.sort(key=str.casefold)
-horny = "**Catagory :** "
-for i in pawn:
-    horny += f" `{i.lower()}` ||"
-
 
 @catub.cat_cmd(
     pattern="porn(?: |$)(.*)",
