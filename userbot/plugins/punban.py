@@ -17,6 +17,7 @@ horny = useless.nsfw(useless.pawn)
 
 plugin_category = "useless"
 
+
 @catub.cat_cmd(
     pattern="porn(?: |$)(.*)",
     command=("porn", plugin_category),
