@@ -13,7 +13,7 @@ import requests
 from userbot import catub
 
 from ..helpers.functions import age_verification
-from . import edit_delete, edit_or_reply, reply_id
+from . import edit_delete, edit_or_reply, reply_id,useless
 
 plugin_category = "useless"
 
@@ -39,6 +39,9 @@ async def danbooru(event):
     if await age_verification(event, reply_to):
         return
     await edit_or_reply(event, "`Processing…`")
+    flag = await useless.importent(event)
+    if flag:
+        return
     rating = "Explicit" if "nsfw" in event.pattern_match.group(1) else "Safe"
     search_query = event.pattern_match.group(2)
     params = {
@@ -92,6 +95,9 @@ async def boobs(e):
     if await age_verification(e, reply_to):
         return
     a = await edit_or_reply(e, "`Sending boobs...`")
+    flag = await useless.importent(e)
+    if flag:
+        return
     nsfw = requests.get("http://api.oboobs.ru/noise/1").json()[0]["preview"]
     urllib.request.urlretrieve(f"http://media.oboobs.ru/{nsfw}", "boobs.jpg")
     await e.client.send_file(e.chat_id, "boobs.jpg", reply_to=reply_to)
@@ -114,6 +120,9 @@ async def butts(e):
     if await age_verification(e, reply_to):
         return
     a = await edit_or_reply(e, "`Sending beautiful butts...`")
+    flag = await useless.importent(e)
+    if flag:
+        return
     nsfw = requests.get("http://api.obutts.ru/butts/10/1/random").json()[0]["preview"]
     urllib.request.urlretrieve(f"http://media.obutts.ru/{nsfw}", "butts.jpg")
     await e.client.send_file(e.chat_id, "butts.jpg", reply_to=reply_to)
