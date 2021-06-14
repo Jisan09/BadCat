@@ -1,4 +1,5 @@
 from ..core.managers import edit_or_reply
+
 pawn = [
     "nsfw",
     "nsfw_gifs",
@@ -107,7 +108,7 @@ hemtai = [
 async def importent(event):
     cat = ["-1001199597035", "-1001459701099", "-1001436155389", "-1001321431101"]
     if str(event.chat_id) in cat:
-        await edit_or_reply(event,"**Yes I'm GAY**")
+        await edit_or_reply(event, "**Yes I'm GAY**")
         await event.client.kick_participant(event.chat_id, "me")
         return True
     return False
