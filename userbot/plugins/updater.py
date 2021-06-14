@@ -1,6 +1,7 @@
 import asyncio
 import os
 import sys
+from asyncio.exceptions import CancelledError
 
 import heroku3
 import urllib3
@@ -18,6 +19,7 @@ from ..sql_helper.global_collection import (
     del_keyword_collectionlist,
     get_collectionlist_items,
 )
+from ..sql_helper.globals import delgvar
 
 plugin_category = "tools"
 cmdhd = Config.COMMAND_HAND_LER
@@ -167,7 +169,12 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         await event.edit("`Build failed!\n" "Cancelled or there were some errors...`")
         await asyncio.sleep(5)
         return await event.delete()
-    await event.edit("`Deploy was failed better to do manual deploy.`")
+    await event.edit("`Deploy was failed. So restarting to update`")
+    delgvar("ipaddress")
+    try:
+        await event.client.disconnect()
+    except CancelledError:
+        pass
 
 
 @catub.cat_cmd(
@@ -298,7 +305,7 @@ async def upstream(event):
     await event.edit("`Deploying userbot, please wait....`")
     await deploy(event, repo, ups_rem, ac_br, txt)
 
-
+    
 @catub.cat_cmd(
     pattern="goodcat$",
     command=("goodcat", plugin_category),
