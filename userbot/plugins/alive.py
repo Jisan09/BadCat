@@ -5,7 +5,7 @@ from platform import python_version
 
 from telethon import version
 from telethon.events import CallbackQuery
-
+from telethon.errors.rpcerrorlist import WebpageCurlFailedError
 from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
@@ -46,10 +46,13 @@ async def amireallyalive(event):
         cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
         cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
         cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
-        await event.client.send_file(
-            event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
-        )
-        await event.delete()
+        try:
+            await event.client.send_file(
+                event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
+            )
+            await event.delete()
+        except WebpageCurlFailedError:
+            await edit_or_reply(event, f"**Value error!! Can't get media from this link.\nLink is :** `{PIC}`\n\n__Change the link by__ `.setdv`")
     else:
         await edit_or_reply(
             event,
