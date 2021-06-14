@@ -1,18 +1,22 @@
+# telegraph utils for catuserbot
 import os
+import random
+import string
 from datetime import datetime
 
 from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
+from telethon.utils import get_display_name
 
 from userbot import catub
 
 from ..Config import Config
+from ..core.logger import logging
 from ..core.managers import edit_or_reply
-from . import BOTLOG, BOTLOG_CHATID
+from . import BOTLOG, BOTLOG_CHATID, mention
 
+LOGS = logging.getLogger(__name__)
 plugin_category = "utils"
-
-# telegraph utils for catuserbot
 
 
 telegraph = Telegraph()
@@ -78,13 +82,14 @@ async def _(event):
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
             await catevent.edit(
-                f"**link : **[telegraph](https://telegra.ph{media_urls[0]})\
-                    \n**Time Taken : **`{ms} seconds.`",
+                f"**➥ Uploaded to :-**[telegraph](https://telegra.ph{media_urls[0]})\
+                 \n**➥ Uploaded in {ms} seconds.**\
+                 \n**➥ Uploaded by :-** {mention}",
                 link_preview=True,
             )
     elif input_str in ["text", "t"]:
         user_object = await event.client.get_entity(r_message.sender_id)
-        title_of_page = user_object.first_name  # + " " + user_object.last_name
+        title_of_page = get_display_name(user_object)
         # apparently, all Users do not have last_name field
         if optional_title:
             title_of_page = optional_title
@@ -102,12 +107,21 @@ async def _(event):
                 page_content += m.decode("UTF-8") + "\n"
             os.remove(downloaded_file_name)
         page_content = page_content.replace("\n", "<br>")
-        response = telegraph.create_page(title_of_page, html_content=page_content)
+        try:
+            response = telegraph.create_page(title_of_page, html_content=page_content)
+        except Exception as e:
+            LOGS.info(e)
+            title_of_page = "".join(
+                random.choice(list(string.ascii_lowercase + string.ascii_uppercase))
+                for _ in range(16)
+            )
+            response = telegraph.create_page(title_of_page, html_content=page_content)
         end = datetime.now()
         ms = (end - start).seconds
         cat = f"https://telegra.ph/{response['path']}"
         await catevent.edit(
-            f"**link : ** [telegraph]({cat})\
-                 \n**Time Taken : **`{ms} seconds.`",
+            f"**➥ Uploaded to :-** [telegraph]({cat})\
+                 \n**➥ Uploaded in {ms} seconds.**\
+                 \n**➥ Uploaded by :-** {mention}",
             link_preview=True,
         )

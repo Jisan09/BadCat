@@ -79,6 +79,34 @@ async def insult(e):
 
 
 @catub.cat_cmd(
+    pattern="love$",
+    command=("love", plugin_category),
+    info={
+        "header": "Chutiyappa suru",
+        "usage": "{tr}love",
+    },
+)
+async def suru(chutiyappa):
+    "Chutiyappa suru"
+    txt = random.choice(catmemes.LOVESTR)
+    await edit_or_reply(chutiyappa, txt)
+
+
+@catub.cat_cmd(
+    pattern="dhoka$",
+    command=("dhoka", plugin_category),
+    info={
+        "header": "Dhokha kha gya",
+        "usage": "{tr}dhoka",
+    },
+)
+async def katgya(chutiya):
+    "Dhokha kha gya"
+    txt = random.choice(catmemes.DHOKA)
+    await edit_or_reply(chutiya, txt)
+
+
+@catub.cat_cmd(
     pattern="hey$",
     command=("hey", plugin_category),
     info={

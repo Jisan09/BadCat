@@ -10,11 +10,8 @@ import requests
 from fake_useragent import UserAgent
 from PIL import Image
 
-from userbot import catub
-
-from ..core.managers import edit_or_reply
 from ..helpers.functions import age_verification
-from ..helpers.utils import reply_id
+from . import _catutils, catub, edit_delete, edit_or_reply, reply_id
 
 POSSIBLE = [
     "feet",
@@ -113,15 +110,15 @@ async def _(event):
     reply_to = await reply_id(event)
     choose = event.pattern_match.group(1)
     if choose not in POSSIBLE:
-        await edit_or_reply("`Bruh.. What I am supposed to do!`")
-        return
+        return await edit_delete(event, "`Bruh.. What I am supposed to do!`")
     if await age_verification(event, reply_to):
         return
     catevent = await edit_or_reply(event, "`Processing Nekos...`")
     target = nekos.img(f"{choose}")
-    await event.client.send_file(
+    nohorny = await event.client.send_file(
         event.chat_id, file=target, caption=f"**{choose}**", reply_to=reply_to
     )
+    await _catutils.unsavegif(event, nohorny)
     await catevent.delete()
 
 
@@ -143,8 +140,7 @@ async def dva(event):
     ).json()
     url = nsfw.get("url")
     if not url:
-        await edit_or_reply(event, "`uuuf.. No URL found from the API`")
-        return
+        return await edit_delete(event, "`uuuf.. No URL found from the API`")
     await event.client.send_file(event.chat_id, file=url, reply_to=reply_to)
     await event.delete()
 
@@ -207,8 +203,7 @@ async def lewdn(event):
     nsfw = requests.get("https://nekos.life/api/lewd/neko").json()
     url = nsfw.get("neko")
     if not url:
-        await edit_or_reply(event, "`Uff.. No NEKO found from the API`")
-        return
+        return await edit_delete(event, "`Uff.. No NEKO found from the API`")
     await event.client.send_file(event.chat_id, file=url, reply_to=reply_to)
     await event.delete()
 

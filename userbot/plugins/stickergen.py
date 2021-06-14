@@ -144,15 +144,13 @@ async def knife(event):
             os.remove(files)
 
 
-"""
-#many things to add, will do later
 @catub.cat_cmd(
-    pattern="(|t)doge(?: |$)(.*)",
+    pattern="(|h)doge(?: |$)(.*)",
     command=("doge", plugin_category),
     info={
         "header": "Make doge say anything.",
         "flags": {
-            "t": "To create doge sticker transparent.",
+            "h": "To create doge sticker with highligted text.",
         },
         "usage": [
             "{tr}doge <text/reply to msg>",
@@ -160,7 +158,7 @@ async def knife(event):
         ],
         "examples": [
             "{tr}doge Gib money",
-            "{tr}tdoge Gib money",
+            "{tr}hdoge Gib money",
         ],
     },
 )
@@ -169,27 +167,43 @@ async def doge(event):
     cmd = event.pattern_match.group(1).lower()
     text = event.pattern_match.group(2)
     reply_to_id = await reply_id(event)
+    if not text and event.is_reply:
+        text = (await event.get_reply_message()).message
     if not text:
-        if event.is_reply:
-            text = (await event.get_reply_message()).message
-        else:
-            return await edit_delete(
-                event, "__What is doge supposed to say? Give some text.__"
-            )
+        return await edit_delete(
+            event, "__What is doge supposed to say? Give some text.__"
+        )
+    await edit_delete(event, "`Wait, processing.....`")
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
-    temp_link ="https://telegra.ph/file/6f621b9782d9c925bd6c4.jpg"
     temp_name = "./temp/doge_temp.jpg"
     file_name = "./temp/doge.jpg"
+    templait = urllib.request.urlretrieve(
+        "https://telegra.ph/file/6f621b9782d9c925bd6c4.jpg", temp_name
+    )
     text = deEmojify(text)
-    higlighted_text(temp_name,text,file_name,text_wrap=wrap,font_size=font,linespace="-5",position=position)
-    if cmd == "b":
-        cat = convert_tosticker(file_name)
-        await event.client.send_file(event.chat_id, cat, reply_to = reply_to_id, force_document=False)
-    else:
-        await clippy(event.client, file_name, event.chat_id, reply_to_id)
+    font, wrap = (90, 2) if len(text) < 90 else (70, 2.5)
+    bg, fg, alpha, ls = (
+        ("black", "white", 255, "5") if cmd == "h" else ("white", "black", 0, "-40")
+    )
+    higlighted_text(
+        temp_name,
+        text,
+        file_name,
+        text_wrap=wrap,
+        font_size=font,
+        linespace=ls,
+        position=(0, 10),
+        align="left",
+        background=bg,
+        foreground=fg,
+        transparency=alpha,
+    )
+    cat = convert_tosticker(file_name)
+    await event.client.send_file(
+        event.chat_id, cat, reply_to=reply_to_id, force_document=False
+    )
     await event.delete()
     for files in (temp_name, file_name):
         if files and os.path.exists(files):
             os.remove(files)
-"""

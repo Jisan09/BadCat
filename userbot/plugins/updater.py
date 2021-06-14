@@ -308,7 +308,7 @@ async def upstream(event):
     },
 )
 async def variable(var):
-    "To update to badcat( for extra masala and gali)."
+    "To update to goocat."
     if Config.HEROKU_API_KEY is None:
         return await edit_delete(
             var,
@@ -322,5 +322,5 @@ async def variable(var):
             "Set the required var in heroku to function this normally `HEROKU_APP_NAME`.",
         )
     heroku_var = app.config()
-    await edit_or_reply(var, f"`Changing goodcat to badcat wait for 2-3 minutes.`")
+    await edit_or_reply(var, f"`Changing badcat to goodcat wait for 2-3 minutes.`")
     heroku_var["UPSTREAM_REPO"] = "https://github.com/sandy1709/catuserbot"
