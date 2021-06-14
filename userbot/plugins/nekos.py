@@ -32,7 +32,7 @@ async def _(event):
     if choose not in useless.hemtai:
         return await edit_delete(
             event,
-            f"Wrong catagory!! Choose from here:\n\n{useless.nsfw(useless.hemtai)}",
+            f"**Wrong catagory!! Choose from here:**\n\n{useless.nsfw(useless.hemtai)}",
             60,
         )
     if await age_verification(event, reply_to):
