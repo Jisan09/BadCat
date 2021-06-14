@@ -36,7 +36,7 @@ pawn = [
     "adorableporn",
 ]
 
-POSSIBLE = [
+hemtai = [
     "feet",
     "yuri",
     "trap",
@@ -101,5 +101,12 @@ POSSIBLE = [
     "baka",
     "woof",
 ]
+
+def nsfw(catagory):
+    catagory.sort(key=str.casefold)
+    horny = "**Catagory :** "
+    for i in catagory:
+        horny += f" `{i.lower()}` ||"
+    return horny
 
 API = "https://weaverbottest.herokuapp.com/gimme"
