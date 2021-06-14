@@ -43,6 +43,7 @@ async def _(event):
 
 
 """
+from fake_useragent import UserAgent
 def user_agent():
     return UserAgent().random
     
