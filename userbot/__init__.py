@@ -18,7 +18,7 @@ LOGS = logging.getLogger("CatUserbot")
 bot = catub
 
 StartTime = time.time()
-catversion = "3.0.0"
+catversion = "3.0.1"
 
 if Config.UPSTREAM_REPO == "badcat":
     UPSTREAM_REPO_URL = "https://github.com/Jisan09/catuserbot"
