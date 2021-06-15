@@ -1,3 +1,9 @@
+try:
+    import sqlalchemy_json
+except ModuleNotFoundError:
+    install_pip("sqlalchemy_json")
+    import sqlalchemy_json
+    
 from sqlalchemy import Column, UnicodeText
 from sqlalchemy_json import MutableJson, NestedMutableJson
 
