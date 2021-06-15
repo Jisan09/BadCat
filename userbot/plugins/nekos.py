@@ -13,9 +13,13 @@ from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
 from ..helpers.utils import _catutils, reply_id
 from . import catub, useless
+from fake_useragent import UserAgent
 
 plugin_category = "useless"
 
+
+def user_agent():
+    return UserAgent().random
 
 @catub.cat_cmd(
     pattern="nn ?(.*)",
@@ -49,12 +53,7 @@ async def _(event):
     )
     await _catutils.unsavegif(event, nohorny)
     await catevent.delete()
-
-
-"""
-from fake_useragent import UserAgent
-def user_agent():
-    return UserAgent().random
+    
     
 @catub.cat_cmd(
     pattern="dva$",
@@ -77,7 +76,6 @@ async def dva(event):
         return await edit_delete(event, "`uuuf.. No URL found from the API`")
     await event.client.send_file(event.chat_id, file=url, reply_to=reply_to)
     await event.delete()
-"""
 
 
 @catub.cat_cmd(
