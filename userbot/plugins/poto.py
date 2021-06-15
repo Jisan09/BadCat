@@ -2,10 +2,11 @@
 Thenks goes to Emily ( The creater of Poto cmd) from ftg userbot
 """
 
-import os
+from PIL import Image, ImageFilter, UnidentifiedImageError
+
 from userbot import catub
+
 from ..core.managers import edit_delete, edit_or_reply
-from PIL import Image, ImageFilter,UnidentifiedImageError 
 
 plugin_category = "extra"
 
@@ -79,7 +80,7 @@ async def potocmd(event):
         await event.client.send_file(event.chat_id, send_photos)
     await event.delete()
 
-    
+
 @catub.cat_cmd(
     pattern="blur(?: |$)(.*)",
     command=("blur", plugin_category),
@@ -101,17 +102,17 @@ async def potocmd(event):
     pic_name = "blur.png"
     try:
         if rimg and rimg.media:
-            pic= await event.client.download_media(rimg,pic_name)
+            await event.client.download_media(rimg, pic_name)
         else:
-            user = rimg.sender_id 
-            pic = await event.client.download_profile_photo(user,pic_name)
+            user = rimg.sender_id
+            await event.client.download_profile_photo(user, pic_name)
     except AttributeError:
-        return await edit_delete(event,"`Replay to a user message... `")
+        return await edit_delete(event, "`Replay to a user message... `")
     try:
         im1 = Image.open(pic_name)
-        im2 = im1.filter(ImageFilter.GaussianBlur(radius = red))
+        im2 = im1.filter(ImageFilter.GaussianBlur(radius=red))
         im2.save(pic_name)
     except UnidentifiedImageError:
-        return await edit_delete(event,"`Replay to a picture or user message... `")
-    await event.client.send_file(event.chat_id,pic_name,reply_to=reply_to_id)
+        return await edit_delete(event, "`Replay to a picture or user message... `")
+    await event.client.send_file(event.chat_id, pic_name, reply_to=reply_to_id)
     await catevent.delete()
