@@ -10,54 +10,12 @@ from telethon.errors.rpcerrorlist import WebpageCurlFailedError
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
 from ..helpers.utils import _catutils, reply_id
-from . import catub
+from . import catub, useless
 
-API = "https://weaverbottest.herokuapp.com/gimme"
+API = useless.API
+horny = useless.nsfw(useless.pawn)
 
 plugin_category = "useless"
-
-pawn = [
-    "nsfw",
-    "nsfw_gifs",
-    "nsfw_gif",
-    "60fpsporn",
-    "porn",
-    "porn_gifs",
-    "porninfifteenseconds",
-    "CuteModeSlutMode",
-    "NSFW_HTML5",
-    "the_best_nsfw_gifs",
-    "verticalgifs",
-    "besthqporngifs",
-    "boobs",
-    "pussy",
-    "jigglefuck",
-    "broslikeus",
-    "gangbang",
-    "passionx",
-    "titfuck",
-    "HappyEmbarrassedGirls",
-    "suicidegirls",
-    "porninaminute",
-    "SexInFrontOfOthers",
-    "tiktoknsfw",
-    "tiktokporn",
-    "TikThots",
-    "NSFWFunny",
-    "GWNerdy",
-    "WatchItForThePlot",
-    "HoldTheMoan",
-    "OnOff",
-    "TittyDrop",
-    "extramile",
-    "Exxxtras",
-    "adorableporn",
-]
-
-pawn.sort(key=str.casefold)
-horny = "**Catagory :** "
-for i in pawn:
-    horny += f" `{i.lower()}` ||"
 
 
 @catub.cat_cmd(
@@ -73,11 +31,14 @@ for i in pawn:
         "options": horny,
     },
 )
-async def bad(event):
+async def very(event):
     """Random porn post"""
     reply_to = await reply_id(event)
     sub_r = event.pattern_match.group(1)
     await edit_or_reply(event, "**Just hold a sec u horny kid...**")
+    flag = await useless.importent(event)
+    if flag:
+        return
     max_try = 0
     while max_try < 5:
         subreddit_api = f"{API}/{sub_r}" if sub_r else f"{API}/60fpsporn"
@@ -154,7 +115,7 @@ async def bad(event):
         "options": horny,
     },
 )
-async def pussy(event):
+async def bad(event):
     """Download porn in bulk"""
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
@@ -167,6 +128,9 @@ async def pussy(event):
     if count > 30:
         return await edit_delete(event, "**Value error!.. Count value 1 to 30**")
     await edit_or_reply(event, "**Just hold a sec u horny kid...**")
+    flag = await useless.importent(event)
+    if flag:
+        return
     subreddit_api = f"{API}/{sub_r}/{count}"
     try:
         cn = requests.get(subreddit_api)
@@ -243,7 +207,7 @@ async def pussy(event):
         "options": horny,
     },
 )
-async def cat(event):
+async def pussy(event):
     """Send a list of porn"""
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
@@ -256,6 +220,9 @@ async def cat(event):
     if count > 30:
         return await edit_delete(event, "**Value error!.. Count value 1 to 30**")
     await edit_or_reply(event, "**Just hold a sec u horny kid...**")
+    flag = await useless.importent(event)
+    if flag:
+        return
     subreddit_api = f"{API}/{sub_r}/{count}"
     try:
         cn = requests.get(subreddit_api)
@@ -310,7 +277,7 @@ async def cat(event):
         "examples": "{tr}linkdl https://redgifs.com/watch/virtuousgorgeousindianspinyloach https://i.imgur.com/3Ffkon9.gifv",
     },
 )
-async def pussy(event):
+async def cat(event):
     """Download porn from link"""
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
@@ -324,6 +291,9 @@ async def pussy(event):
         )
     plink = [x for x in intxt.split()]
     await edit_or_reply(event, "** Just hold a sec u horny kid...**")
+    flag = await useless.importent(event)
+    if flag:
+        return
     i = 0
     for m in plink:
         if not m.startswith("https://"):

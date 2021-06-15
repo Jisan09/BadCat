@@ -7,92 +7,14 @@ import os
 
 import nekos
 import requests
-from fake_useragent import UserAgent
 from PIL import Image
 
+from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
-from . import _catutils, catub, edit_delete, edit_or_reply, reply_id
-
-POSSIBLE = [
-    "feet",
-    "yuri",
-    "trap",
-    "futanari",
-    "hololewd",
-    "lewdkemo",
-    "solog",
-    "feetg",
-    "cum",
-    "erokemo",
-    "les",
-    "wallpaper",
-    "lewdk",
-    "ngif",
-    "tickle",
-    "lewd",
-    "feed",
-    "gecg",
-    "eroyuri",
-    "eron",
-    "cum_jpg",
-    "bj",
-    "nsfw_neko_gif",
-    "solo",
-    "kemonomimi",
-    "nsfw_avatar",
-    "gasm",
-    "poke",
-    "anal",
-    "slap",
-    "hentai",
-    "avatar",
-    "erofeet",
-    "holo",
-    "keta",
-    "blowjob",
-    "pussy",
-    "tits",
-    "holoero",
-    "lizard",
-    "pussy_jpg",
-    "pwankg",
-    "classic",
-    "kuni",
-    "waifu",
-    "pat",
-    "8ball",
-    "kiss",
-    "femdom",
-    "neko",
-    "spank",
-    "cuddle",
-    "erok",
-    "fox_girl",
-    "boobs",
-    "random_hentai_gif",
-    "smallboobs",
-    "hug",
-    "ero",
-    "smug",
-    "goose",
-    "baka",
-    "woof",
-]
-
-
-agent = UserAgent()
-
-
-def user_agent():
-    return agent.random
-
+from ..helpers.utils import _catutils, reply_id
+from . import catub, useless
 
 plugin_category = "useless"
-
-neko_help = "**ALL:**  "
-
-for i in POSSIBLE:
-    neko_help += f"`{i.lower()}`   "
 
 
 @catub.cat_cmd(
@@ -102,18 +24,25 @@ for i in POSSIBLE:
         "header": "Contains NSFW \nSearch images from nekos",
         "usage": "{tr}nn <argument from choice>",
         "examples": "{tr}nn neko",
-        "Choice": neko_help,
+        "Choice": useless.nsfw(useless.hemtai),
     },
 )
 async def _(event):
     "Search images from nekos"
     reply_to = await reply_id(event)
     choose = event.pattern_match.group(1)
-    if choose not in POSSIBLE:
-        return await edit_delete(event, "`Bruh.. What I am supposed to do!`")
+    if choose not in useless.hemtai:
+        return await edit_delete(
+            event,
+            f"**Wrong catagory!! Choose from here:**\n\n{useless.nsfw(useless.hemtai)}",
+            60,
+        )
     if await age_verification(event, reply_to):
         return
     catevent = await edit_or_reply(event, "`Processing Nekos...`")
+    flag = await useless.importent(event)
+    if flag:
+        return
     target = nekos.img(f"{choose}")
     nohorny = await event.client.send_file(
         event.chat_id, file=target, caption=f"**{choose}**", reply_to=reply_to
@@ -122,6 +51,11 @@ async def _(event):
     await catevent.delete()
 
 
+"""
+from fake_useragent import UserAgent
+def user_agent():
+    return UserAgent().random
+    
 @catub.cat_cmd(
     pattern="dva$",
     command=("dva", plugin_category),
@@ -143,6 +77,7 @@ async def dva(event):
         return await edit_delete(event, "`uuuf.. No URL found from the API`")
     await event.client.send_file(event.chat_id, file=url, reply_to=reply_to)
     await event.delete()
+"""
 
 
 @catub.cat_cmd(
@@ -158,6 +93,9 @@ async def avatarlewd(event):
     reply_to = await reply_id(event)
     if await age_verification(event, reply_to):
         return
+    flag = await useless.importent(event)
+    if flag:
+        return
     with open("temp.png", "wb") as f:
         target = "nsfw_avatar"
         f.write(requests.get(nekos.img(target)).content)
@@ -168,23 +106,6 @@ async def avatarlewd(event):
     )
     os.remove("temp.webp")
     await event.delete()
-
-
-@catub.cat_cmd(
-    pattern="icat$",
-    command=("icat", plugin_category),
-    info={
-        "header": "Search cute cats.",
-        "usage": "{tr}icat",
-    },
-)
-async def _(event):
-    "Search cute cats."
-    reply_to = await reply_id(event)
-    target = nekos.cat()
-    catevent = await edit_or_reply(event, "`Finding ur ket...`")
-    await event.client.send_file(event.chat_id, file=target, reply_to=reply_to)
-    await catevent.delete()
 
 
 @catub.cat_cmd(
@@ -199,6 +120,9 @@ async def lewdn(event):
     "NSFW.Search lewd nekos"
     reply_to = await reply_id(event)
     if await age_verification(event, reply_to):
+        return
+    flag = await useless.importent(event)
+    if flag:
         return
     nsfw = requests.get("https://nekos.life/api/lewd/neko").json()
     url = nsfw.get("neko")
@@ -220,6 +144,9 @@ async def gasm(event):
     "NSFW. It's gasm"
     reply_to = await reply_id(event)
     if await age_verification(event, reply_to):
+        return
+    flag = await useless.importent(event)
+    if flag:
         return
     with open("temp.png", "wb") as f:
         target = "gasm"

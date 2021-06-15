@@ -4,6 +4,11 @@ import time
 from platform import python_version
 
 from telethon import version
+from telethon.errors.rpcerrorlist import (
+    MediaEmptyError,
+    WebpageCurlFailedError,
+    WebpageMediaEmptyError,
+)
 from telethon.events import CallbackQuery
 
 from ..Config import Config
@@ -46,10 +51,16 @@ async def amireallyalive(event):
         cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
         cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
         cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
-        await event.client.send_file(
-            event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
-        )
-        await event.delete()
+        try:
+            await event.client.send_file(
+                event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
+            )
+            await event.delete()
+        except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
+            return await edit_or_reply(
+                event,
+                f"**Media Value Error!!**\n__Change the link by __`.setdv`\n\n**__Can't get media from this link :-**__ `{PIC}`",
+            )
     else:
         await edit_or_reply(
             event,
