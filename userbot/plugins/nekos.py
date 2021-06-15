@@ -7,19 +7,20 @@ import os
 
 import nekos
 import requests
+from fake_useragent import UserAgent
 from PIL import Image
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
 from ..helpers.utils import _catutils, reply_id
 from . import catub, useless
-from fake_useragent import UserAgent
 
 plugin_category = "useless"
 
 
 def user_agent():
     return UserAgent().random
+
 
 @catub.cat_cmd(
     pattern="nn ?(.*)",
@@ -53,8 +54,8 @@ async def _(event):
     )
     await _catutils.unsavegif(event, nohorny)
     await catevent.delete()
-    
-    
+
+
 @catub.cat_cmd(
     pattern="dva$",
     command=("dva", plugin_category),
