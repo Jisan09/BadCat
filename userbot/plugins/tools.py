@@ -10,8 +10,6 @@ import qrcode
 import requests
 from barcode.writer import ImageWriter
 from bs4 import BeautifulSoup
-from ipdata import ipdata
-from ipdata.ipdata import APIKeyNotSet
 from PIL import Image, ImageColor
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
@@ -298,24 +296,20 @@ async def spy(event):
     "To see details of an ip."
     inpt = event.pattern_match.group(1)
     if not inpt:
-        return await edit_delete(event, "**Give an ip address to lookup...**", 20)
+        return await edit_delete(event,"**Give an ip address to lookup...**",20)
     check = "" if inpt == "mine" else inpt
+    API = Config.IPDATA_API
+    if API is None:
+        return await edit_delete(event,"**Get an API key from [Ipdata](https://dashboard.ipdata.co/sign-up.html) & set that in heroku var `IPDATA_API`**",80)
+    url = requests.get(f"https://api.ipdata.co/{check}?api-key={API}")
+    r = url.json()
     try:
-        pussy = ipdata.IPData(Config.IPDATA_API)
-    except APIKeyNotSet:
-        return await edit_delete(
-            event,
-            "**Get an API key from [Ipdata](https://dashboard.ipdata.co/sign-up.html) & set that in heroku var `IPDATA_API`**",
-            80,
-        )
-    r = pussy.lookup(check)
-    if r["status"] == 200:
-        await edit_or_reply(event, "🔍 **Searching...**")
-    else:
-        return await edit_delete(event, f"**{r['message']}**", 80)
+        return await edit_delete(event,f"**{r['message']}**",60)
+    except KeyError:
+        await edit_or_reply(event,"🔍 **Searching...**")
     ip = r["ip"]
     city = r["city"]
-    postal = r["postal"]
+    postal= r["postal"]
     region = r["region"]
     latitude = r["latitude"]
     carrier = r["asn"]["name"]
@@ -325,25 +319,21 @@ async def spy(event):
     region_code = r["region_code"]
     continent = r["continent_name"]
     time_z = r["time_zone"]["abbr"]
-    currcode = r["currency"]["code"]
+    currcode= r["currency"]["code"]
     calling_code = r["calling_code"]
     country_code = r["country_code"]
     currency = r["currency"]["name"]
     curnative = r["currency"]["native"]
     lang1 = r["languages"][0]["name"]
     time_zone = r["time_zone"]["name"]
-    emoji_flag = r["emoji_flag"]
+    emoji_flag= r["emoji_flag"]
     continent_code = r["continent_code"]
     native = r["languages"][0]["native"]
     current_time = r["time_zone"]["current_time"]
-
-    symbol = "₹" if country == "India" else curnative
-    language1 = (
-        f"<code>{lang1}</code>"
-        if lang1 == native
-        else f"<code>{lang1}</code> [<code>{native}</code>]"
-    )
-
+    
+    symbol = '₹' if  country=="India" else curnative 
+    language1 = f"<code>{lang1}</code>" if  lang1==native else f"<code>{lang1}</code> [<code>{native}</code>]" 
+    
     try:
         lang2 = f', <code>{r["languages"][1]["name"]}</code>'
     except:
@@ -364,7 +354,7 @@ async def spy(event):
     <b>• Time :</b> <code>{current_time[11:16]}</code>\n\
     <b>• Date :</b> <code>{current_time[:10]}</code>\n\
     <b>• Time Offset :</b> <code>{current_time[-6:]}</code>"
-    await edit_or_reply(event, string, parse_mode="html")
+    await edit_or_reply(event,string,parse_mode='html')
 
 
 @catub.cat_cmd(
