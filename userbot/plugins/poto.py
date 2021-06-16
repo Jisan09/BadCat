@@ -114,5 +114,5 @@ async def potocmd(event):
         im2.save(pic_name)
     except UnidentifiedImageError:
         return await edit_delete(event, "`Replay to a picture or user message... `")
+    await event.delete()
     await event.client.send_file(event.chat_id, pic_name, reply_to=reply_to_id)
-    await catevent.delete()
