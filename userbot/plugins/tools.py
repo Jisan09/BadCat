@@ -344,7 +344,7 @@ async def spy(event):
 
     try:
         lang2 = f', <code>{r["languages"][1]["name"]}</code>'
-    except:
+    except IndexError:
         lang2 = ""
 
     string = f"✘ <b>Lookup For Ip : {ip}</b> {emoji_flag}\n\n\
