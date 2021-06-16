@@ -298,24 +298,20 @@ async def spy(event):
     "To see details of an ip."
     inpt = event.pattern_match.group(1)
     if not inpt:
-        return await edit_delete(event, "**Give an ip address to lookup...**", 20)
+        return await edit_delete(event,"**Give an ip address to lookup...**",20)
     check = "" if inpt == "mine" else inpt
     try:
         pussy = ipdata.IPData(Config.IPDATA_API)
     except APIKeyNotSet:
-        return await edit_delete(
-            event,
-            "**Get an API key from [Ipdata](https://dashboard.ipdata.co/sign-up.html) & set that in heroku var `IPDATA_API`**",
-            80,
-        )
+        return await edit_delete(event,"**Get an API key from [Ipdata](https://dashboard.ipdata.co/sign-up.html) & set that in heroku var `IPDATA_API`**",80)
     r = pussy.lookup(check)
     if r["status"] == 200:
-        await edit_or_reply(event, "🔍 **Searching...**")
+        await edit_or_reply(event,"🔍 **Searching...**")
     else:
-        return await edit_delete(event, f"**{r['message']}**", 80)
+        return await edit_delete(event,f"**{r['message']}**",80)
     ip = r["ip"]
     city = r["city"]
-    postal = r["postal"]
+    postal= r["postal"]
     region = r["region"]
     latitude = r["latitude"]
     carrier = r["asn"]["name"]
@@ -325,33 +321,27 @@ async def spy(event):
     region_code = r["region_code"]
     continent = r["continent_name"]
     time_z = r["time_zone"]["abbr"]
-    currcode = r["currency"]["code"]
+    currcode= r["currency"]["code"]
     calling_code = r["calling_code"]
     country_code = r["country_code"]
     currency = r["currency"]["name"]
+    curnative = r["currency"]["native"]
     lang1 = r["languages"][0]["name"]
     time_zone = r["time_zone"]["name"]
-    emoji_unicode = r["emoji_unicode"]
+    emoji_flag= r["emoji_flag"]
     continent_code = r["continent_code"]
     native = r["languages"][0]["native"]
     current_time = r["time_zone"]["current_time"]
-
-    language1 = (
-        f"<code>{lang1}</code>"
-        if lang1 == native
-        else f"<code>{lang1}</code> [<code>{native}</code>]"
-    )
-
+    
+    symbol = '₹' if  country=="India" else curnative 
+    language1 = f"<code>{lang1}</code>" if  lang1==native else f"<code>{lang1}</code> [<code>{native}</code>]" 
+    
     try:
         lang2 = f', <code>{r["languages"][1]["name"]}</code>'
     except:
         lang2 = ""
 
-    b = emoji_unicode.replace("+", "000").replace(" ", "").replace("U", "\\U")
-    t = b.encode("ascii", "namereplace")
-    emoji = t.decode("unicode-escape")
-
-    string = f"✘ <b>Lookup For Ip : {ip}</b> {emoji}\n\n\
+    string = f"✘ <b>Lookup For Ip : {ip}</b> {emoji_flag}\n\n\
     <b>• City Name :</b>  <code>{city}</code>\n\
     <b>• Region Name :</b>  <code>{region}</code> [<code>{region_code}</code>]\n\
     <b>• Country Name :</b>  <code>{country}</code> [<code>{country_code}</code>]\n\
@@ -361,12 +351,12 @@ async def spy(event):
     <b>• Caller Code :</b>  <code>+{calling_code}</code>\n\
     <b>• Carrier Detail :  <a href = https://www.{carriel}>{' '.join(carrier.split()[:2])}</a></b>\n\
     <b>• Language :</b>  {language1} {lang2}\n\
-    <b>• Currency :</b>  <code>{currency}</code> [<code>{currcode}</code>]\n\
+    <b>• Currency :</b>  <code>{currency}</code> [<code>{symbol}{currcode}</code>]\n\
     <b>• Time Zone :</b> <code>{time_zone}</code> [<code>{time_z}</code>]\n\
     <b>• Time :</b> <code>{current_time[11:16]}</code>\n\
     <b>• Date :</b> <code>{current_time[:10]}</code>\n\
     <b>• Time Offset :</b> <code>{current_time[-6:]}</code>"
-    await edit_or_reply(event, string, parse_mode="html")
+    await edit_or_reply(event,string,parse_mode='html')
 
 
 @catub.cat_cmd(
