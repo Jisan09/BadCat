@@ -7,6 +7,7 @@ flag = True
 check = 0
 while flag:
     try:
+        from . import nsfw as useless
         from .chatbot import *
         from .functions import *
         from .memeifyhelpers import *
@@ -14,7 +15,7 @@ while flag:
         from .qhelper import process
         from .tools import *
         from .utils import _cattools, _catutils, _format
-        from . import nsfw as useless
+
         break
     except ModuleNotFoundError as e:
         install_pip(e.name)
