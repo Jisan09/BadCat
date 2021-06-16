@@ -297,7 +297,6 @@ async def _(event):
 async def spy(event):
     "To see details of an ip."
     inpt = event.pattern_match.group(1)
-    rply = await reply_id(event)
     if not inpt:
         return await edit_delete(event, "**Give an ip address to lookup...**", 20)
     check = "" if inpt == "mine" else inpt
@@ -367,7 +366,7 @@ async def spy(event):
     <b>• Time :</b> <code>{current_time[11:16]}</code>\n\
     <b>• Date :</b> <code>{current_time[:10]}</code>\n\
     <b>• Time Offset :</b> <code>{current_time[-6:]}</code>"
-    await edit_or_reply(event, string, parse_mode="html", reply_to=rply)
+    await edit_or_reply(event, string, parse_mode="html")
 
 
 @catub.cat_cmd(
