@@ -9,6 +9,7 @@ import nekos
 import requests
 from fake_useragent import UserAgent
 from PIL import Image
+from simplejson.errors import JSONDecodeError
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
@@ -69,10 +70,16 @@ async def dva(event):
     reply_to = await reply_id(event)
     if await age_verification(event, reply_to):
         return
-    nsfw = requests.get(
-        "https://api.computerfreaker.cf/v1/dva", headers={"User-Agent": user_agent()}
-    ).json()
-    url = nsfw.get("url")
+    try:
+        nsfw = requests.get(
+            "https://api.computerfreaker.cf/v1/dva",
+            headers={"User-Agent": user_agent()},
+        ).json()
+        url = nsfw.get("url")
+    except JSONDecodeError:
+        return await edit_delete(
+            event, "`uuuf.. seems like api down, try again later.`"
+        )
     if not url:
         return await edit_delete(event, "`uuuf.. No URL found from the API`")
     await event.client.send_file(event.chat_id, file=url, reply_to=reply_to)
