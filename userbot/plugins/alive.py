@@ -42,8 +42,7 @@ async def amireallyalive(event):
     CAT_IMG = gvarstatus("ALIVE_PIC")
     if CAT_IMG:
         CAT = [x for x in CAT_IMG.split()]
-        A_IMG = list(CAT)
-        PIC = random.choice(A_IMG)
+        PIC = random.choice(CAT)
         cat_caption = f"**{ALIVE_TEXT}**\n\n"
         cat_caption += f"**{EMOJI} Master : {mention}**\n"
         cat_caption += f"**{EMOJI} Uptime :** `{uptime}\n`"
