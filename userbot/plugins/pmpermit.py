@@ -867,6 +867,7 @@ async def unblock_pm(event):
         )
     if event.is_private:
         user = await event.get_chat()
+        reason = event.pattern_match.group(1)
     else:
         user, reason = await get_user_from_event(event)
         if not user:
