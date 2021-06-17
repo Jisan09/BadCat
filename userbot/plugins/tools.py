@@ -67,10 +67,9 @@ async def currency(event):
         try:
             result = aresponse[f"{fromcurrency}_{tocurrency}"]
         except KeyError as e:
-            LOGS.info(e)
             return await edit_delete(
                 event,
-                "__You have used wrong currency codes or Api can't fetch details.__",
+                "__You have used wrong currency codes or Api might block your ip so can't fetch details.\n Try restart your bot once and check.__",
             )
         output = float(value) * float(result)
         output = round(output, 4)
