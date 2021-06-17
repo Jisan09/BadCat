@@ -3,16 +3,17 @@
 
 import asyncio
 import os
+
 import requests
 from bs4 import BeautifulSoup
-from urlextract import URLExtract
 from pySmartDL import SmartDL
 from telethon.errors.rpcerrorlist import WebpageCurlFailedError
+from urlextract import URLExtract
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
 from ..helpers.utils import _catutils, reply_id
-from . import catub,useless
+from . import catub, useless
 
 API = useless.API
 horny = useless.nsfw(useless.pawn)
@@ -249,7 +250,7 @@ async def pussy(event):
         )
     i = 1
     pwnlist = f"<b>{count} results for {sub_r} :</b>\n\n"
-    for m, t in zip(media_url,title):
+    for m, t in zip(media_url, title):
         if "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
         else:
@@ -297,7 +298,9 @@ async def pussy(event):
     soup = BeautifulSoup(page, "html.parser")
     col = soup.findAll("div", {"class": "thumb"})
     if not col:
-        return await edit_delete(event, "`No links found for that query , try differnt search...`",60)
+        return await edit_delete(
+            event, "`No links found for that query , try differnt search...`", 60
+        )
     await edit_or_reply(event, "**Just hold a min you horny kid...**")
     listlink = []
     listname = []
@@ -308,20 +311,25 @@ async def pussy(event):
         listlink.append(links)
         name = tmplink.split("/")[2]
         listname.append(name)
-    await edit_or_reply(event, f"**{len(listlink)} results found for {xtext} :\nSending {xcount} results out of them.**")
+    await edit_or_reply(
+        event,
+        f"**{len(listlink)} results found for {xtext} :\nSending {xcount} results out of them.**",
+    )
     string = f"<b>Showing {xcount}/{len(listlink)} results for {xtext}.</b>\n\n"
-    mylink = listlink[:int(xcount)] if xcount else listlink
+    mylink = listlink[: int(xcount)] if xcount else listlink
     count = 1
-    for l,n in zip(mylink,listname):
+    for l, n in zip(mylink, listname):
         req = requests.get(l)
         soup = BeautifulSoup(req.content, "html.parser")
         soups = soup.find("div", {"id": "video-player-bg"})
         for a in soups.find_all("a", href=True):
             link = a["href"]
-        string += f"<b><i>{count}. <a href = {link}>{n.replace('_',' ').title()}</a></b>\n"
+        string += (
+            f"<b><i>{count}. <a href = {link}>{n.replace('_',' ').title()}</a></b>\n"
+        )
         count += 1
-    await edit_or_reply(event,string,parse_mode="html")
-    
+    await edit_or_reply(event, string, parse_mode="html")
+
 
 @catub.cat_cmd(
     pattern="linkdl(?: |$)([\s\S]*)",
@@ -357,11 +365,10 @@ async def cat(event):
                 event, "**(ノಠ益ಠ)ノ Give me a vaid link to download**"
             )
         if "xvideo" in m:
-            await edit_or_reply(
-                event, f"**It will take some time , so sit tight...**")
+            await edit_or_reply(event, f"**It will take some time , so sit tight...**")
             if not os.path.isdir("./xvdo"):
                 os.mkdir("./xvdo")
-            xvdo = SmartDL(m, "./xvdo/porn.mp4" ,progress_bar=False)
+            xvdo = SmartDL(m, "./xvdo/porn.mp4", progress_bar=False)
             xvdo.start(blocking=False)
             xvdo.wait("finished")
             media_url = "./xvdo/porn.mp4"
@@ -400,4 +407,3 @@ async def cat(event):
             if os.path.isdir("./xvdo"):
                 os.rmdir("./xvdo")
             await event.delete()
-
