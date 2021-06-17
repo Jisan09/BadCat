@@ -156,54 +156,6 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="iffuci(?: |$)(.*)",
-    command=("iffuci", plugin_category),
-    info={
-        "header": "To paste text to a paste bin.",
-        "description": "Create a paste or a shortened url using dogbin https://www.iffuci.tk",
-        "usage": ["{tr}iffuci <reply>", "{tr}iffuci text"],
-    },
-)
-async def _(event):
-    "To paste text to a paste bin."
-    catevent = await edit_or_reply(event, "`pasting to del dog.....`")
-    input_str = "".join(event.text.split(maxsplit=1)[1:])
-    if input_str:
-        message = input_str
-    elif event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        if previous_message.media:
-            downloaded_file_name = await event.client.download_media(
-                previous_message,
-                Config.TEMP_DIR,
-            )
-            m_list = None
-            with open(downloaded_file_name, "rb") as fd:
-                m_list = fd.readlines()
-            message = ""
-            try:
-                for m in m_list:
-                    message += m.decode("UTF-8")
-            except Exception:
-                message = "Usage : .paste <long text to include/reply to text file>"
-            os.remove(downloaded_file_name)
-        else:
-            message = previous_message.message
-    else:
-        message = "Usage : .paste <long text to include/reply to text file>"
-    url = "https://www.iffuci.tk/documents"
-    r = requests.post(url, data=message.encode("UTF-8")).json()
-    url = f"https://iffuci.tk/{r['key']}"
-    if r["isUrl"]:
-        nurl = f"https://iffuci.tk/v/{r['key']}"
-        await catevent.edit(
-            "code is pasted to {}. GoTo Original URL: {}".format(nurl, url)
-        )
-    else:
-        await catevent.edit("code is pasted to {}".format(url))
-
-
-@catub.cat_cmd(
     pattern="getpaste(?: |$)(.*)",
     command=("getpaste", plugin_category),
     info={
