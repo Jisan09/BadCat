@@ -66,7 +66,7 @@ async def currency(event):
         symbols = json.loads(re.sub(", *\n *}", "}", symbols.decode("utf-8")))
         try:
             result = aresponse[f"{fromcurrency}_{tocurrency}"]
-        except KeyError as e:
+        except KeyError:
             return await edit_delete(
                 event,
                 "__You have used wrong currency codes or Api might block your ip so can't fetch details.\n Try restart your bot once and check.__",
