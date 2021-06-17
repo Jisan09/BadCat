@@ -66,7 +66,8 @@ async def currency(event):
         symbols = json.loads(re.sub(", *\n *}", "}", symbols.decode("utf-8")))
         try:
             result = aresponse[f"{fromcurrency}_{tocurrency}"]
-        except KeyError:
+        except KeyError as e:
+            LOGS.info(e)
             return await edit_delete(
                 event,
                 "__You have used wrong currency codes or Api can't fetch details.__",
