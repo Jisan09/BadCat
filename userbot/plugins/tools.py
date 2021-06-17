@@ -35,7 +35,7 @@ LOGS = logging.getLogger(__name__)
         "description": "To find exchange rates of currencies.",
         "usage": "{tr}cur <value> <from currencyid> <to currencyid>",
         "examples": "{tr}cur 10 USD INR",
-        "note": "List of currency ids are [here](https://nekobin.com/vacuwocesa)",
+        "note": "List of currency ids are [Country & Currency](https://raw.githubusercontent.com/sandy1709/CatUserbot-Resources/master/Resources/Data/countrycurrency.txt) or [Only Currency data](https://raw.githubusercontent.com/sandy1709/CatUserbot-Resources/master/Resources/Data/currencynames.txt)",
     },
 )
 async def currency(event):
