@@ -2,15 +2,17 @@
 # All rights reserved.
 
 import asyncio
-
+import os
 import requests
 from bs4 import BeautifulSoup
+from urlextract import URLExtract
+from pySmartDL import SmartDL
 from telethon.errors.rpcerrorlist import WebpageCurlFailedError
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import age_verification
 from ..helpers.utils import _catutils, reply_id
-from . import catub, useless
+from . import catub,useless
 
 API = useless.API
 horny = useless.nsfw(useless.pawn)
@@ -245,9 +247,9 @@ async def pussy(event):
         return await edit_delete(
             event, "**(ノಠ益ಠ)ノ  Tou sure this a vaid catagory/subreddit ??**", time=20
         )
-    i = 0
+    i = 1
     pwnlist = f"<b>{count} results for {sub_r} :</b>\n\n"
-    for m, p, t in zip(media_url, postlink, title):
+    for m, t in zip(media_url,title):
         if "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
         else:
@@ -263,16 +265,69 @@ async def pussy(event):
                     media_url = links[0]
             except IndexError:
                 media_url = m
-        pwnlist += f"<b><i>{i+1}. <a href = {p}>{t}</a></i>   [<a href = {media_url}>Download</a>]</b>\n"
+        pwnlist += f"<b><i>{i}. <a href = {media_url}>{t}</a></b>\n"
         i += 1
     await edit_or_reply(event, pwnlist, parse_mode="html")
 
 
 @catub.cat_cmd(
+    pattern="xsearch(?: |$)(.*)",
+    command=("xsearch", plugin_category),
+    info={
+        "header": "Get a list porn video or gif.",
+        "usage": [
+            "{tr}xsearch",
+            "{tr}xsearch <search> <count> ",
+        ],
+        "examples": "{tr}xsearch stepsis;10",
+    },
+)
+async def pussy(event):
+    """Send a list of xvideos"""
+    intxt = event.pattern_match.group(1)
+    if intxt and ";" in intxt:
+        xtext, xcount = intxt.split(";")
+    elif intxt:
+        xtext = intxt
+        xcount = None
+    else:
+        xtext = "stepsis"
+        xcount = None
+    page = requests.get(f"https://www.xvideos.com/?k={xtext}").content
+    soup = BeautifulSoup(page, "html.parser")
+    col = soup.findAll("div", {"class": "thumb"})
+    if not col:
+        return await edit_delete(event, "`No links found for that query , try differnt search...`",60)
+    await edit_or_reply(event, "**Just hold a min you horny kid...**")
+    listlink = []
+    listname = []
+    for i in col:
+        a = i.find("a")
+        tmplink = a.get("href")
+        links = f"https://www.xvideos.com{tmplink}"
+        listlink.append(links)
+        name = tmplink.split("/")[2]
+        listname.append(name)
+    await edit_or_reply(event, f"**{len(listlink)} results found for {xtext} :\nSending {xcount} results out of them.**")
+    string = f"<b>Showing {xcount}/{len(listlink)} results for {xtext}.</b>\n\n"
+    mylink = listlink[:int(xcount)] if xcount else listlink
+    count = 1
+    for l,n in zip(mylink,listname):
+        req = requests.get(l)
+        soup = BeautifulSoup(req.content, "html.parser")
+        soups = soup.find("div", {"id": "video-player-bg"})
+        for a in soups.find_all("a", href=True):
+            link = a["href"]
+        string += f"<b><i>{count}. <a href = {link}>{n.replace('_',' ').title()}</a></b>\n"
+        count += 1
+    await edit_or_reply(event,string,parse_mode="html")
+    
+
+@catub.cat_cmd(
     pattern="linkdl(?: |$)([\s\S]*)",
     command=("linkdl", plugin_category),
     info={
-        "header": "download porn video or gif in bulk or single from imgur or redgif or direct link.\n\nFor multiple link give one space between links",
+        "header": "download porn video or gif in bulk or single from xvideos, imgur or redgif or direct link.\n\nFor multiple link give one space between links or reply to to any link contain text, like listporn or xsearch post",
         "usage": "{tr}linkdl <input link /reply to link>",
         "examples": "{tr}linkdl https://redgifs.com/watch/virtuousgorgeousindianspinyloach https://i.imgur.com/3Ffkon9.gifv",
     },
@@ -289,40 +344,51 @@ async def cat(event):
             event,
             "**ಠ∀ಠ  Reply to valid link or give valid link url as input...you moron!!**",
         )
-    plink = [x for x in intxt.split()]
+    extractor = URLExtract()
+    plink = extractor.find_urls(intxt)
     await edit_or_reply(event, "** Just hold a sec u horny kid...**")
     flag = await useless.importent(event)
     if flag:
         return
-    i = 0
+    i = 1
     for m in plink:
         if not m.startswith("https://"):
             return await edit_delete(
                 event, "**(ノಠ益ಠ)ノ Give me a vaid link to download**"
             )
-        if "https://i.imgur.com" in m and m.endswith(".gifv"):
+        if "xvideo" in m:
+            await edit_or_reply(
+                event, f"**It will take some time , so sit tight...**")
+            if not os.path.isdir("./xvdo"):
+                os.mkdir("./xvdo")
+            xvdo = SmartDL(m, "./xvdo/porn.mp4" ,progress_bar=False)
+            xvdo.start(blocking=False)
+            xvdo.wait("finished")
+            media_url = "./xvdo/porn.mp4"
+        elif "imgur" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
-        else:
+        elif "redgifs" in m:
+            source = requests.get(m)
+            soup = BeautifulSoup(source.text, "lxml")
+            links = [
+                itm["content"] for itm in soup.findAll("meta", property="og:video")
+            ]
             try:
-                source = requests.get(m)
-                soup = BeautifulSoup(source.text, "lxml")
-                links = [
-                    itm["content"] for itm in soup.findAll("meta", property="og:video")
-                ]
-                try:
-                    media_url = links[1]
-                except IndexError:
-                    media_url = links[0]
+                media_url = links[1]
             except IndexError:
-                media_url = m
+                media_url = links[0]
+        else:
+            media_url = m
         try:
             sandy = await event.client.send_file(
                 event.chat_id, media_url, reply_to=reply_to
             )
             if media_url.endswith((".mp4", ".gif")):
                 await _catutils.unsavegif(event, sandy)
+            if os.path.exists(media_url):
+                os.remove(media_url)
             await edit_or_reply(
-                event, f"**Download Started.\n\nFile Downloaded :  {i+1}/{len(plink)}**"
+                event, f"**Download Started.\n\nFile Downloaded :  {i}/{len(plink)}**"
             )
             await asyncio.sleep(2)
         except WebpageCurlFailedError:
@@ -331,4 +397,7 @@ async def cat(event):
             )
         i += 1
         if i == len(plink):
+            if os.path.isdir("./xvdo"):
+                os.rmdir("./xvdo")
             await event.delete()
+
