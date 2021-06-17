@@ -193,6 +193,8 @@ async def info(event):
     "To get group information"
     catevent = await edit_or_reply(event, "`Analysing the chat...`")
     chat = await get_chatinfo(event, catevent)
+    if chat is None:
+        return
     caption = await fetch_info(chat, event)
     try:
         await catevent.edit(caption, parse_mode="html")
@@ -236,7 +238,8 @@ async def get_chatinfo(event, catevent):
             await catevent.edit("`Channel or supergroup doesn't exist`")
             return None
         except (TypeError, ValueError) as err:
-            await catevent.edit(str(err))
+            LOGS.info(err)
+            await edit_delete(catevent, "**Error:**\n__Can't fetch the chat__")
             return None
     return chat_info
 
