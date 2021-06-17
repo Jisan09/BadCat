@@ -193,6 +193,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
             "{tr}update deploy",
         ],
     },
+    disable_errors=True,
 )
 async def upstream(event):
     "To check if the bot is up to date and update if specified"
@@ -272,6 +273,7 @@ async def upstream(event):
 
 @catub.cat_cmd(
     pattern="update deploy$",
+    disable_errors=True,
 )
 async def upstream(event):
     event = await edit_or_reply(event, "`Pulling the catpack repo wait a sec ....`")
