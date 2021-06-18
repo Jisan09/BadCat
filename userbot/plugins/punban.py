@@ -62,7 +62,7 @@ async def very(event):
                 "**(ノಠ益ಠ)ノ  Tou sure this a vaid catagory/subreddit ??**",
                 time=20,
             )
-        if "https://i.imgur.com" in media_url and media_url.endswith(".gifv"):
+        if "imgur" in media_url and media_url.endswith(".gifv"):
             media_url = media_url.replace(".gifv", ".mp4")
         else:
             try:
@@ -158,9 +158,9 @@ async def bad(event):
         )
     i = 0
     for m, p, t in zip(media_url, postlink, title):
-        if "https://i.imgur.com" in m and m.endswith(".gifv"):
+        if "imgur" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
-        else:
+        elif "redgifs" in m:
             try:
                 source = requests.get(m)
                 soup = BeautifulSoup(source.text, "lxml")
@@ -173,6 +173,8 @@ async def bad(event):
                     media_url = links[0]
             except IndexError:
                 media_url = m
+        else:
+            media_url = m
         try:
             sandy = await event.client.send_file(
                 event.chat_id,
@@ -251,15 +253,18 @@ async def pussy(event):
         if "imgur" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
         elif "redgifs" in m:
-            source = requests.get(m)
-            soup = BeautifulSoup(source.text, "lxml")
-            links = [
-                itm["content"] for itm in soup.findAll("meta", property="og:video")
-            ]
             try:
-                media_url = links[1]
+                source = requests.get(m)
+                soup = BeautifulSoup(source.text, "lxml")
+                links = [
+                    itm["content"] for itm in soup.findAll("meta", property="og:video")
+                ]
+                try:
+                    media_url = links[1]
+                except IndexError:
+                    media_url = links[0]
             except IndexError:
-                media_url = links[0]
+                media_url = m
         else:
             media_url = m
         pwnlist += f"<b><i>{i}. <a href = {media_url}>{t}</a></b>\n"
@@ -276,7 +281,7 @@ async def pussy(event):
             "{tr}xsearch",
             "{tr}xsearch <search> <count> ",
         ],
-        "examples": "{tr}xsearch stepsis;10",
+        "examples": "{tr}xsearch stepsis ; 10",
     },
 )
 async def pussy(event):
