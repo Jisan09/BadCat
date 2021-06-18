@@ -235,7 +235,6 @@ async def pussy(event):
     if await age_verification(event, reply_to):
         return
     title = []
-    postlink = []
     media_url = []
     try:
         for x in r["memes"]:
