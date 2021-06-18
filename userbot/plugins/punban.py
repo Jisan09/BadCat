@@ -278,7 +278,7 @@ async def pussy(event):
     pattern="xsearch(?: |$)(.*)",
     command=("xsearch", plugin_category),
     info={
-        "header": "Get a list porn video or gif.",
+        "header": "Get a list of porn videos from xvideo",
         "usage": [
             "{tr}xsearch",
             "{tr}xsearch <search> <count> ",
