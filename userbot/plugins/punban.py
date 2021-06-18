@@ -368,6 +368,12 @@ async def cat(event):
                 event, "**(ノಠ益ಠ)ノ Give me a vaid link to download**"
             )
         if "xvideo" in m:
+            if ".mp4" not in m:
+                req = requests.get(m)
+                soup = BeautifulSoup(req.content, "html.parser")
+                soups = soup.find("div", {"id": "video-player-bg"})
+                for a in soups.find_all("a", href=True):
+                    m = a["href"]
             await edit_or_reply(event, f"**It will take some time , so sit tight...**")
             if not os.path.isdir("./xvdo"):
                 os.mkdir("./xvdo")
@@ -412,4 +418,3 @@ async def cat(event):
         if i == len(plink):
             if os.path.isdir("./xvdo"):
                 os.rmdir("./xvdo")
-            await event.delete()
