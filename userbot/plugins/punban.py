@@ -239,8 +239,6 @@ async def pussy(event):
     media_url = []
     try:
         for x in r["memes"]:
-            postlink.append(x["postLink"])
-        for x in r["memes"]:
             title.append(x["title"])
         for x in r["memes"]:
             media_url.append(x["url"])
@@ -251,21 +249,20 @@ async def pussy(event):
     i = 1
     pwnlist = f"<b>{count} results for {sub_r} :</b>\n\n"
     for m, t in zip(media_url, title):
-        if "https://i.imgur.com" in m and m.endswith(".gifv"):
+        if "imgur" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
-        else:
+        elif "redgifs" in m:
+            source = requests.get(m)
+            soup = BeautifulSoup(source.text, "lxml")
+            links = [
+                itm["content"] for itm in soup.findAll("meta", property="og:video")
+            ]
             try:
-                source = requests.get(m)
-                soup = BeautifulSoup(source.text, "lxml")
-                links = [
-                    itm["content"] for itm in soup.findAll("meta", property="og:video")
-                ]
-                try:
-                    media_url = links[1]
-                except IndexError:
-                    media_url = links[0]
+                media_url = links[1]
             except IndexError:
-                media_url = m
+                media_url = links[0]
+        else:
+            media_url = m
         pwnlist += f"<b><i>{i}. <a href = {media_url}>{t}</a></b>\n"
         i += 1
     await edit_or_reply(event, pwnlist, parse_mode="html")
