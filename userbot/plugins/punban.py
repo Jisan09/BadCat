@@ -378,7 +378,7 @@ async def cat(event):
         if "xvideo" in m:
             if ".mp4" not in m:
                 req = requests.get(m)
-                soup = BeautifulSoup(req.text, "lxml"))
+                soup = BeautifulSoup(req.text, "lxml")
                 soups = soup.find("div", {"id": "video-player-bg"})
                 for a in soups.find_all("a", href=True):
                     m = a["href"]
