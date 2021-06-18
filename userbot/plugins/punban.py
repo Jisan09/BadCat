@@ -62,9 +62,9 @@ async def very(event):
                 "**(ノಠ益ಠ)ノ  Tou sure this a vaid catagory/subreddit ??**",
                 time=20,
             )
-        if "imgur" in media_url and media_url.endswith(".gifv"):
+        if "https://i.imgur.com" in media_url and media_url.endswith(".gifv"):
             media_url = media_url.replace(".gifv", ".mp4")
-        else:
+        elif "https://redgifs.com/watch" in media_url:
             try:
                 source = requests.get(media_url)
                 soup = BeautifulSoup(source.text, "lxml")
@@ -77,6 +77,8 @@ async def very(event):
                     media_url = links[0]
             except IndexError:
                 pass
+        else:
+            pass
         try:
             sandy = await event.client.send_file(
                 event.chat_id,
@@ -158,9 +160,9 @@ async def bad(event):
         )
     i = 0
     for m, p, t in zip(media_url, postlink, title):
-        if "imgur" in m and m.endswith(".gifv"):
+        if "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
-        elif "redgifs" in m:
+        elif "https://redgifs.com/watch" in m:
             try:
                 source = requests.get(m)
                 soup = BeautifulSoup(source.text, "lxml")
@@ -250,9 +252,9 @@ async def pussy(event):
     i = 1
     pwnlist = f"<b>{count} results for {sub_r} :</b>\n\n"
     for m, t in zip(media_url, title):
-        if "imgur" in m and m.endswith(".gifv"):
+        if "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
-        elif "redgifs" in m:
+        elif "https://redgifs.com/watch" in m:
             try:
                 source = requests.get(m)
                 soup = BeautifulSoup(source.text, "lxml")
@@ -373,18 +375,21 @@ async def cat(event):
             xvdo.start(blocking=False)
             xvdo.wait("finished")
             media_url = "./xvdo/porn.mp4"
-        elif "imgur" in m and m.endswith(".gifv"):
+        elif "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
-        elif "redgifs" in m:
-            source = requests.get(m)
-            soup = BeautifulSoup(source.text, "lxml")
-            links = [
-                itm["content"] for itm in soup.findAll("meta", property="og:video")
-            ]
+        elif "https://redgifs.com/watch" in m:
             try:
-                media_url = links[1]
+                source = requests.get(m)
+                soup = BeautifulSoup(source.text, "lxml")
+                links = [
+                    itm["content"] for itm in soup.findAll("meta", property="og:video")
+                ]
+                try:
+                    media_url = links[1]
+                except IndexError:
+                    media_url = links[0]
             except IndexError:
-                media_url = links[0]
+                media_url = m
         else:
             media_url = m
         try:
