@@ -305,7 +305,7 @@ async def pussy(event):
         xtext = intxt
     else:
         xtext = "stepsis"
-    page = requests.get(f"https://www.xvideos.com/?k={xtext}&p={int(i)}")
+    page = requests.get(f"https://www.xvideos.com/?k={xtext}&p={int(page)}")
     soup = BeautifulSoup(page.text, "lxml")
     col = soup.findAll("div", {"class": "thumb"})
     if not col:
