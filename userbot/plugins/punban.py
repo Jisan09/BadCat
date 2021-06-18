@@ -282,23 +282,31 @@ async def pussy(event):
         "usage": [
             "{tr}xsearch",
             "{tr}xsearch <search> <count> ",
+            "{tr}xsearch <search> ; <count> ; <page no>",
         ],
-        "examples": "{tr}xsearch stepsis ; 10",
+        "examples": [
+            "{tr}xsearch",
+            "{tr}xsearch stepsis ; 10",
+            "{tr}xsearch stepsis ; 10 ; 3",
+        ],
     },
 )
 async def pussy(event):
     """Send a list of xvideos"""
     intxt = event.pattern_match.group(1)
+    page = 0
+    xcount = None
     if intxt and ";" in intxt:
-        xtext, xcount = intxt.split(";")
+        try:
+            xtext, xcount, page = intxt.split(";")
+        except ValueError:
+            xtext, xcount = intxt.split(";")
     elif intxt:
         xtext = intxt
-        xcount = None
     else:
         xtext = "stepsis"
-        xcount = None
-    page = requests.get(f"https://www.xvideos.com/?k={xtext}").content
-    soup = BeautifulSoup(page, "html.parser")
+    page = requests.get(f"https://www.xvideos.com/?k={xtext}&p={int(i)}")
+    soup = BeautifulSoup(page.text, "lxml")
     col = soup.findAll("div", {"class": "thumb"})
     if not col:
         return await edit_delete(
@@ -323,7 +331,7 @@ async def pussy(event):
     count = 1
     for l, n in zip(mylink, listname):
         req = requests.get(l)
-        soup = BeautifulSoup(req.content, "html.parser")
+        soup = BeautifulSoup(req.text, "lxml")
         soups = soup.find("div", {"id": "video-player-bg"})
         for a in soups.find_all("a", href=True):
             link = a["href"]
@@ -370,7 +378,7 @@ async def cat(event):
         if "xvideo" in m:
             if ".mp4" not in m:
                 req = requests.get(m)
-                soup = BeautifulSoup(req.content, "html.parser")
+                soup = BeautifulSoup(req.text, "lxml"))
                 soups = soup.find("div", {"id": "video-player-bg"})
                 for a in soups.find_all("a", href=True):
                     m = a["href"]
