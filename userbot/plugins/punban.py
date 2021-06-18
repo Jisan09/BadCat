@@ -293,6 +293,7 @@ async def pussy(event):
 )
 async def cat(event):
     """Send a list of xvideos"""
+    reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
     page = 0
     xcount = None
