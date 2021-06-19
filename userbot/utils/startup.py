@@ -13,7 +13,7 @@ from userbot import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 from ..Config import Config
 from ..core.logger import logging
 from ..core.session import catub
-from ..helpers.utils import install_pip
+from ..helpers.utils.extdl import install_pip
 from ..sql_helper.global_collection import (
     del_keyword_collectionlist,
     get_item_collectionlist,
