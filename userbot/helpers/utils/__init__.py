@@ -1,4 +1,5 @@
 from .extdl import *
+from .paste import *
 
 flag = True
 check = 0
