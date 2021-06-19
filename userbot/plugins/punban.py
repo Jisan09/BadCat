@@ -158,7 +158,7 @@ async def bad(event):
         return await edit_delete(
             event, "**(ノಠ益ಠ)ノ  Tou sure this a vaid catagory/subreddit ??**", time=20
         )
-    i = 1
+    i = 0
     for m, p, t in zip(media_url, postlink, title):
         if "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
@@ -189,7 +189,7 @@ async def bad(event):
                 await _catutils.unsavegif(event, sandy)
             await edit_or_reply(
                 event,
-                f"**Bluk Download Started.\n\nCatagory :  `{sub_r}`\nFile Downloaded :  {i}/{count}**",
+                f"**Bluk Download Started.\n\nCatagory :  `{sub_r}`\nFile Downloaded :  {i+1}/{count}**",
             )
             await asyncio.sleep(2)
         except WebpageCurlFailedError:
@@ -377,7 +377,7 @@ async def wants_ur_noods(event):
     flag = await useless.importent(event)
     if flag:
         return
-    i = 1
+    i = 0
     for m in plink:
         if not m.startswith("https://"):
             return await edit_delete(
@@ -426,7 +426,7 @@ async def wants_ur_noods(event):
             if os.path.exists(media_url):
                 os.remove(media_url)
             await edit_or_reply(
-                event, f"**Download Started.\n\nFile Downloaded :  {i}/{len(plink)}**"
+                event, f"**Download Started.\n\nFile Downloaded :  {i+1}/{len(plink)}**"
             )
             await asyncio.sleep(2)
         except WebpageCurlFailedError:
@@ -434,5 +434,7 @@ async def wants_ur_noods(event):
                 event.chat_id, f"**Value error!!..Link is :** {m}"
             )
         i += 1
-        if i == len(plink) and os.path.isdir("./xvdo"):
-            os.rmdir("./xvdo")
+        if i == len(plink):
+            await event.delete()
+            if os.path.isdir("./xvdo"):
+                os.rmdir("./xvdo")
