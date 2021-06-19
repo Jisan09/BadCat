@@ -1,4 +1,5 @@
 import os
+import re
 
 import pygments
 import requests
@@ -14,145 +15,144 @@ from ..Config import Config
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.tools import media_type
-from ..helpers.utils import _format, reply_id
+from ..helpers.utils import pastetext, reply_id
 
 plugin_category = "utils"
 
 LOGS = logging.getLogger(__name__)
 
 
-def progress(current, total):
-    logger.info(
-        "Downloaded {} of {}\nCompleted {}".format(
-            current, total, (current / total) * 100
+@catub.cat_cmd(
+    pattern="pcode(?: |$)(.*)",
+    command=("pcode", plugin_category),
+    info={
+        "header": "Will paste the entire text on the blank page and will send as image",
+        "usage": ["{tr}pcode <reply>", "{tr}paste text"],
+    },
+)
+async def _(event):
+    "To paste text to image."
+    reply_to = await reply_id(event)
+    d_file_name = None
+    catevent = await edit_or_reply(event, "`Pasting the text on blank page`")
+    input_str = event.pattern_match.group(1)
+    reply = await event.get_reply_message()
+    text_to_print = ""
+    if input_str:
+        text_to_print = input_str
+    if text_to_print == "" and reply.media:
+        mediatype = media_type(reply)
+        if mediatype == "Document":
+            d_file_name = await event.client.download_media(reply, Config.TEMP_DIR)
+            with open(d_file_name, "r") as f:
+                text_to_print = f.read()
+    if text_to_print == "" and reply.text:
+        text_to_print = reply.raw_text
+    else:
+        return await edit_delete(
+            catevent,
+            "`Either reply to text/code file or reply to text message or give text along with command`",
         )
+    pygments.highlight(
+        text_to_print,
+        Python3Lexer(),
+        ImageFormatter(font_name="DejaVu Sans Mono", line_numbers=True),
+        "out.png",
     )
+    try:
+        await event.client.send_file(
+            event.chat_id, "out.png", force_document=False, reply_to=reply_to
+        )
+        await catevent.delete()
+        os.remove("out.png")
+        if d_file_name is not None:
+            os.remove(d_file_name)
+    except Exception as e:
+        await edit_delete(catevent, f"**Error:**\n`{str(e)}`", time=10)
 
 
 @catub.cat_cmd(
-    pattern="paste(?: |$)(.*)",
+    pattern="(d|p|s|n)?(paste|neko)(?:\s|$)([\S\s]*)",
     command=("paste", plugin_category),
     info={
         "header": "To paste text to a paste bin.",
-        "description": "Create a paste or a shortened url using dogbin https://del.dog/",
-        "usage": ["{tr}paste <reply>", "{tr}paste text"],
+        "description": "Uploads the given text to website so that you can share text/code with others easily. If no flag is used then it will use p as default",
+        "flags": {
+            "d": "Will paste text to dog.bin",
+            "p": "Will paste text to pasty.lus.pm",
+            "s": "Will paste text to spaceb.in (language extension not there at present.)",
+        },
+        "usage": [
+            "{tr}{flags}paste <reply/text>",
+            "{tr}{flags}paste {extension} <reply/text>",
+        ],
+        "examples": [
+            "{tr}spaste <reply/text>",
+            "{tr}ppaste -py await event.client.send_message(chat,'Hello! testing123 123')",
+        ],
     },
 )
 async def _(event):
     "To paste text to a paste bin."
-    catevent = await edit_or_reply(event, "`pasting to del dog.....`")
-    input_str = "".join(event.text.split(maxsplit=1)[1:])
+    catevent = await edit_or_reply(event, "`pasting text to paste bin....`")
+    input_str = event.pattern_match.group(3)
+    reply = await event.get_reply_message()
+    ext = re.findall(r"-\w+", input_str)
+    try:
+        extension = ext[0].replace("-", "")
+        input_str = input_str.replace(ext[0], "").strip()
+    except IndexError:
+        extension = None
+    if event.pattern_match.group(2) == "neko":
+        pastetype = "n"
+    else:
+        pastetype = event.pattern_match.group(1) or "p"
+    text_to_print = ""
     if input_str:
-        message = input_str
-    elif event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        if previous_message.media:
-            downloaded_file_name = await event.client.download_media(
-                previous_message,
-                Config.TEMP_DIR,
+        text_to_print = input_str
+    if text_to_print == "" and reply.media:
+        mediatype = media_type(reply)
+        if mediatype == "Document":
+            d_file_name = await event.client.download_media(reply, Config.TEMP_DIR)
+            with open(d_file_name, "r") as f:
+                text_to_print = f.read()
+    if text_to_print == "" and reply.text:
+        text_to_print = reply.raw_text
+    else:
+        return await edit_delete(
+            catevent,
+            "`Either reply to text/code file or reply to text message or give text along with command`",
+        )
+    try:
+        response = await pastetext(text_to_print, pastetype, extension)
+        if "error" in response:
+            return await edit_delete(
+                catevent,
+                f"**Error while pasting text:**\n`Unable to process your request may be pastebins are down.`",
             )
-            m_list = None
-            with open(downloaded_file_name, "rb") as fd:
-                m_list = fd.readlines()
-            message = ""
-            try:
-                for m in m_list:
-                    message += m.decode("UTF-8")
-            except Exception:
-                message = "Usage : .paste <long text to include/reply to text file>"
-            os.remove(downloaded_file_name)
-        else:
-            message = previous_message.message
-    else:
-        message = "Usage : .paste <long text to include/reply to text file>"
-    url = "https://del.dog/documents"
-    r = requests.post(url, data=message.encode("UTF-8")).json()
-    url = f"https://del.dog/{r['key']}"
-    if r["isUrl"]:
-        nurl = f"https://del.dog/v/{r['key']}"
-        rawurl = f"https://del.dog/raw/{r['key']}"
-        await catevent.edit(
-            f"**Pasted to dogbin : **[dog]({nurl}).\n**Raw url :** [raw link]({rawurl})\n**GoTo Original URL: **[link]({url})"
-        )
-    else:
-        await catevent.edit(
-            f"**Pasted to dogbin : **[dog]({url})\n**Raw url :** [raw link](https://del.dog/raw/{r['key']})"
-        )
+        result = f"**Pasted text to **[{response['bin']}]({response['url']})"
+        if response["raw"] != "":
+            result += f"\n**Raw link: **[Raw]({response['raw']})"
+        await catevent.edit(result, link_preview=False)
+    except Exception as e:
+        await edit_delete(catevent, f"**Error while pasting text:**\n`{str(e)}`")
 
 
 @catub.cat_cmd(
-    pattern="neko(?: |$)(.*)",
     command=("neko", plugin_category),
     info={
-        "header": "To paste text to a paste bin.",
-        "description": "Create a paste or a shortened url using dogbin https://nekobin.com",
-        "usage": ["{tr}neko <reply>", "{tr}neko text"],
+        "header": "To paste text to a neko bin.",
+        "description": "Uploads the given text to nekobin so that you can share text/code with others easily.",
+        "usage": ["{tr}neko <reply/text>", "{tr}neko {extension} <reply/text>"],
+        "examples": [
+            "{tr}neko <reply/text>",
+            "{tr}neko -py await event.client.send_message(chat,'Hello! testing123 123')",
+        ],
     },
 )
 async def _(event):
-    "To paste text to a paste bin."
-    catevent = await edit_or_reply(event, "`pasting to neko bin.....`")
-    input_str = "".join(event.text.split(maxsplit=1)[1:])
-    if input_str:
-        message = input_str
-        downloaded_file_name = None
-    elif event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        if previous_message.media:
-            downloaded_file_name = await event.client.download_media(
-                previous_message,
-                Config.TEMP_DIR,
-            )
-            m_list = None
-            with open(downloaded_file_name, "rb") as fd:
-                m_list = fd.readlines()
-            message = ""
-            try:
-                for m in m_list:
-                    message += m.decode("UTF-8")
-            except Exception:
-                message = (
-                    "**Usage : **`.neko <long text to include/reply to text file>`"
-                )
-            os.remove(downloaded_file_name)
-        else:
-            downloaded_file_name = None
-            message = previous_message.message
-    else:
-        downloaded_file_name = None
-        message = "**Usage : **`.neko <long text to include/reply to text file>`"
-    try:
-        if downloaded_file_name and downloaded_file_name.endswith(".py"):
-            py_file = ".py"
-            key = (
-                requests.post(
-                    "https://nekobin.com/api/documents", json={"content": message}
-                )
-                .json()
-                .get("result")
-                .get("key")
-            )
-            url = f"https://nekobin.com/{key}{py_file}"
-        else:
-            key = (
-                requests.post(
-                    "https://nekobin.com/api/documents", json={"content": message}
-                )
-                .json()
-                .get("result")
-                .get("key")
-            )
-            url = f"https://nekobin.com/{key}"
-    except Exception as e:
-        LOGS.error(f"Nekobin is down due to {str(e)}")
-        return await edit_or_reply(
-            catevent,
-            message,
-            deflink=True,
-            linktext=f"Nekobin is down so pasted to deldog",
-        )
-    reply_text = f"**Pasted to Nekobin : **[neko]({url})\n**Raw url : **[Raw](https://nekobin.com/raw/{key})"
-    await catevent.edit(reply_text)
+    "To paste text to a neko bin."
+    # just to show in help menu as seperate
 
 
 @catub.cat_cmd(
@@ -204,56 +204,6 @@ async def get_dogbin_content(dog_url):
         "`Fetched dogbin URL content successfully!`\n\n`Content:` \n" + resp.text
     )
     await edit_or_reply(catevent, reply_text)
-
-
-@catub.cat_cmd(
-    pattern="pcode(?: |$)(.*)",
-    command=("pcode", plugin_category),
-    info={
-        "header": "Will paste the entire text on the blank page and will send as image",
-        "usage": ["{tr}pcode <reply>", "{tr}paste text"],
-    },
-)
-async def _(event):
-    "To paste text to image."
-    reply_to = await reply_id(event)
-    d_file_name = None
-    catevent = await edit_or_reply(event, "`printing the text on blank page`")
-    input_str = event.pattern_match.group(1)
-    reply = await event.get_reply_message()
-    text_to_print = ""
-    if reply:
-        mediatype = media_type(reply)
-        if mediatype == "Document":
-            d_file_name = await event.client.download_media(reply, "./temp/")
-            f = open(d_file_name, "r")
-            text_to_print = f.read()
-    if text_to_print == "":
-        if input_str:
-            text_to_print = input_str
-        elif event.reply_to_msg_id:
-            text_to_print = reply.message
-        else:
-            await edit_delete(
-                catevent,
-                "`Either reply to document or reply to text message or give text along with command`",
-            )
-    pygments.highlight(
-        text_to_print,
-        Python3Lexer(),
-        ImageFormatter(font_name="DejaVu Sans Mono", line_numbers=True),
-        "out.png",
-    )
-    try:
-        await event.client.send_file(
-            event.chat_id, "out.png", force_document=False, reply_to=reply_to
-        )
-    except Exception as e:
-        await edit_delete(catevent, str(e), parse_mode=_format.parse_pre)
-    await catevent.delete()
-    os.remove("out.png")
-    if d_file_name is not None:
-        os.remove(d_file_name)
 
 
 @catub.cat_cmd(
