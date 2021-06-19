@@ -8,6 +8,7 @@ from pygments.lexers import Python3Lexer
 from requests import exceptions, get
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.utils import get_extension
 
 from userbot import catub
 
@@ -20,6 +21,19 @@ from ..helpers.utils import pastetext, reply_id
 plugin_category = "utils"
 
 LOGS = logging.getLogger(__name__)
+
+pastebins = {
+    "Pasty": "p",
+    "Neko": "n",
+    "Spacebin": "s",
+    "Dog": "d",
+}
+
+
+def get_key(val):
+    for key, value in pastebins.items():
+        if val == value:
+            return key
 
 
 @catub.cat_cmd(
@@ -46,13 +60,14 @@ async def _(event):
             d_file_name = await event.client.download_media(reply, Config.TEMP_DIR)
             with open(d_file_name, "r") as f:
                 text_to_print = f.read()
-    if text_to_print == "" and reply.text:
-        text_to_print = reply.raw_text
-    else:
-        return await edit_delete(
-            catevent,
-            "`Either reply to text/code file or reply to text message or give text along with command`",
-        )
+    if text_to_print == "":
+        if reply.text:
+            text_to_print = reply.raw_text
+        else:
+            return await edit_delete(
+                catevent,
+                "`Either reply to text/code file or reply to text message or give text along with command`",
+            )
     pygments.highlight(
         text_to_print,
         Python3Lexer(),
@@ -114,15 +129,20 @@ async def _(event):
         mediatype = media_type(reply)
         if mediatype == "Document":
             d_file_name = await event.client.download_media(reply, Config.TEMP_DIR)
+            if extension is None:
+                extension = get_extension(reply.document)
             with open(d_file_name, "r") as f:
                 text_to_print = f.read()
-    if text_to_print == "" and reply.text:
-        text_to_print = reply.raw_text
-    else:
-        return await edit_delete(
-            catevent,
-            "`Either reply to text/code file or reply to text message or give text along with command`",
-        )
+    if text_to_print == "":
+        if reply.text:
+            text_to_print = reply.raw_text
+        else:
+            return await edit_delete(
+                catevent,
+                "`Either reply to text/code file or reply to text message or give text along with command`",
+            )
+    if extension.startswith("."):
+        extension = extension[1:]
     try:
         response = await pastetext(text_to_print, pastetype, extension)
         if "error" in response:
@@ -130,10 +150,13 @@ async def _(event):
                 catevent,
                 f"**Error while pasting text:**\n`Unable to process your request may be pastebins are down.`",
             )
-        result = f"**Pasted text to **[{response['bin']}]({response['url']})"
+        result = ""
+        if pastebins[response["bin"]] != pastetype:
+            result += f"<b>{get_key(pastetype)} is down, So </b>"
+        result += f"<b>Pasted to: <a href={response['url']}>{response['bin']}</a></b>"
         if response["raw"] != "":
-            result += f"\n**Raw link: **[Raw]({response['raw']})"
-        await catevent.edit(result, link_preview=False)
+            result += f"\n<b>Raw link: <a href={response['raw']}>Raw</a></b>"
+        await catevent.edit(result, link_preview=False, parse_mode="html")
     except Exception as e:
         await edit_delete(catevent, f"**Error while pasting text:**\n`{str(e)}`")
 
