@@ -6,6 +6,7 @@ from ...Config import Config
 from ...core.logger import logging
 
 LOGS = logging.getLogger("CatUserbot")
+
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36",
     "content-type": "application/json",
@@ -27,7 +28,7 @@ async def p_paste(message, extension=None):
         purl = (
             f"https://pasty.lus.pm/{response['id']}.{extension}"
             if extension
-            else f"https://pasty.lus.pm/{response['id']}"
+            else f"https://pasty.lus.pm/{response['id']}.txt"
         )
         try:
             from ...core.session import catub
