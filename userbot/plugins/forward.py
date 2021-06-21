@@ -41,12 +41,11 @@ async def all_groups_id(cat):
 )
 async def _(event):
     "To get view counter for the message"
-    if Config.PRIVATE_CHANNEL_BOT_API_ID is None:
-        await edit_or_reply(
+    if Config.PRIVATE_CHANNEL_BOT_API_ID == 0:
+        return await edit_or_reply(
             event,
             "Please set the required environment variable `PRIVATE_CHANNEL_BOT_API_ID` for this plugin to work",
         )
-        return
     try:
         e = await event.client.get_entity(Config.PRIVATE_CHANNEL_BOT_API_ID)
     except Exception as e:
