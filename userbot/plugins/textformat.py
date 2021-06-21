@@ -1,9 +1,8 @@
-
 from userbot import catub
+
 from ..core.managers import edit_delete, edit_or_reply
 
 plugin_category = "Extra"
-
 
 
 @catub.cat_cmd(
@@ -12,7 +11,7 @@ plugin_category = "Extra"
     info={
         "header": "Text operation change to upper text",
         "usage": "{tr}upper <input text /reply to text>",
-        "examples":"{tr}upper Reply to valid text or give valid text as input",
+        "examples": "{tr}upper Reply to valid text or give valid text as input",
     },
 )
 async def some(event):
@@ -22,18 +21,20 @@ async def some(event):
     if not intxt and reply:
         intxt = reply.text
     if not intxt:
-        return await edit_delete(event,"**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**")
+        return await edit_delete(
+            event, "**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**"
+        )
     mystring = intxt.upper()
-    await edit_or_reply(event,mystring)
-    
-    
+    await edit_or_reply(event, mystring)
+
+
 @catub.cat_cmd(
     pattern="lower(?: |$)([\s\S]*)",
     command=("lower", plugin_category),
     info={
         "header": "Text operation change to lower text",
         "usage": "{tr}lower <input text /reply to text>",
-        "examples":"{tr}lower Reply to valid text or give valid text as input",
+        "examples": "{tr}lower Reply to valid text or give valid text as input",
     },
 )
 async def good(event):
@@ -43,18 +44,20 @@ async def good(event):
     if not intxt and reply:
         intxt = reply.text
     if not intxt:
-        return await edit_delete(event,"**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**")
+        return await edit_delete(
+            event, "**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**"
+        )
     mystring = intxt.lower()
-    await edit_or_reply(event,mystring)
-    
-    
+    await edit_or_reply(event, mystring)
+
+
 @catub.cat_cmd(
     pattern="title(?: |$)([\s\S]*)",
     command=("title", plugin_category),
     info={
         "header": "Text operation change to title text",
         "usage": "{tr}title<input text /reply to text>",
-        "examples":"{tr}title Reply to valid text or give valid text as input",
+        "examples": "{tr}title Reply to valid text or give valid text as input",
     },
 )
 async def stuff(event):
@@ -64,9 +67,11 @@ async def stuff(event):
     if not intxt and reply:
         intxt = reply.text
     if not intxt:
-        return await edit_delete(event,"**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**")
+        return await edit_delete(
+            event, "**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**"
+        )
     mystring = intxt.title()
-    await edit_or_reply(event,mystring)
+    await edit_or_reply(event, mystring)
 
 
 @catub.cat_cmd(
@@ -78,7 +83,7 @@ async def stuff(event):
             "{tr}camel <input text /reply to text>",
             "{tr}rcamel <input text /reply to text>",
         ],
-        "examples":[
+        "examples": [
             "{tr}camel Reply to valid text or give valid text as input",
             "{tr}rcamel Reply to valid text or give valid text as input",
         ],
@@ -92,7 +97,9 @@ async def here(event):
     if not intxt and reply:
         intxt = reply.text
     if not intxt:
-        return await edit_delete(event,"**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**")
+        return await edit_delete(
+            event, "**ಠ∀ಠ  Reply to valid text or give text as input...you moron!!**"
+        )
     if cmd == "r":
         bad = list(intxt.lower())[::2]
         cat = list(intxt.upper())[1::2]
@@ -101,5 +108,5 @@ async def here(event):
         cat = list(intxt.lower())[1::2]
     mystring = ""
     for i, j in zip(bad, cat):
-        mystring+=f"{i}{j}"
-    await edit_or_reply(event,mystring)
+        mystring += f"{i}{j}"
+    await edit_or_reply(event, mystring)
