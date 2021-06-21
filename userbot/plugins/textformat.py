@@ -77,11 +77,11 @@ async def stuff(event):
         "usage": [
             "{tr}camel <input text /reply to text>",
             "{tr}rcamel <input text /reply to text>",
-        ]
+        ],
         "examples":[
             "{tr}camel Reply to valid text or give valid text as input",
             "{tr}rcamel Reply to valid text or give valid text as input",
-        ]
+        ],
     },
 )
 async def here(event):
