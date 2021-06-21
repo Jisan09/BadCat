@@ -102,7 +102,10 @@ async def gsearch(q_event):
         lim = 5
     search_args = (str(match), int(page))
     gsearch = GoogleSearch()
-    gresults = await gsearch.async_search(*search_args)
+    try:
+        gresults = await gsearch.async_search(*search_args)
+    except Exception as e:
+        return await edit_delete(catevent, f"**Error:**\n`{str(e)}`", time=10)
     msg = ""
     for i in range(lim):
         if i > len(gresults["links"]):
