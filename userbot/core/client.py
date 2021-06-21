@@ -11,7 +11,7 @@ from telethon.errors import MessageIdInvalidError, MessageNotModifiedError
 
 from ..Config import Config
 from ..helpers.utils.events import checking
-from ..helpers.utils.format import paste_text
+from ..helpers.utils.format import paste_message
 from ..helpers.utils.utils import runcmd
 from ..sql_helper.globals import gvarstatus
 from . import BOT_INFO, CMD_INFO, GRP_INFO, LOADED_CMDS, PLG_INFO
@@ -137,7 +137,7 @@ class CatUserBotClient(TelegramClient):
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
                         ftext += result
-                        pastelink = paste_text(ftext, markdown=False)
+                        pastelink = await paste_message(ftext, markdown=False)
                         text = "**CatUserbot Error report**\n\n"
                         link = "[here](https://t.me/catuserbot_support)"
                         text += "If you wanna you can report it"
@@ -252,7 +252,7 @@ class CatUserBotClient(TelegramClient):
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
                         ftext += result
-                        pastelink = paste_text(ftext, markdown=False)
+                        pastelink = await paste_message(ftext, markdown=False)
                         text = "**CatUserbot Error report**\n\n"
                         link = "[here](https://t.me/catuserbot_support)"
                         text += "If you wanna you can report it"
