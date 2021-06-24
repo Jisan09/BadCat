@@ -278,7 +278,7 @@ async def _(event):
     except Exception as e:
         await edit_delete(event, f"**Error:**\n`{str(e)}`", 5)
 
-        
+
 @catub.cat_cmd(
     pattern="ip(?: |$)(.*)",
     command=("ip", plugin_category),
