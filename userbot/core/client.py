@@ -17,7 +17,7 @@ from ..sql_helper.globals import gvarstatus
 from . import BOT_INFO, CMD_INFO, GRP_INFO, LOADED_CMDS, PLG_INFO
 from .cmdinfo import _format_about
 from .data import _sudousers_list, blacklist_chats_list, sudo_enabled_cmds
-from .events import MessageEdited, NewMessage
+from .events import *
 from .fasttelethon import download_file, upload_file
 from .logger import logging
 from .managers import edit_delete
@@ -265,12 +265,12 @@ class CatUserBotClient(TelegramClient):
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
 
-            from .session import tgbot
+            from .session import catub
 
             if edited is True:
-                tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
+                catub.tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
             else:
-                tgbot.add_event_handler(func, events.NewMessage(**kwargs))
+                catub.tgbot.add_event_handler(func, events.NewMessage(**kwargs))
 
             return wrapper
 
@@ -297,3 +297,6 @@ CatUserBotClient.fast_upload_file = upload_file
 CatUserBotClient.reload = restart_script
 CatUserBotClient.get_msg_link = get_message_link
 CatUserBotClient.check_testcases = checking
+CatUserBotClient.send_message = send_message
+CatUserBotClient.send_file = send_file
+CatUserBotClient.edit_message = edit_message
