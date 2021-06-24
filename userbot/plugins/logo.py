@@ -62,7 +62,7 @@ async def very(event):
     if not text and reply:
         text = reply.text
     if not text:
-        return await edit_delete(event,"**ಠ∀ಠ Gimmi text to make logo**")
+        return await edit_delete(event, "**ಠ∀ಠ Gimmi text to make logo**")
     reply_to_id = await reply_id(event)
     catevent = await edit_or_reply(event, "`Processing.....`")
     LOGO_FONT_SIZE = gvarstatus("LOGO_FONT_SIZE") or 220
