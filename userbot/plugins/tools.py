@@ -35,7 +35,7 @@ LOGS = logging.getLogger(__name__)
         "description": "To find exchange rates of currencies.",
         "usage": "{tr}cur <value> <from currencyid> <to currencyid>",
         "examples": "{tr}cur 10 USD INR",
-        "note": "List of currency ids are [Country & Currency](https://raw.githubusercontent.com/sandy1709/CatUserbot-Resources/master/Resources/Data/countrycurrency.txt) or [Only Currency data](https://raw.githubusercontent.com/sandy1709/CatUserbot-Resources/master/Resources/Data/currencynames.txt)",
+        "note": "List of currency ids are [Country & Currency](https://da.gd/j588M) or [Only Currency data](https://da.gd/obZIdk)",
     },
 )
 async def currency(event):
@@ -69,7 +69,7 @@ async def currency(event):
         except KeyError:
             return await edit_delete(
                 event,
-                "__You have used wrong currency codes or Api might block your ip so can't fetch details.\n Try restart your bot once and check.__",
+                "__You have used wrong currency codes or Api can't fetch details.__",
             )
         output = float(value) * float(result)
         output = round(output, 4)
@@ -278,7 +278,7 @@ async def _(event):
     except Exception as e:
         await edit_delete(event, f"**Error:**\n`{str(e)}`", 5)
 
-
+        
 @catub.cat_cmd(
     pattern="ip(?: |$)(.*)",
     command=("ip", plugin_category),
