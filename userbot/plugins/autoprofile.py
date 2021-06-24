@@ -450,6 +450,7 @@ async def _(event):
             "autobio": "To stop autobio",
             "thorpfp": "To stop thorpfp",
             "batmanpfp": "To stop batmanpfp",
+            "spam": "To stop spam",
         },
         "usage": "{tr}end <option>",
         "examples": ["{tr}end autopic"],
@@ -530,6 +531,11 @@ async def _(event):  # sourcery no-metrics
             )
             return await edit_delete(event, "`Autobio has been stopped now`")
         return await edit_delete(event, "`Autobio haven't enabled`")
+    if input_str == "spam":
+        if gvarstatus("spamwork") is not None and gvarstatus("spamwork") == "true":
+            delgvar("spamwork")
+            return await edit_delete(event, "`Spam cmd has been stopped now`")
+        return await edit_delete(event, "`You haven't started spam`")
     END_CMDS = [
         "autopic",
         "digitalpfp",
@@ -538,6 +544,7 @@ async def _(event):  # sourcery no-metrics
         "autobio",
         "thorpfp",
         "batmanpfp",
+        "spam",
     ]
     if input_str not in END_CMDS:
         await edit_delete(
