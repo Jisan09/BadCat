@@ -11,7 +11,6 @@ from urlextract import URLExtract
 
 from userbot import catub
 
-extractor = URLExtract()
 from ..Config import Config
 from ..core.events import MessageEdited
 from ..core.logger import logging
@@ -20,6 +19,8 @@ from ..helpers.tools import media_type
 from ..helpers.utils import pastetext, reply_id
 
 plugin_category = "utils"
+
+extractor = URLExtract()
 
 LOGS = logging.getLogger(__name__)
 
@@ -190,53 +191,62 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="getpaste(?: |$)(.*)",
+    pattern="g(et)?paste(?: |$)(.*)",
     command=("getpaste", plugin_category),
     info={
-        "header": "To paste text into telegram from del dog link.",
-        "description": "Gets the content of a paste or shortened url from dogbin https://del.dog/",
-        "usage": ["{tr}getpaste <del dog link>"],
+        "header": "To paste text into telegram from pastebin link.",
+        "description": "Gets the content of a pastebin. You can provide link along with cmd or reply to link.",
+        "Support bins": ["pasty", "spacebin", "nekobin", "dogbin"],
+        "usage": ["{tr}getpaste <link>", "{tr}gpaste <link>"],
     },
 )
-async def get_dogbin_content(dog_url):
+async def get_dogbin_content(event):
     "To paste text into telegram from del dog link."
-    textx = await dog_url.get_reply_message()
-    message = dog_url.pattern_match.group(1)
-    catevent = await edit_or_reply(dog_url, "`Getting dogbin content...`")
-    if not message and textx:
-        message = str(textx.message)
-    format_normal = "https://del.dog/"
-    format_view = "https://del.dog/v/"
-
-    if message.startswith(format_view):
-        message = message[len(format_view) :]
-    elif message.startswith(format_normal):
-        message = message[len(format_normal) :]
-    elif message.startswith("del.dog/"):
-        message = message[len("del.dog/") :]
-    else:
-        await catevent.edit("`Is that even a dogbin url?`")
-        return
-    resp = requests.get(f"https://del.dog/raw/{message}")
+    textx = await event.get_reply_message()
+    url = event.pattern_match.group(2)
+    if not url and textx.text:
+        urls = extractor.find_urls(textx.text)
+        for iurl in urls:
+            if (
+                ("pasty" in iurl)
+                or ("spaceb" in iurl)
+                or ("nekobin" in iurl)
+                or ("dog" in iurl)
+            ):
+                url = iurl
+                break
+    if not url:
+        return await edit_delete(event, "__I can't find any pastebin link.__")
+    catevent = await edit_or_reply(event, "`Getting Contents of pastebin.....`")
+    rawurl = None
+    if "raw" in url:
+        rawurl = url
+    if rawurl is None:
+        fid = os.path.splitext((os.path.basename(url)))
+        if "pasty" in url:
+            rawurl = f"https://pasty.lus.pm/{fid[0]}/raw"
+        elif "spaceb" in url:
+            rawurl = f"https://spaceb.in/api/v1/documents/{fid[0]}/raw"
+        elif "nekobin" in url:
+            rawurl = f"nekobin.com/raw/{fid[0]}"
+        elif "dog" in url:
+            rawurl = f"https://del.dog/raw/{fid[0]}"
+    resp = requests.get(rawurl)
     try:
         resp.raise_for_status()
     except requests.exceptions.HTTPError as HTTPErr:
-        await catevent.edit(
-            "Request returned an unsuccessful status code.\n\n" + str(HTTPErr)
+        return await catevent.edit(
+            f"**Request returned an unsuccessful status code.**\n\n__{str(HTTPErr)}__"
         )
-        return
     except requests.exceptions.Timeout as TimeoutErr:
-        await catevent.edit("Request timed out." + str(TimeoutErr))
-        return
+        return await catevent.edit(f"**Request timed out.**__{str(TimeoutErr)}__")
     except requests.exceptions.TooManyRedirects as RedirectsErr:
-        await catevent.edit(
-            "Request exceeded the configured number of maximum redirections."
-            + str(RedirectsErr)
+        return await catevent.edit(
+            (
+                f"**Request exceeded the configured number of maximum redirections.**__{str(RedirectsErr)}__"
+            )
         )
-        return
-    reply_text = (
-        "`Fetched dogbin URL content successfully!`\n\n`Content:` \n" + resp.text
-    )
+    reply_text = f"**Fetched dogbin URL content successfully!**\n\n**Content:** \n```{resp.text}```"
     await edit_or_reply(catevent, reply_text)
 
 
