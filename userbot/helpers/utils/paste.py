@@ -41,7 +41,7 @@ async def p_paste(message, extension=None):
             LOGS.info(str(e))
         return {
             "url": purl,
-            "raw": "",
+            "raw": f"https://pasty.lus.pm/{response['id']}/raw",
             "bin": "Pasty",
         }
     return {"error": "Unable to reach pasty.lus.pm"}
@@ -120,18 +120,19 @@ async def d_paste(message, extension=None):
     return {"error": "Unable to reach dogbin."}
 
 
-async def pastetext(text_to_print, pastetype="p", extension=None):
+async def pastetext(text_to_print, pastetype=None, extension=None):
     response = {"error": "something went wrong"}
-    if pastetype == "p":
-        response = await p_paste(text_to_print, extension)
-    elif pastetype == "s" and extension:
-        response = await s_paste(text_to_print, extension)
-    elif pastetype == "s":
-        response = await s_paste(text_to_print)
-    elif pastetype == "d":
-        response = await d_paste(text_to_print, extension)
-    elif pastetype == "n":
-        response = await n_paste(text_to_print, extension)
+    if pastetype is not None:
+        if pastetype == "p":
+            response = await p_paste(text_to_print, extension)
+        elif pastetype == "s" and extension:
+            response = await s_paste(text_to_print, extension)
+        elif pastetype == "s":
+            response = await s_paste(text_to_print)
+        elif pastetype == "d":
+            response = await d_paste(text_to_print, extension)
+        elif pastetype == "n":
+            response = await n_paste(text_to_print, extension)
     if "error" in response:
         response = await p_paste(text_to_print, extension)
     if "error" in response:
