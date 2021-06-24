@@ -1,8 +1,7 @@
 import asyncio
 import os
-import re
 
-from ..helpers.utils.format import paste_message
+from ..helpers.utils.format import md_to_text, paste_message
 from .data import _sudousers_list
 
 
@@ -36,9 +35,7 @@ async def edit_or_reply(
         await event.edit(text, parse_mode=parse_mode, link_preview=link_preview)
         return event
     if not noformat:
-        asciich = ["**", "`", "__"]
-        for i in asciich:
-            text = re.sub(rf"\{i}", "", text)
+        text = md_to_text(text)
     if aslink or deflink:
         linktext = linktext or "Message was to big so pasted to bin"
         response = await paste_message(text)
