@@ -215,7 +215,7 @@ async def bad(event):
     },
 )
 async def pussy(event):
-    """Send a list of porn"""
+    """Send a list of reddit posts"""
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
     if intxt and " " in intxt:
@@ -292,7 +292,7 @@ async def pussy(event):
     },
 )
 async def cat(event):
-    """Send a list of xvideos"""
+    """Send a list of xvideos posts"""
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
     page = 0
@@ -358,7 +358,7 @@ async def cat(event):
     },
 )
 async def wants_ur_noods(event):
-    """Download porn from link"""
+    """Download ~~porns~~ *posts from link"""
     reply_to = await reply_id(event)
     intxt = event.pattern_match.group(1)
     reply = await event.get_reply_message()
