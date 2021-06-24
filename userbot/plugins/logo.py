@@ -36,7 +36,7 @@ plugin_category = "useless"
 
 
 @catub.cat_cmd(
-    pattern="(|s)logo(?: |$)(.*)",
+    pattern="(|s)logo(?: |$)([\s\S]*)",
     command=("logo", plugin_category),
     info={
         "header": "Make a logo in image or sticker",
@@ -58,8 +58,11 @@ async def very(event):
     "To create a logo"
     cmd = event.pattern_match.group(1).lower()
     text = event.pattern_match.group(2)
+    reply = await event.get_reply_message()
+    if not text and reply:
+        text = reply.text
     if not text:
-        return await edit_delete(event, "```Give some text to make the logo...```")
+        return await edit_delete(event,"**ಠ∀ಠ Gimmi text to make logo**")
     reply_to_id = await reply_id(event)
     catevent = await edit_or_reply(event, "`Processing.....`")
     LOGO_FONT_SIZE = gvarstatus("LOGO_FONT_SIZE") or 220
@@ -192,9 +195,9 @@ async def bad(event):
         "usage": [
             "{tr}lf <font name>",
             "{tr}lfc <logo font color>",
-            "{tr}lfs <1-100>",
-            "{tr}lfh <10-1000>",
-            "{tr}lfw <10-1000>",
+            "{tr}lfs <1-1000>",
+            "{tr}lfh <10-100>",
+            "{tr}lfw <10-100>",
         ],
         "examples": [
             "{tr}lf genau-font.ttf",
