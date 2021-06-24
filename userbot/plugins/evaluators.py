@@ -64,6 +64,14 @@ async def _(event):
     cmd = "".join(event.message.message.split(maxsplit=1)[1:])
     if not cmd:
         return await edit_delete(event, "`What should i run ?..`")
+    if (
+        ("sendmessage" in cmd) or ("sendfile" in cmd) or ("editmessage" in cmd)
+    ) and str(event.chat_id) != str(BOTLOG_CHATID):
+
+        return await edit_delete(
+            event,
+            "__I am not stupid to run this code in public. if you want to use then use it in bot log group.__",
+        )
     catevent = await edit_or_reply(event, "`Running ...`")
     old_stderr = sys.stderr
     old_stdout = sys.stdout
