@@ -26,6 +26,9 @@ from ..helpers.utils import _cattools, reply_id
 
 jikan = Jikan()
 url = "https://graphql.anilist.co"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+}
 plugin_category = "extra"
 
 
@@ -245,7 +248,7 @@ async def anime_download(event):  # sourcery no-metrics
     search_query = search_query.replace(" ", "+")
     if input_str == "kaizoku":
         search_url = f"https://animekaizoku.com/?s={search_query}"
-        html_text = requests.get(search_url).text
+        html_text = requests.get(search_url, headers=headers).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {"class": "post-title"})
         if search_result:
@@ -258,7 +261,7 @@ async def anime_download(event):  # sourcery no-metrics
             result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKaizoku</code>"
     elif input_str == "kayo":
         search_url = f"https://animekayo.com/?s={search_query}"
-        html_text = requests.get(search_url).text
+        html_text = requests.get(search_url, headers=headers).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {"class": "title"})
         result = f"<a href={search_url}>Click Here For More Results</a> <b>of</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKayo</code>: \n\n"
@@ -274,7 +277,7 @@ async def anime_download(event):  # sourcery no-metrics
             result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKayo</code>"
     elif input_str == "indi":
         search_url = f"https://indianime.com/?s={search_query}"
-        html_text = requests.get(search_url).text
+        html_text = requests.get(search_url, headers=headers).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h1", {"class": "elementor-post__title"})
         result = f"<a href={search_url}>Click Here For More Results</a> <b>of</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>indianime</code>: \n\n"
@@ -285,7 +288,7 @@ async def anime_download(event):  # sourcery no-metrics
                     break
                 post_link = entry.a["href"]
                 post_name = html.escape(entry.text.strip())
-            result += f"• <a href={post_link}>{post_name}</a>\n"
+                result += f"• <a href={post_link}>{post_name}</a>\n"
         else:
             result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>IndiAnime</code>"
     await catevent.edit(result, parse_mode="html")
