@@ -297,6 +297,9 @@ CatUserBotClient.fast_upload_file = upload_file
 CatUserBotClient.reload = restart_script
 CatUserBotClient.get_msg_link = get_message_link
 CatUserBotClient.check_testcases = checking
-CatUserBotClient.send_message = send_message
-CatUserBotClient.send_file = send_file
-CatUserBotClient.edit_message = edit_message
+try:
+    send_message_check = TelegramClient.send_message
+except AttributeError:
+    CatUserBotClient.send_message = send_message
+    CatUserBotClient.send_file = send_file
+    CatUserBotClient.edit_message = edit_message
