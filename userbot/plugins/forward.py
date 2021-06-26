@@ -1,6 +1,6 @@
 import string
 
-from telethon.tl.types import Channel
+from telethon.tl.types import Channel, MessageMediaWebPage
 
 from userbot import catub
 from userbot.core.logger import logging
@@ -78,7 +78,9 @@ async def _(event):
     m = await event.get_reply_message()
     if not m:
         return
-    await event.respond(m)
+    if m.media and not isinstance(m.media, MessageMediaWebPage):
+        return await event.client.send_file(event.chat_id, m.media, caption=m.text)
+    await event.client.send_message(event.chat_id, m.text)
 
 
 @catub.cat_cmd(
