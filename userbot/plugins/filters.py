@@ -41,7 +41,7 @@ async def filter_incoming_handler(handler):
 
 
 @catub.cat_cmd(
-    pattern="filter (.*)",
+    pattern="filter ([\s\S]*)",
     command=("filter", plugin_category),
     info={
         "header": "To save filter for the given keyword.",
@@ -116,7 +116,7 @@ async def on_snip_list(event):
 
 
 @catub.cat_cmd(
-    pattern="stop (.*)",
+    pattern="stop ([\s\S]*)",
     command=("stop", plugin_category),
     info={
         "header": "To delete that filter . so if user send that keyword bot will not reply",

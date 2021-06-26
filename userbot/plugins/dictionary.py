@@ -13,7 +13,7 @@ plugin_category = "utils"
 
 
 @catub.cat_cmd(
-    pattern="ud (.*)",
+    pattern="ud ([\s\S]*)",
     command=("ud", plugin_category),
     info={
         "header": "To fetch meaning of the given word from urban dictionary.",
@@ -45,7 +45,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="meaning (.*)",
+    pattern="meaning ([\s\S]*)",
     command=("meaning", plugin_category),
     info={
         "header": "To fetch meaning of the given word from dictionary.",

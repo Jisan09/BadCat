@@ -30,7 +30,7 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="airing (.*)",
+    pattern="airing ([\s\S]*)",
     command=("airing", plugin_category),
     info={
         "header": "Shows you the time left for the new episode of current running anime show.",
@@ -56,7 +56,7 @@ async def anilist(event):
 
 
 @catub.cat_cmd(
-    pattern="anime(?: |$)(.*)",
+    pattern="anime(?:\s|$)([\s\S]*)",
     command=("anime", plugin_category),
     info={
         "header": "Shows you the details of the anime.",
@@ -79,7 +79,7 @@ async def anilist(event):
 
 
 @catub.cat_cmd(
-    pattern="manga(?: |$)(.*)",
+    pattern="manga(?:\s|$)([\s\S]*)",
     command=("manga", plugin_category),
     info={
         "header": "Searches for manga.",
@@ -111,7 +111,7 @@ async def get_manga(event):
 
 
 @catub.cat_cmd(
-    pattern="sanime(?: |$)(.*)",
+    pattern="sanime(?:\s|$)([\s\S]*)",
     command=("sanime", plugin_category),
     info={
         "header": "Searches for anime.",
@@ -157,7 +157,7 @@ async def get_manga(event):
 
 
 @catub.cat_cmd(
-    pattern="char(?: |$)(.*)",
+    pattern="char(?:\s|$)([\s\S]*)",
     command=("char", plugin_category),
     info={
         "header": "Shows you character infomation.",

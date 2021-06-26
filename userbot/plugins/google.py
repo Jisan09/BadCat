@@ -59,7 +59,7 @@ async def scam(results, lim):
 
 
 @catub.cat_cmd(
-    pattern="gs (.*)",
+    pattern="gs ([\s\S]*)",
     command=("gs", plugin_category),
     info={
         "header": "Google search command.",
@@ -206,7 +206,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="reverse(?: |$)(.*)",
+    pattern="reverse(?:\s|$)([\s\S]*)",
     command=("reverse", plugin_category),
     info={
         "header": "Google reverse search command.",

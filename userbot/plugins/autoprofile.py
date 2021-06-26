@@ -297,7 +297,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="autopic ?(.*)",
+    pattern="autopic ?([\s\S]*)",
     command=("autopic", plugin_category),
     info={
         "header": "Changes profile pic every 1 minute with the custom pic with time",
@@ -437,7 +437,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="end (.*)",
+    pattern="end ([\s\S]*)",
     command=("end", plugin_category),
     info={
         "header": "To stop the functions of autoprofile",

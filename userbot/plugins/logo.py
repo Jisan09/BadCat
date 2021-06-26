@@ -114,7 +114,7 @@ async def very(event):
 
 
 @catub.cat_cmd(
-    pattern="(|c)lbg(?: |$)(.*)",
+    pattern="(|c)lbg(?:\s|$)([\s\S]*)",
     command=("lbg", plugin_category),
     info={
         "header": "Change the background of logo",
@@ -181,7 +181,7 @@ async def bad(event):
 
 
 @catub.cat_cmd(
-    pattern="lf(|c|s|h|w)(?: |$)(.*)",
+    pattern="lf(|c|s|h|w)(?:\s|$)([\s\S]*)",
     command=("lf", plugin_category),
     info={
         "header": "Change text style for logo.",
@@ -317,7 +317,7 @@ async def pussy(event):
 
 
 @catub.cat_cmd(
-    pattern="(g|d|r)lvar(?: |$)(.*)",
+    pattern="(g|d|r)lvar(?:\s|$)([\s\S]*)",
     command=("lvar", plugin_category),
     info={
         "header": "Manage values which set for logo",

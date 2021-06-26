@@ -16,7 +16,7 @@ purgelist = {}
 
 
 @catub.cat_cmd(
-    pattern="purge(?: |$)(.*)",
+    pattern="purge(?:\s|$)([\s\S]*)",
     command=("purge", plugin_category),
     info={
         "header": "To purge messages from the replied message.",

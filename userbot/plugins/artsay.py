@@ -9,7 +9,7 @@ plugin_category = "fun"
 
 
 @catub.cat_cmd(
-    pattern="carry (.*)",
+    pattern="carry ([\s\S]*)",
     command=("carry", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -26,7 +26,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="ded(?: |$)(.*)",
+    pattern="ded(?:\s|$)([\s\S]*)",
     command=("ded", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -58,7 +58,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="killer(?: |$)(.*)",
+    pattern="killer(?:\s|$)([\s\S]*)",
     command=("killer", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -97,7 +97,7 @@ G = (
 
 
 @catub.cat_cmd(
-    pattern="sthink (.*)",
+    pattern="sthink ([\s\S]*)",
     command=("sthink", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -129,7 +129,7 @@ async def kakashi(think):
 
 
 @catub.cat_cmd(
-    pattern="sfrog (.*)",
+    pattern="sfrog ([\s\S]*)",
     command=("sfrog", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -161,7 +161,7 @@ async def kakashi(frogsay):
 
 
 @catub.cat_cmd(
-    pattern="sputin (.*)",
+    pattern="sputin ([\s\S]*)",
     command=("sputin", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -194,7 +194,7 @@ async def kakashi(putinsay):
 
 
 @catub.cat_cmd(
-    pattern="sdead (.*)",
+    pattern="sdead ([\s\S]*)",
     command=("sdead", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -226,7 +226,7 @@ async def kakashi(deadfrog):
 
 
 @catub.cat_cmd(
-    pattern="strump (.*)",
+    pattern="strump ([\s\S]*)",
     command=("strump", plugin_category),
     info={
         "header": "Fun art try yourself to know more",
@@ -258,7 +258,7 @@ async def kakashi(trumpsay):
 
 
 @catub.cat_cmd(
-    pattern="schina (.*)",
+    pattern="schina ([\s\S]*)",
     command=("schina", plugin_category),
     info={
         "header": "Fun art try yourself to know more",

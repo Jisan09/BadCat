@@ -19,7 +19,7 @@ plugin_category = "useless"
 
 
 @catub.cat_cmd(
-    pattern="ani(mu|nsfw) ?(.*)",
+    pattern="ani(mu|nsfw) ?([\s\S]*)",
     command=("ani", plugin_category),
     info={
         "header": "Contains NSFW 🔞.\nTo search images in danbooru!",
@@ -81,7 +81,7 @@ async def danbooru(event):
 
 
 @catub.cat_cmd(
-    pattern="boobs(?: |$)(.*)",
+    pattern="boobs(?:\s|$)([\s\S]*)",
     command=("boobs", plugin_category),
     info={
         "header": "NSFW 🔞\nYou know what it is, so do I !",
@@ -106,7 +106,7 @@ async def boobs(e):
 
 
 @catub.cat_cmd(
-    pattern="butts(?: |$)(.*)",
+    pattern="butts(?:\s|$)([\s\S]*)",
     command=("butts", plugin_category),
     info={
         "header": "NSFW 🔞\nBoys and some girls likes to Spank this 🍑",

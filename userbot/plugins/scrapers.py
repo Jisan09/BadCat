@@ -17,7 +17,7 @@ moviepath = os.path.join(os.getcwd(), "temp", "moviethumb.jpg")
 
 
 @catub.cat_cmd(
-    pattern="wiki (.*)",
+    pattern="wiki ([\s\S]*)",
     command=("wiki", plugin_category),
     info={
         "header": "To get wikipedia data about query.",
@@ -65,7 +65,7 @@ async def wiki(event):
 
 
 @catub.cat_cmd(
-    pattern="imdb (.*)",
+    pattern="imdb ([\s\S]*)",
     command=("imdb", plugin_category),
     info={
         "header": "To fetch imdb data about the given movie or series.",

@@ -39,7 +39,7 @@ def get_key(val):
 
 
 @catub.cat_cmd(
-    pattern="pcode(?: |$)(.*)",
+    pattern="pcode(?:\s|$)([\s\S]*)",
     command=("pcode", plugin_category),
     info={
         "header": "Will paste the entire text on the blank white image.",
@@ -191,7 +191,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="g(et)?paste(?: |$)(.*)",
+    pattern="g(et)?paste(?:\s|$)([\s\S]*)",
     command=("getpaste", plugin_category),
     info={
         "header": "To paste text into telegram from pastebin link.",
@@ -251,7 +251,7 @@ async def get_dogbin_content(event):
 
 
 @catub.cat_cmd(
-    pattern="paster(?: |$)(.*)",
+    pattern="paster(?:\s|$)([\s\S]*)",
     command=("paster", plugin_category),
     info={
         "header": "Create a instant view or a paste it in telegraph file.",

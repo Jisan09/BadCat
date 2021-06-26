@@ -30,7 +30,7 @@ USERNAME_TAKEN = "```This username is already taken.```"
 
 
 @catub.cat_cmd(
-    pattern="pbio (.*)",
+    pattern="pbio ([\s\S]*)",
     command=("pbio", plugin_category),
     info={
         "header": "To set bio for this account.",
@@ -48,7 +48,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="pname (.*)",
+    pattern="pname ([\s\S]*)",
     command=("pname", plugin_category),
     info={
         "header": "To set/change name for this account.",
@@ -130,7 +130,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="pusername (.*)",
+    pattern="pusername ([\s\S]*)",
     command=("pusername", plugin_category),
     info={
         "header": "To set/update username for this account.",
@@ -194,7 +194,7 @@ async def count(event):
 
 
 @catub.cat_cmd(
-    pattern="delpfp ?(.*)",
+    pattern="delpfp ?([\s\S]*)",
     command=("delpfp", plugin_category),
     info={
         "header": "To delete profile pic for this account.",

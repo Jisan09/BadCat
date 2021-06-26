@@ -127,7 +127,7 @@ async def cmdlist():
 
 
 @catub.cat_cmd(
-    pattern="help ?(-c|-p|-t)? ?(.*)?",
+    pattern="help ?(-c|-p|-t)? ?([\s\S]*)?",
     command=("help", plugin_category),
     info={
         "header": "To get guide for catuserbot.",
@@ -170,7 +170,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="cmds(?: |$)(.*)",
+    pattern="cmds(?:\s|$)([\s\S]*)",
     command=("cmds", plugin_category),
     info={
         "header": "To show list of cmds.",
@@ -203,7 +203,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="s (.*)",
+    pattern="s ([\s\S]*)",
     command=("s", plugin_category),
     info={
         "header": "To search commands.",

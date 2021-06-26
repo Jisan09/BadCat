@@ -41,7 +41,7 @@ async def source(e):
 
 
 @catub.cat_cmd(
-    pattern="github( -l(\d+))? (.*)",
+    pattern="github( -l(\d+))? ([\s\S]*)",
     command=("github", plugin_category),
     info={
         "header": "Shows the information about an user on GitHub of given username",

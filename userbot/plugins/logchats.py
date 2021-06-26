@@ -107,7 +107,7 @@ async def log_tagged_messages(event):
 
 
 @catub.cat_cmd(
-    pattern="save(?: |$)(.*)",
+    pattern="save(?:\s|$)([\s\S]*)",
     command=("save", plugin_category),
     info={
         "header": "To log the replied message to bot log group so you can check later.",

@@ -16,7 +16,7 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="iascii ?(.*)",
+    pattern="iascii ?([\s\S]*)",
     command=("iascii", plugin_category),
     info={
         "header": "Convert media to ascii art.",
@@ -66,7 +66,7 @@ async def bad(event):
 
 
 @catub.cat_cmd(
-    pattern="line ?(.*)",
+    pattern="line ?([\s\S]*)",
     command=("line", plugin_category),
     info={
         "header": "Convert media to line image.",
@@ -108,7 +108,7 @@ async def pussy(event):
 
 
 @catub.cat_cmd(
-    pattern="clip ?(.*)",
+    pattern="clip ?([\s\S]*)",
     command=("clip", plugin_category),
     info={
         "header": "Convert media to sticker by clippy",

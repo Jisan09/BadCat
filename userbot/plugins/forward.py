@@ -82,7 +82,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="fpost (.*)",
+    pattern="fpost ([\s\S]*)",
     command=("fpost", plugin_category),
     info={
         "header": "Split the word and forwards each letter from previous messages in that group",

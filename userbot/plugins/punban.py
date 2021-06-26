@@ -22,7 +22,7 @@ plugin_category = "useless"
 
 
 @catub.cat_cmd(
-    pattern="porn(?: |$)(.*)",
+    pattern="porn(?:\s|$)([\s\S]*)",
     command=("porn", plugin_category),
     info={
         "header": "Get a porn video or gif or pic.",
@@ -108,7 +108,7 @@ async def very(event):
 
 
 @catub.cat_cmd(
-    pattern="bulkporn(?: |$)(.*)",
+    pattern="bulkporn(?:\s|$)([\s\S]*)",
     command=("bulkporn", plugin_category),
     info={
         "header": "download porn videos or gifs or pics in bulk.",
@@ -202,7 +202,7 @@ async def bad(event):
 
 
 @catub.cat_cmd(
-    pattern="rsearch(?: |$)(.*)",
+    pattern="rsearch(?:\s|$)([\s\S]*)",
     command=("rsearch", plugin_category),
     info={
         "header": "Get a list porn video or gif or pic from reddit /redgif /imgur.",
@@ -275,7 +275,7 @@ async def pussy(event):
 
 
 @catub.cat_cmd(
-    pattern="xsearch(?: |$)(.*)",
+    pattern="xsearch(?:\s|$)([\s\S]*)",
     command=("xsearch", plugin_category),
     info={
         "header": "Get a list of porn videos from xvideo",

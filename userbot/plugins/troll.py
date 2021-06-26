@@ -32,7 +32,7 @@ async def mememaker(borg, msg, cat, chat_id, reply_to_id):
 
 
 @catub.cat_cmd(
-    pattern="fox ?(.*)",
+    pattern="fox ?([\s\S]*)",
     command=("fox", plugin_category),
     info={
         "header": "fox meme",
@@ -52,7 +52,7 @@ async def cat(event):
 
 
 @catub.cat_cmd(
-    pattern="talkme ?(.*)",
+    pattern="talkme ?([\s\S]*)",
     command=("talkme", plugin_category),
     info={
         "header": "talk to me meme",
@@ -72,7 +72,7 @@ async def cat(event):
 
 
 @catub.cat_cmd(
-    pattern="sleep ?(.*)",
+    pattern="sleep ?([\s\S]*)",
     command=("sleep", plugin_category),
     info={
         "header": "brain say meme",
@@ -92,7 +92,7 @@ async def cat(event):
 
 
 @catub.cat_cmd(
-    pattern="sbob ?(.*)",
+    pattern="sbob ?([\s\S]*)",
     command=("sbob", plugin_category),
     info={
         "header": "spongebob meme",
@@ -112,7 +112,7 @@ async def cat(event):
 
 
 @catub.cat_cmd(
-    pattern="child ?(.*)",
+    pattern="child ?([\s\S]*)",
     command=("child", plugin_category),
     info={
         "header": "child meme",

@@ -16,7 +16,7 @@ plugin_category = "useless"
 
 
 @catub.cat_cmd(
-    pattern="kiss(?: |$)(.*)",
+    pattern="kiss(?:\s|$)([\s\S]*)",
     command=("kiss", plugin_category),
     info={
         "header": "Sends random kiss",

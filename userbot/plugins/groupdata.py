@@ -30,7 +30,7 @@ plugin_category = "utils"
 
 
 @catub.cat_cmd(
-    pattern="admins(?: |$)(.*)",
+    pattern="admins(?:\s|$)([\s\S]*)",
     command=("admins", plugin_category),
     info={
         "header": "To get list of admins.",
@@ -85,7 +85,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="bots(?: |$)(.*)",
+    pattern="bots(?:\s|$)([\s\S]*)",
     command=("bots", plugin_category),
     info={
         "header": "To get list of bots.",
@@ -127,7 +127,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="users(?: |$)(.*)",
+    pattern="users(?:\s|$)([\s\S]*)",
     command=("users", plugin_category),
     info={
         "header": "To get list of users.",
@@ -177,7 +177,7 @@ async def get_users(show):
 
 
 @catub.cat_cmd(
-    pattern="chatinfo(?: |$)(.*)",
+    pattern="chatinfo(?:\s|$)([\s\S]*)",
     command=("chatinfo", plugin_category),
     info={
         "header": "To get Group details.",

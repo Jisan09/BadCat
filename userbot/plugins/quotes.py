@@ -14,7 +14,7 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="quote(?: |$)(.*)",
+    pattern="quote(?:\s|$)([\s\S]*)",
     command=("quote", plugin_category),
     info={
         "header": "To get random quotes on given topic.",

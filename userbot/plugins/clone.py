@@ -26,7 +26,7 @@ DEFAULTUSERBIO = (
 
 
 @catub.cat_cmd(
-    pattern="clone(?: |$)(.*)",
+    pattern="clone(?:\s|$)([\s\S]*)",
     command=("clone", plugin_category),
     info={
         "header": "To clone account of mentiond user or replied user",

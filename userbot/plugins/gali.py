@@ -124,7 +124,7 @@ async def kakashi(event):
 
 
 @catub.cat_cmd(
-    pattern="fk (.*)",
+    pattern="fk ([\s\S]*)",
     command=("fk", plugin_category),
     info={
         "header": "bad animation, try yourself ",

@@ -24,7 +24,7 @@ async def getTranslate(text, **kwargs):
 
 
 @catub.cat_cmd(
-    pattern="tl (.*)",
+    pattern="tl ([\s\S]*)",
     command=("tl", plugin_category),
     info={
         "header": "To translate the text to required language.",
@@ -104,7 +104,7 @@ async def translateme(trans):
 
 
 @catub.cat_cmd(
-    pattern="lang (ai|trt) (.*)",
+    pattern="lang (ai|trt) ([\s\S]*)",
     command=("lang", plugin_category),
     info={
         "header": "To set language for trt/ai command.",
