@@ -16,10 +16,16 @@ from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError
 from telethon.tl import functions
 from urlextract import URLExtract
+
 from ..Config import Config
 from ..helpers.utils import _format
+from ..sql_helper.global_list import (
+    add_to_list,
+    get_collection_list,
+    is_in_list,
+    rm_from_list,
+)
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from ..sql_helper.global_list import add_to_list, rm_from_list, is_in_list, get_collection_list
 from . import (
     AUTONAME,
     BOTLOG,
@@ -398,7 +404,7 @@ async def _(event):
     await edit_delete(event, f"`Bloom has been started by my Master`")
     await bloom_pfploop()
 
-    
+
 @catub.cat_cmd(
     pattern="(|a|d|l|s)cpfp(?: |$)([\s\S]*)",
     command=("cpfp", plugin_category),
@@ -428,7 +434,7 @@ async def useless(event):
         if gvarstatus("CUSTOM_PFP") is not None and gvarstatus("CUSTOM_PFP") == "true":
             return await edit_delete(event, f"`Custom pfp is already enabled`")
         elif not list_link:
-            return await edit_delete(event,"**ಠ∀ಠ  There no links for custom pfp...**")
+            return await edit_delete(event, "**ಠ∀ಠ  There no links for custom pfp...**")
         addgvar("CUSTOM_PFP", True)
         await edit_delete(event, "`Starting custom pfp....`")
         i = 0
@@ -448,12 +454,14 @@ async def useless(event):
             await asyncio.sleep(Config.CHANGE_TIME)
     elif cmd == "l":
         if not list_link:
-            return await edit_delete(event,"**ಠ∀ಠ  There no links set for custom pfp...**")
+            return await edit_delete(
+                event, "**ಠ∀ಠ  There no links set for custom pfp...**"
+            )
         else:
             links = "**Available links for custom pfp are here:-**\n\n"
             for i, each in enumerate(list_link, start=1):
                 links += f"**{i}.**  {each}\n"
-            await edit_delete(event,links,60)
+            await edit_delete(event, links, 60)
     elif cmd == "s":
         if gvarstatus("CUSTOM_PFP") is not None and gvarstatus("CUSTOM_PFP") == "true":
             delgvar("CUSTOM_PFP")
@@ -469,20 +477,26 @@ async def useless(event):
         if not intxt and reply:
             intxt = reply.text
         if not intxt:
-            return await edit_delete(event,"**ಠ∀ಠ  Reply to valid link or give valid link url as input...**")
+            return await edit_delete(
+                event, "**ಠ∀ಠ  Reply to valid link or give valid link url as input...**"
+            )
         extractor = URLExtract()
         plink = extractor.find_urls(intxt)
         if cmd == "a":
             for i in plink:
                 if not is_in_list("CUSTOM_PFP_LINKS", i):
                     add_to_list("CUSTOM_PFP_LINKS", i)
-            await edit_delete(event, f"**{len(plink)} pictures sucessfully added to custom pfp**")
+            await edit_delete(
+                event, f"**{len(plink)} pictures sucessfully added to custom pfp**"
+            )
         elif cmd == "d":
             for i in plink:
                 if is_in_list("CUSTOM_PFP_LINKS", i):
                     rm_from_list("CUSTOM_PFP_LINKS", i)
-            await edit_delete(event, f"**{len(plink)} pictures sucessfully deleted from custom pfp**")
-            
+            await edit_delete(
+                event, f"**{len(plink)} pictures sucessfully deleted from custom pfp**"
+            )
+
 
 @catub.cat_cmd(
     pattern="autoname$",
