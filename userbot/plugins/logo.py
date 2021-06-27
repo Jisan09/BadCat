@@ -2,6 +2,7 @@
 Created & modified by @Jisan7509
 Base idea DevsExpo
 """
+
 import asyncio
 import os
 import re
@@ -27,6 +28,8 @@ vars_list = {
     "lfs": "LOGO_FONT_SIZE",
     "lfh": "LOGO_FONT_HEIGHT",
     "lfw": "LOGO_FONT_WIDTH",
+    "lfsw": "LOGO_FONT_STROKE_WIDTH",
+    "lfsc": "LOGO_FONT_STROKE_COLOR",
     "lf": "LOGO_FONT",
 }
 
@@ -69,6 +72,8 @@ async def very(event):
     LOGO_FONT_WIDTH = gvarstatus("LOGO_FONT_WIDTH") or 2
     LOGO_FONT_HEIGHT = gvarstatus("LOGO_FONT_HEIGHT") or 2
     LOGO_FONT_COLOR = gvarstatus("LOGO_FONT_COLOR") or "red"
+    LOGO_FONT_STROKE_WIDTH = gvarstatus("LOGO_FONT_STROKE_WIDTH") or 0
+    LOGO_FONT_STROKE_COLOR = gvarstatus("LOGO_FONT_STROKE_COLOR") or None
     LOGO_BACKGROUND = (
         gvarstatus("LOGO_BACKGROUND")
         or f"https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/black.jpg"
@@ -97,8 +102,10 @@ async def very(event):
         text,
         font=font,
         fill=LOGO_FONT_COLOR,
+        stroke_width=int(LOGO_FONT_STROKE_WIDTH),
+        stroke_fill=LOGO_FONT_STROKE_COLOR,
     )
-    file_name = "LogoBy@MeisNub.png"
+    file_name = "badcat.png"
     img.save(file_name, "png")
     if cmd == "":
         await event.client.send_file(
@@ -112,7 +119,7 @@ async def very(event):
     if os.path.exists(file_name):
         os.remove(file_name)
 
-
+        
 @catub.cat_cmd(
     pattern="(|c)lbg(?:\s|$)([\s\S]*)",
     command=("lbg", plugin_category),
@@ -181,7 +188,7 @@ async def bad(event):
 
 
 @catub.cat_cmd(
-    pattern="lf(|c|s|h|w)(?:\s|$)([\s\S]*)",
+    pattern="lf(|c|s|h|w|sc|sw)(?:\s|$)([\s\S]*)",
     command=("lf", plugin_category),
     info={
         "header": "Change text style for logo.",
@@ -191,6 +198,8 @@ async def bad(event):
             "s": "To change size of logo font.",
             "h": "To change hight of logo font.",
             "w": "To change width of logo font.",
+            "sw": "To change stroke width of logo font.",
+            "sc": "To change stroke color of logo font.",
         },
         "usage": [
             "{tr}lf <font name>",
@@ -198,6 +207,8 @@ async def bad(event):
             "{tr}lfs <1-1000>",
             "{tr}lfh <10-100>",
             "{tr}lfw <10-100>",
+            "{tr}lfsw <10-100>",
+            "{tr}lfsc <logo font stroke color>",
         ],
         "examples": [
             "{tr}lf genau-font.ttf",
@@ -205,6 +216,8 @@ async def bad(event):
             "{tr}lfs 120",
             "{tr}lfh 1",
             "{tr}lfw 8",
+            "{tr}lfsw 5",
+            "{tr}lfsc white",
         ],
     },
 )
@@ -270,6 +283,34 @@ async def pussy(event):
                 f"**Foreground color for logo changed to :-** `{input_str}`",
                 time=10,
             )
+    elif cmd == "sc":
+        fg_name = []
+        for name, code in PIL.ImageColor.colormap.items():
+            fg_name.append(name)
+            fg_list = str(fg_name).replace("'", "`")
+        if not input_str:
+            return await edit_delete(
+                event,
+                f"**Available stroke color names are here:-**\n\n{fg_list}",
+                time=80,
+            )
+        if input_str not in fg_name:
+            catevent = await edit_or_reply(
+                event, "`Give me a correct stroke color name...`"
+            )
+            await asyncio.sleep(1)
+            await edit_delete(
+                catevent,
+                f"**Available stroke color names are here:-**\n\n{fg_list}",
+                time=80,
+            )
+        else:
+            addgvar("LOGO_FONT_STROKE_COLOR", input_str)
+            await edit_delete(
+                event,
+                f"**Fonts stroke color for logo changed to :-** `{input_str}`",
+                time=10,
+            )
     else:
         cat = re.compile(r"^\-?[1-9][0-9]*\.?[0-9]*")
         isint = re.match(cat, input_str)
@@ -288,7 +329,7 @@ async def pussy(event):
                 else:
                     await edit_delete(
                         event,
-                        f"**Font size is between 20 - 1000, You can't set limit to :** `{input_str}`",
+                        f"**Font size is between 0 - 1000, You can't set limit to :** `{input_str}`",
                     )
             elif cmd == "w":
                 input_str = float(input_str)
@@ -300,7 +341,7 @@ async def pussy(event):
                 else:
                     await edit_delete(
                         event,
-                        f"**Font width is between 0 - 30, You can't set limit to {input_str}",
+                        f"**Font width is between 0 - 100, You can't set limit to {input_str}",
                     )
             elif cmd == "h":
                 input_str = float(input_str)
@@ -312,10 +353,22 @@ async def pussy(event):
                 else:
                     await edit_delete(
                         event,
-                        f"**Font hight is between 0 - 30, You can't set limit to {input_str}",
+                        f"**Font hight is between 0 - 100, You can't set limit to {input_str}",
                     )
-
-
+            elif cmd == "sw":
+                input_str = int(input_str)
+                if input_str > 0 and input_str <= 100:
+                    addgvar("LOGO_FONT_STROKE_WIDTH", input_str)
+                    await edit_delete(
+                        event, f"**Font stroke width is changed to :-** `{input_str}`"
+                    )
+                else:
+                    await edit_delete(
+                        event,
+                        f"**Font stroke width size is between 0 - 100, You can't set limit to :** `{input_str}`",
+                    )
+                    
+                    
 @catub.cat_cmd(
     pattern="(g|d|r)lvar(?:\s|$)([\s\S]*)",
     command=("lvar", plugin_category),
@@ -365,6 +418,8 @@ async def cat(event):
         delgvar("LOGO_FONT_SIZE")
         delgvar("LOGO_FONT_HEIGHT")
         delgvar("LOGO_FONT_WIDTH")
+        delgvar("LOGO_FONT_STROKE_COLOR")
+        delgvar("LOGO_FONT_STROKE_WIDTH")
         if os.path.exists("./temp/bg_img.jpg"):
             os.remove("./temp/bg_img.jpg")
         if os.path.exists("./temp/logo.ttf"):
