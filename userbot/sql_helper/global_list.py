@@ -6,7 +6,7 @@ from . import BASE, SESSION
 
 
 class CatGloballist(BASE):
-    __tablename__ = "catgloballist"
+    __tablename__ = "catglobal_list"
     keywoard = Column(UnicodeText, primary_key=True)
     group_id = Column(String, primary_key=True, nullable=False)
 
