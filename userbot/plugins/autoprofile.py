@@ -15,10 +15,11 @@ from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError
 from telethon.tl import functions
-
+from urlextract import URLExtract
 from ..Config import Config
 from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
+from ..sql_helper.global_list import add_to_list, rm_from_list, is_in_list, get_collection_list
 from . import (
     AUTONAME,
     BOTLOG,
@@ -397,6 +398,91 @@ async def _(event):
     await edit_delete(event, f"`Bloom has been started by my Master`")
     await bloom_pfploop()
 
+    
+@catub.cat_cmd(
+    pattern="(|a|d|l|s)cpfp(?: |$)([\s\S]*)",
+    command=("cpfp", plugin_category),
+    info={
+        "header": "Set Your Custom pfps",
+        "description": "Set links of pic to use them as auto profile",
+        "flags": {
+            "a": "To add links for custom pfp",
+            "d": "To add links for custom pfp",
+            "l": "To get links of custom pfp",
+            "s": "To stop custom pfp",
+        },
+        "usage": [
+            "{tr}cpfp ",
+            "{tr}lcpfp",
+            "{tr}scpfp",
+            "{tr}acpfp <link1 link2> or <reply to links>",
+            "{tr}dcpfp <link1 link2> or <reply to links>",
+        ],
+    },
+)
+async def useless(event):
+    """Custom profile pics"""
+    cmd = event.pattern_match.group(1).lower()
+    list_link = get_collection_list("CUSTOM_PFP_LINKS")
+    if cmd == "":
+        if gvarstatus("CUSTOM_PFP") is not None and gvarstatus("CUSTOM_PFP") == "true":
+            return await edit_delete(event, f"`Custom pfp is already enabled`")
+        elif not list_link:
+            return await edit_delete(event,"**ಠ∀ಠ  There no links for custom pfp...**")
+        addgvar("CUSTOM_PFP", True)
+        await edit_delete(event, "`Starting custom pfp....`")
+        i = 0
+        while gvarstatus("CUSTOM_PFP"):
+            pic = random.choice(list(get_collection_list("CUSTOM_PFP_LINKS")))
+            urllib.request.urlretrieve(pic, "donottouch.jpg")
+            file = await catub.upload_file("donottouch.jpg")
+            if i > 0:
+                await catub(
+                    functions.photos.DeletePhotosRequest(
+                        await catub.get_profile_photos("me", limit=1)
+                    )
+                )
+            i += 1
+            await catub(functions.photos.UploadProfilePhotoRequest(file))
+            os.remove("donottouch.jpg")
+            await asyncio.sleep(Config.CHANGE_TIME)
+    elif cmd == "l":
+        if not list_link:
+            return await edit_delete(event,"**ಠ∀ಠ  There no links set for custom pfp...**")
+        else:
+            links = "**Available links for custom pfp are here:-**\n\n"
+            for i, each in enumerate(list_link, start=1):
+                links += f"**{i}.**  {each}\n"
+            await edit_delete(event,links,60)
+    elif cmd == "s":
+        if gvarstatus("CUSTOM_PFP") is not None and gvarstatus("CUSTOM_PFP") == "true":
+            delgvar("CUSTOM_PFP")
+            await event.client(
+                functions.photos.DeletePhotosRequest(
+                    await event.client.get_profile_photos("me", limit=1)
+                )
+            )
+            return await edit_delete(event, "`Custompfp has been stopped now`")
+        return await edit_delete(event, "`Custompfp haven't enabled`")
+        intxt = event.pattern_match.group(2)
+        reply = await event.get_reply_message()
+        if not intxt and reply:
+            intxt = reply.text
+        if not intxt:
+            return await edit_delete(event,"**ಠ∀ಠ  Reply to valid link or give valid link url as input...**")
+        extractor = URLExtract()
+        plink = extractor.find_urls(intxt)
+        if cmd == "a":
+            for i in plink:
+                if not is_in_list("CUSTOM_PFP_LINKS", i):
+                    add_to_list("CUSTOM_PFP_LINKS", i)
+            await edit_delete(event, f"**{len(plink)} pictures sucessfully added to custom pfp**")
+        elif cmd == "d":
+            for i in plink:
+                if is_in_list("CUSTOM_PFP_LINKS", i):
+                    rm_from_list("CUSTOM_PFP_LINKS", i)
+            await edit_delete(event, f"**{len(plink)} pictures sucessfully deleted from custom pfp**")
+            
 
 @catub.cat_cmd(
     pattern="autoname$",
