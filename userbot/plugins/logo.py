@@ -119,7 +119,7 @@ async def very(event):
     if os.path.exists(file_name):
         os.remove(file_name)
 
-        
+
 @catub.cat_cmd(
     pattern="(|c)lbg(?:\s|$)([\s\S]*)",
     command=("lbg", plugin_category),
@@ -367,8 +367,8 @@ async def pussy(event):
                         event,
                         f"**Font stroke width size is between 0 - 100, You can't set limit to :** `{input_str}`",
                     )
-                    
-                    
+
+
 @catub.cat_cmd(
     pattern="(g|d|r)lvar(?:\s|$)([\s\S]*)",
     command=("lvar", plugin_category),
