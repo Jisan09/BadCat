@@ -267,9 +267,7 @@ async def pussy(event):
                 time=80,
             )
         if input_str not in fg_name:
-            catevent = await edit_or_reply(
-                event, "`Give me a correct color name...`"
-            )
+            catevent = await edit_or_reply(event, "`Give me a correct color name...`")
             await asyncio.sleep(1)
             await edit_delete(
                 catevent,
@@ -277,12 +275,18 @@ async def pussy(event):
                 time=80,
             )
         else:
-            if cmd =="c":
+            if cmd == "c":
                 addgvar("LOGO_FONT_COLOR", input_str)
-                await edit_delete(event,f"**Foreground color for logo changed to :-** `{input_str}`",10)
+                await edit_delete(
+                    event,
+                    f"**Foreground color for logo changed to :-** `{input_str}`",
+                    10,
+                )
             else:
                 addgvar("LOGO_FONT_STROKE_COLOR", input_str)
-                await edit_delete(event,f"**Stroke color for logo changed to :-** `{input_str}`",10)
+                await edit_delete(
+                    event, f"**Stroke color for logo changed to :-** `{input_str}`", 10
+                )
     else:
         cat = re.compile(r"^\-?[1-9][0-9]*\.?[0-9]*")
         isint = re.match(cat, input_str)
@@ -339,7 +343,7 @@ async def pussy(event):
                         event,
                         f"**Font stroke width size is between 0 - 100, You can't set limit to :** `{input_str}`",
                     )
-                    
+
 
 @catub.cat_cmd(
     pattern="(g|d|r)lvar(?:\s|$)([\s\S]*)",
