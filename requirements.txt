@@ -23,7 +23,6 @@ hachoir
 heroku3
 html-telegraph-poster
 humanize
-ibm-watson
 IMDbPY
 jikanpy
 justwatch
