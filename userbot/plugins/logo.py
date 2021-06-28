@@ -255,7 +255,7 @@ async def pussy(event):
             await edit_delete(
                 event, f"**Font for logo changed to :-** `{input_str}`", time=10
             )
-    elif cmd == "c":
+    elif cmd == "c" or cmd == "sc":
         fg_name = []
         for name, code in PIL.ImageColor.colormap.items():
             fg_name.append(name)
@@ -263,54 +263,26 @@ async def pussy(event):
         if not input_str:
             return await edit_delete(
                 event,
-                f"**Available foreground color names are here:-**\n\n{fg_list}",
+                f"**Available color names are here:-**\n\n{fg_list}",
                 time=80,
             )
         if input_str not in fg_name:
             catevent = await edit_or_reply(
-                event, "`Give me a correct foreground color name...`"
+                event, "`Give me a correct color name...`"
             )
             await asyncio.sleep(1)
             await edit_delete(
                 catevent,
-                f"**Available foreground color names are here:-**\n\n{fg_list}",
+                f"**Available color names are here:-**\n\n{fg_list}",
                 time=80,
             )
         else:
-            addgvar("LOGO_FONT_COLOR", input_str)
-            await edit_delete(
-                event,
-                f"**Foreground color for logo changed to :-** `{input_str}`",
-                time=10,
-            )
-    elif cmd == "sc":
-        fg_name = []
-        for name, code in PIL.ImageColor.colormap.items():
-            fg_name.append(name)
-            fg_list = str(fg_name).replace("'", "`")
-        if not input_str:
-            return await edit_delete(
-                event,
-                f"**Available stroke color names are here:-**\n\n{fg_list}",
-                time=80,
-            )
-        if input_str not in fg_name:
-            catevent = await edit_or_reply(
-                event, "`Give me a correct stroke color name...`"
-            )
-            await asyncio.sleep(1)
-            await edit_delete(
-                catevent,
-                f"**Available stroke color names are here:-**\n\n{fg_list}",
-                time=80,
-            )
-        else:
-            addgvar("LOGO_FONT_STROKE_COLOR", input_str)
-            await edit_delete(
-                event,
-                f"**Fonts stroke color for logo changed to :-** `{input_str}`",
-                time=10,
-            )
+            if cmd =="c":
+                addgvar("LOGO_FONT_COLOR", input_str)
+                await edit_delete(event,f"**Foreground color for logo changed to :-** `{input_str}`",10)
+            else:
+                addgvar("LOGO_FONT_STROKE_COLOR", input_str)
+                await edit_delete(event,f"**Stroke color for logo changed to :-** `{input_str}`",10)
     else:
         cat = re.compile(r"^\-?[1-9][0-9]*\.?[0-9]*")
         isint = re.match(cat, input_str)
@@ -367,7 +339,7 @@ async def pussy(event):
                         event,
                         f"**Font stroke width size is between 0 - 100, You can't set limit to :** `{input_str}`",
                     )
-
+                    
 
 @catub.cat_cmd(
     pattern="(g|d|r)lvar(?:\s|$)([\s\S]*)",
