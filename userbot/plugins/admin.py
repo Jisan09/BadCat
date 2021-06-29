@@ -479,9 +479,7 @@ async def endmute(event):
                 unmute(user.id, event.chat_id)
             else:
                 result = await event.client(
-                    functions.channels.GetParticipantRequest(
-                        channel=event.chat_id, user_id=user.id
-                    )
+                    functions.channels.GetParticipantRequest(event.chat_id, user.id)
                 )
                 if result.participant.banned_rights.send_messages:
                     await event.client(
@@ -626,7 +624,7 @@ async def pin(event):
     if BOTLOG and not event.is_private:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#UNPIN\
+            f"#UNPIN\
                 \n__Succesfully unpinned message(s) in chat__\
                 \nCHAT: {event.chat.title}(`{event.chat_id}`)",
         )
