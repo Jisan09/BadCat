@@ -15,7 +15,8 @@ from userbot import catub
 
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers import reply_id
+from ..helpers.functions import deEmojify
+from ..helpers.utils import reply_id
 from . import BOTLOG, BOTLOG_CHATID
 
 opener = urllib.request.build_opener()
@@ -283,3 +284,34 @@ async def _(img):
         await catevent.edit(
             f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})"
         )
+
+
+@catub.cat_cmd(
+    pattern="google(?:\s|$)([\s\S]*)",
+    command=("google", plugin_category),
+    info={
+        "header": "To get link for google search",
+        "description": "Will show google search link as button instead of google search results try {tr}gs for google search results.",
+        "usage": [
+            "{tr}google query",
+        ],
+    },
+)
+async def google_search(event):
+    "Will show you google search link of the given query."
+    input_str = event.pattern_match.group(1)
+    reply_to_id = await reply_id(event)
+    if not input_str:
+        return await edit_delete(
+            event, "__What should i search? Give search query plox.__"
+        )
+    input_str = deEmojify(input_str).strip()
+    if len(input_str) > 195 or len(input_str) < 1:
+        return await edit_delete(
+            event,
+            "__Plox your search query exceeds 200 characters or you search query is empty.__",
+        )
+    query = "#12" + input_str
+    results = await event.client.inline_query("@StickerizerBot", query)
+    await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
+    await event.delete()
