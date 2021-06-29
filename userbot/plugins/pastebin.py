@@ -43,6 +43,9 @@ def get_key(val):
     command=("pcode", plugin_category),
     info={
         "header": "Will paste the entire text on the blank white image.",
+        "flags": {
+            "f": "Use this flag to send it as file rather than image",
+        },
         "usage": ["{tr}pcode <reply>", "{tr}pcode text"],
     },
 )
