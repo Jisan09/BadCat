@@ -45,7 +45,7 @@ async def some(event):
     api_key = res[2:-1]
     list_id = []
     r = requests.get(
-        f"https://api.giphy.com/v1/gifs/search?q={inpt}&api_key={api_key}&limit=100"
+        f"https://api.giphy.com/v1/gifs/search?q={inpt}&api_key={api_key}&limit=50"
     ).json()
     i = 0
     while i < len(r["data"]):
