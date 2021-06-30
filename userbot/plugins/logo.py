@@ -1,6 +1,6 @@
 """
-Created & modified by @Jisan7509
-Base idea DevsExpo
+Created by @Jisan7509
+#catuserbot
 """
 
 import asyncio
@@ -94,17 +94,30 @@ async def very(event):
     image_widthz, image_heightz = img.size
     w, h = draw.textsize(text, font=font)
     h += int(h * 0.21)
-    draw.text(
-        (
-            (image_widthz - w) / float(LOGO_FONT_WIDTH),
-            (image_heightz - h) / float(LOGO_FONT_HEIGHT),
-        ),
-        text,
-        font=font,
-        fill=LOGO_FONT_COLOR,
-        stroke_width=int(LOGO_FONT_STROKE_WIDTH),
-        stroke_fill=LOGO_FONT_STROKE_COLOR,
-    )
+    try:
+        draw.text(
+            (
+                (image_widthz - w) / float(LOGO_FONT_WIDTH),
+                (image_heightz - h) / float(LOGO_FONT_HEIGHT),
+            ),
+            text,
+            font=font,
+            fill=LOGO_FONT_COLOR,
+            stroke_width=int(LOGO_FONT_STROKE_WIDTH),
+            stroke_fill=LOGO_FONT_STROKE_COLOR,
+        )
+    except OSError:
+        draw.text(
+            (
+                (image_widthz - w) / float(LOGO_FONT_WIDTH),
+                (image_heightz - h) / float(LOGO_FONT_HEIGHT),
+            ),
+            text,
+            font=font,
+            fill=LOGO_FONT_COLOR,
+            stroke_width=0,
+            stroke_fill=None,
+        )
     file_name = "badcat.png"
     img.save(file_name, "png")
     if cmd == "":
