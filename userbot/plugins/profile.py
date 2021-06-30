@@ -23,8 +23,8 @@ PP_CHANGED = "```Profile picture changed successfully.```"
 PP_TOO_SMOL = "```This image is too small, use a bigger image.```"
 PP_ERROR = "```Failure occured while processing image.```"
 BIO_SUCCESS = "```Successfully edited Bio.```"
-NAME_OK = "```Your name was succesfully changed.```"
-USERNAME_SUCCESS = "```Your username was succesfully changed.```"
+NAME_OK = "```Your name was successfully changed.```"
+USERNAME_SUCCESS = "```Your username was successfully changed.```"
 USERNAME_TAKEN = "```This username is already taken.```"
 # ===============================================================
 
@@ -121,7 +121,7 @@ async def _(event):
                 await catevent.edit(f"**Error:**\n`{str(e)}`")
             else:
                 await edit_or_reply(
-                    catevent, "`My profile picture was succesfully changed`"
+                    catevent, "`My profile picture was successfully changed`"
                 )
     try:
         os.remove(photo)

@@ -125,7 +125,7 @@ async def set_group_photo(event):  # sourcery no-metrics
         await event.client.send_message(
             BOTLOG_CHATID,
             "#GROUPPIC\n"
-            f"Group profile pic {process} succesfully "
+            f"Group profile pic {process} successfully "
             f"CHAT: {event.chat.title}(`{event.chat_id}`)",
         )
 

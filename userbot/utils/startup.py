@@ -212,7 +212,7 @@ async def verifyLoggerGroup():
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print(
-            "Private Group for PRIVATE_GROUP_BOT_API_ID is created succesfully and added to vars."
+            "Private Group for PRIVATE_GROUP_BOT_API_ID is created successfully and added to vars."
         )
         flag = True
     if PM_LOGGER_GROUP_ID != -100:
