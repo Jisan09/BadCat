@@ -435,7 +435,7 @@ async def _(event):
     command=("custompfp", plugin_category),
     info={
         "header": "Set Your Custom pfps",
-        "description": "Set links of pic to use them as auto profile. You can use cpfp or custompp as command",
+        "description": "Set links of pic to use them as auto profile. You can use cpfp or custompfp as command",
         "flags": {
             "a": "To add links for custom pfp",
             "r": "To remove links for custom pfp",
@@ -443,8 +443,15 @@ async def _(event):
             "s": "To stop custom pfp",
         },
         "usage": [
-            "{tr}cpfp - to start",
+            "{tr}cpfp or {tr}custompfp <to start>",
             "{tr}cpfp <flags> <links(optional)>",
+        ],
+        "examples": [
+            "{tr}cpfp",
+            "{tr}cpfp -l",
+            "{tr}cpfp -s",
+            "{tr}cpfp -a link1 link2...",
+            "{tr}cpfp -r link1 link2...",
         ],
     },
 )
