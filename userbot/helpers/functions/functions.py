@@ -5,6 +5,7 @@ from textwrap import wrap
 from uuid import uuid4
 
 import requests
+
 from ..utils.extdl import install_pip
 
 try:
@@ -12,6 +13,7 @@ try:
 except ModuleNotFoundError:
     install_pip("IMDbPY")
     from imdb import IMDb
+
 from PIL import Image, ImageColor, ImageDraw, ImageFont
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
