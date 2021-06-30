@@ -26,7 +26,7 @@ DEFAULTUSERBIO = (
 
 
 @catub.cat_cmd(
-    pattern="clone(?: |$)(.*)",
+    pattern="clone(?:\s|$)([\s\S]*)",
     command=("clone", plugin_category),
     info={
         "header": "To clone account of mentiond user or replied user",
@@ -88,7 +88,7 @@ async def _(event):
     await event.client(functions.account.UpdateProfileRequest(about=bio))
     await event.client(functions.account.UpdateProfileRequest(first_name=name))
     await event.client(functions.account.UpdateProfileRequest(last_name=blank))
-    await edit_delete(event, "succesfully reverted to your account back")
+    await edit_delete(event, "successfully reverted to your account back")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"

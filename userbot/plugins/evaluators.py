@@ -11,7 +11,7 @@ plugin_category = "tools"
 
 
 @catub.cat_cmd(
-    pattern="exec(?: |$|\n)(.*)",
+    pattern="exec(?:\s|$)([\s\S]*)",
     command=("exec", plugin_category),
     info={
         "header": "To Execute terminal commands in a subprocess.",
@@ -34,14 +34,14 @@ async def _(event):
     curruser = catuser.username or "catuserbot"
     uid = os.geteuid()
     if uid == 0:
-        cresult = f"`{curruser}:~#` `{cmd}`\n`{result}`"
+        cresult = f"```{curruser}:~#``` ```{cmd}```\n```{result}```"
     else:
-        cresult = f"`{curruser}:~$` `{cmd}`\n`{result}`"
+        cresult = f"```{curruser}:~$``` ```{cmd}```\n```{result}```"
     await edit_or_reply(
         catevent,
         text=cresult,
         aslink=True,
-        linktext=f"**•  Exec : **\n`{cmd}` \n\n**•  Result : **\n",
+        linktext=f"**•  Exec : **\n```{cmd}``` \n\n**•  Result : **\n",
     )
     if BOTLOG:
         await event.client.send_message(
@@ -51,7 +51,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="eval(?: |$|\n)(.*)",
+    pattern="eval(?:\s|$)([\s\S]*)",
     command=("eval", plugin_category),
     info={
         "header": "To Execute python script/statements in a subprocess.",
@@ -64,6 +64,11 @@ async def _(event):
     cmd = "".join(event.message.message.split(maxsplit=1)[1:])
     if not cmd:
         return await edit_delete(event, "`What should i run ?..`")
+    cmd = (
+        cmd.replace("sendmessage", "send_message")
+        .replace("sendfile", "send_file")
+        .replace("editmessage", "edit_message")
+    )
     catevent = await edit_or_reply(event, "`Running ...`")
     old_stderr = sys.stderr
     old_stdout = sys.stdout
@@ -87,12 +92,14 @@ async def _(event):
         evaluation = stdout
     else:
         evaluation = "Success"
-    final_output = f"**•  Eval : **\n`{cmd}` \n\n**•  Result : **\n`{evaluation}` \n"
+    final_output = (
+        f"**•  Eval : **\n```{cmd}``` \n\n**•  Result : **\n```{evaluation}``` \n"
+    )
     await edit_or_reply(
         catevent,
         text=final_output,
         aslink=True,
-        linktext=f"**•  Eval : **\n`{cmd}` \n\n**•  Result : **\n",
+        linktext=f"**•  Eval : **\n```{cmd}``` \n\n**•  Result : **\n",
     )
     if BOTLOG:
         await event.client.send_message(

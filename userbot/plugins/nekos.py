@@ -24,7 +24,7 @@ def user_agent():
 
 
 @catub.cat_cmd(
-    pattern="nn ?(.*)",
+    pattern="nn ?([\s\S]*)",
     command=("nn", plugin_category),
     info={
         "header": "Contains NSFW \nSearch images from nekos",

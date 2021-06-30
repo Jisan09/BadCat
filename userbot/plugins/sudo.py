@@ -89,7 +89,7 @@ async def chat_blacklist(event):
 
 
 @catub.cat_cmd(
-    pattern="addsudo(?: |$)(.*)",
+    pattern="addsudo(?:\s|$)([\s\S]*)",
     command=("addsudo", plugin_category),
     info={
         "header": "To add user as your sudo.",
@@ -129,7 +129,7 @@ async def add_sudo_user(event):
 
 
 @catub.cat_cmd(
-    pattern="delsudo(?: |$)(.*)",
+    pattern="delsudo(?:\s|$)([\s\S]*)",
     command=("delsudo", plugin_category),
     info={
         "header": "To remove user from your sudo.",

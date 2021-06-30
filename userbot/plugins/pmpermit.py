@@ -120,15 +120,11 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
         )
     elif gvarstatus("pmmenu") is None:
         USER_BOT_NO_WARN = f"""__Hi__ {mention}__, I haven't approved you yet to personal message me. 
-
 You have {warns}/{totalwarns} warns until you get blocked by the CatUserbot.
-
 Choose an option from below to specify the reason of your message and wait for me to check it. __⬇️"""
     else:
         USER_BOT_NO_WARN = f"""__Hi__ {mention}__, I haven't approved you yet to personal message me.
-
 You have {warns}/{totalwarns} warns until you get blocked by the CatUserbot.
-
 Don't spam my inbox. say reason and wait until my response.__"""
     addgvar("pmpermit_text", USER_BOT_NO_WARN)
     PM_WARNS[str(chat.id)] += 1
@@ -401,7 +397,7 @@ Now you can't do anything unless my master comes online and unblocks you.**"
         return
 
 
-@catub.cat_cmd(incoming=True, func=lambda e: e.is_private, edited=False)
+@catub.cat_cmd(incoming=True, func=lambda e: e.is_private, edited=False, forword=None)
 async def on_new_private_message(event):
     if gvarstatus("pmpermit") is None:
         return
@@ -423,7 +419,7 @@ async def on_new_private_message(event):
     await do_pm_permit_action(event, chat)
 
 
-@catub.cat_cmd(outgoing=True, func=lambda e: e.is_private, edited=False)
+@catub.cat_cmd(outgoing=True, func=lambda e: e.is_private, edited=False, forword=None)
 async def you_dm_other(event):
     if gvarstatus("pmpermit") is None:
         return
@@ -482,7 +478,6 @@ async def on_plug_in_callback_query_handler(event):
         return await event.answer(text, cache_time=0, alert=True)
     text = f"""Ok, Now you are accessing the availabe menu of my master, {mention}.
 __Let's make this smooth and let me know why you are here.__
-
 **Choose one of the following reasons why you are here:**"""
     buttons = [
         (Button.inline(text="To enquire something.", data="to_enquire_something"),),
@@ -535,7 +530,6 @@ async def on_plug_in_callback_query_handler(event):
         return await event.answer(text, cache_time=0, alert=True)
     text = """__Okay. I have notified my master about this. When he/she comes comes online\
  or when my master is free he/she will look into this chat and will ping you so we can have a friendly chat.__\
-
 **But right now please do not spam unless you wish to get blocked.**"""
     sqllist.add_to_list("pmrequest", event.query.user_id)
     try:
@@ -618,7 +612,7 @@ async def pmpermit_on(event):
         if gvarstatus("pmpermit") is None:
             addgvar("pmpermit", "true")
             await edit_delete(
-                event, "__Pmpermit has been enabled for your account succesfully.__"
+                event, "__Pmpermit has been enabled for your account successfully.__"
             )
         else:
             await edit_delete(event, "__Pmpermit is already enabled for your account__")
@@ -647,7 +641,7 @@ async def pmpermit_on(event):
             addgvar("pmmenu", "false")
             await edit_delete(
                 event,
-                "__Pmpermit Menu has been disabled for your account succesfully.__",
+                "__Pmpermit Menu has been disabled for your account successfully.__",
             )
         else:
             await edit_delete(
@@ -665,7 +659,7 @@ async def pmpermit_on(event):
 
 
 @catub.cat_cmd(
-    pattern="(a|approve)(?: |$)(.*)",
+    pattern="(a|approve)(?:\s|$)([\s\S]*)",
     command=("approve", plugin_category),
     info={
         "header": "To approve user to direct message you.",
@@ -741,7 +735,7 @@ async def approve_p_m(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="(da|disapprove)(?: |$)(.*)",
+    pattern="(da|disapprove)(?:\s|$)([\s\S]*)",
     command=("disapprove", plugin_category),
     info={
         "header": "To disapprove user to direct message you.",
@@ -774,7 +768,7 @@ async def disapprove_p_m(event):
     if reason == "all":
         pmpermit_sql.disapprove_all()
         return await edit_delete(
-            event, "__Ok! I have disapproved everyone succesfully.__"
+            event, "__Ok! I have disapproved everyone successfully.__"
         )
     if not reason:
         reason = "Not Mentioned."
@@ -792,7 +786,7 @@ async def disapprove_p_m(event):
 
 
 @catub.cat_cmd(
-    pattern="block(?: |$)(.*)",
+    pattern="block(?:\s|$)([\s\S]*)",
     command=("block", plugin_category),
     info={
         "header": "To block user to direct message you.",
@@ -848,7 +842,7 @@ async def block_p_m(event):
 
 
 @catub.cat_cmd(
-    pattern="unblock(?: |$)(.*)",
+    pattern="unblock(?:\s|$)([\s\S]*)",
     command=("unblock", plugin_category),
     info={
         "header": "To unblock a user.",
@@ -867,6 +861,7 @@ async def unblock_pm(event):
         )
     if event.is_private:
         user = await event.get_chat()
+        reason = event.pattern_match.group(1)
     else:
         user, reason = await get_user_from_event(event)
         if not user:

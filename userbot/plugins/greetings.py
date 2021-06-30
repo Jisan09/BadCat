@@ -78,7 +78,7 @@ async def baby(event):
 
 
 @catub.cat_cmd(
-    pattern="hbd(?: |$)(.*)",
+    pattern="hbd(?:\s|$)([\s\S]*)",
     command=("hbd", plugin_category),
     info={
         "header": "Happy birthday art.",
@@ -246,7 +246,7 @@ async def gn(event):
 
 
 @catub.cat_cmd(
-    pattern="hi(?: |$)(.*)",
+    pattern="hi(?:\s|$)([\s\S]*)",
     command=("hi", plugin_category),
     info={
         "header": "Hi text art.",

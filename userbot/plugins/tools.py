@@ -10,8 +10,6 @@ import qrcode
 import requests
 from barcode.writer import ImageWriter
 from bs4 import BeautifulSoup
-from ipdata import ipdata
-from ipdata.ipdata import APIKeyNotSet
 from PIL import Image, ImageColor
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
@@ -30,14 +28,14 @@ LOGS = logging.getLogger(__name__)
 
 
 @catub.cat_cmd(
-    pattern="cur(?: |$)(.*)",
+    pattern="cur(?:\s|$)([\s\S]*)",
     command=("cur", plugin_category),
     info={
         "header": "To convert one currency value to other.",
         "description": "To find exchange rates of currencies.",
         "usage": "{tr}cur <value> <from currencyid> <to currencyid>",
         "examples": "{tr}cur 10 USD INR",
-        "note": "List of currency ids are [here](https://nekobin.com/vacuwocesa)",
+        "note": "List of currency ids are [Country & Currency](https://da.gd/j588M) or [Only Currency data](https://da.gd/obZIdk)",
     },
 )
 async def currency(event):
@@ -71,7 +69,8 @@ async def currency(event):
         except KeyError:
             return await edit_delete(
                 event,
-                "__You have used wrong currency codes or Api can't fetch details.__",
+                "__You have used wrong currency codes or Api can't fetch details or try by restarting bot it will work if everything is fine.__",
+                time=10,
             )
         output = float(value) * float(result)
         output = round(output, 4)
@@ -161,7 +160,7 @@ async def parseqr(event):
 
 
 @catub.cat_cmd(
-    pattern="barcode ?(.*)",
+    pattern="barcode ?([\s\S]*)",
     command=("barcode", plugin_category),
     info={
         "header": "To get barcode of given text.",
@@ -257,7 +256,7 @@ async def make_qr(makeqr):
 
 
 @catub.cat_cmd(
-    pattern="cal (.*)",
+    pattern="cal ([\s\S]*)",
     command=("cal", plugin_category),
     info={
         "header": "To get calendar of given month and year.",
@@ -282,7 +281,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="ip(?: |$)(.*)",
+    pattern="ip(?:\s|$)([\s\S]*)",
     command=("ip", plugin_category),
     info={
         "header": "Find details of an IP address",
@@ -300,19 +299,19 @@ async def spy(event):
     if not inpt:
         return await edit_delete(event, "**Give an ip address to lookup...**", 20)
     check = "" if inpt == "mine" else inpt
-    try:
-        pussy = ipdata.IPData(Config.IPDATA_API)
-    except APIKeyNotSet:
+    API = Config.IPDATA_API
+    if API is None:
         return await edit_delete(
             event,
             "**Get an API key from [Ipdata](https://dashboard.ipdata.co/sign-up.html) & set that in heroku var `IPDATA_API`**",
             80,
         )
-    r = pussy.lookup(check)
-    if r["status"] == 200:
+    url = requests.get(f"https://api.ipdata.co/{check}?api-key={API}")
+    r = url.json()
+    try:
+        return await edit_delete(event, f"**{r['message']}**", 60)
+    except KeyError:
         await edit_or_reply(event, "🔍 **Searching...**")
-    else:
-        return await edit_delete(event, f"**{r['message']}**", 80)
     ip = r["ip"]
     city = r["city"]
     postal = r["postal"]
@@ -329,13 +328,15 @@ async def spy(event):
     calling_code = r["calling_code"]
     country_code = r["country_code"]
     currency = r["currency"]["name"]
+    curnative = r["currency"]["native"]
     lang1 = r["languages"][0]["name"]
     time_zone = r["time_zone"]["name"]
-    emoji_unicode = r["emoji_unicode"]
+    emoji_flag = r["emoji_flag"]
     continent_code = r["continent_code"]
     native = r["languages"][0]["native"]
     current_time = r["time_zone"]["current_time"]
 
+    symbol = "₹" if country == "India" else curnative
     language1 = (
         f"<code>{lang1}</code>"
         if lang1 == native
@@ -344,14 +345,10 @@ async def spy(event):
 
     try:
         lang2 = f', <code>{r["languages"][1]["name"]}</code>'
-    except:
+    except IndexError:
         lang2 = ""
 
-    b = emoji_unicode.replace("+", "000").replace(" ", "").replace("U", "\\U")
-    t = b.encode("ascii", "namereplace")
-    emoji = t.decode("unicode-escape")
-
-    string = f"✘ <b>Lookup For Ip : {ip}</b> {emoji}\n\n\
+    string = f"✘ <b>Lookup For Ip : {ip}</b> {emoji_flag}\n\n\
     <b>• City Name :</b>  <code>{city}</code>\n\
     <b>• Region Name :</b>  <code>{region}</code> [<code>{region_code}</code>]\n\
     <b>• Country Name :</b>  <code>{country}</code> [<code>{country_code}</code>]\n\
@@ -361,7 +358,7 @@ async def spy(event):
     <b>• Caller Code :</b>  <code>+{calling_code}</code>\n\
     <b>• Carrier Detail :  <a href = https://www.{carriel}>{' '.join(carrier.split()[:2])}</a></b>\n\
     <b>• Language :</b>  {language1} {lang2}\n\
-    <b>• Currency :</b>  <code>{currency}</code> [<code>{currcode}</code>]\n\
+    <b>• Currency :</b>  <code>{currency}</code> [<code>{symbol}{currcode}</code>]\n\
     <b>• Time Zone :</b> <code>{time_zone}</code> [<code>{time_z}</code>]\n\
     <b>• Time :</b> <code>{current_time[11:16]}</code>\n\
     <b>• Date :</b> <code>{current_time[:10]}</code>\n\
@@ -370,7 +367,7 @@ async def spy(event):
 
 
 @catub.cat_cmd(
-    pattern="ifsc (.*)",
+    pattern="ifsc ([\s\S]*)",
     command=("ifsc", plugin_category),
     info={
         "header": "to get details of the relevant bank or branch.",
@@ -393,7 +390,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="color (.*)",
+    pattern="color ([\s\S]*)",
     command=("color", plugin_category),
     info={
         "header": "To get color pic of given hexa color code.",
@@ -429,7 +426,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="xkcd(?: |$)(.*)",
+    pattern="xkcd(?:\s|$)([\s\S]*)",
     command=("xkcd", plugin_category),
     info={
         "header": "Searches for the query for the relevant XKCD comic.",

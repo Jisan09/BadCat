@@ -359,7 +359,7 @@ async def kakashi(saxy):
 
 
 @catub.cat_cmd(
-    pattern="sdick (.*)",
+    pattern="sdick ([\s\S]*)",
     command=("sdick", plugin_category),
     info={
         "header": "bad art, try yourself ",

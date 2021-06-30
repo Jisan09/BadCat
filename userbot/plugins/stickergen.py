@@ -8,7 +8,7 @@ plugin_category = "useless"
 
 
 @catub.cat_cmd(
-    pattern="(|b)quby(?: |$)(.*)",
+    pattern="(|b)quby(?:\s|$)([\s\S]*)",
     command=("quby", plugin_category),
     info={
         "header": "Make doge say anything.",
@@ -76,7 +76,7 @@ async def quby(event):
 
 
 @catub.cat_cmd(
-    pattern="(|b)blob(?: |$)(.*)",
+    pattern="(|b)blob(?:\s|$)([\s\S]*)",
     command=("blob", plugin_category),
     info={
         "header": "Give the sticker on background.",
@@ -145,7 +145,7 @@ async def knife(event):
 
 
 @catub.cat_cmd(
-    pattern="(|h)doge(?: |$)(.*)",
+    pattern="(|h)doge(?:\s|$)([\s\S]*)",
     command=("doge", plugin_category),
     info={
         "header": "Make doge say anything.",
