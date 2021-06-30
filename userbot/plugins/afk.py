@@ -138,7 +138,7 @@ async def on_afk(event):  # sourcery no-metrics
         if event.is_private:
             return
         hmm = await event.get_chat()
-        if not Config.PM_LOGGER_GROUP_ID:
+        if Config.PM_LOGGER_GROUP_ID == -100:
             return
         full = None
         try:
