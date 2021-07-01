@@ -1,5 +1,5 @@
 from typing import Dict, List, Union
-
+from ..helpers.utils.extdl import install_pip
 try:
     from urlextract import URLExtract
 except ModuleNotFoundError:
