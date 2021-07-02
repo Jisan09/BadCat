@@ -1,3 +1,4 @@
+
 from validators.url import url
 
 from userbot import catub
@@ -14,6 +15,7 @@ vlist = [
     "ALIVE_PIC",
     "ALIVE_EMOJI",
     "ALIVE_TEXT",
+    "ALIVE_TEMPLATE",
     "ALLOW_NSFW",
     "HELP_EMOJI",
     "HELP_TEXT",
@@ -78,6 +80,8 @@ async def bad(event):  # sourcery no-metrics
         if vname in oldvars:
             vname = oldvars[vname]
         if cmd == "set":
+            if not vinfo and vname == "ALIVE_TEMPLATE":
+                return await edit_delete(event,f"Check @cat_alive")
             if not vinfo:
                 return await edit_delete(
                     event, f"Give some values which you want to save for **{vname}**"
