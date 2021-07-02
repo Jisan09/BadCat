@@ -1,8 +1,8 @@
 import random
 import re
 import time
-from platform import python_version
 from datetime import datetime
+from platform import python_version
 
 from telethon import version
 from telethon.errors.rpcerrorlist import (
@@ -36,7 +36,7 @@ plugin_category = "utils"
 async def amireallyalive(event):
     "A kind of showing bot details"
     start = datetime.now()
-    catevent = await edit_or_reply(event,"Checking...")
+    await edit_or_reply(event, "Checking...")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     reply_to_id = await reply_id(event)
@@ -45,7 +45,17 @@ async def amireallyalive(event):
     EMOJI = gvarstatus("ALIVE_EMOJI") or "✧✧"
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
     cat_caption = gvarstatus("ALIVE_TEMPLATE") or temp
-    caption = cat_caption.format(ALIVE_TEXT=ALIVE_TEXT,EMOJI=EMOJI,mention=mention,uptime=uptime,Televar = version.__version__, catver=catversion,pyver=python_version(),dbhealth =check_sgnirts,ping=ms)
+    caption = cat_caption.format(
+        ALIVE_TEXT=ALIVE_TEXT,
+        EMOJI=EMOJI,
+        mention=mention,
+        uptime=uptime,
+        Televar=version.__version__,
+        catver=catversion,
+        pyver=python_version(),
+        dbhealth=check_sgnirts,
+        ping=ms,
+    )
     CAT_IMG = gvarstatus("ALIVE_PIC")
     if CAT_IMG:
         CAT = [x for x in CAT_IMG.split()]
@@ -61,7 +71,8 @@ async def amireallyalive(event):
                 f"**Media Value Error!!**\n__Change the link by __`.setdv`\n\n**__Can't get media from this link :-**__ `{PIC}`",
             )
     else:
-        await edit_or_reply(event,caption)
+        await edit_or_reply(event, caption)
+
 
 temp = "**{ALIVE_TEXT}**\n\n\
 **{EMOJI} Master : {mention}**\n\
