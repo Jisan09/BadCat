@@ -153,10 +153,10 @@ async def procces_img(event):
     args = event.pattern_match.group(1)
     if not user:
         try:
-            if not args and not reply:
-                user = await event.client.get_me()
-            else:
+            if args or reply:
                 user = await event.client.get_entity(args or reply.sender_id)
+            else:
+                user = await event.client.get_me()
             text = f"{get_display_name(user)} {choice(imps)}."
             text += text2
         except:

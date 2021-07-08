@@ -77,8 +77,6 @@ async def very(event):
                     media_url = links[0]
             except IndexError:
                 pass
-        else:
-            pass
         try:
             sandy = await event.client.send_file(
                 event.chat_id,
@@ -249,9 +247,8 @@ async def pussy(event):
         return await edit_delete(
             event, "**(ノಠ益ಠ)ノ  Tou sure this a vaid catagory/subreddit ??**", time=20
         )
-    i = 1
     pwnlist = f"<b>{count} results for {sub_r} :</b>\n\n"
-    for m, t in zip(media_url, title):
+    for i, (m, t) in enumerate(zip(media_url, title), start=1):
         if "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
         elif "https://redgifs.com/watch" in m:
@@ -270,7 +267,6 @@ async def pussy(event):
         else:
             media_url = m
         pwnlist += f"<b><i>{i}. <a href = {media_url}>{t}</a></b>\n"
-        i += 1
     await edit_or_reply(event, pwnlist, parse_mode="html")
 
 
@@ -334,8 +330,7 @@ async def cat(event):
     )
     string = f"<b>Showing {xcount}/{len(listlink)} results for {xtext}.</b>\n\n"
     mylink = listlink[: int(xcount)] if xcount else listlink
-    count = 1
-    for l, n in zip(mylink, listname):
+    for count, (l, n) in enumerate(zip(mylink, listname), start=1):
         req = requests.get(l)
         soup = BeautifulSoup(req.text, "lxml")
         soups = soup.find("div", {"id": "video-player-bg"})
@@ -344,7 +339,6 @@ async def cat(event):
         string += (
             f"<b><i>{count}. <a href = {link}>{n.replace('_',' ').title()}</a></b>\n"
         )
-        count += 1
     await edit_or_reply(event, string, parse_mode="html")
 
 
