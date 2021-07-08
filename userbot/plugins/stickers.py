@@ -127,7 +127,13 @@ async def newpacksticker(
     otherpack=False,
     pkang=False,
 ):
-    await conv.send_message(cmd)
+    try:
+        await conv.send_message(cmd)
+    except YouBlockedUserError:
+        await catevent.edit("You have blocked the @stickers bot. unblock it and try.")
+        if not pkang:
+            return None, None, None
+        return None, None
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.send_message(packnick)
@@ -144,7 +150,9 @@ async def newpacksticker(
         await catevent.edit(
             f"Failed to add sticker, use @Stickers bot to add the sticker manually.\n**error :**{rsp}"
         )
-        return
+        if not pkang:
+            return None, None, None
+        return None, None
     await conv.send_message(emoji)
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.get_response()
@@ -180,7 +188,13 @@ async def add_to_pack(
     cmd,
     pkang=False,
 ):
-    await conv.send_message("/addsticker")
+    try:
+        await conv.send_message("/addsticker")
+    except YouBlockedUserError:
+        await catevent.edit("You have blocked the @stickers bot. unblock it and try.")
+        if not pkang:
+            return None, None
+        return None, None
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.send_message(packname)
@@ -224,7 +238,9 @@ async def add_to_pack(
         await catevent.edit(
             f"Failed to add sticker, use @Stickers bot to add the sticker manually.\n**error :**{rsp}"
         )
-        return
+        if not pkang:
+            return None, None
+        return None, None
     await conv.send_message(emoji)
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.get_response()
@@ -348,6 +364,8 @@ async def kang(args):  # sourcery no-metrics
                     emoji,
                     cmd,
                 )
+            if packname is None:
+                return
             await edit_delete(
                 catevent,
                 f"`Sticker kanged successfully!\
@@ -370,6 +388,8 @@ async def kang(args):  # sourcery no-metrics
                     packname,
                     is_anim,
                 )
+            if otherpack is None:
+                return
             if otherpack:
                 await edit_delete(
                     catevent,
@@ -546,6 +566,8 @@ async def pack_kang(event):  # sourcery no-metrics
                         cmd,
                         pkang=True,
                     )
+            if catpackname is None:
+                return
             if catpackname not in blablapacks:
                 blablapacks.append(catpackname)
                 blablapacknames.append(pack)
@@ -657,7 +679,7 @@ async def pic2packcmd(event):
                 if packname.startswith("https://t.me/"):
                     break
             await catevent.edit(
-                f"__Succesfully created the pack for the replied media : __[{args}]({packname})"
+                f"__successfully created the pack for the replied media : __[{args}]({packname})"
             )
 
         except YouBlockedUserError:
