@@ -33,7 +33,7 @@ async def noods(event):
     reply_to_id = await reply_id(event)
     limit = 1
     if not query:
-        await edit_delete(event, "**Give some text ⁉️**",10)
+        await edit_delete(event, "**Give some text ⁉️**", 10)
     if ";" in query:
         query, limit = query.split(";")
     if int(limit) > 10:
