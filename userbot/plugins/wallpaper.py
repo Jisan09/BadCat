@@ -84,7 +84,7 @@ async def noods(event):
         if i == 5:
             await edit_or_reply(event, "`Max search error limit exceed..`")
     try:
-        await edit_or_reply(event, f"`Sending...`")
+        await edit_or_reply(event, "`Sending...`")
         captionlist[-1] = f"**➥ Query :-** `{query.title()}`"
         await event.client.send_file(
             event.chat_id,
