@@ -51,11 +51,11 @@ async def noods(event):
     piclinks = []
     captionlist = []
     await edit_or_reply(event, "⏳ `Processing..`")
+    url2 = "https://api.alphacoders.com/content/get-download-link"
     for x in walls:
         wall = random.choice(walls)["src"][8:-4]
         server = wall.split(".")[0]
         fileid = wall.split("-")[-1]
-        url2 = "https://api.alphacoders.com/content/get-download-link"
         data = {
             "content_id": fileid,
             "content_type": "wallpaper",
