@@ -33,7 +33,7 @@ async def noods(event):
     reply_to_id = await reply_id(event)
     limit = 1
     if not query:
-        await edit_delete(event, "**Give some text ⁉️**")
+        await edit_delete(event, "**Give some text ⁉️**",10)
     if ";" in query:
         query, limit = query.split(";")
     if int(limit) > 10:
@@ -80,11 +80,11 @@ async def noods(event):
             event, f"**📥 Downloaded : {count}/{limit}\n\n❌ Errors : {i}/5**"
         )
         if count == int(limit):
-            await edit_or_reply(event, f"`Sending...`")
             break
         if i == 5:
             await edit_or_reply(event, "`Max search error limit exceed..`")
     try:
+        await edit_or_reply(event, f"`Sending...`")
         captionlist[-1] = f"**➥ Query :-** `{query.title()}`"
         await event.client.send_file(
             event.chat_id,
