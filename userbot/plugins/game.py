@@ -38,7 +38,10 @@ async def igame(event):
     "Fun game by inline"
     reply_to_id = await reply_id(event)
     input_str = event.pattern_match.group(1)
-    game_list = "".join(f"**{i}.** `{item}` :- __{game[item]}__\n" for i, item in enumerate(game, start=1))
+    game_list = "".join(
+        f"**{i}.** `{item}` :- __{game[item]}__\n"
+        for i, item in enumerate(game, start=1)
+    )
     if not input_str:
         await edit_delete(
             event, f"**Available Game Codes & Names :-**\n\n{game_list}", time=60
@@ -52,10 +55,13 @@ async def igame(event):
         )
     else:
         await edit_or_reply(
-            event, f"**Game code `{input_str}` is selected for game:-** __{game[input_str]}__"
+            event,
+            f"**Game code `{input_str}` is selected for game:-** __{game[input_str]}__",
         )
         await asyncio.sleep(1)
         bot = "@inlinegamesbot"
         results = await event.client.inline_query(bot, input_str)
-        await results[game_code.index(input_str)].click(event.chat_id, reply_to=reply_to_id)
+        await results[game_code.index(input_str)].click(
+            event.chat_id, reply_to=reply_to_id
+        )
         await event.delete()
