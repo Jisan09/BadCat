@@ -222,8 +222,8 @@ async def glax(event):
     await hide_inlinebot(
         event.client, bot_name, text, event.chat_id, reply_to_id, c_lick=c_lick
     )
-    
-    
+
+
 @catub.cat_cmd(
     pattern="googl(?:\s|$)([\s\S]*)",
     command=("googl", plugin_category),
