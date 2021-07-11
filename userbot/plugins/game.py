@@ -7,11 +7,12 @@ from ..helpers.utils import reply_id
 
 plugin_category = "fun"
 
-game_code = ["ttt", "ttf", "cf", "rps", "rpsls", "rr", "c", "pc"]
-button = ["0", "1", "2", "3", "4", "5", "6", "7"]
+game_code = ["ttt", "ttf","ex", "cf", "rps", "rpsls", "rr", "c", "pc"]
+button = ["0", "1", "2", "3", "4", "5", "6", "7","8"]
 game_name = [
     "Tic-Tac-Toe",
     "Tic-Tac-Four",
+    "Elephant XO",
     "Connect Four",
     "Rock-Paper-Scissors",
     "Rock-Paper-Scissors-Lizard-Spock",
