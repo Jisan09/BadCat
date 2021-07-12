@@ -637,8 +637,8 @@ async def on_plug_in_callback_query_handler(event):
                 \n**Total Commands:** __{len(PLG_INFO[category])}__"
         try:
             return await event.edit(text, buttons=buttons)
-        except Exception:
-            pass
+        except Exception as e:
+            LOGS.error(str(e))
     await event.edit(buttons=buttons)
 
 
@@ -692,5 +692,5 @@ async def on_plug_in_callback_query_handler(event):
     text = f"**Command :** `{tr}{cmd}`\
         \n**Plugin :** `{category}`\
         \n**Category :** `{category_plugins}`\
-        \n\n**•  Intro :**\n{CMD_INFO[cmd][0]}"
+        \n\n**✘  Intro :**\n{CMD_INFO[cmd][0]}"
     await event.edit(text, buttons=buttons)
