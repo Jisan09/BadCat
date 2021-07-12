@@ -9,8 +9,8 @@ from userbot import catub
 
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
+from ..helpers import progress
 from ..helpers.tools import media_type
-from . import media_type, progress
 
 plugin_category = "tools"
 
