@@ -1438,21 +1438,20 @@ async def set_upload_folder(gdrive):
             "**[FOLDER - SET]**\n\n" "**Status : **`OK- using G_DRIVE_FOLDER_ID now.`"
         )
         return None
+    try:
+        GDRIVE_.parent_id = ""
+    except NameError:
+        await gdrive.edit(
+            "**[FOLDER - SET]**\n\n" "**Status : **`BAD - No parent_Id is set.`"
+        )
+        return False
     else:
-        try:
-            GDRIVE_.parent_id = ""
-        except NameError:
-            await gdrive.edit(
-                "**[FOLDER - SET]**\n\n" "**Status : **`BAD - No parent_Id is set.`"
-            )
-            return False
-        else:
-            await gdrive.edit(
-                "**[FOLDER - SET]**\n\n"
-                "**Status : **`OK`"
-                " - `G_DRIVE_FOLDER_ID empty, will use root.`"
-            )
-            return None
+        await gdrive.edit(
+            "**[FOLDER - SET]**\n\n"
+            "**Status : **`OK`"
+            " - `G_DRIVE_FOLDER_ID empty, will use root.`"
+        )
+        return None
 
 
 @catub.cat_cmd(
@@ -1485,17 +1484,15 @@ async def set_upload_folder(gdrive):
                 "**[PARENT - FOLDER]**\n\n" "**Status : **`OK - Successfully changed.`"
             )
             return None
-        else:
-            await gdrive.edit(
-                "**[PARENT - FOLDER]**\n\n" "**Status : WARNING** -` forcing use...`"
-            )
-            GDRIVE_.parent_Id = inp
+        await gdrive.edit(
+            "**[PARENT - FOLDER]**\n\n" "**Status : WARNING** -` forcing use...`"
+        )
+        GDRIVE_.parent_Id = inp
     else:
         GDRIVE_.parent_Id, _ = await get_file_id(ext_id)
         await gdrive.edit(
             "**[PARENT - FOLDER]**\n\n" "**Status : **`OK - Successfully changed.`"
         )
-    return
 
 
 @catub.cat_cmd(
