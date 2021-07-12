@@ -42,7 +42,7 @@ async def _(event):
     bio = event.pattern_match.group(1)
     try:
         await event.client(functions.account.UpdateProfileRequest(about=bio))
-        await edit_delete(event, "`Succesfully changed my profile bio`")
+        await edit_delete(event, "`successfully changed my profile bio`")
     except Exception as e:
         await edit_or_reply(event, f"**Error:**\n`{str(e)}`")
 
@@ -61,7 +61,7 @@ async def _(event):
     first_name = names
     last_name = ""
     if ";" in names:
-        first_name, last_name = names.split("|", 1)
+        first_name, last_name = names.split(";", 1)
     try:
         await event.client(
             functions.account.UpdateProfileRequest(
