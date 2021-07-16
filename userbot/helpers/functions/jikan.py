@@ -44,7 +44,7 @@ async def formatJSON(outData):
     msg += " __" + re.sub("<br>", "\n", cat) + "__"
     msg = re.sub("<b>", "__**", msg)
     msg = re.sub("</b>", "**__", msg)
-    return msg
+    return msg,link,jsonData['episodes'],jsonData['averageScore']
 
 
 def shorten(description, info="anilist.co"):
