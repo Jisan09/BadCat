@@ -82,7 +82,8 @@ async def anilist(event):
     event = await edit_or_reply(event, "`Searching...`")
     result = await callAPI(input_str)
     msg = await formatJSON(result)
-    await event.edit(msg[0], link_preview=True)
+    out =  msg[0] if type(msg) is list else msg
+    await event.edit(out, link_preview=True)
 
 
 @catub.cat_cmd(
