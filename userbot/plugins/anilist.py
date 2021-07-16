@@ -82,7 +82,7 @@ async def anilist(event):
     event = await edit_or_reply(event, "`Searching...`")
     result = await callAPI(input_str)
     msg = await formatJSON(result)
-    out =  msg[0] if type(msg) is list else msg
+    out = msg[0] if type(msg) is list else msg
     await event.edit(out, link_preview=True)
 
 
