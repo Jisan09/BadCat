@@ -1,7 +1,12 @@
 import typing
 
 from telethon import events, functions, hints, types
-from telethon.tl.types import InputPeerChannel, InputPeerChat, InputPeerUser
+from telethon.tl.types import (
+    InputPeerChannel,
+    InputPeerChat,
+    InputPeerUser,
+    MessageMediaWebPage,
+)
 
 from ..Config import Config
 from .managers import edit_or_reply
@@ -131,7 +136,7 @@ async def send_message(
     reply_to: "typing.Union[int, types.Message]" = None,
     parse_mode: typing.Optional[str] = (),
     formatting_entities: typing.Optional[typing.List[types.TypeMessageEntity]] = None,
-    link_preview: bool = True,
+    link_preview: bool = False,
     file: "typing.Union[hints.FileLike, typing.Sequence[hints.FileLike]]" = None,
     force_document: bool = False,
     clear_draft: bool = False,
@@ -235,6 +240,19 @@ async def send_file(
     comment_to: "typing.Union[int, types.Message]" = None,
     **kwargs,
 ):
+    if isinstance(file, MessageMediaWebPage):
+        return await client.send_message(
+            entity=entity,
+            message=caption,
+            reply_to=reply_to,
+            parse_mode=parse_mode,
+            formatting_entities=formatting_entities,
+            link_preview=True,
+            buttons=buttons,
+            silent=silent,
+            schedule=schedule,
+            comment_to=comment_to,
+        )
     chatid = entity
     if str(chatid) == str(Config.BOTLOG_CHATID):
         return await client.sendfile(
