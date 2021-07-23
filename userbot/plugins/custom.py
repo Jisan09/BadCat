@@ -1,3 +1,4 @@
+
 from validators.url import url
 
 from userbot import catub
@@ -6,10 +7,13 @@ from userbot.core.logger import logging
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
+from . import BOTLOG_CHATID
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
 cmdhd = Config.COMMAND_HAND_LER
+
+
 vlist = [
     "ALIVE_PIC",
     "ALIVE_EMOJI",
@@ -90,6 +94,13 @@ async def bad(event):  # sourcery no-metrics
                 if "PIC" in vname and not url(i):
                     return await edit_delete(event, "**Give me a correct link...**")
             addgvar(vname, vinfo)
+            if BOTLOG_CHATID:
+                await event.client.send_message(
+                    BOTLOG_CHATID,
+                    f"#SET_DATAVAR\
+                    \n**{vname}** is updated newly in database as below",
+                )
+                await event.client.send_message(BOTLOG_CHATID, vinfo, silent=True)
             await edit_delete(
                 event, f"📑 Value of **{vname}** is changed to :- `{vinfo}`", time=20
             )
@@ -100,6 +111,12 @@ async def bad(event):  # sourcery no-metrics
             )
         elif cmd == "del":
             delgvar(vname)
+            if BOTLOG_CHATID:
+                await event.client.send_message(
+                    BOTLOG_CHATID,
+                    f"#DEL_DATAVAR\
+                    \n**{vname}** is deleted from database",
+                )
             await edit_delete(
                 event,
                 f"📑 Value of **{vname}** is now deleted & set to default.",
@@ -109,6 +126,7 @@ async def bad(event):  # sourcery no-metrics
         await edit_delete(
             event, f"**📑 Give correct var name from the list :\n\n**{vnlist}", time=60
         )
+
 
 
 @catub.cat_cmd(
@@ -157,3 +175,10 @@ async def custom_catuserbot(event):
     if input_str == "startmsg":
         addgvar("START_TEXT", text)
     await edit_or_reply(event, f"__Your custom {input_str} has been updated__")
+    if BOTLOG_CHATID:
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            f"#SET_DATAVAR\
+                    \n**{input_str}** is updated newly in database as below",
+        )
+        await event.client.send_message(BOTLOG_CHATID, text, silent=True)
