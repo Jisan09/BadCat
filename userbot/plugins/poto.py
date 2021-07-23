@@ -34,7 +34,7 @@ async def potocmd(event):
     uid = "".join(event.raw_text.split(maxsplit=1)[1:])
     user = await event.get_reply_message()
     chat = event.input_chat
-    if user:
+    if user and user.sender:
         photos = await event.client.get_profile_photos(user.sender)
         u = True
     else:
@@ -72,7 +72,7 @@ async def potocmd(event):
             await edit_or_reply(event, "`Are you comedy me ?`")
             return
         if int(uid) > (len(photos)):
-            return await edit_delere(
+            return await edit_delete(
                 event, "`No photo found of this NIBBA / NIBBI. Now u Die!`"
             )
 
