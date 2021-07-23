@@ -1,4 +1,3 @@
-
 from validators.url import url
 
 from userbot import catub
@@ -126,7 +125,6 @@ async def bad(event):  # sourcery no-metrics
         await edit_delete(
             event, f"**📑 Give correct var name from the list :\n\n**{vnlist}", time=60
         )
-
 
 
 @catub.cat_cmd(
