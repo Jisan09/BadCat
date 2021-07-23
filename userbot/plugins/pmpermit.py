@@ -619,7 +619,7 @@ async def pmpermit_on(event):
     elif gvarstatus("pmpermit") is not None:
         delgvar("pmpermit")
         await edit_delete(
-            event, "__Pmpermit has been disabled for your account succesfully__"
+            event, "__Pmpermit has been disabled for your account successfully__"
         )
     else:
         await edit_delete(event, "__Pmpermit is already disabled for your account__")
@@ -650,7 +650,7 @@ async def pmpermit_on(event):
     elif gvarstatus("pmmenu") is not None:
         delgvar("pmmenu")
         await edit_delete(
-            event, "__Pmpermit Menu has been enabled for your account succesfully__"
+            event, "__Pmpermit Menu has been enabled for your account successfully__"
         )
     else:
         await edit_delete(
@@ -875,7 +875,7 @@ async def unblock_pm(event):
 
 
 @catub.cat_cmd(
-    pattern="listapproved$",
+    pattern="l(ist)?a(pproved)?$",
     command=("listapproved", plugin_category),
     info={
         "header": "To see list of approved users.",
