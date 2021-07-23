@@ -249,8 +249,10 @@ async def inline_handler(event):  # sourcery no-metrics
     string.split()
     query_user_id = event.query.user_id
     if query_user_id == Config.OWNER_ID or query_user_id in Config.SUDO_USERS:
-        hmm = re.compile("secret (.*) (.*)")
+        hmm = re.compile("troll (.*) (.*)")
         match = re.findall(hmm, query)
+        inf = re.compile("secret (.*) (.*)")
+        match2 = re.findall(inf, query)
         if query.startswith("**Catuserbot"):
             buttons = [
                 (
@@ -324,6 +326,55 @@ async def inline_handler(event):  # sourcery no-metrics
             )
             await event.answer([result] if result else None)
         elif match:
+            query = query[7:]
+            user, txct = query.split(" ", 1)
+            builder = event.builder
+            troll = os.path.join("./userbot", "troll.txt")
+            try:
+                jsondata = json.load(open(troll))
+            except Exception:
+                jsondata = False
+            try:
+                # if u is user id
+                u = int(user)
+                try:
+                    u = await event.client.get_entity(u)
+                    if u.username:
+                        sandy = f"@{u.username}"
+                    else:
+                        sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                except ValueError:
+                    # ValueError: Could not find the input entity
+                    sandy = f"[user](tg://user?id={u})"
+            except ValueError:
+                # if u is username
+                try:
+                    u = await event.client.get_entity(user)
+                except ValueError:
+                    return
+                if u.username:
+                    sandy = f"@{u.username}"
+                else:
+                    sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                u = int(u.id)
+            except Exception:
+                return
+            timestamp = int(time.time() * 2)
+            newtroll = {str(timestamp): {"userid": u, "text": txct}}
+
+            buttons = [Button.inline("show message 🔐", data=f"troll_{timestamp}")]
+            result = builder.article(
+                title="Troll Message",
+                text=f"Only {sandy} cannot access this message!",
+                buttons=buttons,
+            )
+            await event.answer([result] if result else None)
+            if jsondata:
+                jsondata.update(newtroll)
+                json.dump(jsondata, open(troll, "w"))
+            else:
+                json.dump(newtroll, open(troll, "w"))
+        elif match2:
             query = query[7:]
             user, txct = query.split(" ", 1)
             builder = event.builder
@@ -574,7 +625,7 @@ async def on_plug_in_callback_query_handler(event):
 
 @catub.tgbot.on(
     CallbackQuery(
-        data=re.compile(b"back_([a-z]+)_([a-z]+)_([0-9]+)_?([a-z]+)?_?([0-9]+)?")
+        data=re.compile(b"back_([a-z]+)_([a-z1-9]+)_([0-9]+)_?([a-z1-9]+)?_?([0-9]+)?")
     )
 )
 @check_owner
@@ -671,7 +722,9 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @catub.tgbot.on(
-    CallbackQuery(data=re.compile(b"(.*)_cmdhelp_([a-z]+)_([0-9]+)_([a-z]+)_([0-9]+)"))
+    CallbackQuery(
+        data=re.compile(b"(.*)_cmdhelp_([a-z1-9]+)_([0-9]+)_([a-z]+)_([0-9]+)")
+    )
 )
 @check_owner
 async def on_plug_in_callback_query_handler(event):
@@ -692,5 +745,5 @@ async def on_plug_in_callback_query_handler(event):
     text = f"**Command :** `{tr}{cmd}`\
         \n**Plugin :** `{category}`\
         \n**Category :** `{category_plugins}`\
-        \n\n**✘  Intro :**\n{CMD_INFO[cmd][0]}"
+        \n\n**✘ Intro :**\n{CMD_INFO[cmd][0]}"
     await event.edit(text, buttons=buttons)
