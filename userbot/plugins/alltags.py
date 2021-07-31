@@ -41,9 +41,7 @@ async def alltags(event):
 
     async for x in event.client.iter_participants(event.chat_id):
         if not (x.bot or x.deleted):
-            if not (
-                isinstance(x.participant, admin) or isinstance(x.participant, owner)
-            ):
+            if not isinstance(x.participant, (admin, owner)):
                 users.append(f" [{get_display_name(x)}](tg://user?id={x.id}) ")
             if isinstance(x.participant, admin):
                 users.append(f"👮 Admin: [{get_display_name(x)}](tg://user?id={x.id}) ")
