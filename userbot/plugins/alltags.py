@@ -18,6 +18,7 @@ def user_list(l, n):
     for i in range(0, len(l), n):
         yield l[i : i + n]
 
+
 @catub.cat_cmd(
     pattern="alltags(?:\s|$)([\s\S]*)",
     command=("alltags", plugin_category),
