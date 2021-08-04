@@ -22,7 +22,9 @@ A simple Telegram userbot based on Telethon .
 ## How to deploy catuserbot
 ### Self host
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FJisan09%2Fcatpack)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fdeepaiims%2Fcatpack)
+
+[![Deploy](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fdeepaiims%2Fcatpack&plugins=postgresql&envs=ALIVE_NAME%2CAPP_ID%2CAPI_HASH%2CCOMMAND_HAND_LER%2CENV%2CSTRING_SESSION%2CTG_BOT_USERNAME%2CTG_BOT_TOKEN%2CTZ%2CUPSTREAM_REPO&optionalEnvs=TZ&ALIVE_NAMEDesc=The+name+you+want+the+bot+to+show+as+its+owner.&APP_IDDesc=Get+this+value+from+my.telegram.org&API_HASHDesc=Get+this+value+from+my.telegram.org&COMMAND_HAND_LERDesc=This+symbol+will+trigger+the+bot+commands.&ENVDesc=Set+this+to+ANYTHING+to+make+catuserbot+work.&STRING_SESSIONDesc=Generate+this+value+from+https%3A%2F%2Fgeneratestringsession.sandeep1709.repl.run&TG_BOT_USERNAMEDesc=Needed+for+your+inline+bot.+Get+the+value+from+t.me%2Fbotfather&TG_BOT_TOKENDesc=Needed+for+your+inline+bot.+Get+the+value+from+t.me%2Fbotfather&TZDesc=Needed+for+autopic%2Fautobio.+Know+your+timezone+from+http%3A%2F%2Fwww.timezoneconverter.com%2Fcgi-bin%2Ffindzone.tzc&UPSTREAM_REPODesc=Fill+either+goodcat+or+badcat.+If+you+are+maintaining+a+fork+the+put+your+git+repo+link.&COMMAND_HAND_LERDefault=.&ENVDefault=ANYTHING&UPSTREAM_REPODefault=goodcat)
 
   <details>
     <summary>Steps to deploy on Heroku !! </summary>
