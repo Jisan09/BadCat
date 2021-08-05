@@ -164,7 +164,7 @@ async def quote_search(event):
 
         \nThe above fedid is sucessfully removed that fed group.",
 
-        )
+       )
 
 @catub.cat_cmd(
 
