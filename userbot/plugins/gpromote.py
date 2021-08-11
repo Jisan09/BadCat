@@ -28,7 +28,7 @@ from userbot.utils import register
 
 from userbot.utils import admin_cmd
 
-from userbot import bot as borg
+from userbot import bot as catub
 
 async def get_full_user(event):  
 
@@ -240,7 +240,7 @@ plugin_category="tools
  
  "header":"To globally deomote a user", 
  
- "usage": "{tr}gpromote"},
+ "usage": "{tr}demote"},
  
 ) 
 
