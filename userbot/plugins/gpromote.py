@@ -110,7 +110,7 @@ async def get_user_from_id(user, event):
 
     return user_obj
 
-]
+ ]
 
 plugin_category="tools"
 
