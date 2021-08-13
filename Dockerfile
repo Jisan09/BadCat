@@ -11,4 +11,3 @@ RUN pip3 install --no-cache-dir requirements.txt
 ENV PATH="/home/userbot/bin:$PATH"
 
 CMD ["python3","-m","userbot"]
-© 2021 GitHub, Inc.
