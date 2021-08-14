@@ -3,6 +3,8 @@ created by @sandy1709
 Idea by @BlazingRobonix
 """
 
+from telethon.utils import get_display_name
+
 from userbot import catub
 
 from ..core.managers import edit_delete, edit_or_reply
@@ -46,7 +48,7 @@ async def echo(event):
         chat_name = user.first_name
         chat_type = "Personal"
     else:
-        chat_name = event.chat.title
+        chat_name = get_display_name(await event.get_chat())
         chat_type = "Group"
     user_name = user.first_name
     user_username = user.username
@@ -55,7 +57,7 @@ async def echo(event):
     try:
         addecho(chat_id, user_id, chat_name, user_name, user_username, chat_type)
     except Exception as e:
-        await edit_delete(catevent, f"**Error:**\n`{str(e)}`")
+        await edit_delete(catevent, f"**Error:**\n`{e}`")
     else:
         await edit_or_reply(catevent, "Hi")
 
@@ -82,7 +84,7 @@ async def echo(event):
         try:
             remove_echo(chat_id, user_id)
         except Exception as e:
-            await edit_delete(catevent, f"**Error:**\n`{str(e)}`")
+            await edit_delete(catevent, f"**Error:**\n`{e}`")
         else:
             await edit_or_reply(event, "Echo has been stopped for the user")
     else:
@@ -128,7 +130,7 @@ async def echo(event):
         try:
             remove_echos(event.chat_id)
         except Exception as e:
-            await edit_delete(event, f"**Error:**\n`{str(e)}`", 10)
+            await edit_delete(event, f"**Error:**\n`{e}`", 10)
         else:
             await edit_or_reply(
                 event, "Deleted echo for all enabled users in this chat"
@@ -194,7 +196,7 @@ async def echo(event):  # sourcery no-metrics
                 private_chats += (
                     f"☞ [{echos.user_name}](tg://user?id={echos.user_id})\n"
                 )
-        output_str = f"**Echo enabled users in this chat are:**\n" + private_chats
+        output_str = "**Echo enabled users in this chat are:**\n" + private_chats
 
     await edit_or_reply(event, output_str)
 
