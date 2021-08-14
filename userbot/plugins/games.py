@@ -25,7 +25,7 @@ game_name = [
 ]
 
 game = dict(zip(game_code, game_name))
-
+category = ["classic","kids","party","hot","mixed"]
 
 async def get_task(mode, choice):
     url = "https://psycatgames.com/api/tod-v2/"
