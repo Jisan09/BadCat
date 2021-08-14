@@ -76,7 +76,7 @@ async def truth_dare_task(event):
         else:
             await catevent.edit(f"**The dare task for you is**\n`{task}`")
     except Exception as e:
-        await edit_delete(catevent, f'**Error while getting task**\n`{e}`', 7)
+        await edit_delete(catevent, f"**Error while getting task**\n`{e}`", 7)
 
 
 @catub.cat_cmd(

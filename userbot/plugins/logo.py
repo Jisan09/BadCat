@@ -76,12 +76,12 @@ async def very(event):
     LOGO_FONT_STROKE_COLOR = gvarstatus("LOGO_FONT_STROKE_COLOR") or None
     LOGO_BACKGROUND = (
         gvarstatus("LOGO_BACKGROUND")
-        or 'https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/black.jpg'
+        or "https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/black.jpg"
     )
 
     LOGO_FONT = (
         gvarstatus("LOGO_FONT")
-        or 'https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true'
+        or "https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true"
     )
 
     if not os.path.isdir("./temp"):
@@ -304,7 +304,7 @@ async def pussy(event):
         cat = re.compile(r"^\-?[1-9][0-9]*\.?[0-9]*")
         isint = re.match(cat, input_str)
         if not input_str or not isint:
-            return await edit_delete(event, '**Give an integer value to set**', time=10)
+            return await edit_delete(event, "**Give an integer value to set**", time=10)
         if cmd == "s":
             input_str = int(input_str)
             if input_str > 0 and input_str <= 1000:
@@ -416,6 +416,6 @@ async def cat(event):
     else:
         await edit_delete(
             event,
-            '**📑 Give correct vars name :**\n__Correct Vars code list is :__\n\n1. `lbg` : **LOGO_BACKGROUND**\n2. `lfc` : **LOGO_FONT_COLOR**\n3. `lf` : **LOGO_FONT**\n4. `lfs` : **LOGO_FONT_SIZE**\n5. `lfh` : **LOGO_FONT_HEIGHT**\n6. `lfw` : **LOGO_FONT_WIDTH**',
+            "**📑 Give correct vars name :**\n__Correct Vars code list is :__\n\n1. `lbg` : **LOGO_BACKGROUND**\n2. `lfc` : **LOGO_FONT_COLOR**\n3. `lf` : **LOGO_FONT**\n4. `lfs` : **LOGO_FONT_SIZE**\n5. `lfh` : **LOGO_FONT_HEIGHT**\n6. `lfw` : **LOGO_FONT_WIDTH**",
             time=60,
         )

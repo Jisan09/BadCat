@@ -386,7 +386,7 @@ async def wants_ur_noods(event):
                     m = a["href"]
             await edit_or_reply(
                 event,
-                '**Just hold your candel & sit tight, It will take some time...**',
+                "**Just hold your candel & sit tight, It will take some time...**",
             )
 
             if not os.path.isdir("./xvdo"):
