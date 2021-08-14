@@ -56,59 +56,26 @@ def main_menu():
     text = f"𝗖𝗮𝘁𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗛𝗲𝗹𝗽𝗲𝗿\
         \n𝗣𝗿𝗼𝘃𝗶𝗱𝗲𝗱 𝗯𝘆 {mention}"
     buttons = [
+        (Button.inline("ℹ️ Info", data="check"),),
         (
-            Button.inline(
-                f"ℹ️ Info",
-                data="check",
-            ),
+            Button.inline(f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})", data="admin_menu"),
+            Button.inline(f"🤖 Bot ({len(GRP_INFO['bot'])})", data="bot_menu"),
         ),
         (
-            Button.inline(
-                f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})",
-                data=f"admin_menu",
-            ),
-            Button.inline(
-                f"🤖 Bot ({len(GRP_INFO['bot'])})",
-                data=f"bot_menu",
-            ),
+            Button.inline(f"🎨 Fun ({len(GRP_INFO['fun'])})", data="fun_menu"),
+            Button.inline(f"🧩 Misc ({len(GRP_INFO['misc'])})", data="misc_menu"),
         ),
         (
-            Button.inline(
-                f"🎨 Fun ({len(GRP_INFO['fun'])})",
-                data=f"fun_menu",
-            ),
-            Button.inline(
-                f"🧩 Misc ({len(GRP_INFO['misc'])})",
-                data=f"misc_menu",
-            ),
+            Button.inline(f"🧰 Tools ({len(GRP_INFO['tools'])})", data="tools_menu"),
+            Button.inline(f"🗂 Utils ({len(GRP_INFO['utils'])})", data="utils_menu"),
         ),
         (
-            Button.inline(
-                f"🧰 Tools ({len(GRP_INFO['tools'])})",
-                data=f"tools_menu",
-            ),
-            Button.inline(
-                f"🗂 Utils ({len(GRP_INFO['utils'])})",
-                data=f"utils_menu",
-            ),
+            Button.inline(f"➕ Extra ({len(GRP_INFO['extra'])})", data="extra_menu"),
+            Button.inline(f"⚰️ Useless ({len(GRP_INFO['extra'])})", data="useless_menu"),
         ),
-        (
-            Button.inline(
-                f"➕ Extra ({len(GRP_INFO['extra'])})",
-                data=f"extra_menu",
-            ),
-            Button.inline(
-                f"⚰️ Useless ({len(GRP_INFO['useless'])})",
-                data=f"useless_menu",
-            ),
-        ),
-        (
-            Button.inline(
-                f"🔒 Close Menu",
-                data=f"close",
-            ),
-        ),
+        (Button.inline("🔒 Close Menu", data="close"),),
     ]
+
     return text, buttons
 
 
@@ -130,15 +97,11 @@ def paginate_help(
 ):  # sourcery no-metrics
     try:
         number_of_rows = int(gvarstatus("NO_OF_ROWS_IN_HELP") or 5)
-    except ValueError:
-        number_of_rows = 5
-    except TypeError:
+    except (ValueError, TypeError):
         number_of_rows = 5
     try:
         number_of_cols = int(gvarstatus("NO_OF_COLUMNS_IN_HELP") or 2)
-    except ValueError:
-        number_of_cols = 2
-    except TypeError:
+    except (ValueError, TypeError):
         number_of_cols = 2
     HELP_EMOJI = gvarstatus("HELP_EMOJI") or " "
     helpable_plugins = [p for p in loaded_plugins if not p.startswith("_")]
@@ -196,6 +159,7 @@ def paginate_help(
     modulo_page = page_number % max_num_pages
     if plugins:
         if len(pairs) > number_of_rows:
+
             pairs = pairs[
                 modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
             ] + [
@@ -208,6 +172,8 @@ def paginate_help(
         else:
             pairs = pairs + [(Button.inline("⚙️ Main Menu", data="mainmenu"),)]
     elif len(pairs) > number_of_rows:
+        if category_pgno < 0:
+            category_pgno = len(pairs) + category_pgno
         pairs = pairs[
             modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
         ] + [
@@ -227,6 +193,8 @@ def paginate_help(
             )
         ]
     else:
+        if category_pgno < 0:
+            category_pgno = len(pairs) + category_pgno
         pairs = pairs + [
             (
                 Button.inline(
@@ -253,6 +221,8 @@ async def inline_handler(event):  # sourcery no-metrics
         match = re.findall(hmm, query)
         inf = re.compile("secret (.*) (.*)")
         match2 = re.findall(inf, query)
+        hid = re.compile("hide (.*)")
+        match3 = re.findall(hid, query)
         if query.startswith("**Catuserbot"):
             buttons = [
                 (
@@ -343,6 +313,7 @@ async def inline_handler(event):  # sourcery no-metrics
                         sandy = f"@{u.username}"
                     else:
                         sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                    u = int(u.id)
                 except ValueError:
                     # ValueError: Could not find the input entity
                     sandy = f"[user](tg://user?id={u})"
@@ -392,6 +363,7 @@ async def inline_handler(event):  # sourcery no-metrics
                         sandy = f"@{u.username}"
                     else:
                         sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                    u = int(u.id)
                 except ValueError:
                     # ValueError: Could not find the input entity
                     sandy = f"[user](tg://user?id={u})"
@@ -423,6 +395,29 @@ async def inline_handler(event):  # sourcery no-metrics
                 json.dump(jsondata, open(secret, "w"))
             else:
                 json.dump(newsecret, open(secret, "w"))
+        elif match3:
+            query = query[5:]
+            builder = event.builder
+            hide = os.path.join("./userbot", "hide.txt")
+            try:
+                jsondata = json.load(open(hide))
+            except Exception:
+                jsondata = False
+            timestamp = int(time.time() * 2)
+            newhide = {str(timestamp): {"text": query}}
+
+            buttons = [Button.inline("Read Message ", data=f"hide_{timestamp}")]
+            result = builder.article(
+                title="Hidden Message",
+                text=f"✖✖✖",
+                buttons=buttons,
+            )
+            await event.answer([result] if result else None)
+            if jsondata:
+                jsondata.update(newhide)
+                json.dump(jsondata, open(hide, "w"))
+            else:
+                json.dump(newhide, open(hide, "w"))
         elif string == "help":
             _result = main_menu()
             result = builder.article(
