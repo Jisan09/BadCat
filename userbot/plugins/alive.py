@@ -44,19 +44,19 @@ async def amireallyalive(event):
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "✧✧"
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**✮ MY BOT IS RUNNING SUCCESSFULLY ✮**"
+    CAT_IMG = gvarstatus("ALIVE_PIC")
     cat_caption = gvarstatus("ALIVE_TEMPLATE") or temp
     caption = cat_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         EMOJI=EMOJI,
         mention=mention,
         uptime=uptime,
-        Televar=version.__version__,
+        televar=version.__version__,
         catver=catversion,
         pyver=python_version(),
         dbhealth=check_sgnirts,
         ping=ms,
     )
-    CAT_IMG = gvarstatus("ALIVE_PIC")
     if CAT_IMG:
         CAT = [x for x in CAT_IMG.split()]
         PIC = random.choice(CAT)
@@ -77,7 +77,7 @@ async def amireallyalive(event):
 temp = "{ALIVE_TEXT}\n\n\
 **{EMOJI} Master : {mention}**\n\
 **{EMOJI} Uptime :** `{uptime}`\n\
-**{EMOJI} Telethon version :** `{Televar}`\n\
+**{EMOJI} Telethon version :** `{televar}`\n\
 **{EMOJI} Catuserbot Version :** `{catver}`\n\
 **{EMOJI} Python Version :** `{pyver}`\n\
 **{EMOJI} Database :** `{dbhealth}`\n"
@@ -90,7 +90,7 @@ temp = "{ALIVE_TEXT}\n\n\
         "header": "To check bot's alive status via inline mode",
         "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
         "usage": [
-            "{tr}alive",
+            "{tr}ialive",
         ],
     },
 )
