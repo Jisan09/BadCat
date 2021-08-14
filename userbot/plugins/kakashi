@@ -11,7 +11,6 @@ async def kakashi(jisan):
         jisan, "All commands for note is [HERE](https://nekobin.com/pizacisawi) "
     )
 
-
 @bot.on(admin_cmd(pattern="note(?:\s|$)([\s\S]*)", outgoing=True))
 @bot.on(sudo_cmd(outgoing=True, pattern="note(?:\s|$)([\s\S]*)", allow_sudo=True))
 async def kakashi(event):
