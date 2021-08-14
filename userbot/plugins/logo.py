@@ -76,11 +76,11 @@ async def very(event):
     LOGO_FONT_STROKE_COLOR = gvarstatus("LOGO_FONT_STROKE_COLOR") or None
     LOGO_BACKGROUND = (
         gvarstatus("LOGO_BACKGROUND")
-        or f"https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/black.jpg"
+        or "https://raw.githubusercontent.com/Jisan09/Files/main/backgroud/black.jpg"
     )
     LOGO_FONT = (
         gvarstatus("LOGO_FONT")
-        or f"https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true"
+        or "https://github.com/Jisan09/Files/blob/main/fonts/Streamster.ttf?raw=true"
     )
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
@@ -416,6 +416,6 @@ async def cat(event):
     else:
         await edit_delete(
             event,
-            f"**📑 Give correct vars name :**\n__Correct Vars code list is :__\n\n1. `lbg` : **LOGO_BACKGROUND**\n2. `lfc` : **LOGO_FONT_COLOR**\n3. `lf` : **LOGO_FONT**\n4. `lfs` : **LOGO_FONT_SIZE**\n5. `lfh` : **LOGO_FONT_HEIGHT**\n6. `lfw` : **LOGO_FONT_WIDTH**",
+            "**📑 Give correct vars name :**\n__Correct Vars code list is :__\n\n1. `lbg` : **LOGO_BACKGROUND**\n2. `lfc` : **LOGO_FONT_COLOR**\n3. `lf` : **LOGO_FONT**\n4. `lfs` : **LOGO_FONT_SIZE**\n5. `lfh` : **LOGO_FONT_HEIGHT**\n6. `lfw` : **LOGO_FONT_WIDTH**",
             time=60,
         )
