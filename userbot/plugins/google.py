@@ -155,8 +155,7 @@ async def gsearch(q_event):
 async def _(event):
     "To search in google and send result in picture."
 
-    
-    
+
 @catub.cat_cmd(
     pattern="gs$",
     command=("grs", plugin_category),
