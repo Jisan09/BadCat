@@ -71,7 +71,9 @@ def main_menu():
         ),
         (
             Button.inline(f"➕ Extra ({len(GRP_INFO['extra'])})", data="extra_menu"),
-            Button.inline(f"⚰️ Useless ({len(GRP_INFO['extra'])})", data="useless_menu"),
+            Button.inline(
+                f"⚰️ Useless ({len(GRP_INFO['extra'])})", data="useless_menu"
+            ),
         ),
         (Button.inline("🔒 Close Menu", data="close"),),
     ]
