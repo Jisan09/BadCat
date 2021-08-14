@@ -310,7 +310,7 @@ async def upstream(event):
     await event.edit("`Deploying userbot, please wait....`")
     await deploy(event, repo, ups_rem, ac_br, txt)
 
-    
+
 @catub.cat_cmd(
     pattern="goodcat$",
     command=("goodcat", plugin_category),
