@@ -1,6 +1,8 @@
 # ported from paperplaneExtended by avinashreddy3108 for media support
 import re
 
+from telethon.utils import get_display_name
+
 from userbot import catub
 
 from ..core.managers import edit_or_reply
@@ -26,7 +28,7 @@ async def filter_incoming_handler(event):  # sourcery no-metrics
     a_user = await event.get_sender()
     chat = await event.get_chat()
     me = await event.client.get_me()
-    title = chat.title or "this chat"
+    title = get_display_name(await event.get_chat()) or "this chat"
     participants = await event.client.get_participants(chat)
     count = len(participants)
     mention = f"[{a_user.first_name}](tg://user?id={a_user.id})"
@@ -196,6 +198,6 @@ async def on_all_snip_delete(event):
     filters = get_filters(event.chat_id)
     if filters:
         remove_all_filters(event.chat_id)
-        await edit_or_reply(event, f"filters in current chat deleted successfully")
+        await edit_or_reply(event, "filters in current chat deleted successfully")
     else:
-        await edit_or_reply(event, f"There are no filters in this group")
+        await edit_or_reply(event, "There are no filters in this group")
