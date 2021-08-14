@@ -144,7 +144,20 @@ async def gsearch(q_event):
 
 
 @catub.cat_cmd(
-    pattern="grs$",
+    pattern="gis ([\s\S]*)",
+    command=("gis", plugin_category),
+    info={
+        "header": "Google search in image format",
+        "usage": "{tr}gis <query>",
+        "examples": "{tr}gis cat",
+    },
+)
+async def _(event):
+    "To search in google and send result in picture."
+
+
+@catub.cat_cmd(
+    pattern="gs$",
     command=("grs", plugin_category),
     info={
         "header": "Google reverse search command.",
@@ -251,14 +264,14 @@ async def _(img):
         searchUrl = "https://www.google.com/searchbyimage/upload"
         multipart = {"encoded_image": (name, open(name, "rb")), "image_content": ""}
         response = requests.post(searchUrl, files=multipart, allow_redirects=False)
-        fetchUrl = response.headers["Location"]
         if response != 400:
             await img.edit(
                 "`Image successfully uploaded to Google. Maybe.`"
                 "\n`Parsing source now. Maybe.`"
             )
         else:
-            return await catevent.edit("`Google told me to fuck off.`")
+            return await catevent.edit("`Unable to perform reverse search.`")
+        fetchUrl = response.headers["Location"]
         os.remove(name)
         match = await ParseSauce(fetchUrl + "&preferences?hl=en&fg=1#languages")
         guess = match["best_guess"]

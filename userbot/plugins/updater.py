@@ -165,7 +165,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         return repo.__del__()
     build_status = heroku_app.builds(order_by="created_at", sort="desc")[0]
     if build_status.status == "failed":
-        return await edit_Delete(
+        return await edit_delete(
             event, "`Build failed!\n" "Cancelled or there were some errors...`"
         )
     try:
@@ -280,8 +280,8 @@ async def upstream(event):
     pattern="update deploy$",
 )
 async def upstream(event):
-    event = await edit_or_reply(event, "`Pulling the catpack repo wait a sec ....`")
-    off_repo = "https://github.com/Mr-confused/catpack"
+    event = await edit_or_reply(event, "`Pulling the nekopack repo wait a sec ....`")
+    off_repo = "https://github.com/Mr-confused/nekopack"
     os.chdir("/app")
     try:
         txt = "`Oops.. Updater cannot continue due to "

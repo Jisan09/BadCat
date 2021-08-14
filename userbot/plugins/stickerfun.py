@@ -2,7 +2,7 @@
 # modified by @UniBorg
 # imported from ppe-remix by @heyworld & @DeletedUser420
 # modified by @mrconfused
-
+# added more s
 
 # RegEx by https://t.me/c/1220993104/500653 ( @SnapDragon7410 )
 import io
@@ -222,3 +222,29 @@ async def glax(event):
     await hide_inlinebot(
         event.client, bot_name, text, event.chat_id, reply_to_id, c_lick=c_lick
     )
+
+
+@catub.cat_cmd(
+    pattern="googl(?:\s|$)([\s\S]*)",
+    command=("googl", plugin_category),
+    info={
+        "header": "Search in google animation",
+        "usage": "{tr}googl <text/reply to msg>",
+        "examples": "{tr}googl Catuserbot",
+    },
+)
+async def twt(event):
+    "Search in google animation."
+    text = event.pattern_match.group(1)
+    reply_to_id = await reply_id(event)
+    bot_name = "@GooglaxBot"
+    if not text:
+        if event.is_reply:
+            text = (await event.get_reply_message()).message
+        else:
+            return await edit_delete(
+                event, "__What am I supposed to search? Give some text.__"
+            )
+    text = deEmojify(text)
+    await event.delete()
+    await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
