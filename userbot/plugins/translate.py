@@ -1,26 +1,11 @@
 from asyncio import sleep
-
-from googletrans import LANGUAGES, Translator
-
-from userbot import catub
-
+from googletrans import LANGUAGES
+from ..helpers.functions import getTranslate
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.globals import addgvar, gvarstatus
-from . import BOTLOG, BOTLOG_CHATID, deEmojify
+from . import BOTLOG, BOTLOG_CHATID, deEmojify,catub
 
 plugin_category = "utils"
-
-# https://github.com/ssut/py-googletrans/issues/234#issuecomment-722379788
-async def getTranslate(text, **kwargs):
-    translator = Translator()
-    result = None
-    for _ in range(10):
-        try:
-            result = translator.translate(text, **kwargs)
-        except Exception:
-            translator = Translator()
-            await sleep(0.1)
-    return result
 
 
 @catub.cat_cmd(
@@ -51,7 +36,6 @@ async def _(event):
         )
     text = deEmojify(text.strip())
     lan = lan.strip()
-    Translator()
     try:
         translated = await getTranslate(text, dest=lan)
         after_tr_text = translated.text
