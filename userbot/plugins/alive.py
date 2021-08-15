@@ -51,7 +51,7 @@ async def amireallyalive(event):
         EMOJI=EMOJI,
         mention=mention,
         uptime=uptime,
-        televar=version.__version__,
+        telever=version.__version__,
         catver=catversion,
         pyver=python_version(),
         dbhealth=check_sgnirts,
