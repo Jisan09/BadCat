@@ -77,7 +77,7 @@ async def amireallyalive(event):
 temp = "{ALIVE_TEXT}\n\n\
 **{EMOJI} Master : {mention}**\n\
 **{EMOJI} Uptime :** `{uptime}`\n\
-**{EMOJI} Telethon version :** `{televar}`\n\
+**{EMOJI} Telethon version :** `{telever}`\n\
 **{EMOJI} Catuserbot Version :** `{catver}`\n\
 **{EMOJI} Python Version :** `{pyver}`\n\
 **{EMOJI} Database :** `{dbhealth}`\n"
