@@ -6,6 +6,7 @@ from uuid import uuid4
 
 import requests
 from googletrans import Translator
+
 from ..utils.extdl import install_pip
 
 try:
@@ -75,6 +76,7 @@ async def age_verification(event, reply_to_id):
     await event.delete()
     return True
 
+
 # https://github.com/ssut/py-googletrans/issues/234#issuecomment-722379788
 async def getTranslate(text, **kwargs):
     translator = Translator()
@@ -86,6 +88,7 @@ async def getTranslate(text, **kwargs):
             translator = Translator()
             await sleep(0.1)
     return result
+
 
 def reddit_thumb_link(preview, thumb=None):
     for i in preview:
