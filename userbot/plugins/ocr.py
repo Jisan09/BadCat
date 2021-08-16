@@ -1,18 +1,13 @@
 import os
 
 import requests
+from googletrans import LANGUAGES
 
 from ..Config import Config
 from ..core.managers import edit_or_reply
-from ..helpers import media_type
-from . import _cattools, catub, convert_toimage
-
-from asyncio import sleep
-
-from googletrans import LANGUAGES
 from ..helpers.functions import getTranslate
-from ..sql_helper.globals import addgvar, gvarstatus
-from . import BOTLOG, BOTLOG_CHATID, deEmojify
+from ..sql_helper.globals import gvarstatus
+from . import _cattools, catub, convert_toimage, deEmojify
 
 plugin_category = "utils"
 
@@ -70,7 +65,7 @@ async def ocr(event):
     output_file = os.path.join(Config.TEMP_DIR, "ocr.jpg")
     try:
         output = await _cattools.media_to_pic(event, reply)
-        outputt = convert_toimage(output[1], filename= output_file)
+        outputt = convert_toimage(output[1], filename=output_file)
     except AttributeError:
         await catevent.edit("`Couldn't read it.. you sure this readable !?`")
     test_file = await ocr_space_file(filename=output_file, language=lang_code)
@@ -80,19 +75,25 @@ async def ocr(event):
         await catevent.edit("`Couldn't read it.`\n`I guess I need new glasses.`")
     else:
         if cmd == "":
-            await catevent.edit(f"**Here's what I could read from it:**\n\n`{ParsedText}`")
-        if cmd =="t":
+            await catevent.edit(
+                f"**Here's what I could read from it:**\n\n`{ParsedText}`"
+            )
+        if cmd == "t":
             TRT_LANG = gvarstatus("TRT_LANG") or "en"
             try:
                 reply_text = await getTranslate(deEmojify(ParsedText), dest=TRT_LANG)
             except ValueError:
-                return await edit_delete(trans, "`Invalid destination language.`", time=5)
+                return await edit_delete(
+                    trans, "`Invalid destination language.`", time=5
+                )
             source_lan = LANGUAGES[f"{reply_text.src.lower()}"]
             transl_lan = LANGUAGES[f"{reply_text.dest.lower()}"]
             tran_text = f"📜**Translate :-\nFrom {source_lan.title()}({reply_text.src.lower()}) to {transl_lan.title()}({reply_text.dest.lower()}) :**\n\n`{reply_text.text}`"
-            await catevent.edit(f"🧧**Here's what I could read from it:**\n\n`{ParsedText}`\n\n{tran_text}")
+            await catevent.edit(
+                f"🧧**Here's what I could read from it:**\n\n`{ParsedText}`\n\n{tran_text}"
+            )
     os.remove(output_file)
-    
+
 
 @catub.cat_cmd(
     pattern="tocr",
