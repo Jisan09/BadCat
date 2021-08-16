@@ -100,7 +100,7 @@ async def ocr(event):
     command=("tocr", plugin_category),
     info={
         "header": "To read text in image/gif/sticker/video and print it with its translation.",
-        "description": "Reply to an image or sticker to extract text from it.\n\nGet language codes from [here](https://ocr.space/ocrapi).",
+        "description": "Reply to an image/gif/sticker/video to extract text from it and print it with its translation.\n\nGet language codes from [here](https://ocr.space/ocrapi).",
         "note": "for this command transalted language set lanuage by `.lang tocr` command.",
         "usage": "{tr}tocr <language code>",
         "examples": "{tr}tocr eng",
