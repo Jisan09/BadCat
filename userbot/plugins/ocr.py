@@ -79,7 +79,7 @@ async def ocr(event):
                 f"**Here's what I could read from it:**\n\n`{ParsedText}`"
             )
         if cmd == "t":
-            TRT_LANG = gvarstatus("TRT_LANG") or "en"
+            TRT_LANG = gvarstatus("TOCR_LANG") or "en"
             try:
                 reply_text = await getTranslate(deEmojify(ParsedText), dest=TRT_LANG)
             except ValueError:
