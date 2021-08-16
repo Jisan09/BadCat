@@ -141,7 +141,8 @@ async def lang(value):
     if BOTLOG:
         if input_str == "tocr":
             await value.client.send_message(
-                BOTLOG_CHATID, f"`Language for Translated Ocr changed to {LANG.title()}.`"
+                BOTLOG_CHATID,
+                f"`Language for Translated Ocr changed to {LANG.title()}.`",
             )
         if input_str == "ai":
             await value.client.send_message(
