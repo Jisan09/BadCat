@@ -51,7 +51,7 @@ async def _(event):
     command=("trt", plugin_category),
     info={
         "header": "To translate the text to required language.",
-        "note": "for this set command set lanuage by lang tst command.",
+        "note": "for this command set lanuage by `.lang trt` command.",
         "usage": [
             "{tr}trt",
             "{tr}trt <text>",
@@ -88,18 +88,20 @@ async def translateme(trans):
 
 
 @catub.cat_cmd(
-    pattern="lang (ai|trt) ([\s\S]*)",
+    pattern="lang (ai|trt|tocr) ([\s\S]*)",
     command=("lang", plugin_category),
     info={
         "header": "To set language for trt/ai command.",
         "description": "Check here [Language codes](https://bit.ly/2SRQ6WU)",
         "options": {
             "trt": "default language for trt command",
+            "tocr": "default language for tocr command",
             "ai": "default language for chatbot(ai)",
         },
         "usage": "{tr}lang option <language codes>",
         "examples": [
             "{tr}lang trt te",
+            "{tr}lang tocr bn",
             "{tr}lang ai hi",
         ],
     },
@@ -119,6 +121,11 @@ async def lang(value):
         await edit_or_reply(
             value, f"`Language for Translator changed to {LANG.title()}.`"
         )
+    elif input_str == "tocr":
+        addgvar("TOCR_LANG", arg)
+        await edit_or_reply(
+            value, f"`Language for Translated Ocr changed to {LANG.title()}.`"
+        )
     else:
         addgvar("AI_LANG", arg)
         await edit_or_reply(
@@ -130,6 +137,11 @@ async def lang(value):
         if input_str == "trt":
             await value.client.send_message(
                 BOTLOG_CHATID, f"`Language for Translator changed to {LANG.title()}.`"
+            )
+    if BOTLOG:
+        if input_str == "tocr":
+            await value.client.send_message(
+                BOTLOG_CHATID, f"`Language for Translated Ocr changed to {LANG.title()}.`"
             )
         if input_str == "ai":
             await value.client.send_message(
