@@ -1,5 +1,5 @@
 from googletrans import LANGUAGES
-from asyncio import sleep
+
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import getTranslate
 from ..sql_helper.globals import addgvar, gvarstatus
