@@ -64,7 +64,9 @@ plugin_category="tools"
  info={
  "header":" To globally promote a user", 
  "usage":" {tr}gpromote"}
- 
+   ], 
+  }, 
+), 
  
 
  
