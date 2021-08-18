@@ -55,7 +55,7 @@ async def get_user_from_id(user, event):
         await event.edit(str(err))
         return None
     return user_obj
-]
+
 plugin_category="tools"
 
 @catub.cat_cmd(
@@ -64,15 +64,18 @@ plugin_category="tools"
  info={
  "header":" To globally promote a user", 
  "usage":" {tr}gpromote"}
-) 
+  ], 
+ }, 
+), 
+ 
 
-@borg.on(admin_cmd(pattern="gpromote ?(.*)"))
+
 async def gben(userbot):
-    dc = dark = userbot
+    dc = cat = userbot
     i = 0
     sender = await dc.get_sender()
     me = await userbot.client.get_me()
-    await dark.edit("`promoting...`")
+    await cat.edit("`promoting...`")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await userbot.get_chat()
@@ -80,13 +83,13 @@ async def gben(userbot):
         user = userbot.chat
         rank = userbot.pattern_match.group(1)
     else:
-        userbot.chat.title
+        userbot.chat.title 
     try:
         user, rank = await get_full_user(userbot)
     except:
         pass
     if me == user:
-       k = await dark.edit("U want to promote urself 😑😑 waao..")
+       k = await cat.edit("U want to promote urself 😑😑 waao..")
        return
     try:
         if not rank:
@@ -112,17 +115,31 @@ async def gben(userbot):
           except:
              pass
     else:
-        await dark.edit(f"**Reply to a user you dumbo !!**")
-    return await dark.edit(
+        await cat.edit(f"**Reply to a user you dumbo !!**")
+    return await cat.edit(
         f"**Globally promoted [{user.first_name}](tg://user?id={user.id})\n On Chats😏 : {i} **"
     )
-@borg.on(admin_cmd(pattern="gdemote ?(.*)"))
+]
+
+plugin_category="tools"
+
+@catub.cat_cmd(
+ pattern="gdemote$", 
+ command=("gdemote", plugin_category), 
+ info={
+ "header":" To globally gdemote a user", 
+ "usage":" {tr}gpromote "}, 
+   ], 
+ }, 
+), 
+   
+
 async def gben(userbot):
-    dc = dark = userbot
+    dc = cat = userbot
     i = 0
     sender = await dc.get_sender()
     me = await userbot.client.get_me()
-    await dark.edit("`demoting...`")
+    await cat.edit("`demoting...`")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await userbot.get_chat()
@@ -136,13 +153,13 @@ async def gben(userbot):
     except:
         pass
     if me == user:
-       k = await dark.edit("U want to demote urself 😑😑 waao..")
+       k = await cat.edit("U want to demote urself 😑😑 waao..")
        return
     try:
         if not rank:
             rank = "ㅤㅤ"
     except:
-        return await dark.edit(f"**Something W3NT Wrong 🤔**")
+        return await cat.edit(f"**Something W3NT Wrong 🤔**")
     if user:
         telchanel = [d.entity.id
                      for d in await userbot.client.get_dialogs()
@@ -158,12 +175,12 @@ async def gben(userbot):
           try:
              await userbot.client(EditAdminRequest(x, user, rgt, rank))
              i += 1
-             await dark.edit(f"**Demoted in Chats **: `{i}`")
+             await cat.edit(f"**Demoted in Chats **: `{i}`")
           except:
              pass
     else:
-        await dark.edit(f"**Reply to a user you dumbo !!**")
-    return await dark.edit(
+        await cat.edit(f"**Reply to a user you dumbo !!**")
+    return await cat.edit(
         f"**Globally Demoted [{user.first_name}](tg://user?id={user.id})\n On Chats😏 : {i} **"
     )
 
