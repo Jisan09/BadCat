@@ -64,7 +64,8 @@ plugin_category="tools"
     info={
         "header":"To globally promote a user", 
         "usage":"{tr}gpromote"}, 
-    }, 
+    ], 
+ }, 
 ) 
       
  
@@ -126,8 +127,9 @@ plugin_category="tools"
  info={
      "header":"To globally gdemote a user", 
      "usage":"{tr}gdemote"}, 
-  }, 
-)
+  ], 
+ }, 
+) 
 
 async def gben(userbot):
     dc = cat = userbot
