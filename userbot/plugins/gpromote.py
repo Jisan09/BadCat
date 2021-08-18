@@ -130,7 +130,7 @@ plugin_category="tools"
  command=("gdemote", plugin_category), 
  info={
  "header":" To globally gdemote a user", 
- "usage":" {tr}gpromote "}, 
+ "usage":" {tr}gdemote "}, 
    ], 
  }, 
 ), 
