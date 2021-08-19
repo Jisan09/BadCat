@@ -39,12 +39,12 @@ async def getTranslate(text, **kwargs):
 async def _(event):
     "To translate the text."
     input_str = event.pattern_match.group(1)
-    if event.reply_to_msg_id:
+    if ";" in input_str:
+        lan, text = input_str.split(";")
+    if event.reply_to_msg_id and not text:
         previous_message = await event.get_reply_message()
         text = previous_message.message
         lan = input_str or "en"
-    elif ";" in input_str:
-        lan, text = input_str.split(";")
     else:
         return await edit_delete(
             event, "`.tl LanguageCode` as reply to a message", time=5
