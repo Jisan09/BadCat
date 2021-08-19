@@ -24,6 +24,7 @@ plugin_category = "utils"
 async def _(event):
     "To translate the text."
     input_str = event.pattern_match.group(1)
+    text = None
     if ";" in input_str:
         lan, text = input_str.split(";")
     elif event.reply_to_msg_id and not text:
