@@ -1,4 +1,4 @@
-# Made by @o_s_h_o_r_a_j
+# Made by @deepaiims
 # Change credit and you gay.
 from userbot import catub
 
