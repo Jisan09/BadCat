@@ -41,15 +41,15 @@ async def catbroadcast_add(event):
     if reply and reason and user.id != reply.sender_id:
         if BOTLOG:
             msg = await event.client.send_message(BOTLOG_CHATID, reason)
-            msg = await event.client.send_message(BOTLOG_CHATID, reply)
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "The replied message was failed to send to the user. Confusion between to whom it should send.",
                 reply_to=msg.id,
             )
+        msglink = await event.clienr.get_msg_link(msg)
         return await edit_or_reply(
             event,
-            f"__Sorry! Confusion between users to whom should i send the person mentioned in message or to the person replied. text message was logged in log group. you can resend message from there__",
+            f"__Sorry! Confusion between users to whom should i send the person mentioned in message or to the person replied. text message was logged in [log group]({msglink}). you can resend message from there__",
         )
     if reason:
         msg = await event.client.send_message(user.id, reason)
@@ -234,7 +234,7 @@ async def catbroadcast_send(event):
             LOGS.info(str(e))
         await sleep(0.5)
     resultext = f"`The message was sent to {i} chats out of {no_of_chats} chats in category {keyword}.`"
-    await catevent.edit(resultext)
+    await edit_delete(catevent, resultext)
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -299,7 +299,7 @@ async def catbroadcast_send(event):
             LOGS.info(str(e))
         await sleep(0.5)
     resultext = f"`The message was sent to {i} chats out of {no_of_chats} chats in category {keyword}.`"
-    await catevent.edit(resultext)
+    await edit_delete(catevent, resultext)
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,

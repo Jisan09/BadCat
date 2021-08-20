@@ -1491,11 +1491,7 @@ class googleimagesdownload:
             sys.exit()
 
         # If this argument is present, set the custom output directory
-        if arguments["output_directory"]:
-            main_directory = arguments["output_directory"]
-        else:
-            main_directory = "downloads"
-
+        main_directory = arguments["output_directory"] or "downloads"
         # Proxy settings
         if arguments["proxy"]:
             os.environ["http_proxy"] = arguments["proxy"]
@@ -1639,7 +1635,7 @@ def main():
             response = googleimagesdownload()
             # wrapping response in a variable just for consistency
             paths, errors = response.download(arguments)
-            total_errors = total_errors + errors
+            total_errors += errors
 
         t1 = time.time()  # stop the timer
         # Calculating the total time required to crawl, find and download all

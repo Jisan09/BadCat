@@ -106,7 +106,5 @@ async def here(event):
     else:
         bad = list(intxt.upper())[::2]
         cat = list(intxt.lower())[1::2]
-    mystring = ""
-    for i, j in zip(bad, cat):
-        mystring += f"{i}{j}"
+    mystring = "".join(f"{i}{j}" for i, j in zip(bad, cat))
     await edit_or_reply(event, mystring)

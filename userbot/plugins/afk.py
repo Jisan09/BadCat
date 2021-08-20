@@ -58,7 +58,9 @@ async def set_not_afk(event):
         else:
             endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
     current_message = event.message.message
-    if ("afk" not in current_message) and ("on" in AFK_.USERAFK_ON):
+    if (("afk" not in current_message) or ("#afk" not in current_message)) and (
+        "on" in AFK_.USERAFK_ON
+    ):
         shite = await event.client.send_message(
             event.chat_id,
             "`Back alive! No Longer afk.\nWas afk for " + endtime + "`",
@@ -104,7 +106,7 @@ async def on_afk(event):  # sourcery no-metrics
         else:
             endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
     current_message_text = event.message.message.lower()
-    if "afk" in current_message_text:
+    if "afk" in current_message_text or "#afk" in current_message_text:
         return False
     if not await event.get_sender():
         return
@@ -209,7 +211,7 @@ async def _(event):
                 event, f"`I shall be Going afk! because ~` {AFK_.reason}", 5
             )
         else:
-            await edit_delete(event, f"`I shall be Going afk! `", 5)
+            await edit_delete(event, "`I shall be Going afk! `", 5)
         if BOTLOG:
             if AFK_.reason:
                 await event.client.send_message(
@@ -219,7 +221,7 @@ async def _(event):
             else:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f"#AFKTRUE \nSet AFK mode to True, and Reason is Not Mentioned",
+                    "#AFKTRUE \nSet AFK mode to True, and Reason is Not Mentioned",
                 )
 
 
@@ -273,7 +275,7 @@ async def _(event):
                 event, f"`I shall be Going afk! because ~` {AFK_.reason}", 5
             )
         else:
-            await edit_delete(event, f"`I shall be Going afk! `", 5)
+            await edit_delete(event, "`I shall be Going afk! `", 5)
         AFK_.media_afk = await reply.forward_to(BOTLOG_CHATID)
         if AFK_.reason:
             await event.client.send_message(
@@ -283,5 +285,5 @@ async def _(event):
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#AFKTRUE \nSet AFK mode to True, and Reason is Not Mentioned",
+                "#AFKTRUE \nSet AFK mode to True, and Reason is Not Mentioned",
             )

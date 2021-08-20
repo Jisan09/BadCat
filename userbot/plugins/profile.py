@@ -42,9 +42,9 @@ async def _(event):
     bio = event.pattern_match.group(1)
     try:
         await event.client(functions.account.UpdateProfileRequest(about=bio))
-        await edit_delete(event, "`Succesfully changed my profile bio`")
+        await edit_delete(event, "`successfully changed my profile bio`")
     except Exception as e:
-        await edit_or_reply(event, f"**Error:**\n`{str(e)}`")
+        await edit_or_reply(event, f"**Error:**\n`{e}`")
 
 
 @catub.cat_cmd(
@@ -61,7 +61,7 @@ async def _(event):
     first_name = names
     last_name = ""
     if ";" in names:
-        first_name, last_name = names.split("|", 1)
+        first_name, last_name = names.split(";", 1)
     try:
         await event.client(
             functions.account.UpdateProfileRequest(
@@ -70,7 +70,7 @@ async def _(event):
         )
         await edit_delete(event, "`My name was changed successfully`")
     except Exception as e:
-        await edit_or_reply(event, f"**Error:**\n`{str(e)}`")
+        await edit_or_reply(event, f"**Error:**\n`{e}`")
 
 
 @catub.cat_cmd(
@@ -118,7 +118,7 @@ async def _(event):
                     )
                 )
             except Exception as e:
-                await catevent.edit(f"**Error:**\n`{str(e)}`")
+                await catevent.edit(f"**Error:**\n`{e}`")
             else:
                 await edit_or_reply(
                     catevent, "`My profile picture was successfully changed`"
@@ -146,7 +146,7 @@ async def update_username(username):
     except UsernameOccupiedError:
         await edit_or_reply(event, USERNAME_TAKEN)
     except Exception as e:
-        await edit_or_reply(event, f"**Error:**\n`{str(e)}`")
+        await edit_or_reply(event, f"**Error:**\n`{e}`")
 
 
 @catub.cat_cmd(
