@@ -1,6 +1,6 @@
-#BY @Infinity20998 , @not_ayan
-#Edited by @spoidy_da
-#Thanks to @Infinity20998 , @not_ayan by @spoidy_da
+#BY @deepaiims
+#Edited by @deepaiims
+#Thanks to @Infinity20998 , @not_ayan by 
 import random
 import re
 import time
