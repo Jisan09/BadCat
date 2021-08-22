@@ -1,5 +1,5 @@
-# Template by @Infinity20998
-# Modified by @o_s_h_o_r_a_j
+# Template by @deepaiims
+# Modified by @deepaiims
 from userbot import catub
 
 from ..core.managers import edit_delete
