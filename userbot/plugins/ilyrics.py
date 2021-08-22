@@ -1,5 +1,5 @@
-# Made by @o_s_h_o_r_a_j
-# Change credit and you gay.
+# Made by @deepaiims
+# Edited by @deepaiims
 from userbot import catub
 
 from ..core.managers import edit_delete
