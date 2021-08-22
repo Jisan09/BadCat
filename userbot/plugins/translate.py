@@ -134,11 +134,10 @@ async def lang(value):
         )
     LANG = LANGUAGES[arg]
 
-    if BOTLOG:
-        if input_str == "trt":
-            await value.client.send_message(
-                BOTLOG_CHATID, f"`Language for Translator changed to {LANG.title()}.`"
-            )
+    if BOTLOG and input_str == "trt":
+        await value.client.send_message(
+            BOTLOG_CHATID, f"`Language for Translator changed to {LANG.title()}.`"
+        )
     if BOTLOG:
         if input_str == "tocr":
             await value.client.send_message(
