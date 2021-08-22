@@ -1,4 +1,4 @@
-#By t.me/i_osho
+#By t.m
 from userbot import catub
 from ..core.managers import edit_delete
 from ..helpers.utils import reply_id
