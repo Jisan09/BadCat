@@ -1,5 +1,5 @@
 # ==================================================================================================
-# Made by https://t.me/o_s_h_o_r_a_j
+# Made by https://t.me/deepaiims
 # It is simillar to my other plugin 'pping' (ping with media)
 # This randomly chooses from the given media links, i.e 'multi-pping', in short 'mping'
 
