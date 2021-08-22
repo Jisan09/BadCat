@@ -157,7 +157,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="gs$",
+    pattern="grs$",
     command=("grs", plugin_category),
     info={
         "header": "Google reverse search command.",
