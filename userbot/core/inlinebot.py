@@ -27,7 +27,7 @@ from ..sql_helper.globals import gvarstatus
 from . import CMD_INFO, GRP_INFO, PLG_INFO, check_owner
 from .logger import logging
 
-LOGS = logging.getLogger(__name__)
+LOGS = logging.getLogger(__name__) 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
 CATLOGO = os.environ.get("INLINE_PIC") or "https://telegra.ph/file/493268c1f5ebedc967eba.jpg"
