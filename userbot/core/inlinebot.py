@@ -423,7 +423,7 @@ async def inline_handler(event):  # sourcery no-metrics
         elif string == ("help" or ""):
             _result = main_menu()
             HELP_PIC = gvarstatus("HELP_PIC")
-            if HELP_PIC and HELP_PIC.endswith((".jpg", ".jpeg", '.png")):
+            if HELP_PIC and HELP_PIC.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
                     HELP_PIC,
                     #title=" Help Menu", 
