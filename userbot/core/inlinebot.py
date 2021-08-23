@@ -420,9 +420,25 @@ async def inline_handler(event):  # sourcery no-metrics
                 json.dump(jsondata, open(hide, "w"))
             else:
                 json.dump(newhide, open(hide, "w"))
-        elif string == "help":
+        elif string == ("help" or ""):
             _result = main_menu()
-            result = builder.article(
+            HELP_PIC = gvarstatus("HELP_PIC")
+            if HELP_PIC and HELP_PIC.endswith((".jpg", ".jpeg", '.png")):
+                result = builder.photo(
+                    HELP_PIC,
+                    #title=" Help Menu", 
+                    text=_result[0], 
+                    buttons=_result[1], 
+                ) 
+            elif HELP_PIC:
+                result = builder.document(
+                    HELP_PIC,
+                    title="Help Menu", 
+                    text=_result[0], 
+                    buttons=_result[1],
+                )
+            else:
+                result = builder.article(                             
                 title="© CatUserbot Help",
                 description="Help menu for CatUserbot",
                 text=_result[0],
