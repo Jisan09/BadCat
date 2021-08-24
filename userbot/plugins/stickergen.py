@@ -211,7 +211,8 @@ async def doge(event):
         if files and os.path.exists(files):
             os.remove(files)
 
-#by Yato
+
+# by Yato
 @catub.cat_cmd(
     pattern="(|h)penguin(?:\s|$)([\s\S]*)",
     command=("penguin", plugin_category),
@@ -276,7 +277,8 @@ async def penguin(event):
         if files and os.path.exists(files):
             os.remove(files)
 
-#by Yato
+
+# by Yato
 @catub.cat_cmd(
     pattern="(|h)gandhi(?:\s|$)([\s\S]*)",
     command=("gandhi", plugin_category),
