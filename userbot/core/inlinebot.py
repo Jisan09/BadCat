@@ -225,7 +225,7 @@ async def inline_handler(event):  # sourcery no-metrics
         match2 = re.findall(inf, query)
         hid = re.compile("hide (.*)")
         match3 = re.findall(hid, query)
-        if query.startswith("**Catuserbot"):
+        if query.startswith("**Catuserbot") or gvarstatus("ALIVE_TEXT"):
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
