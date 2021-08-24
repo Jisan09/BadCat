@@ -251,9 +251,9 @@ async def penguin(event):
         "https://telegra.ph/file/ee1fc91bbaef2cc808c7c.png", temp_name
     )
     text = deEmojify(text)
-    font, wrap = (90, 4) if len(text) < 90 else (70, 4.5)
+    font, wrap = (90, 4) if len(text) < 50 else (70, 4.5)
     bg, fg, alpha, ls = (
-        ("black", "white", 255, "5") if cmd == "h" else ("white", "black", 0, "-40")
+        ("black", "white", 255, "-20") if cmd == "h" else ("white", "black", 0, "-40")
     )
     higlighted_text(
         temp_name,
@@ -297,7 +297,7 @@ async def penguin(event):
         ],
     },
 )
-async def gandhu(event):
+async def gandhi(event):
     "Make a cool gandhi text sticker"
     cmd = event.pattern_match.group(1).lower()
     text = event.pattern_match.group(2)
@@ -317,9 +317,9 @@ async def gandhu(event):
         "https://telegra.ph/file/3bebc56ee82cce4f300ce.jpg", temp_name
     )
     text = deEmojify(text)
-    font, wrap = (90, 3) if len(text) < 70 else (70, 2.8)
+    font, wrap = (90, 3) if len(text) < 60 else (70, 2.8)
     bg, fg, alpha, ls = (
-        ("white", "black", 255, "5") if cmd == "h" else ("black", "white", 0, "-40")
+        ("white", "black", 255, "-20") if cmd == "h" else ("black", "white", 0, "-40")
     )
     higlighted_text(
         temp_name,
@@ -328,7 +328,7 @@ async def gandhu(event):
         text_wrap=wrap,
         font_size=font,
         linespace=ls,
-        position=(450, 10),
+        position=(470, 10),
         align="center",
         background=bg,
         foreground=fg,
