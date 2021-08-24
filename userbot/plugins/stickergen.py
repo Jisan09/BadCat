@@ -1,49 +1,30 @@
 import os
-
 import urllib
 
 from ..helpers.functions import clippy, convert_tosticker, higlighted_text
-
 from . import catub, deEmojify, edit_delete, reply_id
 
 plugin_category = "useless"
 
+
 @catub.cat_cmd(
-
     pattern="(|b)quby(?:\s|$)([\s\S]*)",
-
     command=("quby", plugin_category),
-
     info={
-
         "header": "Make doge say anything.",
-
         "flags": {
-
             "b": "Give the sticker on background.",
-
         },
-
         "usage": [
-
             "{tr}quby <text/reply to msg>",
-
             "{tr}bquby <text/reply to msg>",
-
         ],
-
         "examples": [
-
             "{tr}quby Gib money",
-
             "{tr}bquby Gib money",
-
         ],
-
     },
-
 )
-
 async def quby(event):
 
     "Make a cool quby text sticker"
@@ -61,9 +42,7 @@ async def quby(event):
     if not text:
 
         return await edit_delete(
-
             event, "__What is quby supposed to say? Give some text.__"
-
         )
 
     await edit_delete(event, "`Wait, processing.....`")
@@ -77,9 +56,7 @@ async def quby(event):
     file_name = "./temp/quby.png"
 
     templait = urllib.request.urlretrieve(
-
         "https://telegra.ph/file/09f4df5a129758a2e1c9c.jpg", temp_name
-
     )
 
     if len(text) < 40:
@@ -101,21 +78,13 @@ async def quby(event):
     text = deEmojify(text)
 
     higlighted_text(
-
         temp_name,
-
         text,
-
         file_name,
-
         text_wrap=wrap,
-
         font_size=font,
-
         linespace="+4",
-
         position=position,
-
     )
 
     if cmd == "b":
@@ -123,9 +92,7 @@ async def quby(event):
         cat = convert_tosticker(file_name)
 
         await event.client.send_file(
-
             event.chat_id, cat, reply_to=reply_to_id, force_document=False
-
         )
 
     else:
@@ -140,42 +107,25 @@ async def quby(event):
 
             os.remove(files)
 
+
 @catub.cat_cmd(
-
     pattern="(|b)blob(?:\s|$)([\s\S]*)",
-
     command=("blob", plugin_category),
-
     info={
-
         "header": "Give the sticker on background.",
-
         "flags": {
-
             "b": "To create knife sticker transparent.",
-
         },
-
         "usage": [
-
             "{tr}blob <text/reply to msg>",
-
             "{tr}bblob <text/reply to msg>",
-
         ],
-
         "examples": [
-
             "{tr}blob Gib money",
-
             "{tr}bblob Gib money",
-
         ],
-
     },
-
 )
-
 async def knife(event):
 
     "Make a blob knife text sticker"
@@ -193,9 +143,7 @@ async def knife(event):
     if not text:
 
         return await edit_delete(
-
             event, "__What is knife supposed to say? Give some text.__"
-
         )
 
     await edit_delete(event, "`Wait, processing.....`")
@@ -209,9 +157,7 @@ async def knife(event):
     file_name = "./temp/knife.png"
 
     templait = urllib.request.urlretrieve(
-
         "https://telegra.ph/file/2188367c8c5f43c36aa59.jpg", temp_name
-
     )
 
     if len(text) < 50:
@@ -233,23 +179,14 @@ async def knife(event):
     text = deEmojify(text)
 
     higlighted_text(
-
         temp_name,
-
         text,
-
         file_name,
-
         text_wrap=wrap,
-
         font_size=font,
-
         linespace="-5",
-
         position=position,
-
         direction="upwards",
-
     )
 
     if cmd == "b":
@@ -257,9 +194,7 @@ async def knife(event):
         cat = convert_tosticker(file_name)
 
         await event.client.send_file(
-
             event.chat_id, cat, reply_to=reply_to_id, force_document=False
-
         )
 
     else:
@@ -274,42 +209,25 @@ async def knife(event):
 
             os.remove(files)
 
+
 @catub.cat_cmd(
-
     pattern="(|h)doge(?:\s|$)([\s\S]*)",
-
     command=("doge", plugin_category),
-
     info={
-
         "header": "Make doge say anything.",
-
         "flags": {
-
             "h": "To create doge sticker with highligted text.",
-
         },
-
         "usage": [
-
             "{tr}doge <text/reply to msg>",
-
             "{tr}tdoge <text/reply to msg>",
-
         ],
-
         "examples": [
-
             "{tr}doge Gib money",
-
             "{tr}hdoge Gib money",
-
         ],
-
     },
-
 )
-
 async def doge(event):
 
     "Make a cool doge text sticker"
@@ -327,9 +245,7 @@ async def doge(event):
     if not text:
 
         return await edit_delete(
-
             event, "__What is doge supposed to say? Give some text.__"
-
         )
 
     await edit_delete(event, "`Wait, processing.....`")
@@ -343,9 +259,7 @@ async def doge(event):
     file_name = "./temp/doge.jpg"
 
     templait = urllib.request.urlretrieve(
-
         "https://telegra.ph/file/6f621b9782d9c925bd6c4.jpg", temp_name
-
     )
 
     text = deEmojify(text)
@@ -353,43 +267,27 @@ async def doge(event):
     font, wrap = (90, 2) if len(text) < 90 else (70, 2.5)
 
     bg, fg, alpha, ls = (
-
         ("black", "white", 255, "5") if cmd == "h" else ("white", "black", 0, "-40")
-
     )
 
     higlighted_text(
-
         temp_name,
-
         text,
-
         file_name,
-
         text_wrap=wrap,
-
         font_size=font,
-
         linespace=ls,
-
         position=(0, 10),
-
         align="left",
-
         background=bg,
-
         foreground=fg,
-
         transparency=alpha,
-
     )
 
     cat = convert_tosticker(file_name)
 
     await event.client.send_file(
-
         event.chat_id, cat, reply_to=reply_to_id, force_document=False
-
     )
 
     await event.delete()
@@ -400,42 +298,25 @@ async def doge(event):
 
             os.remove(files)
 
+
 @catub.cat_cmd(
-
     pattern="(|h)penguin(?:\s|$)([\s\S]*)",
-
     command=("penguin", plugin_category),
-
     info={
-
         "header": "To make penguin meme sticker. ",
-
         "flags": {
-
             "h": "To create penguin sticker with highligted text.",
-
         },
-
         "usage": [
-
             "{tr}penguin <text/reply to msg>",
-
             "{tr}hpenguin <text/reply to msg>",
-
         ],
-
         "examples": [
-
             "{tr}penguin Shut up Rash",
-
             "{tr}hpenguin Shut up Rash",
-
         ],
-
     },
-
 )
-
 async def penguin(event):
 
     "Make a cool penguin text sticker"
@@ -446,16 +327,14 @@ async def penguin(event):
 
     reply_to_id = await reply_id(event)
 
-    if not text  and event.is_reply:
+    if not text and event.is_reply:
 
         text = (await event.get_reply_message()).message
 
     if not text:
 
         return await edit_delete(
-
             event, "What is penguin supposed to say? Give some text."
-
         )
 
     await edit_delete(event, "Wait, processing.....")
@@ -469,9 +348,7 @@ async def penguin(event):
     file_name = "./temp/penguin.jpg"
 
     templait = urllib.request.urlretrieve(
-
         "https://telegra.ph/file/ee1fc91bbaef2cc808c7c.png", temp_name
-
     )
 
     text = deEmojify(text)
@@ -479,43 +356,27 @@ async def penguin(event):
     font, wrap = (90, 4) if len(text) < 90 else (70, 4.5)
 
     bg, fg, alpha, ls = (
-
         ("black", "white", 255, "5") if cmd == "h" else ("white", "black", 0, "-40")
-
     )
 
     higlighted_text(
-
         temp_name,
-
         text,
-
         file_name,
-
         text_wrap=wrap,
-
         font_size=font,
-
         linespace=ls,
-
         position=(0, 10),
-
         align="left",
-
         background=bg,
-
         foreground=fg,
-
         transparency=alpha,
-
     )
 
     cat = convert_tosticker(file_name)
 
     await event.client.send_file(
-
         event.chat_id, cat, reply_to=reply_to_id, force_document=False
-
     )
 
     await event.delete()
@@ -526,42 +387,25 @@ async def penguin(event):
 
             os.remove(files)
 
+
 @catub.cat_cmd(
-
     pattern="(|h)gandhi(?:\s|$)([\s\S]*)",
-
     command=("gandhi", plugin_category),
-
     info={
-
         "header": "Make gandhi text sticker.",
-
         "flags": {
-
             "h": "To create gandhi sticker with highligted text.",
-
         },
-
         "usage": [
-
             "{tr}gandhi <text/reply to msg>",
-
             "{tr}hgandhi <text/reply to msg>",
-
         ],
-
         "examples": [
-
             "{tr}gandhi Nathu Killed me",
-
             "{tr}hgandhi Nathu Killed me",
-
         ],
-
     },
-
 )
-
 async def gandhi(event):
 
     "Make a cool gandhi text sticker"
@@ -579,9 +423,7 @@ async def gandhi(event):
     if not text:
 
         return await edit_delete(
-
             event, "What is gandhi supposed to write? Give some text."
-
         )
 
     await edit_delete(event, "Wait, processing.....")
@@ -595,9 +437,7 @@ async def gandhi(event):
     file_name = "./temp/gandhi.jpg"
 
     templait = urllib.request.urlretrieve(
-
         "https://telegra.ph/file/3bebc56ee82cce4f300ce.jpg", temp_name
-
     )
 
     text = deEmojify(text)
@@ -605,45 +445,28 @@ async def gandhi(event):
     font, wrap = (90, 3) if len(text) < 70 else (70, 2.8)
 
     bg, fg, alpha, ls = (
-
         ("white", "black", 255, "5") if cmd == "h" else ("black", "white", 0, "-40")
-
     )
 
     higlighted_text(
-
         temp_name,
-
         text,
-
         file_name,
-
         text_wrap=wrap,
-
-        font_name = "userbot/helpers/styles/ProductSans-Light.ttf",
-
+        font_name="userbot/helpers/styles/ProductSans-Light.ttf",
         font_size=font,
-
         linespace=ls,
-
         position=(450, 10),
-
         align="center",
-
         background=bg,
-
         foreground=fg,
-
         transparency=alpha,
-
     )
 
     cat = convert_tosticker(file_name)
 
     await event.client.send_file(
-
         event.chat_id, cat, reply_to=reply_to_id, force_document=False
-
     )
 
     await event.delete()
