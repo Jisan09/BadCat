@@ -49,7 +49,6 @@ python-barcode
 python-dotenv
 pytz
 qrcode
-randomstuff.py==1.5.2
 regex
 requests
 search-engine-parser
