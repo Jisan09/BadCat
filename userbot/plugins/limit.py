@@ -2,7 +2,7 @@
 import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError, UserAlreadyParticipantError
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon import event
+from telethon import events
 from userbot import catub
 from ..helpers.utils import reply_id
 
