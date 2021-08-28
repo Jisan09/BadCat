@@ -1,4 +1,4 @@
-#By https://t.me/deepaiims
+#By@deepaiims
 from userbot import catub
 from ..core.managers import edit_delete
 from ..helpers.utils import reply_id
