@@ -1,4 +1,4 @@
-#By t.m
+#By t.
 from userbot import catub
 from ..core.managers import edit_delete
 from ..helpers.utils import reply_id
