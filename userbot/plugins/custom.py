@@ -14,6 +14,7 @@ cmdhd = Config.COMMAND_HAND_LER
 
 
 vlist = [
+    "ALIVE_CHANNEL"
     "ALIVE_PIC",
     "ALIVE_EMOJI",
     "ALIVE_TEXT",
@@ -23,6 +24,8 @@ vlist = [
     "HELP_PIC", 
     "HELP_TEXT",
     "IALIVE_PIC",
+    "PING_PIC"
+    "PING_PICS"
     "PM_PIC",
     "PM_TEXT",
     "PM_BLOCK",
