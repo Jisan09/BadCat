@@ -9,7 +9,7 @@ chr = Config.COMMAND_HAND_LER
 GBOT = "@HowGayBot"
 FBOT = "@FsInChatBot"
 
-# t.me/Lal_Bakthan
+#By @deepaiims
 @catub.cat_cmd(
     pattern="countdown(?:\s|$)([\s\S]*)",
     command=("countdown", plugin_category),
@@ -42,7 +42,7 @@ async def _(event):
     except Exception as e:
         await edit_delete(event, f"`{e}`", 7)
 
-#t.me/realnub
+#By @deepaiims
 @catub.cat_cmd(
     pattern="gey(?:\s|$)([\s\S]*)",
     command=("gey", plugin_category),
@@ -66,7 +66,7 @@ async def app_search(event):
     except Exception as err:
         await event.edit(str(err))
 
-#t.me/realnub
+#By @deepaiims
 @catub.cat_cmd(
     pattern="fr(?:\s|$)([\s\S]*)",
     command=("fr", plugin_category),
@@ -92,7 +92,7 @@ async def app_search(event):
     except Exception as err:
         await event.edit(str(err))
 
-#t.me/realnub & t.me/amnd33p
+#By @deepaiims
 @catub.cat_cmd(
     pattern="iapp(?:\s|$)([\s\S]*)",
     command=("iapp", plugin_category),
