@@ -1,3 +1,4 @@
+#By @deepaiims
 import random
 from userbot import catub
 
@@ -15,7 +16,7 @@ plugin_category = "utils"
         "usage": [
             "{tr}mcq <options>",
             "{tr}mcq a b c d",
-            "{tr}mcq cat dog life death"
+            "{tr}mcq physics chemistry math biology"
         ],
     },
 )
