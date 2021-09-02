@@ -1,4 +1,4 @@
-# By @kirito6969 for PepeBot
+# By @deepaiims
 # Don't edit credits Madafaka
 """
 This module can search images in danbooru and send in to the chat!
