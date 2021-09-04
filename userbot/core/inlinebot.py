@@ -27,10 +27,12 @@ from ..sql_helper.globals import gvarstatus
 from . import CMD_INFO, GRP_INFO, PLG_INFO, check_owner
 from .logger import logging
 
-LOGS = logging.getLogger(__name__) 
+LOGS = logging.getLogger(__name__)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
-CATLOGO = os.environ.get("INLINE_PIC") or "https://telegra.ph/file/493268c1f5ebedc967eba.jpg"
+CATLOGO = (
+    os.environ.get("INLINE_PIC") or "https://telegra.ph/file/493268c1f5ebedc967eba.jpg"
+)
 tr = Config.COMMAND_HAND_LER
 
 
@@ -409,7 +411,9 @@ async def inline_handler(event):  # sourcery no-metrics
             newhide = {str(timestamp): {"text": query}}
 
             buttons = [Button.inline("Read Message ", data=f"hide_{timestamp}")]
-            result = builder.article(title="Hidden Message", text='✖✖✖', buttons=buttons)
+            result = builder.article(
+                title="Hidden Message", text="✖✖✖", buttons=buttons
+            )
             await event.answer([result] if result else None)
             if jsondata:
                 jsondata.update(newhide)
@@ -422,25 +426,25 @@ async def inline_handler(event):  # sourcery no-metrics
             if HELP_PIC and HELP_PIC.endswith((".jpg", ".jpeg", ".png")):
                 result = builder.photo(
                     HELP_PIC,
-                    #title=" Help Menu", 
-                    text=_result[0], 
-                    buttons=_result[1], 
-                ) 
+                    # title=" Help Menu",
+                    text=_result[0],
+                    buttons=_result[1],
+                )
             elif HELP_PIC:
                 result = builder.document(
                     HELP_PIC,
-                    title="Help Menu", 
-                    text=_result[0], 
+                    title="Help Menu",
+                    text=_result[0],
                     buttons=_result[1],
                 )
             else:
-                result = builder.article(                             
+                result = builder.article(
                     title="© CatUserbot Help",
                     description="Help menu for CatUserbot",
                     text=_result[0],
                     buttons=_result[1],
                     link_preview=True,
-               )
+                )
             await event.answer([result] if result else None)
         elif str_y[0].lower() == "ytdl" and len(str_y) == 2:
             link = get_yt_video_id(str_y[1].strip())

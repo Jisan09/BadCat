@@ -1,9 +1,12 @@
-#By @deepaiims
+# By @deepaiims
 from userbot import catub
+
 from ..core.managers import edit_delete
-from ..helpers.utils import reply_id
 from ..helpers.functions import deEmojify, hide_inlinebot
+from ..helpers.utils import reply_id
+
 plugin_category = "extra"
+
 
 @catub.cat_cmd(
     pattern="isong ?(.*)",

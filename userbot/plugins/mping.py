@@ -3,7 +3,6 @@
 # It is simillar to my other plugin 'pping' (ping with media)
 # This randomly chooses from the given media links, i.e 'multi-pping', in short 'mping'
 
-import asyncio
 import os
 import random
 from datetime import datetime
@@ -60,7 +59,10 @@ async def _(event):
         return
     reply_to_id = await reply_id(event)
     # add space b/w each telegraph link
-    PING_PICS = (gvarstatus("PING_PICS") or "https://telegra.ph/file/1328d62db93ad22b69ba2.jpg https://telegra.ph/file/b2da6e4c55dd29600e4ed.jpg")
+    PING_PICS = (
+        gvarstatus("PING_PICS")
+        or "https://telegra.ph/file/1328d62db93ad22b69ba2.jpg https://telegra.ph/file/b2da6e4c55dd29600e4ed.jpg"
+    )
     PING_PICS = PING_PICS.rsplit(" ")
     start = datetime.now()
     cat = await edit_or_reply(event, f"{PING_TEXT}", "html")

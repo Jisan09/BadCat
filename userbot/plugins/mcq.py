@@ -1,5 +1,6 @@
-#By @deepaiims
+# By @deepaiims
 import random
+
 from userbot import catub
 
 from ..core.managers import edit_delete
@@ -16,7 +17,7 @@ plugin_category = "utils"
         "usage": [
             "{tr}mcq <options>",
             "{tr}mcq a b c d",
-            "{tr}mcq physics chemistry math biology"
+            "{tr}mcq physics chemistry math biology",
         ],
     },
 )
@@ -25,10 +26,8 @@ async def Gay(event):
     if event.fwd_from:
         return
     inp = event.pattern_match.group(1)
-    reply_to_id = await reply_id(event)
+    await reply_id(event)
     if not inp:
-        return await edit_delete(
-            event, "What to choose from", 15
-        )
+        return await edit_delete(event, "What to choose from", 15)
     options = inp.split()
     await edit_delete(event, random.choice(options), 120)

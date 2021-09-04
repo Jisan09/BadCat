@@ -13,11 +13,8 @@ plugin_category = "extra"
     command=("hc", plugin_category),
     info={
         "header": "Hides the message via @hideitbot with █",
-        "usage": [
-            "{tr}hc <text>",
-            "{tr}hc -p <text *hide*> "
-        ],
-        "flag":{"-p": "hides words inside **"},
+        "usage": ["{tr}hc <text>", "{tr}hc -p <text *hide*> "],
+        "flag": {"-p": "hides words inside **"},
     },
 )
 async def hideit01(event):
@@ -35,7 +32,7 @@ async def hideit01(event):
     if "-p" in hidetxt:
         hidetxt = hidetxt.replace("-p", "")
         if not hidetxt:
-                return await edit_delete(
+            return await edit_delete(
                 event, "__What should I hide through bot? Give some text.__"
             )
         results = await event.client.inline_query(bot, hidetxt)

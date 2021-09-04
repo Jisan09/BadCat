@@ -1,4 +1,8 @@
-import asyncio, bs4, requests
+import asyncio
+
+import bs4
+import requests
+
 from userbot import catub
 
 from ..core.managers import edit_delete, edit_or_reply
@@ -9,7 +13,7 @@ chr = Config.COMMAND_HAND_LER
 GBOT = "@HowGayBot"
 FBOT = "@FsInChatBot"
 
-#By @deepaiims
+# By @deepaiims
 @catub.cat_cmd(
     pattern="countdown(?:\s|$)([\s\S]*)",
     command=("countdown", plugin_category),
@@ -26,9 +30,7 @@ async def _(event):
     try:
         total = event.pattern_match.group(1)
         if not total:
-            await edit_delete(
-                event, f"**Usage:** `{chr}countdown <seconds>`", 10
-            )
+            await edit_delete(event, f"**Usage:** `{chr}countdown <seconds>`", 10)
             return
         t = int(total)
         pluto = await edit_or_reply(event, f"Counter Starting for {total} seconds.")
@@ -42,7 +44,8 @@ async def _(event):
     except Exception as e:
         await edit_delete(event, f"`{e}`", 7)
 
-#By @deepaiims
+
+# By @deepaiims
 @catub.cat_cmd(
     pattern="gey(?:\s|$)([\s\S]*)",
     command=("gey", plugin_category),
@@ -66,7 +69,8 @@ async def app_search(event):
     except Exception as err:
         await event.edit(str(err))
 
-#By @deepaiims
+
+# By @deepaiims
 @catub.cat_cmd(
     pattern="fr(?:\s|$)([\s\S]*)",
     command=("fr", plugin_category),
@@ -92,7 +96,8 @@ async def app_search(event):
     except Exception as err:
         await event.edit(str(err))
 
-#By @deepaiims
+
+# By @deepaiims
 @catub.cat_cmd(
     pattern="iapp(?:\s|$)([\s\S]*)",
     command=("iapp", plugin_category),
@@ -106,9 +111,7 @@ async def app_search(event):
     "To search any app in playstore via inline."
     app_name = event.pattern_match.group(1)
     if not app_name:
-        await edit_delete(
-            event, f"**Usage:** `{chr}iapp <name>`", 10
-        )
+        await edit_delete(event, f"**Usage:** `{chr}iapp <name>`", 10)
         return
     reply_to_id = await reply_id(event)
     event = await edit_or_reply(event, "`Searching!..`")

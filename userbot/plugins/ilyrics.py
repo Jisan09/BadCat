@@ -27,9 +27,7 @@ async def GayIfUChangeCredit(event):
     song = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     if not song:
-        return await edit_delete(
-            event, "`Gimme a song u baka!`", 15
-        )
+        return await edit_delete(event, "`Gimme a song u baka!`", 15)
     await event.delete()
     results = await event.client.inline_query(bot, song)
     await results[0].click(event.chat_id, reply_to=reply_to_id)

@@ -1,18 +1,16 @@
-from telethon.tl.types import InputMessagesFilterPhotos
-from telethon.tl import types
-import random
 import os
-import re
-import requests
+import random
 import time
 from datetime import datetime
 from platform import python_version
 
+import requests
 from telethon import version
+from telethon.tl import types
+from telethon.tl.types import InputMessagesFilterPhotos
 
-from ..Config import Config
 from ..core.managers import edit_or_reply
-from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
+from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
 from . import StartTime, catub, catversion, mention
@@ -41,13 +39,12 @@ async def amireallyalive(event):
     uptime = await get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "〣"
-    #================================================
-    api_url = 'https://animechan.vercel.app/api/random'
+    # ================================================
+    api_url = "https://animechan.vercel.app/api/random"
     quote = False
     while not quote:
         try:
             response = requests.get(api_url).json()
-            is_quote = True 
         except:
             pass
     quote = response["quote"]
@@ -55,11 +52,10 @@ async def amireallyalive(event):
         res = requests.get(api_url).json()
         quote = res["quote"]
     ANIME_QUOTE = f"__{quote}__"
-    ALIVE_CHANNEL = gvarstatus(
-        "ALIVE_CHANNEL") or os.environ.get("ALIVE_CHANNEL")
+    ALIVE_CHANNEL = gvarstatus("ALIVE_CHANNEL") or os.environ.get("ALIVE_CHANNEL")
     if ALIVE_CHANNEL.startswith("-"):
         ALIVE_CHANNEL = int(ALIVE_CHANNEL)
-    #================================================
+    # ================================================
     ALIVE_TEXT = ANIME_QUOTE or gvarstatus("ALIVE_TEXT")
     cat_caption = gvarstatus("ALIVE_TEMPLATE") or temp
     caption = cat_caption.format(
@@ -78,7 +74,9 @@ async def amireallyalive(event):
         done = False
         while not done:
             chat = await event.client.get_entity(ALIVE_CHANNEL)
-            photos = await event.client.get_messages(chat.id, 0, filter=InputMessagesFilterPhotos)
+            photos = await event.client.get_messages(
+                chat.id, 0, filter=InputMessagesFilterPhotos
+            )
             num = photos.total
             pic_id = random.choice(range(num))
             try:

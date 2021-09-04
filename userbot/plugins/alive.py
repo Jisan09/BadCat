@@ -1,11 +1,11 @@
-#BY @deepaiims
-#Edited by @deepaiims
-#Thanks to @deepaiims
+# BY @deepaiims
+# Edited by @deepaiims
+# Thanks to @deepaiims
 import random
 import re
 import time
-from platform import python_version
 from datetime import datetime
+from platform import python_version
 
 from telethon import version
 from telethon.events import CallbackQuery
@@ -20,6 +20,8 @@ from . import StartTime, catub, catversion, mention
 plugin_category = "utils"
 
 start = datetime.now()
+
+
 @catub.cat_cmd(
     pattern="alive$",
     command=("alive", plugin_category),
@@ -46,14 +48,14 @@ async def amireallyalive(event):
         end = datetime.now()
         ms = (end - start).microseconds / 1000
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-        cat_caption += '┏━━━━━✦❘༻༺❘✦━━━━━┓\n'
+        cat_caption += "┏━━━━━✦❘༻༺❘✦━━━━━┓\n"
         cat_caption += f"┃**{EMOJI} 💙 ʙɪʟʟɪ ᴠᴇʀꜱɪᴏɴ :** `{catversion}`\n"
         cat_caption += f"┃**{EMOJI} 💙 ᴅᴇᴀᴅ ꜱɪɴᴄᴇ :** `{uptime}\n`"
         cat_caption += f"┃**{EMOJI} 💙 ꜱᴇɴꜱᴇɪ :** {mention}\n"
         cat_caption += f"┃**{EMOJI} 💙 ꜱᴛᴀᴛᴜꜱ :** `{check_sgnirts}`\n"
-        cat_caption += '┗━━━━━✦❘༻༺❘✦━━━━━┛\n'
+        cat_caption += "┗━━━━━✦❘༻༺❘✦━━━━━┛\n"
         cat_caption += f"┏━━━━━✦❘༻༺❘✦━━━━━┓\n┃ ⁭⁫**{EMOJI} 📡 ᴘɪɴɢ :** {ms} ms \n┗━━━━━✦❘༻༺❘✦━━━━━┛\n"
-        cat_caption += '↠━━━━ღ◆ღ━━━━↞\n'
+        cat_caption += "↠━━━━ღ◆ღ━━━━↞\n"
         cat_caption += f"**{EMOJI} 💙 ᴄʀᴇᴅɪᴛs ᴛᴏ ᴄʀᴇᴀᴛᴏʀs ᴏғ ᴄᴀᴛʙᴏᴛs & sᴜᴘᴘᴏʀᴛᴇʀs** \n"
         await event.client.send_file(
             event.chat_id,
@@ -91,7 +93,7 @@ async def amireallyalive(event):
     "A kind of showing bot details by your inline bot"
     reply_to_id = await reply_id(event)
     EMOJI = gvarstatus("ALIVE_EMOJI") or "‣"
-    cat_caption = '**Catuserbot is Up and Running**\n'
+    cat_caption = "**Catuserbot is Up and Running**\n"
     cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
     cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
     cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
