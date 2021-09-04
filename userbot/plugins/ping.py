@@ -211,8 +211,6 @@ async def _(event):
 
         except IndexError:
 
-            pass
-
             error = "fix"  # This line is just to prevent any NoneType error
 
         caption = (

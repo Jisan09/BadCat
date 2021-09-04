@@ -42,9 +42,9 @@ async def amireallyalive(event):
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "〣"
     #================================================
-    api_url = f"https://animechan.vercel.app/api/random"
+    api_url = 'https://animechan.vercel.app/api/random'
     quote = False
-    while quote == False:
+    while not quote:
         try:
             response = requests.get(api_url).json()
             is_quote = True 
@@ -76,7 +76,7 @@ async def amireallyalive(event):
     # Auto pic by the gawd Lee @TheLoneEssence
     if ALIVE_CHANNEL:
         done = False
-        while done == False:
+        while not done:
             chat = await event.client.get_entity(ALIVE_CHANNEL)
             photos = await event.client.get_messages(chat.id, 0, filter=InputMessagesFilterPhotos)
             num = photos.total
