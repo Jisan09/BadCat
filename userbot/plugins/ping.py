@@ -18,7 +18,7 @@ plugin_category = "tools"
 )
 async def _(event):
     "To check ping"
-    catevent = await edit_or_reply(event, "<b><i>Hmm, Pinging....</b></i>", "html")
+    catevent = await edit_or_reply(event, "__**Hmm, Pinging....**__")
     flag = event.pattern_match.group(1)
     start = datetime.now()
     if flag == " -a":
@@ -30,12 +30,8 @@ async def _(event):
         end = datetime.now()
         tms = (end - start).microseconds / 1000
         ms = round((tms - 0.6) / 3, 3)
-        await catevent.edit(f"**⌘ Average Ping**\n :- {ms} ms")
+        await catevent.edit(f"**⌘ Average Ping**:-\n **{ms} ms**")
     else:
-        await catevent.edit("<b><i>Hmm, Pinging....</b></i>", "html")
         end = datetime.now()
         ms = (end - start).microseconds / 1000
-        await catevent.edit(
-            f"<b><i>〣 Ping: </b></i> : {ms} <b><i>ms\n〣 Owner: {hmention}</b></i>",
-            parse_mode="html",
-        )
+        await catevent.edit(f"<b><i>〣 Ping: {ms} ms\n〣 Owner: {hmention}</b></i>", parse_mode="html")
