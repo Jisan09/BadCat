@@ -12,16 +12,14 @@ from telethon import types
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
-from youtubesearchpython import Video
 
 from userbot import catub
 
 from ..core.logger import logging
-from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.functions import name_dl, song_dl, video_dl, yt_search
 from ..helpers.tools import media_type
 from ..helpers.utils import _catutils, reply_id
-from . import hmention
+from . import edit_delete, edit_or_reply, hmention
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
@@ -29,9 +27,9 @@ LOGS = logging.getLogger(__name__)
 # =========================================================== #
 #                           STRINGS                           #
 # =========================================================== #
-SONG_SEARCH_STRING = "<code>wi8..! I am finding your song....</code>"
-SONG_NOT_FOUND = "<code>Sorry !I am unable to find any song like that</code>"
-SONG_SENDING_STRING = "<code>yeah..! i found something wi8..🥰...</code>"
+SONG_SEARCH_STRING = "<code>Searching song in progress...</code>"
+SONG_NOT_FOUND = "<code>Sorry! I am unable to find any song like that</code>"
+SONG_SENDING_STRING = "<code>I found a perfect match..Uploading!!!</code>"
 SONGBOT_BLOCKED_STRING = "<code>Please unblock @songdl_bot and try again</code>"
 # =========================================================== #
 #                                                             #
@@ -57,12 +55,13 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(2):
         query = event.pattern_match.group(2)
-    elif reply and reply.message:
-        query = reply.message
+    elif reply:
+        if reply.message:
+            query = reply.message
     else:
         return await edit_or_reply(event, "`What I am Supposed to find `")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
+    catevent = await edit_or_reply(event, "`Searching song in progress...`")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
@@ -93,21 +92,21 @@ async def _(event):
         return await catevent.edit(
             f"Sorry!. I can't find any related video/audio for `{query}`"
         )
-    await catevent.edit("`yeah..! i found something wi8..🥰`")
+    await catevent.edit("`I found a perfect match..Uploading!!!`")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
     elif not os.path.exists(catthumb):
         catthumb = None
-    ytdata = Video.get(video_link)
+
     await event.client.send_file(
         event.chat_id,
         song_file,
         force_document=False,
-        caption=f"<b><i>➥ Title :- {ytdata['title']}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
-        parse_mode="html",
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
         supports_streaming=True,
+        parse_mode="html",
         reply_to=reply_to_id,
     )
     await catevent.delete()
@@ -141,12 +140,13 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-    elif reply and reply.message:
-        query = reply.message
+    elif reply:
+        if reply.message:
+            query = reply.messag
     else:
         return await edit_or_reply(event, "`What I am Supposed to find`")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
+    catevent = await edit_or_reply(event, "`Searching video song in progress...`")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
@@ -177,21 +177,20 @@ async def _(event):
         return await catevent.edit(
             f"Sorry!. I can't find any related video/audio for `{query}`"
         )
-    await catevent.edit("`yeah..! i found something wi8..🥰`")
+    await catevent.edit("`I found a perfect match..Uploading!!!`")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
     elif not os.path.exists(catthumb):
         catthumb = None
-    ytdata = Video.get(video_link)
     await event.client.send_file(
         event.chat_id,
         vsong_file,
         force_document=False,
-        caption=f"<b><i>➥ Title :- {ytdata['title']}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
-        parse_mode="html",
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
         thumb=catthumb,
         supports_streaming=True,
+        parse_mode="html",
         reply_to=reply_to_id,
     )
     await catevent.delete()
@@ -235,9 +234,8 @@ async def shazamcmd(event):
     except Exception as e:
         LOGS.error(e)
         return await edit_delete(
-            catevent, f"**Error while reverse searching song:**\n__{e}__"
+            catevent, f"**Error while reverse searching song:**\n__{str(e)}__"
         )
-
     image = track["images"]["background"]
     song = track["share"]["subject"]
     await event.client.send_file(
@@ -290,7 +288,7 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             music,
-            caption=f"<b>➥ Song :- <code>{song}</code></b>",
+            caption=f"<b><i>➥ Song :- {song}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
             parse_mode="html",
             reply_to=reply_id_,
         )
