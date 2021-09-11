@@ -8,7 +8,7 @@ plugin_category = "tools"
 
 
 @catub.cat_cmd(
-    pattern="p( -a|$)",
+    pattern="(p|ping)( -a| -p| -x|$)",
     command=("p", plugin_category),
     info={
         "header": "check how long it takes to ping your userbot",
@@ -18,7 +18,7 @@ plugin_category = "tools"
 )
 async def _(event):
     "To check ping"
-    flag = event.pattern_match.group(1)
+    flag = event.pattern_match.group(2)
     start = datetime.now()
     if flag == " -a":
         catevent = await edit_or_reply(event, "__**Hmm, Pinging...**__")
