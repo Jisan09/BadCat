@@ -8,7 +8,7 @@ plugin_category = "tools"
 
 
 @catub.cat_cmd(
-    pattern="(p|ping)( -a| -p| -x|$)",
+    pattern="(p|ping)( -a|$)",
     command=("p", plugin_category),
     info={
         "header": "check how long it takes to ping your userbot",
