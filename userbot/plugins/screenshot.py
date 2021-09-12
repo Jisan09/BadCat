@@ -5,6 +5,7 @@ Modified by @mrconfused
 """
 
 import io
+import time
 import traceback
 from datetime import datetime
 
@@ -36,7 +37,7 @@ async def _(event):
         return await edit_or_reply(
             event, "Need to install Google Chrome. Module Stopping."
         )
-    catevent = await edit_or_reply(event, "`Processing ...`")
+    catevent = await edit_or_reply(event, "`Processing...`")
     start = datetime.now()
     try:
         chrome_options = webdriver.ChromeOptions()
@@ -70,6 +71,7 @@ async def _(event):
             "return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);"
         )
         driver.set_window_size(width + 100, height + 100)
+        time.sleep(2)
         # Add some pixels on top of the calculated dimensions
         # for good measure to make the scroll bars disappear
         im_png = driver.get_screenshot_as_png()
@@ -78,7 +80,8 @@ async def _(event):
         driver.close()
         message_id = await reply_id(event)
         end = datetime.now()
-        ms = (end - start).seconds
+        lol = (end - start).seconds
+        ms = lol - 2
         hmm = f"**url : **{input_str} \n**Time :** `{ms} seconds`"
         await catevent.delete()
         with io.BytesIO(im_png) as out_file:

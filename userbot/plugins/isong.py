@@ -2,6 +2,7 @@
 from userbot import catub
 from ..core.managers import edit_delete
 from ..helpers.utils import reply_id
+from . import deEmojify, hide_inlinebot
 
 plugin_category = "useless"
 
