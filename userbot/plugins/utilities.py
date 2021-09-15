@@ -1,9 +1,9 @@
-import asyncio
 import random
 
 import bs4
 import requests
 from telethon import functions
+from telethon.errors import FloodWaitError
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from userbot import catub
@@ -17,7 +17,7 @@ chr = Config.COMMAND_HAND_LER
 GBOT = "@HowGayBot"
 FBOT = "@FsInChatBot"
 
-# t.me/realnub
+# t.me/realnub and t.me/lal_bakthan
 @catub.cat_cmd(
     pattern="timer(?:\s|$)([\s\S]*)",
     command=("timer", plugin_category),
@@ -40,11 +40,20 @@ async def _(event):
         t = int(total)
         pluto = await edit_or_reply(event, "**Starting...**")
         while t >= 0:
+            if t > 300:
+                x = 3
+            else:
+                x = 1
             mins, secs = divmod(t, 60)
             timer = "**{:02d}:{:02d}**".format(mins, secs)
-            await pluto.edit(str(timer))
-            await asyncio.sleep(2.95)
-            t -= 3
+            try:
+                await pluto.edit(str(timer))
+            except FloodWaitError as e:
+                t -= e.seconds
+                time.sleep(e.seconds)
+            else:
+                time.sleep(x - 0.8)
+                t -= x
         await pluto.edit(f"**⏱ Time Up!\n⌛️ Time: {total} seconds.**")
     except Exception as e:
         await edit_delete(event, f"`{e}`", 7)
