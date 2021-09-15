@@ -53,7 +53,7 @@ async def _(event):
                 t -= e.seconds
                 time.sleep(e.seconds)
             else:
-                time.sleep(x - 0.8)
+                time.sleep(x - 0.08)
                 t -= x
         await pluto.edit(f"**⏱ Time Up!\n⌛️ Time: {total} seconds.**")
     except Exception as e:
