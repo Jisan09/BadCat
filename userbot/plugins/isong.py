@@ -1,10 +1,12 @@
-#By @Feelded
+# By @Feelded
 from userbot import catub
+
 from ..core.managers import edit_delete
 from ..helpers.utils import reply_id
 from . import deEmojify, hide_inlinebot
 
 plugin_category = "useless"
+
 
 @catub.cat_cmd(
     pattern="isong ?(.*)",
@@ -25,9 +27,7 @@ async def music(event):
     music = deEmojify(music)
     reply_to_id = await reply_id(event)
     if not music:
-        return await edit_delete(
-            event, "What should i search? Give a song name"
-        )
+        return await edit_delete(event, "What should i search? Give a song name")
     await event.delete()
     await hide_inlinebot(event.client, bot, music, event.chat_id, reply_to_id)
 
@@ -50,12 +50,11 @@ async def lyrics(event):
     lyrics = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     if not lyrics:
-        return await edit_delete(
-            event, "__What should i search? Give a song name__"
-        )
+        return await edit_delete(event, "__What should i search? Give a song name__")
     await event.delete()
     results = await event.client.inline_query(bot, lyrics)
     await results[0].click(event.chat_id, reply_to=reply_to_id)
+
 
 @catub.cat_cmd(
     pattern="voice ?(.*)",
@@ -74,9 +73,7 @@ async def app(event):
     text = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     if not text:
-        return await edit_delete(
-            event, "Give a me a text"
-        )
+        return await edit_delete(event, "Give a me a text")
     run = await event.client.inline_query(bot, text)
     result = await run[0].click(Config.OWNER_ID)
     await result.delete()

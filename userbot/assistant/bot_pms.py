@@ -107,11 +107,7 @@ async def bot_start(event):
                         \nI am {my_mention}'s assistant bot.\
                         \nYou can contact to my master from here.\
                         \n\nPowered by [Catuserbot](https://t.me/catuserbot)"
-        buttons = [
-            (
-                Button.url("OWNER", "t.me/VinuXD"),
-            )
-        ]
+        buttons = [(Button.url("OWNER", "t.me/VinuXD"),)]
     else:
         start_msg = "Hey Master!\
             \nHow can i help you ?"
