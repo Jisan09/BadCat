@@ -396,7 +396,7 @@ async def wants_ur_noods(event):
             media_url = "./xvdo/porn.mp4"
         elif "https://i.imgur.com" in m and m.endswith(".gifv"):
             media_url = m.replace(".gifv", ".mp4")
-        elif "https://redgifs.com/watch" in m:
+        elif "redgifs.com/watch" in m:
             try:
                 source = requests.get(m)
                 soup = BeautifulSoup(source.text, "lxml")
