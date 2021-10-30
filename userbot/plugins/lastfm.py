@@ -8,7 +8,7 @@ from re import sub
 from sys import setrecursionlimit
 from urllib import parse
 
-from pylast import LastFMNetwork, User, WSError, md5
+from pylast import LastFMNetwork, MalformedResponseError, User, WSError, md5
 from telethon.errors import AboutTooLongError
 from telethon.errors.rpcerrorlist import FloodWaitError
 from telethon.tl.functions.account import UpdateProfileRequest
@@ -18,9 +18,9 @@ from userbot import catub
 
 from ..Config import Config
 from ..core.logger import logging
+from . import BOTLOG, BOTLOG_CHATID, DEFAULT_BIO
 from ..helpers.functions import deEmojify, hide_inlinebot
 from ..helpers.utils import reply_id
-from . import BOTLOG, BOTLOG_CHATID, DEFAULT_BIO
 
 LOGS = logging.getLogger(__name__)
 plugin_category = "extra"
@@ -147,10 +147,12 @@ async def get_curr_track(lfmbio):  # sourcery no-metrics
                     await catub.send_message(
                         BOTLOG_CHATID, f"Error changing bio:\n{err}"
                     )
-        except FloodWaitError as err:
-            if BOTLOG and LASTFM_.LastLog:
-                await catub.send_message(BOTLOG_CHATID, f"Error changing bio:\n{err}")
-        except WSError as err:
+        except (
+            FloodWaitError,
+            WSError,
+            MalformedResponseError,
+            AboutTooLongError,
+        ) as err:
             if BOTLOG and LASTFM_.LastLog:
                 await catub.send_message(BOTLOG_CHATID, f"Error changing bio:\n{err}")
         await sleep(2)
@@ -202,44 +204,6 @@ async def last_fm(lastFM):
         await lastFM.edit(f"{output}", parse_mode="md", link_preview=True)
     else:
         await lastFM.edit(f"{output}", parse_mode="md")
-
-
-@catub.cat_cmd(
-    pattern="now$",
-    command=("now", plugin_category),
-    info={
-        "header": "Send your current listening song from Lastfm/Spotify/Deezer.",
-        "usage": "{tr}now",
-        "note": "For working of this command, you need to authorize @NowPlayBot.",
-    },
-)
-async def now(event):
-    "Send your current listening song."
-    text = " "
-    reply_to_id = await reply_id(event)
-    bot_name = "@nowplaybot"
-    text = deEmojify(text)
-    await event.delete()
-    await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
-
-
-@catub.cat_cmd(
-    pattern="inow$",
-    command=("inow", plugin_category),
-    info={
-        "header": "Show your current listening song in the form of a cool image.",
-        "usage": "{tr}inow",
-        "note": "For working of this command, you need to authorize @SpotiPieBot.",
-    },
-)
-async def nowimg(event):
-    "Show your current listening song."
-    text = " "
-    reply_to_id = await reply_id(event)
-    bot_name = "@Spotipiebot"
-    text = deEmojify(text)
-    await event.delete()
-    await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
 
 
 @catub.cat_cmd(
@@ -298,3 +262,41 @@ async def lastlog(lstlog):
         await lstlog.edit(LFM_LOG_DISABLED)
     else:
         await lstlog.edit(LFM_LOG_ERR)
+        
+        
+@catub.cat_cmd(
+    pattern="now$",
+    command=("now", plugin_category),
+    info={
+        "header": "Send your current listening song from Lastfm/Spotify/Deezer.",
+        "usage": "{tr}now",
+        "note": "For working of this command, you need to authorize @NowPlayBot.",
+    },
+)
+async def now(event):
+    "Send your current listening song."
+    text = " "
+    reply_to_id = await reply_id(event)
+    bot_name = "@nowplaybot"
+    text = deEmojify(text)
+    await event.delete()
+    await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
+
+
+@catub.cat_cmd(
+    pattern="inow$",
+    command=("inow", plugin_category),
+    info={
+        "header": "Show your current listening song in the form of a cool image.",
+        "usage": "{tr}inow",
+        "note": "For working of this command, you need to authorize @SpotiPieBot.",
+    },
+)
+async def nowimg(event):
+    "Show your current listening song."
+    text = " "
+    reply_to_id = await reply_id(event)
+    bot_name = "@Spotipiebot"
+    text = deEmojify(text)
+    await event.delete()
+    await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
