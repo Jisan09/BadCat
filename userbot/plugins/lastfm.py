@@ -18,9 +18,9 @@ from userbot import catub
 
 from ..Config import Config
 from ..core.logger import logging
-from . import BOTLOG, BOTLOG_CHATID, DEFAULT_BIO
 from ..helpers.functions import deEmojify, hide_inlinebot
 from ..helpers.utils import reply_id
+from . import BOTLOG, BOTLOG_CHATID, DEFAULT_BIO
 
 LOGS = logging.getLogger(__name__)
 plugin_category = "extra"
@@ -262,8 +262,8 @@ async def lastlog(lstlog):
         await lstlog.edit(LFM_LOG_DISABLED)
     else:
         await lstlog.edit(LFM_LOG_ERR)
-        
-        
+
+
 @catub.cat_cmd(
     pattern="now$",
     command=("now", plugin_category),
