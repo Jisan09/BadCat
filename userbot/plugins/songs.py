@@ -12,7 +12,6 @@ from telethon import types
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from validators.url import url
-from youtubesearchpython import Video
 
 from userbot import catub
 
@@ -183,7 +182,7 @@ async def _(event):
         catthumb = Path(f"{catname}.webp")
     elif not os.path.exists(catthumb):
         catthumb = None
-    ytdata = Video.get(video_link)
+    ytdata = await yt_data(video_link)
     await event.client.send_file(
         event.chat_id,
         vsong_file,
