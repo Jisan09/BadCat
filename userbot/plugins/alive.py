@@ -12,12 +12,14 @@ from telethon.errors.rpcerrorlist import (
 )
 from telethon.events import CallbackQuery
 
+from userbot import StartTime, catub, catversion
+
 from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
-from . import StartTime, catub, catversion, mention
+from . import mention
 
 plugin_category = "utils"
 
@@ -35,12 +37,12 @@ plugin_category = "utils"
 )
 async def amireallyalive(event):
     "A kind of showing bot details"
-    start = datetime.now()
-    await edit_or_reply(event, "Checking...")
-    end = datetime.now()
-    ms = (end - start).microseconds / 1000
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
+    start = datetime.now()
+    catevent = await edit_or_reply(event, "`Checking...`")
+    end = datetime.now()
+    ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "✧✧"
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**✮ MY BOT IS RUNNING SUCCESSFULLY ✮**"
@@ -64,23 +66,26 @@ async def amireallyalive(event):
             await event.client.send_file(
                 event.chat_id, PIC, caption=caption, reply_to=reply_to_id
             )
-            await event.delete()
+            await catevent.delete()
         except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
             return await edit_or_reply(
-                event,
+                catevent,
                 f"**Media Value Error!!**\n__Change the link by __`.setdv`\n\n**__Can't get media from this link :-**__ `{PIC}`",
             )
     else:
-        await edit_or_reply(event, caption)
+        await edit_or_reply(
+            catevent,
+            caption,
+        )
 
 
-temp = "{ALIVE_TEXT}\n\n\
-**{EMOJI} Master : {mention}**\n\
-**{EMOJI} Uptime :** `{uptime}`\n\
-**{EMOJI} Telethon version :** `{telever}`\n\
-**{EMOJI} Catuserbot Version :** `{catver}`\n\
-**{EMOJI} Python Version :** `{pyver}`\n\
-**{EMOJI} Database :** `{dbhealth}`\n"
+temp = """{ALIVE_TEXT}
+**{EMOJI} Master:** {mention}
+**{EMOJI} Uptime :** `{uptime}`
+**{EMOJI} Telethon Version :** `{telever}`
+**{EMOJI} Catuserbot Version :** `{catver}`
+**{EMOJI} Python Version :** `{pyver}`
+**{EMOJI} Database :** `{dbhealth}`"""
 
 
 @catub.cat_cmd(
@@ -98,7 +103,7 @@ async def amireallyalive(event):
     "A kind of showing bot details by your inline bot"
     reply_to_id = await reply_id(event)
     EMOJI = gvarstatus("ALIVE_EMOJI") or "✧✧"
-    ALIVE_TEXT = "**Catuserbot is Up and Running**"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**Catuserbot is Up and Running**"
     cat_caption = f"{ALIVE_TEXT}\n"
     cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
     cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
