@@ -64,11 +64,13 @@ async def _(event):
             scam_action = choice(options)
             scam_time = int(args[0])
     elif len(args) == 2:
-        scam_action = str(args[0]).lower()
-        scam_time = int(args[1])
+        try:
+            scam_action = str(args[0]).lower()
+            scam_time = int(args[1])
+        except ValueError:
+            return await edit_delete(event, "`Invalid Syntax !!`")
     else:
-        await edit_delete(event, "`Invalid Syntax !!`")
-        return
+        return await edit_delete(event, "`Invalid Syntax !!`")
     try:
         if scam_time > 0:
             await event.delete()
@@ -104,7 +106,7 @@ async def _(event):
     try:
         await event.client(EditAdminRequest(event.chat_id, user.id, new_rights, rank))
     except BadRequestError:
-        return await catevent.edit(NO_PERM)
+        return await catevent.edit("__I think you don't have permission to promote__")
     except Exception as e:
         return await edit_delete(catevent, f"__{e}__", time=10)
     await catevent.edit("`Promoted Successfully! Now gib Party`")
