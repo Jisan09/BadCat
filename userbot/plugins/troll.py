@@ -20,7 +20,7 @@ async def mememaker(borg, msg, cat, chat_id, reply_to_id):
             pic = await conv.get_response()
             await borg.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await kakashi.edit("Please unblock @clippy and try again")
+            await cat.edit("Please unblock @themememakerbot and try again")
             return
         await cat.delete()
         await borg.send_file(
