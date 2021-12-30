@@ -72,12 +72,12 @@ async def cat(event):
 
 
 @catub.cat_cmd(
-    pattern="sleep ?([\s\S]*)",
-    command=("sleep", plugin_category),
+    pattern="slip ?([\s\S]*)",
+    command=("slip", plugin_category),
     info={
         "header": "brain say meme",
         "description": "Send you a sleeping brain meme.",
-        "usage": "{tr}sleep <text>",
+        "usage": "{tr}slip <text>",
     },
 )
 async def cat(event):
