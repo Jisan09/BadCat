@@ -1,21 +1,20 @@
 # Created by @Jisan7509
 
 
+import base64
+import logging
 import os
 import random
-import base64
-import asyncio
-import logging
+
 import requests
 from telethon import functions, types
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.errors.rpcerrorlist import UserNotParticipantError
+from telethon.errors.rpcerrorlist import UserNotParticipantError, YouBlockedUserError
 from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.utils import _catutils, reply_id
 from ..helpers import media_type
+from ..helpers.utils import _catutils, reply_id
 from . import catub
 
 plugin_category = "useless"
@@ -35,7 +34,7 @@ async def cat(event):
     "Reply this command to a video to convert it to distorted media"
     reply = await event.get_reply_message()
     mediatype = media_type(reply)
-    if mediatype and mediatype not in ["Gif", "Video","Sticker","Photo","Voice"]:
+    if mediatype and mediatype not in ["Gif", "Video", "Sticker", "Photo", "Voice"]:
         return await edit_delete(event, "__Reply to a media file__")
     cat = await edit_or_reply(event, "__🎞Converting into distorted media..__")
     async with event.client.conversation("@distortionerbot") as conv:
@@ -71,12 +70,12 @@ async def _(event):
     if not os.path.isdir("./temp"):
         os.makedirs("./temp")
     filename = os.path.join("./temp", "sticker.webm")
-    download = await reply.download_media(filename)
+    await reply.download_media(filename)
     sticker = await event.client.send_file(event.chat_id, filename, reply_to=reply)
     await catevent.delete()
     os.remove(filename)
-    
-    
+
+
 @catub.cat_cmd(
     pattern="gifs(?:\s|$)([\s\S]*)",
     command=("gifs", plugin_category),
