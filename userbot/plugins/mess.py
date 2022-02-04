@@ -48,10 +48,13 @@ async def cat(event):
             await cat.edit("Please unblock @distortionerbot and try again")
             return
         await cat.delete()
-        await event.client.send_file(event.chat_id, media, reply_to=reply)
+        badcat = await event.client.send_file(event.chat_id, media, reply_to=reply)
+        out = media_type(media)
+        if out in ["Gif", "Video","Sticker"]:
+            await _catutils.unsavegif(event,badcat)
     await event.client.delete_messages(conv.chat_id, [msg.id, media.id])
 
-
+"""
 @catub.cat_cmd(
     pattern="va$",
     command=("va", plugin_category),
@@ -74,7 +77,7 @@ async def _(event):
     sticker = await event.client.send_file(event.chat_id, filename, reply_to=reply)
     await catevent.delete()
     os.remove(filename)
-
+"""
 
 @catub.cat_cmd(
     pattern="gifs(?:\s|$)([\s\S]*)",
