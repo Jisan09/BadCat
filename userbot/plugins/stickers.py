@@ -285,7 +285,7 @@ async def add_to_pack(
     command=("kang", plugin_category),
     info={
         "header": "To kang a sticker.",
-        "description": "Kang's the sticker/image to the specified pack and uses the emoji('s) you picked",
+        "description": "Kang's the sticker/image/video/gif/webm file to the specified pack and uses the emoji('s) you picked",
         "usage": "{tr}kang [emoji('s)] [number]",
     },
 )
@@ -700,7 +700,7 @@ async def pussycat(args):
         )
     if otherpack is None:
         return
-    catevent.delete()
+    await catevent.delete()
     await args.client.send_file(
         args.chat_id,
         sticker,
