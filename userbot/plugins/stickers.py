@@ -315,7 +315,7 @@ async def kang(args):  # sourcery no-metrics
         elif "image" in message.media.document.mime_type.split("/"):
             catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
             photo = io.BytesIO()
-            await args.client.download_file(message.media.document, photo)
+            await args.client.download_media(message.media.document, photo)
             if (
                 DocumentAttributeFilename(file_name="sticker.webp")
                 in message.media.document.attributes
@@ -324,7 +324,7 @@ async def kang(args):  # sourcery no-metrics
                 emojibypass = True
         elif "tgsticker" in message.media.document.mime_type:
             catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
-            await args.client.download_file(
+            await args.client.download_media(
                 message.media.document, "AnimatedSticker.tgs"
             )
             attributes = message.media.document.attributes
@@ -337,7 +337,7 @@ async def kang(args):  # sourcery no-metrics
         elif message.media.document.mime_type in ["video/mp4", "video/webm"]:
             if message.media.document.mime_type == "video/webm":
                 catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
-                sticker = await args.client.download_file(
+                sticker = await args.client.download_media(
                     message.media.document, "animate.webm"
                 )
             else:
@@ -529,7 +529,7 @@ async def pack_kang(event):  # sourcery no-metrics
                 f"`This sticker pack is kanging now . Status of kang process : {kangst}/{noofst}`",
             )
             photo = io.BytesIO()
-            await event.client.download_file(message, photo)
+            await event.client.download_media(message, photo)
             if (
                 DocumentAttributeFilename(file_name="sticker.webp")
                 in message.attributes
@@ -540,7 +540,7 @@ async def pack_kang(event):  # sourcery no-metrics
                 catevent,
                 f"`This sticker pack is kanging now . Status of kang process : {kangst}/{noofst}`",
             )
-            await event.client.download_file(message, "AnimatedSticker.tgs")
+            await event.client.download_media(message, "AnimatedSticker.tgs")
             attributes = message.attributes
             for attribute in attributes:
                 if isinstance(attribute, DocumentAttributeSticker):
