@@ -1,12 +1,12 @@
 import asyncio
 import base64
 import io
+import os
 import math
 import random
 import re
 import string
 import urllib.request
-from os import remove
 
 import cloudscraper
 import emoji as catemoji
@@ -27,14 +27,14 @@ from telethon.tl.types import (
 from userbot import catub
 
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.functions import crop_and_divide
+from ..helpers.functions import crop_and_divide, animator
 from ..helpers.tools import media_type
 from ..helpers.utils import _cattools
 from ..sql_helper.globals import gvarstatus
 
 plugin_category = "fun"
 
-# modified and developed by @mrconfused
+# modified and developed by @mrconfused , @jisan7509
 
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
@@ -66,30 +66,57 @@ def verify_cond(catarray, text):
     return any(i in text for i in catarray)
 
 
-def pack_name(userid, pack, is_anim):
+def pack_name(userid, pack, is_anim, is_video):
     if is_anim:
         return f"catuserbot_{userid}_{pack}_anim"
+    elif is_video:
+        return f"catuserbot_{userid}_{pack}_vid"
     return f"catuserbot_{userid}_{pack}"
+
 
 
 def char_is_emoji(character):
     return character in catemoji.UNICODE_EMOJI["en"]
 
 
-def pack_nick(username, pack, is_anim):
+def pack_nick(username, pack, is_anim, is_video):
     if gvarstatus("CUSTOM_STICKER_PACKNAME"):
-        return (
-            f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack} (Animated)"
-            if is_anim
-            else f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack}"
-        )
-
-    elif is_anim:
+        if is_anim:
+            return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack} (Animated)"
+        elif is_video:
+            return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol. {pack} (Video)"
+        return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack}"
+    
+    if is_anim:
         return f"@{username} Vol.{pack} (Animated)"
+    elif is_video:
+        return f"@{username} Vol. {pack} (Video)"
     else:
         return f"@{username} Vol.{pack}"
 
-
+async def delpack(
+    catevent,
+    conv,
+    cmd,
+    args,
+    packname
+):
+    try:
+        await conv.send_message(cmd)
+    except YouBlockedUserError:
+        await catevent.edit("You have blocked the @stickers bot. unblock it and try.")
+        return None, None
+    await conv.send_message("/delpack")
+    await conv.get_response()
+    await args.client.send_read_acknowledge(conv.chat_id)
+    await conv.send_message(packname)
+    await conv.get_response()
+    await args.client.send_read_acknowledge(conv.chat_id)
+    await conv.send_message("Yes, I am totally sure.")
+    await conv.get_response()
+    await args.client.send_read_acknowledge(conv.chat_id)
+    
+    
 async def resize_photo(photo):
     """Resize the given photo to 512x512"""
     image = Image.open(photo)
@@ -121,10 +148,11 @@ async def newpacksticker(
     args,
     pack,
     packnick,
-    stfile,
+    is_video,
     emoji,
     packname,
     is_anim,
+    stfile,
     otherpack=False,
     pkang=False,
 ):
@@ -140,9 +168,11 @@ async def newpacksticker(
     await conv.send_message(packnick)
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
-    if is_anim:
+    if is_video:
+        await conv.send_file("animate.webm")
+    elif is_anim:
         await conv.send_file("AnimatedSticker.tgs")
-        remove("AnimatedSticker.tgs")
+        os.remove("AnimatedSticker.tgs")
     else:
         stfile.seek(0)
         await conv.send_file(stfile, force_document=True)
@@ -183,6 +213,7 @@ async def add_to_pack(
     pack,
     userid,
     username,
+    is_video,
     is_anim,
     stfile,
     emoji,
@@ -206,8 +237,8 @@ async def add_to_pack(
             pack = val + 1
         except ValueError:
             pack = 1
-        packname = pack_name(userid, pack, is_anim)
-        packnick = pack_nick(username, pack, is_anim)
+        packname = pack_name(userid, pack, is_anim, is_video)
+        packnick = pack_nick(username, pack, is_anim, is_video)
         await catevent.edit(f"`Switching to Pack {pack} due to insufficient space`")
         await conv.send_message(packname)
         x = await conv.get_response()
@@ -219,16 +250,20 @@ async def add_to_pack(
                 args,
                 pack,
                 packnick,
-                stfile,
+                is_video,
                 emoji,
                 packname,
                 is_anim,
+                stfile,
                 otherpack=True,
                 pkang=pkang,
             )
-    if is_anim:
+    if is_video:
+        await conv.send_file("animate.webm")
+        os.remove("animate.webm")
+    elif is_anim:
         await conv.send_file("AnimatedSticker.tgs")
-        remove("AnimatedSticker.tgs")
+        os.remove("AnimatedSticker.tgs")
     else:
         stfile.seek(0)
         await conv.send_file(stfile, force_document=True)
@@ -265,6 +300,7 @@ async def kang(args):  # sourcery no-metrics
     photo = None
     emojibypass = False
     is_anim = False
+    is_video = False
     emoji = None
     message = await args.get_reply_message()
     user = await args.client.get_me()
@@ -296,14 +332,25 @@ async def kang(args):  # sourcery no-metrics
             catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
             await args.client.download_file(
                 message.media.document, "AnimatedSticker.tgs"
-            )
-
+            )    
             attributes = message.media.document.attributes
             for attribute in attributes:
                 if isinstance(attribute, DocumentAttributeSticker):
                     emoji = attribute.alt
             emojibypass = True
             is_anim = True
+            photo = 1
+        elif message.media.document.mime_type in ["video/mp4","video/webm"]:
+            if message.media.document.mime_type == "video/webm":
+                catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
+                sticker = await args.client.download_file(message.media.document, "animate.webm")
+            else:
+                catevent = await edit_or_reply(args, "__⌛ Downloading..__")
+                sticker = await animator(message,args,catevent)
+                await edit_or_reply(catevent, f"`{random.choice(KANGING_STR)}`")
+            is_video = True
+            emoji = "😂"
+            emojibypass = True
             photo = 1
         else:
             await edit_delete(args, "`Unsupported File!`")
@@ -331,11 +378,13 @@ async def kang(args):  # sourcery no-metrics
                 emoji = splat[0]
             else:
                 pack = splat[0]
-        packnick = pack_nick(username, pack, is_anim)
-        packname = pack_name(userid, pack, is_anim)
+        packname = pack_name(userid, pack, is_anim, is_video)
+        packnick = pack_nick(username, pack, is_anim, is_video)
         cmd = "/newpack"
         stfile = io.BytesIO()
-        if is_anim:
+        if is_video:
+            cmd = "/newvideo"
+        elif is_anim:
             cmd = "/newanimated"
         else:
             image = await resize_photo(photo)
@@ -358,6 +407,7 @@ async def kang(args):  # sourcery no-metrics
                     pack,
                     userid,
                     username,
+                    is_video,
                     is_anim,
                     stfile,
                     emoji,
@@ -382,11 +432,14 @@ async def kang(args):  # sourcery no-metrics
                     args,
                     pack,
                     packnick,
-                    stfile,
+                    is_video,
                     emoji,
                     packname,
                     is_anim,
+                    stfile,
                 )
+            if os.path.exists(sticker):
+                os.remove(sticker)
             if otherpack is None:
                 return
             if otherpack:
@@ -405,6 +458,8 @@ async def kang(args):  # sourcery no-metrics
                     parse_mode="md",
                     time=10,
                 )
+
+
 
 
 @catub.cat_cmd(
@@ -430,6 +485,7 @@ async def pack_kang(event):  # sourcery no-metrics
     photo = None
     userid = user.id
     is_anim = False
+    is_video = False
     emoji = None
     reply = await event.get_reply_message()
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -517,8 +573,8 @@ async def pack_kang(event):  # sourcery no-metrics
                 await event.client(cat)
             except BaseException:
                 pass
-            packnick = pack_nick(username, pack, is_anim)
-            packname = pack_name(userid, pack, is_anim)
+            packnick = pack_nick(username, pack, is_anim, is_video)
+            packname = pack_name(userid, pack, is_anim, is_video)
             cmd = "/newpack"
             stfile = io.BytesIO()
             if is_anim:
@@ -543,10 +599,11 @@ async def pack_kang(event):  # sourcery no-metrics
                         event,
                         pack,
                         packnick,
-                        stfile,
+                        is_video,
                         emoji,
                         packname,
                         is_anim,
+                        stfile,
                         pkang=True,
                     )
             else:
@@ -559,6 +616,7 @@ async def pack_kang(event):  # sourcery no-metrics
                         pack,
                         userid,
                         username,
+                        is_video,
                         is_anim,
                         stfile,
                         emoji,
@@ -578,6 +636,88 @@ async def pack_kang(event):  # sourcery no-metrics
             f"  •  [pack {blablapacknames[i[0]]}](t.me/addstickers/{blablapacks[i[0]]})"
         )
     await catevent.edit(result)
+    
+
+
+@catub.cat_cmd(
+    pattern="vas$",
+    command=("vas", plugin_category),
+    info={
+        "header": "Converts video/gif to animated sticker",
+        "description": "Converts video/gif to .webm file and send a temporary animated sticker of that file",
+        "usage": "{tr}vas <Reply to Video/Gif>",
+    },
+)
+async def pussycat(args): 
+    "To kang a sticker." # scam :('  Dom't kamg :/@Jisan7509
+    message = await args.get_reply_message()
+    user = await args.client.get_me()
+    if not user.username:
+        try:
+            user.first_name.encode("utf-8").decode("ascii")
+            username = user.first_name
+        except UnicodeDecodeError:
+            username = f"cat_{user.id}"
+    else:
+        username = user.username
+    userid = user.id
+    if message and message.media:
+        if "video/mp4" in message.media.document.mime_type:
+            catevent = await edit_or_reply(args, "__⌛ Downloading..__")
+            sticker = await animator(message,args,catevent)
+            await edit_or_reply(catevent, f"`{random.choice(KANGING_STR)}`")
+        else:
+            await edit_delete(args, "`Reply to video/gif...!`")
+            return
+    else:
+        await edit_delete(args, "`I can't convert that...`")
+        return
+    cmd = "/newvideo"
+    packname = f"BadCat_{userid}_temp_pack"
+    response = urllib.request.urlopen(
+        urllib.request.Request(f"http://t.me/addstickers/{packname}")
+    )
+    htmlstr = response.read().decode("utf8").split("\n")
+    if (
+        "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
+        not in htmlstr
+    ):
+        async with args.client.conversation("@Stickers") as xconv:
+            await delpack(
+                catevent,
+                xconv,
+                cmd,
+                args,
+                packname,
+            )
+    await catevent.edit("`Hold on, making sticker...`")
+    async with args.client.conversation("@Stickers") as conv:
+        otherpack, packname, emoji = await newpacksticker(
+            catevent,
+            conv,
+            "/newvideo",
+            args,
+            1,
+            "BadCat",
+            True,
+            "😂",
+            packname,
+            False,
+            io.BytesIO(),
+        )
+    if otherpack is None:
+        return
+    catevent.delete()
+    await args.client.send_file(
+        args.chat_id,
+        sticker,
+        force_document=True,
+        caption= f"**[Sticker Preview](t.me/addstickers/{packname})**\n*__It will remove automatically on your next convert.__",
+        reply_to=message,
+    )
+    if os.path.exists(sticker):
+        os.remove(sticker)
+        
 
 
 @catub.cat_cmd(
