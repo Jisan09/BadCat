@@ -1,6 +1,5 @@
 # Created by @Jisan7509
 
-
 import base64
 import logging
 import random
@@ -52,32 +51,6 @@ async def cat(event):
         if out in ["Gif", "Video", "Sticker"]:
             await _catutils.unsavegif(event, badcat)
     await event.client.delete_messages(conv.chat_id, [msg.id, media.id])
-
-
-"""
-@catub.cat_cmd(
-    pattern="va$",
-    command=("va", plugin_category),
-    info={
-        "header": "Reply this command to a video to convert it to Animated sticker.",
-        "usage": "{tr}va",
-    },
-)
-async def _(event):
-    "Reply this command to a video to convert it to animated sticker'."
-    reply = await event.get_reply_message()
-    mediatype = media_type(reply)
-    if mediatype and mediatype not in ["Gif", "Video"]:
-        return await edit_delete(event, "__Reply to video or gif__")
-    catevent = await edit_or_reply(event, "__🎞Converting into Animated sticker..__")
-    if not os.path.isdir("./temp"):
-        os.makedirs("./temp")
-    filename = os.path.join("./temp", "sticker.webm")
-    await reply.download_media(filename)
-    sticker = await event.client.send_file(event.chat_id, filename, reply_to=reply)
-    await catevent.delete()
-    os.remove(filename)
-"""
 
 
 @catub.cat_cmd(
