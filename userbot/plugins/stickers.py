@@ -665,7 +665,6 @@ async def pussycat(args):
     else:
         await edit_delete(args, "`I can't convert that...`")
         return
-    cmd = "/newvideo"
     packname = f"BadCat_{userid}_temp_pack"
     response = urllib.request.urlopen(
         urllib.request.Request(f"http://t.me/addstickers/{packname}")
@@ -675,6 +674,7 @@ async def pussycat(args):
         "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
         not in htmlstr
     ):
+        cmd = "/newvideo"
         async with args.client.conversation("@Stickers") as xconv:
             await delpack(
                 catevent,
