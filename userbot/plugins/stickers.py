@@ -1,8 +1,8 @@
 import asyncio
 import base64
 import io
-import os
 import math
+import os
 import random
 import re
 import string
@@ -27,7 +27,7 @@ from telethon.tl.types import (
 from userbot import catub
 
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.functions import crop_and_divide, animator
+from ..helpers.functions import animator, crop_and_divide
 from ..helpers.tools import media_type
 from ..helpers.utils import _cattools
 from ..sql_helper.globals import gvarstatus
@@ -74,7 +74,6 @@ def pack_name(userid, pack, is_anim, is_video):
     return f"catuserbot_{userid}_{pack}"
 
 
-
 def char_is_emoji(character):
     return character in catemoji.UNICODE_EMOJI["en"]
 
@@ -86,7 +85,7 @@ def pack_nick(username, pack, is_anim, is_video):
         elif is_video:
             return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol. {pack} (Video)"
         return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack}"
-    
+
     if is_anim:
         return f"@{username} Vol.{pack} (Animated)"
     elif is_video:
@@ -94,13 +93,8 @@ def pack_nick(username, pack, is_anim, is_video):
     else:
         return f"@{username} Vol.{pack}"
 
-async def delpack(
-    catevent,
-    conv,
-    cmd,
-    args,
-    packname
-):
+
+async def delpack(catevent, conv, cmd, args, packname):
     try:
         await conv.send_message(cmd)
     except YouBlockedUserError:
@@ -115,8 +109,8 @@ async def delpack(
     await conv.send_message("Yes, I am totally sure.")
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
-    
-    
+
+
 async def resize_photo(photo):
     """Resize the given photo to 512x512"""
     image = Image.open(photo)
@@ -332,7 +326,7 @@ async def kang(args):  # sourcery no-metrics
             catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
             await args.client.download_file(
                 message.media.document, "AnimatedSticker.tgs"
-            )    
+            )
             attributes = message.media.document.attributes
             for attribute in attributes:
                 if isinstance(attribute, DocumentAttributeSticker):
@@ -340,13 +334,15 @@ async def kang(args):  # sourcery no-metrics
             emojibypass = True
             is_anim = True
             photo = 1
-        elif message.media.document.mime_type in ["video/mp4","video/webm"]:
+        elif message.media.document.mime_type in ["video/mp4", "video/webm"]:
             if message.media.document.mime_type == "video/webm":
                 catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
-                sticker = await args.client.download_file(message.media.document, "animate.webm")
+                sticker = await args.client.download_file(
+                    message.media.document, "animate.webm"
+                )
             else:
                 catevent = await edit_or_reply(args, "__⌛ Downloading..__")
-                sticker = await animator(message,args,catevent)
+                sticker = await animator(message, args, catevent)
                 await edit_or_reply(catevent, f"`{random.choice(KANGING_STR)}`")
             is_video = True
             emoji = "😂"
@@ -458,8 +454,6 @@ async def kang(args):  # sourcery no-metrics
                     parse_mode="md",
                     time=10,
                 )
-
-
 
 
 @catub.cat_cmd(
@@ -636,7 +630,6 @@ async def pack_kang(event):  # sourcery no-metrics
             f"  •  [pack {blablapacknames[i[0]]}](t.me/addstickers/{blablapacks[i[0]]})"
         )
     await catevent.edit(result)
-    
 
 
 @catub.cat_cmd(
@@ -648,23 +641,23 @@ async def pack_kang(event):  # sourcery no-metrics
         "usage": "{tr}vas <Reply to Video/Gif>",
     },
 )
-async def pussycat(args): 
-    "To kang a sticker." # scam :('  Dom't kamg :/@Jisan7509
+async def pussycat(args):
+    "To kang a sticker."  # scam :('  Dom't kamg :/@Jisan7509
     message = await args.get_reply_message()
     user = await args.client.get_me()
     if not user.username:
         try:
             user.first_name.encode("utf-8").decode("ascii")
-            username = user.first_name
+            user.first_name
         except UnicodeDecodeError:
-            username = f"cat_{user.id}"
+            f"cat_{user.id}"
     else:
-        username = user.username
+        user.username
     userid = user.id
     if message and message.media:
         if "video/mp4" in message.media.document.mime_type:
             catevent = await edit_or_reply(args, "__⌛ Downloading..__")
-            sticker = await animator(message,args,catevent)
+            sticker = await animator(message, args, catevent)
             await edit_or_reply(catevent, f"`{random.choice(KANGING_STR)}`")
         else:
             await edit_delete(args, "`Reply to video/gif...!`")
@@ -712,12 +705,11 @@ async def pussycat(args):
         args.chat_id,
         sticker,
         force_document=True,
-        caption= f"**[Sticker Preview](t.me/addstickers/{packname})**\n*__It will remove automatically on your next convert.__",
+        caption=f"**[Sticker Preview](t.me/addstickers/{packname})**\n*__It will remove automatically on your next convert.__",
         reply_to=message,
     )
     if os.path.exists(sticker):
         os.remove(sticker)
-        
 
 
 @catub.cat_cmd(
