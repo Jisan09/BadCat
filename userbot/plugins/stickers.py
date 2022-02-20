@@ -69,7 +69,7 @@ def verify_cond(catarray, text):
 def pack_name(userid, pack, is_anim, is_video):
     if is_anim:
         return f"catuserbot_{userid}_{pack}_anim"
-    elif is_video:
+    if is_video:
         return f"catuserbot_{userid}_{pack}_vid"
     return f"catuserbot_{userid}_{pack}"
 
@@ -82,16 +82,14 @@ def pack_nick(username, pack, is_anim, is_video):
     if gvarstatus("CUSTOM_STICKER_PACKNAME"):
         if is_anim:
             return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack} (Animated)"
-        elif is_video:
+        if is_video:
             return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol. {pack} (Video)"
         return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack}"
-
     if is_anim:
         return f"@{username} Vol.{pack} (Animated)"
-    elif is_video:
+    if is_video:
         return f"@{username} Vol. {pack} (Video)"
-    else:
-        return f"@{username} Vol.{pack}"
+    return f"@{username} Vol.{pack}"
 
 
 async def delpack(catevent, conv, cmd, args, packname):
@@ -434,7 +432,7 @@ async def kang(args):  # sourcery no-metrics
                     is_anim,
                     stfile,
                 )
-            if os.path.exists(sticker):
+            if is_video and os.path.exists(sticker):
                 os.remove(sticker)
             if otherpack is None:
                 return
@@ -645,14 +643,6 @@ async def pussycat(args):
     "To kang a sticker."  # scam :('  Dom't kamg :/@Jisan7509
     message = await args.get_reply_message()
     user = await args.client.get_me()
-    if not user.username:
-        try:
-            user.first_name.encode("utf-8").decode("ascii")
-            user.first_name
-        except UnicodeDecodeError:
-            f"cat_{user.id}"
-    else:
-        user.username
     userid = user.id
     if message and message.media:
         if "video/mp4" in message.media.document.mime_type:
