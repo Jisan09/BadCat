@@ -36,7 +36,7 @@ async def source(e):
     await edit_or_reply(
         e,
         "Click [here](https://github.com/Jisan09/catuserbot) to open this bot source code\
-        \nClick [here](https://github.com/Jisan09/catpack) to open supported link for heroku",
+        \nClick [here](https://github.com/TgCatUB/nekopack) to open supported link for heroku",
     )
 
 
@@ -58,7 +58,7 @@ async def _(event):
     async with aiohttp.ClientSession() as session:
         async with session.get(URL) as request:
             if request.status == 404:
-                return await edit_delete(event, "`" + username + " not found`")
+                return await edit_delete(event, f"`{username} not found`")
             catevent = await edit_or_reply(event, "`fetching github info ...`")
             result = await request.json()
             photo = result["avatar_url"]
@@ -168,7 +168,7 @@ async def git_commit(file_name, mone):
         if i == 'ContentFile(path="' + file_name + '")':
             return await mone.edit("`File Already Exists`")
     if create_file:
-        file_name = "userbot/plugins/" + file_name
+        file_name = f"userbot/plugins/{file_name}"
         LOGS.info(file_name)
         try:
             repo.create_file(
