@@ -67,7 +67,7 @@ class Config(object):
         "THUMB_IMAGE", "https://telegra.ph/file/ca95524e4734b0d5461b5.jpg"
     )
     # specify NO_LOAD with plugin names for not loading in userbot
-    NO_LOAD = [x for x in os.environ.get("NO_LOAD", "").split()]
+    NO_LOAD = list(os.environ.get("NO_LOAD", "").split())
     # for custom pic for .digitalpfp
     DIGITAL_PIC = os.environ.get("DIGITAL_PIC", None)
     # your default pic telegraph link
