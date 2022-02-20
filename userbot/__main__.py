@@ -17,7 +17,7 @@ from .utils import (
 LOGS = logging.getLogger("CatUserbot")
 
 print(userbot.__copyright__)
-print(f'Licensed under the terms of the {userbot.__license__}')
+print(f"Licensed under the terms of the {userbot.__license__}")
 
 cmdhr = Config.COMMAND_HAND_LER
 
