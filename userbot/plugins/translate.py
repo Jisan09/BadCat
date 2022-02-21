@@ -62,7 +62,6 @@ async def _(event):
         await edit_delete(event, f"**Error:**\n`{exc}`", time=5)
 
 
-
 @catub.cat_cmd(
     pattern="trt(?: |$)([\s\S]*)",
     command=("trt", plugin_category),
