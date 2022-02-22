@@ -86,7 +86,7 @@ async def cat(event):
     input_text = event.pattern_match.group(1)
     if not input_text:
         return await edit_delete(event, "`Give me some text to process...`")
-    msg = f"/bbn {input_text}"
+    msg = f"/bbs {input_text}"
     cat = await edit_or_reply(event, "```You can't sleep...```")
     await mememaker(event.client, msg, cat, event.chat_id, reply_to_id)
 
